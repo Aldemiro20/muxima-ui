@@ -5,6 +5,14 @@
   user-select: none;
 }
 
+.tree-children {
+  padding-left: 1.5rem;
+  margin-left: 0.5rem;
+  border-left: 1px solid #e2e8f0;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
 .tree-node {
   display: flex;
   align-items: center;
@@ -111,11 +119,12 @@
 }
 
 .tree-icon {
-  font-size: 1.125rem;
-  margin-right: 0.5rem;
+  font-size: 1.25rem;
+  margin-right: 0.75rem;
   flex-shrink: 0;
   display: flex;
   align-items: center;
+  line-height: 1;
 }
 
 .tree-label {
@@ -123,21 +132,22 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.tree-children {
-  margin-left: 0;
+  line-height: 1.5;
 }
 
 // Animation for expand/collapse
+.tree-children {
+  animation: slideDown 0.2s ease-out;
+}
+
 @keyframes slideDown {
   from {
     opacity: 0;
-    max-height: 0;
+    transform: translateY(-10px);
   }
   to {
     opacity: 1;
-    max-height: 1000px;
+    transform: translateY(0);
   }
 }
 

@@ -1,0 +1,221 @@
+<div class="doc-container">
+  <header class="doc-header">
+    <h1>💀 Skeleton Loader</h1>
+    <p class="subtitle">Elegant loading placeholders with smooth animations</p>
+  </header>
+
+  <!-- Basic Shapes -->
+  <section class="doc-section">
+    <h2>Basic Shapes</h2>
+    <p>Display different skeleton shapes for various content types.</p>
+    
+    <div class="example-container">
+      <div class="skeleton-grid">
+        <div class="skeleton-item">
+          <h4>Rectangle</h4>
+          <muxima-skeleton shape="rectangle" width="200px" height="100px"></muxima-skeleton>
+        </div>
+        <div class="skeleton-item">
+          <h4>Circle</h4>
+          <muxima-skeleton shape="circle" size="lg"></muxima-skeleton>
+        </div>
+        <div class="skeleton-item">
+          <h4>Text</h4>
+          <muxima-skeleton shape="text" width="100%" [count]="3"></muxima-skeleton>
+        </div>
+        <div class="skeleton-item">
+          <h4>Avatar</h4>
+          <muxima-skeleton shape="avatar" size="md"></muxima-skeleton>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Animation Types -->
+  <section class="doc-section">
+    <h2>Animation Types</h2>
+    <p>Choose between pulse, wave, or no animation.</p>
+    
+    <div class="example-container">
+      <div class="animation-grid">
+        <div>
+          <h4>Pulse (Default)</h4>
+          <muxima-skeleton animation="pulse" width="300px" height="80px"></muxima-skeleton>
+        </div>
+        <div>
+          <h4>Wave</h4>
+          <muxima-skeleton animation="wave" width="300px" height="80px"></muxima-skeleton>
+        </div>
+        <div>
+          <h4>None</h4>
+          <muxima-skeleton animation="none" width="300px" height="80px"></muxima-skeleton>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <pre><code>{{ '<muxima-skeleton animation="pulse"></muxima-skeleton>' }}
+{{ '<muxima-skeleton animation="wave"></muxima-skeleton>' }}
+{{ '<muxima-skeleton animation="none"></muxima-skeleton>' }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Card Loading -->
+  <section class="doc-section">
+    <h2>Card Loading</h2>
+    <p>Simulate a loading card with avatar, text, and image.</p>
+    
+    <div class="example-container">
+      <button class="toggle-btn" (click)="toggleContent()">
+        {{ showContent ? 'Show Skeleton' : 'Show Content' }}
+      </button>
+      
+      <div class="card-demo" *ngIf="!showContent">
+        <div class="card-header">
+          <muxima-skeleton shape="avatar" size="lg"></muxima-skeleton>
+          <div class="card-info">
+            <muxima-skeleton shape="text" width="150px"></muxima-skeleton>
+            <muxima-skeleton shape="text" width="100px"></muxima-skeleton>
+          </div>
+        </div>
+        <muxima-skeleton shape="rectangle" width="100%" height="200px"></muxima-skeleton>
+        <muxima-skeleton shape="text" width="100%" [count]="3"></muxima-skeleton>
+      </div>
+
+      <div class="card-demo loaded" *ngIf="showContent">
+        <div class="card-header">
+          <div class="avatar">👤</div>
+          <div class="card-info">
+            <strong>John Doe</strong>
+            <span>2 hours ago</span>
+          </div>
+        </div>
+        <img src="https://via.placeholder.com/400x200" alt="Content">
+        <p>This is the actual content that appears after loading. The skeleton loader provides a smooth transition and better user experience.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- List Loading -->
+  <section class="doc-section">
+    <h2>List Loading</h2>
+    <p>Display skeleton loaders for list items.</p>
+    
+    <div class="example-container">
+      <div class="list-demo">
+        <div class="list-item" *ngFor="let i of [1,2,3,4]">
+          <muxima-skeleton shape="avatar" size="md"></muxima-skeleton>
+          <div class="list-content">
+            <muxima-skeleton shape="text" width="180px"></muxima-skeleton>
+            <muxima-skeleton shape="text" width="250px"></muxima-skeleton>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <pre><code>{{ '<div *ngFor="let i of [1,2,3,4]">' }}
+  {{ '<muxima-skeleton shape="avatar" size="md"></muxima-skeleton>' }}
+  {{ '<div>' }}
+    {{ '<muxima-skeleton shape="text" width="180px"></muxima-skeleton>' }}
+    {{ '<muxima-skeleton shape="text" width="250px"></muxima-skeleton>' }}
+  {{ '</div>' }}
+{{ '</div>' }}</code></pre>
+    </div>
+  </section>
+
+  <!-- API Documentation -->
+  <section class="doc-section">
+    <h2>API Reference</h2>
+    
+    <div class="api-table">
+      <h3>Inputs</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>shape</code></td>
+            <td>'rectangle' | 'circle' | 'text' | 'avatar' | 'card'</td>
+            <td>'rectangle'</td>
+            <td>Shape of the skeleton</td>
+          </tr>
+          <tr>
+            <td><code>animation</code></td>
+            <td>'pulse' | 'wave' | 'none'</td>
+            <td>'pulse'</td>
+            <td>Animation type</td>
+          </tr>
+          <tr>
+            <td><code>size</code></td>
+            <td>'sm' | 'md' | 'lg'</td>
+            <td>'md'</td>
+            <td>Predefined size (for circle/avatar)</td>
+          </tr>
+          <tr>
+            <td><code>width</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>Custom width (e.g., '200px', '50%')</td>
+          </tr>
+          <tr>
+            <td><code>height</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>Custom height (e.g., '100px', '3rem')</td>
+          </tr>
+          <tr>
+            <td><code>count</code></td>
+            <td>number</td>
+            <td>1</td>
+            <td>Number of skeleton items</td>
+          </tr>
+          <tr>
+            <td><code>borderRadius</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>Custom border radius</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Size Reference</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Size</th>
+            <th>Dimensions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>sm</code></td>
+            <td>32px × 32px</td>
+          </tr>
+          <tr>
+            <td><code>md</code></td>
+            <td>48px × 48px</td>
+          </tr>
+          <tr>
+            <td><code>lg</code></td>
+            <td>64px × 64px</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Installation -->
+  <section class="doc-section">
+    <h2>Installation</h2>
+    <div class="code-block">
+      <pre><code>npm install @muxima-ui/skeleton</code></pre>
+    </div>
+  </section>
+</div>

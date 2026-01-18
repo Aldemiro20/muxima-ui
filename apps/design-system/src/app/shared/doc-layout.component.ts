@@ -35,6 +35,7 @@ export class DocLayoutComponent {
         { label: 'Chart', route: '/components/chart', icon: '📈' },
         { label: 'Checkbox', route: '/components/checkbox', icon: '☑️' },
         { label: 'Chip', route: '/components/chip', icon: '🏷️' },
+        { label: 'Data Table', route: '/components/data-table', icon: '📊' },
         { label: 'Datepicker', route: '/components/datepicker', icon: '📅' },
         { label: 'Document Viewer', route: '/components/document-viewer', icon: '📄' },
         { label: 'File Upload', route: '/components/file-upload', icon: '📤' },
@@ -45,9 +46,11 @@ export class DocLayoutComponent {
         { label: 'Pagination', route: '/components/pagination', icon: '📄' },
         { label: 'Progress', route: '/components/progress', icon: '📊' },
         { label: 'Radio Button', route: '/components/radio', icon: '🔘' },
+        { label: 'Rich Text Editor', route: '/components/rich-text-editor', icon: '✍️' },
         { label: 'Search Bar', route: '/components/search-bar', icon: '🔍' },
         { label: 'Select', route: '/components/select', icon: '📋' },
         { label: 'Sidebar', route: '/components/sidebar', icon: '🗂️' },
+        { label: 'Skeleton', route: '/components/skeleton', icon: '💀' },
         { label: 'Stats Card', route: '/components/stats-card', icon: '📊' },
         { label: 'Stepper', route: '/components/stepper', icon: '📝' },
         { label: 'Table', route: '/components/table', icon: '📊' },
@@ -56,6 +59,7 @@ export class DocLayoutComponent {
         { label: 'Toast', route: '/components/toast', icon: '🍞' },
         { label: 'Toggle', route: '/components/toggle', icon: '🎯' },
         { label: 'Tooltip', route: '/components/tooltip', icon: '💬' },
+        { label: 'Tree View', route: '/components/tree-view', icon: '🌳' },
         { label: 'User Profile Menu', route: '/components/user-profile-menu', icon: '👤' }
       ]
     }

@@ -75,7 +75,11 @@
       "@muxima-ui/search-bar": ["libs/search-bar/src/index.ts"],
       "@muxima-ui/user-profile-menu": ["libs/user-profile-menu/src/index.ts"],
       "@muxima-ui/chart": ["libs/chart/src/index.ts"],
-      "@muxima-ui/language-selector": ["libs/language-selector/src/index.ts"]
+      "@muxima-ui/language-selector": ["libs/language-selector/src/index.ts"],
+      "@muxima-ui/tree-view": ["libs/tree-view/src/index.ts"],
+      "@muxima-ui/skeleton": ["libs/skeleton/src/index.ts"],
+      "@muxima-ui/rich-text-editor": ["libs/rich-text-editor/src/index.ts"],
+      "@muxima-ui/data-table": ["libs/data-table/src/index.ts"]
     },
     "rootDir": ".",
     "skipLibCheck": true

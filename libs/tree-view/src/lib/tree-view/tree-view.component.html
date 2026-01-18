@@ -5,7 +5,6 @@
       [class.selected]="node.selected"
       [class.disabled]="node.disabled"
       [class]="getDropIndicatorClass(node)"
-      [style.padding-left]="getNodePaddingLeft(node)"
       [attr.draggable]="allowDragDrop && !node.disabled"
       (click)="selectNode(node, $event)"
       (dragstart)="onDragStart(node, $event)"

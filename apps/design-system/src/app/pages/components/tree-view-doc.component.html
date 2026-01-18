@@ -1,0 +1,227 @@
+<div class="doc-container">
+  <header class="doc-header">
+    <h1>🌳 Tree View</h1>
+    <p class="subtitle">Display hierarchical data in a tree structure with drag & drop, selection, and filtering capabilities</p>
+  </header>
+
+  <!-- File System Example -->
+  <section class="doc-section">
+    <h2>File System Explorer</h2>
+    <p>Navigate through a file system structure with expandable folders and files.</p>
+    
+    <div class="example-container">
+      <muxima-tree-view
+        [nodes]="fileSystemData"
+        [expandOnClick]="true"
+        (nodeSelect)="onNodeSelect($event)"
+        (nodeExpand)="onNodeExpand($event)"
+        (nodeCollapse)="onNodeCollapse($event)">
+      </muxima-tree-view>
+    </div>
+
+    <div class="code-block">
+      <pre><code>{{ codeExample1 }}</code></pre>
+    </div>
+
+    <div *ngIf="selectedNode" class="info-box">
+      <strong>Selected:</strong> {{ selectedNode.label }}
+      <span *ngIf="selectedNode.data"> - {{ selectedNode.data | json }}</span>
+    </div>
+  </section>
+
+  <!-- Organization Chart -->
+  <section class="doc-section">
+    <h2>Organization Chart</h2>
+    <p>Display company hierarchy with employee information.</p>
+    
+    <div class="example-container">
+      <muxima-tree-view
+        [nodes]="organizationData"
+        [selectionMode]="'single'"
+        (nodeSelect)="onNodeSelect($event)">
+      </muxima-tree-view>
+    </div>
+  </section>
+
+  <!-- With Checkboxes -->
+  <section class="doc-section">
+    <h2>Checkbox Selection</h2>
+    <p>Multiple selection with checkboxes and cascade selection for parent-child relationships.</p>
+    
+    <div class="example-container">
+      <muxima-tree-view
+        [nodes]="checkboxData"
+        [showCheckbox]="true"
+        [selectionMode]="'checkbox'"
+        (selectionChange)="onSelectionChange($event)">
+      </muxima-tree-view>
+    </div>
+
+    <div class="code-block">
+      <pre><code>{{ codeExample2 }}</code></pre>
+    </div>
+
+    <div *ngIf="selectedNodes.length > 0" class="info-box">
+      <strong>Selected Items ({{ selectedNodes.length }}):</strong>
+      <ul>
+        <li *ngFor="let node of selectedNodes">{{ node.label }}</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- With Drag & Drop -->
+  <section class="doc-section">
+    <h2>Project Structure Explorer</h2>
+    <p>Navigate through a project file structure with multiple levels of nesting.</p>
+    
+    <div class="example-container">
+      <muxima-tree-view
+        [nodes]="projectData"
+        [expandOnClick]="true"
+        (nodeSelect)="onNodeSelect($event)">
+      </muxima-tree-view>
+    </div>
+  </section>
+
+  <!-- With Drag & Drop -->
+  <section class="doc-section">
+    <h2>Drag & Drop</h2>
+    <p>Reorder nodes using drag and drop with position indicators (before, after, inside).</p>
+    
+    <div class="example-container">
+      <muxima-tree-view
+        [nodes]="fileSystemData"
+        [draggable]="true"
+        (nodeDrop)="onNodeDrop($event)">
+      </muxima-tree-view>
+    </div>
+
+    <div class="code-block">
+      <pre><code>{{ codeExample3 }}</code></pre>
+    </div>
+  </section>
+
+  <!-- API Documentation -->
+  <section class="doc-section">
+    <h2>API Reference</h2>
+    
+    <div class="api-table">
+      <h3>Inputs</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>nodes</code></td>
+            <td>TreeNode[]</td>
+            <td>[]</td>
+            <td>Array of tree nodes</td>
+          </tr>
+          <tr>
+            <td><code>selectionMode</code></td>
+            <td>'single' | 'multiple' | 'checkbox'</td>
+            <td>'single'</td>
+            <td>Selection mode</td>
+          </tr>
+          <tr>
+            <td><code>showCheckbox</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Show checkboxes</td>
+          </tr>
+          <tr>
+            <td><code>draggable</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Enable drag & drop</td>
+          </tr>
+          <tr>
+            <td><code>expandOnClick</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Expand node on click</td>
+          </tr>
+          <tr>
+            <td><code>showIcons</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Show node icons</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Outputs</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Payload</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>nodeSelect</code></td>
+            <td>TreeNode</td>
+            <td>Emitted when node is selected</td>
+          </tr>
+          <tr>
+            <td><code>nodeUnselect</code></td>
+            <td>TreeNode</td>
+            <td>Emitted when node is unselected</td>
+          </tr>
+          <tr>
+            <td><code>nodeExpand</code></td>
+            <td>TreeNode</td>
+            <td>Emitted when node is expanded</td>
+          </tr>
+          <tr>
+            <td><code>nodeCollapse</code></td>
+            <td>TreeNode</td>
+            <td>Emitted when node is collapsed</td>
+          </tr>
+          <tr>
+            <td><code>nodeDrop</code></td>
+            <td>{{ '{node, target, position}' }}</td>
+            <td>Emitted when node is dropped</td>
+          </tr>
+          <tr>
+            <td><code>selectionChange</code></td>
+            <td>TreeNode[]</td>
+            <td>Emitted when selection changes</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>TreeNode Interface</h3>
+      <div class="code-block">
+        <pre><code>interface TreeNode {{'{'}}{{'
+'}}  id: number | string;
+  label: string;
+  icon?: string;
+  children?: TreeNode[];
+  expanded?: boolean;
+  selected?: boolean;
+  disabled?: boolean;
+  data?: any;
+  parent?: TreeNode;
+  level?: number;
+{{'}'}}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Installation -->
+  <section class="doc-section">
+    <h2>Installation</h2>
+    <div class="code-block">
+      <pre><code>npm install @muxima-ui/tree-view</code></pre>
+    </div>
+  </section>
+</div>

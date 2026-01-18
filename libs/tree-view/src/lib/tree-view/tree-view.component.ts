@@ -38,6 +38,7 @@ export class TreeViewComponent {
   @Output() nodeExpand = new EventEmitter<TreeNode>();
   @Output() nodeCollapse = new EventEmitter<TreeNode>();
   @Output() nodeDrop = new EventEmitter<{ dragNode: TreeNode; dropNode: TreeNode; dropPosition: 'before' | 'after' | 'inside' }>();
+  @Output() selectionChange = new EventEmitter<TreeNode[]>();
 
   selectedNodes: TreeNode[] = [];
   draggedNode: TreeNode | null = null;
@@ -177,6 +178,7 @@ export class TreeViewComponent {
   private updateSelectedNodes() {
     this.selectedNodes = [];
     this.collectSelectedNodes(this.nodes);
+    this.selectionChange.emit(this.selectedNodes);
   }
 
   private collectSelectedNodes(nodes: TreeNode[]) {

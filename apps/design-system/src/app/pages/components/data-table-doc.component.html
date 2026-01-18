@@ -1,0 +1,297 @@
+<div class="doc-container">
+  <header class="doc-header">
+    <h1>📊 Data Table</h1>
+    <p class="subtitle">Advanced data table with sorting, filtering, pagination, selection, and export</p>
+  </header>
+
+  <!-- Basic Example -->
+  <section class="doc-section">
+    <h2>Basic Table</h2>
+    <p>Simple data table with sorting and filtering capabilities.</p>
+    
+    <div class="example-container">
+      <muxima-data-table
+        [columns]="basicColumns"
+        [data]="basicData">
+      </muxima-data-table>
+    </div>
+
+    <div class="code-block">
+      <pre><code>{{ codeExample1 }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Advanced Features -->
+  <section class="doc-section">
+    <h2>All Features Enabled</h2>
+    <p>Data table with pagination, sorting, filtering, selection, resizable columns, and export.</p>
+    
+    <div class="example-container">
+      <muxima-data-table
+        [columns]="advancedColumns"
+        [data]="advancedData"
+        [config]="advancedConfig"
+        (sort)="onSort($event)"
+        (filter)="onFilter($event)"
+        (rowSelect)="onRowSelect($event)"
+        (selectionChange)="onSelectionChange($event)"
+        (pageChange)="onPageChange($event)"
+        (export)="onExport($event)">
+      </muxima-data-table>
+    </div>
+
+    <div *ngIf="selectedRows.length > 0" class="info-box">
+      <strong>Selected Rows ({{ selectedRows.length }}):</strong>
+      <ul>
+        <li *ngFor="let row of selectedRows.slice(0, 5)">
+          {{ row.name }} - {{ row.department }}
+        </li>
+        <li *ngIf="selectedRows.length > 5">... and {{ selectedRows.length - 5 }} more</li>
+      </ul>
+    </div>
+
+    <div class="code-block">
+      <pre><code>{{ codeExample2 }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Features Overview -->
+  <section class="doc-section">
+    <h2>Table Variations</h2>
+    
+    <h3>Compact Table (No Pagination)</h3>
+    <p>Simple table without pagination for small datasets.</p>
+    
+    <div class="example-container">
+      <muxima-data-table
+        [columns]="compactColumns"
+        [data]="compactData"
+        [config]="compactConfig">
+      </muxima-data-table>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <h3>Server-Side Data Loading</h3>
+    <p>Table with loading state, simulating server-side data fetching.</p>
+    
+    <div class="example-container">
+      <div class="table-controls">
+        <button class="reload-btn" (click)="loadServerData()">
+          🔄 Reload Data
+        </button>
+      </div>
+      
+      <muxima-data-table
+        [columns]="serverColumns"
+        [data]="serverData"
+        [config]="serverConfig"
+        [loading]="serverLoading"
+        (pageChange)="onServerPageChange($event)">
+      </muxima-data-table>
+    </div>
+  </section>
+
+  <!-- Features Overview -->
+  <section class="doc-section">
+    <h2>Features</h2>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⬆️⬇️</div>
+        <h3>Sorting</h3>
+        <p>Click column headers to sort data (asc/desc/none). Supports multiple data types.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>Filtering</h3>
+        <p>Type in filter inputs below headers to filter data in real-time.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <h3>Pagination</h3>
+        <p>Navigate through large datasets with configurable page sizes.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">✅</div>
+        <h3>Selection</h3>
+        <p>Single or multi-row selection with checkboxes. Ctrl+Click for multiple.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📏</div>
+        <h3>Resizable</h3>
+        <p>Drag column borders to resize columns to your preference.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📤</div>
+        <h3>Export</h3>
+        <p>Export data to CSV format with one click.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- API Documentation -->
+  <section class="doc-section">
+    <h2>API Reference</h2>
+    
+    <div class="api-table">
+      <h3>Inputs</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>columns</code></td>
+            <td>TableColumn[]</td>
+            <td>[]</td>
+            <td>Column definitions</td>
+          </tr>
+          <tr>
+            <td><code>data</code></td>
+            <td>any[]</td>
+            <td>[]</td>
+            <td>Data array</td>
+          </tr>
+          <tr>
+            <td><code>config</code></td>
+            <td>TableConfig</td>
+            <td>Default</td>
+            <td>Table configuration</td>
+          </tr>
+          <tr>
+            <td><code>loading</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Show loading overlay</td>
+          </tr>
+          <tr>
+            <td><code>emptyMessage</code></td>
+            <td>string</td>
+            <td>'No data found'</td>
+            <td>Empty state message</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Outputs</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Payload</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>sort</code></td>
+            <td>SortEvent</td>
+            <td>Emitted when column is sorted</td>
+          </tr>
+          <tr>
+            <td><code>filter</code></td>
+            <td>FilterEvent</td>
+            <td>Emitted when filter changes</td>
+          </tr>
+          <tr>
+            <td><code>pageChange</code></td>
+            <td>{{ '{page, pageSize}' }}</td>
+            <td>Emitted when page changes</td>
+          </tr>
+          <tr>
+            <td><code>rowSelect</code></td>
+            <td>any</td>
+            <td>Emitted when row is selected</td>
+          </tr>
+          <tr>
+            <td><code>rowUnselect</code></td>
+            <td>any</td>
+            <td>Emitted when row is unselected</td>
+          </tr>
+          <tr>
+            <td><code>selectionChange</code></td>
+            <td>any[]</td>
+            <td>Emitted when selection changes</td>
+          </tr>
+          <tr>
+            <td><code>export</code></td>
+            <td>any[]</td>
+            <td>Emitted when export is triggered</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>TableColumn Interface</h3>
+      <div class="code-block">
+        <pre><code>interface TableColumn {{'{'}}{{'
+'}}  field: string;
+  header: string;
+  sortable?: boolean;
+  filterable?: boolean;
+  width?: string;
+  align?: 'left' | 'center' | 'right';
+  template?: TemplateRef&lt;any&gt; | string;
+  headerTemplate?: TemplateRef&lt;any&gt;;
+  type?: 'text' | 'number' | 'date' | 'boolean';
+{{'}'}}</code></pre>
+      </div>
+
+      <h3>TableConfig Interface</h3>
+      <div class="code-block">
+        <pre><code>interface TableConfig {{'{'}}{{'
+'}}  pageable?: boolean;
+  pageSize?: number;
+  pageSizeOptions?: number[];
+  sortable?: boolean;
+  filterable?: boolean;
+  selectable?: boolean;
+  multiSelect?: boolean;
+  resizable?: boolean;
+  exportable?: boolean;
+{{'}'}}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Usage Tips -->
+  <section class="doc-section">
+    <h2>Usage Tips</h2>
+    
+    <div class="tips-container">
+      <div class="tip">
+        <strong>💡 Nested Data:</strong> Access nested properties using dot notation: <code>user.profile.name</code>
+      </div>
+      <div class="tip">
+        <strong>💡 Multi-Select:</strong> Hold Ctrl (Cmd on Mac) and click to select multiple rows
+      </div>
+      <div class="tip">
+        <strong>💡 Column Resizing:</strong> Drag the border between column headers to resize
+      </div>
+      <div class="tip">
+        <strong>💡 Sorting States:</strong> Click once for ascending, twice for descending, third time to remove sort
+      </div>
+      <div class="tip">
+        <strong>💡 Performance:</strong> For large datasets (1000+ rows), consider server-side pagination
+      </div>
+    </div>
+  </section>
+
+  <!-- Installation -->
+  <section class="doc-section">
+    <h2>Installation</h2>
+    <div class="code-block">
+      <pre><code>npm install @muxima-ui/data-table</code></pre>
+    </div>
+  </section>
+</div>

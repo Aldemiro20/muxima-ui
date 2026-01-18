@@ -48,6 +48,9 @@ export interface FilterEvent {
   styleUrls: ['./data-table.component.scss']
 })
 export class DataTableComponent implements OnInit, OnChanges {
+  // Expose Math to template
+  Math = Math;
+
   @Input() columns: TableColumn[] = [];
   @Input() data: any[] = [];
   @Input() config: TableConfig = {};

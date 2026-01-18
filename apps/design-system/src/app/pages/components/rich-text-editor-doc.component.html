@@ -1,0 +1,322 @@
+<div class="doc-container">
+  <header class="doc-header">
+    <h1>✍️ Rich Text Editor</h1>
+    <p class="subtitle">WYSIWYG text editor with formatting capabilities</p>
+  </header>
+
+  <!-- Basic Example -->
+  <section class="doc-section">
+    <h2>Basic Editor</h2>
+    <p>Simple rich text editor with default toolbar and configuration.</p>
+    
+    <div class="example-container">
+      <muxima-rich-text-editor
+        [placeholder]="'Start writing...'"
+        (textChange)="onTextChange($event)">
+      </muxima-rich-text-editor>
+    </div>
+
+    <div class="code-block">
+      <pre><code>{{ codeExample1 }}</code></pre>
+    </div>
+  </section>
+
+  <!-- With Forms -->
+  <section class="doc-section">
+    <h2>With Reactive Forms</h2>
+    <p>Integrate with Angular reactive forms using ControlValueAccessor.</p>
+    
+    <div class="example-container">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" placeholder="Enter title..." class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label>Content *</label>
+          <muxima-rich-text-editor
+            formControlName="content"
+            [height]="'350px'">
+          </muxima-rich-text-editor>
+          <div class="error" *ngIf="form.get('content')?.invalid && form.get('content')?.touched">
+            Content is required
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" [disabled]="form.invalid" class="btn-primary">
+            Save Content
+          </button>
+          <button type="button" (click)="resetForm()" class="btn-secondary">
+            Reset
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="code-block">
+      <pre><code>{{ codeExample2 }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Custom Height -->
+  <section class="doc-section">
+    <h2>Different Sizes</h2>
+    <p>Adjust the editor height for different use cases.</p>
+    
+    <div class="example-container">
+      <div class="height-examples">
+        <div>
+          <h4>Compact - Quick Comments (150px)</h4>
+          <muxima-rich-text-editor
+            [height]="'150px'"
+            [placeholder]="'Add a quick comment...'">
+          </muxima-rich-text-editor>
+        </div>
+        
+        <div>
+          <h4>Medium - Standard Form (300px)</h4>
+          <muxima-rich-text-editor
+            [height]="'300px'"
+            [placeholder]="'Write your content here...'">
+          </muxima-rich-text-editor>
+        </div>
+
+        <div>
+          <h4>Large - Blog Posts (500px)</h4>
+          <muxima-rich-text-editor
+            [height]="'500px'"
+            [placeholder]="'Write your blog post or article...'">
+          </muxima-rich-text-editor>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Minimal Editor -->
+  <section class="doc-section">
+    <h2>Minimal Editor (No Toolbar)</h2>
+    <p>Clean editor without toolbar for simple text input.</p>
+    
+    <div class="example-container">
+      <muxima-rich-text-editor
+        [height]="'200px'"
+        [showToolbar]="false"
+        [placeholder]="'Type your message...'">
+      </muxima-rich-text-editor>
+    </div>
+  </section>
+
+  <!-- Read Only Mode -->
+  <section class="doc-section">
+    <h2>Read-Only Mode</h2>
+    <p>Display formatted content without editing capabilities.</p>
+    
+    <div class="example-container">
+      <muxima-rich-text-editor
+        [readOnly]="true"
+        [showToolbar]="false"
+        formControlName="content">
+      </muxima-rich-text-editor>
+    </div>
+
+    <div class="code-block">
+      <pre><code>{{ codeExample3 }}</code></pre>
+    </div>
+  </section>
+
+  <!-- API Documentation -->
+  <section class="doc-section">
+    <h2>API Reference</h2>
+    
+    <div class="api-table">
+      <h3>Inputs</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>placeholder</code></td>
+            <td>string</td>
+            <td>'Write something...'</td>
+            <td>Placeholder text</td>
+          </tr>
+          <tr>
+            <td><code>height</code></td>
+            <td>string</td>
+            <td>'300px'</td>
+            <td>Editor height</td>
+          </tr>
+          <tr>
+            <td><code>config</code></td>
+            <td>EditorConfig</td>
+            <td>Default config</td>
+            <td>Editor configuration</td>
+          </tr>
+          <tr>
+            <td><code>disabled</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Disable editing</td>
+          </tr>
+          <tr>
+            <td><code>readOnly</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Read-only mode</td>
+          </tr>
+          <tr>
+            <td><code>showToolbar</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Show/hide toolbar</td>
+          </tr>
+          <tr>
+            <td><code>showCharacterCount</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Show character counter</td>
+          </tr>
+          <tr>
+            <td><code>maxLength</code></td>
+            <td>number</td>
+            <td>-</td>
+            <td>Maximum character length</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Outputs</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Payload</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>textChange</code></td>
+            <td>string</td>
+            <td>Emitted when content changes (HTML)</td>
+          </tr>
+          <tr>
+            <td><code>selectionChange</code></td>
+            <td>{{ '{range, oldRange}' }}</td>
+            <td>Emitted when selection changes</td>
+          </tr>
+          <tr>
+            <td><code>editorCreated</code></td>
+            <td>any</td>
+            <td>Emitted when editor is initialized</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Public Methods</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Returns</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>getContent()</code></td>
+            <td>string</td>
+            <td>Get HTML content</td>
+          </tr>
+          <tr>
+            <td><code>setContent(html)</code></td>
+            <td>void</td>
+            <td>Set content</td>
+          </tr>
+          <tr>
+            <td><code>getText()</code></td>
+            <td>string</td>
+            <td>Get plain text</td>
+          </tr>
+          <tr>
+            <td><code>getLength()</code></td>
+            <td>number</td>
+            <td>Get content length</td>
+          </tr>
+          <tr>
+            <td><code>focus()</code></td>
+            <td>void</td>
+            <td>Focus editor</td>
+          </tr>
+          <tr>
+            <td><code>blur()</code></td>
+            <td>void</td>
+            <td>Blur editor</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Keyboard Shortcuts</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Shortcut</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>Ctrl+B</code></td>
+            <td>Bold</td>
+          </tr>
+          <tr>
+            <td><code>Ctrl+I</code></td>
+            <td>Italic</td>
+          </tr>
+          <tr>
+            <td><code>Ctrl+U</code></td>
+            <td>Underline</td>
+          </tr>
+          <tr>
+            <td><code>Ctrl+K</code></td>
+            <td>Insert link</td>
+          </tr>
+          <tr>
+            <td><code>Ctrl+Z</code></td>
+            <td>Undo</td>
+          </tr>
+          <tr>
+            <td><code>Ctrl+Y</code></td>
+            <td>Redo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Installation -->
+  <section class="doc-section">
+    <h2>Installation</h2>
+    <div class="code-block">
+      <pre><code>npm install @muxima-ui/rich-text-editor
+npm install quill</code></pre>
+    </div>
+    
+    <div class="info-box">
+      <strong>Note:</strong> This component requires Quill.js. Add Quill CSS to your angular.json:
+      <div class="code-block" style="margin-top: 1rem;">
+        <pre><code>"styles": [
+  "node_modules/quill/dist/quill.snow.css"
+]</code></pre>
+      </div>
+    </div>
+  </section>
+</div>

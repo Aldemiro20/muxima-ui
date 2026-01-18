@@ -147,6 +147,22 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/components/tooltip-doc.component').then(m => m.TooltipDocComponent)
   },
   {
+    path: 'components/tree-view',
+    loadComponent: () => import('./pages/components/tree-view-doc.component').then(m => m.TreeViewDocComponent)
+  },
+  {
+    path: 'components/skeleton',
+    loadComponent: () => import('./pages/components/skeleton-doc.component').then(m => m.SkeletonDocComponent)
+  },
+  {
+    path: 'components/rich-text-editor',
+    loadComponent: () => import('./pages/components/rich-text-editor-doc.component').then(m => m.RichTextEditorDocComponent)
+  },
+  {
+    path: 'components/data-table',
+    loadComponent: () => import('./pages/components/data-table-doc.component').then(m => m.DataTableDocComponent)
+  },
+  {
     path: '**',
     redirectTo: ''
   }
