@@ -1,0 +1,14 @@
+<div class="muxima-chart" [ngClass]="sizeClass">
+  <div *ngIf="title" class="chart-title">{{ title }}</div>
+  
+  <div class="chart-container">
+    <canvas #canvas class="chart-canvas"></canvas>
+  </div>
+
+  <div *ngIf="showLegend && legendItems.length" class="chart-legend">
+    <div *ngFor="let item of legendItems" class="legend-item">
+      <span class="legend-color" [style.background-color]="item.color"></span>
+      <span class="legend-label">{{ item.label }}</span>
+    </div>
+  </div>
+</div>

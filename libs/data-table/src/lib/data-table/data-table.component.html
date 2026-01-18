@@ -1,0 +1,163 @@
+<div class="data-table-container">
+  <!-- Toolbar -->
+  <div class="table-toolbar" *ngIf="config.exportable">
+    <div class="toolbar-actions">
+      <button class="export-btn" (click)="exportToCSV()">
+        📥 Export CSV
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading overlay -->
+  <div class="loading-overlay" *ngIf="loading">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrapper">
+    <table class="data-table" [class.loading]="loading">
+      <thead>
+        <tr>
+          <th *ngIf="config.selectable" class="selection-column">
+            <input
+              *ngIf="config.multiSelect"
+              type="checkbox"
+              [checked]="allSelected"
+              [indeterminate]="someSelected"
+              (change)="toggleAllSelection($event)">
+          </th>
+
+          <th
+            *ngFor="let column of columns"
+            [style.width]="getColumnWidth(column)"
+            [style.text-align]="column.align || 'left'"
+            [class.sortable]="column.sortable !== false && config.sortable !== false"
+            (click)="onSort(column)">
+            
+            <div class="header-content">
+              <ng-container *ngIf="!column.headerTemplate">
+                {{ column.header }}
+              </ng-container>
+              <ng-container *ngIf="column.headerTemplate">
+                <ng-container *ngTemplateOutlet="column.headerTemplate; context: { $implicit: column }"></ng-container>
+              </ng-container>
+
+              <span class="sort-icon" *ngIf="column.sortable !== false && config.sortable !== false">
+                {{ getSortIcon(column) }}
+              </span>
+
+              <div
+                *ngIf="config.resizable"
+                class="resize-handle"
+                (mousedown)="onResizeStart(column, $event)">
+              </div>
+            </div>
+          </th>
+        </tr>
+
+        <!-- Filter row -->
+        <tr *ngIf="config.filterable" class="filter-row">
+          <th *ngIf="config.selectable"></th>
+          <th *ngFor="let column of columns">
+            <input
+              *ngIf="column.filterable !== false"
+              type="text"
+              class="filter-input"
+              placeholder="Filter..."
+              (input)="onFilter(column, $event)">
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr
+          *ngFor="let row of processedData; trackBy: trackByIndex"
+          [class.selected]="isRowSelected(row)"
+          (click)="config.selectable && toggleRowSelection(row)">
+          
+          <td *ngIf="config.selectable" class="selection-column">
+            <input
+              type="checkbox"
+              [checked]="isRowSelected(row)"
+              (change)="toggleRowSelection(row, $event)">
+          </td>
+
+          <td
+            *ngFor="let column of columns"
+            [style.text-align]="column.align || 'left'">
+            
+            <ng-container *ngIf="!column.template">
+              {{ getFieldValue(row, column.field) }}
+            </ng-container>
+            <ng-container *ngIf="column.template">
+              <ng-container *ngTemplateOutlet="column.template; context: { $implicit: row, column: column }"></ng-container>
+            </ng-container>
+          </td>
+        </tr>
+
+        <tr *ngIf="processedData.length === 0 && !loading" class="empty-row">
+          <td [attr.colspan]="columns.length + (config.selectable ? 1 : 0)">
+            <div class="empty-message">
+              {{ emptyMessage }}
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="table-pagination" *ngIf="config.pageable !== false && totalRecords > 0">
+    <div class="pagination-info">
+      Showing {{ (currentPage - 1) * pageSize + 1 }} to {{ Math.min(currentPage * pageSize, totalRecords) }} of {{ totalRecords }} entries
+    </div>
+
+    <div class="pagination-controls">
+      <button
+        class="page-btn"
+        [disabled]="currentPage === 1"
+        (click)="onPageChange(1)">
+        ««
+      </button>
+
+      <button
+        class="page-btn"
+        [disabled]="currentPage === 1"
+        (click)="onPageChange(currentPage - 1)">
+        ‹
+      </button>
+
+      <button
+        *ngFor="let page of paginationPages"
+        class="page-btn"
+        [class.active]="page === currentPage"
+        (click)="onPageChange(page)">
+        {{ page }}
+      </button>
+
+      <button
+        class="page-btn"
+        [disabled]="currentPage === totalPages"
+        (click)="onPageChange(currentPage + 1)">
+        ›
+      </button>
+
+      <button
+        class="page-btn"
+        [disabled]="currentPage === totalPages"
+        (click)="onPageChange(totalPages)">
+        »»
+      </button>
+    </div>
+
+    <div class="page-size-selector" *ngIf="config.pageSizeOptions">
+      <select
+        [(ngModel)]="pageSize"
+        (change)="onPageSizeChange(pageSize)">
+        <option *ngFor="let size of config.pageSizeOptions" [value]="size">
+          {{ size }} / page
+        </option>
+      </select>
+    </div>
+  </div>
+</div>

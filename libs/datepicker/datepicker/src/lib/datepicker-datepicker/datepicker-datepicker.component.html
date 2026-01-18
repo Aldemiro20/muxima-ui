@@ -1,0 +1,68 @@
+﻿<div class="muxima-datepicker">
+  <div class="datepicker-input" (click)="toggleCalendar()">
+    <svg class="calendar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+      <line x1="16" y1="2" x2="16" y2="6"></line>
+      <line x1="8" y1="2" x2="8" y2="6"></line>
+      <line x1="3" y1="10" x2="21" y2="10"></line>
+    </svg>
+    <input 
+      type="text" 
+      [placeholder]="placeholder"
+      [value]="getFormattedDate()"
+      readonly>
+    <svg class="chevron-icon" [class.open]="isOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </div>
+
+  <div class="datepicker-dropdown" *ngIf="isOpen">
+    <div class="calendar-header">
+      <button type="button" class="nav-button" (click)="previousMonth()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <div class="month-year-label">{{ getMonthYearLabel() }}</div>
+      <button type="button" class="nav-button" (click)="nextMonth()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <div class="calendar-grid">
+      <div class="week-days">
+        <div class="week-day" *ngFor="let day of weekDays">{{ day }}</div>
+      </div>
+      <div class="calendar-days">
+        <button
+          *ngFor="let date of calendarDays"
+          type="button"
+          class="calendar-day"
+          [class.empty]="!date"
+          [class.selected]="date && isDateSelected(date)"
+          [class.in-range]="date && isDateInRange(date)"
+          [class.range-start]="date && isRangeStart(date)"
+          [class.range-end]="date && isRangeEnd(date)"
+          [class.today]="date && isToday(date)"
+          [class.disabled]="date && isDateDisabled(date)"
+          [disabled]="!date || (date && isDateDisabled(date))"
+          (click)="date && selectDate(date)"
+          (mouseenter)="onDateHover(date)"
+          (mouseleave)="onDateHover(null)">
+          <span *ngIf="date">{{ date.getDate() }}</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="calendar-footer">
+      <button type="button" class="footer-button secondary" (click)="clearSelection()">
+        Limpar
+      </button>
+      <button type="button" class="footer-button primary" (click)="selectToday()">
+        Hoje
+      </button>
+    </div>
+  </div>
+</div>

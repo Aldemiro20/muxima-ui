@@ -1,0 +1,23 @@
+﻿<label [ngClass]="getWrapperClasses()">
+  <div 
+    [ngClass]="getRadioClasses()"
+    [attr.aria-checked]="isChecked"
+    [attr.aria-disabled]="disabled"
+    [attr.tabindex]="disabled ? -1 : 0"
+    role="radio"
+    (click)="selectRadio()"
+    (keydown.space)="$event.preventDefault(); selectRadio()"
+    (keydown.enter)="$event.preventDefault(); selectRadio()">
+    <div class="muxima-radio-outer">
+      <div class="muxima-radio-inner" *ngIf="isChecked"></div>
+    </div>
+  </div>
+  
+  <div class="muxima-radio-content" *ngIf="label || description">
+    <span class="muxima-radio-label" *ngIf="label">
+      {{ label }}
+      <span class="muxima-radio-required" *ngIf="required">*</span>
+    </span>
+    <span class="muxima-radio-description" *ngIf="description">{{ description }}</span>
+  </div>
+</label>

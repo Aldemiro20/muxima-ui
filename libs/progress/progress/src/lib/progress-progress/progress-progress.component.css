@@ -1,0 +1,137 @@
+.muxima-progress-linear {
+  position: relative;
+  width: 100%;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.muxima-progress-linear.muxima-progress-sm {
+  height: 0.5rem;
+}
+
+.muxima-progress-linear.muxima-progress-md {
+  height: 0.75rem;
+}
+
+.muxima-progress-linear.muxima-progress-lg {
+  height: 1rem;
+}
+
+.muxima-progress-bar {
+  height: 100%;
+  transition: width 0.3s ease;
+  border-radius: 9999px;
+}
+
+.muxima-progress-bar.muxima-progress-primary {
+  background-color: #D4AF37;
+}
+
+.muxima-progress-bar.muxima-progress-success {
+  background-color: #22c55e;
+}
+
+.muxima-progress-bar.muxima-progress-warning {
+  background-color: #f59e0b;
+}
+
+.muxima-progress-bar.muxima-progress-error {
+  background-color: #ef4444;
+}
+
+.muxima-progress-striped {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 1rem 1rem;
+}
+
+.muxima-progress-animated {
+  animation: muxima-progress-stripes 1s linear infinite;
+}
+
+@keyframes muxima-progress-stripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 1rem 0;
+  }
+}
+
+.muxima-progress-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+}
+
+/* Circular Progress */
+.muxima-progress-circular {
+  position: relative;
+  display: inline-flex;
+}
+
+.muxima-progress-circular.muxima-progress-sm {
+  width: 3rem;
+  height: 3rem;
+}
+
+.muxima-progress-circular.muxima-progress-md {
+  width: 5rem;
+  height: 5rem;
+}
+
+.muxima-progress-circular.muxima-progress-lg {
+  width: 7rem;
+  height: 7rem;
+}
+
+.muxima-progress-circular svg {
+  transform: rotate(-90deg);
+}
+
+.muxima-progress-circle-bg {
+  stroke: #e5e7eb;
+}
+
+.muxima-progress-circle-bar {
+  transition: stroke-dashoffset 0.3s ease;
+  stroke-linecap: round;
+}
+
+.muxima-progress-circle-bar.muxima-progress-primary {
+  stroke: #D4AF37;
+}
+
+.muxima-progress-circle-bar.muxima-progress-success {
+  stroke: #22c55e;
+}
+
+.muxima-progress-circle-bar.muxima-progress-warning {
+  stroke: #f59e0b;
+}
+
+.muxima-progress-circle-bar.muxima-progress-error {
+  stroke: #ef4444;
+}
+
+.muxima-progress-circular-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 600;
+  color: #1f2937;
+}

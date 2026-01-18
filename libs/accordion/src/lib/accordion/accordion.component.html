@@ -1,0 +1,58 @@
+<div class="custom-accordion"  [ngClass]="{ 'child-accordion': isChild }">
+
+  <div class="accordion-header" (click)="toggleAccordion()">
+    <div class="accordion-icon" *ngIf="icon || iconUrl">
+      <!-- Ícone via Template -->
+      <ng-container *ngIf="icon">
+        <ng-container *ngTemplateOutlet="icon"></ng-container>
+      </ng-container>
+
+      <!-- Ícone via URL -->
+      <img
+        *ngIf="iconUrl && !icon"
+        [src]="iconUrl"
+        class="accordion-icon-img"
+        alt="Ícone"
+      
+      />
+    </div>
+
+    <div class="accordion-text" >
+      <div class="accordion-title">{{ title }}</div>
+      <div class="accordion-subtitle" *ngIf="subtitle" >{{ subtitle }}</div>
+    </div>
+    <div class="accordion-toggle">
+      <svg
+        [ngClass]="{ expanded: expanded }"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon-chevron"
+      >
+        <polyline *ngIf="!expanded" points="9 18 15 12 9 6"></polyline>
+        <polyline *ngIf="expanded" points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </div>
+  </div>
+
+  <div class="accordion-content" [@expandCollapse]="expanded ? 'expanded' : 'collapsed'">
+    <ng-content *ngIf="!children || children.length === 0"></ng-content>
+
+    <div *ngIf="children && children.length > 0" class="accordion-children"  [ngClass]="getPaddingClass()">
+      <agt-accordion
+        *ngFor="let child of children"
+        [title]="child.title"
+        [subtitle]="child.subtitle"
+        [children]="child.children"
+        [iconUrl]="child.iconUrl"
+        [isChild]="true"
+        [childLevel]="(childLevel || 0) + 2"
+      >
+      </agt-accordion>
+    </div>
+  </div>
+</div>

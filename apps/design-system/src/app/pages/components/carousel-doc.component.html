@@ -1,0 +1,258 @@
+﻿<div class="carousel-doc">
+  <header class="doc-header">
+    <div class="header-content">
+      <div class="icon-badge"></div>
+      <h1 class="doc-title">Carousel</h1>
+      <p class="doc-subtitle">
+        Componente moderno de carrossel com autoPlay, navegação suave e transições elegantes.
+        Perfeito para showcases, galerias e apresentações visuais impactantes.
+      </p>
+    </div>
+  </header>
+
+  <section class="doc-section">
+    <h2 class="section-title"> Importação</h2>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(getCodeExample('import'), 'import')">
+        {{ copiedStates['import'] ? ' Copiado!' : 'Copiar' }}
+      </button>
+      <pre><code>{{ getCodeExample('import') }}</code></pre>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <h2 class="section-title"> Uso Básico</h2>
+    <div class="demo-container">
+      <muxima-carousel 
+        [items]="demoItems"
+        [autoPlay]="true"
+        [interval]="5000"
+        [height]="'500px'">
+      </muxima-carousel>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(getCodeExample('basic'), 'basic')">
+        {{ copiedStates['basic'] ? ' Copiado!' : 'Copiar' }}
+      </button>
+      <pre><code>{{ getCodeExample('basic') }}</code></pre>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <h2 class="section-title"> Definindo Items</h2>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(getCodeExample('items'), 'items')">
+        {{ copiedStates['items'] ? ' Copiado!' : 'Copiar' }}
+      </button>
+      <pre><code>{{ getCodeExample('items') }}</code></pre>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <h2 class="section-title"> Personalizações</h2>
+    
+    <div class="demo-grid">
+      <div class="demo-item">
+        <h3 class="demo-label">Altura Personalizada (300px)</h3>
+        <muxima-carousel 
+          [items]="smallItems"
+          [height]="'300px'">
+        </muxima-carousel>
+      </div>
+
+      <div class="demo-item">
+        <h3 class="demo-label">Sem AutoPlay</h3>
+        <muxima-carousel 
+          [items]="smallItems"
+          [autoPlay]="false"
+          [height]="'300px'">
+        </muxima-carousel>
+      </div>
+
+      <div class="demo-item">
+        <h3 class="demo-label">Transição Fade</h3>
+        <muxima-carousel 
+          [items]="smallItems"
+          [animationType]="'fade'"
+          [height]="'300px'">
+        </muxima-carousel>
+      </div>
+
+      <div class="demo-item">
+        <h3 class="demo-label">Sem Navegação</h3>
+        <muxima-carousel 
+          [items]="smallItems"
+          [showArrows]="false"
+          [showDots]="false"
+          [height]="'300px'">
+        </muxima-carousel>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(getCodeExample('custom'), 'custom')">
+        {{ copiedStates['custom'] ? ' Copiado!' : 'Copiar' }}
+      </button>
+      <pre><code>{{ getCodeExample('custom') }}</code></pre>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <h2 class="section-title">🎛️ Controles de Navegação</h2>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(getCodeExample('navigation'), 'navigation')">
+        {{ copiedStates['navigation'] ? '✓ Copiado!' : 'Copiar' }}
+      </button>
+      <pre><code>{{ getCodeExample('navigation') }}</code></pre>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <h2 class="section-title">🎯 Exemplos Práticos</h2>
+    
+    <h3 class="subsection-title">🛍️ Showcase de Produtos</h3>
+    <div class="demo-container">
+      <muxima-carousel 
+        [items]="productItems"
+        [autoPlay]="true"
+        [interval]="4000"
+        [height]="'450px'">
+      </muxima-carousel>
+    </div>
+    <p class="example-description">
+      Perfeito para e-commerce e páginas de produtos. Destaque seus itens com imagens de alta qualidade e descrições atraentes.
+    </p>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(getCodeExample('products'), 'products')">
+        {{ copiedStates['products'] ? '✓ Copiado!' : 'Copiar' }}
+      </button>
+      <pre><code>{{ getCodeExample('products') }}</code></pre>
+    </div>
+
+    <h3 class="subsection-title">💬 Depoimentos de Clientes</h3>
+    <div class="demo-container">
+      <muxima-carousel 
+        [items]="testimonialsItems"
+        [autoPlay]="true"
+        [interval]="6000"
+        [animationType]="'fade'"
+        [height]="'400px'"
+        [showArrows]="false">
+      </muxima-carousel>
+    </div>
+    <p class="example-description">
+      Ideal para exibir avaliações e depoimentos. A transição suave (fade) cria uma experiência elegante.
+    </p>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(getCodeExample('testimonials'), 'testimonials')">
+        {{ copiedStates['testimonials'] ? '✓ Copiado!' : 'Copiar' }}
+      </button>
+      <pre><code>{{ getCodeExample('testimonials') }}</code></pre>
+    </div>
+
+    <h3 class="subsection-title">💼 Portfólio de Projetos</h3>
+    <div class="demo-container">
+      <muxima-carousel 
+        [items]="portfolioItems"
+        [autoPlay]="true"
+        [interval]="5000"
+        [height]="'500px'">
+      </muxima-carousel>
+    </div>
+    <p class="example-description">
+      Mostre seus projetos e trabalhos de forma profissional. Links clicáveis levam para detalhes completos.
+    </p>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(getCodeExample('portfolio'), 'portfolio')">
+        {{ copiedStates['portfolio'] ? '✓ Copiado!' : 'Copiar' }}
+      </button>
+      <pre><code>{{ getCodeExample('portfolio') }}</code></pre>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <h2 class="section-title">📋 API</h2>
+    <div class="api-table-container">
+      <table class="api-table">
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>items</code></td>
+            <td><code>CarouselItem[]</code></td>
+            <td><code>[]</code></td>
+            <td>Array de itens do carrossel com image, title, description e link opcionais</td>
+          </tr>
+          <tr>
+            <td><code>autoPlay</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Ativa a reprodução automática dos slides</td>
+          </tr>
+          <tr>
+            <td><code>interval</code></td>
+            <td><code>number</code></td>
+            <td><code>5000</code></td>
+            <td>Intervalo em milissegundos entre slides (quando autoPlay está ativo)</td>
+          </tr>
+          <tr>
+            <td><code>showArrows</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Exibe as setas de navegação anterior/próximo</td>
+          </tr>
+          <tr>
+            <td><code>showDots</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Exibe os indicadores de posição (dots) na parte inferior</td>
+          </tr>
+          <tr>
+            <td><code>height</code></td>
+            <td><code>string</code></td>
+            <td><code>'400px'</code></td>
+            <td>Altura do carrossel (aceita qualquer valor CSS válido)</td>
+          </tr>
+          <tr>
+            <td><code>animationType</code></td>
+            <td><code>'slide' | 'fade'</code></td>
+            <td><code>'slide'</code></td>
+            <td>Tipo de transição entre slides</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <h2 class="section-title"> Dicas de Uso</h2>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-icon"></div>
+        <h3>Performance</h3>
+        <p>O carousel pausa automaticamente quando o mouse está sobre ele, economizando recursos.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon"></div>
+        <h3>Imagens</h3>
+        <p>Use imagens com proporção 16:9 para melhor resultado visual. Recomendado: 1920x1080px.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon"></div>
+        <h3>Acessibilidade</h3>
+        <p>Todos os botões possuem atributos adequados e são navegáveis via teclado.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon"></div>
+        <h3>Responsivo</h3>
+        <p>O componente se adapta automaticamente a diferentes tamanhos de tela.</p>
+      </div>
+    </div>
+  </section>
+</div>

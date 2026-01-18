@@ -1,0 +1,48 @@
+﻿<div 
+  [ngClass]="toastClasses"
+  [@toastAnimation]="state"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+  role="alert"
+  aria-live="polite">
+  
+  <!-- Icon -->
+  <div class="muxima-toast-icon" *ngIf="showIcon">
+    <span class="muxima-toast-icon-emoji">{{ defaultIcon }}</span>
+  </div>
+
+  <!-- Content -->
+  <div class="muxima-toast-content">
+    <div class="muxima-toast-header" *ngIf="title || showTimestamp">
+      <h4 class="muxima-toast-title" *ngIf="title">{{ title }}</h4>
+      <span class="muxima-toast-timestamp" *ngIf="showTimestamp">{{ timestamp }}</span>
+    </div>
+    
+    <p class="muxima-toast-message" *ngIf="message">{{ message }}</p>
+    
+    <button 
+      *ngIf="actionLabel"
+      class="muxima-toast-action"
+      (click)="onActionClick()">
+      {{ actionLabel }}
+    </button>
+  </div>
+
+  <!-- Close Button -->
+  <button 
+    *ngIf="closable"
+    class="muxima-toast-close"
+    (click)="hide()"
+    aria-label="Fechar notificação">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <path d="M1 1L13 13M1 13L13 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <!-- Progress Bar -->
+  <div 
+    *ngIf="showProgress && duration > 0"
+    class="muxima-toast-progress"
+    [style.width.%]="progress">
+  </div>
+</div>

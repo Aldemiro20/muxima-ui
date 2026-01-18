@@ -1,0 +1,60 @@
+<div class="tree-view">
+  <ng-container *ngFor="let node of nodes">
+    <div
+      class="tree-node"
+      [class.selected]="node.selected"
+      [class.disabled]="node.disabled"
+      [class]="getDropIndicatorClass(node)"
+      [style.padding-left]="getNodePaddingLeft(node)"
+      [attr.draggable]="allowDragDrop && !node.disabled"
+      (click)="selectNode(node, $event)"
+      (dragstart)="onDragStart(node, $event)"
+      (dragover)="onDragOver(node, $event)"
+      (dragleave)="onDragLeave($event)"
+      (drop)="onDrop(node, $event)">
+      
+      <span class="tree-toggle" (click)="toggleNode(node, $event)">
+        <ng-container *ngIf="hasChildren(node)">
+          <span class="toggle-icon" [class.expanded]="node.expanded">▶</span>
+        </ng-container>
+        <span *ngIf="!hasChildren(node)" class="toggle-spacer"></span>
+      </span>
+
+      <input
+        *ngIf="showCheckbox || selectionMode === 'checkbox'"
+        type="checkbox"
+        class="tree-checkbox"
+        [checked]="node.selected"
+        [indeterminate]="node.selected === undefined"
+        [disabled]="node.disabled"
+        (change)="toggleCheckbox(node, $event)"
+        (click)="$event.stopPropagation()">
+
+      <span *ngIf="showIcons && node.icon" class="tree-icon">{{ node.icon }}</span>
+
+      <span class="tree-label">
+        <ng-container *ngIf="!nodeTemplate">{{ node.label }}</ng-container>
+        <ng-container *ngIf="nodeTemplate">
+          <ng-container *ngTemplateOutlet="nodeTemplate; context: { $implicit: node }"></ng-container>
+        </ng-container>
+      </span>
+    </div>
+
+    <div *ngIf="node.expanded && hasChildren(node)" class="tree-children">
+      <muxima-tree-view
+        [nodes]="node.children!"
+        [selectionMode]="selectionMode"
+        [showCheckbox]="showCheckbox"
+        [showIcons]="showIcons"
+        [allowDragDrop]="allowDragDrop"
+        [expandOnClick]="expandOnClick"
+        [nodeTemplate]="nodeTemplate"
+        (nodeSelect)="nodeSelect.emit($event)"
+        (nodeUnselect)="nodeUnselect.emit($event)"
+        (nodeExpand)="nodeExpand.emit($event)"
+        (nodeCollapse)="nodeCollapse.emit($event)"
+        (nodeDrop)="nodeDrop.emit($event)">
+      </muxima-tree-view>
+    </div>
+  </ng-container>
+</div>

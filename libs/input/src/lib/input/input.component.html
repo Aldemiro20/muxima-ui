@@ -1,0 +1,43 @@
+<div class="muxima-input-container">
+  <label *ngIf="label" class="muxima-input-label">
+    {{ label }}
+  </label>
+  
+  <div [ngClass]="getClasses()" class="muxima-input-wrapper">
+    <span *ngIf="prefixIcon" class="muxima-input-prefix">
+      {{ prefixIcon }}
+    </span>
+    
+    <input
+      class="muxima-input"
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [type]="getInputType()"
+      [value]="value"
+      (input)="onInput($event)"
+      (blur)="onTouched()"
+    />
+    
+    <button 
+      *ngIf="type === 'password' && showPasswordToggle"
+      type="button"
+      class="muxima-input-suffix muxima-input-password-toggle"
+      (click)="togglePasswordVisibility()"
+      [disabled]="disabled">
+      {{ showPassword ? '👁️' : '👁️‍🗨️' }}
+    </button>
+    
+    <span *ngIf="suffixIcon && !(type === 'password' && showPasswordToggle)" class="muxima-input-suffix">
+      {{ suffixIcon }}
+    </span>
+  </div>
+  
+  <div *ngIf="helperText && !hasError" class="muxima-input-helper">
+    {{ helperText }}
+  </div>
+  
+  <div *ngIf="errorMessage && hasError" class="muxima-input-error">
+    <span>{{ errorMessage }}</span>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<label 
+  class="muxima-toggle-container"
+  [ngClass]="[
+    'muxima-toggle-' + size,
+    disabled ? 'muxima-toggle-disabled' : ''
+  ]">
+  <div 
+    class="muxima-toggle-switch"
+    [ngClass]="[
+      'muxima-toggle-' + color,
+      checked ? 'muxima-toggle-checked' : ''
+    ]"
+    (click)="toggle()">
+    <div class="muxima-toggle-thumb"></div>
+  </div>
+  <span *ngIf="label" class="muxima-toggle-label">{{ label }}</span>
+</label>

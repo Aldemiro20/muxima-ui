@@ -1,0 +1,473 @@
+﻿/* Header Section */
+.chip-doc-header {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  color: white;
+  border-radius: 16px;
+  margin-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.chip-doc-header::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  animation: float 20s infinite;
+}
+
+.chip-doc-header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 800;
+  position: relative;
+  z-index: 1;
+}
+
+.chip-doc-header p {
+  font-size: 1.25rem;
+  opacity: 0.95;
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Section Styling */
+.chip-doc-section {
+  margin-bottom: 4rem;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.chip-doc-section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.chip-doc-section h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 2rem 0 1rem;
+  color: #374151;
+}
+
+.chip-doc-section p {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #6B7280;
+  margin-bottom: 1.5rem;
+}
+
+/* Installation */
+.doc-installation {
+  background: #f9fafb;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid #667eea;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.doc-installation pre {
+  background: #1f2937;
+  color: #f9fafb;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 0.5rem 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+}
+
+.doc-copy-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: all 200ms ease;
+}
+
+.doc-copy-btn:hover {
+  background: #764ba2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.doc-copy-btn.copied {
+  background: #10b981;
+}
+
+/* Examples */
+.doc-example {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transition: all 300ms ease;
+}
+
+.doc-example:hover {
+  border-color: #667eea;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.1);
+}
+
+.doc-example-demo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  min-height: 120px;
+  align-items: center;
+}
+
+.doc-example-code {
+  position: relative;
+  margin-top: 1rem;
+}
+
+.doc-example-code pre {
+  background: #1f2937;
+  color: #f9fafb;
+  padding: 1.5rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Chips Grid */
+.doc-chips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.doc-chip-item {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 300ms ease;
+}
+
+.doc-chip-item:hover {
+  border-color: #667eea;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
+}
+
+.doc-chip-item h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* API Table */
+.doc-api-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.doc-api-table thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  color: white;
+}
+
+.doc-api-table th {
+  padding: 1rem 1.5rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.doc-api-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: all 200ms ease;
+}
+
+.doc-api-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.doc-api-table td {
+  padding: 1rem 1.5rem;
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+.doc-api-table td:first-child {
+  font-weight: 600;
+  color: #667eea;
+  font-family: 'Courier New', monospace;
+}
+
+.doc-api-table td code {
+  background: #f3f4f6;
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.8125rem;
+  color: #dc2626;
+}
+
+/* Use Cases */
+.doc-use-cases {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.doc-use-case {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 300ms ease;
+}
+
+.doc-use-case:hover {
+  border-color: #667eea;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
+}
+
+.doc-use-case-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.doc-use-case h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.75rem;
+}
+
+.doc-use-case p {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: #6B7280;
+  margin: 0;
+}
+
+/* Best Practices */
+.doc-best-practices {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.doc-practice {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border-left: 4px solid #10b981;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 300ms ease;
+}
+
+.doc-practice:hover {
+  transform: translateX(8px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.doc-practice::before {
+  content: "";
+  font-size: 1.5rem;
+  margin-right: 0.75rem;
+  vertical-align: middle;
+}
+
+.doc-practice-text {
+  display: inline-block;
+  font-size: 0.9375rem;
+  color: #065f46;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+/* Accessibility */
+.doc-accessibility {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border: 2px solid #3b82f6;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.doc-accessibility h3 {
+  color: #1e40af;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.doc-accessibility ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.doc-accessibility li {
+  padding: 0.75rem 0;
+  padding-left: 2rem;
+  position: relative;
+  color: #1e40af;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.doc-accessibility li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  font-size: 1.25rem;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .chip-doc-header h1 {
+    font-size: 2.5rem;
+  }
+  
+  .doc-chips-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .chip-doc-header {
+    padding: 3rem 1.5rem;
+  }
+  
+  .chip-doc-header h1 {
+    font-size: 2rem;
+  }
+  
+  .chip-doc-header p {
+    font-size: 1rem;
+  }
+  
+  .chip-doc-section h2 {
+    font-size: 1.5rem;
+  }
+  
+  .doc-example {
+    padding: 1.5rem;
+  }
+  
+  .doc-example-demo {
+    padding: 1.5rem;
+  }
+  
+  .doc-chips-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .doc-use-cases {
+    grid-template-columns: 1fr;
+  }
+  
+  .doc-api-table {
+    font-size: 0.8125rem;
+  }
+  
+  .doc-api-table th,
+  .doc-api-table td {
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* Interactive States */
+.doc-chip-interactive {
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.doc-chip-interactive:hover {
+  transform: scale(1.05);
+}
+
+/* Removable Demo */
+.doc-removable-demo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-radius: 12px;
+  min-height: 100px;
+  align-items: flex-start;
+}
+
+/* Selection Demo */
+.doc-selection-demo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  border-radius: 12px;
+  min-height: 100px;
+  align-items: flex-start;
+}

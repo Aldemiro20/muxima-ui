@@ -1,0 +1,171 @@
+<div class="doc-page">
+  <header class="doc-header">
+    <h1>Toggle</h1>
+    <p>Componente switch elegante com gradientes e animações suaves.</p>
+  </header>
+
+  <!-- Import Section -->
+  <section class="doc-section">
+    <h2>Importação</h2>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(importCode)">📋 Copiar</button>
+      <pre><code>{{ importCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Basic Usage -->
+  <section class="doc-section">
+    <h2>Uso Básico</h2>
+    <div class="demo-container">
+      <muxima-toggle 
+        [(ngModel)]="basicToggle"
+        label="Ativar notificações">
+      </muxima-toggle>
+      
+      <p style="margin-top: 1rem; color: #64748B;">
+        Estado: <strong>{{ basicToggle ? 'Ativado' : 'Desativado' }}</strong>
+      </p>
+    </div>
+
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(basicCode)">📋 Copiar</button>
+      <pre><code>{{ basicCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Sizes -->
+  <section class="doc-section">
+    <h2>Tamanhos</h2>
+    <div class="demo-container">
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div>
+          <muxima-toggle 
+            [(ngModel)]="sizes.small"
+            size="sm"
+            label="Pequeno">
+          </muxima-toggle>
+        </div>
+        
+        <div>
+          <muxima-toggle 
+            [(ngModel)]="sizes.medium"
+            size="md"
+            label="Médio (padrão)">
+          </muxima-toggle>
+        </div>
+        
+        <div>
+          <muxima-toggle 
+            [(ngModel)]="sizes.large"
+            size="lg"
+            label="Grande">
+          </muxima-toggle>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(sizesCode)">📋 Copiar</button>
+      <pre><code>{{ sizesCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- States -->
+  <section class="doc-section">
+    <h2>Estados</h2>
+    <div class="demo-grid">
+      <div class="demo-item">
+        <muxima-toggle 
+          [ngModel]="false"
+          label="Desativado">
+        </muxima-toggle>
+      </div>
+      
+      <div class="demo-item">
+        <muxima-toggle 
+          [ngModel]="true"
+          label="Ativado">
+        </muxima-toggle>
+      </div>
+      
+      <div class="demo-item">
+        <muxima-toggle 
+          [(ngModel)]="disabledToggle"
+          [disabled]="true"
+          label="Desabilitado">
+        </muxima-toggle>
+      </div>
+    </div>
+  </section>
+
+  <!-- API Table -->
+  <section class="doc-section">
+    <h2>API</h2>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Propriedade</th>
+          <th>Tipo</th>
+          <th>Padrão</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>ngModel</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Estado do toggle (ativado/desativado)</td>
+        </tr>
+        <tr>
+          <td><code>label</code></td>
+          <td>string</td>
+          <td>-</td>
+          <td>Texto do label ao lado do toggle</td>
+        </tr>
+        <tr>
+          <td><code>size</code></td>
+          <td>'sm' | 'md' | 'lg'</td>
+          <td>'md'</td>
+          <td>Tamanho do toggle</td>
+        </tr>
+        <tr>
+          <td><code>disabled</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Desabilita interação</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Features -->
+  <section class="doc-section">
+    <h2>Características</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">✨</span>
+        <h3>Gradientes</h3>
+        <p>Cores com gradientes suaves quando ativado</p>
+      </div>
+      
+      <div class="feature-card">
+        <span class="feature-icon">🎯</span>
+        <h3>Animações 3D</h3>
+        <p>Efeito de profundidade com múltiplas sombras</p>
+      </div>
+      
+      <div class="feature-card">
+        <span class="feature-icon">🎨</span>
+        <h3>Tema Muxima</h3>
+        <p>Integrado com o sistema de design</p>
+      </div>
+      
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <h3>Responsivo</h3>
+        <p>Funciona perfeitamente em todos os dispositivos</p>
+      </div>
+    </div>
+  </section>
+</div>

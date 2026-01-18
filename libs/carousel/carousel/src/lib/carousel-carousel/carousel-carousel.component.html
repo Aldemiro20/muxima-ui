@@ -1,0 +1,53 @@
+﻿<div 
+  class="muxima-carousel" 
+  [style.height]="height"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()">
+  
+  <div class="carousel-slides">
+    <div 
+      *ngFor="let item of items; let i = index"
+      class="carousel-slide"
+      [class.active]="i === currentIndex"
+      [class.fade]="animationType === 'fade'">
+      
+      <div class="slide-image" [style.background-image]="'url(' + item.image + ')'"></div>
+      
+      <div class="slide-content" *ngIf="item.title || item.description">
+        <h3 *ngIf="item.title" class="slide-title">{{ item.title }}</h3>
+        <p *ngIf="item.description" class="slide-description">{{ item.description }}</p>
+        <a *ngIf="item.link" [href]="item.link" class="slide-link">Saiba Mais </a>
+      </div>
+    </div>
+  </div>
+
+  <button 
+    *ngIf="showArrows && items.length > 1"
+    class="carousel-arrow carousel-arrow-left"
+    (click)="prev()"
+    type="button">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M15 18l-6-6 6-6"/>
+    </svg>
+  </button>
+
+  <button 
+    *ngIf="showArrows && items.length > 1"
+    class="carousel-arrow carousel-arrow-right"
+    (click)="next()"
+    type="button">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M9 18l6-6-6-6"/>
+    </svg>
+  </button>
+
+  <div *ngIf="showDots && items.length > 1" class="carousel-dots">
+    <button
+      *ngFor="let item of items; let i = index"
+      class="carousel-dot"
+      [class.active]="i === currentIndex"
+      (click)="goToSlide(i)"
+      type="button">
+    </button>
+  </div>
+</div>

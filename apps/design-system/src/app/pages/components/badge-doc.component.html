@@ -1,0 +1,170 @@
+<div class="doc-page">
+  <header class="doc-header">
+    <h1>Badge</h1>
+    <p>Badges informativos com gradientes e múltiplas variantes.</p>
+  </header>
+
+  <!-- Import -->
+  <section class="doc-section">
+    <h2>Importação</h2>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(importCode)">📋 Copiar</button>
+      <pre><code>{{ importCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Basic Usage -->
+  <section class="doc-section">
+    <h2>Uso Básico</h2>
+    <div class="demo-container">
+      <muxima-badge variant="solid" color="primary">Novo</muxima-badge>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(basicCode)">📋 Copiar</button>
+      <pre><code>{{ basicCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Variants -->
+  <section class="doc-section">
+    <h2>Variantes</h2>
+    <div class="demo-container">
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <muxima-badge variant="solid" color="primary">Solid</muxima-badge>
+        <muxima-badge variant="outline" color="primary">Outline</muxima-badge>
+        <muxima-badge variant="soft" color="primary">Soft</muxima-badge>
+      </div>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(variantsCode)">📋 Copiar</button>
+      <pre><code>{{ variantsCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Colors -->
+  <section class="doc-section">
+    <h2>Cores</h2>
+    <div class="demo-container">
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <muxima-badge variant="solid" color="primary">Primary</muxima-badge>
+        <muxima-badge variant="solid" color="success">Success</muxima-badge>
+        <muxima-badge variant="solid" color="warning">Warning</muxima-badge>
+        <muxima-badge variant="solid" color="error">Error</muxima-badge>
+        <muxima-badge variant="solid" color="info">Info</muxima-badge>
+        <muxima-badge variant="solid" color="neutral">Neutral</muxima-badge>
+      </div>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(colorsCode)">📋 Copiar</button>
+      <pre><code>{{ colorsCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Sizes -->
+  <section class="doc-section">
+    <h2>Tamanhos</h2>
+    <div class="demo-container">
+      <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+        <muxima-badge size="sm" variant="solid" color="primary">Small</muxima-badge>
+        <muxima-badge size="md" variant="solid" color="primary">Medium</muxima-badge>
+        <muxima-badge size="lg" variant="solid" color="primary">Large</muxima-badge>
+      </div>
+    </div>
+  </section>
+
+  <!-- With Dot -->
+  <section class="doc-section">
+    <h2>Com Indicador</h2>
+    <div class="demo-container">
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <muxima-badge variant="solid" color="success" [dot]="true">Online</muxima-badge>
+        <muxima-badge variant="outline" color="warning" [dot]="true">Away</muxima-badge>
+        <muxima-badge variant="soft" color="error" [dot]="true">Busy</muxima-badge>
+      </div>
+    </div>
+  </section>
+
+  <!-- Removable -->
+  <section class="doc-section">
+    <h2>Removível</h2>
+    <div class="demo-container">
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <muxima-badge variant="solid" color="primary" [removable]="true">Angular</muxima-badge>
+        <muxima-badge variant="solid" color="success" [removable]="true">TypeScript</muxima-badge>
+        <muxima-badge variant="solid" color="info" [removable]="true">SCSS</muxima-badge>
+      </div>
+    </div>
+  </section>
+
+  <!-- All Combinations -->
+  <section class="doc-section">
+    <h2>Galeria Completa</h2>
+    <div class="demo-grid">
+      <div class="demo-item">
+        <muxima-badge variant="solid" color="primary">Primary Solid</muxima-badge>
+      </div>
+      <div class="demo-item">
+        <muxima-badge variant="outline" color="success">Success Outline</muxima-badge>
+      </div>
+      <div class="demo-item">
+        <muxima-badge variant="soft" color="warning">Warning Soft</muxima-badge>
+      </div>
+      <div class="demo-item">
+        <muxima-badge variant="solid" color="error" [dot]="true">Error + Dot</muxima-badge>
+      </div>
+      <div class="demo-item">
+        <muxima-badge variant="outline" color="info" [removable]="true">Info + Remove</muxima-badge>
+      </div>
+      <div class="demo-item">
+        <muxima-badge variant="soft" color="neutral" size="lg">Large Neutral</muxima-badge>
+      </div>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2>API</h2>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Propriedade</th>
+          <th>Tipo</th>
+          <th>Padrão</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>variant</code></td>
+          <td>'solid' | 'outline' | 'soft'</td>
+          <td>'solid'</td>
+          <td>Estilo visual do badge</td>
+        </tr>
+        <tr>
+          <td><code>color</code></td>
+          <td>'primary' | 'success' | 'warning' | 'error' | 'info' | 'neutral'</td>
+          <td>'primary'</td>
+          <td>Cor do badge</td>
+        </tr>
+        <tr>
+          <td><code>size</code></td>
+          <td>'sm' | 'md' | 'lg'</td>
+          <td>'md'</td>
+          <td>Tamanho do badge</td>
+        </tr>
+        <tr>
+          <td><code>dot</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Mostra indicador animado</td>
+        </tr>
+        <tr>
+          <td><code>removable</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Mostra botão de remover</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

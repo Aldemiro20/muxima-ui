@@ -1,0 +1,37 @@
+<div class="muxima-loading" [class.loading-overlay]="overlay" [ngClass]="[sizeClass, variantClass]">
+  <div class="loading-container">
+    <!-- Spinner variant -->
+    <div *ngIf="variant === 'spinner'" class="spinner">
+      <div class="spinner-circle"></div>
+    </div>
+
+    <!-- Dots variant -->
+    <div *ngIf="variant === 'dots'" class="dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+
+    <!-- Bars variant -->
+    <div *ngIf="variant === 'bars'" class="bars">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+
+    <!-- Pulse variant -->
+    <div *ngIf="variant === 'pulse'" class="pulse">
+      <div class="pulse-ring"></div>
+      <div class="pulse-ring"></div>
+      <div class="pulse-ring"></div>
+    </div>
+
+    <!-- Ring variant -->
+    <div *ngIf="variant === 'ring'" class="ring">
+      <div class="ring-circle"></div>
+    </div>
+
+    <p *ngIf="text" class="loading-text">{{ text }}</p>
+  </div>
+</div>

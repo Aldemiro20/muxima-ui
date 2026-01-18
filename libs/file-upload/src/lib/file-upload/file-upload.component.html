@@ -1,0 +1,66 @@
+﻿<div class="muxima-file-upload">
+  <input
+    #fileInput
+    type="file"
+    [accept]="accept"
+    [multiple]="multiple"
+    [disabled]="disabled"
+    (change)="onFileSelected($event)"
+    style="display: none;">
+
+  <div
+    class="upload-zone"
+    [class.dragging]="isDragging"
+    [class.disabled]="disabled"
+    (click)="triggerFileInput()"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    (drop)="onDrop($event)">
+    
+    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+      <polyline points="17 8 12 3 7 8"></polyline>
+      <line x1="12" y1="3" x2="12" y2="15"></line>
+    </svg>
+
+    <h3 class="upload-title">{{ placeholder }}</h3>
+    <p class="upload-subtitle">ou arraste e solte aqui</p>
+    <p class="upload-info">Máximo {{ maxSize }}MB por arquivo</p>
+  </div>
+
+  <div class="files-list" *ngIf="uploadedFiles.length > 0">
+    <div class="file-item" *ngFor="let uploadedFile of uploadedFiles; let i = index">
+      <div class="file-icon">{{ getFileIcon(uploadedFile.file) }}</div>
+      
+      <div class="file-info">
+        <div class="file-name">{{ uploadedFile.file.name }}</div>
+        <div class="file-size">{{ formatFileSize(uploadedFile.file.size) }}</div>
+        
+        <div class="file-progress" *ngIf="!uploadedFile.uploaded">
+          <div class="progress-bar">
+            <div class="progress-fill" [style.width.%]="uploadedFile.progress"></div>
+          </div>
+          <span class="progress-text">{{ uploadedFile.progress }}%</span>
+        </div>
+
+        <div class="file-status" *ngIf="uploadedFile.uploaded">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>Upload completo</span>
+        </div>
+      </div>
+
+      <button 
+        type="button"
+        class="remove-btn" 
+        (click)="removeFile(i)"
+        [disabled]="disabled">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>

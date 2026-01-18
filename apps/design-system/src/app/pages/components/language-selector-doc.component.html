@@ -1,0 +1,260 @@
+<div class="doc-container">
+  <h1>Language Selector Component</h1>
+  <p class="lead">
+    A flexible and customizable language selector component with built-in support for multiple languages,
+    flags, and native names. Perfect for internationalization (i18n) in your Angular applications.
+  </p>
+
+  <div class="doc-section">
+    <h2>Features</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🌍</span>
+        <h3>Multi-Language</h3>
+        <p>Support for unlimited languages with ISO 639-1 codes</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🚩</span>
+        <h3>Flag Emojis</h3>
+        <p>Visual country flags for better UX</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔤</span>
+        <h3>Native Names</h3>
+        <p>Display language names in their native script</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📍</span>
+        <h3>4 Positions</h3>
+        <p>Flexible dropdown positioning</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>Basic Usage</h2>
+    <p>Simple language selector with default languages (English, Portuguese, Spanish, French).</p>
+    
+    <div class="example">
+      <div class="selector-demo">
+        <muxima-language-selector
+          [(selectedLanguage)]="selectedLanguage"
+          (languageChange)="onLanguageChange($event)">
+        </muxima-language-selector>
+        <p class="current-lang">Current: <strong>{{ selectedLanguage }}</strong></p>
+      </div>
+    </div>
+
+    <pre><code>{{ codeExamples.basic }}</code></pre>
+  </div>
+
+  <div class="doc-section">
+    <h2>Custom Languages</h2>
+    <p>Provide your own list of languages with custom flags and native names.</p>
+    
+    <div class="example">
+      <div class="selector-demo">
+        <muxima-language-selector
+          [(selectedLanguage)]="selectedLanguage"
+          [languages]="allLanguages"
+          [position]="'bottom-left'"
+          (languageChange)="onLanguageChange($event)">
+        </muxima-language-selector>
+        <p class="current-lang">Extended list with 10 languages</p>
+      </div>
+    </div>
+
+    <pre><code>{{ codeExamples.customLanguages }}</code></pre>
+  </div>
+
+  <div class="doc-section">
+    <h2>Dropdown Positions</h2>
+    <p>Control the dropdown position relative to the button with 4 available options.</p>
+    
+    <div class="example">
+      <div class="position-grid">
+        <div class="position-demo">
+          <label>Bottom Right</label>
+          <muxima-language-selector
+            [position]="'bottom-right'"
+            [(selectedLanguage)]="selectedLanguage">
+          </muxima-language-selector>
+        </div>
+        <div class="position-demo">
+          <label>Bottom Left</label>
+          <muxima-language-selector
+            [position]="'bottom-left'"
+            [(selectedLanguage)]="selectedLanguage">
+          </muxima-language-selector>
+        </div>
+        <div class="position-demo">
+          <label>Top Right</label>
+          <muxima-language-selector
+            [position]="'top-right'"
+            [(selectedLanguage)]="selectedLanguage">
+          </muxima-language-selector>
+        </div>
+        <div class="position-demo">
+          <label>Top Left</label>
+          <muxima-language-selector
+            [position]="'top-left'"
+            [(selectedLanguage)]="selectedLanguage">
+          </muxima-language-selector>
+        </div>
+      </div>
+    </div>
+
+    <pre><code>{{ codeExamples.positions }}</code></pre>
+  </div>
+
+  <div class="doc-section">
+    <h2>i18n Integration (ngx-translate)</h2>
+    <p>Integrate with ngx-translate for complete internationalization support.</p>
+    
+    <div class="example">
+      <div class="integration-demo">
+        <h4>📦 Installation</h4>
+        <pre><code>npm install @ngx-translate/core @ngx-translate/http-loader</code></pre>
+        
+        <h4>⚙️ Setup</h4>
+        <pre><code>{{ codeExamples.ngxTranslate }}</code></pre>
+        
+        <h4>📁 Translation Files Structure</h4>
+        <div class="file-tree">
+          <div class="tree-item">📁 assets/</div>
+          <div class="tree-item indent1">📁 i18n/</div>
+          <div class="tree-item indent2">📄 en.json</div>
+          <div class="tree-item indent2">📄 pt.json</div>
+          <div class="tree-item indent2">📄 es.json</div>
+          <div class="tree-item indent2">📄 fr.json</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>API Reference</h2>
+    
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>selectedLanguage</code></td>
+          <td><code>string</code></td>
+          <td><code>'en'</code></td>
+          <td>Currently selected language code (two-way binding)</td>
+        </tr>
+        <tr>
+          <td><code>languages</code></td>
+          <td><code>Language[]</code></td>
+          <td>EN, PT, ES, FR</td>
+          <td>Array of available languages</td>
+        </tr>
+        <tr>
+          <td><code>position</code></td>
+          <td><code>'bottom-right' | 'bottom-left' | 'top-right' | 'top-left'</code></td>
+          <td><code>'bottom-right'</code></td>
+          <td>Dropdown position relative to button</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Events</h3>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Payload</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>languageChange</code></td>
+          <td><code>string</code></td>
+          <td>Emitted when language is changed, returns language code</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Language Interface</h3>
+    <pre><code>interface Language {{ '{' }}
+  code: string;        // ISO 639-1 code (e.g., 'en', 'pt')
+  name: string;        // English name (e.g., 'English')
+  flag: string;        // Flag emoji (e.g., '🇺🇸')
+  nativeName?: string; // Native name (e.g., 'Português')
+{{ '}' }}</code></pre>
+  </div>
+
+  <div class="doc-section">
+    <h2>Common Languages</h2>
+    
+    <div class="languages-showcase">
+      <div class="lang-item">🇺🇸 English</div>
+      <div class="lang-item">🇵🇹 Português</div>
+      <div class="lang-item">🇧🇷 Português (Brasil)</div>
+      <div class="lang-item">🇪🇸 Español</div>
+      <div class="lang-item">🇫🇷 Français</div>
+      <div class="lang-item">🇩🇪 Deutsch</div>
+      <div class="lang-item">🇮🇹 Italiano</div>
+      <div class="lang-item">🇨🇳 中文</div>
+      <div class="lang-item">🇯🇵 日本語</div>
+      <div class="lang-item">🇰🇷 한국어</div>
+      <div class="lang-item">🇷🇺 Русский</div>
+      <div class="lang-item">🇸🇦 العربية</div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>Use Cases</h2>
+    
+    <div class="use-cases">
+      <div class="use-case">
+        <h3>🌐 Global Websites</h3>
+        <p>Add multi-language support to reach international audiences with proper localization.</p>
+      </div>
+      <div class="use-case">
+        <h3>📱 Mobile Apps</h3>
+        <p>Provide native language experience in Progressive Web Apps and hybrid applications.</p>
+      </div>
+      <div class="use-case">
+        <h3>🛒 E-commerce</h3>
+        <p>Support multiple markets with localized product descriptions, prices, and checkout flows.</p>
+      </div>
+      <div class="use-case">
+        <h3>📚 Documentation Sites</h3>
+        <p>Offer documentation in multiple languages for better developer experience.</p>
+      </div>
+      <div class="use-case">
+        <h3>🎓 Learning Platforms</h3>
+        <p>Enable students to learn in their preferred language with instant switching.</p>
+      </div>
+      <div class="use-case">
+        <h3>💼 SaaS Applications</h3>
+        <p>Support enterprise clients worldwide with comprehensive language options.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>Best Practices</h2>
+    
+    <ul class="best-practices">
+      <li>✅ <strong>Persist Selection:</strong> Save user's language preference in localStorage or cookies</li>
+      <li>✅ <strong>Auto-detect:</strong> Use browser language as initial default (navigator.language)</li>
+      <li>✅ <strong>Native Names:</strong> Always show language names in their native script for clarity</li>
+      <li>✅ <strong>RTL Support:</strong> Handle right-to-left languages (Arabic, Hebrew) properly</li>
+      <li>✅ <strong>Flag Fallback:</strong> Provide text fallback when flag emojis aren't supported</li>
+      <li>✅ <strong>Loading State:</strong> Show loading indicator when switching languages</li>
+      <li>✅ <strong>Error Handling:</strong> Gracefully handle missing translation files</li>
+      <li>✅ <strong>SEO:</strong> Use proper hreflang tags for multilingual SEO</li>
+    </ul>
+  </div>
+</div>

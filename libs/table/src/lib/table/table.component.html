@@ -1,0 +1,144 @@
+<div class="muxima-table-container">
+  <!-- Loading Overlay -->
+  <div *ngIf="loading" class="muxima-table-loading">
+    <div class="muxima-table-spinner"></div>
+    <span>Carregando dados...</span>
+  </div>
+
+  <!-- Table Wrapper -->
+  <div class="muxima-table-wrapper">
+    <table [ngClass]="getTableClasses()">
+      <!-- Table Header -->
+      <thead>
+        <tr>
+          <th
+            *ngFor="let column of columns"
+            [style.width]="column.width"
+            [style.text-align]="column.align || 'left'"
+            [class.muxima-table-sortable]="column.sortable"
+            (click)="handleSort(column)"
+          >
+            <div class="muxima-table-header-cell">
+              <span>{{ column.label }}</span>
+              <span *ngIf="column.sortable" class="muxima-table-sort-icon">
+                {{ getSortIcon(column) }}
+              </span>
+            </div>
+          </th>
+        </tr>
+      </thead>
+
+      <!-- Table Body -->
+      <tbody>
+        <tr *ngFor="let row of data">
+          <td
+            *ngFor="let column of columns"
+            [style.text-align]="column.align || 'left'"
+          >
+            {{ getCellValue(row, column) }}
+          </td>
+        </tr>
+
+        <!-- Empty State -->
+        <tr *ngIf="data.length === 0 && !loading" class="muxima-table-empty-row">
+          <td [attr.colspan]="columns.length" class="muxima-table-empty-cell">
+            <div class="muxima-table-empty-state">
+              <span class="muxima-table-empty-icon">📊</span>
+              <p>Nenhum dado disponível</p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div *ngIf="showPagination && data.length > 0" class="muxima-table-pagination">
+    <!-- Info -->
+    <div class="muxima-table-pagination-info">
+      Mostrando <strong>{{ firstItem }}</strong> a <strong>{{ lastItem }}</strong> de <strong>{{ pagination.totalElements }}</strong> registros
+    </div>
+
+    <!-- Controls -->
+    <div class="muxima-table-pagination-controls">
+      <!-- First Page -->
+      <button
+        type="button"
+        class="muxima-table-pagination-btn"
+        [disabled]="pagination.currentPage === 0"
+        (click)="goToFirstPage()"
+        title="Primeira página"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m11 17-5-5 5-5M18 17l-5-5 5-5"/>
+        </svg>
+      </button>
+
+      <!-- Previous Page -->
+      <button
+        type="button"
+        class="muxima-table-pagination-btn"
+        [disabled]="pagination.currentPage === 0"
+        (click)="goToPreviousPage()"
+        title="Página anterior"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m15 18-6-6 6-6"/>
+        </svg>
+      </button>
+
+      <!-- Page Numbers -->
+      <button
+        *ngFor="let page of visiblePages"
+        type="button"
+        class="muxima-table-pagination-btn muxima-table-pagination-page"
+        [class.muxima-table-pagination-active]="page === pagination.currentPage"
+        (click)="goToPage(page)"
+      >
+        {{ page + 1 }}
+      </button>
+
+      <!-- Next Page -->
+      <button
+        type="button"
+        class="muxima-table-pagination-btn"
+        [disabled]="pagination.currentPage === totalPages - 1"
+        (click)="goToNextPage()"
+        title="Próxima página"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m9 18 6-6-6-6"/>
+        </svg>
+      </button>
+
+      <!-- Last Page -->
+      <button
+        type="button"
+        class="muxima-table-pagination-btn"
+        [disabled]="pagination.currentPage === totalPages - 1"
+        (click)="goToLastPage()"
+        title="Última página"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m6 17 5-5-5-5M13 17l5-5-5-5"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Page Size Selector -->
+    <div class="muxima-table-pagination-size">
+      <label for="pageSize">Por página:</label>
+      <select
+        id="pageSize"
+        [value]="pagination.itemsPerPage"
+        (change)="changePageSize($event)"
+        class="muxima-table-pagination-select"
+      >
+        <option *ngFor="let size of pageSizeOptions" [value]="size">
+          {{ size }}
+        </option>
+      </select>
+    </div>
+  </div>
+</div>
+

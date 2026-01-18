@@ -1,0 +1,54 @@
+<div class="muxima-timeline" 
+     [ngClass]="{
+       'muxima-timeline-vertical': mode === 'vertical',
+       'muxima-timeline-horizontal': mode === 'horizontal',
+       'muxima-timeline-align-alternate': align === 'alternate',
+       'muxima-timeline-align-right': align === 'right',
+       'muxima-timeline-animated': animated
+     }">
+  
+  <div *ngFor="let item of items; let i = index; let last = last"
+       class="muxima-timeline-item"
+       [ngClass]="{
+         'muxima-timeline-item-completed': item.status === 'completed',
+         'muxima-timeline-item-current': item.status === 'current',
+         'muxima-timeline-item-upcoming': item.status === 'upcoming',
+         'muxima-timeline-item-error': item.status === 'error',
+         'muxima-timeline-item-color-blue': item.color === 'blue',
+         'muxima-timeline-item-color-purple': item.color === 'purple',
+         'muxima-timeline-item-color-green': item.color === 'green',
+         'muxima-timeline-item-color-orange': item.color === 'orange',
+         'muxima-timeline-item-color-red': item.color === 'red',
+         'muxima-timeline-item-color-gray': item.color === 'gray'
+       }">
+    
+    <!-- Connector Line -->
+    <div *ngIf="showConnector && !last" class="muxima-timeline-connector"></div>
+    
+    <!-- Marker Container -->
+    <div class="muxima-timeline-marker-wrapper">
+      <div class="muxima-timeline-marker" 
+           [style.background]="item.customColor">
+        <span *ngIf="item.icon" class="muxima-timeline-icon">{{ item.icon }}</span>
+        <div *ngIf="!item.icon" class="muxima-timeline-dot"></div>
+      </div>
+    </div>
+    
+    <!-- Content -->
+    <div class="muxima-timeline-content">
+      <div class="muxima-timeline-card">
+        <div class="muxima-timeline-header">
+          <h4 class="muxima-timeline-title">{{ item.title }}</h4>
+          <div class="muxima-timeline-meta" *ngIf="item.date || item.time">
+            <span *ngIf="item.date" class="muxima-timeline-date">{{ item.date }}</span>
+            <span *ngIf="item.time" class="muxima-timeline-time">{{ item.time }}</span>
+          </div>
+        </div>
+        <p *ngIf="item.description" class="muxima-timeline-description">
+          {{ item.description }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+

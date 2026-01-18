@@ -1,0 +1,38 @@
+<div class="muxima-language-selector">
+  <!-- Selected Language Button -->
+  <button class="language-button" (click)="toggleDropdown()" [class.active]="isOpen">
+    <span class="flag">{{ getCurrentLanguage()?.flag }}</span>
+    <span *ngIf="showNativeName" class="language-name">
+      {{ getCurrentLanguage()?.nativeName || getCurrentLanguage()?.name }}
+    </span>
+    <span *ngIf="showLanguageCode" class="language-code">({{ selectedLanguage }})</span>
+    <svg class="chevron" [class.open]="isOpen" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </button>
+
+  <!-- Dropdown -->
+  <div *ngIf="isOpen" class="dropdown" [ngClass]="positionClass">
+    <div class="dropdown-header">
+      <span>🌍</span>
+      <span>Select Language</span>
+    </div>
+    
+    <div class="language-list">
+      <button
+        *ngFor="let language of languages"
+        class="language-item"
+        [class.selected]="language.code === selectedLanguage"
+        (click)="selectLanguage(language)">
+        <span class="item-flag">{{ language.flag }}</span>
+        <div class="item-content">
+          <div class="item-name">{{ language.name }}</div>
+          <div class="item-native">{{ language.nativeName }}</div>
+        </div>
+        <svg *ngIf="language.code === selectedLanguage" class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>

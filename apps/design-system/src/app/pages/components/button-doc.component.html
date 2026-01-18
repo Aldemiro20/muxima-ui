@@ -1,0 +1,737 @@
+﻿<div class="doc-page">
+  <header class="doc-header">
+    <div class="doc-header-content">
+      <div class="doc-header-icon"></div>
+      <div>
+        <h1 class="doc-title">Button</h1>
+        <p class="doc-description">Componente de botão versátil com múltiplas variantes, tamanhos e estados para todas as suas necessidades de interface.</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Instalação -->
+  <section class="doc-section">
+    <h2 class="doc-section-title"> Instalação</h2>
+    <div class="doc-install-card">
+      <button class="copy-btn" [class.copied]="copied['import']" (click)="copyCode('import')">
+        {{ copied['import'] ? ' Copiado!' : ' Copiar' }}
+      </button>
+      <pre><code>{{ importCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Exemplo Básico -->
+  <section class="doc-section">
+    <h2 class="doc-section-title"> Exemplo Básico</h2>
+    <p class="doc-description-small">Comece rapidamente com um botão simples e elegante.</p>
+    
+    <div class="doc-example">
+      <muxima-button text="Clique aqui" variant="primary" (click)="handleClick()"></muxima-button>
+    </div>
+
+    <div class="code-block">
+      <button class="copy-btn" [class.copied]="copied['basic']" (click)="copyCode('basic')">
+        {{ copied['basic'] ? ' Copiado!' : ' Copiar' }}
+      </button>
+      <pre><code>{{ codeExamples.basic }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Variantes Clássicas -->
+  <section class="doc-section">
+    <h2 class="doc-section-title">🎨 Variantes Clássicas</h2>
+    <p class="doc-description-small">Seis variantes clássicas para diferentes contextos e hierarquias visuais.</p>
+
+    <div class="doc-variants-grid">
+      <div class="variant-card primary-card">
+        <div class="variant-label">
+          <span class="variant-badge primary">Primary</span>
+          <span class="variant-desc">Ação principal</span>
+        </div>
+        <muxima-button text="Primary Button" variant="primary"></muxima-button>
+      </div>
+
+      <div class="variant-card secondary-card">
+        <div class="variant-label">
+          <span class="variant-badge secondary">Secondary</span>
+          <span class="variant-desc">Ação secundária</span>
+        </div>
+        <muxima-button text="Secondary Button" variant="secondary"></muxima-button>
+      </div>
+
+      <div class="variant-card danger-card">
+        <div class="variant-label">
+          <span class="variant-badge danger">Danger</span>
+          <span class="variant-desc">Ação destrutiva</span>
+        </div>
+        <muxima-button text="Danger Button" variant="danger"></muxima-button>
+      </div>
+
+      <div class="variant-card success-card">
+        <div class="variant-label">
+          <span class="variant-badge success">Success</span>
+          <span class="variant-desc">Ação de sucesso</span>
+        </div>
+        <muxima-button text="Success Button" variant="success"></muxima-button>
+      </div>
+
+      <div class="variant-card warning-card">
+        <div class="variant-label">
+          <span class="variant-badge warning">Warning</span>
+          <span class="variant-desc">Aviso importante</span>
+        </div>
+        <muxima-button text="Warning Button" variant="warning"></muxima-button>
+      </div>
+
+      <div class="variant-card info-card">
+        <div class="variant-label">
+          <span class="variant-badge info">Info</span>
+          <span class="variant-desc">Informação</span>
+        </div>
+        <muxima-button text="Info Button" variant="info"></muxima-button>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <button class="copy-btn" [class.copied]="copied['variants']" (click)="copyCode('variants')">
+        {{ copied['variants'] ? '✓ Copiado!' : '📋 Copiar' }}
+      </button>
+      <pre><code>{{ codeExamples.variants }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Variantes Modernas e Inovadoras -->
+  <section class="doc-section modern-variants-section">
+    <h2 class="doc-section-title">✨ Variantes Modernas & Inovadoras</h2>
+    <p class="doc-description-small">Cinco estilos modernos e inovadores com efeitos visuais avançados para destacar sua interface.</p>
+
+    <div class="modern-variants-showcase">
+      <div class="modern-variant-card gradient-showcase">
+        <div class="modern-variant-header">
+          <h3>🌈 Gradient Magic</h3>
+          <span class="badge-new">NOVO</span>
+        </div>
+        <p class="modern-variant-desc">Gradiente rainbow animado com transição suave de cores. Perfeito para CTAs premium e ações especiais.</p>
+        <div class="modern-variant-demo">
+          <muxima-button text="Gradient Button" variant="gradient" size="xl"></muxima-button>
+          <muxima-button text="Com Ícone" variant="gradient" icon="✨" size="lg"></muxima-button>
+        </div>
+        <div class="variant-features">
+          <span class="feature">Animação contínua</span>
+          <span class="feature">5 cores</span>
+          <span class="feature">Efeito shimmer</span>
+        </div>
+      </div>
+
+      <div class="modern-variant-card glass-showcase">
+        <div class="modern-variant-header">
+          <h3>🪟 Glass Effect</h3>
+          <span class="badge-new">NOVO</span>
+        </div>
+        <p class="modern-variant-desc">Glassmorphism com blur e transparência. Estilo moderno e elegante inspirado no macOS Big Sur.</p>
+        <div class="modern-variant-demo glass-bg">
+          <muxima-button text="Glass Button" variant="glass" size="xl"></muxima-button>
+          <muxima-button text="Blur Effect" variant="glass" icon="💎" size="lg"></muxima-button>
+        </div>
+        <div class="variant-features">
+          <span class="feature">Backdrop blur</span>
+          <span class="feature">Transparência</span>
+          <span class="feature">Bordas suaves</span>
+        </div>
+      </div>
+
+      <div class="modern-variant-card outline-showcase">
+        <div class="modern-variant-header">
+          <h3>🔲 Outline Style</h3>
+          <span class="badge-popular">POPULAR</span>
+        </div>
+        <p class="modern-variant-desc">Botão com borda e preenchimento no hover. Minimalista e versátil para designs limpos.</p>
+        <div class="modern-variant-demo">
+          <muxima-button text="Outline Button" variant="outline" size="xl"></muxima-button>
+          <muxima-button text="Hover Me" variant="outline" icon="👆" size="lg"></muxima-button>
+        </div>
+        <div class="variant-features">
+          <span class="feature">Minimalista</span>
+          <span class="feature">Fill on hover</span>
+          <span class="feature">Versátil</span>
+        </div>
+      </div>
+
+      <div class="modern-variant-card ghost-showcase">
+        <div class="modern-variant-header">
+          <h3>👻 Ghost Button</h3>
+          <span class="badge-popular">POPULAR</span>
+        </div>
+        <p class="modern-variant-desc">Totalmente transparente com hover sutil. Ideal para ações secundárias e navegação discreta.</p>
+        <div class="modern-variant-demo">
+          <muxima-button text="Ghost Button" variant="ghost" size="xl"></muxima-button>
+          <muxima-button text="Subtle" variant="ghost" icon="🌫️" size="lg"></muxima-button>
+        </div>
+        <div class="variant-features">
+          <span class="feature">Ultra leve</span>
+          <span class="feature">Sem bordas</span>
+          <span class="feature">Hover sutil</span>
+        </div>
+      </div>
+
+      <div class="modern-variant-card neon-showcase">
+        <div class="modern-variant-header">
+          <h3>⚡ Neon Glow</h3>
+          <span class="badge-new">NOVO</span>
+          <span class="badge-hot">🔥 HOT</span>
+        </div>
+        <p class="modern-variant-desc">Efeito cyberpunk com brilho neon pulsante. Perfeito para temas dark e interfaces futuristas.</p>
+        <div class="modern-variant-demo neon-bg">
+          <muxima-button text="Neon Button" variant="neon" size="xl"></muxima-button>
+          <muxima-button text="Cyber Style" variant="neon" icon="⚡" size="lg"></muxima-button>
+        </div>
+        <div class="variant-features">
+          <span class="feature">Brilho pulsante</span>
+          <span class="feature">Cyberpunk</span>
+          <span class="feature">Text shadow</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <button class="copy-btn" [class.copied]="copied['modernVariants']" (click)="copyCode('modernVariants')">
+        {{ copied['modernVariants'] ? '✓ Copiado!' : '📋 Copiar' }}
+      </button>
+      <pre><code>{{ codeExamples.modernVariants }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Tamanhos -->
+  <section class="doc-section">
+    <h2 class="doc-section-title"> Tamanhos</h2>
+    <p class="doc-description-small">Cinco tamanhos diferentes para se adaptar a qualquer layout.</p>
+    
+    <div class="doc-example">
+      <div class="sizes-showcase">
+        <div class="size-item">
+          <muxima-button text="Small" size="sm" variant="primary"></muxima-button>
+          <span class="size-label">Small (sm)</span>
+        </div>
+        <div class="size-item">
+          <muxima-button text="Medium" size="md" variant="primary"></muxima-button>
+          <span class="size-label">Medium (md)</span>
+        </div>
+        <div class="size-item">
+          <muxima-button text="Large" size="lg" variant="primary"></muxima-button>
+          <span class="size-label">Large (lg) - Padrão</span>
+        </div>
+        <div class="size-item">
+          <muxima-button text="Extra Large" size="xl" variant="primary"></muxima-button>
+          <span class="size-label">XL (xl)</span>
+        </div>
+        <div class="size-item">
+          <muxima-button text="2X Extra Large" size="2xl" variant="primary"></muxima-button>
+          <span class="size-label">2XL (2xl)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <button class="copy-btn" [class.copied]="copied['sizes']" (click)="copyCode('sizes')">
+        {{ copied['sizes'] ? ' Copiado!' : ' Copiar' }}
+      </button>
+      <pre><code>{{ codeExamples.sizes }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Botões com Ícones -->
+  <section class="doc-section">
+    <h2 class="doc-section-title"> Botões com Ícones</h2>
+    <p class="doc-description-small">Adicione ícones para melhorar a comunicação visual e a experiência do usuário.</p>
+    
+    <div class="doc-example">
+      <div class="icon-buttons-grid">
+        <div class="icon-button-item">
+          <muxima-button text="Download" icon="" iconPosition="left" variant="primary"></muxima-button>
+          <span class="item-desc">Ícone à esquerda</span>
+        </div>
+        <div class="icon-button-item">
+          <muxima-button text="Próximo" icon="" iconPosition="right" variant="primary"></muxima-button>
+          <span class="item-desc">Ícone à direita</span>
+        </div>
+        <div class="icon-button-item">
+          <muxima-button icon="" variant="primary"></muxima-button>
+          <span class="item-desc">Apenas ícone</span>
+        </div>
+        <div class="icon-button-item">
+          <muxima-button text="Enviar" icon="" variant="secondary"></muxima-button>
+          <span class="item-desc">Secondary com ícone</span>
+        </div>
+        <div class="icon-button-item">
+          <muxima-button text="Deletar" icon="" variant="danger"></muxima-button>
+          <span class="item-desc">Danger com ícone</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <button class="copy-btn" [class.copied]="copied['withIcons']" (click)="copyCode('withIcons')">
+        {{ copied['withIcons'] ? ' Copiado!' : ' Copiar' }}
+      </button>
+      <pre><code>{{ codeExamples.withIcons }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Estados -->
+  <section class="doc-section">
+    <h2 class="doc-section-title"> Estados</h2>
+    <p class="doc-description-small">Diferentes estados para diferentes situações de interação.</p>
+    
+    <div class="states-grid">
+      <div class="state-card">
+        <h3 class="doc-subsection-title">Normal</h3>
+        <div class="state-examples">
+          <muxima-button text="Primary" variant="primary"></muxima-button>
+          <muxima-button text="Secondary" variant="secondary"></muxima-button>
+          <muxima-button text="Danger" variant="danger"></muxima-button>
+        </div>
+      </div>
+
+      <div class="state-card">
+        <h3 class="doc-subsection-title">Desabilitado</h3>
+        <div class="state-examples">
+          <muxima-button text="Primary" variant="primary" [disabled]="true"></muxima-button>
+          <muxima-button text="Secondary" variant="secondary" [disabled]="true"></muxima-button>
+          <muxima-button text="Danger" variant="danger" [disabled]="true"></muxima-button>
+        </div>
+      </div>
+
+      <div class="state-card full-width-card">
+        <h3 class="doc-subsection-title">Largura Total</h3>
+        <div class="state-examples">
+          <muxima-button text="Primary Full Width" variant="primary" [wFull]="true"></muxima-button>
+          <muxima-button text="Secondary Full Width" variant="secondary" [wFull]="true"></muxima-button>
+          <muxima-button text="Danger Full Width" variant="danger" [wFull]="true"></muxima-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <button class="copy-btn" [class.copied]="copied['states']" (click)="copyCode('states')">
+        {{ copied['states'] ? ' Copiado!' : ' Copiar' }}
+      </button>
+      <pre><code>{{ codeExamples.states }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Tipos de Botão -->
+  <section class="doc-section">
+    <h2 class="doc-section-title"> Tipos de Botão</h2>
+    <p class="doc-description-small">Diferentes tipos HTML para diferentes comportamentos de formulário.</p>
+    
+    <div class="doc-example">
+      <div class="button-types-grid">
+        <div class="type-item">
+          <muxima-button text="Submit" type="submit" variant="primary" icon=""></muxima-button>
+          <div class="type-info">
+            <strong>Submit</strong>
+            <span>Envia formulário</span>
+          </div>
+        </div>
+        <div class="type-item">
+          <muxima-button text="Button" type="button" variant="secondary" icon=""></muxima-button>
+          <div class="type-info">
+            <strong>Button</strong>
+            <span>Botão padrão</span>
+          </div>
+        </div>
+        <div class="type-item">
+          <muxima-button text="Reset" type="reset" variant="danger" icon=""></muxima-button>
+          <div class="type-info">
+            <strong>Reset</strong>
+            <span>Limpa formulário</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <button class="copy-btn" [class.copied]="copied['types']" (click)="copyCode('types')">
+        {{ copied['types'] ? ' Copiado!' : ' Copiar' }}
+      </button>
+      <pre><code>{{ codeExamples.types }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Grupos de Botões -->
+  <section class="doc-section">
+    <h2 class="doc-section-title"> Grupos de Botões</h2>
+    <p class="doc-description-small">Combine múltiplos botões para criar interfaces mais ricas.</p>
+    
+    <div class="groups-showcase">
+      <div class="group-example">
+        <h3 class="doc-subsection-title">Grupo Horizontal</h3>
+        <div class="button-group horizontal">
+          <muxima-button text="Salvar" variant="primary" icon=""></muxima-button>
+          <muxima-button text="Cancelar" variant="secondary"></muxima-button>
+          <muxima-button text="Excluir" variant="danger" icon=""></muxima-button>
+        </div>
+      </div>
+
+      <div class="group-example">
+        <h3 class="doc-subsection-title">Grupo Vertical</h3>
+        <div class="button-group vertical">
+          <muxima-button text="Editar Perfil" variant="primary" [wFull]="true" icon=""></muxima-button>
+          <muxima-button text="Configurações" variant="secondary" [wFull]="true" icon=""></muxima-button>
+          <muxima-button text="Sair" variant="danger" [wFull]="true" icon=""></muxima-button>
+        </div>
+      </div>
+
+      <div class="group-example">
+        <h3 class="doc-subsection-title">Ações de Card</h3>
+        <div class="card-actions">
+          <muxima-button text="Ver Detalhes" variant="primary" size="sm"></muxima-button>
+          <muxima-button text="Compartilhar" variant="secondary" size="sm" icon=""></muxima-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <button class="copy-btn" [class.copied]="copied['groups']" (click)="copyCode('groups')">
+        {{ copied['groups'] ? ' Copiado!' : ' Copiar' }}
+      </button>
+      <pre><code>{{ codeExamples.groups }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Casos de Uso -->
+  <section class="doc-section">
+    <h2 class="doc-section-title"> Casos de Uso</h2>
+    
+    <div class="use-cases-grid">
+      <div class="use-case-card">
+        <div class="use-case-header">
+          <span class="use-case-icon"></span>
+          <h3>Formulários</h3>
+        </div>
+        <p class="use-case-desc">Botões de submit e reset para formulários.</p>
+        <div class="use-case-example">
+          <muxima-button text="Enviar Formulário" variant="primary" type="submit" [wFull]="true"></muxima-button>
+          <muxima-button text="Limpar" variant="secondary" type="reset" [wFull]="true"></muxima-button>
+        </div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-header">
+          <span class="use-case-icon"></span>
+          <h3>E-commerce</h3>
+        </div>
+        <p class="use-case-desc">Ações de compra e carrinho.</p>
+        <div class="use-case-example">
+          <muxima-button text="Adicionar ao Carrinho" variant="primary" icon="" size="xl"></muxima-button>
+          <muxima-button text="Comprar Agora" variant="secondary" icon="" size="md"></muxima-button>
+        </div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-header">
+          <span class="use-case-icon"></span>
+          <h3>Confirmações</h3>
+        </div>
+        <p class="use-case-desc">Modais de confirmação e alertas.</p>
+        <div class="use-case-example">
+          <muxima-button text="Confirmar" variant="primary" size="md"></muxima-button>
+          <muxima-button text="Cancelar" variant="secondary" size="md"></muxima-button>
+        </div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-header">
+          <span class="use-case-icon"></span>
+          <h3>Navegação</h3>
+        </div>
+        <p class="use-case-desc">Botões de navegação e ações.</p>
+        <div class="use-case-example">
+          <muxima-button text="Voltar" variant="secondary" icon="" iconPosition="left" size="md"></muxima-button>
+          <muxima-button text="Próximo" variant="primary" icon="" iconPosition="right" size="md"></muxima-button>
+        </div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-header">
+          <span class="use-case-icon"></span>
+          <h3>Loading</h3>
+        </div>
+        <p class="use-case-desc">Estado de carregamento.</p>
+        <div class="use-case-example">
+          <muxima-button 
+            [text]="loading ? 'Carregando...' : 'Processar'" 
+            [disabled]="loading"
+            variant="primary"
+            (click)="simulateLoading()">
+          </muxima-button>
+        </div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-header">
+          <span class="use-case-icon"></span>
+          <h3>CTA (Call to Action)</h3>
+        </div>
+        <p class="use-case-desc">Botões de destaque para conversão.</p>
+        <div class="use-case-example">
+          <muxima-button text="Começar Grátis" variant="primary" size="2xl" icon="" [wFull]="true"></muxima-button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Combinações -->
+  <section class="doc-section">
+    <h2 class="doc-section-title"> Combinações Populares</h2>
+    <p class="doc-description-small">Exemplos de combinações comuns de propriedades.</p>
+    
+    <div class="doc-example">
+      <div class="combinations-grid">
+        <div class="combination-item">
+          <muxima-button text="Criar Novo" icon="" size="xl" variant="primary"></muxima-button>
+          <code class="combination-code">Primary + XL + Ícone</code>
+        </div>
+        <div class="combination-item">
+          <muxima-button text="Ver Mais" icon="" iconPosition="right" size="md" variant="secondary"></muxima-button>
+          <code class="combination-code">Secondary + MD + Ícone Right</code>
+        </div>
+        <div class="combination-item">
+          <muxima-button text="Deletar Tudo" icon="" size="sm" variant="danger" [wFull]="true"></muxima-button>
+          <code class="combination-code">Danger + SM + Full Width</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <button class="copy-btn" [class.copied]="copied['combinations']" (click)="copyCode('combinations')">
+        {{ copied['combinations'] ? ' Copiado!' : ' Copiar' }}
+      </button>
+      <pre><code>{{ codeExamples.combinations }}</code></pre>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2 class="doc-section-title"> API</h2>
+    
+    <div class="doc-api">
+      <h3>Propriedades do Componente</h3>
+      <table class="doc-api-table">
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>text</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>Texto exibido no botão</td>
+          </tr>
+          <tr>
+            <td><code>variant</code></td>
+            <td>'primary' | 'secondary' | 'danger' | 'success' | 'warning' | 'info' | 'gradient' | 'glass' | 'outline' | 'ghost' | 'neon'</td>
+            <td>'primary'</td>
+            <td>Estilo visual do botão (6 clássicos + 5 modernos)</td>
+          </tr>
+          <tr>
+            <td><code>size</code></td>
+            <td>'sm' | 'md' | 'lg' | 'xl' | '2xl'</td>
+            <td>'lg'</td>
+            <td>Tamanho do botão</td>
+          </tr>
+          <tr>
+            <td><code>type</code></td>
+            <td>'submit' | 'reset' | 'button' | ''</td>
+            <td>'submit'</td>
+            <td>Tipo HTML do botão</td>
+          </tr>
+          <tr>
+            <td><code>icon</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>Ícone exibido no botão (emoji ou texto)</td>
+          </tr>
+          <tr>
+            <td><code>iconPosition</code></td>
+            <td>'left' | 'right'</td>
+            <td>'left'</td>
+            <td>Posição do ícone em relação ao texto</td>
+          </tr>
+          <tr>
+            <td><code>disabled</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Desabilita o botão</td>
+          </tr>
+          <tr>
+            <td><code>wFull</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Define largura como 100% do container</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Classes CSS Disponíveis</h3>
+      <table class="doc-api-table">
+        <thead>
+          <tr>
+            <th>Classe</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>.agt--button</code></td>
+            <td>Classe base do botão</td>
+          </tr>
+          <tr>
+            <td><code>.agt--button--primary</code></td>
+            <td>Estilo primary (azul)</td>
+          </tr>
+          <tr>
+            <td><code>.agt--button--secondary</code></td>
+            <td>Estilo secondary (cinza)</td>
+          </tr>
+          <tr>
+            <td><code>.agt--button--danger</code></td>
+            <td>Estilo danger (vermelho)</td>
+          </tr>
+          <tr>
+            <td><code>.agt--button--sm</code></td>
+            <td>Tamanho pequeno</td>
+          </tr>
+          <tr>
+            <td><code>.agt--button--md</code></td>
+            <td>Tamanho médio</td>
+          </tr>
+          <tr>
+            <td><code>.agt--button--lg</code></td>
+            <td>Tamanho grande (padrão)</td>
+          </tr>
+          <tr>
+            <td><code>.agt--button--xl</code></td>
+            <td>Tamanho extra grande</td>
+          </tr>
+          <tr>
+            <td><code>.agt--button--2xl</code></td>
+            <td>Tamanho 2x extra grande</td>
+          </tr>
+          <tr>
+            <td><code>.agt--button-w-full</code></td>
+            <td>Largura total (100%)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Melhores Práticas -->
+  <section class="doc-section">
+    <h2 class="doc-section-title"> Melhores Práticas</h2>
+    
+    <div class="best-practices">
+      <div class="practice-card do">
+        <div class="practice-header">
+          <span class="practice-icon"></span>
+          <h3>Faça</h3>
+        </div>
+        <ul class="doc-list">
+          <li>Use <strong>Primary</strong> para a ação principal da página</li>
+          <li>Use <strong>Secondary</strong> para ações secundárias e alternativas</li>
+          <li>Use <strong>Danger</strong> apenas para ações destrutivas (deletar, remover)</li>
+          <li>Mantenha textos de botões curtos e objetivos (2-4 palavras)</li>
+          <li>Use ícones para reforçar o significado da ação</li>
+          <li>Agrupe botões relacionados próximos uns dos outros</li>
+          <li>Mantenha consistência de tamanhos em uma mesma seção</li>
+          <li>Use <code>[wFull]="true"</code> em dispositivos móveis</li>
+        </ul>
+      </div>
+
+      <div class="practice-card dont">
+        <div class="practice-header">
+          <span class="practice-icon"></span>
+          <h3>Evite</h3>
+        </div>
+        <ul class="doc-list">
+          <li>Usar múltiplos botões <strong>Primary</strong> na mesma tela</li>
+          <li>Textos muito longos que quebram em múltiplas linhas</li>
+          <li>Botões <strong>Danger</strong> sem confirmação para ações irreversíveis</li>
+          <li>Misturar muitos tamanhos diferentes na mesma seção</li>
+          <li>Usar ícones ambíguos ou confusos</li>
+          <li>Desabilitar botões sem explicação do motivo</li>
+          <li>Botões muito pequenos em dispositivos touch (mínimo 44x44px)</li>
+          <li>Cores personalizadas que quebram a hierarquia visual</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accessibility-section">
+      <h3 class="doc-subsection-title"> Acessibilidade</h3>
+      <ul class="doc-list">
+        <li><strong>Contraste:</strong> Todos os botões atendem aos padrões WCAG AA</li>
+        <li><strong>Teclado:</strong> Totalmente navegáveis via Tab e Enter/Space</li>
+        <li><strong>Focus:</strong> Estados de foco visíveis para navegação por teclado</li>
+        <li><strong>ARIA:</strong> Atributos semânticos adequados para leitores de tela</li>
+        <li><strong>Touch:</strong> Área mínima de 44x44px para dispositivos touch</li>
+        <li><strong>Estados:</strong> Estados desabilitados claramente indicados visualmente</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Exemplos do Mundo Real -->
+  <section class="doc-section">
+    <h2 class="doc-section-title"> Exemplos do Mundo Real</h2>
+    
+    <div class="real-world-examples">
+      <div class="example-scenario">
+        <h3 class="doc-subsection-title"> Checkout de E-commerce</h3>
+        <div class="scenario-demo">
+          <div class="checkout-card">
+            <h4>Resumo do Pedido</h4>
+            <p>Total: R$ 299,90</p>
+            <div class="checkout-actions">
+              <muxima-button text="Finalizar Compra" variant="primary" size="xl" icon="" [wFull]="true"></muxima-button>
+              <muxima-button text="Continuar Comprando" variant="secondary" size="md" [wFull]="true"></muxima-button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="example-scenario">
+        <h3 class="doc-subsection-title"> Modal de Confirmação</h3>
+        <div class="scenario-demo">
+          <div class="modal-card">
+            <h4> Confirmar Exclusão</h4>
+            <p>Tem certeza que deseja excluir este item? Esta ação não pode ser desfeita.</p>
+            <div class="modal-actions">
+              <muxima-button text="Cancelar" variant="secondary" size="md"></muxima-button>
+              <muxima-button text="Sim, Excluir" variant="danger" size="md"></muxima-button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="example-scenario">
+        <h3 class="doc-subsection-title"> Perfil de Usuário</h3>
+        <div class="scenario-demo">
+          <div class="profile-card">
+            <h4>Minha Conta</h4>
+            <div class="profile-actions">
+              <muxima-button text="Editar Perfil" variant="primary" icon="" [wFull]="true"></muxima-button>
+              <muxima-button text="Alterar Senha" variant="secondary" icon="" [wFull]="true"></muxima-button>
+              <muxima-button text="Excluir Conta" variant="danger" size="sm" [wFull]="true"></muxima-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+

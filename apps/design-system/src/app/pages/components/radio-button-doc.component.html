@@ -1,0 +1,476 @@
+<div class="radio-button-doc">
+  <!-- Header -->
+  <header class="radio-button-doc-header">
+    <h1>🔘 Radio Button</h1>
+    <p>Componente moderno de seleção única com suporte a formulários reativos e acessibilidade completa</p>
+  </header>
+
+  <!-- Installation -->
+  <section class="doc-section">
+    <h2>📦 Instalação</h2>
+    <div class="doc-installation">
+      <pre><code>{{ importCode }}</code></pre>
+      <button class="doc-copy-btn" [class.copied]="copiedStates[importCode]" (click)="copyCode(importCode)">
+        {{ copiedStates[importCode] ? '✅ Copiado!' : '📋 Copiar' }}
+      </button>
+    </div>
+  </section>
+
+  <!-- Basic Usage -->
+  <section class="doc-section">
+    <h2>🎯 Uso Básico</h2>
+    <p>Radio buttons permitem que o usuário selecione apenas uma opção de um grupo.</p>
+    
+    <div class="doc-example">
+      <div class="doc-example-demo">
+        <muxima-radio-button 
+          [value]="'option1'" 
+          [(ngModel)]="selectedBasic"
+          name="basic"
+          label="Opção 1">
+        </muxima-radio-button>
+        
+        <muxima-radio-button 
+          [value]="'option2'" 
+          [(ngModel)]="selectedBasic"
+          name="basic"
+          label="Opção 2">
+        </muxima-radio-button>
+        
+        <muxima-radio-button 
+          [value]="'option3'" 
+          [(ngModel)]="selectedBasic"
+          name="basic"
+          label="Opção 3">
+        </muxima-radio-button>
+      </div>
+      <p class="selected-value">Selecionado: <strong>{{ selectedBasic }}</strong></p>
+      
+      <div class="doc-example-code">
+        <pre><code>{{ getCodeExample('basic') }}</code></pre>
+        <button class="doc-copy-btn" (click)="copyCode(getCodeExample('basic'))">📋 Copiar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- With Description -->
+  <section class="doc-section">
+    <h2>📝 Com Descrição</h2>
+    <p>Adicione descrições para fornecer mais contexto sobre cada opção.</p>
+    
+    <div class="doc-example">
+      <div class="doc-example-demo">
+        <muxima-radio-button 
+          [value]="'basic'" 
+          [(ngModel)]="selectedPlan"
+          name="plan"
+          label="Plano Básico"
+          description="Ideal para iniciantes - R$ 29/mês">
+        </muxima-radio-button>
+        
+        <muxima-radio-button 
+          [value]="'pro'" 
+          [(ngModel)]="selectedPlan"
+          name="plan"
+          label="Plano Pro"
+          description="Para profissionais - R$ 99/mês">
+        </muxima-radio-button>
+        
+        <muxima-radio-button 
+          [value]="'enterprise'" 
+          [(ngModel)]="selectedPlan"
+          name="plan"
+          label="Plano Enterprise"
+          description="Para grandes empresas - Preço personalizado">
+        </muxima-radio-button>
+      </div>
+      
+      <div class="doc-example-code">
+        <pre><code>{{ getCodeExample('withDescription') }}</code></pre>
+        <button class="doc-copy-btn" (click)="copyCode(getCodeExample('withDescription'))">📋 Copiar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sizes -->
+  <section class="doc-section">
+    <h2>📏 Tamanhos</h2>
+    <p>Três tamanhos disponíveis: small, medium (padrão) e large.</p>
+    
+    <div class="doc-example">
+      <div class="doc-example-demo">
+        <muxima-radio-button 
+          [value]="'small'" 
+          [(ngModel)]="selectedSize"
+          name="size"
+          size="sm"
+          label="Small">
+        </muxima-radio-button>
+        
+        <muxima-radio-button 
+          [value]="'medium'" 
+          [(ngModel)]="selectedSize"
+          name="size"
+          size="md"
+          label="Medium (padrão)">
+        </muxima-radio-button>
+        
+        <muxima-radio-button 
+          [value]="'large'" 
+          [(ngModel)]="selectedSize"
+          name="size"
+          size="lg"
+          label="Large">
+        </muxima-radio-button>
+      </div>
+      
+      <div class="doc-example-code">
+        <pre><code>{{ getCodeExample('sizes') }}</code></pre>
+        <button class="doc-copy-btn" (click)="copyCode(getCodeExample('sizes'))">📋 Copiar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Colors -->
+  <section class="doc-section">
+    <h2>🎨 Cores</h2>
+    <p>Cinco variantes de cores para diferentes contextos.</p>
+    
+    <div class="doc-example">
+      <div class="doc-example-demo">
+        <muxima-radio-button 
+          [value]="'primary'" 
+          [(ngModel)]="selectedColor"
+          name="color"
+          color="primary"
+          label="Primary">
+        </muxima-radio-button>
+        
+        <muxima-radio-button 
+          [value]="'success'" 
+          [(ngModel)]="selectedColor"
+          name="color"
+          color="success"
+          label="Success">
+        </muxima-radio-button>
+        
+        <muxima-radio-button 
+          [value]="'warning'" 
+          [(ngModel)]="selectedColor"
+          name="color"
+          color="warning"
+          label="Warning">
+        </muxima-radio-button>
+        
+        <muxima-radio-button 
+          [value]="'danger'" 
+          [(ngModel)]="selectedColor"
+          name="color"
+          color="danger"
+          label="Danger">
+        </muxima-radio-button>
+        
+        <muxima-radio-button 
+          [value]="'info'" 
+          [(ngModel)]="selectedColor"
+          name="color"
+          color="info"
+          label="Info">
+        </muxima-radio-button>
+      </div>
+      
+      <div class="doc-example-code">
+        <pre><code>{{ getCodeExample('colors') }}</code></pre>
+        <button class="doc-copy-btn" (click)="copyCode(getCodeExample('colors'))">📋 Copiar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- States -->
+  <section class="doc-section">
+    <h2>🔄 Estados</h2>
+    <p>Estados desabilitado e obrigatório.</p>
+    
+    <div class="doc-example">
+      <div class="doc-example-demo">
+        <div class="state-group">
+          <h3>Desabilitado</h3>
+          <muxima-radio-button 
+            [value]="'disabled1'" 
+            [disabled]="true"
+            name="disabled"
+            label="Opção Desabilitada">
+          </muxima-radio-button>
+          
+          <muxima-radio-button 
+            [value]="'disabled2'" 
+            [disabled]="true"
+            name="disabled"
+            label="Opção Desabilitada e Selecionada"
+            [(ngModel)]="selectedDisabled">
+          </muxima-radio-button>
+        </div>
+        
+        <div class="state-group">
+          <h3>Obrigatório</h3>
+          <muxima-radio-button 
+            [value]="'required'" 
+            [required]="true"
+            name="required"
+            label="Campo Obrigatório">
+          </muxima-radio-button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Payment Example -->
+  <section class="doc-section">
+    <h2>💳 Exemplo: Método de Pagamento</h2>
+    
+    <div class="doc-example">
+      <div class="doc-example-demo payment-demo">
+        <muxima-radio-button 
+          [value]="'credit'" 
+          [(ngModel)]="selectedPayment"
+          name="payment"
+          label="Cartão de Crédito"
+          description="Pague com Visa, Mastercard ou Amex"
+          color="primary">
+        </muxima-radio-button>
+        
+        <muxima-radio-button 
+          [value]="'debit'" 
+          [(ngModel)]="selectedPayment"
+          name="payment"
+          label="Cartão de Débito"
+          description="Débito direto em conta"
+          color="success">
+        </muxima-radio-button>
+        
+        <muxima-radio-button 
+          [value]="'pix'" 
+          [(ngModel)]="selectedPayment"
+          name="payment"
+          label="PIX"
+          description="Pagamento instantâneo"
+          color="info">
+        </muxima-radio-button>
+        
+        <muxima-radio-button 
+          [value]="'boleto'" 
+          [(ngModel)]="selectedPayment"
+          name="payment"
+          label="Boleto Bancário"
+          description="Vencimento em 3 dias úteis"
+          color="warning">
+        </muxima-radio-button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Notification Example -->
+  <section class="doc-section">
+    <h2>🔔 Exemplo: Preferências de Notificação</h2>
+    
+    <div class="doc-example">
+      <div class="doc-example-demo">
+        <muxima-radio-button 
+          [value]="'email'" 
+          [(ngModel)]="selectedNotification"
+          name="notification"
+          label="E-mail"
+          description="Receber notificações por e-mail">
+        </muxima-radio-button>
+        
+        <muxima-radio-button 
+          [value]="'sms'" 
+          [(ngModel)]="selectedNotification"
+          name="notification"
+          label="SMS"
+          description="Receber notificações por SMS">
+        </muxima-radio-button>
+        
+        <muxima-radio-button 
+          [value]="'push'" 
+          [(ngModel)]="selectedNotification"
+          name="notification"
+          label="Push"
+          description="Notificações push no navegador">
+        </muxima-radio-button>
+        
+        <muxima-radio-button 
+          [value]="'none'" 
+          [(ngModel)]="selectedNotification"
+          name="notification"
+          label="Nenhuma"
+          description="Não receber notificações">
+        </muxima-radio-button>
+      </div>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2>📚 API</h2>
+    
+    <h3>@Input</h3>
+    <table class="doc-api-table">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Tipo</th>
+          <th>Padrão</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>value</td>
+          <td><code>any</code></td>
+          <td>-</td>
+          <td>Valor do radio button</td>
+        </tr>
+        <tr>
+          <td>name</td>
+          <td><code>string</code></td>
+          <td>''</td>
+          <td>Nome do grupo de radio buttons</td>
+        </tr>
+        <tr>
+          <td>label</td>
+          <td><code>string</code></td>
+          <td>''</td>
+          <td>Texto do label</td>
+        </tr>
+        <tr>
+          <td>description</td>
+          <td><code>string</code></td>
+          <td>''</td>
+          <td>Texto descritivo adicional</td>
+        </tr>
+        <tr>
+          <td>disabled</td>
+          <td><code>boolean</code></td>
+          <td>false</td>
+          <td>Estado desabilitado</td>
+        </tr>
+        <tr>
+          <td>size</td>
+          <td><code>'sm' | 'md' | 'lg'</code></td>
+          <td>'md'</td>
+          <td>Tamanho do componente</td>
+        </tr>
+        <tr>
+          <td>color</td>
+          <td><code>'primary' | 'success' | 'warning' | 'danger' | 'info'</code></td>
+          <td>'primary'</td>
+          <td>Cor do componente</td>
+        </tr>
+        <tr>
+          <td>required</td>
+          <td><code>boolean</code></td>
+          <td>false</td>
+          <td>Campo obrigatório</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>@Output</h3>
+    <table class="doc-api-table">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Tipo</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>valueChange</td>
+          <td><code>EventEmitter&lt;any&gt;</code></td>
+          <td>Emitido quando o valor é alterado</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="doc-section">
+    <h2>💼 Casos de Uso</h2>
+    
+    <div class="doc-use-cases">
+      <div class="doc-use-case">
+        <span class="doc-use-case-icon">📋</span>
+        <h4>Formulários</h4>
+        <p>Perfeito para formulários onde o usuário deve selecionar apenas uma opção entre várias alternativas.</p>
+      </div>
+      
+      <div class="doc-use-case">
+        <span class="doc-use-case-icon">⚙️</span>
+        <h4>Configurações</h4>
+        <p>Ideal para páginas de configurações com opções mutuamente exclusivas.</p>
+      </div>
+      
+      <div class="doc-use-case">
+        <span class="doc-use-case-icon">🛒</span>
+        <h4>Checkout</h4>
+        <p>Excelente para selecionar método de pagamento, endereço de entrega, etc.</p>
+      </div>
+      
+      <div class="doc-use-case">
+        <span class="doc-use-case-icon">🎯</span>
+        <h4>Surveys</h4>
+        <p>Perfeito para questionários e pesquisas com respostas únicas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Best Practices -->
+  <section class="doc-section">
+    <h2>✨ Boas Práticas</h2>
+    
+    <div class="doc-best-practices">
+      <div class="doc-practice">
+        <span class="doc-practice-text">Use radio buttons quando houver 2-7 opções. Para mais opções, considere um select/dropdown.</span>
+      </div>
+      
+      <div class="doc-practice">
+        <span class="doc-practice-text">Sempre forneça labels descritivos para melhor compreensão.</span>
+      </div>
+      
+      <div class="doc-practice">
+        <span class="doc-practice-text">Use descrições quando as opções precisarem de esclarecimento adicional.</span>
+      </div>
+      
+      <div class="doc-practice">
+        <span class="doc-practice-text">Agrupe radio buttons relacionados com o mesmo atributo 'name'.</span>
+      </div>
+      
+      <div class="doc-practice">
+        <span class="doc-practice-text">Considere pré-selecionar uma opção padrão quando apropriado.</span>
+      </div>
+      
+      <div class="doc-practice">
+        <span class="doc-practice-text">Mantenha a ordem lógica das opções (alfabética, numérica, por popularidade).</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Accessibility -->
+  <section class="doc-section">
+    <h2>♿ Acessibilidade</h2>
+    
+    <div class="doc-accessibility">
+      <h3>🎯 Recursos de Acessibilidade</h3>
+      <ul>
+        <li>Suporte completo para navegação por teclado (Tab, Space, Enter)</li>
+        <li>Atributos ARIA apropriados (role="radio", aria-checked, aria-disabled)</li>
+        <li>Indicador visual de foco para usuários de teclado</li>
+        <li>Labels associados corretamente para leitores de tela</li>
+        <li>Suporte para indicador de campo obrigatório</li>
+        <li>Estados desabilitado e selecionado claramente diferenciados</li>
+      </ul>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,276 @@
+<div class="doc-container">
+  <div class="doc-header">
+    <div class="header-content">
+      <span class="component-icon">📝</span>
+      <div>
+        <h1>Stepper</h1>
+        <p class="component-description">
+          Componente de progresso passo a passo elegante e profissional, ideal para formulários multi-etapa,
+          processos de checkout e fluxos de trabalho sequenciais.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Instalação -->
+  <section class="doc-section">
+    <h2 class="section-title">📦 Instalação</h2>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('import') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Stepper Horizontal -->
+  <section class="doc-section">
+    <h2 class="section-title">🚀 Stepper Horizontal</h2>
+    <p class="section-description">
+      Layout horizontal padrão, ideal para processos com 3-5 etapas. Responsivo e se adapta a layout vertical em mobile.
+    </p>
+    <div class="demo-container">
+      <muxima-stepper
+        [steps]="basicSteps"
+        [currentStep]="currentStep"
+        (stepChange)="onStepChange($event)"
+      ></muxima-stepper>
+      
+      <div class="demo-controls">
+        <button class="demo-button" (click)="previousStep()" [disabled]="currentStep === 0">
+          ← Anterior
+        </button>
+        <span class="current-step-info">Passo {{ currentStep + 1 }} de {{ basicSteps.length }}</span>
+        <button class="demo-button primary" (click)="nextStep()" [disabled]="currentStep === basicSteps.length - 1">
+          Próximo →
+        </button>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('basic') }}</code></pre>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('basicSteps') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Stepper Vertical -->
+  <section class="doc-section">
+    <h2 class="section-title">📊 Stepper Vertical</h2>
+    <p class="section-description">
+      Layout vertical para processos mais complexos ou com muitas etapas. Melhor aproveitamento do espaço.
+    </p>
+    <div class="demo-container">
+      <muxima-stepper
+        [steps]="verticalSteps"
+        [currentStep]="currentStepVertical"
+        orientation="vertical"
+        (stepChange)="currentStepVertical = $event"
+      ></muxima-stepper>
+      
+      <div class="demo-controls">
+        <button class="demo-button" (click)="currentStepVertical = currentStepVertical > 0 ? currentStepVertical - 1 : 0">
+          ← Anterior
+        </button>
+        <button class="demo-button primary" (click)="currentStepVertical = currentStepVertical < verticalSteps.length - 1 ? currentStepVertical + 1 : currentStepVertical">
+          Próximo →
+        </button>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('vertical') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Stepper com Ícones -->
+  <section class="doc-section">
+    <h2 class="section-title">✨ Stepper com Ícones</h2>
+    <p class="section-description">
+      Adicione ícones personalizados para melhor contexto visual e experiência do usuário.
+    </p>
+    <div class="demo-container">
+      <muxima-stepper
+        [steps]="iconSteps"
+        [currentStep]="currentStepIcons"
+        (stepChange)="currentStepIcons = $event"
+      ></muxima-stepper>
+      
+      <div class="demo-controls">
+        <button class="demo-button" (click)="currentStepIcons = currentStepIcons > 0 ? currentStepIcons - 1 : 0">
+          ← Anterior
+        </button>
+        <button class="demo-button primary" (click)="currentStepIcons = currentStepIcons < iconSteps.length - 1 ? currentStepIcons + 1 : currentStepIcons">
+          Próximo →
+        </button>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('icons') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Stepper com Estados -->
+  <section class="doc-section">
+    <h2 class="section-title">🎯 Stepper com Estados de Validação</h2>
+    <p class="section-description">
+      Use <code>completed</code> e <code>disabled</code> para controlar o fluxo e validação de formulários.
+    </p>
+    <div class="demo-container">
+      <muxima-stepper
+        [steps]="formSteps"
+        [currentStep]="currentStepForm"
+        [clickable]="false"
+      ></muxima-stepper>
+      
+      <div class="demo-controls">
+        <button class="demo-button" (click)="previousFormStep()" [disabled]="currentStepForm === 0">
+          ← Voltar
+        </button>
+        <span class="current-step-info">{{ formSteps[currentStepForm].label }}</span>
+        <button class="demo-button primary" (click)="nextFormStep()" 
+                [disabled]="currentStepForm === formSteps.length - 1">
+          Completar e Avançar →
+        </button>
+      </div>
+      
+      <div class="example-description">
+        <strong>💡 Dica:</strong> Ao clicar em "Completar e Avançar", o passo atual é marcado como 
+        <code>completed</code> e o próximo é habilitado (remove <code>disabled</code>).
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('disabled') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2 class="section-title">⚙️ API</h2>
+    
+    <h3 class="subsection-title">Inputs</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>steps</code></td>
+            <td><code>Step[]</code></td>
+            <td><code>[]</code></td>
+            <td>Array de passos do stepper</td>
+          </tr>
+          <tr>
+            <td><code>currentStep</code></td>
+            <td><code>number</code></td>
+            <td><code>0</code></td>
+            <td>Índice do passo atual (zero-based)</td>
+          </tr>
+          <tr>
+            <td><code>orientation</code></td>
+            <td><code>'horizontal' | 'vertical'</code></td>
+            <td><code>'horizontal'</code></td>
+            <td>Orientação do layout</td>
+          </tr>
+          <tr>
+            <td><code>clickable</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Permite navegação por clique nos passos</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="subsection-title">Outputs</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>stepChange</code></td>
+            <td><code>number</code></td>
+            <td>Emitido quando o passo atual muda</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="subsection-title">Step Interface</h3>
+    <div class="code-block">
+      <pre><code>interface Step {{ '{' }}
+  label: string;          // Título do passo
+  description?: string;   // Descrição opcional
+  icon?: string;         // Ícone emoji ou classe
+  completed?: boolean;    // Se o passo foi completado
+  disabled?: boolean;     // Se o passo está desabilitado
+{{ '}' }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Funcionalidades -->
+  <section class="doc-section">
+    <h2 class="section-title">✨ Funcionalidades</h2>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <span class="tip-icon">🎨</span>
+        <h4>Visual Elegante</h4>
+        <p>Design moderno com gradientes purple, animações suaves e estados visuais claros.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">📱</span>
+        <h4>Responsivo</h4>
+        <p>Adapta automaticamente de horizontal para vertical em dispositivos móveis.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">✓</span>
+        <h4>Estados Visuais</h4>
+        <p>Indicadores claros para passos ativos, completados e desabilitados.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🔄</span>
+        <h4>Animações</h4>
+        <p>Transições suaves e animações de pulso no passo ativo.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🎯</span>
+        <h4>Navegação Flexível</h4>
+        <p>Controle total com navegação por clique ou programática.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">⚡</span>
+        <h4>Performance</h4>
+        <p>Leve e otimizado, sem dependências externas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Casos de Uso -->
+  <section class="doc-section">
+    <h2 class="section-title">💡 Casos de Uso</h2>
+    <div class="example-description">
+      <strong>Formulários Multi-Etapa:</strong> Divida formulários longos em passos menores para melhor UX.
+      Use validação em cada passo antes de permitir o avanço.
+    </div>
+    <div class="example-description">
+      <strong>Processo de Checkout:</strong> Guie usuários através de carrinho → endereço → pagamento → confirmação
+      com feedback visual do progresso.
+    </div>
+    <div class="example-description">
+      <strong>Onboarding:</strong> Crie fluxos de boas-vindas para novos usuários com múltiplas etapas
+      de configuração e personalização.
+    </div>
+    <div class="example-description">
+      <strong>Wizards:</strong> Implemente assistentes de configuração complexos com navegação linear
+      e validação de dados em cada etapa.
+    </div>
+  </section>
+</div>

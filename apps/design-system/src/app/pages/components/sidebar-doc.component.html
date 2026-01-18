@@ -1,0 +1,246 @@
+<div class="doc-page">
+  <div class="doc-header">
+    <h1>🧭 Sidebar</h1>
+    <p class="doc-description">
+      Componente de navegação lateral elegante com suporte a menu colapsável, 
+      sub-menus, badges e múltiplas variantes visuais.
+    </p>
+  </div>
+
+  <!-- Import -->
+  <section class="doc-section">
+    <h2>📦 Importação</h2>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('import') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Basic Sidebar -->
+  <section class="doc-section">
+    <h2>📋 Sidebar Básico</h2>
+    <p>Sidebar simples com itens de menu e ícones.</p>
+    <div class="demo-container sidebar-demo">
+      <muxima-sidebar
+        [items]="basicItems"
+        header="Minha App"
+        footer="© 2024"
+        (itemClick)="onItemClick($event)">
+      </muxima-sidebar>
+      <div class="demo-spacer"></div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('basic') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- With Children -->
+  <section class="doc-section">
+    <h2>🔽 Com Sub-menus</h2>
+    <p>Sidebar com itens expansíveis e sub-menus aninhados.</p>
+    <div class="demo-container sidebar-demo">
+      <muxima-sidebar
+        [items]="withChildrenItems"
+        header="E-commerce"
+        (itemClick)="onItemClick($event)">
+      </muxima-sidebar>
+      <div class="demo-spacer"></div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('children') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Admin Panel -->
+  <section class="doc-section">
+    <h2>👨‍💼 Painel Administrativo</h2>
+    <p>Sidebar completo para painéis administrativos com badges.</p>
+    <div class="demo-container sidebar-demo">
+      <muxima-sidebar
+        [items]="adminItems"
+        header="Admin Panel"
+        footer="v1.0.0"
+        (itemClick)="onItemClick($event)">
+      </muxima-sidebar>
+      <div class="demo-spacer"></div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('children') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Compact Variant -->
+  <section class="doc-section">
+    <h2>📦 Variante Compacta</h2>
+    <p>Sidebar com largura reduzida para economia de espaço.</p>
+    <div class="demo-container sidebar-demo">
+      <muxima-sidebar
+        [items]="appItems"
+        variant="compact"
+        header="App"
+        (itemClick)="onItemClick($event)">
+      </muxima-sidebar>
+      <div class="demo-spacer"></div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('compact') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Floating Variant -->
+  <section class="doc-section">
+    <h2>✨ Variante Flutuante</h2>
+    <p>Sidebar com visual flutuante, sombra e bordas arredondadas.</p>
+    <div class="demo-container sidebar-demo">
+      <muxima-sidebar
+        [items]="basicItems"
+        variant="floating"
+        header="Menu"
+        (itemClick)="onItemClick($event)">
+      </muxima-sidebar>
+      <div class="demo-spacer"></div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('floating') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Collapsed State -->
+  <section class="doc-section">
+    <h2>↔️ Estado Colapsado</h2>
+    <p>Sidebar pode ser colapsado para mostrar apenas ícones.</p>
+    <div class="demo-container sidebar-demo">
+      <muxima-sidebar
+        [items]="basicItems"
+        [collapsed]="collapsed"
+        header="App"
+        (collapsedChange)="onCollapsedChange($event)"
+        (itemClick)="onItemClick($event)">
+      </muxima-sidebar>
+      <div class="demo-spacer"></div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('collapsed') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Badges -->
+  <section class="doc-section">
+    <h2>🏷️ Badges</h2>
+    <p>Adicione badges para notificações e contadores.</p>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('badges') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2>⚙️ API do Componente</h2>
+    
+    <h3>Inputs</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>items</code></td>
+            <td><code>SidebarItem[]</code></td>
+            <td><code>[]</code></td>
+            <td>Array de itens do menu</td>
+          </tr>
+          <tr>
+            <td><code>collapsed</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Estado colapsado do sidebar</td>
+          </tr>
+          <tr>
+            <td><code>variant</code></td>
+            <td><code>'default' | 'compact' | 'floating'</code></td>
+            <td><code>'default'</code></td>
+            <td>Variante visual do sidebar</td>
+          </tr>
+          <tr>
+            <td><code>header</code></td>
+            <td><code>string</code></td>
+            <td><code>''</code></td>
+            <td>Texto do cabeçalho</td>
+          </tr>
+          <tr>
+            <td><code>footer</code></td>
+            <td><code>string</code></td>
+            <td><code>''</code></td>
+            <td>Texto do rodapé</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Outputs</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>itemClick</code></td>
+            <td><code>EventEmitter&lt;SidebarItem&gt;</code></td>
+            <td>Emitido quando um item é clicado</td>
+          </tr>
+          <tr>
+            <td><code>collapsedChange</code></td>
+            <td><code>EventEmitter&lt;boolean&gt;</code></td>
+            <td>Emitido quando o estado colapsado muda</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Interfaces</h3>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('interface') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="doc-section">
+    <h2>✨ Características</h2>
+    <ul class="features-list">
+      <li>🎨 3 variantes visuais (default, compact, floating)</li>
+      <li>🔽 Sub-menus expansíveis com animação suave</li>
+      <li>↔️ Estado colapsável com transições elegantes</li>
+      <li>🏷️ Badges para notificações e contadores</li>
+      <li>🎯 Indicador visual de item ativo</li>
+      <li>🎨 Gradiente roxo elegante (#667eea → #764ba2)</li>
+      <li>🖱️ Efeitos hover e transições suaves</li>
+      <li>📱 Responsivo para mobile</li>
+      <li>♿ Acessível e semântico</li>
+      <li>⚡ Performance otimizada</li>
+    </ul>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="doc-section">
+    <h2>💡 Casos de Uso</h2>
+    <ul class="features-list">
+      <li><strong>Dashboard Administrativo:</strong> Painéis de controle com múltiplas seções</li>
+      <li><strong>E-commerce:</strong> Navegação de produtos, categorias e vendas</li>
+      <li><strong>Aplicativos:</strong> Menu principal de aplicações web</li>
+      <li><strong>CMS:</strong> Gerenciamento de conteúdo e páginas</li>
+      <li><strong>SaaS:</strong> Plataformas com múltiplos módulos</li>
+      <li><strong>Documentação:</strong> Navegação entre seções de documentos</li>
+      <li><strong>Mobile:</strong> Menu principal em versão mobile</li>
+    </ul>
+  </section>
+</div>

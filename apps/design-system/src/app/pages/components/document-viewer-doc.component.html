@@ -1,0 +1,306 @@
+<div class="doc-page">
+  <div class="doc-header">
+    <h1>📄 Document Viewer</h1>
+    <p class="doc-description">
+      Componente elegante para visualização de documentos com suporte a imagens e PDFs. 
+      Navegue entre múltiplos documentos, faça zoom, imprima e baixe com facilidade.
+    </p>
+  </div>
+
+  <!-- Import -->
+  <section class="doc-section">
+    <h2>📦 Importação</h2>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('import') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Single Image -->
+  <section class="doc-section">
+    <h2>🖼️ Imagem Única</h2>
+    <p>Visualize uma única imagem com controles de zoom e ações.</p>
+    <div class="demo-container">
+      <muxima-document-viewer
+        [documents]="singleImage"
+        height="500px"
+        (documentChange)="onDocumentChange($event)"
+        (downloadClick)="onDownload($event)">
+      </muxima-document-viewer>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('singleImage') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Multiple Images -->
+  <section class="doc-section">
+    <h2>🎨 Múltiplas Imagens</h2>
+    <p>Galeria de imagens com miniaturas laterais para navegação rápida.</p>
+    <div class="demo-container">
+      <muxima-document-viewer
+        [documents]="multipleImages"
+        [showThumbnails]="true"
+        height="600px"
+        (documentChange)="onDocumentChange($event)">
+      </muxima-document-viewer>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('multipleImages') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- PDF Viewer -->
+  <section class="doc-section">
+    <h2>📑 Visualizador de PDF</h2>
+    <p>Exiba documentos PDF com controles de navegação, download e impressão.</p>
+    <div class="demo-container">
+      <muxima-document-viewer
+        [documents]="singlePdf"
+        height="700px"
+        [allowDownload]="true"
+        [allowPrint]="true">
+      </muxima-document-viewer>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('pdf') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Multiple PDFs -->
+  <section class="doc-section">
+    <h2>📚 Múltiplos PDFs</h2>
+    <p>Navegue entre vários documentos PDF com facilidade.</p>
+    <div class="demo-container">
+      <muxima-document-viewer
+        [documents]="multiplePdfs"
+        [showThumbnails]="true"
+        height="650px">
+      </muxima-document-viewer>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('pdf') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Mixed Documents -->
+  <section class="doc-section">
+    <h2>📄 Documentos Mistos</h2>
+    <p>Combine imagens e PDFs no mesmo visualizador.</p>
+    <div class="demo-container">
+      <muxima-document-viewer
+        [documents]="mixedDocuments"
+        [showThumbnails]="true"
+        [allowZoom]="true"
+        height="650px"
+        (downloadClick)="onDownload($event)"
+        (printClick)="onPrint($event)">
+      </muxima-document-viewer>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('mixed') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Zoom Controls -->
+  <section class="doc-section">
+    <h2>🔍 Controles de Zoom</h2>
+    <p>Para imagens, utilize os controles de zoom: 50%, 75%, 100%, 125%, 150%, 200%, Ajustar.</p>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('zoom') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Events -->
+  <section class="doc-section">
+    <h2>🎯 Eventos</h2>
+    <p>Capture eventos de mudança de documento, download e impressão.</p>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('events') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2>⚙️ API do Componente</h2>
+    
+    <h3>Inputs</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>documents</code></td>
+            <td><code>Document[]</code></td>
+            <td><code>[]</code></td>
+            <td>Array de documentos a exibir</td>
+          </tr>
+          <tr>
+            <td><code>viewMode</code></td>
+            <td><code>'single' | 'grid' | 'list'</code></td>
+            <td><code>'single'</code></td>
+            <td>Modo de visualização</td>
+          </tr>
+          <tr>
+            <td><code>allowDownload</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Habilita botão de download</td>
+          </tr>
+          <tr>
+            <td><code>allowPrint</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Habilita botão de impressão</td>
+          </tr>
+          <tr>
+            <td><code>allowZoom</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Habilita controles de zoom (imagens)</td>
+          </tr>
+          <tr>
+            <td><code>showThumbnails</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Exibe barra lateral de miniaturas</td>
+          </tr>
+          <tr>
+            <td><code>height</code></td>
+            <td><code>string</code></td>
+            <td><code>'600px'</code></td>
+            <td>Altura do visualizador</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Outputs</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>documentChange</code></td>
+            <td><code>EventEmitter&lt;Document&gt;</code></td>
+            <td>Emitido quando o documento atual muda</td>
+          </tr>
+          <tr>
+            <td><code>downloadClick</code></td>
+            <td><code>EventEmitter&lt;Document&gt;</code></td>
+            <td>Emitido ao clicar em download</td>
+          </tr>
+          <tr>
+            <td><code>printClick</code></td>
+            <td><code>EventEmitter&lt;Document&gt;</code></td>
+            <td>Emitido ao clicar em imprimir</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Interfaces</h3>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('interface') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="doc-section">
+    <h2>✨ Características</h2>
+    <ul class="features-list">
+      <li>🖼️ Suporte para imagens (JPG, PNG, GIF, WebP)</li>
+      <li>📑 Suporte para PDFs com iframe integrado</li>
+      <li>🎨 Miniaturas laterais para navegação rápida</li>
+      <li>🔍 Controles de zoom para imagens (50% a 200%)</li>
+      <li>⬅️➡️ Navegação entre documentos com setas</li>
+      <li>💾 Botão de download com comportamento padrão</li>
+      <li>🖨️ Botão de impressão integrado</li>
+      <li>🖥️ Modo tela cheia para visualização imersiva</li>
+      <li>📱 Design responsivo para mobile</li>
+      <li>🎨 Gradiente roxo elegante (#667eea → #764ba2)</li>
+      <li>🎭 Animações suaves de transição</li>
+      <li>♿ Acessível e semântico</li>
+    </ul>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="doc-section">
+    <h2>💡 Casos de Uso</h2>
+    <ul class="features-list">
+      <li><strong>Galeria de Fotos:</strong> Exibir múltiplas imagens com navegação</li>
+      <li><strong>Documentos Legais:</strong> Visualizar contratos e termos em PDF</li>
+      <li><strong>Portfólio:</strong> Mostrar trabalhos com imagens e PDFs</li>
+      <li><strong>Sistema de Arquivos:</strong> Pré-visualização de documentos</li>
+      <li><strong>E-commerce:</strong> Galeria de produtos com múltiplas fotos</li>
+      <li><strong>Educação:</strong> Material didático em PDF e imagens</li>
+      <li><strong>Relatórios:</strong> Visualização de relatórios com gráficos</li>
+      <li><strong>Gerenciamento de Documentos:</strong> Sistema de gestão documental</li>
+    </ul>
+  </section>
+
+  <!-- Important Notes -->
+  <section class="doc-section">
+    <h2>⚠️ Notas Importantes</h2>
+    <ul class="features-list">
+      <li><strong>PDFs Externos:</strong> Alguns navegadores bloqueiam PDFs de domínios externos por questões de segurança. Use PDFs do mesmo domínio ou configure CORS.</li>
+      <li><strong>URLs Locais:</strong> Para desenvolvimento, coloque PDFs na pasta <code>assets</code> e use caminhos relativos: <code>url: 'assets/docs/sample.pdf'</code></li>
+      <li><strong>Blob URLs:</strong> Para PDFs gerados dinamicamente, use Blob URLs: <code>url: URL.createObjectURL(pdfBlob)</code></li>
+      <li><strong>Base64:</strong> Você também pode usar PDFs em Base64: <code>url: 'data:application/pdf;base64,JVBERi0...'</code></li>
+    </ul>
+  </section>
+
+  <!-- Local PDFs -->
+  <section class="doc-section">
+    <h2>📁 PDFs Locais (Recomendado)</h2>
+    <p>Para ambientes de produção, use PDFs armazenados localmente na pasta assets:</p>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('local') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Dynamic PDFs -->
+  <section class="doc-section">
+    <h2>🔄 PDFs Gerados Dinamicamente</h2>
+    <p>Para PDFs gerados no frontend (ex: com jsPDF ou pdfmake):</p>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('blob') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Base64 PDFs -->
+  <section class="doc-section">
+    <h2>📦 PDFs em Base64</h2>
+    <p>Para PDFs pequenos embutidos no código:</p>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('base64') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Best Practices -->
+  <section class="doc-section">
+    <h2>🎯 Boas Práticas</h2>
+    <ul class="features-list">
+      <li><strong>Otimize Imagens:</strong> Use thumbnails menores para navegação</li>
+      <li><strong>URLs Seguras:</strong> O componente sanitiza URLs automaticamente</li>
+      <li><strong>Tamanho de PDFs:</strong> Considere lazy loading para PDFs grandes</li>
+      <li><strong>Altura Adequada:</strong> Defina altura apropriada ao contexto</li>
+      <li><strong>Eventos Personalizados:</strong> Use eventos para lógica customizada</li>
+      <li><strong>Mobile:</strong> Teste a experiência em telas menores</li>
+      <li><strong>Acessibilidade:</strong> Forneça alt text para imagens</li>
+      <li><strong>Performance:</strong> Carregue documentos sob demanda quando possível</li>
+    </ul>
+  </section>
+</div>

@@ -1,0 +1,212 @@
+﻿<div class="datepicker-doc">
+  <header class="doc-header">
+    <div class="header-content">
+      <div class="icon-badge"></div>
+      <h1 class="doc-title">Datepicker</h1>
+      <p class="doc-subtitle">
+        Seletor de datas moderno e intuitivo com suporte a data única ou período de datas.
+        Interface elegante com calendário interativo e recursos avançados de validação.
+      </p>
+    </div>
+  </header>
+
+  <section class="doc-section">
+    <h2 class="section-title"> Importação</h2>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(getCodeExample('import'), 'import')">
+        {{ copiedStates['import'] ? ' Copiado!' : 'Copiar' }}
+      </button>
+      <pre><code>{{ getCodeExample('import') }}</code></pre>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <h2 class="section-title"> Uso Básico</h2>
+    <div class="demo-container">
+      <div class="demo-item">
+        <h3 class="demo-label">Data Única</h3>
+        <muxima-datepicker
+          [value]="selectedDate"
+          (valueChange)="onSingleDateChange($event)"
+          placeholder="Selecione uma data"
+          (dateSelect)="onDateSelect($event)">
+        </muxima-datepicker>
+        <p class="demo-result" *ngIf="selectedDate">Data selecionada: {{ selectedDate | date:'dd/MM/yyyy' }}</p>
+      </div>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(getCodeExample('basic'), 'basic')">
+        {{ copiedStates['basic'] ? ' Copiado!' : 'Copiar' }}
+      </button>
+      <pre><code>{{ getCodeExample('basic') }}</code></pre>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <h2 class="section-title"> Seleção de Período</h2>
+    <div class="demo-container">
+      <div class="demo-item">
+        <h3 class="demo-label">Período de Datas</h3>
+        <muxima-datepicker
+          mode="range"
+          [value]="selectedRange"
+          (valueChange)="onRangeDateChange($event)"
+          placeholder="Selecione um período">
+        </muxima-datepicker>
+        <p class="demo-result" *ngIf="selectedRange && selectedRange.start && selectedRange.end">
+          Período: {{ selectedRange!.start | date:'dd/MM/yyyy' }} até {{ selectedRange!.end | date:'dd/MM/yyyy' }}
+        </p>
+      </div>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(getCodeExample('range'), 'range')">
+        {{ copiedStates['range'] ? ' Copiado!' : 'Copiar' }}
+      </button>
+      <pre><code>{{ getCodeExample('range') }}</code></pre>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <h2 class="section-title"> Validação de Datas</h2>
+    <div class="demo-grid">
+      <div class="demo-item">
+        <h3 class="demo-label">Com Min/Max Date</h3>
+        <muxima-datepicker
+          [minDate]="minDate"
+          [maxDate]="maxDate"
+          placeholder="Próximos 30 dias">
+        </muxima-datepicker>
+        <p class="demo-hint">Apenas datas dos próximos 30 dias</p>
+      </div>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(getCodeExample('minmax'), 'minmax')">
+        {{ copiedStates['minmax'] ? ' Copiado!' : 'Copiar' }}
+      </button>
+      <pre><code>{{ getCodeExample('minmax') }}</code></pre>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <h2 class="section-title"> Tipos e Interfaces</h2>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(getCodeExample('types'), 'types')">
+        {{ copiedStates['types'] ? ' Copiado!' : 'Copiar' }}
+      </button>
+      <pre><code>{{ getCodeExample('types') }}</code></pre>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <h2 class="section-title"> Eventos</h2>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(getCodeExample('events'), 'events')">
+        {{ copiedStates['events'] ? ' Copiado!' : 'Copiar' }}
+      </button>
+      <pre><code>{{ getCodeExample('events') }}</code></pre>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <h2 class="section-title"> API</h2>
+    <div class="api-table-container">
+      <table class="api-table">
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>mode</code></td>
+            <td><code>'single' | 'range'</code></td>
+            <td><code>'single'</code></td>
+            <td>Modo de seleção: data única ou período</td>
+          </tr>
+          <tr>
+            <td><code>value</code></td>
+            <td><code>Date | DateRange</code></td>
+            <td><code>undefined</code></td>
+            <td>Valor selecionado (data única ou período)</td>
+          </tr>
+          <tr>
+            <td><code>placeholder</code></td>
+            <td><code>string</code></td>
+            <td><code>'Selecione uma data'</code></td>
+            <td>Texto exibido quando nenhuma data está selecionada</td>
+          </tr>
+          <tr>
+            <td><code>minDate</code></td>
+            <td><code>Date</code></td>
+            <td><code>undefined</code></td>
+            <td>Data mínima permitida para seleção</td>
+          </tr>
+          <tr>
+            <td><code>maxDate</code></td>
+            <td><code>Date</code></td>
+            <td><code>undefined</code></td>
+            <td>Data máxima permitida para seleção</td>
+          </tr>
+          <tr>
+            <td><code>format</code></td>
+            <td><code>string</code></td>
+            <td><code>'dd/MM/yyyy'</code></td>
+            <td>Formato de exibição da data</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="subsection-title">Eventos (@Output)</h3>
+      <table class="api-table">
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>valueChange</code></td>
+            <td><code>EventEmitter&lt;Date | DateRange&gt;</code></td>
+            <td>Emitido quando o valor é alterado (permite two-way binding)</td>
+          </tr>
+          <tr>
+            <td><code>dateSelect</code></td>
+            <td><code>EventEmitter&lt;Date&gt;</code></td>
+            <td>Emitido sempre que uma data é clicada no calendário</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <h2 class="section-title"> Recursos</h2>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-icon"></div>
+        <h3>Navegação Intuitiva</h3>
+        <p>Navegue pelos meses com setas e selecione datas com um clique.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon"></div>
+        <h3>Validação Automática</h3>
+        <p>Datas fora do intervalo permitido são desabilitadas automaticamente.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon"></div>
+        <h3>Hover Preview</h3>
+        <p>Visualize o período selecionado ao passar o mouse no modo range.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon"></div>
+        <h3>Atalhos Rápidos</h3>
+        <p>Botões "Hoje" e "Limpar" para seleção rápida.</p>
+      </div>
+    </div>
+  </section>
+</div>

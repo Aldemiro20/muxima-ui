@@ -1,0 +1,441 @@
+﻿<div class="doc-container">
+  <h1 class="doc-title"> Alert</h1>
+  <p class="doc-description">Componente para exibir mensagens de notificação e alertas.</p>
+
+  <section class="doc-section">
+    <h2 class="doc-section-title"> Instalação</h2>
+    <div class="doc-code-block">
+      <pre><code>{{ importCode }}</code></pre>
+      <button class="doc-copy-btn" [class.copied]="codeExamples.basic.copied" (click)="copyCode('basic')">
+        {{ codeExamples.basic.copied ? 'Copiado!' : 'Copiar' }}
+      </button>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <h2 class="doc-section-title"> Exemplo Básico</h2>
+    <div class="doc-example">
+      <muxima-alert type="info" appearance="fill">Esta é uma mensagem informativa</muxima-alert>
+    </div>
+    <div class="doc-code-block">
+      <pre><code>{{ codeExamples.basic.code }}</code></pre>
+      <button class="doc-copy-btn" [class.copied]="codeExamples.basic.copied" (click)="copyCode('basic')">
+        {{ codeExamples.basic.copied ? 'Copiado!' : 'Copiar' }}
+      </button>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <h2 class="doc-section-title"> Tipos</h2>
+    <div class="doc-example">
+      <div class="alert-grid">
+        <muxima-alert type="info" appearance="fill">Info</muxima-alert>
+        <muxima-alert type="success" appearance="fill">Success</muxima-alert>
+        <muxima-alert type="warning" appearance="fill">Warning</muxima-alert>
+        <muxima-alert type="error" appearance="fill">Error</muxima-alert>
+      </div>
+    </div>
+  </section>
+
+  <!-- Aparências -->
+  <section class="doc-section">
+    <h2 class="doc-section-title">✨ Aparências</h2>
+    <div class="doc-example">
+      <h3 class="doc-subsection-title">Fill - Fundo Sólido</h3>
+      <div class="alert-grid">
+        <muxima-alert type="info" appearance="fill">💡 Info Fill</muxima-alert>
+        <muxima-alert type="success" appearance="fill">✅ Success Fill</muxima-alert>
+        <muxima-alert type="warning" appearance="fill">⚠️ Warning Fill</muxima-alert>
+        <muxima-alert type="error" appearance="fill">❌ Error Fill</muxima-alert>
+      </div>
+
+      <h3 class="doc-subsection-title">Border - Apenas Borda</h3>
+      <div class="alert-grid">
+        <muxima-alert type="info" appearance="border">💡 Info Border</muxima-alert>
+        <muxima-alert type="success" appearance="border">✅ Success Border</muxima-alert>
+        <muxima-alert type="warning" appearance="border">⚠️ Warning Border</muxima-alert>
+        <muxima-alert type="error" appearance="border">❌ Error Border</muxima-alert>
+      </div>
+
+      <h3 class="doc-subsection-title">Outline - Borda Grossa</h3>
+      <div class="alert-grid">
+        <muxima-alert type="info" appearance="outline">💡 Info Outline</muxima-alert>
+        <muxima-alert type="success" appearance="outline">✅ Success Outline</muxima-alert>
+        <muxima-alert type="warning" appearance="outline">⚠️ Warning Outline</muxima-alert>
+        <muxima-alert type="error" appearance="outline">❌ Error Outline</muxima-alert>
+      </div>
+
+      <h3 class="doc-subsection-title">Soft - Fundo Suave</h3>
+      <div class="alert-grid">
+        <muxima-alert type="info" appearance="soft">💡 Info Soft</muxima-alert>
+        <muxima-alert type="success" appearance="soft">✅ Success Soft</muxima-alert>
+        <muxima-alert type="warning" appearance="soft">⚠️ Warning Soft</muxima-alert>
+        <muxima-alert type="error" appearance="soft">❌ Error Soft</muxima-alert>
+      </div>
+    </div>
+  </section>
+
+  <!-- Com Título -->
+  <section class="doc-section">
+    <h2 class="doc-section-title">📝 Alertas com Título</h2>
+    <div class="doc-example">
+      <div class="alert-grid">
+        <muxima-alert type="info" appearance="fill">
+          <span muximaAlertTitle>Nova Funcionalidade</span>
+          Agora você pode exportar relatórios em PDF
+        </muxima-alert>
+        <muxima-alert type="success" appearance="border">
+          <span muximaAlertTitle>Operação Concluída</span>
+          Seus dados foram salvos com sucesso
+        </muxima-alert>
+        <muxima-alert type="warning" appearance="outline">
+          <span muximaAlertTitle>Atenção Necessária</span>
+          Revise os campos antes de continuar
+        </muxima-alert>
+        <muxima-alert type="error" appearance="soft">
+          <span muximaAlertTitle>Erro Crítico</span>
+          Falha na conexão com o servidor
+        </muxima-alert>
+      </div>
+    </div>
+  </section>
+
+  <!-- Com Ícones Customizados -->
+  <section class="doc-section">
+    <h2 class="doc-section-title">🎭 Ícones Customizados</h2>
+    <div class="doc-example">
+      <div class="alert-grid">
+        <muxima-alert type="info" appearance="soft">
+          <span muximaAlertIcon>🔔</span>
+          3 novas notificações
+        </muxima-alert>
+        <muxima-alert type="success" appearance="soft">
+          <span muximaAlertIcon>🎉</span>
+          Parabéns! Curso completo
+        </muxima-alert>
+        <muxima-alert type="warning" appearance="soft">
+          <span muximaAlertIcon>⏰</span>
+          Reunião em 15 minutos
+        </muxima-alert>
+        <muxima-alert type="error" appearance="soft">
+          <span muximaAlertIcon>🔒</span>
+          Acesso negado
+        </muxima-alert>
+      </div>
+    </div>
+  </section>
+
+  <!-- Alertas com Spinner -->
+  <section class="doc-section">
+    <h2 class="doc-section-title">⏳ Alertas com Loading</h2>
+    <p class="doc-description-small">
+      Alertas com spinner para indicar processos em andamento
+    </p>
+    <div class="doc-example">
+      <div class="alert-grid">
+        <div class="alert-with-spinner info">
+          <div class="spinner-container">
+            <div class="spinner"></div>
+          </div>
+          <div class="alert-content">
+            <strong>Processando...</strong>
+            <p>Aguarde enquanto carregamos seus dados</p>
+          </div>
+        </div>
+
+        <div class="alert-with-spinner success">
+          <div class="spinner-container">
+            <div class="spinner"></div>
+          </div>
+          <div class="alert-content">
+            <strong>Salvando...</strong>
+            <p>Seus dados estão sendo salvos</p>
+          </div>
+        </div>
+
+        <div class="alert-with-spinner warning">
+          <div class="spinner-container">
+            <div class="spinner"></div>
+          </div>
+          <div class="alert-content">
+            <strong>Sincronizando...</strong>
+            <p>Sincronizando com o servidor</p>
+          </div>
+        </div>
+
+        <div class="alert-with-spinner error">
+          <div class="spinner-container">
+            <div class="spinner pulse"></div>
+          </div>
+          <div class="alert-content">
+            <strong>Reconectando...</strong>
+            <p>Tentando restabelecer conexão</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="doc-code-block">
+      <pre><code>{{ codeExamples.spinner.code }}</code></pre>
+      <button class="doc-copy-btn" [class.copied]="codeExamples.spinner.copied" (click)="copyCode('spinner')">
+        {{ codeExamples.spinner.copied ? 'Copiado!' : 'Copiar' }}
+      </button>
+    </div>
+  </section>
+
+  <!-- Alertas com Ações -->
+  <section class="doc-section">
+    <h2 class="doc-section-title">🎬 Alertas com Ações</h2>
+    <div class="doc-example">
+      <div class="alert-with-action info">
+        <div class="alert-icon">💡</div>
+        <div class="alert-body">
+          <strong>Nova versão disponível</strong>
+          <p>Atualize agora para acessar novas funcionalidades</p>
+        </div>
+        <div class="alert-actions">
+          <button class="action-btn primary">Atualizar</button>
+          <button class="action-btn secondary">Depois</button>
+        </div>
+      </div>
+
+      <div class="alert-with-action success">
+        <div class="alert-icon">✅</div>
+        <div class="alert-body">
+          <strong>Backup concluído</strong>
+          <p>Seus dados foram salvos com sucesso</p>
+        </div>
+        <div class="alert-actions">
+          <button class="action-btn primary">Ver Detalhes</button>
+          <button class="action-btn secondary">OK</button>
+        </div>
+      </div>
+
+      <div class="alert-with-action warning">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-body">
+          <strong>Sessão expirando</strong>
+          <p>Sua sessão expira em 5 minutos</p>
+        </div>
+        <div class="alert-actions">
+          <button class="action-btn primary">Renovar</button>
+          <button class="action-btn secondary">Sair</button>
+        </div>
+      </div>
+
+      <div class="alert-with-action error">
+        <div class="alert-icon">❌</div>
+        <div class="alert-body">
+          <strong>Erro ao salvar</strong>
+          <p>Não foi possível salvar as alterações</p>
+        </div>
+        <div class="alert-actions">
+          <button class="action-btn primary">Tentar Novamente</button>
+          <button class="action-btn secondary">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Alertas Fecháveis -->
+  <section class="doc-section">
+    <h2 class="doc-section-title">🗑️ Alertas Fecháveis</h2>
+    <div class="doc-example">
+      <muxima-alert 
+        *ngIf="showDismissibleAlert"
+        type="success" 
+        [dismissible]="true"
+        (dismissedChanged)="showDismissibleAlert = false">
+        <strong>✅ Perfil atualizado!</strong> Suas alterações foram salvas.
+      </muxima-alert>
+      <button *ngIf="!showDismissibleAlert" 
+              class="demo-button success"
+              (click)="showDismissibleAlert = true">
+        🔄 Mostrar Alerta Novamente
+      </button>
+    </div>
+  </section>
+
+  <!-- Múltiplos Alertas -->
+  <section class="doc-section">
+    <h2 class="doc-section-title">📚 Múltiplos Alertas</h2>
+    <div class="doc-example">
+      <div class="demo-controls">
+        <button class="demo-button info" (click)="addAlert('info')">➕ Info</button>
+        <button class="demo-button success" (click)="addAlert('success')">➕ Sucesso</button>
+        <button class="demo-button warning" (click)="addAlert('warning')">➕ Aviso</button>
+        <button class="demo-button error" (click)="addAlert('error')">➕ Erro</button>
+      </div>
+      <div class="alerts-list">
+        <muxima-alert 
+          *ngFor="let alert of alerts"
+          [type]="alert.type"
+          [dismissible]="alert.dismissible"
+          (dismissedChanged)="removeAlert(alert.id)">
+          <strong *ngIf="alert.title">{{ alert.title }}</strong>
+          {{ alert.message }}
+        </muxima-alert>
+        <p *ngIf="alerts.length === 0" class="empty-state">
+          Nenhum alerta ativo. Clique nos botões acima para adicionar.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Casos de Uso Reais -->
+  <section class="doc-section">
+    <h2 class="doc-section-title">💼 Casos de Uso Reais</h2>
+    
+    <h3 class="doc-subsection-title">Sistema de Notificações</h3>
+    <div class="doc-example">
+      <div class="alert-grid">
+        <muxima-alert type="info" appearance="soft" icon="📧">
+          <strong>Nova mensagem</strong><br>
+          Você recebeu uma mensagem de João Silva
+        </muxima-alert>
+        <muxima-alert type="info" appearance="soft" icon="👥">
+          <strong>Solicitação de amizade</strong><br>
+          Maria Santos quer ser sua amiga
+        </muxima-alert>
+      </div>
+    </div>
+
+    <h3 class="doc-subsection-title">Validações de Formulário</h3>
+    <div class="doc-example">
+      <muxima-alert type="error" appearance="border" title="Campos obrigatórios">
+        Por favor, preencha os seguintes campos:
+        <ul style="margin: 0.5rem 0 0 1.5rem; padding: 0;">
+          <li>Nome completo</li>
+          <li>Email</li>
+          <li>Senha</li>
+        </ul>
+      </muxima-alert>
+    </div>
+
+    <h3 class="doc-subsection-title">Feedback de Operações</h3>
+    <div class="doc-example">
+      <div class="alert-grid">
+        <muxima-alert type="success" appearance="fill" icon="💾">
+          <strong>Rascunho salvo</strong><br>
+          Salvo automaticamente há 2 minutos
+        </muxima-alert>
+        <muxima-alert type="warning" appearance="outline" icon="🔄">
+          <strong>Sincronização pendente</strong><br>
+          Conecte-se à internet para sincronizar
+        </muxima-alert>
+      </div>
+    </div>
+
+    <h3 class="doc-subsection-title">Status do Sistema</h3>
+    <div class="doc-example">
+      <div class="alert-grid">
+        <div class="alert-with-spinner info">
+          <div class="spinner-container">
+            <div class="spinner"></div>
+          </div>
+          <div class="alert-content">
+            <strong>Verificando atualizações...</strong>
+            <p>Buscando novas versões disponíveis</p>
+          </div>
+        </div>
+        <muxima-alert type="warning" appearance="fill" icon="🛠️">
+          <strong>Manutenção programada</strong><br>
+          Sistema indisponível amanhã das 2h às 4h
+        </muxima-alert>
+      </div>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2 class="doc-section-title">📚 API</h2>
+    <div class="doc-api">
+      <h3>Propriedades</h3>
+      <table class="doc-api-table">
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>type</code></td>
+            <td>'info' | 'success' | 'warning' | 'error' | 'primary' | 'accent' | 'warn' | 'basic'</td>
+            <td>'primary'</td>
+            <td>Tipo semântico do alerta</td>
+          </tr>
+          <tr>
+            <td><code>appearance</code></td>
+            <td>'fill' | 'border' | 'outline' | 'soft'</td>
+            <td>'soft'</td>
+            <td>Estilo visual do alerta</td>
+          </tr>
+          <tr>
+            <td><code>dismissible</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Se o alerta pode ser fechado</td>
+          </tr>
+          <tr>
+            <td><code>dismissed</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Estado de dismissão do alerta</td>
+          </tr>
+          <tr>
+            <td><code>showIcon</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Se deve mostrar o ícone</td>
+          </tr>
+          <tr>
+            <td><code>name</code></td>
+            <td>string</td>
+            <td>auto-generated</td>
+            <td>Nome único do alerta</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Eventos</h3>
+      <table class="doc-api-table">
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>dismissedChanged</code></td>
+            <td>EventEmitter&lt;boolean&gt;</td>
+            <td>Emitido quando o estado de dismissão muda</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Seletores de Conteúdo</h3>
+      <table class="doc-api-table">
+        <thead>
+          <tr>
+            <th>Seletor</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>muximaAlertTitle</code></td>
+            <td>Usado para definir o título do alerta</td>
+          </tr>
+          <tr>
+            <td><code>muximaAlertIcon</code></td>
+            <td>Usado para definir um ícone customizado</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

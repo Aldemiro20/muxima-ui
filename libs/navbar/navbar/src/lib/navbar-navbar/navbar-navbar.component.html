@@ -1,0 +1,125 @@
+﻿<nav class="muxima-navbar" [class.transparent]="transparent && !scrolled" [class.scrolled]="scrolled" [class.fixed]="fixed">
+  <div class="navbar-container">
+    <!-- Logo -->
+    <div class="navbar-logo">
+      <a [routerLink]="logoRoute" (click)="closeMobileMenu()">
+        {{ logo }}
+      </a>
+    </div>
+
+    <!-- Desktop Menu -->
+    <ul class="navbar-menu desktop-menu">
+      <li *ngFor="let item of menuItems; let i = index" class="menu-item" [class.has-dropdown]="item.children">
+        <!-- Regular Link -->
+        <a *ngIf="!item.children && item.route" 
+           [routerLink]="item.route" 
+           routerLinkActive="active"
+           (click)="closeDropdown()">
+          <span *ngIf="item.icon" class="item-icon">{{ item.icon }}</span>
+          {{ item.label }}
+        </a>
+        
+        <!-- External Link -->
+        <a *ngIf="!item.children && item.href" 
+           [href]="item.href" 
+           target="_blank"
+           (click)="closeDropdown()">
+          <span *ngIf="item.icon" class="item-icon">{{ item.icon }}</span>
+          {{ item.label }}
+        </a>
+        
+        <!-- Dropdown -->
+        <div *ngIf="item.children" class="dropdown">
+          <button class="dropdown-toggle" (click)="toggleDropdown(i)">
+            <span *ngIf="item.icon" class="item-icon">{{ item.icon }}</span>
+            {{ item.label }}
+            <svg class="dropdown-arrow" [class.open]="activeDropdown === i" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          
+          <ul class="dropdown-menu" [class.active]="activeDropdown === i">
+            <li *ngFor="let child of item.children">
+              <a *ngIf="child.route" 
+                 [routerLink]="child.route" 
+                 routerLinkActive="active"
+                 (click)="closeDropdown()">
+                <span *ngIf="child.icon" class="item-icon">{{ child.icon }}</span>
+                {{ child.label }}
+              </a>
+              <a *ngIf="child.href" 
+                 [href]="child.href" 
+                 target="_blank"
+                 (click)="closeDropdown()">
+                <span *ngIf="child.icon" class="item-icon">{{ child.icon }}</span>
+                {{ child.label }}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" (click)="toggleMobileMenu()" [class.active]="mobileMenuOpen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" [class.active]="mobileMenuOpen">
+      <ul class="navbar-menu">
+        <li *ngFor="let item of menuItems; let i = index" class="menu-item">
+          <!-- Regular Link -->
+          <a *ngIf="!item.children && item.route" 
+             [routerLink]="item.route" 
+             routerLinkActive="active"
+             (click)="closeMobileMenu()">
+            <span *ngIf="item.icon" class="item-icon">{{ item.icon }}</span>
+            {{ item.label }}
+          </a>
+          
+          <!-- External Link -->
+          <a *ngIf="!item.children && item.href" 
+             [href]="item.href" 
+             target="_blank"
+             (click)="closeMobileMenu()">
+            <span *ngIf="item.icon" class="item-icon">{{ item.icon }}</span>
+            {{ item.label }}
+          </a>
+          
+          <!-- Dropdown -->
+          <div *ngIf="item.children" class="dropdown">
+            <button class="dropdown-toggle" (click)="toggleDropdown(i)">
+              <span *ngIf="item.icon" class="item-icon">{{ item.icon }}</span>
+              {{ item.label }}
+              <svg class="dropdown-arrow" [class.open]="activeDropdown === i" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            
+            <ul class="dropdown-menu" [class.active]="activeDropdown === i">
+              <li *ngFor="let child of item.children">
+                <a *ngIf="child.route" 
+                   [routerLink]="child.route" 
+                   routerLinkActive="active"
+                   (click)="closeMobileMenu()">
+                  <span *ngIf="child.icon" class="item-icon">{{ child.icon }}</span>
+                  {{ child.label }}
+                </a>
+                <a *ngIf="child.href" 
+                   [href]="child.href" 
+                   target="_blank"
+                   (click)="closeMobileMenu()">
+                  <span *ngIf="child.icon" class="item-icon">{{ child.icon }}</span>
+                  {{ child.label }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

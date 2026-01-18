@@ -1,0 +1,155 @@
+// ==============================
+// 🌺 MUXIMA UI THEME
+// Uma biblioteca com coração 🫶
+// ==============================
+
+// ==============================
+// 🎨 BRAND CORE COLORS
+// ==============================
+$primary: #2563eb;
+$primary-50: #eff6ff;
+$primary-100: #dbeafe;
+$primary-200: #bfdbfe;
+$primary-400: #60a5fa;
+$primary-600: #2563eb;
+$primary-700: #1e40af;
+$primary-800: #1e40af;
+$primary-900: #1e3a8a;
+
+$accent: #d946ef;
+$accent-100: #fce7f3;
+$accent-200: #fbcfe8;
+$accent-400: #f472b6;
+$accent-600: #d946ef;
+$accent-800: #a21caf;
+$accent-900: #701a75;
+
+$warn: #f59e42;
+$warn-50: #fff7ed;
+$warn-100: #ffedd5;
+$warn-200: #fed7aa;
+$warn-400: #fb923c;
+$warn-600: #f59e42;
+$warn-800: #b45309;
+$warn-900: #78350f;
+
+// ==============================
+// ✅ SEMANTIC COLORS
+// ==============================
+$success: #22c55e;
+$success-100: #dcfce7;
+$success-200: #bbf7d0;
+$success-400: #4ade80;
+$success-600: #16a34a;
+
+$error: #dc2626;
+$error-100: #fee2e2;
+$error-200: #fecaca;
+$error-400: #f87171;
+$error-600: #dc2626;
+$error-700: #b91c1c;
+
+$info: $primary;
+$warning: $warn;
+
+// ==============================
+// 🎨 GRAYSCALE
+// ==============================
+$gray-50: #f9fafb;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-300: #d1d5db;
+$gray-400: #9ca3af;
+$gray-500: #6b7280;
+$gray-600: #4b5563;
+$gray-700: #374151;
+$gray-800: #1f2937;
+$gray-900: #111827;
+
+// ==============================
+// 🧱 BACKGROUND & SURFACES
+// ==============================
+$bg-default: #ffffff;
+$bg-muted: $gray-100;
+$bg-subtle: $gray-50;
+$bg-inverse: $gray-900;
+$bg-card: #ffffff;
+$surface-card: $bg-default;
+$surface-muted: $bg-muted;
+
+// ==============================
+// ✍️ TEXT
+// ==============================
+$text-default: $gray-900;
+$text-muted: $gray-600;
+$text-inverse: $gray-100;
+$text-link: $primary;
+
+// ==============================
+// 🧩 BORDER & RADIUS
+// ==============================
+$border-color: $gray-300;
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 16px;
+$border-radius-full: 9999px;
+
+// ==============================
+// 📏 SPACING SCALE (rem)
+// ==============================
+$space-0: 0;
+$space-1: 0.25rem;
+$space-2: 0.5rem;
+$space-3: 0.75rem;
+$space-4: 1rem;
+$space-5: 1.25rem;
+$space-6: 1.5rem;
+$space-8: 2rem;
+$space-10: 2.5rem;
+$space-12: 3rem;
+$space-16: 4rem;
+
+// ==============================
+// 🔤 TYPOGRAPHY
+// ==============================
+$font-family-base: 'Inter', 'Lekton', 'Roboto', sans-serif;
+$font-size-sm: 0.875rem;
+$font-size-md: 1rem;
+$font-size-lg: 1.25rem;
+$font-size-xl: 1.5rem;
+$font-size-2xl: 2rem;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// ==============================
+// ☁️ SHADOWS
+// ==============================
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+
+// ==============================
+// 🌟 ICON SIZES
+// ==============================
+$icon-size-sm: 1rem;
+$icon-size-md: 1.5rem;
+$icon-size-lg: 2rem;
+$icon-size-xl: 3rem;
+
+// ==============================
+// 🔘 COMPONENT TOKENS
+// ==============================
+$button-padding-y: $space-2;
+$button-padding-x: $space-4;
+$card-padding: $space-4;
+$input-padding: $space-3;
+
+// ==============================
+// 💎 BRANDING
+// ==============================
+$brand-name: 'Muxima UI';
+$brand-description: 'Design com coração – componentes acessíveis, elegantes e feitos para pessoas.';

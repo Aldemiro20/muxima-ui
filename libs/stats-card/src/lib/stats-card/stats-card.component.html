@@ -1,0 +1,37 @@
+<div class="muxima-stats-card" [ngClass]="[colorClass, sizeClass]">
+  <div class="stats-container">
+    <!-- Icon -->
+    <div *ngIf="icon" class="stats-icon">
+      <span class="icon-content">{{ icon }}</span>
+    </div>
+
+    <!-- Content -->
+    <div class="stats-content">
+      <div class="stats-label">{{ label }}</div>
+      
+      <div *ngIf="!loading" class="stats-value">{{ value }}</div>
+      
+      <div *ngIf="loading" class="stats-skeleton">
+        <div class="skeleton-value"></div>
+      </div>
+
+      <!-- Trend -->
+      <div *ngIf="trend !== 0 && !loading" class="stats-trend" [ngClass]="trendClass">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline *ngIf="trendDirection === 'up'" points="18 15 12 9 6 15"></polyline>
+          <polyline *ngIf="trendDirection === 'down'" points="6 9 12 15 18 9"></polyline>
+          <line *ngIf="trendDirection === 'neutral'" x1="6" y1="12" x2="18" y2="12"></line>
+        </svg>
+        <span class="trend-value">{{ trend > 0 ? '+' : '' }}{{ trend }}%</span>
+        <span *ngIf="trendLabel" class="trend-label">{{ trendLabel }}</span>
+      </div>
+    </div>
+
+    <!-- Sparkline -->
+    <div *ngIf="hasSparkline && !loading" class="stats-sparkline">
+      <svg width="100" height="30" viewBox="0 0 100 30" preserveAspectRatio="none">
+        <path [attr.d]="getSparklinePath()" fill="none" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </div>
+  </div>
+</div>

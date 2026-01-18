@@ -1,0 +1,67 @@
+<div
+    class="muxima-alert-container"
+    *ngIf="!dismissible || dismissible && !dismissed"
+    [@fadeIn]="!dismissed"
+    [@fadeOut]="!dismissed">
+
+    <!-- Border -->
+    <div
+        class="muxima-alert-border"
+        *ngIf="appearance === 'border'"></div>
+
+    <!-- Icon -->
+    <div
+        class="muxima-alert-icon"
+        *ngIf="showIcon">
+
+        <!-- Custom icon -->
+        <div class="muxima-alert-custom-icon">
+            <ng-content select="[muximaAlertIcon]"></ng-content>
+        </div>
+
+        <!-- Default icons -->
+        <div class="muxima-alert-default-icon">
+            <!-- Success, Primary, Accent, Basic -->
+            <svg *ngIf="type === 'primary' || type === 'accent' || type === 'basic' || type === 'success'" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" fill="#4CAF50"/>
+                <path d="M9 12l2 2l4-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <!-- Warn, Error -->
+            <svg *ngIf="type === 'warn' || type === 'error'" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" fill="#F44336"/>
+                <path d="M15 9l-6 6M9 9l6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <!-- Info -->
+            <svg *ngIf="type === 'info'" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" fill="#2196F3"/>
+                <path d="M12 16v-4M12 8h.01" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <!-- Warning -->
+            <svg *ngIf="type === 'warning'" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" fill="#FF9800"/>
+                <path d="M12 8v4m0 4h.01" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="muxima-alert-content">
+        <div class="muxima-alert-title">
+            <ng-content select="[muximaAlertTitle]"></ng-content>
+        </div>
+        <div class="muxima-alert-message">
+            <ng-content></ng-content>
+        </div>
+    </div>
+
+    <!-- Dismiss button -->
+    <button
+        class="muxima-alert-dismiss-button"
+        type="button"
+        (click)="dismiss()">
+        <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path d="M18 6L6 18M6 6l12 12" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+
+</div>

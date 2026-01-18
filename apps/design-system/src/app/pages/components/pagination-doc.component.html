@@ -1,0 +1,90 @@
+<div class="doc-container">
+  <h1 class="doc-title">📄 Pagination</h1>
+  <p class="doc-description">
+    Componente para navegação entre páginas de conteúdo paginado.
+  </p>
+
+  <!-- Instalação -->
+  <section class="doc-section">
+    <h2 class="doc-section-title">📦 Instalação</h2>
+    <div class="doc-code-block">
+      <pre><code>{{ importCode }}</code></pre>
+      <button class="doc-copy-btn" (click)="copyCode(importCode)">📋 Copiar</button>
+    </div>
+  </section>
+
+  <!-- Exemplo Básico -->
+  <section class="doc-section">
+    <h2 class="doc-section-title">🎯 Exemplo Básico</h2>
+    <div class="doc-example">
+      <nav class="pagination">
+        <button class="pagination-btn pagination-prev" 
+                (click)="previousPage()" 
+                [disabled]="currentPage === 1">
+          ‹ Anterior
+        </button>
+
+        <button *ngFor="let page of getVisiblePages()"
+                class="pagination-btn"
+                [class.pagination-active]="page === currentPage"
+                [class.pagination-dots]="page === '...'"
+                [disabled]="page === '...'"
+                (click)="page !== '...' && goToPage(+page)">
+          {{ page }}
+        </button>
+
+        <button class="pagination-btn pagination-next" 
+                (click)="nextPage()" 
+                [disabled]="currentPage === totalPages">
+          Próximo ›
+        </button>
+      </nav>
+
+      <div class="pagination-info">
+        Página {{ currentPage }} de {{ totalPages }} • Total: {{ totalItems }} itens
+      </div>
+    </div>
+    <div class="doc-code-block">
+      <pre><code>{{ basicCode }}</code></pre>
+      <button class="doc-copy-btn" (click)="copyCode(basicCode)">📋 Copiar</button>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2 class="doc-section-title">📚 API</h2>
+    <div class="doc-api">
+      <h3>Propriedades</h3>
+      <table class="doc-api-table">
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>currentPage</code></td>
+            <td>number</td>
+            <td>1</td>
+            <td>Página atual</td>
+          </tr>
+          <tr>
+            <td><code>totalPages</code></td>
+            <td>number</td>
+            <td>-</td>
+            <td>Total de páginas</td>
+          </tr>
+          <tr>
+            <td><code>itemsPerPage</code></td>
+            <td>number</td>
+            <td>10</td>
+            <td>Itens por página</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

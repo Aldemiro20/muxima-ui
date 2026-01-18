@@ -1,0 +1,63 @@
+<div class="muxima-user-profile-menu">
+  <!-- Avatar Button -->
+  <button class="avatar-button" (click)="toggleMenu()" [class.active]="isOpen">
+    <div class="avatar-container">
+      <img
+        *ngIf="user?.avatar"
+        [src]="user.avatar"
+        [alt]="user.name"
+        class="avatar-image">
+      <div *ngIf="!user?.avatar" class="avatar-initials">
+        {{ getInitials() }}
+      </div>
+      <span *ngIf="showOnlineStatus" class="online-status" [class.online]="isOnline"></span>
+    </div>
+  </button>
+
+  <!-- Dropdown Menu -->
+  <div *ngIf="isOpen" class="dropdown-menu" [ngClass]="positionClass">
+    <!-- User Info Header -->
+    <div class="menu-header">
+      <div class="user-avatar">
+        <img
+          *ngIf="user?.avatar"
+          [src]="user.avatar"
+          [alt]="user.name"
+          class="header-avatar">
+        <div *ngIf="!user?.avatar" class="header-initials">
+          {{ getInitials() }}
+        </div>
+      </div>
+      <div class="user-info">
+        <div class="user-name">{{ user?.name }}</div>
+        <div class="user-email">{{ user?.email }}</div>
+        <div *ngIf="user?.role" class="user-role">
+          <span class="role-badge">{{ user.role }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="menu-divider"></div>
+
+    <!-- Menu Items -->
+    <div class="menu-items">
+      <ng-container *ngFor="let item of menuItems">
+        <div *ngIf="item.divider" class="menu-divider"></div>
+        
+        <button
+          *ngIf="!item.divider"
+          class="menu-item"
+          [class.danger]="item.danger"
+          (click)="onItemClick(item)">
+          <span class="item-icon">{{ item.icon }}</span>
+          <span class="item-label">{{ item.label }}</span>
+          <span *ngIf="item.badge" class="item-badge">{{ item.badge }}</span>
+          <svg class="item-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </ng-container>
+    </div>
+  </div>
+</div>

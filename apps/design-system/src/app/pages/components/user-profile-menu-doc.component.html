@@ -1,0 +1,319 @@
+<div class="doc-container">
+  <h1>User Profile Menu</h1>
+  <p class="lead">
+    Menu dropdown de perfil de usuário com avatar, informações, ações e indicador de status online.
+    Ideal para autenticação e navegação de perfil em aplicações.
+  </p>
+
+  <!-- Importação -->
+  <section class="doc-section">
+    <h2>📦 Importação</h2>
+    <pre><code>{{ getCodeExample('import') }}</code></pre>
+  </section>
+
+  <!-- Básico -->
+  <section class="doc-section">
+    <h2>🎯 Uso Básico</h2>
+    <div class="example">
+      <div class="menu-demo">
+        <muxima-user-profile-menu
+          [user]="userWithAvatar"
+          [menuItems]="defaultMenuItems"
+          (menuItemClick)="onMenuItemClick($event)">
+        </muxima-user-profile-menu>
+      </div>
+    </div>
+    <pre><code>{{ getCodeExample('basic') }}</code></pre>
+  </section>
+
+  <!-- Com Avatar -->
+  <section class="doc-section">
+    <h2>🖼️ Com Avatar</h2>
+    <p>Exibe imagem do usuário quando disponível.</p>
+    <div class="example">
+      <div class="menu-demo">
+        <muxima-user-profile-menu
+          [user]="userWithAvatar"
+          [menuItems]="defaultMenuItems"
+          (menuItemClick)="onMenuItemClick($event)">
+        </muxima-user-profile-menu>
+      </div>
+    </div>
+    <pre><code>{{ getCodeExample('withAvatar') }}</code></pre>
+  </section>
+
+  <!-- Sem Avatar (Iniciais) -->
+  <section class="doc-section">
+    <h2>🔤 Sem Avatar (Iniciais)</h2>
+    <p>Gera iniciais automaticamente quando não há avatar.</p>
+    <div class="example">
+      <div class="menu-demo">
+        <muxima-user-profile-menu
+          [user]="userWithoutAvatar"
+          [menuItems]="defaultMenuItems"
+          (menuItemClick)="onMenuItemClick($event)">
+        </muxima-user-profile-menu>
+      </div>
+    </div>
+    <pre><code>{{ getCodeExample('withoutAvatar') }}</code></pre>
+  </section>
+
+  <!-- Status Online -->
+  <section class="doc-section">
+    <h2>🟢 Status Online/Offline</h2>
+    <div class="example">
+      <div class="menu-demos">
+        <div>
+          <label>Online</label>
+          <muxima-user-profile-menu
+            [user]="userWithAvatar"
+            [menuItems]="defaultMenuItems"
+            [showOnlineStatus]="true"
+            [isOnline]="true">
+          </muxima-user-profile-menu>
+        </div>
+        <div>
+          <label>Offline</label>
+          <muxima-user-profile-menu
+            [user]="userWithAvatar"
+            [menuItems]="defaultMenuItems"
+            [showOnlineStatus]="true"
+            [isOnline]="false">
+          </muxima-user-profile-menu>
+        </div>
+      </div>
+    </div>
+    <pre><code>{{ getCodeExample('onlineStatus') }}</code></pre>
+  </section>
+
+  <!-- Com Badges -->
+  <section class="doc-section">
+    <h2>🔔 Com Badges (Notificações)</h2>
+    <div class="example">
+      <div class="menu-demo">
+        <muxima-user-profile-menu
+          [user]="userWithAvatar"
+          [menuItems]="notificationMenuItems"
+          (menuItemClick)="onMenuItemClick($event)">
+        </muxima-user-profile-menu>
+      </div>
+    </div>
+    <pre><code>{{ getCodeExample('badges') }}</code></pre>
+  </section>
+
+  <!-- Posições -->
+  <section class="doc-section">
+    <h2>📍 Posições do Menu</h2>
+    <div class="example">
+      <div class="position-grid">
+        <div>
+          <label>Bottom Right (Padrão)</label>
+          <muxima-user-profile-menu
+            [user]="userSimple"
+            [menuItems]="defaultMenuItems"
+            position="bottom-right">
+          </muxima-user-profile-menu>
+        </div>
+        <div>
+          <label>Bottom Left</label>
+          <muxima-user-profile-menu
+            [user]="userSimple"
+            [menuItems]="defaultMenuItems"
+            position="bottom-left">
+          </muxima-user-profile-menu>
+        </div>
+        <div>
+          <label>Top Right</label>
+          <muxima-user-profile-menu
+            [user]="userSimple"
+            [menuItems]="defaultMenuItems"
+            position="top-right">
+          </muxima-user-profile-menu>
+        </div>
+        <div>
+          <label>Top Left</label>
+          <muxima-user-profile-menu
+            [user]="userSimple"
+            [menuItems]="defaultMenuItems"
+            position="top-left">
+          </muxima-user-profile-menu>
+        </div>
+      </div>
+    </div>
+    <pre><code>{{ getCodeExample('position') }}</code></pre>
+  </section>
+
+  <!-- Menu Admin -->
+  <section class="doc-section">
+    <h2>👨‍💼 Menu de Administrador</h2>
+    <div class="example">
+      <div class="menu-demo">
+        <muxima-user-profile-menu
+          [user]="userWithAvatar"
+          [menuItems]="adminMenuItems"
+          (menuItemClick)="onMenuItemClick($event)">
+        </muxima-user-profile-menu>
+      </div>
+    </div>
+  </section>
+
+  <!-- Handlers -->
+  <section class="doc-section">
+    <h2>🎛️ Event Handlers</h2>
+    <pre><code>{{ getCodeExample('handlers') }}</code></pre>
+  </section>
+
+  <!-- Interfaces -->
+  <section class="doc-section">
+    <h2>📋 Interfaces</h2>
+    <pre><code>{{ getCodeExample('interfaces') }}</code></pre>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2>📋 API</h2>
+    <div class="api-table">
+      <h3>@Input</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>user</code></td>
+            <td>UserInfo</td>
+            <td>-</td>
+            <td>Objeto com informações do usuário (obrigatório)</td>
+          </tr>
+          <tr>
+            <td><code>menuItems</code></td>
+            <td>MenuItem[]</td>
+            <td>[]</td>
+            <td>Array de itens do menu</td>
+          </tr>
+          <tr>
+            <td><code>position</code></td>
+            <td>'bottom-right' | 'bottom-left' | 'top-right' | 'top-left'</td>
+            <td>'bottom-right'</td>
+            <td>Posição do dropdown</td>
+          </tr>
+          <tr>
+            <td><code>showOnlineStatus</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Exibe indicador de status online</td>
+          </tr>
+          <tr>
+            <td><code>isOnline</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Estado online (verde) ou offline (cinza)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>@Output</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>menuItemClick</code></td>
+            <td>EventEmitter&lt;MenuItem&gt;</td>
+            <td>Emitido quando um item do menu é clicado</td>
+          </tr>
+          <tr>
+            <td><code>avatarClick</code></td>
+            <td>EventEmitter&lt;void&gt;</td>
+            <td>Emitido quando o avatar é clicado (menu abre)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Recursos -->
+  <section class="doc-section">
+    <h2>✨ Recursos</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">👤</span>
+        <h4>Avatar Inteligente</h4>
+        <p>Exibe imagem ou gera iniciais automaticamente com gradiente roxo</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🟢</span>
+        <h4>Status Online</h4>
+        <p>Indicador visual de presença do usuário (verde/cinza)</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔔</span>
+        <h4>Badges de Notificação</h4>
+        <p>Exibe contadores em itens do menu (mensagens, alertas)</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⚠️</span>
+        <h4>Ações Perigosas</h4>
+        <p>Estilo vermelho para ações críticas (logout, delete)</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📍</span>
+        <h4>Posicionamento Flexível</h4>
+        <p>4 posições: bottom/top, right/left</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🎨</span>
+        <h4>Divideres Visuais</h4>
+        <p>Separe grupos de ações com linhas divisórias</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Casos de Uso -->
+  <section class="doc-section">
+    <h2>💡 Casos de Uso</h2>
+    <div class="use-cases">
+      <div class="use-case">
+        <h3>🔐 Autenticação</h3>
+        <p>Menu de perfil com opções de login, logout e gerenciamento de conta.</p>
+      </div>
+      <div class="use-case">
+        <h3>👨‍💼 Painel Admin</h3>
+        <p>Acesso rápido a áreas administrativas e configurações do sistema.</p>
+      </div>
+      <div class="use-case">
+        <h3>💬 Social/Chat</h3>
+        <p>Perfil com notificações, mensagens e status de presença online.</p>
+      </div>
+      <div class="use-case">
+        <h3>🛍️ E-commerce</h3>
+        <p>Acesso a pedidos, lista de desejos, carrinho e preferências.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Boas Práticas -->
+  <section class="doc-section">
+    <h2>✅ Boas Práticas</h2>
+    <ul class="best-practices">
+      <li>✅ Limite o menu a 5-8 itens principais para evitar sobrecarga visual</li>
+      <li>✅ Use divideres para agrupar ações relacionadas</li>
+      <li>✅ Marque ações destrutivas (logout, delete) com <code>danger: true</code></li>
+      <li>✅ Use badges apenas para contadores importantes (< 100)</li>
+      <li>✅ Mantenha ícones consistentes (emojis ou font icons)</li>
+      <li>✅ Posicione adequadamente: top para menus em rodapé, bottom para navbar</li>
+      <li>✅ Implemente status online em apps de chat ou colaboração</li>
+      <li>✅ Use avatars otimizados (< 50KB, dimensões adequadas)</li>
+    </ul>
+  </section>
+</div>

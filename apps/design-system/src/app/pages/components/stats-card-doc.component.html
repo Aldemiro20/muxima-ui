@@ -1,0 +1,289 @@
+<div class="doc-container">
+  <h1>Stats Card</h1>
+  <p class="lead">
+    Componente elegante para exibir métricas e KPIs com ícones, tendências e sparklines.
+    Perfeito para dashboards e painéis analíticos.
+  </p>
+
+  <!-- Importação -->
+  <section class="doc-section">
+    <h2>📦 Importação</h2>
+    <pre><code>{{ getCodeExample('import') }}</code></pre>
+  </section>
+
+  <!-- Básico -->
+  <section class="doc-section">
+    <h2>🎯 Uso Básico</h2>
+    <div class="example">
+      <muxima-stats-card
+        label="Total Revenue"
+        value="$45,231"
+        icon="💰"
+        [trend]="12.5"
+        trendLabel="vs last month"
+        color="primary">
+      </muxima-stats-card>
+    </div>
+    <pre><code>{{ getCodeExample('basic') }}</code></pre>
+  </section>
+
+  <!-- Com Sparkline -->
+  <section class="doc-section">
+    <h2>📈 Com Sparkline</h2>
+    <div class="example">
+      <muxima-stats-card
+        label="Active Users"
+        value="2,543"
+        icon="👥"
+        [trend]="8.2"
+        trendLabel="this week"
+        [sparklineData]="usersData"
+        color="success">
+      </muxima-stats-card>
+    </div>
+    <pre><code>{{ getCodeExample('withSparkline') }}</code></pre>
+  </section>
+
+  <!-- Variantes de Cor -->
+  <section class="doc-section">
+    <h2>🎨 Variantes de Cor</h2>
+    <div class="example">
+      <div class="stats-grid">
+        <muxima-stats-card
+          label="Revenue"
+          value="$45,231"
+          icon="💰"
+          [trend]="12.5"
+          color="primary">
+        </muxima-stats-card>
+
+        <muxima-stats-card
+          label="Users"
+          value="2,543"
+          icon="👥"
+          [trend]="8.2"
+          color="success">
+        </muxima-stats-card>
+
+        <muxima-stats-card
+          label="Orders"
+          value="1,234"
+          icon="📦"
+          [trend]="-3.1"
+          color="warning">
+        </muxima-stats-card>
+
+        <muxima-stats-card
+          label="Bounce Rate"
+          value="35.2%"
+          icon="📊"
+          [trend]="-4.8"
+          color="danger">
+        </muxima-stats-card>
+
+        <muxima-stats-card
+          label="Sessions"
+          value="8,456"
+          icon="🌐"
+          [trend]="5.3"
+          color="info">
+        </muxima-stats-card>
+      </div>
+    </div>
+    <pre><code>{{ getCodeExample('colors') }}</code></pre>
+  </section>
+
+  <!-- Tamanhos -->
+  <section class="doc-section">
+    <h2>📏 Tamanhos</h2>
+    <div class="example">
+      <div class="stats-grid">
+        <muxima-stats-card
+          label="Small Card"
+          value="$1,234"
+          icon="💰"
+          [trend]="5.2"
+          size="sm"
+          color="primary">
+        </muxima-stats-card>
+
+        <muxima-stats-card
+          label="Medium Card"
+          value="$45,231"
+          icon="💰"
+          [trend]="12.5"
+          size="md"
+          color="primary">
+        </muxima-stats-card>
+
+        <muxima-stats-card
+          label="Large Card"
+          value="$125,890"
+          icon="💰"
+          [trend]="18.7"
+          size="lg"
+          color="primary">
+        </muxima-stats-card>
+      </div>
+    </div>
+    <pre><code>{{ getCodeExample('sizes') }}</code></pre>
+  </section>
+
+  <!-- Loading State -->
+  <section class="doc-section">
+    <h2>⏳ Estado de Carregamento</h2>
+    <div class="example">
+      <muxima-stats-card
+        label="Loading Data"
+        icon="💰"
+        [loading]="true">
+      </muxima-stats-card>
+    </div>
+    <pre><code>{{ getCodeExample('loading') }}</code></pre>
+  </section>
+
+  <!-- Dashboard Completo -->
+  <section class="doc-section">
+    <h2>📊 Dashboard Completo</h2>
+    <div class="example">
+      <div class="stats-grid">
+        <muxima-stats-card
+          label="Total Revenue"
+          value="$45,231"
+          icon="💰"
+          [trend]="12.5"
+          trendLabel="vs last month"
+          [sparklineData]="revenueData"
+          color="primary">
+        </muxima-stats-card>
+
+        <muxima-stats-card
+          label="Active Users"
+          value="2,543"
+          icon="👥"
+          [trend]="8.2"
+          trendLabel="this week"
+          [sparklineData]="usersData"
+          color="success">
+        </muxima-stats-card>
+
+        <muxima-stats-card
+          label="Total Orders"
+          value="1,234"
+          icon="📦"
+          [trend]="-3.1"
+          trendLabel="vs yesterday"
+          [sparklineData]="ordersData"
+          color="info">
+        </muxima-stats-card>
+
+        <muxima-stats-card
+          label="Bounce Rate"
+          value="35.2%"
+          icon="📊"
+          [trend]="-4.8"
+          trendLabel="improvement"
+          [sparklineData]="bounceData"
+          color="warning">
+        </muxima-stats-card>
+      </div>
+    </div>
+    <pre><code>{{ getCodeExample('dashboard') }}</code></pre>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2>📋 API</h2>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>label</code></td>
+            <td>string</td>
+            <td>''</td>
+            <td>Rótulo descritivo da métrica</td>
+          </tr>
+          <tr>
+            <td><code>value</code></td>
+            <td>string | number</td>
+            <td>''</td>
+            <td>Valor principal da métrica</td>
+          </tr>
+          <tr>
+            <td><code>icon</code></td>
+            <td>string</td>
+            <td>''</td>
+            <td>Emoji ou ícone para identificação visual</td>
+          </tr>
+          <tr>
+            <td><code>trend</code></td>
+            <td>number</td>
+            <td>0</td>
+            <td>Percentual de variação (positivo ou negativo)</td>
+          </tr>
+          <tr>
+            <td><code>trendLabel</code></td>
+            <td>string</td>
+            <td>''</td>
+            <td>Descrição do período de comparação</td>
+          </tr>
+          <tr>
+            <td><code>color</code></td>
+            <td>'primary' | 'success' | 'warning' | 'danger' | 'info'</td>
+            <td>'primary'</td>
+            <td>Cor do tema do card</td>
+          </tr>
+          <tr>
+            <td><code>size</code></td>
+            <td>'sm' | 'md' | 'lg'</td>
+            <td>'md'</td>
+            <td>Tamanho do card</td>
+          </tr>
+          <tr>
+            <td><code>loading</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Exibe estado de carregamento</td>
+          </tr>
+          <tr>
+            <td><code>sparklineData</code></td>
+            <td>number[]</td>
+            <td>[]</td>
+            <td>Array de valores para o gráfico sparkline</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Casos de Uso -->
+  <section class="doc-section">
+    <h2>💡 Casos de Uso</h2>
+    <div class="use-cases">
+      <div class="use-case">
+        <h3>📊 Dashboards Analíticos</h3>
+        <p>Exibir KPIs principais como receita, usuários ativos, conversões e métricas de performance.</p>
+      </div>
+      <div class="use-case">
+        <h3>💼 Painéis Administrativos</h3>
+        <p>Monitorar estatísticas de vendas, pedidos, estoque e dados operacionais em tempo real.</p>
+      </div>
+      <div class="use-case">
+        <h3>📈 Relatórios Executivos</h3>
+        <p>Apresentar métricas de negócio com tendências e comparações de períodos.</p>
+      </div>
+      <div class="use-case">
+        <h3>🎯 Performance Tracking</h3>
+        <p>Acompanhar metas e objetivos com indicadores visuais de progresso e variação.</p>
+      </div>
+    </div>
+  </section>
+</div>

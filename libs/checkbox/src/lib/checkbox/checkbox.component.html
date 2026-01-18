@@ -1,0 +1,42 @@
+<label [ngClass]="getWrapperClasses()">
+  <div 
+    [ngClass]="getClasses()" 
+    (click)="toggleCheck()"
+    role="checkbox" 
+    [attr.aria-checked]="checked" 
+    [attr.aria-disabled]="disabled"
+    [attr.tabindex]="disabled ? -1 : 0"
+    (keydown.space)="$event.preventDefault(); toggleCheck()"
+    (keydown.enter)="$event.preventDefault(); toggleCheck()">
+    
+    <!-- Checkmark icon -->
+    <svg *ngIf="checked && !indeterminate" 
+         class="muxima--checkbox-icon" 
+         viewBox="0 0 12 9" 
+         fill="none" 
+         xmlns="http://www.w3.org/2000/svg">
+      <path d="M10.6673 1.5L4.25065 7.91667L1.33398 5" 
+            stroke="currentColor" 
+            stroke-width="2" 
+            stroke-linecap="round" 
+            stroke-linejoin="round"/>
+    </svg>
+    
+    <!-- Indeterminate icon -->
+    <svg *ngIf="indeterminate" 
+         class="muxima--checkbox-icon muxima--checkbox-icon--indeterminate" 
+         viewBox="0 0 12 2" 
+         fill="none" 
+         xmlns="http://www.w3.org/2000/svg">
+      <path d="M1 1H11" 
+            stroke="currentColor" 
+            stroke-width="2" 
+            stroke-linecap="round"/>
+    </svg>
+  </div>
+  
+  <div class="muxima--checkbox-content" *ngIf="label || description">
+    <span class="muxima--checkbox-label" *ngIf="label">{{ label }}</span>
+    <span class="muxima--checkbox-description" *ngIf="description">{{ description }}</span>
+  </div>
+</label>

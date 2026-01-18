@@ -1,0 +1,242 @@
+<div class="doc-container">
+  <h1>Chart Component</h1>
+  <p class="lead">
+    A flexible and lightweight charting component that supports multiple chart types with smooth animations.
+    Built using native Canvas 2D API without external dependencies.
+  </p>
+
+  <div class="doc-section">
+    <h2>Features</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">📊</span>
+        <h3>4 Chart Types</h3>
+        <p>Line, Bar, Pie, and Donut charts</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🎨</span>
+        <h3>8 Gradient Colors</h3>
+        <p>Beautiful default color palette</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <h3>Smooth Animations</h3>
+        <p>60fps using requestAnimationFrame</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🪶</span>
+        <h3>Lightweight</h3>
+        <p>No external chart libraries</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>Line Chart</h2>
+    <p>Perfect for time series data, trends, and comparisons. Features grid lines, point markers, and smooth lines.</p>
+    
+    <div class="example">
+      <div class="chart-row">
+        <muxima-chart
+          [data]="lineChartData"
+          [type]="'line'"
+          [title]="'Monthly Sales'"
+          [size]="'md'"
+          [animated]="true">
+        </muxima-chart>
+        <muxima-chart
+          [data]="multiLineChartData"
+          [type]="'line'"
+          [title]="'Product Comparison'"
+          [size]="'md'"
+          [animated]="true">
+        </muxima-chart>
+      </div>
+    </div>
+
+    <pre><code>{{ codeExamples.lineChart }}</code></pre>
+  </div>
+
+  <div class="doc-section">
+    <h2>Bar Chart</h2>
+    <p>Ideal for category comparisons and multiple datasets. Supports multiple series with automatic bar spacing.</p>
+    
+    <div class="example">
+      <div class="chart-centered">
+        <muxima-chart
+          [data]="barChartData"
+          [type]="'bar'"
+          [title]="'Quarterly Revenue Comparison'"
+          [size]="'lg'"
+          [animated]="true">
+        </muxima-chart>
+      </div>
+    </div>
+
+    <pre><code>{{ codeExamples.barChart }}</code></pre>
+  </div>
+
+  <div class="doc-section">
+    <h2>Pie Chart</h2>
+    <p>Shows part-to-whole relationships with circular slices. Best for market share, budget allocation, and demographics.</p>
+    
+    <div class="example">
+      <div class="chart-row">
+        <muxima-chart
+          [data]="pieChartData"
+          [type]="'pie'"
+          [title]="'Browser Market Share'"
+          [size]="'md'"
+          [animated]="true">
+        </muxima-chart>
+        <muxima-chart
+          [data]="budgetChartData"
+          [type]="'pie'"
+          [title]="'Budget Allocation'"
+          [size]="'md'"
+          [animated]="true">
+        </muxima-chart>
+      </div>
+    </div>
+
+    <pre><code>{{ codeExamples.pieChart }}</code></pre>
+  </div>
+
+  <div class="doc-section">
+    <h2>Donut Chart</h2>
+    <p>Similar to pie chart with center cutout. Provides cleaner look and focus area for additional information.</p>
+    
+    <div class="example">
+      <div class="chart-row">
+        <muxima-chart
+          [data]="donutChartData"
+          [type]="'donut'"
+          [title]="'Traffic Sources'"
+          [size]="'md'"
+          [animated]="true">
+        </muxima-chart>
+        <muxima-chart
+          [data]="budgetChartData"
+          [type]="'donut'"
+          [title]="'Budget Distribution'"
+          [size]="'md'"
+          [animated]="true">
+        </muxima-chart>
+      </div>
+    </div>
+
+    <pre><code>{{ codeExamples.donutChart }}</code></pre>
+  </div>
+
+  <div class="doc-section">
+    <h2>Size Variants</h2>
+    <p>Three size options to fit different layouts and use cases.</p>
+    
+    <div class="example">
+      <div class="size-demo">
+        <div class="size-item">
+          <muxima-chart
+            [data]="donutChartData"
+            [type]="'donut'"
+            [title]="'Small (200px)'"
+            [size]="'sm'">
+          </muxima-chart>
+        </div>
+        <div class="size-item">
+          <muxima-chart
+            [data]="donutChartData"
+            [type]="'donut'"
+            [title]="'Medium (300px)'"
+            [size]="'md'">
+          </muxima-chart>
+        </div>
+        <div class="size-item">
+          <muxima-chart
+            [data]="donutChartData"
+            [type]="'donut'"
+            [title]="'Large (400px)'"
+            [size]="'lg'">
+          </muxima-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>API Reference</h2>
+    
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>data</code></td>
+          <td><code>ChartData</code></td>
+          <td>-</td>
+          <td>Chart data with labels and datasets</td>
+        </tr>
+        <tr>
+          <td><code>type</code></td>
+          <td><code>'line' | 'bar' | 'pie' | 'donut'</code></td>
+          <td><code>'line'</code></td>
+          <td>Type of chart to render</td>
+        </tr>
+        <tr>
+          <td><code>title</code></td>
+          <td><code>string</code></td>
+          <td><code>''</code></td>
+          <td>Chart title displayed above</td>
+        </tr>
+        <tr>
+          <td><code>size</code></td>
+          <td><code>'sm' | 'md' | 'lg'</code></td>
+          <td><code>'md'</code></td>
+          <td>Chart size (200px, 300px, 400px)</td>
+        </tr>
+        <tr>
+          <td><code>animated</code></td>
+          <td><code>boolean</code></td>
+          <td><code>true</code></td>
+          <td>Enable smooth animations</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="doc-section">
+    <h2>Use Cases</h2>
+    
+    <div class="use-cases">
+      <div class="use-case">
+        <h3>📈 Analytics Dashboard</h3>
+        <p>Display website analytics with line charts for visitors, page views, and engagement metrics over time.</p>
+      </div>
+      <div class="use-case">
+        <h3>💼 Sales Reports</h3>
+        <p>Use bar charts to compare sales performance across products, regions, or time periods.</p>
+      </div>
+      <div class="use-case">
+        <h3>📊 Market Research</h3>
+        <p>Visualize survey results and market share data with pie and donut charts.</p>
+      </div>
+      <div class="use-case">
+        <h3>💰 Financial Analysis</h3>
+        <p>Track revenue, expenses, and profit trends with multi-dataset line and bar charts.</p>
+      </div>
+      <div class="use-case">
+        <h3>🎯 KPI Monitoring</h3>
+        <p>Monitor key performance indicators with real-time updating charts and smooth animations.</p>
+      </div>
+      <div class="use-case">
+        <h3>📱 Mobile Dashboards</h3>
+        <p>Use small size variant for compact mobile-friendly dashboard widgets.</p>
+      </div>
+    </div>
+  </div>
+</div>

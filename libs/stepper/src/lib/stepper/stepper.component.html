@@ -1,0 +1,37 @@
+﻿<div class="muxima-stepper" [class.vertical]="orientation === 'vertical'" [class.horizontal]="orientation === 'horizontal'">
+  <div class="stepper-container">
+    <div *ngFor="let step of steps; let i = index" 
+         class="step-wrapper"
+         [class.active]="isActive(i)"
+         [class.completed]="isCompleted(i)"
+         [class.disabled]="isDisabled(i)"
+         [class.clickable]="clickable && !isDisabled(i)"
+         (click)="goToStep(i)">
+      
+      <!-- Step Indicator -->
+      <div class="step-indicator">
+        <div class="step-circle">
+          <!-- Completed Icon -->
+          <svg *ngIf="isCompleted(i)" width="20" height="20" viewBox="0 0 20 20" fill="none" class="check-icon">
+            <path d="M16.6668 5L7.50016 14.1667L3.3335 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          
+          <!-- Step Number or Icon -->
+          <span *ngIf="!isCompleted(i)" class="step-number">
+            <span *ngIf="!step.icon">{{ i + 1 }}</span>
+            <span *ngIf="step.icon" class="step-icon">{{ step.icon }}</span>
+          </span>
+        </div>
+        
+        <!-- Connector Line -->
+        <div *ngIf="i < steps.length - 1" class="step-connector"></div>
+      </div>
+      
+      <!-- Step Content -->
+      <div class="step-content">
+        <div class="step-label">{{ step.label }}</div>
+        <div *ngIf="step.description" class="step-description">{{ step.description }}</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="agt--dialog-backdrop" *ngIf="isOpen">
+  <div class="agt--dialog-content">
+    <header class="agt--dialog-header">
+      <div class="agt--dialog-header-left">
+        <!-- <div *ngIf="icon" class="agt--dialog-header-icon">
+          <ng-container *ngTemplateOutlet="icon"></ng-container>
+        </div> -->
+
+        <div *ngIf="icon" class="agt--dialog-header-icon">
+          <img [src]="icon" alt="icon" >
+        </div>
+        <div class="agt-dialog-header-titles">
+          <span class="agt--dialog-title">{{title}}</span>
+          <span *ngIf="subtitle" class="agt--dialog-subtitle">{{subtitle}}</span>
+        </div>
+      </div>
+      <button class="close--btn" (click)="close()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#505151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </header>
+
+    <div class="agt--dialog-outlet">
+      <ng-content></ng-content>
+    </div>
+
+  </div>
+</div>
+

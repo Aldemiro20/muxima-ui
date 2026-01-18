@@ -1,0 +1,71 @@
+<div class="muxima-sidebar" [class.collapsed]="collapsed" [ngClass]="variantClass">
+  <div class="sidebar-container">
+    <!-- Header -->
+    <div class="sidebar-header" *ngIf="header || !collapsed">
+      <div class="header-content">
+        <span *ngIf="!collapsed" class="header-title">{{ header || 'Menu' }}</span>
+        <button class="collapse-btn" (click)="toggleCollapse()" type="button">
+          <svg *ngIf="!collapsed" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/>
+          </svg>
+          <svg *ngIf="collapsed" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M13 5l7 7-7 7M5 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation items -->
+    <nav class="sidebar-nav">
+      <ul class="nav-list">
+        <li *ngFor="let item of items" class="nav-item">
+          <div 
+            class="nav-link" 
+            [class.active]="item.active"
+            [class.has-children]="item.children && item.children.length > 0"
+            [class.expanded]="isExpanded(item)"
+            (click)="onItemClick(item, $event)">
+            <div class="link-content">
+              <span *ngIf="item.icon" class="nav-icon">{{ item.icon }}</span>
+              <span *ngIf="!collapsed" class="nav-label">{{ item.label }}</span>
+              <span *ngIf="item.badge && !collapsed" class="nav-badge">{{ item.badge }}</span>
+            </div>
+            <svg 
+              *ngIf="item.children && item.children.length > 0 && !collapsed" 
+              class="expand-icon"
+              [class.rotated]="isExpanded(item)"
+              width="16" 
+              height="16" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </div>
+
+          <!-- Children items -->
+          <ul *ngIf="item.children && item.children.length > 0 && isExpanded(item) && !collapsed" class="nav-children">
+            <li *ngFor="let child of item.children" class="nav-child-item">
+              <div 
+                class="nav-link child-link" 
+                [class.active]="child.active"
+                (click)="onItemClick(child, $event)">
+                <div class="link-content">
+                  <span *ngIf="child.icon" class="nav-icon">{{ child.icon }}</span>
+                  <span class="nav-label">{{ child.label }}</span>
+                  <span *ngIf="child.badge" class="nav-badge">{{ child.badge }}</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Footer -->
+    <div class="sidebar-footer" *ngIf="footer && !collapsed">
+      <p class="footer-text">{{ footer }}</p>
+    </div>
+  </div>
+</div>

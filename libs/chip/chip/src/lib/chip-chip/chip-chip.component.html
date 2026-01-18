@@ -1,0 +1,47 @@
+<div 
+  [ngClass]="getClasses()" 
+  (click)="handleClick()"
+  [attr.tabindex]="clickable && !disabled ? 0 : -1"
+  (keydown.enter)="handleClick()"
+  (keydown.space)="$event.preventDefault(); handleClick()">
+  
+  <!-- Avatar -->
+  <img 
+    *ngIf="avatar" 
+    [src]="avatar" 
+    alt="avatar" 
+    class="muxima--chip-avatar">
+  
+  <!-- Icon Left -->
+  <span 
+    *ngIf="icon && iconPosition === 'left' && !avatar" 
+    class="muxima--chip-icon muxima--chip-icon--left">
+    {{ icon }}
+  </span>
+  
+  <!-- Label -->
+  <span class="muxima--chip-label">{{ label }}</span>
+  
+  <!-- Icon Right -->
+  <span 
+    *ngIf="icon && iconPosition === 'right'" 
+    class="muxima--chip-icon muxima--chip-icon--right">
+    {{ icon }}
+  </span>
+  
+  <!-- Remove Button -->
+  <button 
+    *ngIf="removable && !disabled"
+    type="button"
+    class="muxima--chip-remove"
+    (click)="handleRemove($event)"
+    aria-label="Remover">
+    <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 3L3 9M3 3L9 9" 
+            stroke="currentColor" 
+            stroke-width="1.5" 
+            stroke-linecap="round" 
+            stroke-linejoin="round"/>
+    </svg>
+  </button>
+</div>

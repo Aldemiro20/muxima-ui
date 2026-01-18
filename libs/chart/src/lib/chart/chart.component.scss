@@ -1,0 +1,109 @@
+// Muxima Chart Component
+// Purple gradient theme: #667eea → #764ba2
+
+.muxima-chart {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.15);
+  }
+}
+
+.chart-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.chart-container {
+  position: relative;
+  width: 100%;
+}
+
+.chart-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.legend-label {
+  font-weight: 500;
+}
+
+// Size Variants
+.chart-sm {
+  .chart-canvas {
+    height: 200px;
+  }
+}
+
+.chart-md {
+  .chart-canvas {
+    height: 300px;
+  }
+}
+
+.chart-lg {
+  .chart-canvas {
+    height: 400px;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .muxima-chart {
+    padding: 1rem;
+  }
+
+  .chart-title {
+    font-size: 1rem;
+  }
+
+  .chart-legend {
+    gap: 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  .chart-sm .chart-canvas {
+    height: 180px;
+  }
+
+  .chart-md .chart-canvas {
+    height: 250px;
+  }
+
+  .chart-lg .chart-canvas {
+    height: 320px;
+  }
+}

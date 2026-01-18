@@ -1,0 +1,159 @@
+<div class="doc-page">
+  <header class="doc-header">
+    <h1>Timeline</h1>
+    <p>Linha do tempo visual para exibir eventos e processos cronológicos.</p>
+  </header>
+
+  <!-- Import -->
+  <section class="doc-section">
+    <h2>Importação</h2>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(importCode)">📋 Copiar</button>
+      <pre><code>{{ importCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Basic Usage -->
+  <section class="doc-section">
+    <h2>Uso Básico</h2>
+    <div class="demo-container">
+      <muxima-timeline [items]="basicItems"></muxima-timeline>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(basicCode)">📋 Copiar</button>
+      <pre><code>{{ basicCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Status States -->
+  <section class="doc-section">
+    <h2>Estados de Status</h2>
+    <div class="demo-container">
+      <muxima-timeline [items]="statusItems"></muxima-timeline>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(statusCode)">📋 Copiar</button>
+      <pre><code>{{ statusCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Order Tracking Example -->
+  <section class="doc-section">
+    <h2>Exemplo: Rastreamento de Pedido</h2>
+    <div class="demo-container">
+      <div style="max-width: 600px; margin: 0 auto;">
+        <muxima-timeline [items]="orderItems" [animated]="true"></muxima-timeline>
+      </div>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2>API</h2>
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #1E293B; font-size: 1.125rem;">Timeline Component</h3>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Propriedade</th>
+          <th>Tipo</th>
+          <th>Padrão</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>items</code></td>
+          <td>TimelineItem[]</td>
+          <td>[]</td>
+          <td>Array de itens da timeline</td>
+        </tr>
+        <tr>
+          <td><code>mode</code></td>
+          <td>'vertical' | 'horizontal'</td>
+          <td>'vertical'</td>
+          <td>Orientação da timeline</td>
+        </tr>
+        <tr>
+          <td><code>align</code></td>
+          <td>'left' | 'alternate' | 'right'</td>
+          <td>'left'</td>
+          <td>Alinhamento do conteúdo</td>
+        </tr>
+        <tr>
+          <td><code>showConnector</code></td>
+          <td>boolean</td>
+          <td>true</td>
+          <td>Exibir linha conectora</td>
+        </tr>
+        <tr>
+          <td><code>animated</code></td>
+          <td>boolean</td>
+          <td>true</td>
+          <td>Ativar animações</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #1E293B; font-size: 1.125rem;">TimelineItem Interface</h3>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Propriedade</th>
+          <th>Tipo</th>
+          <th>Obrigatório</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>title</code></td>
+          <td>string</td>
+          <td>Sim</td>
+          <td>Título do evento</td>
+        </tr>
+        <tr>
+          <td><code>description</code></td>
+          <td>string</td>
+          <td>Não</td>
+          <td>Descrição detalhada</td>
+        </tr>
+        <tr>
+          <td><code>date</code></td>
+          <td>string</td>
+          <td>Não</td>
+          <td>Data do evento</td>
+        </tr>
+        <tr>
+          <td><code>time</code></td>
+          <td>string</td>
+          <td>Não</td>
+          <td>Horário do evento</td>
+        </tr>
+        <tr>
+          <td><code>icon</code></td>
+          <td>string</td>
+          <td>Não</td>
+          <td>Emoji ou ícone customizado</td>
+        </tr>
+        <tr>
+          <td><code>status</code></td>
+          <td>'completed' | 'current' | 'upcoming' | 'error'</td>
+          <td>Não</td>
+          <td>Estado do evento</td>
+        </tr>
+        <tr>
+          <td><code>color</code></td>
+          <td>'blue' | 'purple' | 'green' | 'orange' | 'red' | 'gray'</td>
+          <td>Não</td>
+          <td>Cor predefinida do marcador</td>
+        </tr>
+        <tr>
+          <td><code>customColor</code></td>
+          <td>string</td>
+          <td>Não</td>
+          <td>Cor customizada (hex, rgb)</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

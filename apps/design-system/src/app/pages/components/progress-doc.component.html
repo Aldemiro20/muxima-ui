@@ -1,0 +1,156 @@
+<div class="doc-page">
+  <header class="doc-header">
+    <h1>Progress</h1>
+    <p>Indicadores de progresso visuais para operações de carregamento e processamento.</p>
+  </header>
+
+  <!-- Import Section -->
+  <section class="doc-section">
+    <h2>Importação</h2>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(importCode)">📋 Copiar</button>
+      <pre><code>{{ importCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Linear Progress -->
+  <section class="doc-section">
+    <h2>Progress Linear</h2>
+    <p>Barra de progresso horizontal com gradiente animado.</p>
+    
+    <div class="demo-container">
+      <muxima-progress 
+        [value]="linearProgress" 
+        [color]="'primary'"
+        type="linear">
+      </muxima-progress>
+      
+      <div style="margin-top: 1rem;">
+        <input type="range" min="0" max="100" [(ngModel)]="linearProgress" style="width: 100%;">
+        <p>Valor: {{ linearProgress }}%</p>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(basicLinearCode)">📋 Copiar</button>
+      <pre><code>{{ basicLinearCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Circular Progress -->
+  <section class="doc-section">
+    <h2>Progress Circular</h2>
+    <p>Indicador circular com gradiente SVG.</p>
+    
+    <div class="demo-container" style="display: flex; gap: 2rem; justify-content: center; align-items: center;">
+      <muxima-progress 
+        [value]="circularProgress" 
+        [color]="'primary'"
+        type="circular"
+        size="lg">
+      </muxima-progress>
+
+      <muxima-progress 
+        [value]="circularProgress" 
+        [color]="'success'"
+        type="circular"
+        size="lg">
+      </muxima-progress>
+
+      <muxima-progress 
+        [value]="circularProgress" 
+        [color]="'warning'"
+        type="circular"
+        size="lg">
+      </muxima-progress>
+    </div>
+
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(circularCode)">📋 Copiar</button>
+      <pre><code>{{ circularCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Colors -->
+  <section class="doc-section">
+    <h2>Cores</h2>
+    <div class="demo-grid">
+      <div class="demo-item">
+        <muxima-progress [value]="75" [color]="'primary'" type="linear"></muxima-progress>
+        <span>Primary</span>
+      </div>
+      <div class="demo-item">
+        <muxima-progress [value]="75" [color]="'success'" type="linear"></muxima-progress>
+        <span>Success</span>
+      </div>
+      <div class="demo-item">
+        <muxima-progress [value]="75" [color]="'warning'" type="linear"></muxima-progress>
+        <span>Warning</span>
+      </div>
+      <div class="demo-item">
+        <muxima-progress [value]="75" [color]="'error'" type="linear"></muxima-progress>
+        <span>Error</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Demo -->
+  <section class="doc-section">
+    <h2>Demo Interativo</h2>
+    <div class="demo-container">
+      <muxima-progress 
+        [value]="dynamicProgress" 
+        [color]="'primary'"
+        type="linear">
+      </muxima-progress>
+      
+      <button 
+        (click)="animateProgress()"
+        [disabled]="isAnimating"
+        style="margin-top: 1rem; padding: 0.5rem 1rem; background: linear-gradient(135deg, #3B82F6, #6366F1); color: white; border: none; border-radius: 0.5rem; cursor: pointer;">
+        {{ isAnimating ? 'Animando...' : 'Iniciar Animação' }}
+      </button>
+    </div>
+  </section>
+
+  <!-- API Table -->
+  <section class="doc-section">
+    <h2>API</h2>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Propriedade</th>
+          <th>Tipo</th>
+          <th>Padrão</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>value</code></td>
+          <td>number</td>
+          <td>0</td>
+          <td>Valor do progresso (0-100)</td>
+        </tr>
+        <tr>
+          <td><code>color</code></td>
+          <td>'primary' | 'success' | 'warning' | 'error'</td>
+          <td>'primary'</td>
+          <td>Cor do indicador</td>
+        </tr>
+        <tr>
+          <td><code>type</code></td>
+          <td>'linear' | 'circular'</td>
+          <td>'linear'</td>
+          <td>Tipo do indicador</td>
+        </tr>
+        <tr>
+          <td><code>size</code></td>
+          <td>'sm' | 'md' | 'lg'</td>
+          <td>'md'</td>
+          <td>Tamanho do indicador</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

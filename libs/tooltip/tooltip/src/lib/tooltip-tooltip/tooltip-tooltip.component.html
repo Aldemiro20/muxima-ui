@@ -1,0 +1,11 @@
+<div class="muxima-tooltip-wrapper">
+  <ng-content></ng-content>
+  
+  <div 
+    [ngClass]="tooltipClasses"
+    [style.max-width]="maxWidth"
+    role="tooltip">
+    <span class="muxima-tooltip-text">{{ text }}</span>
+    <div class="muxima-tooltip-arrow" *ngIf="showArrow"></div>
+  </div>
+</div>

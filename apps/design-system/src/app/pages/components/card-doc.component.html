@@ -1,0 +1,677 @@
+<div class="doc-page">
+  <header class="doc-header">
+    <h1>Card</h1>
+    <p>Cards elegantes com múltiplas variantes e efeitos visuais impressionantes.</p>
+  </header>
+
+  <!-- Import -->
+  <section class="doc-section">
+    <h2>Importação</h2>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(importCode)">📋 Copiar</button>
+      <pre><code>{{ importCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Basic Usage -->
+  <section class="doc-section">
+    <h2>Uso Básico</h2>
+    <div class="demo-container">
+      <muxima-card>
+        <h3 style="margin-top: 0;">Card Title</h3>
+        <p style="color: #64748B; margin-bottom: 0;">This is a basic card with default styling.</p>
+      </muxima-card>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(basicCode)">📋 Copiar</button>
+      <pre><code>{{ basicCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Variants -->
+  <section class="doc-section">
+    <h2>Variantes</h2>
+    <div class="demo-container">
+      <div class="card-grid">
+        <!-- Default -->
+        <muxima-card variant="default">
+          <h3 style="margin-top: 0;">Default</h3>
+          <p style="color: #64748B; margin-bottom: 0;">Clean and minimal design</p>
+        </muxima-card>
+
+        <!-- Bordered -->
+        <muxima-card variant="bordered">
+          <h3 style="margin-top: 0;">Bordered</h3>
+          <p style="color: #64748B; margin-bottom: 0;">Subtle border outline</p>
+        </muxima-card>
+
+        <!-- Elevated -->
+        <muxima-card variant="elevated">
+          <h3 style="margin-top: 0;">Elevated</h3>
+          <p style="color: #64748B; margin-bottom: 0;">Prominent shadow</p>
+        </muxima-card>
+
+        <!-- African Pattern -->
+        <muxima-card variant="african-pattern">
+          <h3 style="margin-top: 0; color: white;">African Pattern</h3>
+          <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 0;">Beautiful gradient with pattern</p>
+        </muxima-card>
+
+        <!-- Gradient Blue -->
+        <muxima-card variant="gradient-blue">
+          <h3 style="margin-top: 0; color: white;">Gradient Blue</h3>
+          <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 0;">Smooth blue gradient</p>
+        </muxima-card>
+
+        <!-- Gradient Purple -->
+        <muxima-card variant="gradient-purple">
+          <h3 style="margin-top: 0; color: white;">Gradient Purple</h3>
+          <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 0;">Vibrant purple flow</p>
+        </muxima-card>
+
+        <!-- Gradient Sunset -->
+        <muxima-card variant="gradient-sunset">
+          <h3 style="margin-top: 0; color: white;">Gradient Sunset</h3>
+          <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 0;">Warm sunset colors</p>
+        </muxima-card>
+
+        <!-- Glassmorphism -->
+        <muxima-card variant="glassmorphism">
+          <h3 style="margin-top: 0;">Glassmorphism</h3>
+          <p style="color: #64748B; margin-bottom: 0;">Frosted glass effect</p>
+        </muxima-card>
+
+        <!-- Neon -->
+        <muxima-card variant="neon">
+          <h3 style="margin-top: 0; color: white;">Neon</h3>
+          <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 0;">Glowing neon borders</p>
+        </muxima-card>
+
+        <!-- Minimal -->
+        <muxima-card variant="minimal">
+          <h3 style="margin-top: 0;">Minimal</h3>
+          <p style="color: #64748B; margin-bottom: 0;">Clean and simple</p>
+        </muxima-card>
+
+        <!-- Shadow Large -->
+        <muxima-card variant="shadow-lg">
+          <h3 style="margin-top: 0;">Shadow Large</h3>
+          <p style="color: #64748B; margin-bottom: 0;">Prominent shadow depth</p>
+        </muxima-card>
+
+        <!-- Outline Gradient -->
+        <muxima-card variant="outline-gradient">
+          <h3 style="margin-top: 0;">Outline Gradient</h3>
+          <p style="color: #64748B; margin-bottom: 0;">Gradient border outline</p>
+        </muxima-card>
+
+        <!-- Dark -->
+        <muxima-card variant="dark">
+          <h3 style="margin-top: 0; color: white;">Dark</h3>
+          <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 0;">Dark mode card</p>
+        </muxima-card>
+      </div>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(variantsCode)">📋 Copiar</button>
+      <pre><code>{{ variantsCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- New Variants Showcase -->
+  <section class="doc-section">
+    <h2>Showcase das Novas Variantes</h2>
+    <div class="demo-container" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 3rem;">
+      <div class="card-grid">
+        <!-- Glassmorphism Example -->
+        <muxima-card variant="glassmorphism" size="lg">
+          <div style="text-align: center; padding: 1rem;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">💎</div>
+            <h3 style="margin: 0 0 0.5rem; color: white;">Glassmorphism</h3>
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; font-size: 0.875rem;">
+              Efeito de vidro fosco moderno
+            </p>
+          </div>
+        </muxima-card>
+
+        <!-- Neon Example -->
+        <muxima-card variant="neon" size="lg">
+          <div style="text-align: center; padding: 1rem;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">⚡</div>
+            <h3 style="margin: 0 0 0.5rem; color: white;">Neon Glow</h3>
+            <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 0.875rem;">
+              Bordas brilhantes com efeito neon
+            </p>
+          </div>
+        </muxima-card>
+
+        <!-- Outline Gradient Example -->
+        <muxima-card variant="outline-gradient" size="lg">
+          <div style="text-align: center; padding: 1rem;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🎨</div>
+            <h3 style="margin: 0 0 0.5rem;">Outline Gradient</h3>
+            <p style="color: #64748B; margin: 0; font-size: 0.875rem;">
+              Borda com gradiente colorido
+            </p>
+          </div>
+        </muxima-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gradient Variants -->
+  <section class="doc-section">
+    <h2>Variantes com Gradiente</h2>
+    <div class="demo-container">
+      <div class="card-grid">
+        <!-- Gradient Blue Stats -->
+        <muxima-card variant="gradient-blue" [hoverable]="true">
+          <div style="text-align: center; padding: 1rem;">
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📈</div>
+            <h3 style="margin: 0 0 0.5rem; color: white; font-size: 1rem;">Revenue</h3>
+            <div style="font-size: 2rem; font-weight: bold; color: white; margin-bottom: 0.5rem;">$45,231</div>
+            <div style="color: rgba(255, 255, 255, 0.9); font-size: 0.875rem;">↑ 12.5% from last month</div>
+          </div>
+        </muxima-card>
+
+        <!-- Gradient Purple Feature -->
+        <muxima-card variant="gradient-purple" [hoverable]="true">
+          <div style="padding: 1.5rem; text-align: center;">
+            <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">🚀</div>
+            <h3 style="margin: 0 0 0.75rem; color: white;">Premium Feature</h3>
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 1rem; font-size: 0.875rem;">
+              Unlock advanced tools and unlimited access
+            </p>
+            <button style="background: white; color: #8B5CF6; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer;">
+              Upgrade Now
+            </button>
+          </div>
+        </muxima-card>
+
+        <!-- Gradient Sunset Alert -->
+        <muxima-card variant="gradient-sunset" [hoverable]="true">
+          <div style="padding: 1.5rem;">
+            <div style="display: flex; gap: 1rem; align-items: start;">
+              <div style="font-size: 2rem;">🔥</div>
+              <div>
+                <h3 style="margin: 0 0 0.5rem; color: white; font-size: 1rem;">Hot Deal!</h3>
+                <p style="color: rgba(255, 255, 255, 0.95); margin: 0 0 0.75rem; font-size: 0.875rem;">
+                  Limited time offer: 50% off on all premium plans
+                </p>
+                <div style="background: rgba(255, 255, 255, 0.2); border-radius: 6px; padding: 0.5rem 1rem; display: inline-block;">
+                  <span style="color: white; font-weight: 600; font-size: 0.875rem;">Ends in 24h</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </muxima-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dark Mode Variants -->
+  <section class="doc-section">
+    <h2>Variantes Dark Mode</h2>
+    <div class="demo-container" style="background: #0F172A; padding: 3rem;">
+      <div class="card-grid">
+        <!-- Dark Dashboard Card -->
+        <muxima-card variant="dark" [hoverable]="true">
+          <div style="padding: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <h3 style="margin: 0; color: white; font-size: 1rem;">Active Users</h3>
+              <span style="color: #10B981; font-size: 0.875rem; font-weight: 600;">+18%</span>
+            </div>
+            <div style="font-size: 2.5rem; font-weight: bold; color: white; margin-bottom: 1rem;">8,549</div>
+            <div style="height: 4px; background: rgba(255, 255, 255, 0.1); border-radius: 2px; overflow: hidden;">
+              <div style="width: 75%; height: 100%; background: linear-gradient(90deg, #3B82F6, #8B5CF6);"></div>
+            </div>
+          </div>
+        </muxima-card>
+
+        <!-- Dark Neon Card -->
+        <muxima-card variant="neon" [hoverable]="true">
+          <div style="padding: 1.5rem; text-align: center;">
+            <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">⚙️</div>
+            <h3 style="margin: 0 0 0.5rem; color: white;">System Status</h3>
+            <p style="color: rgba(255, 255, 255, 0.8); margin: 0 0 1rem; font-size: 0.875rem;">
+              All systems operational
+            </p>
+            <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(16, 185, 129, 0.2); padding: 0.5rem 1rem; border-radius: 6px;">
+              <div style="width: 8px; height: 8px; background: #10B981; border-radius: 50%; box-shadow: 0 0 10px #10B981;"></div>
+              <span style="color: #10B981; font-weight: 600; font-size: 0.875rem;">Online</span>
+            </div>
+          </div>
+        </muxima-card>
+
+        <!-- Dark Minimal Card -->
+        <muxima-card variant="dark" [hoverable]="true">
+          <div style="padding: 1.5rem;">
+            <h3 style="margin: 0 0 0.75rem; color: white; font-size: 1rem;">Latest Activity</h3>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <div style="display: flex; gap: 0.75rem; align-items: center;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #3B82F6, #8B5CF6);"></div>
+                <div style="flex: 1;">
+                  <p style="margin: 0; color: white; font-size: 0.875rem; font-weight: 500;">New user registered</p>
+                  <p style="margin: 0; color: rgba(255, 255, 255, 0.6); font-size: 0.75rem;">2 min ago</p>
+                </div>
+              </div>
+              <div style="display: flex; gap: 0.75rem; align-items: center;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #10B981, #059669);"></div>
+                <div style="flex: 1;">
+                  <p style="margin: 0; color: white; font-size: 0.875rem; font-weight: 500;">Payment received</p>
+                  <p style="margin: 0; color: rgba(255, 255, 255, 0.6); font-size: 0.75rem;">5 min ago</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </muxima-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Special Effects -->
+  <section class="doc-section">
+    <h2>Efeitos Especiais</h2>
+    <div class="demo-container">
+      <div class="card-grid">
+        <!-- Shadow Large Product -->
+        <muxima-card variant="shadow-lg" [hoverable]="true">
+          <div style="width: 100%; height: 150px; background: linear-gradient(135deg, #D946EF, #8B5CF6); border-radius: 12px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center;">
+            <span style="font-size: 4rem;">👟</span>
+          </div>
+          <h3 style="margin: 0 0 0.5rem;">Premium Sneakers</h3>
+          <p style="color: #64748B; font-size: 0.875rem; margin: 0 0 1rem;">Limited edition design</p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 1.75rem; font-weight: bold; background: linear-gradient(135deg, #3B82F6, #8B5CF6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">$249</span>
+            <button style="background: linear-gradient(135deg, #3B82F6, #8B5CF6); color: white; border: none; padding: 0.625rem 1.25rem; border-radius: 8px; font-weight: 600; cursor: pointer;">Add to Cart</button>
+          </div>
+        </muxima-card>
+
+        <!-- Outline Gradient Profile -->
+        <muxima-card variant="outline-gradient" [hoverable]="true">
+          <div style="text-align: center; padding: 1rem;">
+            <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #3B82F6, #8B5CF6, #D946EF); margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: bold;">MU</div>
+            <h3 style="margin: 0 0 0.25rem;">Muxima Design</h3>
+            <p style="color: #64748B; margin: 0 0 1rem; font-size: 0.875rem;">Premium UI Components</p>
+            <div style="display: flex; gap: 0.5rem; justify-content: center;">
+              <span style="background: #EDE9FE; color: #8B5CF6; padding: 0.375rem 0.75rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600;">Angular</span>
+              <span style="background: #DBEAFE; color: #3B82F6; padding: 0.375rem 0.75rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600;">React</span>
+            </div>
+          </div>
+        </muxima-card>
+
+        <!-- Minimal Content -->
+        <muxima-card variant="minimal" [hoverable]="true">
+          <div style="padding: 1.5rem;">
+            <h3 style="margin: 0 0 0.75rem; font-size: 1.25rem;">Minimal Design</h3>
+            <p style="color: #64748B; margin: 0 0 1rem; line-height: 1.6;">
+              Sometimes less is more. This minimal card variant provides a clean, distraction-free layout perfect for content-focused designs.
+            </p>
+            <a href="#" style="color: #3B82F6; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+              Learn more →
+            </a>
+          </div>
+        </muxima-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sizes -->
+  <section class="doc-section">
+    <h2>Tamanhos</h2>
+    <div class="demo-container">
+      <div class="card-grid">
+        <muxima-card variant="bordered" size="sm">
+          <h4 style="margin: 0;">Small</h4>
+          <p style="color: #64748B; font-size: 0.875rem; margin: 0.5rem 0 0;">Compact card</p>
+        </muxima-card>
+
+        <muxima-card variant="bordered" size="md">
+          <h4 style="margin: 0;">Medium</h4>
+          <p style="color: #64748B; margin: 0.5rem 0 0;">Default size</p>
+        </muxima-card>
+
+        <muxima-card variant="bordered" size="lg">
+          <h4 style="margin: 0;">Large</h4>
+          <p style="color: #64748B; margin: 0.5rem 0 0;">Spacious card</p>
+        </muxima-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Cards -->
+  <section class="doc-section">
+    <h2>Cards Interativos</h2>
+    <div class="demo-container">
+      <div class="card-grid">
+        <muxima-card variant="elevated" [hoverable]="true">
+          <h3 style="margin-top: 0;">Hoverable</h3>
+          <p style="color: #64748B; margin-bottom: 0;">Hover to see effect</p>
+        </muxima-card>
+
+        <muxima-card variant="bordered" [clickable]="true">
+          <h3 style="margin-top: 0;">Clickable</h3>
+          <p style="color: #64748B; margin-bottom: 0;">Click to interact</p>
+        </muxima-card>
+
+        <muxima-card variant="elevated" [hoverable]="true" [clickable]="true">
+          <h3 style="margin-top: 0;">Both</h3>
+          <p style="color: #64748B; margin-bottom: 0;">Hover & Click</p>
+        </muxima-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- African Pattern Showcase -->
+  <section class="doc-section">
+    <h2>African Pattern - Destaque</h2>
+    <div class="demo-container">
+      <muxima-card variant="african-pattern" size="lg">
+        <div style="text-align: center; padding: 2rem;">
+          <h2 style="margin-top: 0; color: white; font-size: 2rem;">Muxima UI</h2>
+          <p style="color: rgba(255, 255, 255, 0.95); font-size: 1.125rem; margin-bottom: 2rem;">
+            Design System inspirado na cultura Africana
+          </p>
+          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <div style="text-align: center;">
+              <div style="font-size: 2rem; font-weight: bold; color: white;">50+</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 0.875rem;">Componentes</div>
+            </div>
+            <div style="width: 1px; background: rgba(255, 255, 255, 0.3);"></div>
+            <div style="text-align: center;">
+              <div style="font-size: 2rem; font-weight: bold; color: white;">100%</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 0.875rem;">Responsivo</div>
+            </div>
+            <div style="width: 1px; background: rgba(255, 255, 255, 0.3);"></div>
+            <div style="text-align: center;">
+              <div style="font-size: 2rem; font-weight: bold; color: white;">∞</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 0.875rem;">Possibilidades</div>
+            </div>
+          </div>
+        </div>
+      </muxima-card>
+    </div>
+  </section>
+
+  <!-- Content Examples -->
+  <section class="doc-section">
+    <h2>Exemplos de Conteúdo</h2>
+    <div class="demo-container">
+      <div class="card-grid">
+        <!-- Product Card -->
+        <muxima-card variant="elevated" [hoverable]="true">
+          <div style="width: 100%; height: 120px; background: linear-gradient(135deg, #3B82F6, #8B5CF6); border-radius: 8px; margin-bottom: 1rem;"></div>
+          <h3 style="margin: 0 0 0.5rem;">Product Name</h3>
+          <p style="color: #64748B; font-size: 0.875rem; margin-bottom: 1rem;">Beautiful product description here</p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 1.5rem; font-weight: bold; color: #3B82F6;">$99</span>
+            <button style="background: linear-gradient(135deg, #3B82F6, #8B5CF6); color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer;">Buy Now</button>
+          </div>
+        </muxima-card>
+
+        <!-- Stats Card -->
+        <muxima-card variant="african-pattern">
+          <div style="text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">📊</div>
+            <h3 style="margin: 0 0 0.5rem; color: white;">Total Users</h3>
+            <div style="font-size: 2.5rem; font-weight: bold; color: white; margin-bottom: 0.5rem;">12,543</div>
+            <div style="color: rgba(255, 255, 255, 0.8); font-size: 0.875rem;">↑ 12% this month</div>
+          </div>
+        </muxima-card>
+
+        <!-- Profile Card -->
+        <muxima-card variant="bordered" [hoverable]="true">
+          <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+            <div style="width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, #3B82F6, #8B5CF6); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: bold;">AV</div>
+            <div>
+              <h3 style="margin: 0 0 0.25rem;">Aldemiro Valentim</h3>
+              <p style="color: #64748B; margin: 0; font-size: 0.875rem;">Frontend Developer</p>
+            </div>
+          </div>
+          <p style="color: #475569; font-size: 0.875rem; margin-bottom: 1rem;">Building amazing UI components with Angular</p>
+          <div style="display: flex; gap: 0.5rem;">
+            <button style="flex: 1; background: #F1F5F9; border: none; padding: 0.5rem; border-radius: 6px; cursor: pointer; font-weight: 500;">Profile</button>
+            <button style="flex: 1; background: linear-gradient(135deg, #3B82F6, #8B5CF6); color: white; border: none; padding: 0.5rem; border-radius: 6px; cursor: pointer; font-weight: 500;">Message</button>
+          </div>
+        </muxima-card>
+
+        <!-- Notification Card -->
+        <muxima-card variant="elevated" size="sm">
+          <div style="display: flex; gap: 0.75rem; align-items: start;">
+            <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #10B981, #059669); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <span style="font-size: 1.25rem;">✓</span>
+            </div>
+            <div style="flex: 1;">
+              <h4 style="margin: 0 0 0.25rem; font-size: 0.9rem;">Successfully Updated</h4>
+              <p style="color: #64748B; margin: 0; font-size: 0.8rem;">Your profile has been updated successfully.</p>
+              <span style="color: #94A3B8; font-size: 0.75rem;">2 minutes ago</span>
+            </div>
+          </div>
+        </muxima-card>
+
+        <!-- Weather Card -->
+        <muxima-card variant="african-pattern">
+          <div style="text-align: center;">
+            <div style="font-size: 4rem; margin-bottom: 0.5rem;">☀️</div>
+            <h3 style="margin: 0 0 0.5rem; color: white;">Luanda</h3>
+            <div style="font-size: 3rem; font-weight: bold; color: white; margin-bottom: 0.5rem;">28°C</div>
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; font-size: 0.875rem;">Ensolarado • Humidade 65%</p>
+          </div>
+        </muxima-card>
+
+        <!-- Blog Post Card -->
+        <muxima-card variant="bordered" [hoverable]="true" [clickable]="true">
+          <div style="width: 100%; height: 140px; background: linear-gradient(135deg, #8B5CF6, #D946EF); border-radius: 8px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">📝</div>
+          <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
+            <span style="background: #EDE9FE; color: #8B5CF6; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Angular</span>
+            <span style="background: #DBEAFE; color: #3B82F6; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Tutorial</span>
+          </div>
+          <h3 style="margin: 0 0 0.5rem; font-size: 1.125rem;">Como criar componentes reutilizáveis</h3>
+          <p style="color: #64748B; font-size: 0.875rem; margin-bottom: 1rem; line-height: 1.5;">Aprenda as melhores práticas para criar componentes Angular modulares e reutilizáveis...</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; color: #94A3B8; font-size: 0.875rem;">
+            <span>📅 12 Jan 2026</span>
+            <span>⏱️ 5 min read</span>
+          </div>
+        </muxima-card>
+
+        <!-- Pricing Card -->
+        <muxima-card variant="elevated" size="lg">
+          <div style="text-align: center;">
+            <h3 style="margin: 0 0 0.5rem; color: #8B5CF6; text-transform: uppercase; font-size: 0.875rem; letter-spacing: 0.1em; font-weight: 600;">Professional</h3>
+            <div style="margin: 1.5rem 0;">
+              <span style="font-size: 3rem; font-weight: bold; color: #1E293B;">$29</span>
+              <span style="color: #64748B;">/mês</span>
+            </div>
+            <ul style="list-style: none; padding: 0; margin: 1.5rem 0; text-align: left;">
+              <li style="padding: 0.5rem 0; color: #475569; display: flex; gap: 0.5rem;"><span style="color: #10B981;">✓</span> Componentes ilimitados</li>
+              <li style="padding: 0.5rem 0; color: #475569; display: flex; gap: 0.5rem;"><span style="color: #10B981;">✓</span> Suporte prioritário</li>
+              <li style="padding: 0.5rem 0; color: #475569; display: flex; gap: 0.5rem;"><span style="color: #10B981;">✓</span> Atualizações gratuitas</li>
+              <li style="padding: 0.5rem 0; color: #475569; display: flex; gap: 0.5rem;"><span style="color: #10B981;">✓</span> Documentação completa</li>
+            </ul>
+            <button style="width: 100%; background: linear-gradient(135deg, #3B82F6, #8B5CF6); color: white; border: none; padding: 0.875rem; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 1rem;">Começar agora</button>
+          </div>
+        </muxima-card>
+
+        <!-- Event Card -->
+        <muxima-card variant="bordered" [hoverable]="true">
+          <div style="display: flex; gap: 1rem;">
+            <div style="text-align: center; padding: 0.75rem; background: linear-gradient(135deg, #3B82F6, #8B5CF6); border-radius: 8px; color: white; min-width: 60px;">
+              <div style="font-size: 1.5rem; font-weight: bold;">13</div>
+              <div style="font-size: 0.75rem; text-transform: uppercase;">Jan</div>
+            </div>
+            <div style="flex: 1;">
+              <h3 style="margin: 0 0 0.5rem; font-size: 1rem;">Angular Conference 2026</h3>
+              <p style="color: #64748B; font-size: 0.875rem; margin: 0 0 0.5rem;">📍 Centro de Convenções, Luanda</p>
+              <p style="color: #64748B; font-size: 0.875rem; margin: 0;">🕐 09:00 - 18:00</p>
+            </div>
+          </div>
+        </muxima-card>
+
+        <!-- Music Card -->
+        <muxima-card variant="elevated">
+          <div style="width: 100%; height: 160px; background: linear-gradient(135deg, #D946EF, #8B5CF6); border-radius: 8px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem;">🎵</div>
+          <h3 style="margin: 0 0 0.25rem; font-size: 1rem;">Música Angolana</h3>
+          <p style="color: #64748B; margin: 0 0 1rem; font-size: 0.875rem;">Various Artists</p>
+          <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 1rem;">
+            <div style="flex: 1; height: 4px; background: #E2E8F0; border-radius: 2px; overflow: hidden;">
+              <div style="width: 65%; height: 100%; background: linear-gradient(135deg, #3B82F6, #8B5CF6);"></div>
+            </div>
+            <span style="color: #64748B; font-size: 0.75rem;">2:34</span>
+          </div>
+          <div style="display: flex; gap: 1rem; justify-content: center; align-items: center;">
+            <button style="background: transparent; border: none; font-size: 1.25rem; cursor: pointer;">⏮️</button>
+            <button style="width: 48px; height: 48px; background: linear-gradient(135deg, #3B82F6, #8B5CF6); border: none; border-radius: 50%; color: white; font-size: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center;">▶️</button>
+            <button style="background: transparent; border: none; font-size: 1.25rem; cursor: pointer;">⏭️</button>
+          </div>
+        </muxima-card>
+
+        <!-- Team Member Card -->
+        <muxima-card variant="bordered" [hoverable]="true">
+          <div style="text-align: center;">
+            <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #F59E0B, #EF4444); margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: bold;">JS</div>
+            <h3 style="margin: 0 0 0.25rem;">João Silva</h3>
+            <p style="color: #8B5CF6; margin: 0 0 0.75rem; font-size: 0.875rem; font-weight: 600;">UX Designer</p>
+            <p style="color: #64748B; font-size: 0.875rem; margin-bottom: 1rem;">Especialista em criar experiências incríveis</p>
+            <div style="display: flex; gap: 0.75rem; justify-content: center;">
+              <button style="width: 36px; height: 36px; background: #F1F5F9; border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;">🔗</button>
+              <button style="width: 36px; height: 36px; background: #F1F5F9; border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;">📧</button>
+              <button style="width: 36px; height: 36px; background: #F1F5F9; border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;">💼</button>
+            </div>
+          </div>
+        </muxima-card>
+
+        <!-- Achievement Card -->
+        <muxima-card variant="african-pattern">
+          <div style="text-align: center;">
+            <div style="font-size: 4rem; margin-bottom: 0.5rem;">🏆</div>
+            <h3 style="margin: 0 0 0.5rem; color: white;">Conquista Desbloqueada!</h3>
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 1rem; font-size: 0.875rem;">Você completou 100 projetos</p>
+            <div style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border-radius: 8px; padding: 1rem;">
+              <div style="display: flex; justify-content: space-between; color: white; margin-bottom: 0.5rem; font-size: 0.875rem;">
+                <span>Progresso</span>
+                <span style="font-weight: bold;">100/100</span>
+              </div>
+              <div style="height: 8px; background: rgba(255, 255, 255, 0.2); border-radius: 4px; overflow: hidden;">
+                <div style="width: 100%; height: 100%; background: linear-gradient(90deg, #10B981, #059669); animation: pulse 2s ease-in-out infinite;"></div>
+              </div>
+            </div>
+          </div>
+        </muxima-card>
+
+        <!-- Recipe Card -->
+        <muxima-card variant="elevated" [hoverable]="true">
+          <div style="width: 100%; height: 140px; background: linear-gradient(135deg, #F59E0B, #EF4444); border-radius: 8px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">🍲</div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+            <h3 style="margin: 0; font-size: 1.125rem;">Muamba de Galinha</h3>
+            <div style="display: flex; gap: 0.25rem; color: #F59E0B;">
+              <span>⭐</span>
+              <span>⭐</span>
+              <span>⭐</span>
+              <span>⭐</span>
+              <span>⭐</span>
+            </div>
+          </div>
+          <p style="color: #64748B; font-size: 0.875rem; margin-bottom: 1rem;">Prato tradicional angolano com frango, quiabo e óleo de palma...</p>
+          <div style="display: flex; gap: 1rem; color: #64748B; font-size: 0.875rem;">
+            <span>⏱️ 45 min</span>
+            <span>👥 4 porções</span>
+            <span>🔥 Médio</span>
+          </div>
+        </muxima-card>
+
+        <!-- Task Card -->
+        <muxima-card variant="bordered">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+            <h3 style="margin: 0; font-size: 1rem;">Sprint Planning</h3>
+            <span style="background: #FEF3C7; color: #F59E0B; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Em Progresso</span>
+          </div>
+          <p style="color: #64748B; font-size: 0.875rem; margin-bottom: 1rem;">Planejar as tarefas da próxima sprint com a equipe</p>
+          <div style="margin-bottom: 1rem;">
+            <div style="display: flex; justify-content: space-between; color: #64748B; font-size: 0.75rem; margin-bottom: 0.5rem;">
+              <span>Progresso</span>
+              <span>7/10 tarefas</span>
+            </div>
+            <div style="height: 6px; background: #E2E8F0; border-radius: 3px; overflow: hidden;">
+              <div style="width: 70%; height: 100%; background: linear-gradient(135deg, #3B82F6, #8B5CF6);"></div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <div style="display: flex; margin-left: -0.25rem;">
+              <div style="width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #3B82F6, #8B5CF6); border: 2px solid white; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.75rem; font-weight: bold;">AV</div>
+              <div style="width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #10B981, #059669); border: 2px solid white; margin-left: -8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.75rem; font-weight: bold;">JS</div>
+              <div style="width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #F59E0B, #EF4444); border: 2px solid white; margin-left: -8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.75rem; font-weight: bold;">MC</div>
+            </div>
+            <span style="color: #64748B; font-size: 0.875rem;">📅 Deadline: 20 Jan</span>
+          </div>
+        </muxima-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2>API</h2>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Propriedade</th>
+          <th>Tipo</th>
+          <th>Padrão</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>variant</code></td>
+          <td>'default' | 'bordered' | 'elevated' | 'african-pattern' | 'gradient-blue' | 'gradient-purple' | 'gradient-sunset' | 'glassmorphism' | 'neon' | 'minimal' | 'shadow-lg' | 'outline-gradient' | 'dark'</td>
+          <td>'default'</td>
+          <td>Estilo visual do card (13 variantes disponíveis)</td>
+        </tr>
+        <tr>
+          <td><code>size</code></td>
+          <td>'sm' | 'md' | 'lg'</td>
+          <td>'md'</td>
+          <td>Tamanho do padding interno</td>
+        </tr>
+        <tr>
+          <td><code>hoverable</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Ativa efeito de hover com elevação</td>
+        </tr>
+        <tr>
+          <td><code>clickable</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Adiciona cursor pointer e efeito de clique</td>
+        </tr>
+        <tr>
+          <td><code>loading</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Exibe estado de carregamento com spinner</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Variant Descriptions -->
+    <div style="margin-top: 2rem; padding: 1.5rem; background: #F8FAFC; border-radius: 12px; border: 1px solid #E2E8F0;">
+      <h3 style="margin: 0 0 1rem; color: #1E293B; font-size: 1rem;">📖 Descrição das Variantes</h3>
+      <div style="display: grid; gap: 0.75rem; color: #475569; font-size: 0.875rem;">
+        <div><strong>default:</strong> Design limpo e minimalista com sombra suave</div>
+        <div><strong>bordered:</strong> Card com borda sutil, sem sombra</div>
+        <div><strong>elevated:</strong> Sombra proeminente para destaque visual</div>
+        <div><strong>african-pattern:</strong> Gradiente com padrão africano inspirador</div>
+        <div><strong>gradient-blue:</strong> Gradiente azul suave e profissional</div>
+        <div><strong>gradient-purple:</strong> Gradiente roxo vibrante do tema Muxima</div>
+        <div><strong>gradient-sunset:</strong> Gradiente quente com cores do pôr do sol</div>
+        <div><strong>glassmorphism:</strong> Efeito de vidro fosco moderno (melhor em fundos coloridos)</div>
+        <div><strong>neon:</strong> Bordas brilhantes com efeito neon futurista</div>
+        <div><strong>minimal:</strong> Design minimalista sem bordas ou sombras</div>
+        <div><strong>shadow-lg:</strong> Sombra extra grande para máximo destaque</div>
+        <div><strong>outline-gradient:</strong> Borda com gradiente colorido animado</div>
+        <div><strong>dark:</strong> Design escuro para interfaces dark mode</div>
+      </div>
+    </div>
+  </section>
+</div>

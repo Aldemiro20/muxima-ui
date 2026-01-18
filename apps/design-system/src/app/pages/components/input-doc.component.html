@@ -1,0 +1,339 @@
+<div class="doc-page">
+  <header class="doc-header">
+    <h1>Input</h1>
+    <p>Campos de entrada personalizáveis com múltiplas variantes e estilos.</p>
+  </header>
+
+  <!-- Import -->
+  <section class="doc-section">
+    <h2>Importação</h2>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(importCode)">📋 Copiar</button>
+      <pre><code>{{ importCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Basic Usage -->
+  <section class="doc-section">
+    <h2>Uso Básico</h2>
+    <div class="demo-container">
+      <muxima-input 
+        [(ngModel)]="textValue"
+        label="Nome"
+        placeholder="Digite seu nome..."
+        helperText="Seu nome completo">
+      </muxima-input>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(basicCode)">📋 Copiar</button>
+      <pre><code>{{ basicCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Variants -->
+  <section class="doc-section">
+    <h2>Variantes</h2>
+    <div class="demo-container">
+      <div style="display: grid; gap: 1.5rem;">
+        <muxima-input 
+          variant="default"
+          label="Default"
+          placeholder="Variante padrão">
+        </muxima-input>
+
+        <muxima-input 
+          variant="outlined"
+          label="Outlined"
+          placeholder="Borda destacada">
+        </muxima-input>
+
+        <muxima-input 
+          variant="filled"
+          label="Filled"
+          placeholder="Preenchido com fundo">
+        </muxima-input>
+
+        <muxima-input 
+          variant="underlined"
+          label="Underlined"
+          placeholder="Apenas linha inferior">
+        </muxima-input>
+
+        <muxima-input 
+          variant="gradient"
+          label="Gradient"
+          placeholder="Borda com gradiente">
+        </muxima-input>
+      </div>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(variantsCode)">📋 Copiar</button>
+      <pre><code>{{ variantsCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Sizes -->
+  <section class="doc-section">
+    <h2>Tamanhos</h2>
+    <div class="demo-container">
+      <div style="display: grid; gap: 1.5rem;">
+        <muxima-input 
+          size="sm"
+          label="Small"
+          placeholder="Tamanho pequeno">
+        </muxima-input>
+
+        <muxima-input 
+          size="md"
+          label="Medium"
+          placeholder="Tamanho médio (padrão)">
+        </muxima-input>
+
+        <muxima-input 
+          size="lg"
+          label="Large"
+          placeholder="Tamanho grande">
+        </muxima-input>
+      </div>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(sizesCode)">📋 Copiar</button>
+      <pre><code>{{ sizesCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- With Icons -->
+  <section class="doc-section">
+    <h2>Com Ícones</h2>
+    <div class="demo-container">
+      <div style="display: grid; gap: 1.5rem;">
+        <muxima-input 
+          [(ngModel)]="searchValue"
+          label="Buscar"
+          variant="filled"
+          prefixIcon="🔍"
+          placeholder="Procurar algo...">
+        </muxima-input>
+
+        <muxima-input 
+          [(ngModel)]="emailValue"
+          label="Email"
+          type="email"
+          variant="outlined"
+          suffixIcon="📧"
+          placeholder="seu@email.com">
+        </muxima-input>
+
+        <muxima-input 
+          [(ngModel)]="passwordValue"
+          label="Senha"
+          type="password"
+          variant="default"
+          [showPasswordToggle]="true"
+          placeholder="Digite sua senha">
+        </muxima-input>
+
+        <muxima-input 
+          label="Usuário"
+          variant="gradient"
+          prefixIcon="👤"
+          placeholder="@usuario">
+        </muxima-input>
+      </div>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(withIconsCode)">📋 Copiar</button>
+      <pre><code>{{ withIconsCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- States -->
+  <section class="doc-section">
+    <h2>Estados</h2>
+    <div class="demo-container">
+      <div style="display: grid; gap: 1.5rem;">
+        <muxima-input 
+          label="Normal"
+          placeholder="Estado normal">
+        </muxima-input>
+
+        <muxima-input 
+          label="Desabilitado"
+          [disabled]="true"
+          placeholder="Campo desabilitado">
+        </muxima-input>
+
+        <muxima-input 
+          label="Somente leitura"
+          [readonly]="true"
+          value="Valor fixo">
+        </muxima-input>
+
+        <muxima-input 
+          label="Com erro"
+          [hasError]="true"
+          errorMessage="Este campo é obrigatório"
+          placeholder="Campo com erro">
+        </muxima-input>
+      </div>
+    </div>
+  </section>
+
+  <!-- Different Types -->
+  <section class="doc-section">
+    <h2>Tipos de Input</h2>
+    <div class="demo-container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+        <muxima-input 
+          type="text"
+          label="Texto"
+          variant="outlined">
+        </muxima-input>
+
+        <muxima-input 
+          type="email"
+          label="Email"
+          variant="outlined"
+          prefixIcon="📧">
+        </muxima-input>
+
+        <muxima-input 
+          type="password"
+          label="Senha"
+          variant="outlined"
+          [showPasswordToggle]="true">
+        </muxima-input>
+
+        <muxima-input 
+          type="number"
+          label="Número"
+          variant="outlined"
+          prefixIcon="🔢">
+        </muxima-input>
+
+        <muxima-input 
+          type="tel"
+          label="Telefone"
+          variant="outlined"
+          prefixIcon="📱">
+        </muxima-input>
+
+        <muxima-input 
+          type="url"
+          label="Website"
+          variant="outlined"
+          prefixIcon="🌐">
+        </muxima-input>
+
+        <muxima-input 
+          type="search"
+          label="Buscar"
+          variant="outlined"
+          prefixIcon="🔍">
+        </muxima-input>
+
+        <muxima-input 
+          type="date"
+          label="Data"
+          variant="outlined"
+          prefixIcon="📅">
+        </muxima-input>
+      </div>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2>API</h2>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Propriedade</th>
+          <th>Tipo</th>
+          <th>Padrão</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>type</code></td>
+          <td>'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search' | 'date' | 'time'</td>
+          <td>'text'</td>
+          <td>Tipo do input</td>
+        </tr>
+        <tr>
+          <td><code>variant</code></td>
+          <td>'default' | 'outlined' | 'filled' | 'underlined' | 'gradient'</td>
+          <td>'default'</td>
+          <td>Estilo visual do input</td>
+        </tr>
+        <tr>
+          <td><code>size</code></td>
+          <td>'sm' | 'md' | 'lg'</td>
+          <td>'md'</td>
+          <td>Tamanho do input</td>
+        </tr>
+        <tr>
+          <td><code>label</code></td>
+          <td>string</td>
+          <td>-</td>
+          <td>Texto do label</td>
+        </tr>
+        <tr>
+          <td><code>placeholder</code></td>
+          <td>string</td>
+          <td>''</td>
+          <td>Texto placeholder</td>
+        </tr>
+        <tr>
+          <td><code>helperText</code></td>
+          <td>string</td>
+          <td>-</td>
+          <td>Texto auxiliar</td>
+        </tr>
+        <tr>
+          <td><code>prefixIcon</code></td>
+          <td>string</td>
+          <td>-</td>
+          <td>Ícone antes do input</td>
+        </tr>
+        <tr>
+          <td><code>suffixIcon</code></td>
+          <td>string</td>
+          <td>-</td>
+          <td>Ícone depois do input</td>
+        </tr>
+        <tr>
+          <td><code>showPasswordToggle</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Mostrar botão de alternar senha</td>
+        </tr>
+        <tr>
+          <td><code>disabled</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Desabilitar input</td>
+        </tr>
+        <tr>
+          <td><code>readonly</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Somente leitura</td>
+        </tr>
+        <tr>
+          <td><code>hasError</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Estado de erro</td>
+        </tr>
+        <tr>
+          <td><code>errorMessage</code></td>
+          <td>string</td>
+          <td>-</td>
+          <td>Mensagem de erro</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

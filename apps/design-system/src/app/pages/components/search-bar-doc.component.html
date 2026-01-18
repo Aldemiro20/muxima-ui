@@ -1,0 +1,290 @@
+<div class="doc-container">
+  <h1>Search Bar</h1>
+  <p class="lead">
+    Barra de pesquisa moderna com autocomplete, sugestões, atalhos de teclado e navegação inteligente.
+    Ideal para pesquisas globais e navegação rápida em aplicações.
+  </p>
+
+  <!-- Importação -->
+  <section class="doc-section">
+    <h2>📦 Importação</h2>
+    <pre><code>{{ getCodeExample('import') }}</code></pre>
+  </section>
+
+  <!-- Básico -->
+  <section class="doc-section">
+    <h2>🎯 Uso Básico</h2>
+    <div class="example">
+      <muxima-search-bar
+        placeholder="Search anything..."
+        (search)="onSearch($event)">
+      </muxima-search-bar>
+    </div>
+    <pre><code>{{ getCodeExample('basic') }}</code></pre>
+  </section>
+
+  <!-- Com Sugestões -->
+  <section class="doc-section">
+    <h2>💡 Com Sugestões (Autocomplete)</h2>
+    <p>Sugestões aparecem automaticamente ao digitar e podem ser navegadas com teclado (↑↓ Enter).</p>
+    <div class="example">
+      <muxima-search-bar
+        placeholder="Search pages..."
+        [suggestions]="suggestions"
+        (search)="onSearch($event)"
+        (suggestionSelected)="onSuggestionSelected($event)">
+      </muxima-search-bar>
+    </div>
+    <pre><code>{{ getCodeExample('suggestions') }}</code></pre>
+  </section>
+
+  <!-- Atalho de Teclado -->
+  <section class="doc-section">
+    <h2>⌨️ Atalho de Teclado</h2>
+    <p>Pressione <kbd>Ctrl+K</kbd> (ou <kbd>Cmd+K</kbd> no Mac) para focar na busca.</p>
+    <div class="example">
+      <muxima-search-bar
+        placeholder="Press Ctrl+K to search"
+        keyboardShortcut="Ctrl+K"
+        [suggestions]="suggestions"
+        (suggestionSelected)="onSuggestionSelected($event)">
+      </muxima-search-bar>
+    </div>
+    <pre><code>{{ getCodeExample('keyboard') }}</code></pre>
+  </section>
+
+  <!-- Estado de Loading -->
+  <section class="doc-section">
+    <h2>⏳ Estado de Carregamento</h2>
+    <div class="example">
+      <muxima-search-bar
+        placeholder="Searching..."
+        [loading]="isLoading"
+        [suggestions]="suggestions"
+        (search)="simulateLoading()">
+      </muxima-search-bar>
+      <button class="btn-demo" (click)="simulateLoading()">Simular Loading</button>
+    </div>
+    <pre><code>{{ getCodeExample('loading') }}</code></pre>
+  </section>
+
+  <!-- Tamanhos -->
+  <section class="doc-section">
+    <h2>📏 Tamanhos</h2>
+    <div class="example">
+      <div class="search-sizes">
+        <div>
+          <label>Small</label>
+          <muxima-search-bar size="sm" placeholder="Small search"></muxima-search-bar>
+        </div>
+        <div>
+          <label>Medium (Padrão)</label>
+          <muxima-search-bar size="md" placeholder="Medium search"></muxima-search-bar>
+        </div>
+        <div>
+          <label>Large</label>
+          <muxima-search-bar size="lg" placeholder="Large search"></muxima-search-bar>
+        </div>
+      </div>
+    </div>
+    <pre><code>{{ getCodeExample('sizes') }}</code></pre>
+  </section>
+
+  <!-- Exemplos de Uso -->
+  <section class="doc-section">
+    <h2>🎨 Exemplos de Uso</h2>
+    
+    <h3>Busca de Páginas</h3>
+    <div class="example">
+      <muxima-search-bar
+        placeholder="Search pages..."
+        [suggestions]="suggestions"
+        (suggestionSelected)="onSuggestionSelected($event)">
+      </muxima-search-bar>
+    </div>
+
+    <h3>Busca de Produtos</h3>
+    <div class="example">
+      <muxima-search-bar
+        placeholder="Search products..."
+        [suggestions]="productSuggestions"
+        (suggestionSelected)="onSuggestionSelected($event)">
+      </muxima-search-bar>
+    </div>
+
+    <h3>Busca de Documentos</h3>
+    <div class="example">
+      <muxima-search-bar
+        placeholder="Search documents..."
+        [suggestions]="documentSuggestions"
+        (suggestionSelected)="onSuggestionSelected($event)">
+      </muxima-search-bar>
+    </div>
+  </section>
+
+  <!-- Interface -->
+  <section class="doc-section">
+    <h2>📋 Interface SearchSuggestion</h2>
+    <pre><code>{{ getCodeExample('interface') }}</code></pre>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2>📋 API</h2>
+    <div class="api-table">
+      <h3>@Input</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>placeholder</code></td>
+            <td>string</td>
+            <td>'Search...'</td>
+            <td>Texto do placeholder</td>
+          </tr>
+          <tr>
+            <td><code>suggestions</code></td>
+            <td>SearchSuggestion[]</td>
+            <td>[]</td>
+            <td>Array de sugestões para autocomplete</td>
+          </tr>
+          <tr>
+            <td><code>size</code></td>
+            <td>'sm' | 'md' | 'lg'</td>
+            <td>'md'</td>
+            <td>Tamanho da barra de busca</td>
+          </tr>
+          <tr>
+            <td><code>showIcon</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Exibe ícone de lupa</td>
+          </tr>
+          <tr>
+            <td><code>clearable</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Exibe botão de limpar</td>
+          </tr>
+          <tr>
+            <td><code>loading</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Exibe spinner de carregamento</td>
+          </tr>
+          <tr>
+            <td><code>debounceTime</code></td>
+            <td>number</td>
+            <td>300</td>
+            <td>Tempo de debounce em ms</td>
+          </tr>
+          <tr>
+            <td><code>keyboardShortcut</code></td>
+            <td>string</td>
+            <td>'Ctrl+K'</td>
+            <td>Atalho de teclado para focar</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>@Output</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>search</code></td>
+            <td>EventEmitter&lt;string&gt;</td>
+            <td>Emitido quando o usuário digita (com debounce)</td>
+          </tr>
+          <tr>
+            <td><code>suggestionSelected</code></td>
+            <td>EventEmitter&lt;SearchSuggestion&gt;</td>
+            <td>Emitido quando uma sugestão é selecionada</td>
+          </tr>
+          <tr>
+            <td><code>clear</code></td>
+            <td>EventEmitter&lt;void&gt;</td>
+            <td>Emitido quando o botão limpar é clicado</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Recursos -->
+  <section class="doc-section">
+    <h2>✨ Recursos</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">⌨️</span>
+        <h4>Navegação por Teclado</h4>
+        <p>↑↓ para navegar, Enter para selecionar, Esc para fechar, Ctrl+K para focar</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <h4>Debounce Inteligente</h4>
+        <p>Evita requisições excessivas com debounce configurável (padrão 300ms)</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🎯</span>
+        <h4>Sugestões Categorizadas</h4>
+        <p>Organize sugestões por categorias com ícones visuais</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔍</span>
+        <h4>Highlighting Visual</h4>
+        <p>Item selecionado destacado com gradiente roxo</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Casos de Uso -->
+  <section class="doc-section">
+    <h2>💡 Casos de Uso</h2>
+    <div class="use-cases">
+      <div class="use-case">
+        <h3>🔍 Busca Global</h3>
+        <p>Pesquisa universal em toda a aplicação com navegação rápida entre páginas.</p>
+      </div>
+      <div class="use-case">
+        <h3>🛍️ E-commerce</h3>
+        <p>Busca de produtos com autocomplete e sugestões inteligentes.</p>
+      </div>
+      <div class="use-case">
+        <h3>📚 Base de Conhecimento</h3>
+        <p>Pesquisa em documentos, artigos e recursos com categorização.</p>
+      </div>
+      <div class="use-case">
+        <h3>👥 Busca de Usuários</h3>
+        <p>Encontrar pessoas, perfis ou contatos rapidamente.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Boas Práticas -->
+  <section class="doc-section">
+    <h2>✅ Boas Práticas</h2>
+    <ul class="best-practices">
+      <li>✅ Use <code>debounceTime</code> adequado para evitar sobrecarga no backend</li>
+      <li>✅ Limite o número de sugestões (máx 10-15 para melhor UX)</li>
+      <li>✅ Categorize sugestões quando houver múltiplos tipos de resultados</li>
+      <li>✅ Use ícones para identificação visual rápida</li>
+      <li>✅ Implemente <code>loading</code> state durante buscas assíncronas</li>
+      <li>✅ Considere cache de resultados para buscas repetidas</li>
+      <li>✅ Adicione analytics para entender padrões de busca</li>
+    </ul>
+  </section>
+</div>

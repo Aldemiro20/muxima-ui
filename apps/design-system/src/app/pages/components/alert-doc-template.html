@@ -1,0 +1,250 @@
+<div class="doc-container">
+  <h1 class="doc-title">🎵 Accordion</h1>
+  <p class="doc-description">
+    Componente para criar painéis expansíveis e colapsáveis com animações suaves. Ideal para FAQs, menus de navegação, features de produtos e organização hierárquica de conteúdo.
+  </p>
+
+  <!-- Instalação -->
+  <section class="doc-section">
+    <h2 class="doc-section-title">📦 Instalação</h2>
+    <div class="doc-code-block">
+      <pre><code>{{ importCode }}</code></pre>
+      <button class="doc-copy-btn" 
+              [class.copied]="isCopied('import')"
+              (click)="copyCode(importCode, 'import')">
+        <span *ngIf="!isCopied('import')">📋 Copiar</span>
+        <span *ngIf="isCopied('import')">✓ Copiado!</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Exemplo Básico -->
+  <section class="doc-section">
+    <h2 class="doc-section-title">🎯 Exemplo Básico</h2>
+    <p class="doc-description-small">Accordion simples com ícones e animação suave</p>
+    <div class="doc-example">
+      <div class="accordion">
+        <div class="accordion-item" *ngFor="let item of basicItems; let i = index">
+          <button class="accordion-header" (click)="toggleItem(basicItems, i)">
+            <span class="accordion-icon">{{ item.icon }}</span>
+            <span class="accordion-title">{{ item.title }}</span>
+            <span class="accordion-arrow" [class.expanded]="item.expanded">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+              </svg>
+            </span>
+          </button>
+          <div class="accordion-content" [class.expanded]="item.expanded">
+            <div class="accordion-content-inner">
+              <p>{{ item.content }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="doc-code-block">
+      <pre><code>{{ basicCode }}</code></pre>
+      <button class="doc-copy-btn"
+              [class.copied]="isCopied('basic')"
+              (click)="copyCode(basicCode, 'basic')">
+        <span *ngIf="!isCopied('basic')">📋 Copiar</span>
+        <span *ngIf="isCopied('basic')">✓ Copiado!</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- FAQ Style -->
+  <section class="doc-section">
+    <h2 class="doc-section-title">❓ FAQ Style</h2>
+    <p class="doc-description-small">Perfeito para páginas de perguntas frequentes</p>
+    <div class="doc-example">
+      <div class="accordion accordion-faq">
+        <div class="accordion-item" *ngFor="let item of faqItems; let i = index">
+          <button class="accordion-header" (click)="toggleItem(faqItems, i)">
+            <div class="accordion-header-content">
+              <span class="accordion-icon">{{ item.icon }}</span>
+              <span class="accordion-title">{{ item.title }}</span>
+            </div>
+            <span class="accordion-toggle" [class.expanded]="item.expanded">
+              {{ item.expanded ? '−' : '+' }}
+            </span>
+          </button>
+          <div class="accordion-content" [class.expanded]="item.expanded">
+            <div class="accordion-content-inner">
+              <p>{{ item.content }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Style -->
+  <section class="doc-section">
+    <h2 class="doc-section-title">✨ Features Style</h2>
+    <p class="doc-description-small">Destaque recursos com descrições e badges</p>
+    <div class="doc-example">
+      <div class="accordion accordion-features">
+        <div class="accordion-item" *ngFor="let item of featuresItems; let i = index">
+          <button class="accordion-header" (click)="toggleItem(featuresItems, i)">
+            <div class="accordion-header-left">
+              <span class="accordion-icon">{{ item.icon }}</span>
+              <div class="accordion-header-text">
+                <span class="accordion-title">{{ item.title }}</span>
+                <span class="accordion-description" *ngIf="item.description">{{ item.description }}</span>
+              </div>
+            </div>
+            <div class="accordion-header-right">
+              <span class="accordion-badge" *ngIf="item.badge">{{ item.badge }}</span>
+              <span class="accordion-arrow" [class.expanded]="item.expanded">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+                </svg>
+              </span>
+            </div>
+          </button>
+          <div class="accordion-content" [class.expanded]="item.expanded">
+            <div class="accordion-content-inner">
+              <p>{{ item.content }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="doc-code-block">
+      <pre><code>{{ featuresCode }}</code></pre>
+      <button class="doc-copy-btn"
+              [class.copied]="isCopied('features')"
+              (click)="copyCode(featuresCode, 'features')">
+        <span *ngIf="!isCopied('features')">📋 Copiar</span>
+        <span *ngIf="isCopied('features')">✓ Copiado!</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Pricing Style -->
+  <section class="doc-section">
+    <h2 class="doc-section-title">💰 Pricing Style</h2>
+    <p class="doc-description-small">Ideal para apresentar planos e preços</p>
+    <div class="doc-example">
+      <div class="accordion accordion-pricing">
+        <div class="accordion-item" *ngFor="let item of pricingItems; let i = index">
+          <button class="accordion-header" (click)="toggleItem(pricingItems, i)">
+            <div class="accordion-header-left">
+              <span class="accordion-icon">{{ item.icon }}</span>
+              <div class="accordion-header-text">
+                <span class="accordion-title">{{ item.title }}</span>
+                <span class="accordion-description" *ngIf="item.description">{{ item.description }}</span>
+              </div>
+            </div>
+            <div class="accordion-header-right">
+              <span class="accordion-price" *ngIf="item.badge">{{ item.badge }}</span>
+              <span class="accordion-arrow" [class.expanded]="item.expanded">▼</span>
+            </div>
+          </button>
+          <div class="accordion-content" [class.expanded]="item.expanded">
+            <div class="accordion-content-inner">
+              <p>{{ item.content }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Múltiplos Abertos -->
+  <section class="doc-section">
+    <h2 class="doc-section-title">📂 Múltiplos Abertos</h2>
+    <p class="doc-description-small">Permite manter vários itens abertos simultaneamente</p>
+    <div class="doc-example">
+      <div class="accordion accordion-multiple">
+        <div class="accordion-item" *ngFor="let item of basicItems.slice(0, 3); let i = index">
+          <button class="accordion-header" (click)="toggleItem(basicItems, i, true)">
+            <span class="accordion-icon">{{ item.icon }}</span>
+            <span class="accordion-title">{{ item.title }}</span>
+            <span class="accordion-arrow" [class.expanded]="item.expanded">▼</span>
+          </button>
+          <div class="accordion-content" [class.expanded]="item.expanded">
+            <div class="accordion-content-inner">
+              <p>{{ item.content }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="doc-code-block">
+      <pre><code>{{ multipleCode }}</code></pre>
+      <button class="doc-copy-btn"
+              [class.copied]="isCopied('multiple')"
+              (click)="copyCode(multipleCode, 'multiple')">
+        <span *ngIf="!isCopied('multiple')">📋 Copiar</span>
+        <span *ngIf="isCopied('multiple')">✓ Copiado!</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2 class="doc-section-title">📚 API</h2>
+    <div class="doc-api">
+      <h3>Propriedades</h3>
+      <table class="doc-api-table">
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>items</code></td>
+            <td>AccordionItem[]</td>
+            <td>[]</td>
+            <td>Array de itens do accordion</td>
+          </tr>
+          <tr>
+            <td><code>allowMultiple</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Permite múltiplos itens abertos</td>
+          </tr>
+          <tr>
+            <td><code>animated</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Habilita animações de transição</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Eventos</h3>
+      <table class="doc-api-table">
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>itemToggle</code></td>
+            <td>EventEmitter&lt;number&gt;</td>
+            <td>Emitido quando um item é aberto/fechado</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Interface AccordionItem</h3>
+      <pre><code>interface AccordionItem {{ '{' }}
+  title: string;
+  content: string;
+  icon?: string;
+  expanded?: boolean;
+  disabled?: boolean;
+{{ '}' }}</code></pre>
+    </div>
+  </section>
+</div>

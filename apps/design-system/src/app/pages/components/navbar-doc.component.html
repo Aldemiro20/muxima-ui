@@ -1,0 +1,262 @@
+<div class="doc-container">
+  <div class="doc-header">
+    <div class="header-content">
+      <span class="component-icon">🧭</span>
+      <div>
+        <h1>Navbar</h1>
+        <p class="component-description">
+          Componente de navegação profissional e responsivo com suporte a menus dropdown,
+          efeito de scroll e menu mobile hamburger com animações elegantes.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Instalação -->
+  <section class="doc-section">
+    <h2 class="section-title">📦 Instalação</h2>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('import') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Navbar Básico -->
+  <section class="doc-section">
+    <h2 class="section-title">🚀 Navbar Básico</h2>
+    <p class="section-description">
+      Navbar simples com logo e itens de menu. Ideal para sites com navegação direta.
+    </p>
+    <div class="demo-container">
+      <muxima-navbar
+        logo="Muxima"
+        logoRoute="/"
+        [menuItems]="basicMenuItems"
+      ></muxima-navbar>
+      <div class="demo-spacer"></div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('basic') }}</code></pre>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('basicItems') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Navbar com Dropdown -->
+  <section class="doc-section">
+    <h2 class="section-title">📂 Navbar com Dropdown</h2>
+    <p class="section-description">
+      Adicione menus dropdown para organizar navegação complexa. Suporta múltiplos níveis de itens.
+    </p>
+    <div class="demo-container">
+      <muxima-navbar
+        logo="My Brand"
+        [menuItems]="dropdownMenuItems"
+        [fixed]="false"
+      ></muxima-navbar>
+      <div class="demo-spacer"></div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('dropdown') }}</code></pre>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('dropdownItems') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Navbar Transparente -->
+  <section class="doc-section">
+    <h2 class="section-title">✨ Navbar Transparente com Scroll Effect</h2>
+    <p class="section-description">
+      Perfeito para hero sections. O navbar começa transparente e ganha fundo sólido ao rolar a página.
+    </p>
+    <div class="demo-container dark">
+      <muxima-navbar
+        logo="Brand"
+        [menuItems]="basicMenuItems"
+        [transparent]="true"
+        [fixed]="false"
+      ></muxima-navbar>
+      <div class="demo-spacer"></div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('transparent') }}</code></pre>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('scrollEffect') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- E-commerce Navbar -->
+  <section class="doc-section">
+    <h2 class="section-title">🛍️ Navbar E-commerce</h2>
+    <p class="section-description">
+      Navbar completo para lojas online com categorias, carrinho e múltiplas seções de produtos.
+    </p>
+    <div class="demo-container">
+      <muxima-navbar
+        logo="MyShop"
+        [menuItems]="ecommerceMenuItems"
+        [fixed]="false"
+      ></muxima-navbar>
+      <div class="demo-spacer"></div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('ecommerce') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Dashboard Navbar -->
+  <section class="doc-section">
+    <h2 class="section-title">📊 Navbar Dashboard</h2>
+    <p class="section-description">
+      Navbar ideal para painéis administrativos com seções de usuários, configurações e analytics.
+    </p>
+    <div class="demo-container">
+      <muxima-navbar
+        logo="Admin Panel"
+        [menuItems]="dashboardMenuItems"
+        [fixed]="false"
+      ></muxima-navbar>
+      <div class="demo-spacer"></div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('dashboard') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Navbar Compacto -->
+  <section class="doc-section">
+    <h2 class="section-title">✨ Navbar Compacto</h2>
+    <p class="section-description">
+      Navbar minimalista sem ícones para um visual mais clean e profissional.
+    </p>
+    <div class="demo-container">
+      <muxima-navbar
+        logo="Minimal"
+        [menuItems]="compactMenuItems"
+        [fixed]="false"
+      ></muxima-navbar>
+      <div class="demo-spacer"></div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('compact') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2 class="section-title">⚙️ API</h2>
+    
+    <h3 class="subsection-title">Inputs</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>logo</code></td>
+            <td><code>string</code></td>
+            <td><code>'Muxima'</code></td>
+            <td>Texto ou nome da marca exibido no logo</td>
+          </tr>
+          <tr>
+            <td><code>logoRoute</code></td>
+            <td><code>string</code></td>
+            <td><code>'/'</code></td>
+            <td>Rota para o link do logo</td>
+          </tr>
+          <tr>
+            <td><code>menuItems</code></td>
+            <td><code>NavItem[]</code></td>
+            <td><code>[]</code></td>
+            <td>Array de itens do menu de navegação</td>
+          </tr>
+          <tr>
+            <td><code>transparent</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Se true, navbar começa transparente</td>
+          </tr>
+          <tr>
+            <td><code>fixed</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Se true, navbar fica fixo no topo da página</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="subsection-title">NavItem Interface</h3>
+    <div class="code-block">
+      <pre><code>interface NavItem {{ '{' }}
+  label: string;        // Texto do item
+  route?: string;       // Rota do Angular Router
+  href?: string;        // Link externo (abre em nova aba)
+  icon?: string;        // Ícone (emoji ou classe)
+  children?: NavItem[]; // Sub-itens para dropdown
+{{ '}' }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Funcionalidades -->
+  <section class="doc-section">
+    <h2 class="section-title">✨ Funcionalidades</h2>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <span class="tip-icon">📱</span>
+        <h4>Menu Mobile</h4>
+        <p>Hamburger menu responsivo com animação suave para dispositivos móveis.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">📂</span>
+        <h4>Dropdowns</h4>
+        <p>Suporte a menus dropdown com múltiplos níveis de navegação.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🎨</span>
+        <h4>Scroll Effect</h4>
+        <p>Transição automática de transparente para sólido ao rolar a página.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">📍</span>
+        <h4>Fixed Position</h4>
+        <p>Opção de fixar o navbar no topo para acesso constante à navegação.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🔗</span>
+        <h4>Routing Flexível</h4>
+        <p>Suporta Angular Router e links externos com target blank.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">✨</span>
+        <h4>Animações</h4>
+        <p>Transições e animações suaves em todos os elementos interativos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dicas de Uso -->
+  <section class="doc-section">
+    <h2 class="section-title">💡 Dicas de Uso</h2>
+    <div class="example-description">
+      <strong>Navbar Fixo vs. Estático:</strong> Use <code>fixed="true"</code> quando quiser que o navbar 
+      permaneça visível durante o scroll. Use <code>fixed="false"</code> para comportamento de scroll normal.
+    </div>
+    <div class="example-description">
+      <strong>Transparente em Hero Sections:</strong> Combine <code>transparent="true"</code> com 
+      <code>fixed="true"</code> para um efeito elegante em landing pages com imagens de fundo.
+    </div>
+    <div class="example-description">
+      <strong>Ícones nos Menus:</strong> Use emojis ou classes de ícones (FontAwesome, Material Icons) 
+      na propriedade <code>icon</code> para adicionar contexto visual aos itens do menu.
+    </div>
+  </section>
+</div>

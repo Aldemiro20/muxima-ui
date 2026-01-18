@@ -1,0 +1,197 @@
+﻿<div class="tooltip-doc"><div class="tooltip-doc">
+
+  <header class="doc-header">  <header class="doc-header">
+
+    <h1>💬 Tooltip</h1>    <h1> Tooltip</h1>
+
+    <p class="subtitle">Dicas contextuais elegantes com múltiplas variantes</p>    <p class="subtitle">Dicas contextuais elegantes com múltiplas variantes</p>
+
+  </header>  </header>
+
+
+
+  <section class="doc-section">  <section class="doc-section">
+
+    <h2>📦 Instalação</h2>    <h2> Instalação</h2>
+
+    <div class="code-example">    <div class="code-example">
+
+      <pre><code>{{ importCode }}</code></pre>      <pre><code>{{ importCode }}</code></pre>
+
+      <button class="copy-btn" (click)="copyCode(importCode)" [class.copied]="copiedStates[importCode]">      <button class="copy-btn" (click)="copyCode(importCode)" [class.copied]="copiedStates[importCode]">
+
+        {{ copiedStates[importCode] ? 'Copiado!' : 'Copiar' }}        {{ copiedStates[importCode] ? 'Copiado!' : 'Copiar' }}
+
+      </button>      </button>
+
+    </div>    </div>
+
+  </section>  </section>
+
+
+
+  <section class="doc-section">  <section class="doc-section">
+
+    <h2>Uso Básico</h2>    <h2>Uso Básico</h2>
+
+    <div class="example-container">    <div class="example-container">
+
+      <div class="demo-buttons">      <div class="demo-buttons">
+
+        <muxima-tooltip text="Este é um tooltip simples">        <muxima-tooltip text="Este é um tooltip simples">
+
+          <button class="demo-btn">Hover aqui</button>          <button class="demo-btn">Hover aqui</button>
+
+        </muxima-tooltip>        </muxima-tooltip>
+
+      </div>      </div>
+
+    </div>    </div>
+
+  </section>  </section>
+
+
+
+  <section class="doc-section">  <section class="doc-section">
+
+    <h2>Posições</h2>    <h2>Posições</h2>
+
+    <div class="example-container">    <div class="example-container">
+
+      <div class="demo-buttons">      <div class="demo-buttons">
+
+        <muxima-tooltip text="Tooltip no topo" position="top">        <muxima-tooltip text="Tooltip no topo" position="top">
+
+          <button class="demo-btn">⬆️ Top</button>          <button class="demo-btn">Top</button>
+
+        </muxima-tooltip>        </muxima-tooltip>
+
+        <muxima-tooltip text="Tooltip à direita" position="right">        <muxima-tooltip text="Tooltip à direita" position="right">
+
+          <button class="demo-btn">➡️ Right</button>          <button class="demo-btn">Right</button>
+
+        </muxima-tooltip>        </muxima-tooltip>
+
+        <muxima-tooltip text="Tooltip embaixo" position="bottom">        <muxima-tooltip text="Tooltip embaixo" position="bottom">
+
+          <button class="demo-btn">⬇️ Bottom</button>          <button class="demo-btn">Bottom</button>
+
+        </muxima-tooltip>        </muxima-tooltip>
+
+        <muxima-tooltip text="Tooltip à esquerda" position="left">        <muxima-tooltip text="Tooltip à esquerda" position="left">
+
+          <button class="demo-btn">⬅️ Left</button>          <button class="demo-btn">Left</button>
+
+        </muxima-tooltip>        </muxima-tooltip>
+
+      </div>      </div>
+
+    </div>    </div>
+
+  </section>  </section>
+
+
+
+  <section class="doc-section">  <section class="doc-section">
+
+    <h2>Variantes</h2>    <h2>Variantes</h2>
+
+    <div class="example-container">    <div class="example-container">
+
+      <div class="demo-buttons">      <div class="demo-buttons">
+
+        <muxima-tooltip text="Dark tooltip" variant="dark">        <muxima-tooltip text="Dark tooltip" variant="dark">
+
+          <button class="demo-btn">Dark</button>          <button class="demo-btn">Dark</button>
+
+        </muxima-tooltip>        </muxima-tooltip>
+
+        <muxima-tooltip text="Light tooltip" variant="light">        <muxima-tooltip text="Light tooltip" variant="light">
+
+          <button class="demo-btn">Light</button>          <button class="demo-btn">Light</button>
+
+        </muxima-tooltip>        </muxima-tooltip>
+
+        <muxima-tooltip text="Primary tooltip" variant="primary">        <muxima-tooltip text="Primary tooltip" variant="primary">
+
+          <button class="demo-btn">Primary</button>          <button class="demo-btn">Primary</button>
+
+        </muxima-tooltip>        </muxima-tooltip>
+
+        <muxima-tooltip text="Success tooltip" variant="success">        <muxima-tooltip text="Success tooltip" variant="success">
+
+          <button class="demo-btn">Success</button>          <button class="demo-btn">Success</button>
+
+        </muxima-tooltip>        </muxima-tooltip>
+
+        <muxima-tooltip text="Warning tooltip" variant="warning">        <muxima-tooltip text="Warning tooltip" variant="warning">
+
+          <button class="demo-btn">Warning</button>          <button class="demo-btn">Warning</button>
+
+        </muxima-tooltip>        </muxima-tooltip>
+
+        <muxima-tooltip text="Error tooltip" variant="error">        <muxima-tooltip text="Error tooltip" variant="error">
+
+          <button class="demo-btn">Error</button>          <button class="demo-btn">Error</button>
+
+        </muxima-tooltip>        </muxima-tooltip>
+
+      </div>      </div>
+
+    </div>    </div>
+
+  </section>  </section>
+
+
+
+  <section class="doc-section">  <section class="doc-section">
+
+    <h2>Tamanhos</h2>    <h2>Tamanhos</h2>
+
+    <div class="example-container">    <div class="example-container">
+
+      <div class="demo-buttons">      <div class="demo-buttons">
+
+        <muxima-tooltip text="Small tooltip" size="sm">        <muxima-tooltip text="Small tooltip" size="sm">
+
+          <button class="demo-btn">Small</button>          <button class="demo-btn">Small</button>
+
+        </muxima-tooltip>        </muxima-tooltip>
+
+        <muxima-tooltip text="Medium tooltip" size="md">        <muxima-tooltip text="Medium tooltip" size="md">
+
+          <button class="demo-btn">Medium</button>          <button class="demo-btn">Medium</button>
+
+        </muxima-tooltip>        </muxima-tooltip>
+
+        <muxima-tooltip text="Large tooltip" size="lg">        <muxima-tooltip text="Large tooltip" size="lg">
+
+          <button class="demo-btn">Large</button>          <button class="demo-btn">Large</button>
+
+        </muxima-tooltip>        </muxima-tooltip>
+
+      </div>      </div>
+
+    </div>    </div>
+
+  </section>  </section>
+
+</div>
+
+  <section class="doc-section">
+    <h2>Recursos Avançados</h2>
+    <div class="example-container">
+      <div class="demo-buttons">
+        <muxima-tooltip text="Tooltip sem seta" [showArrow]="false">
+          <button class="demo-btn">Sem Seta</button>
+        </muxima-tooltip>
+        <muxima-tooltip text="Tooltip com delay" [delay]="1000">
+          <button class="demo-btn">Delay 1s</button>
+        </muxima-tooltip>
+        <muxima-tooltip text="Este é um tooltip com texto muito longo para demonstrar quebra de linha" maxWidth="180px">
+          <button class="demo-btn">Texto Longo</button>
+        </muxima-tooltip>
+      </div>
+    </div>
+  </section>
+</div>

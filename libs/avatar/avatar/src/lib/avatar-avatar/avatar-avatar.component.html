@@ -1,0 +1,36 @@
+<div 
+  class="muxima-avatar" 
+  [ngClass]="[
+    'muxima-avatar-' + size,
+    'muxima-avatar-' + shape
+  ]">
+  <!-- Imagem -->
+  <img 
+    *ngIf="src && !imageError" 
+    [src]="src" 
+    [alt]="alt"
+    (error)="onImageError()"
+    class="muxima-avatar-image">
+  
+  <!-- Iniciais -->
+  <div 
+    *ngIf="!src || imageError" 
+    class="muxima-avatar-initials"
+    [style.background-color]="getRandomColor()">
+    {{ getInitials() }}
+  </div>
+
+  <!-- Status Badge -->
+  <span 
+    *ngIf="status !== 'none'" 
+    class="muxima-avatar-status"
+    [ngClass]="'muxima-avatar-status-' + status">
+  </span>
+
+  <!-- Notification Badge -->
+  <span 
+    *ngIf="badge !== undefined" 
+    class="muxima-avatar-badge">
+    {{ badge }}
+  </span>
+</div>

@@ -1,0 +1,190 @@
+.doc-page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.doc-header {
+  margin-bottom: 3rem;
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+  }
+
+  .doc-description {
+    font-size: 1.125rem;
+    color: #6b7280;
+    line-height: 1.7;
+  }
+}
+
+.doc-section {
+  margin-bottom: 3rem;
+
+  h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #374151;
+    margin: 1.5rem 0 1rem;
+  }
+
+  p {
+    color: #6b7280;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.demo-container {
+  background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+  border: 2px dashed #e5e7eb;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+
+  &.sidebar-demo {
+    display: flex;
+    min-height: 600px;
+    padding: 0;
+    overflow: visible;
+  }
+}
+
+.demo-spacer {
+  flex: 1;
+  min-width: 200px;
+  background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+}
+
+.code-block {
+  background: #1f2937;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+
+  pre {
+    margin: 0;
+
+    code {
+      color: #e5e7eb;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      white-space: pre;
+    }
+  }
+}
+
+.api-table {
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+    thead {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+      th {
+        color: white;
+        font-weight: 600;
+        text-align: left;
+        padding: 1rem;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+    }
+
+    tbody {
+      tr {
+        border-bottom: 1px solid #e5e7eb;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &:hover {
+          background: #f9fafb;
+        }
+      }
+
+      td {
+        padding: 1rem;
+        color: #4b5563;
+        font-size: 0.95rem;
+
+        code {
+          background: #f3f4f6;
+          padding: 0.25rem 0.5rem;
+          border-radius: 4px;
+          font-family: 'Courier New', monospace;
+          font-size: 0.875rem;
+          color: #667eea;
+        }
+      }
+    }
+  }
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+
+  li {
+    padding: 0.875rem 1rem;
+    background: linear-gradient(90deg, rgba(102, 126, 234, 0.05) 0%, transparent 100%);
+    border-left: 4px solid #667eea;
+    border-radius: 4px;
+    color: #4b5563;
+    font-size: 0.95rem;
+    line-height: 1.6;
+
+    strong {
+      color: #667eea;
+      font-weight: 600;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .doc-page {
+    padding: 1rem;
+  }
+
+  .doc-header h1 {
+    font-size: 2rem;
+  }
+
+  .demo-container.sidebar-demo {
+    flex-direction: column;
+    min-height: 400px;
+  }
+
+  .demo-spacer {
+    min-width: 100%;
+    min-height: 100px;
+  }
+}

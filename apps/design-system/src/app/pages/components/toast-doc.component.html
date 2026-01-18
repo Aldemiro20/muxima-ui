@@ -1,0 +1,601 @@
+﻿<div class="toast-doc">
+  <!-- Header -->
+  <header class="doc-header">
+    <div class="header-content">
+      <h1> Toast</h1>
+      <p class="subtitle">Notificações temporárias elegantes com múltiplas variantes e recursos avançados</p>
+    </div>
+  </header>
+
+  <!-- Installation -->
+  <section class="doc-section">
+    <h2> Instalação</h2>
+    <div class="code-example">
+      <pre><code>{{ importCode }}</code></pre>
+      <button 
+        class="copy-btn" 
+        (click)="copyCode(importCode)"
+        [class.copied]="copiedStates[importCode]">
+        {{ copiedStates[importCode] ? ' Copiado!' : ' Copiar' }}
+      </button>
+    </div>
+  </section>
+
+  <!-- Toast Container for Demos -->
+  <div class="toast-container">
+    <muxima-toast
+      *ngFor="let toast of toasts; let i = index"
+      [type]="toast.type"
+      [variant]="toast.variant"
+      [title]="toast.title"
+      [message]="toast.message"
+      [position]="toast.position || 'top-center'"
+      [duration]="5000"
+      [showIcon]="true"
+      [closable]="true"
+      [showProgress]="true"
+      [pauseOnHover]="true"
+      (closed)="removeToast(i)">
+    </muxima-toast>
+  </div>
+
+  <!-- Basic Usage -->
+  <section class="doc-section">
+    <h2> Uso Básico</h2>
+    <p>Toast simples com diferentes tipos e variantes.</p>
+    
+    <div class="example-container">
+      <div class="demo-buttons">
+        <button class="demo-btn success" (click)="showSuccessToast()">
+           Sucesso
+        </button>
+        <button class="demo-btn error" (click)="showErrorToast()">
+           Erro
+        </button>
+        <button class="demo-btn warning" (click)="showWarningToast()">
+           Aviso
+        </button>
+        <button class="demo-btn info" (click)="showInfoToast()">
+          ℹ Informação
+        </button>
+      </div>
+      
+      <div class="code-example">
+        <pre><code>{{ getCodeExample('basic') }}</code></pre>
+        <button 
+          class="copy-btn" 
+          (click)="copyCode(getCodeExample('basic'))"
+          [class.copied]="copiedStates[getCodeExample('basic')]">
+          {{ copiedStates[getCodeExample('basic')] ? ' Copiado!' : ' Copiar' }}
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Variantes -->
+  <section class="doc-section">
+    <h2> Variantes</h2>
+    <p>Três variantes distintas para diferentes contextos de uso.</p>
+
+    <!-- Filled Variant -->
+    <div class="variant-section">
+      <h3>Filled (Preenchido)</h3>
+      <p>Fundo com gradiente vibrante, ideal para notificações importantes.</p>
+      
+      <div class="example-container">
+        <div class="demo-buttons">
+          <button class="demo-btn success" (click)="showFilledSuccess()">
+             Success Filled
+          </button>
+          <button class="demo-btn error" (click)="showFilledError()">
+             Error Filled
+          </button>
+          <button class="demo-btn warning" (click)="showFilledWarning()">
+             Warning Filled
+          </button>
+          <button class="demo-btn info" (click)="showFilledInfo()">
+            ℹ Info Filled
+          </button>
+          <button class="demo-btn default" (click)="showFilledDefault()">
+             Default Filled
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Outlined Variant -->
+    <div class="variant-section">
+      <h3>Outlined (Contornado)</h3>
+      <p>Fundo branco com borda colorida, perfeito para interfaces clean.</p>
+      
+      <div class="example-container">
+        <div class="demo-buttons">
+          <button class="demo-btn success" (click)="showOutlinedSuccess()">
+             Success Outlined
+          </button>
+          <button class="demo-btn error" (click)="showOutlinedError()">
+             Error Outlined
+          </button>
+          <button class="demo-btn warning" (click)="showOutlinedWarning()">
+             Warning Outlined
+          </button>
+          <button class="demo-btn info" (click)="showOutlinedInfo()">
+            ℹ Info Outlined
+          </button>
+          <button class="demo-btn default" (click)="showOutlinedDefault()">
+             Default Outlined
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Soft Variant -->
+    <div class="variant-section">
+      <h3>Soft (Suave)</h3>
+      <p>Fundo colorido claro, excelente para notificações sutis.</p>
+      
+      <div class="example-container">
+        <div class="demo-buttons">
+          <button class="demo-btn success" (click)="showSoftSuccess()">
+             Success Soft
+          </button>
+          <button class="demo-btn error" (click)="showSoftError()">
+             Error Soft
+          </button>
+          <button class="demo-btn warning" (click)="showSoftWarning()">
+             Warning Soft
+          </button>
+          <button class="demo-btn info" (click)="showSoftInfo()">
+            ℹ Info Soft
+          </button>
+          <button class="demo-btn default" (click)="showSoftDefault()">
+             Default Soft
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-example">
+      <pre><code>{{ getCodeExample('variants') }}</code></pre>
+      <button 
+        class="copy-btn" 
+        (click)="copyCode(getCodeExample('variants'))"
+        [class.copied]="copiedStates[getCodeExample('variants')]">
+        {{ copiedStates[getCodeExample('variants')] ? ' Copiado!' : ' Copiar' }}
+      </button>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="doc-section">
+    <h2> Recursos Avançados</h2>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"></div>
+        <h3>Duração Personalizável</h3>
+        <p>Defina quanto tempo o toast permanecerá visível.</p>
+        <button class="demo-btn info" (click)="showQuickToast()">
+          Testar (2s)
+        </button>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"></div>
+        <h3>Pausar ao Passar Mouse</h3>
+        <p>Timer pausa automaticamente ao passar o mouse.</p>
+        <button class="demo-btn success" (click)="showPauseToast()">
+          Testar Pause
+        </button>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"></div>
+        <h3>Barra de Progresso</h3>
+        <p>Indicador visual do tempo restante.</p>
+        <button class="demo-btn warning" (click)="showProgressToast()">
+          Testar Progresso
+        </button>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"></div>
+        <h3>Botão de Ação</h3>
+        <p>Adicione um botão interativo ao toast.</p>
+        <button class="demo-btn default" (click)="showActionToast()">
+          Com Ação
+        </button>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"></div>
+        <h3>Timestamp</h3>
+        <p>Mostra horário de exibição do toast.</p>
+        <button class="demo-btn info" (click)="showTimestampToast()">
+          Testar Timestamp
+        </button>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"></div>
+        <h3>Ícone Personalizado</h3>
+        <p>Use ícones padrão ou personalizados.</p>
+        <button class="demo-btn success" (click)="showCustomIconToast()">
+          Ícone Custom
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Positions -->
+  <section class="doc-section">
+    <h2> Posicionamento</h2>
+    <p>Toasts podem ser exibidos em 6 posições diferentes.</p>
+    
+    <div class="position-grid">
+      <button class="position-btn top-left" (click)="showTopLeft()">
+         Top Left
+      </button>
+      <button class="position-btn top-center" (click)="showTopCenter()">
+         Top Center
+      </button>
+      <button class="position-btn top-right" (click)="showTopRight()">
+         Top Right
+      </button>
+      <button class="position-btn bottom-left" (click)="showBottomLeft()">
+         Bottom Left
+      </button>
+      <button class="position-btn bottom-center" (click)="showBottomCenter()">
+         Bottom Center
+      </button>
+      <button class="position-btn bottom-right" (click)="showBottomRight()">
+         Bottom Right
+      </button>
+    </div>
+  </section>
+
+  <!-- API Documentation -->
+  <section class="doc-section">
+    <h2> API</h2>
+
+    <div class="api-table">
+      <h3>Inputs</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>type</code></td>
+            <td><code>success | error | warning | info | default</code></td>
+            <td><code>default</code></td>
+            <td>Define o tipo semântico do toast</td>
+          </tr>
+          <tr>
+            <td><code>variant</code></td>
+            <td><code>filled | outlined | soft</code></td>
+            <td><code>filled</code></td>
+            <td>Estilo visual do toast</td>
+          </tr>
+          <tr>
+            <td><code>title</code></td>
+            <td><code>string</code></td>
+            <td><code>''</code></td>
+            <td>Título do toast</td>
+          </tr>
+          <tr>
+            <td><code>message</code></td>
+            <td><code>string</code></td>
+            <td><code>''</code></td>
+            <td>Mensagem principal do toast</td>
+          </tr>
+          <tr>
+            <td><code>icon</code></td>
+            <td><code>string</code></td>
+            <td><code>''</code></td>
+            <td>Ícone personalizado (emoji ou texto)</td>
+          </tr>
+          <tr>
+            <td><code>showIcon</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Exibe ou oculta o ícone</td>
+          </tr>
+          <tr>
+            <td><code>closable</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Permite fechar o toast manualmente</td>
+          </tr>
+          <tr>
+            <td><code>position</code></td>
+            <td><code>top-right | top-left | etc</code></td>
+            <td><code>top-right</code></td>
+            <td>Posição do toast na tela</td>
+          </tr>
+          <tr>
+            <td><code>duration</code></td>
+            <td><code>number</code></td>
+            <td><code>5000</code></td>
+            <td>Duração em milissegundos (0 = infinito)</td>
+          </tr>
+          <tr>
+            <td><code>pauseOnHover</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Pausa o timer ao passar o mouse</td>
+          </tr>
+          <tr>
+            <td><code>showProgress</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Exibe barra de progresso</td>
+          </tr>
+          <tr>
+            <td><code>actionLabel</code></td>
+            <td><code>string</code></td>
+            <td><code>''</code></td>
+            <td>Texto do botão de ação</td>
+          </tr>
+          <tr>
+            <td><code>showTimestamp</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Exibe horário do toast</td>
+          </tr>
+          <tr>
+            <td><code>visible</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Controla visibilidade do toast</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="api-table">
+      <h3>Outputs</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>closed</code></td>
+            <td><code>EventEmitter</code></td>
+            <td>Emitido quando o toast é fechado</td>
+          </tr>
+          <tr>
+            <td><code>actionClick</code></td>
+            <td><code>EventEmitter</code></td>
+            <td>Emitido quando o botão de ação é clicado</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="doc-section">
+    <h2> Casos de Uso</h2>
+    
+    <div class="use-cases-grid">
+      <div class="use-case-card">
+        <div class="use-case-icon"></div>
+        <h3>Feedback de Sucesso</h3>
+        <p>Confirmar ações bem-sucedidas como salvamento de dados, envio de formulários ou conclusão de processos.</p>
+        <div class="use-case-example">
+          <strong>Exemplo:</strong> "Dados salvos com sucesso!"
+        </div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon"></div>
+        <h3>Notificações de Erro</h3>
+        <p>Alertar usuários sobre erros, falhas de validação ou problemas que requerem atenção imediata.</p>
+        <div class="use-case-example">
+          <strong>Exemplo:</strong> "Erro ao processar pagamento."
+        </div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon"></div>
+        <h3>Avisos Importantes</h3>
+        <p>Informar sobre ações potencialmente perigosas ou situações que requerem cautela do usuário.</p>
+        <div class="use-case-example">
+          <strong>Exemplo:</strong> "Esta ação não pode ser desfeita."
+        </div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon">ℹ</div>
+        <h3>Informações Contextuais</h3>
+        <p>Fornecer dicas, atualizações ou informações adicionais que melhoram a experiência do usuário.</p>
+        <div class="use-case-example">
+          <strong>Exemplo:</strong> "Nova versão disponível."
+        </div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon"></div>
+        <h3>Notificações Gerais</h3>
+        <p>Comunicar mensagens, lembretes ou atualizações de sistema sem urgência específica.</p>
+        <div class="use-case-example">
+          <strong>Exemplo:</strong> "Você tem 3 novas mensagens."
+        </div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon"></div>
+        <h3>Ações Interativas</h3>
+        <p>Incluir botões de ação para permitir resposta rápida do usuário às notificações.</p>
+        <div class="use-case-example">
+          <strong>Exemplo:</strong> "Nova mensagem" + botão "Ver Agora"
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Best Practices -->
+  <section class="doc-section">
+    <h2> Boas Práticas</h2>
+    
+    <div class="best-practices">
+      <div class="practice-item good">
+        <div class="practice-icon"></div>
+        <div class="practice-content">
+          <h4>Use tipos semânticos apropriados</h4>
+          <p>Escolha o tipo correto (success, error, warning, info) para cada situação.</p>
+        </div>
+      </div>
+
+      <div class="practice-item good">
+        <div class="practice-icon"></div>
+        <div class="practice-content">
+          <h4>Mensagens concisas e claras</h4>
+          <p>Mantenha títulos curtos (2-5 palavras) e mensagens diretas ao ponto.</p>
+        </div>
+      </div>
+
+      <div class="practice-item good">
+        <div class="practice-icon"></div>
+        <div class="practice-content">
+          <h4>Duração adequada ao conteúdo</h4>
+          <p>Ajuste a duração baseado na quantidade de texto.</p>
+        </div>
+      </div>
+
+      <div class="practice-item good">
+        <div class="practice-icon"></div>
+        <div class="practice-content">
+          <h4>Limite toasts simultâneos</h4>
+          <p>Evite empilhar muitos toasts ao mesmo tempo.</p>
+        </div>
+      </div>
+
+      <div class="practice-item bad">
+        <div class="practice-icon"></div>
+        <div class="practice-content">
+          <h4>Evite toasts para informações críticas</h4>
+          <p>Não use toasts para mensagens que requerem confirmação obrigatória.</p>
+        </div>
+      </div>
+
+      <div class="practice-item bad">
+        <div class="practice-icon"></div>
+        <div class="practice-content">
+          <h4>Não abuse de toasts automáticos</h4>
+          <p>Evite exibir toasts automaticamente em excesso.</p>
+        </div>
+      </div>
+
+      <div class="practice-item good">
+        <div class="practice-icon"></div>
+        <div class="practice-content">
+          <h4>Escolha a variante apropriada</h4>
+          <p><strong>Filled:</strong> notificações importantes | <strong>Outlined:</strong> interfaces clean | <strong>Soft:</strong> notificações sutis.</p>
+        </div>
+      </div>
+
+      <div class="practice-item good">
+        <div class="practice-icon"></div>
+        <div class="practice-content">
+          <h4>Use pauseOnHover para mensagens longas</h4>
+          <p>Sempre ative pauseOnHover quando o toast contém informações importantes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Accessibility -->
+  <section class="doc-section accessibility">
+    <h2> Acessibilidade</h2>
+    
+    <div class="accessibility-content">
+      <p>O componente Toast foi desenvolvido seguindo as diretrizes WCAG 2.1:</p>
+
+      <div class="accessibility-features">
+        <div class="a11y-feature">
+          <div class="a11y-icon"></div>
+          <h4>ARIA Live Regions</h4>
+          <p>Utiliza role="alert" e aria-live="polite" para anunciar toasts.</p>
+        </div>
+
+        <div class="a11y-feature">
+          <div class="a11y-icon"></div>
+          <h4>Navegação por Teclado</h4>
+          <p>Botão de fechar acessível via Tab e acionável com Enter ou Space.</p>
+        </div>
+
+        <div class="a11y-feature">
+          <div class="a11y-icon"></div>
+          <h4>Contraste de Cores</h4>
+          <p>Todas as variantes garantem contraste mínimo de 4.5:1 (WCAG AA).</p>
+        </div>
+
+        <div class="a11y-feature">
+          <div class="a11y-icon"></div>
+          <h4>Indicadores Visuais</h4>
+          <p>Ícones e cores trabalham juntos - nunca use apenas cor para transmitir informação.</p>
+        </div>
+
+        <div class="a11y-feature">
+          <div class="a11y-icon"></div>
+          <h4>Controle de Tempo</h4>
+          <p>Usuários podem pausar toasts ou fechar manualmente (WCAG 2.2.1).</p>
+        </div>
+
+        <div class="a11y-feature">
+          <div class="a11y-icon"></div>
+          <h4>Design Responsivo</h4>
+          <p>Toasts se adaptam a diferentes tamanhos de tela.</p>
+        </div>
+      </div>
+
+      <div class="a11y-tips">
+        <h4> Dicas de Implementação Acessível</h4>
+        <ul>
+          <li>Para toasts com informações críticas, use duration="0"</li>
+          <li>Sempre forneça um título descritivo</li>
+          <li>Teste com leitores de tela (NVDA, JAWS, VoiceOver)</li>
+          <li>Evite toasts que aparecem muito rapidamente em sequência</li>
+          <li>Use showTimestamp quando o timing for importante</li>
+          <li>Garanta que botões de ação tenham labels claros</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Examples Summary -->
+  <section class="doc-section">
+    <h2> Resumo de Exemplos</h2>
+    
+    <div class="summary-grid">
+      <div class="summary-card">
+        <h4>3 Variantes</h4>
+        <p>Filled, Outlined, Soft</p>
+      </div>
+      <div class="summary-card">
+        <h4>5 Tipos</h4>
+        <p>Success, Error, Warning, Info, Default</p>
+      </div>
+      <div class="summary-card">
+        <h4>6 Posições</h4>
+        <p>Top/Bottom  Left/Center/Right</p>
+      </div>
+      <div class="summary-card">
+        <h4>15 Combinações</h4>
+        <p>Variantes  Tipos</p>
+      </div>
+    </div>
+  </section>
+</div>

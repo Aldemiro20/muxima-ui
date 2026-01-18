@@ -1,0 +1,69 @@
+<div class="muxima-search-bar" [ngClass]="sizeClass">
+  <div class="search-container">
+    <!-- Search Icon -->
+    <svg *ngIf="showIcon" class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.35-4.35"></path>
+    </svg>
+
+    <!-- Input -->
+    <input
+      #searchInput
+      type="text"
+      class="search-input"
+      [placeholder]="placeholder"
+      [(ngModel)]="searchValue"
+      (input)="onInputChange()"
+      (keydown)="onKeyDown($event)"
+      (focus)="showSuggestions = searchValue.length > 0 && suggestions.length > 0"
+      (blur)="onBlur()">
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="search-loading">
+      <svg class="spinner" width="20" height="20" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" opacity="0.25"></circle>
+        <path fill="currentColor" d="M12 2a10 10 0 0 1 10 10h-2a8 8 0 0 0-8-8V2z"></path>
+      </svg>
+    </div>
+
+    <!-- Clear Button -->
+    <button
+      *ngIf="clearable && searchValue && !loading"
+      class="clear-button"
+      (click)="clearSearch()"
+      type="button">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Keyboard Shortcut Badge -->
+    <div *ngIf="!searchValue && keyboardShortcut" class="keyboard-shortcut">
+      <kbd>{{ keyboardShortcut }}</kbd>
+    </div>
+  </div>
+
+  <!-- Suggestions Dropdown -->
+  <div *ngIf="showSuggestions && suggestions.length > 0" class="suggestions-dropdown">
+    <div class="suggestions-list">
+      <div
+        *ngFor="let suggestion of suggestions; let i = index"
+        class="suggestion-item"
+        [class.selected]="i === selectedIndex"
+        (mouseenter)="selectedIndex = i"
+        (click)="selectSuggestion(suggestion)">
+        <div class="suggestion-content">
+          <span *ngIf="suggestion.icon" class="suggestion-icon">{{ suggestion.icon }}</span>
+          <div class="suggestion-text">
+            <div class="suggestion-main">{{ suggestion.text }}</div>
+            <div *ngIf="suggestion.category" class="suggestion-category">{{ suggestion.category }}</div>
+          </div>
+        </div>
+        <svg class="suggestion-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>

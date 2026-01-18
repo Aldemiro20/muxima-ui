@@ -1,0 +1,100 @@
+.agt--dialog-backdrop {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  overflow: hidden; 
+
+  z-index: 1000;
+}
+
+.agt--dialog-content {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: var(--modal-max-width, 760px); /* Ajuste conforme necessário */
+  min-height: var(--modal-min-height, 480px);
+  /* max-height: 80vh; // Define um limite de altura para a modal */
+  background-color: white;
+  width: 100%;
+  padding: 24px;
+  margin: 0 24px;
+  z-index: 50;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.agt--dialog-header {
+  display: flex;
+  justify-content: space-between;
+
+  padding-bottom: 16px;
+  border-bottom: 2px solid #f1f1f1;
+}
+
+.agt-dialog-header-titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.agt--dialog-title  {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #667085;
+}
+
+.agt--dialog-subtitle {
+  font-family: Roboto, Inter, 'sans-serif';
+  font-size: 14px;
+  color: #667085;
+  margin-top: 4px;
+}
+
+.agt--dialog-header-icon {
+  background-color: #f1f1f1;
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+}
+
+.agt--dialog-header-icon > svg {
+  width: 20px;
+  height: 20px;
+}
+
+.agt--dialog-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.close--btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F1F1F1;
+  border: none;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.agt--dialog-outlet {
+  flex: 1;
+  max-height: calc(80vh - 48px); /* Altura do modal menos padding */
+  overflow-y: auto;
+}
+

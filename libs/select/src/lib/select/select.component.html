@@ -1,0 +1,102 @@
+<div class="muxima-select-container">
+  <!-- Label -->
+  <label *ngIf="label" class="muxima-select-label">
+    {{ label }}
+  </label>
+
+  <!-- Select Wrapper -->
+  <div 
+    #dropdownButton
+    class="muxima-select-wrapper"
+    [ngClass]="getClasses()"
+    (click)="toggleDropdown()"
+    tabindex="0"
+  >
+    <!-- Prefix Icon -->
+    <span *ngIf="prefixIcon" class="muxima-select-prefix-icon">
+      {{ prefixIcon }}
+    </span>
+
+    <!-- Selected Value / Placeholder -->
+    <div class="muxima-select-value">
+      <span *ngIf="!getSelectedLabel()" class="muxima-select-placeholder">
+        {{ placeholder }}
+      </span>
+      <span *ngIf="getSelectedLabel()" class="muxima-select-selected">
+        {{ getSelectedLabel() }}
+      </span>
+    </div>
+
+    <!-- Clear Button -->
+    <button 
+      *ngIf="clearable && getSelectedLabel()" 
+      type="button"
+      class="muxima-select-clear"
+      (click)="clearSelection($event)"
+      tabindex="-1"
+    >
+      ✕
+    </button>
+
+    <!-- Arrow Icon -->
+    <span class="muxima-select-arrow" [class.muxima-select-arrow-open]="dropdownOpen">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  </div>
+
+  <!-- Dropdown Options -->
+  <div 
+    *ngIf="dropdownOpen"
+    class="muxima-select-dropdown"
+    [class.muxima-select-dropdown-open]="dropdownOpen"
+    [class.muxima-select-dropdown-upward]="openUpward"
+    [ngStyle]="dropdownPosition"
+  >
+    <!-- Search Input -->
+    <div *ngIf="searchable" class="muxima-select-search" (click)="$event.stopPropagation()">
+      <span class="muxima-select-search-icon">🔍</span>
+      <input 
+        type="text" 
+        [(ngModel)]="searchText"
+        (input)="onSearch()"
+        placeholder="Buscar..."
+        class="muxima-select-search-input"
+      />
+    </div>
+
+    <!-- Options List -->
+    <ul class="muxima-select-options">
+      <li
+        *ngFor="let option of filteredOptions; let i = index"
+        class="muxima-select-option"
+        [class.muxima-select-option-selected]="isSelected(option)"
+        [class.muxima-select-option-disabled]="option.disabled"
+        [class.muxima-select-option-focused]="i === focusedIndex"
+        (click)="selectOption(option)"
+      >
+        <span *ngIf="option.icon" class="muxima-select-option-icon">{{ option.icon }}</span>
+        <span class="muxima-select-option-label">{{ option.label }}</span>
+        <span *ngIf="isSelected(option)" class="muxima-select-option-check">✓</span>
+      </li>
+      
+      <li *ngIf="filteredOptions.length === 0" class="muxima-select-option muxima-select-option-empty">
+        Nenhuma opção encontrada
+      </li>
+    </ul>
+  </div>
+
+  <!-- Helper Text -->
+  <div *ngIf="helperText && !hasError" class="muxima-select-helper-text">
+    {{ helperText }}
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage && hasError" class="muxima-select-error-message">
+    <span class="muxima-select-error-icon">⚠</span>
+    <span>{{ errorMessage }}</span>
+  </div>
+</div>
+
+

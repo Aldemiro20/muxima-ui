@@ -1,0 +1,65 @@
+<div class="home-page">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">🌺 Muxima UI</h1>
+      <p class="hero-subtitle">
+        Design com coração – Componentes acessíveis, elegantes e feitos para pessoas.
+      </p>
+      <p class="hero-description">
+        Uma biblioteca Angular moderna, inspirada na cultura e identidade angolana,
+        com componentes profissionais e inovadores.
+      </p>
+      <div class="hero-actions">
+        <a routerLink="/getting-started" class="btn btn-primary">
+          Começar Agora
+        </a>
+        <a routerLink="/components/alert" class="btn btn-secondary">
+          Ver Componentes
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats">
+    <div class="stat-item" *ngFor="let stat of stats">
+      <div class="stat-value">{{ stat.value }}</div>
+      <div class="stat-label">{{ stat.label }}</div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <h2 class="section-title">Por que escolher Muxima UI?</h2>
+    <div class="features-grid">
+      <div class="feature-card" *ngFor="let feature of features">
+        <div class="feature-icon">{{ feature.icon }}</div>
+        <h3 class="feature-title">{{ feature.title }}</h3>
+        <p class="feature-description">{{ feature.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Code Example -->
+  <section class="code-example">
+    <h2 class="section-title">Simples de Usar</h2>
+    <div class="code-block">
+      <pre><code>{{codeExample}}</code></pre>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Pronto para começar?</h2>
+    <p>Instale o Muxima UI e crie interfaces incríveis em minutos</p>
+    <div class="cta-actions">
+      <a routerLink="/getting-started" class="btn btn-large btn-primary">
+        Guia de Instalação
+      </a>
+      <a href="https://github.com/seu-usuario/muxima-ui" target="_blank" class="btn btn-large btn-outline">
+        ⭐ GitHub
+      </a>
+    </div>
+  </section>
+</div>

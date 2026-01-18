@@ -1,0 +1,12 @@
+{
+  "name": "@agt-ui/table",
+  "version": "6.0.7",
+  "peerDependencies": {
+    "@angular/common": "^15.2.0",
+    "@angular/core": "^15.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

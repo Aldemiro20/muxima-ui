@@ -1,0 +1,521 @@
+<div class="doc-page">
+  <header class="doc-header">
+    <h1>Table</h1>
+    <p>Componente de tabela com ordenação, paginação e estados de loading.</p>
+  </header>
+
+  <!-- Import -->
+  <section class="doc-section">
+    <h2>Importação</h2>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(importCode)">📋 Copiar</button>
+      <pre><code>{{ importCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Basic Usage -->
+  <section class="doc-section">
+    <h2>Uso Básico</h2>
+    <div class="demo-container">
+      <muxima-table
+        [columns]="basicColumns"
+        [data]="basicData"
+        [showPagination]="false"
+      ></muxima-table>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(basicCode)">📋 Copiar</button>
+      <pre><code>{{ basicCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Sortable Table -->
+  <section class="doc-section">
+    <h2>Tabela com Ordenação</h2>
+    <div class="demo-container">
+      <muxima-table
+        [columns]="sortableColumns"
+        [data]="basicData"
+        [showPagination]="false"
+        (sortChange)="onSortChange($event)"
+      ></muxima-table>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(sortableCode)">📋 Copiar</button>
+      <pre><code>{{ sortableCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- With Pagination -->
+  <section class="doc-section">
+    <h2>Tabela com Paginação</h2>
+    <div class="demo-container">
+      <muxima-table
+        [columns]="fullColumns"
+        [data]="fullData"
+        [pagination]="fullPagination"
+        [showPagination]="true"
+        [pageSizeOptions]="[5, 10, 25]"
+        (pageChange)="onPageChange($event)"
+        (sortChange)="onSortChange($event)"
+      ></muxima-table>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(paginationCode)">📋 Copiar</button>
+      <pre><code>{{ paginationCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Variants -->
+  <section class="doc-section">
+    <h2>Variantes</h2>
+    
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #1E293B; font-size: 1.125rem;">Striped (Zebrada)</h3>
+    <div class="demo-container">
+      <muxima-table
+        [striped]="true"
+        [columns]="basicColumns"
+        [data]="stripedData"
+        [showPagination]="false"
+      ></muxima-table>
+    </div>
+
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #1E293B; font-size: 1.125rem;">Hoverable (Hover Effect)</h3>
+    <div class="demo-container">
+      <muxima-table
+        [hoverable]="true"
+        [columns]="basicColumns"
+        [data]="hoverableData"
+        [showPagination]="false"
+      ></muxima-table>
+    </div>
+
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #1E293B; font-size: 1.125rem;">Bordered (Com Bordas)</h3>
+    <div class="demo-container">
+      <muxima-table
+        [bordered]="true"
+        [columns]="basicColumns"
+        [data]="borderedData"
+        [showPagination]="false"
+      ></muxima-table>
+    </div>
+
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #1E293B; font-size: 1.125rem;">Compact (Compacta)</h3>
+    <div class="demo-container">
+      <muxima-table
+        [compact]="true"
+        [columns]="basicColumns"
+        [data]="compactData"
+        [showPagination]="false"
+      ></muxima-table>
+    </div>
+
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(variantsCode)">📋 Copiar</button>
+      <pre><code>{{ variantsCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Glassmorphism -->
+  <section class="doc-section">
+    <h2>Glassmorphism</h2>
+    <p class="doc-description">
+      O efeito Glassmorphism cria uma aparência translúcida e moderna. 
+      Funciona melhor em fundos com cor ou gradiente.
+    </p>
+    <div class="demo-container glass-bg">
+      <muxima-table
+        variant="glass"
+        [columns]="sortableColumns"
+        [data]="basicData"
+        [showPagination]="true"
+        [pagination]="glassPagination"
+        (sortChange)="onSort($event)"
+        (pageChange)="onPageChange($event)"
+      ></muxima-table>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(glassCode)">📋 Copiar</button>
+      <pre><code>{{ glassCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Loading State -->
+  <section class="doc-section">
+    <h2>Estado de Loading</h2>
+    <div class="demo-container">
+      <muxima-table
+        [loading]="isLoading"
+        [columns]="basicColumns"
+        [data]="loadingData"
+        [showPagination]="false"
+      ></muxima-table>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(loadingCode)">📋 Copiar</button>
+      <pre><code>{{ loadingCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Example 1: Products Table -->
+  <section class="doc-section">
+    <h2>📦 Exemplo: Tabela de Produtos</h2>
+    <p class="doc-description">Tabela para gerenciamento de produtos com informações de estoque e preços.</p>
+    <div class="demo-container">
+      <muxima-table
+        [columns]="productsColumns"
+        [data]="productsData"
+        [showPagination]="false"
+        [striped]="true"
+      ></muxima-table>
+    </div>
+  </section>
+
+  <!-- Example 2: Transactions Table -->
+  <section class="doc-section">
+    <h2>💳 Exemplo: Tabela de Transações</h2>
+    <p class="doc-description">Tabela financeira para acompanhamento de transações e movimentações.</p>
+    <div class="demo-container">
+      <muxima-table
+        [columns]="transactionsColumns"
+        [data]="transactionsData"
+        [showPagination]="false"
+        [hoverable]="true"
+      ></muxima-table>
+    </div>
+  </section>
+
+  <!-- Example 3: Tasks Table -->
+  <section class="doc-section">
+    <h2>✅ Exemplo: Tabela de Tarefas</h2>
+    <p class="doc-description">Tabela de gerenciamento de tarefas com prioridades e prazos.</p>
+    <div class="demo-container">
+      <muxima-table
+        [columns]="tasksColumns"
+        [data]="tasksData"
+        [showPagination]="false"
+        [bordered]="true"
+      ></muxima-table>
+    </div>
+  </section>
+
+  <!-- Example 4: Sales Table -->
+  <section class="doc-section">
+    <h2>📈 Exemplo: Tabela de Vendas</h2>
+    <p class="doc-description">Tabela analítica de vendas com métricas de desempenho.</p>
+    <div class="demo-container">
+      <muxima-table
+        [columns]="salesColumns"
+        [data]="salesData"
+        [showPagination]="false"
+        [compact]="true"
+      ></muxima-table>
+    </div>
+  </section>
+
+  <!-- Example 5: Invoices Table -->
+  <section class="doc-section">
+    <h2>🧾 Exemplo: Tabela de Faturas</h2>
+    <p class="doc-description">Tabela de controle de faturas com status de pagamento.</p>
+    <div class="demo-container">
+      <muxima-table
+        [columns]="invoicesColumns"
+        [data]="invoicesData"
+        [showPagination]="false"
+        [striped]="true"
+        [hoverable]="true"
+      ></muxima-table>
+    </div>
+  </section>
+
+  <!-- Example 6: Courses Table -->
+  <section class="doc-section">
+    <h2>🎓 Exemplo: Tabela de Cursos</h2>
+    <p class="doc-description">Tabela educacional com informações de cursos e avaliações.</p>
+    <div class="demo-container">
+      <muxima-table
+        [columns]="coursesColumns"
+        [data]="coursesData"
+        [showPagination]="false"
+        [bordered]="true"
+        [hoverable]="true"
+      ></muxima-table>
+    </div>
+  </section>
+
+  <!-- Example 7: Events Table -->
+  <section class="doc-section">
+    <h2>🎪 Exemplo: Tabela de Eventos</h2>
+    <p class="doc-description">Tabela de eventos com informações de data, local e participantes.</p>
+    <div class="demo-container">
+      <muxima-table
+        [columns]="eventsColumns"
+        [data]="eventsData"
+        [showPagination]="false"
+        [striped]="true"
+        [compact]="true"
+      ></muxima-table>
+    </div>
+  </section>
+
+  <!-- Modern Styles Section -->
+  <section class="doc-section">
+    <h2>🎨 Estilos Modernos</h2>
+    <p class="doc-description">
+      Explore diferentes variantes visuais para criar tabelas únicas e modernas.
+      Cada estilo pode ser combinado com outras propriedades como striped, bordered e compact.
+    </p>
+
+    <h3 style="margin-top: 2.5rem; margin-bottom: 1rem; color: #1E293B; font-size: 1.125rem;">✨ Shadow (Sombra Moderna)</h3>
+    <p class="doc-description" style="font-size: 0.875rem;">Tabela com header gradiente azul e sombra profunda.</p>
+    <div class="demo-container">
+      <muxima-table
+        variant="shadow"
+        [columns]="basicColumns"
+        [data]="basicData"
+        [showPagination]="false"
+      ></muxima-table>
+    </div>
+
+    <h3 style="margin-top: 2.5rem; margin-bottom: 1rem; color: #1E293B; font-size: 1.125rem;">🌈 Gradient Header</h3>
+    <p class="doc-description" style="font-size: 0.875rem;">Header com gradiente roxo vibrante.</p>
+    <div class="demo-container">
+      <muxima-table
+        variant="gradient-header"
+        [columns]="sortableColumns"
+        [data]="basicData"
+        [showPagination]="false"
+      ></muxima-table>
+    </div>
+
+    <h3 style="margin-top: 2.5rem; margin-bottom: 1rem; color: #1E293B; font-size: 1.125rem;">🎨 Colorful (Linhas Coloridas)</h3>
+    <p class="doc-description" style="font-size: 0.875rem;">Cada linha com uma cor diferente do design system.</p>
+    <div class="demo-container">
+      <muxima-table
+        variant="colorful"
+        [columns]="productsColumns"
+        [data]="productsData"
+        [showPagination]="false"
+      ></muxima-table>
+    </div>
+
+    <h3 style="margin-top: 2.5rem; margin-bottom: 1rem; color: #1E293B; font-size: 1.125rem;">🌙 Dark Mode</h3>
+    <p class="doc-description" style="font-size: 0.875rem;">Estilo escuro perfeito para interfaces dark mode.</p>
+    <div class="demo-container" style="background: #0F172A; padding: 2rem;">
+      <muxima-table
+        variant="dark"
+        [columns]="sortableColumns"
+        [data]="basicData"
+        [pagination]="glassPagination"
+        (pageChange)="onPageChange($event)"
+      ></muxima-table>
+    </div>
+
+    <h3 style="margin-top: 2.5rem; margin-bottom: 1rem; color: #1E293B; font-size: 1.125rem;">⚡ Minimal</h3>
+    <p class="doc-description" style="font-size: 0.875rem;">Design minimalista e limpo, sem bordas ou backgrounds.</p>
+    <div class="demo-container">
+      <muxima-table
+        variant="minimal"
+        [columns]="tasksColumns"
+        [data]="tasksData"
+        [showPagination]="false"
+      ></muxima-table>
+    </div>
+
+    <h3 style="margin-top: 2.5rem; margin-bottom: 1rem; color: #1E293B; font-size: 1.125rem;">🔘 Rounded (Células Arredondadas)</h3>
+    <p class="doc-description" style="font-size: 0.875rem;">Linhas separadas com bordas arredondadas.</p>
+    <div class="demo-container" style="background: #F8FAFC;">
+      <muxima-table
+        variant="rounded"
+        [columns]="transactionsColumns"
+        [data]="transactionsData"
+        [showPagination]="false"
+      ></muxima-table>
+    </div>
+
+    <h3 style="margin-top: 2.5rem; margin-bottom: 1rem; color: #1E293B; font-size: 1.125rem;">🃏 Cards (Estilo Cartões)</h3>
+    <p class="doc-description" style="font-size: 0.875rem;">Dados exibidos como cartões individuais - ideal para mobile.</p>
+    <div class="demo-container" style="background: #F8FAFC;">
+      <muxima-table
+        variant="cards"
+        [columns]="coursesColumns"
+        [data]="coursesData"
+        [showPagination]="false"
+      ></muxima-table>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2>API</h2>
+    
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #1E293B; font-size: 1.125rem;">Propriedades do Componente</h3>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Propriedade</th>
+          <th>Tipo</th>
+          <th>Padrão</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>columns</code></td>
+          <td>TableColumn[]</td>
+          <td>[]</td>
+          <td>Configuração das colunas</td>
+        </tr>
+        <tr>
+          <td><code>data</code></td>
+          <td>any[]</td>
+          <td>[]</td>
+          <td>Dados da tabela</td>
+        </tr>
+        <tr>
+          <td><code>loading</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Exibe overlay de loading</td>
+        </tr>
+        <tr>
+          <td><code>striped</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Linhas zebradas</td>
+        </tr>
+        <tr>
+          <td><code>hoverable</code></td>
+          <td>boolean</td>
+          <td>true</td>
+          <td>Efeito hover nas linhas</td>
+        </tr>
+        <tr>
+          <td><code>bordered</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Bordas entre colunas</td>
+        </tr>
+        <tr>
+          <td><code>compact</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Espaçamento reduzido</td>
+        </tr>
+        <tr>
+          <td><code>pagination</code></td>
+          <td>TablePagination</td>
+          <td>-</td>
+          <td>Configuração da paginação</td>
+        </tr>
+        <tr>
+          <td><code>showPagination</code></td>
+          <td>boolean</td>
+          <td>true</td>
+          <td>Exibe paginação</td>
+        </tr>
+        <tr>
+          <td><code>pageSizeOptions</code></td>
+          <td>number[]</td>
+          <td>[5, 10, 25, 50, 100]</td>
+          <td>Opções de itens por página</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #1E293B; font-size: 1.125rem;">Eventos</h3>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Evento</th>
+          <th>Tipo</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>pageChange</code></td>
+          <td>PaginationEvent</td>
+          <td>Emitido quando a página ou tamanho muda</td>
+        </tr>
+        <tr>
+          <td><code>sortChange</code></td>
+          <td>SortEvent</td>
+          <td>Emitido quando uma coluna é ordenada</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #1E293B; font-size: 1.125rem;">Interface TableColumn</h3>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Propriedade</th>
+          <th>Tipo</th>
+          <th>Obrigatório</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>key</code></td>
+          <td>string</td>
+          <td>Sim</td>
+          <td>Chave do dado</td>
+        </tr>
+        <tr>
+          <td><code>label</code></td>
+          <td>string</td>
+          <td>Sim</td>
+          <td>Texto do header</td>
+        </tr>
+        <tr>
+          <td><code>sortable</code></td>
+          <td>boolean</td>
+          <td>Não</td>
+          <td>Coluna ordenável</td>
+        </tr>
+        <tr>
+          <td><code>width</code></td>
+          <td>string</td>
+          <td>Não</td>
+          <td>Largura da coluna</td>
+        </tr>
+        <tr>
+          <td><code>align</code></td>
+          <td>'left' | 'center' | 'right'</td>
+          <td>Não</td>
+          <td>Alinhamento do conteúdo</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #1E293B; font-size: 1.125rem;">Interface TablePagination</h3>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Propriedade</th>
+          <th>Tipo</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>currentPage</code></td>
+          <td>number</td>
+          <td>Página atual (começa em 0)</td>
+        </tr>
+        <tr>
+          <td><code>totalElements</code></td>
+          <td>number</td>
+          <td>Total de registros</td>
+        </tr>
+        <tr>
+          <td><code>itemsPerPage</code></td>
+          <td>number</td>
+          <td>Itens por página</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

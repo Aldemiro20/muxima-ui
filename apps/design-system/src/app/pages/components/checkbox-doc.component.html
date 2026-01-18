@@ -1,0 +1,446 @@
+﻿<div class="checkbox-doc">
+  <!-- Header -->
+  <header class="doc-header">
+    <div class="header-content">
+      <h1>✅ Checkbox</h1>
+      <p class="subtitle">Componente de seleção múltipla com suporte a estados indeterminados, labels e descrições</p>
+    </div>
+  </header>
+
+  <!-- Installation -->
+  <section class="doc-section">
+    <h2>📦 Instalação</h2>
+    <div class="installation-card">
+      <code>import {{ '{' }} CheckboxComponent {{ '}' }} from '@agt-ui/checkbox';</code>
+    </div>
+  </section>
+
+  <!-- Basic Example -->
+  <section class="doc-section">
+    <h2> Exemplo Básico</h2>
+    <div class="example-container">
+      <div class="example-preview">
+        <muxima-checkbox 
+          [checked]="basicChecked"
+          (click)="basicChecked = !basicChecked">
+        </muxima-checkbox>
+      </div>
+      <div class="code-block">
+        <button class="copy-btn" (click)="copyCode('basic')">
+          {{ '{' }}{{ '{' }} copiedStates['basic'] ? ' Copiado!' : ' Copiar' {{ '}' }}{{ '}' }}
+        </button>
+        <pre><code>{{ '{' }}{{ '{' }} codeExamples.basic {{ '}' }}{{ '}' }}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- With Label -->
+  <section class="doc-section">
+    <h2> Com Label</h2>
+    <div class="example-container">
+      <div class="example-preview">
+        <muxima-checkbox 
+          label="Aceito os termos e condições"
+          [checked]="agreeTerms"
+          (click)="agreeTerms = !agreeTerms">
+        </muxima-checkbox>
+      </div>
+      <div class="code-block">
+        <button class="copy-btn" (click)="copyCode('withLabel')">
+          {{ '{' }}{{ '{' }} copiedStates['withLabel'] ? ' Copiado!' : ' Copiar' {{ '}' }}{{ '}' }}
+        </button>
+        <pre><code>{{ '{' }}{{ '{' }} codeExamples.withLabel {{ '}' }}{{ '}' }}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- With Description -->
+  <section class="doc-section">
+    <h2> Com Descrição</h2>
+    <div class="example-container">
+      <div class="example-preview">
+        <muxima-checkbox 
+          label="Receber notificações"
+          description="Você receberá atualizações sobre novos recursos e ofertas"
+          [checked]="subscribeNewsletter"
+          (click)="subscribeNewsletter = !subscribeNewsletter">
+        </muxima-checkbox>
+      </div>
+      <div class="code-block">
+        <button class="copy-btn" (click)="copyCode('withDescription')">
+          {{ '{' }}{{ '{' }} copiedStates['withDescription'] ? ' Copiado!' : ' Copiar' {{ '}' }}{{ '}' }}
+        </button>
+        <pre><code>{{ '{' }}{{ '{' }} codeExamples.withDescription {{ '}' }}{{ '}' }}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sizes -->
+  <section class="doc-section">
+    <h2> Tamanhos</h2>
+    <div class="sizes-showcase">
+      <div class="size-item">
+        <muxima-checkbox label="Small (sm)" size="sm" [checked]="true"></muxima-checkbox>
+      </div>
+      <div class="size-item">
+        <muxima-checkbox label="Medium (md)" size="md" [checked]="true"></muxima-checkbox>
+      </div>
+      <div class="size-item">
+        <muxima-checkbox label="Large (lg)" size="lg" [checked]="true"></muxima-checkbox>
+      </div>
+      <div class="size-item">
+        <muxima-checkbox label="Extra Large (xl)" size="xl" [checked]="true"></muxima-checkbox>
+      </div>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode('sizes')">
+        {{ '{' }}{{ '{' }} copiedStates['sizes'] ? ' Copiado!' : ' Copiar' {{ '}' }}{{ '}' }}
+      </button>
+      <pre><code>{{ '{' }}{{ '{' }} codeExamples.sizes {{ '}' }}{{ '}' }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Variants -->
+  <section class="doc-section">
+    <h2> Variantes</h2>
+    <div class="variants-grid">
+      <div class="variant-card">
+        <div class="variant-header">
+          <h3>Default</h3>
+        </div>
+        <div class="variant-demo">
+          <muxima-checkbox label="Default Checkbox" variant="default" [checked]="true"></muxima-checkbox>
+        </div>
+      </div>
+
+      <div class="variant-card">
+        <div class="variant-header">
+          <h3>Primary</h3>
+        </div>
+        <div class="variant-demo">
+          <muxima-checkbox label="Primary Checkbox" variant="primary" [checked]="true"></muxima-checkbox>
+        </div>
+      </div>
+
+      <div class="variant-card">
+        <div class="variant-header">
+          <h3>Success</h3>
+        </div>
+        <div class="variant-demo">
+          <muxima-checkbox label="Success Checkbox" variant="success" [checked]="true"></muxima-checkbox>
+        </div>
+      </div>
+
+      <div class="variant-card">
+        <div class="variant-header">
+          <h3>Danger</h3>
+        </div>
+        <div class="variant-demo">
+          <muxima-checkbox label="Danger Checkbox" variant="danger" [checked]="true"></muxima-checkbox>
+        </div>
+      </div>
+
+      <div class="variant-card">
+        <div class="variant-header">
+          <h3>Warning</h3>
+        </div>
+        <div class="variant-demo">
+          <muxima-checkbox label="Warning Checkbox" variant="warning" [checked]="true"></muxima-checkbox>
+        </div>
+      </div>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode('variants')">
+        {{ '{' }}{{ '{' }} copiedStates['variants'] ? ' Copiado!' : '� Copiar' {{ '}' }}{{ '}' }}
+      </button>
+      <pre><code>{{ '{' }}{{ '{' }} codeExamples.variants {{ '}' }}{{ '}' }}</code></pre>
+    </div>
+  </section>
+
+  <!-- States -->
+  <section class="doc-section">
+    <h2> Estados</h2>
+    <div class="states-showcase">
+      <div class="state-item">
+        <h4>Normal</h4>
+        <muxima-checkbox label="Normal State" [checked]="true"></muxima-checkbox>
+      </div>
+      <div class="state-item">
+        <h4>Unchecked</h4>
+        <muxima-checkbox label="Unchecked State"></muxima-checkbox>
+      </div>
+      <div class="state-item">
+        <h4>Disabled (Unchecked)</h4>
+        <muxima-checkbox label="Disabled Unchecked" [disabled]="true"></muxima-checkbox>
+      </div>
+      <div class="state-item">
+        <h4>Disabled (Checked)</h4>
+        <muxima-checkbox label="Disabled Checked" [checked]="true" [disabled]="true"></muxima-checkbox>
+      </div>
+      <div class="state-item">
+        <h4>Indeterminate</h4>
+        <muxima-checkbox label="Indeterminate" [indeterminate]="true"></muxima-checkbox>
+      </div>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode('states')">
+        {{ '{' }}{{ '{' }} copiedStates['states'] ? ' Copiado!' : ' Copiar' {{ '}' }}{{ '}' }}
+      </button>
+      <pre><code>{{ '{' }}{{ '{' }} codeExamples.states {{ '}' }}{{ '}' }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Checkbox Group -->
+  <section class="doc-section">
+    <h2> Grupo de Checkboxes</h2>
+    <div class="example-container">
+      <div class="example-preview">
+        <div class="checkbox-group-demo">
+          <h3>Preferências de Notificações</h3>
+          <muxima-checkbox 
+            label="E-mail" 
+            description="Receber notificações por e-mail"
+            [(checked)]="notifications.email">
+          </muxima-checkbox>
+          <muxima-checkbox 
+            label="SMS" 
+            description="Receber notificações por SMS"
+            [(checked)]="notifications.sms">
+          </muxima-checkbox>
+          <muxima-checkbox 
+            label="Push" 
+            description="Receber notificações push no navegador"
+            [(checked)]="notifications.push">
+          </muxima-checkbox>
+        </div>
+      </div>
+      <div class="code-block">
+        <button class="copy-btn" (click)="copyCode('group')">
+          {{ '{' }}{{ '{' }} copiedStates['group'] ? ' Copiado!' : ' Copiar' {{ '}' }}{{ '}' }}
+        </button>
+        <pre><code>{{ '{' }}{{ '{' }} codeExamples.group {{ '}' }}{{ '}' }}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Select All Pattern -->
+  <section class="doc-section">
+    <h2> Padrão "Selecionar Todos"</h2>
+    <div class="example-container">
+      <div class="example-preview">
+        <div class="select-all-demo">
+          <muxima-checkbox 
+            label="Selecionar Todos"
+            variant="primary"
+            size="lg"
+            [checked]="selectAll"
+            [indeterminate]="someItemsSelected()"
+            (click)="toggleSelectAll()">
+          </muxima-checkbox>
+          
+          <div class="items-list">
+            <muxima-checkbox 
+              *ngFor="let item of items"
+              [label]="item.name"
+              [checked]="item.checked"
+              (click)="toggleItem(item)">
+            </muxima-checkbox>
+          </div>
+        </div>
+      </div>
+      <div class="code-block">
+        <button class="copy-btn" (click)="copyCode('selectAllPattern')">
+          {{ '{' }}{{ '{' }} copiedStates['selectAllPattern'] ? ' Copiado!' : ' Copiar' {{ '}' }}{{ '}' }}
+        </button>
+        <pre><code>{{ '{' }}{{ '{' }} codeExamples.selectAllPattern {{ '}' }}{{ '}' }}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2> API</h2>
+    <div class="api-table">
+      <h3>Propriedades</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Prop</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>checked</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Estado de seleção do checkbox</td>
+          </tr>
+          <tr>
+            <td><code>disabled</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Desabilita o checkbox</td>
+          </tr>
+          <tr>
+            <td><code>indeterminate</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Estado indeterminado (para select all)</td>
+          </tr>
+          <tr>
+            <td><code>label</code></td>
+            <td><code>string</code></td>
+            <td><code>''</code></td>
+            <td>Texto do label principal</td>
+          </tr>
+          <tr>
+            <td><code>description</code></td>
+            <td><code>string</code></td>
+            <td><code>''</code></td>
+            <td>Texto de descrição adicional</td>
+          </tr>
+          <tr>
+            <td><code>size</code></td>
+            <td><code>'sm' | 'md' | 'lg' | 'xl'</code></td>
+            <td><code>'md'</code></td>
+            <td>Tamanho do checkbox</td>
+          </tr>
+          <tr>
+            <td><code>variant</code></td>
+            <td><code>'default' | 'primary' | 'success' | 'danger' | 'warning'</code></td>
+            <td><code>'primary'</code></td>
+            <td>Estilo visual do checkbox</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="doc-section">
+    <h2>💼 Casos de Uso</h2>
+    <div class="use-cases-grid">
+      <div class="use-case-card">
+        <div class="use-case-icon">📋</div><h3>Formulários</h3>
+        <p>Termos de uso, preferências e configurações</p>
+        <div class="use-case-example">
+          <muxima-checkbox label="Aceito os termos de uso" variant="primary"></muxima-checkbox>
+          <muxima-checkbox label="Quero receber ofertas" variant="primary"></muxima-checkbox>
+        </div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon">📝</div><h3>Tarefas</h3>
+        <p>Listas de afazeres e checklist</p>
+        <div class="use-case-example">
+          <muxima-checkbox label="Revisar código" variant="success" [checked]="true"></muxima-checkbox>
+          <muxima-checkbox label="Fazer testes" variant="success"></muxima-checkbox>
+        </div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon">🔔</div><h3>Notificações</h3>
+        <p>Controle de preferências de comunicação</p>
+        <div class="use-case-example">
+          <muxima-checkbox label="E-mail" description="Notificações por e-mail" [checked]="true"></muxima-checkbox>
+          <muxima-checkbox label="SMS" description="Notificações por SMS"></muxima-checkbox>
+        </div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon">✅</div><h3>Seleção Múltipla</h3>
+        <p>Seleção de itens em tabelas e listas</p>
+        <div class="use-case-example">
+          <muxima-checkbox label="Selecionar todos" [indeterminate]="true"></muxima-checkbox>
+          <muxima-checkbox label="Item 1" [checked]="true"></muxima-checkbox>
+        </div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon">⚙️</div><h3>Configurações</h3>
+        <p>Ativar/desativar funcionalidades</p>
+        <div class="use-case-example">
+          <muxima-checkbox label="Modo escuro" [checked]="true"></muxima-checkbox>
+          <muxima-checkbox label="Autocompletar"></muxima-checkbox>
+        </div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon">🔒</div><h3>Permissões</h3>
+        <p>Controle de acesso e autorização</p>
+        <div class="use-case-example">
+          <muxima-checkbox label="Leitura" variant="primary" [checked]="true"></muxima-checkbox>
+          <muxima-checkbox label="Escrita" variant="warning"></muxima-checkbox>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Best Practices -->
+  <section class="doc-section">
+    <h2>✨ Melhores Práticas</h2>
+    <div class="best-practices">
+      <div class="practice-card do">
+        <div class="practice-header">
+          <span class="icon">✅</span>
+          <h4>Faça</h4>
+        </div>
+        <ul>
+          <li>Use labels descritivos e claros</li>
+          <li>Adicione descrições para opções complexas</li>
+          <li>Use variant "success" para tarefas completas</li>
+          <li>Implemente estado indeterminado em "selecionar todos"</li>
+          <li>Agrupe checkboxes relacionados</li>
+          <li>Mantenha labels curtos e objetivos</li>
+        </ul>
+      </div>
+
+      <div class="practice-card dont">
+        <div class="practice-header">
+          <span class="icon">❌</span>
+          <h4>Não Faça</h4>
+        </div>
+        <ul>
+          <li>Não use checkboxes para ações imediatas (use buttons)</li>
+          <li>Não use checkboxes mutuamente exclusivos (use radio)</li>
+          <li>Não deixe checkboxes sem labels em formulários</li>
+          <li>Não use muitas variantes diferentes no mesmo grupo</li>
+          <li>Evite labels muito longos</li>
+          <li>Não misture checkboxes com switches</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Accessibility -->
+  <section class="doc-section">
+    <h2>♿ Acessibilidade</h2>
+    <div class="accessibility-info">
+      <div class="info-card">
+        <h3>🎯 Recursos Implementados</h3>
+        <ul>
+          <li><strong>ARIA Attributes:</strong> aria-checked e aria-disabled</li>
+          <li><strong>Navegação por Teclado:</strong> Space e Enter para toggle</li>
+          <li><strong>Foco Visível:</strong> Outline em focus-visible</li>
+          <li><strong>Labels Semânticos:</strong> Elemento label associado</li>
+          <li><strong>Contraste:</strong> Cores com contraste adequado</li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h3>⌨️ Atalhos de Teclado</h3>
+        <ul>
+          <li><kbd>Tab</kbd> - Navegar entre checkboxes</li>
+          <li><kbd>Space</kbd> - Toggle do checkbox focado</li>
+          <li><kbd>Enter</kbd> - Toggle do checkbox focado</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+

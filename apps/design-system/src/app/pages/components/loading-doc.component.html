@@ -1,0 +1,232 @@
+<div class="doc-page">
+  <div class="doc-header">
+    <h1>⏳ Loading</h1>
+    <p class="doc-description">
+      Componente de carregamento elegante com múltiplas variantes e tamanhos. 
+      Ideal para indicar processos em andamento e melhorar a experiência do usuário.
+    </p>
+  </div>
+
+  <!-- Import -->
+  <section class="doc-section">
+    <h2>📦 Importação</h2>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('import') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Spinner Variant -->
+  <section class="doc-section">
+    <h2>🔄 Loading Spinner</h2>
+    <p>Variante clássica com rotação contínua, ideal para carregamentos gerais.</p>
+    <div class="demo-container">
+      <muxima-loading variant="spinner" size="md" text="Carregando..."></muxima-loading>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('spinner') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Dots Variant -->
+  <section class="doc-section">
+    <h2>⚫ Loading Dots</h2>
+    <p>Três pontos animados, perfeito para indicadores discretos.</p>
+    <div class="demo-container">
+      <muxima-loading variant="dots" size="md" text="Processando..."></muxima-loading>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('dots') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Bars Variant -->
+  <section class="doc-section">
+    <h2>📊 Loading Bars</h2>
+    <p>Barras animadas, ótimo para visualizações de áudio ou processamento.</p>
+    <div class="demo-container">
+      <muxima-loading variant="bars" size="md" text="Aguarde..."></muxima-loading>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('bars') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Pulse Variant -->
+  <section class="doc-section">
+    <h2>💫 Loading Pulse</h2>
+    <p>Pulsos concêntricos, ideal para indicar sincronização ou atualização.</p>
+    <div class="demo-container">
+      <muxima-loading variant="pulse" size="lg" text="Sincronizando..."></muxima-loading>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('pulse') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Ring Variant -->
+  <section class="doc-section">
+    <h2>⭕ Loading Ring</h2>
+    <p>Anel com gradiente rotativo, moderno e elegante.</p>
+    <div class="demo-container">
+      <muxima-loading variant="ring" size="md"></muxima-loading>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('ring') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Sizes -->
+  <section class="doc-section">
+    <h2>📏 Tamanhos</h2>
+    <p>Quatro tamanhos disponíveis para diferentes contextos.</p>
+    <div class="demo-container">
+      <div class="size-demo">
+        <div class="size-item">
+          <span class="size-label">Small</span>
+          <muxima-loading variant="spinner" size="sm"></muxima-loading>
+        </div>
+        <div class="size-item">
+          <span class="size-label">Medium</span>
+          <muxima-loading variant="spinner" size="md"></muxima-loading>
+        </div>
+        <div class="size-item">
+          <span class="size-label">Large</span>
+          <muxima-loading variant="spinner" size="lg"></muxima-loading>
+        </div>
+        <div class="size-item">
+          <span class="size-label">Extra Large</span>
+          <muxima-loading variant="spinner" size="xl"></muxima-loading>
+        </div>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('sizes') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Overlay -->
+  <section class="doc-section">
+    <h2>🌐 Loading Overlay</h2>
+    <p>Overlay de tela cheia para bloqueio durante operações importantes.</p>
+    <div class="demo-container">
+      <div class="overlay-demo">
+        <button class="demo-button" (click)="showLoading('spinner')">
+          Mostrar Loading Overlay
+        </button>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('overlay') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Button Example -->
+  <section class="doc-section">
+    <h2>🔘 Loading em Botões</h2>
+    <p>Integração com botões para feedback de ações.</p>
+    <div class="demo-container">
+      <button class="demo-button loading-button">
+        <muxima-loading variant="spinner" size="sm"></muxima-loading>
+        <span style="margin-left: 0.5rem;">Salvando...</span>
+      </button>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('button') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2>⚙️ API do Componente</h2>
+    
+    <h3>Inputs</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>variant</code></td>
+            <td><code>'spinner' | 'dots' | 'bars' | 'pulse' | 'ring'</code></td>
+            <td><code>'spinner'</code></td>
+            <td>Estilo visual do loading</td>
+          </tr>
+          <tr>
+            <td><code>size</code></td>
+            <td><code>'sm' | 'md' | 'lg' | 'xl'</code></td>
+            <td><code>'md'</code></td>
+            <td>Tamanho do loading</td>
+          </tr>
+          <tr>
+            <td><code>text</code></td>
+            <td><code>string</code></td>
+            <td><code>''</code></td>
+            <td>Texto exibido abaixo do loading</td>
+          </tr>
+          <tr>
+            <td><code>overlay</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Ativa modo overlay de tela cheia</td>
+          </tr>
+          <tr>
+            <td><code>color</code></td>
+            <td><code>string</code></td>
+            <td><code>''</code></td>
+            <td>Cor customizada (opcional)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Tipos</h3>
+    <div class="code-block">
+      <pre><code>export type LoadingVariant = 'spinner' | 'dots' | 'bars' | 'pulse' | 'ring';
+export type LoadingSize = 'sm' | 'md' | 'lg' | 'xl';</code></pre>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="doc-section">
+    <h2>✨ Características</h2>
+    <ul class="features-list">
+      <li>🎨 5 variantes visuais diferentes</li>
+      <li>📏 4 tamanhos (sm, md, lg, xl)</li>
+      <li>🌐 Modo overlay para tela cheia</li>
+      <li>💬 Texto de loading customizável</li>
+      <li>🎭 Animações suaves com CSS</li>
+      <li>🎨 Gradiente roxo elegante (#667eea → #764ba2)</li>
+      <li>📱 Responsivo e acessível</li>
+      <li>⚡ Performance otimizada</li>
+    </ul>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="doc-section">
+    <h2>💡 Casos de Uso</h2>
+    <ul class="features-list">
+      <li><strong>Spinner:</strong> Carregamento de páginas, requisições API gerais</li>
+      <li><strong>Dots:</strong> Indicadores discretos, chat, digitação</li>
+      <li><strong>Bars:</strong> Processamento de áudio, análise de dados</li>
+      <li><strong>Pulse:</strong> Sincronização, atualização em tempo real</li>
+      <li><strong>Ring:</strong> Progresso circular, downloads</li>
+      <li><strong>Overlay:</strong> Operações críticas, login, salvamento</li>
+      <li><strong>Button:</strong> Feedback de ações, submit de formulários</li>
+    </ul>
+  </section>
+</div>
+
+<!-- Overlay Demo -->
+<muxima-loading 
+  *ngIf="showOverlay"
+  [variant]="selectedVariant" 
+  size="lg"
+  text="Carregando dados..."
+  [overlay]="true">
+</muxima-loading>

@@ -1,0 +1,30 @@
+<div 
+  class="muxima-card"
+  [ngClass]="[
+    'muxima-card-variant-' + variant,
+    'muxima-card-size-' + size,
+    hoverable ? 'muxima-card-hoverable' : '',
+    clickable ? 'muxima-card-clickable' : '',
+    loading ? 'muxima-card-loading' : ''
+  ]">
+  
+  <!-- Loading State -->
+  <div *ngIf="loading" class="muxima-card-loader">
+    <div class="muxima-card-spinner"></div>
+  </div>
+
+  <!-- Card Header -->
+  <div class="muxima-card-header">
+    <ng-content select="[muximaCardHeader]"></ng-content>
+  </div>
+
+  <!-- Card Body -->
+  <div class="muxima-card-body">
+    <ng-content></ng-content>
+  </div>
+
+  <!-- Card Footer -->
+  <div class="muxima-card-footer">
+    <ng-content select="[muximaCardFooter]"></ng-content>
+  </div>
+</div>

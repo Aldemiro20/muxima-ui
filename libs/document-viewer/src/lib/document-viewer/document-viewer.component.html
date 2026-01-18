@@ -1,0 +1,182 @@
+<div class="muxima-document-viewer" [class.fullscreen]="isFullscreen" [style.height]="height">
+  <!-- Toolbar -->
+  <div class="viewer-toolbar">
+    <div class="toolbar-section">
+      <button 
+        *ngIf="documents.length > 1"
+        class="toolbar-btn" 
+        [disabled]="!hasPrevious"
+        (click)="previousDocument()"
+        title="Documento Anterior">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </button>
+
+      <div *ngIf="documents.length > 1" class="document-info">
+        <span class="document-counter">{{ currentIndex + 1 }} / {{ documents.length }}</span>
+        <span class="document-name">{{ currentDocument?.name }}</span>
+      </div>
+      
+      <button 
+        *ngIf="documents.length > 1"
+        class="toolbar-btn" 
+        [disabled]="!hasNext"
+        (click)="nextDocument()"
+        title="Próximo Documento">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="toolbar-section">
+      <!-- Zoom Controls -->
+      <div *ngIf="allowZoom && isImage" class="zoom-controls">
+        <button class="toolbar-btn" (click)="setZoom('50')" [class.active]="zoomLevel === '50'" title="50%">
+          50%
+        </button>
+        <button class="toolbar-btn" (click)="setZoom('100')" [class.active]="zoomLevel === '100'" title="100%">
+          100%
+        </button>
+        <button class="toolbar-btn" (click)="setZoom('150')" [class.active]="zoomLevel === '150'" title="150%">
+          150%
+        </button>
+        <button class="toolbar-btn" (click)="setZoom('fit')" [class.active]="zoomLevel === 'fit'" title="Ajustar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M9 9h6v6H9z"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="toolbar-divider"></div>
+
+      <!-- Download Button -->
+      <button 
+        *ngIf="allowDownload"
+        class="toolbar-btn" 
+        (click)="download()"
+        title="Baixar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+      </button>
+
+      <!-- Print Button -->
+      <button 
+        *ngIf="allowPrint"
+        class="toolbar-btn" 
+        (click)="print()"
+        title="Imprimir">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 6 2 18 2 18 9"/>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+          <rect x="6" y="14" width="12" height="8"/>
+        </svg>
+      </button>
+
+      <!-- Fullscreen Button -->
+      <button 
+        class="toolbar-btn" 
+        (click)="toggleFullscreen()"
+        [title]="isFullscreen ? 'Sair Tela Cheia' : 'Tela Cheia'">
+        <svg *ngIf="!isFullscreen" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+        </svg>
+        <svg *ngIf="isFullscreen" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="viewer-content">
+    <!-- Thumbnails Sidebar -->
+    <div *ngIf="showThumbnails && documents.length > 1" class="thumbnails-sidebar">
+      <div class="thumbnails-list">
+        <div 
+          *ngFor="let doc of documents; let i = index"
+          class="thumbnail-item"
+          [class.active]="i === currentIndex"
+          (click)="selectDocument(i)">
+          <div class="thumbnail-preview">
+            <img *ngIf="doc.type === 'image'" [src]="doc.thumbnail || doc.url" [alt]="doc.name">
+            <div *ngIf="doc.type === 'pdf'" class="pdf-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <path d="M10 12h4"/>
+                <path d="M10 16h4"/>
+              </svg>
+            </div>
+          </div>
+          <div class="thumbnail-info">
+            <span class="thumbnail-name">{{ doc.name }}</span>
+            <span *ngIf="doc.size" class="thumbnail-size">{{ doc.size }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Document Display -->
+    <div class="document-display" [ngClass]="getZoomClass()">
+      <div *ngIf="!currentDocument" class="empty-state">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+        </svg>
+        <p>Nenhum documento selecionado</p>
+      </div>
+
+      <!-- Image Viewer -->
+      <div *ngIf="currentDocument && isImage" class="image-viewer">
+        <img 
+          [src]="currentDocument.url" 
+          [alt]="currentDocument.name"
+          class="document-image">
+      </div>
+
+      <!-- PDF Viewer -->
+      <div *ngIf="currentDocument && isPdf" class="pdf-viewer">
+        <iframe 
+          [src]="safeUrl" 
+          class="pdf-frame"
+          frameborder="0">
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Document Info Footer -->
+  <div *ngIf="currentDocument" class="viewer-footer">
+    <div class="footer-info">
+      <span class="info-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+        </svg>
+        {{ currentDocument.name }}
+      </span>
+      <span *ngIf="currentDocument.size" class="info-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 6v6l4 2"/>
+        </svg>
+        {{ currentDocument.size }}
+      </span>
+      <span *ngIf="currentDocument.date" class="info-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        {{ currentDocument.date }}
+      </span>
+    </div>
+  </div>
+</div>

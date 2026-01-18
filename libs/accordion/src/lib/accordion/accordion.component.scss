@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+.custom-accordion {
+  @for $i from 1 through 5 {
+    .padding-level-#{$i} {
+      .custom-accordion.child-accordion .accordion-subtitle,
+      .custom-accordion.child-accordion .accordion-icon,
+      .custom-accordion.child-accordion .accordion-icon-img,
+      .custom-accordion.child-accordion .accordion-title {
+        padding-left: #{24 * $i}px !important;
+      }
+    }
+  }
+
+  &.child-accordion {
+    border: none;
+    background-color: transparent;
+
+    .accordion-header {
+      border: none;
+      border-bottom: 1px solid #eaecf0;
+    }
+    .accordion-icon,
+    .accordion-subtitle,
+    .accordion-title {
+      padding-left: 15px;
+    }
+
+    .accordion-content {
+      border: none;
+    }
+  }
+}
+
+.accordion-header {
+  display: flex;
+  padding: 14px 24px;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  border: 1px solid var(--BlueGray-BlueGray-300, #cbd5e1);
+  background: #fff;
+}
+
+.accordion-icon {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  background: var(--50, #eef4ff);
+  margin-right: 8px;
+}
+
+.accordion-icon-img {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.accordion-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1 0 0;
+}
+
+.accordion-title {
+  color: var(--gray-800, #1d2939);
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+  letter-spacing: -0.14px;
+}
+
+.accordion-subtitle {
+  align-self: stretch;
+  color: var(--gray-2, #6d7471);
+  font-family: 'Roboto', sans-serif !important;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.accordion-toggle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #f2f4f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, transform 0.3s ease;
+}
+
+.accordion-toggle:hover {
+  background-color: #e4e7ec;
+}
+
+.icon-chevron {
+  width: 16px;
+  height: 16px;
+  stroke: #667085;
+  transition: transform 0.3s ease;
+}
+
+.icon-chevron.expanded {
+  transform: rotate(90deg);
+}
+
+.accordion-content {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 0px 0px 0px;
+  border-width: 0px 1px 1px 1px;
+  border-style: solid;
+  border-color: var(--BlueGray-BlueGray-300, #cbd5e1);
+  background: #fff;
+}
+
+.accordion-header.non-expandable {
+  cursor: default;
+
+  .accordion-toggle {
+    display: none;
+  }
+}

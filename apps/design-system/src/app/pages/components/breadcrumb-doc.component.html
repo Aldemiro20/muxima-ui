@@ -1,0 +1,383 @@
+﻿<div class="doc-container">
+  <h1 class="doc-title"> Breadcrumb</h1>
+  <p class="doc-description">
+    Componente de navegação hierárquica que mostra a localização atual do usuário e permite navegação rápida entre níveis.
+  </p>
+
+  <!-- Instalação -->
+  <section class="doc-section">
+    <h2 class="doc-section-title"> Instalação</h2>
+    <div class="doc-code-block">
+      <pre><code>{{ importCode }}</code></pre>
+      <button class="doc-copy-btn" (click)="copyCode('basic')">
+        {{ codeExamples.basic.copied ? ' Copiado!' : ' Copiar' }}
+      </button>
+    </div>
+  </section>
+
+  <!-- Exemplo Básico -->
+  <section class="doc-section">
+    <h2 class="doc-section-title"> Exemplo Básico</h2>
+    <p class="doc-description-small">Breadcrumb simples com separador padrão</p>
+    <div class="doc-example">
+      <nav class="breadcrumb">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item" *ngFor="let item of basicBreadcrumbs; let last = last">
+            <a *ngIf="!last && item.url" [href]="item.url" class="breadcrumb-link">
+              <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+            </a>
+            <span *ngIf="last" class="breadcrumb-current">
+              <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+            </span>
+            <span *ngIf="!last" class="breadcrumb-separator">/</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="doc-code-block">
+      <pre><code>{{ codeExamples.withIcons.code }}</code></pre>
+      <button class="doc-copy-btn" [class.copied]="codeExamples.withIcons.copied" (click)="copyCode('withIcons')">
+        {{ codeExamples.withIcons.copied ? ' Copiado!' : ' Copiar' }}
+      </button>
+    </div>
+  </section>
+
+  <!-- Estilos Diferentes -->
+  <section class="doc-section">
+    <h2 class="doc-section-title"> Estilos e Separadores</h2>
+    
+    <h3 class="doc-subsection-title">Dashboard Style (›)</h3>
+    <div class="doc-example">
+      <nav class="breadcrumb breadcrumb-dashboard">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item" *ngFor="let item of dashboardBreadcrumbs; let last = last">
+            <a *ngIf="!last && item.url" [href]="item.url" class="breadcrumb-link">
+              <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+            </a>
+            <span *ngIf="last" class="breadcrumb-current">
+              <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+            </span>
+            <span *ngIf="!last" class="breadcrumb-separator">›</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <h3 class="doc-subsection-title">Admin Style (→)</h3>
+    <div class="doc-example">
+      <nav class="breadcrumb breadcrumb-admin">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item" *ngFor="let item of adminBreadcrumbs; let last = last">
+            <a *ngIf="!last && item.url" [href]="item.url" class="breadcrumb-link">
+              <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+            </a>
+            <span *ngIf="last" class="breadcrumb-current">
+              <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+            </span>
+            <span *ngIf="!last" class="breadcrumb-separator">→</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <h3 class="doc-subsection-title">Dots Style (•)</h3>
+    <div class="doc-example">
+      <nav class="breadcrumb breadcrumb-dots">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item" *ngFor="let item of settingsBreadcrumbs; let last = last">
+            <a *ngIf="!last && item.url" [href]="item.url" class="breadcrumb-link">
+              <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+            </a>
+            <span *ngIf="last" class="breadcrumb-current">
+              <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+            </span>
+            <span *ngIf="!last" class="breadcrumb-separator">•</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="doc-code-block">
+      <pre><code>{{ codeExamples.separators.code }}</code></pre>
+      <button class="doc-copy-btn" [class.copied]="codeExamples.separators.copied" (click)="copyCode('separators')">
+        {{ codeExamples.separators.copied ? ' Copiado!' : ' Copiar' }}
+      </button>
+    </div>
+  </section>
+
+  <!-- Casos de Uso -->
+  <section class="doc-section">
+    <h2 class="doc-section-title"> Casos de Uso</h2>
+
+    <h3 class="doc-subsection-title">E-commerce</h3>
+    <div class="doc-example">
+      <nav class="breadcrumb breadcrumb-ecommerce">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item" *ngFor="let item of ecommerceBreadcrumbs; let last = last">
+            <a *ngIf="!last && item.url" [href]="item.url" class="breadcrumb-link">
+              <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+            </a>
+            <span *ngIf="last" class="breadcrumb-current">
+              <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+            </span>
+            <span *ngIf="!last" class="breadcrumb-separator">/</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <h3 class="doc-subsection-title">Documentação</h3>
+    <div class="doc-example">
+      <nav class="breadcrumb breadcrumb-docs">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item" *ngFor="let item of docsBreadcrumbs; let last = last">
+            <a *ngIf="!last && item.url" [href]="item.url" class="breadcrumb-link">
+              <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+            </a>
+            <span *ngIf="last" class="breadcrumb-current">
+              <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+            </span>
+            <span *ngIf="!last" class="breadcrumb-separator">›</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <h3 class="doc-subsection-title">File System</h3>
+    <div class="doc-example">
+      <nav class="breadcrumb breadcrumb-filesystem">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item" *ngFor="let item of fileSystemBreadcrumbs; let last = last">
+            <a *ngIf="!last && item.url" [href]="item.url" class="breadcrumb-link">
+              <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+            </a>
+            <span *ngIf="last" class="breadcrumb-current">
+              <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+            </span>
+            <span *ngIf="!last" class="breadcrumb-separator">/</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <h3 class="doc-subsection-title">Blog</h3>
+    <div class="doc-example">
+      <nav class="breadcrumb breadcrumb-blog">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item" *ngFor="let item of blogBreadcrumbs; let last = last">
+            <a *ngIf="!last && item.url" [href]="item.url" class="breadcrumb-link">
+              <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+            </a>
+            <span *ngIf="last" class="breadcrumb-current">
+              <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+            </span>
+            <span *ngIf="!last" class="breadcrumb-separator">→</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Variantes Visuais -->
+  <section class="doc-section">
+    <h2 class="doc-section-title"> Variantes Visuais</h2>
+
+    <h3 class="doc-subsection-title">Com Background</h3>
+    <div class="doc-example">
+      <nav class="breadcrumb breadcrumb-filled">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item" *ngFor="let item of basicBreadcrumbs; let last = last">
+            <a *ngIf="!last && item.url" [href]="item.url" class="breadcrumb-link">
+              <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+            </a>
+            <span *ngIf="last" class="breadcrumb-current">
+              <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+            </span>
+            <span *ngIf="!last" class="breadcrumb-separator">/</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <h3 class="doc-subsection-title">Com Bordas</h3>
+    <div class="doc-example">
+      <nav class="breadcrumb breadcrumb-bordered">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item" *ngFor="let item of dashboardBreadcrumbs; let last = last">
+            <a *ngIf="!last && item.url" [href]="item.url" class="breadcrumb-link">
+              <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+            </a>
+            <span *ngIf="last" class="breadcrumb-current">
+              <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+            </span>
+            <span *ngIf="!last" class="breadcrumb-separator">›</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <h3 class="doc-subsection-title">Compacto</h3>
+    <div class="doc-example">
+      <nav class="breadcrumb breadcrumb-compact">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item" *ngFor="let item of settingsBreadcrumbs; let last = last">
+            <a *ngIf="!last && item.url" [href]="item.url" class="breadcrumb-link">
+              <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+            </a>
+            <span *ngIf="last" class="breadcrumb-current">
+              <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+            </span>
+            <span *ngIf="!last" class="breadcrumb-separator">/</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2 class="doc-section-title"> API</h2>
+    <div class="doc-api">
+      <h3>Interface BreadcrumbItem</h3>
+      <table class="doc-api-table">
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Obrigatório</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>label</code></td>
+            <td>string</td>
+            <td>Sim</td>
+            <td>Texto exibido no item</td>
+          </tr>
+          <tr>
+            <td><code>url</code></td>
+            <td>string</td>
+            <td>Não</td>
+            <td>URL para navegação (omitir no último item)</td>
+          </tr>
+          <tr>
+            <td><code>icon</code></td>
+            <td>string</td>
+            <td>Não</td>
+            <td>Ícone/emoji exibido antes do label</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Classes CSS Disponíveis</h3>
+      <table class="doc-api-table">
+        <thead>
+          <tr>
+            <th>Classe</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>.breadcrumb</code></td>
+            <td>Container principal do breadcrumb</td>
+          </tr>
+          <tr>
+            <td><code>.breadcrumb-list</code></td>
+            <td>Lista ordenada de items</td>
+          </tr>
+          <tr>
+            <td><code>.breadcrumb-item</code></td>
+            <td>Item individual do breadcrumb</td>
+          </tr>
+          <tr>
+            <td><code>.breadcrumb-link</code></td>
+            <td>Link clicável</td>
+          </tr>
+          <tr>
+            <td><code>.breadcrumb-current</code></td>
+            <td>Item atual (último)</td>
+          </tr>
+          <tr>
+            <td><code>.breadcrumb-separator</code></td>
+            <td>Separador entre items</td>
+          </tr>
+          <tr>
+            <td><code>.breadcrumb-icon</code></td>
+            <td>Container do ícone</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Modificadores</h3>
+      <table class="doc-api-table">
+        <thead>
+          <tr>
+            <th>Classe</th>
+            <th>Efeito</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>.breadcrumb-dashboard</code></td>
+            <td>Estilo para dashboards (fundo escuro)</td>
+          </tr>
+          <tr>
+            <td><code>.breadcrumb-admin</code></td>
+            <td>Estilo para áreas administrativas</td>
+          </tr>
+          <tr>
+            <td><code>.breadcrumb-filled</code></td>
+            <td>Com background colorido</td>
+          </tr>
+          <tr>
+            <td><code>.breadcrumb-bordered</code></td>
+            <td>Com bordas nos items</td>
+          </tr>
+          <tr>
+            <td><code>.breadcrumb-compact</code></td>
+            <td>Versão compacta com menos padding</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Boas Práticas -->
+  <section class="doc-section">
+    <h2 class="doc-section-title"> Boas Práticas</h2>
+    <ul class="doc-list">
+      <li> Sempre comece com a página inicial ou raiz</li>
+      <li> O último item deve ser não-clicável (página atual)</li>
+      <li> Use ícones consistentes em toda a aplicação</li>
+      <li> Mantenha labels curtos e descritivos</li>
+      <li> Considere colapsar breadcrumbs longos em mobile</li>
+      <li> Use aria-label para acessibilidade</li>
+      <li> Evite breadcrumbs com apenas 1 item</li>
+      <li> Não duplique o título da página no breadcrumb</li>
+    </ul>
+  </section>
+</div>
