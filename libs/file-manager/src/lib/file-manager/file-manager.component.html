@@ -1,0 +1,183 @@
+<div class="file-manager-container">
+  <!-- Toolbar -->
+  <div *ngIf="showToolbar" class="file-manager-toolbar">
+    <div class="toolbar-left">
+      <button class="toolbar-btn" (click)="goBack()" [disabled]="!currentFolderId" title="Voltar">
+        <span>←</span>
+      </button>
+      
+      <div *ngIf="showBreadcrumb" class="breadcrumb">
+        <button class="breadcrumb-item" (click)="navigateToFolder()">
+          <span class="breadcrumb-icon">🏠</span>
+          <span>Home</span>
+        </button>
+        <ng-container *ngFor="let item of breadcrumbs">
+          <span class="breadcrumb-separator">/</span>
+          <button class="breadcrumb-item" (click)="navigateToFolder(item.id)">
+            {{ item.name }}
+          </button>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="toolbar-center">
+      <div *ngIf="showSearch" class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" 
+               placeholder="Buscar arquivos..." 
+               [(ngModel)]="searchQuery"
+               (input)="onSearch()"
+               class="search-input">
+      </div>
+    </div>
+
+    <div class="toolbar-right">
+      <div class="view-switcher">
+        <button class="view-btn" 
+                [class.active]="viewMode === 'grid'" 
+                (click)="changeViewMode('grid')"
+                title="Grade">
+          <span>⊞</span>
+        </button>
+        <button class="view-btn" 
+                [class.active]="viewMode === 'list'" 
+                (click)="changeViewMode('list')"
+                title="Lista">
+          <span>☰</span>
+        </button>
+      </div>
+
+      <button *ngIf="allowUpload" class="toolbar-btn primary" (click)="fileInput.click()" title="Upload">
+        <span>⬆</span>
+        <span>Upload</span>
+      </button>
+      <input #fileInput type="file" multiple hidden (change)="onFileUpload($event)">
+
+      <button class="toolbar-btn primary" (click)="createFolder()" title="Nova Pasta">
+        <span>📁+</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Selection Bar -->
+  <div *ngIf="hasSelection()" class="selection-bar">
+    <div class="selection-info">
+      <span class="selection-count">{{ getSelectedCount() }} selecionado(s)</span>
+      <button class="selection-action" (click)="clearSelection()">Limpar seleção</button>
+    </div>
+    <div class="selection-actions">
+      <button class="action-btn" (click)="deleteSelected()" title="Excluir">
+        <span>🗑️</span>
+        <span>Excluir</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Grid View -->
+  <div *ngIf="viewMode === 'grid'" class="file-manager-body grid-view">
+    <div *ngFor="let file of filteredFiles" 
+         class="file-item"
+         [class.selected]="isSelected(file)"
+         (click)="onFileClick(file, $event)"
+         (dblclick)="onFileDoubleClick(file)">
+      
+      <button class="star-btn" 
+              [class.starred]="file.starred"
+              (click)="toggleStar(file, $event)"
+              title="Favoritar">
+        {{ file.starred ? '⭐' : '☆' }}
+      </button>
+
+      <div class="file-icon">{{ getFileIcon(file) }}</div>
+      
+      <div class="file-name" [title]="file.name">{{ file.name }}</div>
+      
+      <div class="file-info">
+        <span *ngIf="file.type === 'file'" class="file-size">{{ formatSize(file.size) }}</span>
+        <span *ngIf="file.type === 'folder'" class="file-type">Pasta</span>
+      </div>
+
+      <span *ngIf="file.shared" class="shared-badge" title="Compartilhado">👥</span>
+    </div>
+
+    <div *ngIf="filteredFiles.length === 0" class="empty-state">
+      <span class="empty-icon">📂</span>
+      <p>{{ searchQuery ? 'Nenhum arquivo encontrado' : 'Pasta vazia' }}</p>
+    </div>
+  </div>
+
+  <!-- List View -->
+  <div *ngIf="viewMode === 'list'" class="file-manager-body list-view">
+    <div class="list-header">
+      <div class="list-column col-name" (click)="changeSort('name')">
+        Nome
+        <span *ngIf="sortBy === 'name'" class="sort-indicator">
+          {{ sortOrder === 'asc' ? '▲' : '▼' }}
+        </span>
+      </div>
+      <div class="list-column col-size" (click)="changeSort('size')">
+        Tamanho
+        <span *ngIf="sortBy === 'size'" class="sort-indicator">
+          {{ sortOrder === 'asc' ? '▲' : '▼' }}
+        </span>
+      </div>
+      <div class="list-column col-type" (click)="changeSort('type')">
+        Tipo
+        <span *ngIf="sortBy === 'type'" class="sort-indicator">
+          {{ sortOrder === 'asc' ? '▲' : '▼' }}
+        </span>
+      </div>
+      <div class="list-column col-date" (click)="changeSort('date')">
+        Modificado
+        <span *ngIf="sortBy === 'date'" class="sort-indicator">
+          {{ sortOrder === 'asc' ? '▲' : '▼' }}
+        </span>
+      </div>
+      <div class="list-column col-owner">Proprietário</div>
+      <div class="list-column col-actions"></div>
+    </div>
+
+    <div *ngFor="let file of filteredFiles" 
+         class="list-row"
+         [class.selected]="isSelected(file)"
+         (click)="onFileClick(file, $event)"
+         (dblclick)="onFileDoubleClick(file)">
+      
+      <div class="list-column col-name">
+        <span class="file-icon-small">{{ getFileIcon(file) }}</span>
+        <span class="file-name-text">{{ file.name }}</span>
+        <span *ngIf="file.shared" class="shared-badge-small" title="Compartilhado">👥</span>
+      </div>
+      
+      <div class="list-column col-size">
+        {{ file.type === 'file' ? formatSize(file.size) : '-' }}
+      </div>
+      
+      <div class="list-column col-type">
+        {{ file.type === 'folder' ? 'Pasta' : (file.extension || '-') }}
+      </div>
+      
+      <div class="list-column col-date">
+        {{ formatDate(file.modifiedDate) }}
+      </div>
+      
+      <div class="list-column col-owner">
+        {{ file.owner || '-' }}
+      </div>
+      
+      <div class="list-column col-actions">
+        <button class="star-btn-small" 
+                [class.starred]="file.starred"
+                (click)="toggleStar(file, $event)"
+                title="Favoritar">
+          {{ file.starred ? '⭐' : '☆' }}
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="filteredFiles.length === 0" class="empty-state">
+      <span class="empty-icon">📂</span>
+      <p>{{ searchQuery ? 'Nenhum arquivo encontrado' : 'Pasta vazia' }}</p>
+    </div>
+  </div>
+</div>

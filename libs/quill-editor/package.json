@@ -1,0 +1,17 @@
+{
+  "name": "@muxima-ui/quill-editor",
+  "version": "1.0.0",
+  "description": "Advanced WYSIWYG rich text editor built from scratch",
+  "keywords": [
+    "angular",
+    "editor",
+    "wysiwyg",
+    "rich-text",
+    "contenteditable"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0",
+    "@angular/forms": "^18.0.0"
+  }
+}

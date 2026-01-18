@@ -1,0 +1,214 @@
+<div class="calendar-container">
+  <!-- Header -->
+  <div class="calendar-header">
+    <div class="header-left">
+      <h2 class="calendar-title">📅 {{ getViewTitle() }}</h2>
+    </div>
+    
+    <div class="header-center">
+      <button class="nav-btn" (click)="previousPeriod()" title="Anterior">
+        <span>◀</span>
+      </button>
+      <button class="today-btn" (click)="goToToday()">
+        Hoje
+      </button>
+      <button class="nav-btn" (click)="nextPeriod()" title="Próximo">
+        <span>▶</span>
+      </button>
+    </div>
+    
+    <div class="header-right">
+      <div class="view-switcher">
+        <button class="view-btn" 
+                [class.active]="view === 'month'" 
+                (click)="changeView('month')">
+          Mês
+        </button>
+        <button class="view-btn" 
+                [class.active]="view === 'week'" 
+                (click)="changeView('week')">
+          Semana
+        </button>
+        <button class="view-btn" 
+                [class.active]="view === 'day'" 
+                (click)="changeView('day')">
+          Dia
+        </button>
+        <button class="view-btn" 
+                [class.active]="view === 'agenda'" 
+                (click)="changeView('agenda')">
+          Agenda
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Month View -->
+  <div *ngIf="view === 'month'" class="calendar-body month-view">
+    <div class="calendar-weekdays">
+      <div *ngIf="showWeekNumbers" class="weekday-cell week-number-header">#</div>
+      <div *ngFor="let day of getWeekDayNames()" class="weekday-cell">
+        {{ day }}
+      </div>
+    </div>
+    
+    <div class="calendar-days">
+      <ng-container *ngFor="let day of monthDays; let i = index">
+        <div *ngIf="showWeekNumbers && i % 7 === 0" class="week-number-cell">
+          {{ getWeekNumber(day) }}
+        </div>
+        
+        <div class="day-cell"
+             [class.other-month]="!isCurrentMonth(day)"
+             [class.today]="isToday(day)"
+             [class.selected]="isSelected(day)"
+             (click)="onDateClick(day)">
+          
+          <div class="day-number">{{ day.getDate() }}</div>
+          
+          <div class="day-events">
+            <div *ngFor="let event of getEventsForDate(day).slice(0, 3)" 
+                 class="event-badge"
+                 [style.background]="getEventColor(event)"
+                 (click)="onEventClick(event, $event)"
+                 [title]="event.title">
+              <span class="event-title">{{ event.title }}</span>
+            </div>
+            <div *ngIf="getEventsForDate(day).length > 3" class="more-events">
+              +{{ getEventsForDate(day).length - 3 }} mais
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- Week View -->
+  <div *ngIf="view === 'week'" class="calendar-body week-view">
+    <div class="time-grid">
+      <div class="time-column">
+        <div class="time-header"></div>
+        <div *ngFor="let time of dayHours" class="time-slot">
+          {{ time }}
+        </div>
+      </div>
+      
+      <div *ngFor="let day of weekDays" class="day-column">
+        <div class="day-header" [class.today]="isToday(day)">
+          <div class="day-name">{{ weekDayNames[day.getDay()] }}</div>
+          <div class="day-date">{{ day.getDate() }}</div>
+        </div>
+        
+        <div class="all-day-events" *ngIf="getAllDayEvents(day).length > 0">
+          <div *ngFor="let event of getAllDayEvents(day)"
+               class="event-allday"
+               [style.background]="getEventColor(event)"
+               (click)="onEventClick(event, $event)">
+            {{ event.title }}
+          </div>
+        </div>
+        
+        <div class="time-slots">
+          <div *ngFor="let time of dayHours" class="time-slot-cell">
+            <div *ngFor="let event of getEventsForTimeSlot(day, time)"
+                 class="event-block"
+                 [style.background]="getEventColor(event)"
+                 (click)="onEventClick(event, $event)">
+              <div class="event-time">{{ formatTime(event.start) }}</div>
+              <div class="event-title">{{ event.title }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day View -->
+  <div *ngIf="view === 'day'" class="calendar-body day-view">
+    <div class="day-schedule">
+      <div class="schedule-header">
+        <h3>{{ weekDayNames[currentDate.getDay()] }}, {{ currentDate.getDate() }} de {{ monthNames[currentDate.getMonth()] }}</h3>
+      </div>
+      
+      <div class="all-day-section" *ngIf="getAllDayEvents(currentDate).length > 0">
+        <div class="section-title">Dia inteiro</div>
+        <div *ngFor="let event of getAllDayEvents(currentDate)"
+             class="event-allday-large"
+             [style.background]="getEventColor(event)"
+             (click)="onEventClick(event, $event)">
+          <span class="event-icon">📅</span>
+          <span class="event-title">{{ event.title }}</span>
+        </div>
+      </div>
+      
+      <div class="time-grid">
+        <div class="time-column">
+          <div *ngFor="let time of dayHours" class="time-slot-label">
+            {{ time }}
+          </div>
+        </div>
+        
+        <div class="events-column">
+          <div *ngFor="let time of dayHours" class="time-slot-large">
+            <div *ngFor="let event of getEventsForTimeSlot(currentDate, time)"
+                 class="event-card"
+                 [style.border-left-color]="getEventColor(event)"
+                 (click)="onEventClick(event, $event)">
+              <div class="event-header">
+                <span class="event-time-range">{{ formatDateRange(event) }}</span>
+              </div>
+              <div class="event-content">
+                <div class="event-title">{{ event.title }}</div>
+                <div class="event-description" *ngIf="event.description">
+                  {{ event.description }}
+                </div>
+                <div class="event-location" *ngIf="event.location">
+                  <span class="location-icon">📍</span>
+                  {{ event.location }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Agenda View -->
+  <div *ngIf="view === 'agenda'" class="calendar-body agenda-view">
+    <div class="agenda-list">
+      <h3 class="agenda-title">Próximos Eventos</h3>
+      
+      <div *ngFor="let event of getUpcomingEvents()" class="agenda-item">
+        <div class="agenda-date">
+          <div class="date-day">{{ event.start.getDate() }}</div>
+          <div class="date-month">{{ monthNames[event.start.getMonth()].substring(0, 3) }}</div>
+        </div>
+        
+        <div class="agenda-event" 
+             [style.border-left-color]="getEventColor(event)"
+             (click)="onEventClick(event, $event)">
+          <div class="agenda-event-header">
+            <span class="agenda-event-title">{{ event.title }}</span>
+            <span class="agenda-event-time">{{ formatDateRange(event) }}</span>
+          </div>
+          <div class="agenda-event-details">
+            <span *ngIf="event.location" class="detail-item">
+              <span class="detail-icon">📍</span>
+              {{ event.location }}
+            </span>
+            <span *ngIf="event.category" class="detail-item">
+              <span class="detail-icon">🏷️</span>
+              {{ event.category }}
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div *ngIf="getUpcomingEvents().length === 0" class="empty-state">
+        <span class="empty-icon">📭</span>
+        <p>Nenhum evento agendado</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -79,7 +79,14 @@
       "@muxima-ui/tree-view": ["libs/tree-view/src/index.ts"],
       "@muxima-ui/skeleton": ["libs/skeleton/src/index.ts"],
       "@muxima-ui/rich-text-editor": ["libs/rich-text-editor/src/index.ts"],
-      "@muxima-ui/data-table": ["libs/data-table/src/index.ts"]
+      "@muxima-ui/data-table": ["libs/data-table/src/index.ts"],
+      "@muxima-ui/quill-editor": ["libs/quill-editor/src/index.ts"],
+      "@muxima-ui/kanban": ["libs/kanban/src/index.ts"],
+      "@muxima-ui/command-palette": ["libs/command-palette/src/index.ts"],
+      "@muxima-ui/gantt-chart": ["libs/gantt-chart/src/index.ts"],
+      "@muxima-ui/tour-guide": ["libs/tour-guide/src/index.ts"],
+      "@muxima-ui/calendar": ["libs/calendar/src/index.ts"],
+      "@muxima-ui/file-manager": ["libs/file-manager/src/index.ts"]
     },
     "rootDir": ".",
     "skipLibCheck": true

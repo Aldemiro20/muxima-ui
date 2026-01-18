@@ -1,0 +1,286 @@
+<div class="doc-container">
+  <div class="doc-header">
+    <h1>📋 Kanban Board</h1>
+    <p class="doc-subtitle">Quadro Kanban completo com drag & drop, limites WIP e busca</p>
+  </div>
+
+  <!-- Introdução -->
+  <section class="doc-section">
+    <h2>📖 Visão Geral</h2>
+    <p>
+      O <strong>Kanban Board</strong> é um componente completo para gerenciamento visual de tarefas, 
+      inspirado em ferramentas como Trello e Jira. Oferece drag & drop nativo com Angular CDK, 
+      limites de WIP (Work In Progress), busca em tempo real e temas personalizáveis.
+    </p>
+    
+    <div class="feature-grid">
+      <div class="feature-item">
+        <span class="feature-icon">🎯</span>
+        <h4>Drag & Drop</h4>
+        <p>Arraste cards entre colunas com suavidade</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🔍</span>
+        <h4>Busca Integrada</h4>
+        <p>Filtro em tempo real por título e tags</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">⚡</span>
+        <h4>Limites WIP</h4>
+        <p>Controle de capacidade por coluna</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🎨</span>
+        <h4>Customizável</h4>
+        <p>Cores, prioridades e metadados</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Exemplo Básico -->
+  <section class="doc-section">
+    <h2>🚀 Exemplo Básico</h2>
+    <p>Kanban completo com 4 colunas, prioridades, tags e metadados.</p>
+    
+    <div class="example-container kanban-example">
+      <muxima-kanban
+        [columns]="basicColumns"
+        [showSearch]="true"
+        [showLimits]="true"
+        [allowAddCard]="true"
+        [allowAddColumn]="true"
+        (cardMoved)="onCardMoved($event)"
+        (cardClicked)="onCardClicked($event)"
+        (cardDeleted)="onCardDeleted($event)"
+        (columnAdded)="onColumnAdded($event)"
+        (cardAdded)="onCardAdded($event)">
+      </muxima-kanban>
+    </div>
+
+    <h4>Código TypeScript</h4>
+    <pre><code>columns: KanbanColumn[] = [
+  {{'{'}}{{'{'}}
+    id: 'todo',
+    title: 'A Fazer',
+    color: '#667eea',
+    cards: [
+      {{'{'}}{{'{'}}
+        id: 1,
+        title: 'Implementar autenticação',
+        description: 'Adicionar login com OAuth2',
+        priority: 'high',
+        tags: ['Backend', 'Segurança'],
+        assignee: 'João Silva',
+        dueDate: new Date(2026, 0, 20),
+        attachments: 2,
+        comments: 3
+      }
+    ]
+  },
+  {{'{'}}{{'{'}}
+    id: 'doing',
+    title: 'Em Progresso',
+    color: '#f6ad55',
+    limit: 3, // Limite WIP
+    cards: [...]
+  }
+];</code></pre>
+
+    <h4>Código HTML</h4>
+    <pre><code>&lt;muxima-kanban
+  [columns]="columns"
+  [showSearch]="true"
+  [showLimits]="true"
+  [allowAddCard]="true"
+  [allowAddColumn]="true"
+  (cardMoved)="onCardMoved($event)"
+  (cardClicked)="onCardClicked($event)"&gt;
+&lt;/muxima-kanban&gt;</code></pre>
+  </section>
+
+  <!-- Limites WIP -->
+  <section class="doc-section">
+    <h2>⚡ Limites WIP (Work In Progress)</h2>
+    <p>Controle a quantidade máxima de cards por coluna para evitar sobrecarga.</p>
+    
+    <div class="example-container kanban-example">
+      <muxima-kanban
+        [columns]="wipColumns"
+        [showLimits]="true"
+        [allowAddCard]="false">
+      </muxima-kanban>
+    </div>
+
+    <div class="hint-box">
+      💡 <strong>Dica:</strong> A coluna "Em Desenvolvimento" tem limite de 2 cards. 
+      Tente arrastar mais cards para ver o aviso!
+    </div>
+  </section>
+
+  <!-- Modo Compacto -->
+  <section class="doc-section">
+    <h2>📦 Modo Compacto</h2>
+    <p>Versão reduzida para espaços limitados.</p>
+    
+    <div class="example-container kanban-example">
+      <muxima-kanban
+        [columns]="compactColumns"
+        [compactMode]="true"
+        [showSearch]="false"
+        [allowAddCard]="false"
+        [allowAddColumn]="false">
+      </muxima-kanban>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2>📚 API Reference</h2>
+    
+    <h3>Inputs</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>columns</code></td>
+            <td>KanbanColumn[]</td>
+            <td>[]</td>
+            <td>Array de colunas com cards</td>
+          </tr>
+          <tr>
+            <td><code>showLimits</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Exibir limites WIP</td>
+          </tr>
+          <tr>
+            <td><code>showSearch</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Exibir barra de busca</td>
+          </tr>
+          <tr>
+            <td><code>allowAddCard</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Permitir adicionar cards</td>
+          </tr>
+          <tr>
+            <td><code>allowAddColumn</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Permitir adicionar colunas</td>
+          </tr>
+          <tr>
+            <td><code>compactMode</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Modo compacto</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Outputs</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Payload</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>cardMoved</code></td>
+            <td>{{ '{card, fromColumn, toColumn, newIndex}' }}</td>
+            <td>Emitido ao mover card</td>
+          </tr>
+          <tr>
+            <td><code>cardClicked</code></td>
+            <td>KanbanCard</td>
+            <td>Emitido ao clicar no card</td>
+          </tr>
+          <tr>
+            <td><code>cardDeleted</code></td>
+            <td>KanbanCard</td>
+            <td>Emitido ao deletar card</td>
+          </tr>
+          <tr>
+            <td><code>columnAdded</code></td>
+            <td>string</td>
+            <td>Emitido ao adicionar coluna</td>
+          </tr>
+          <tr>
+            <td><code>cardAdded</code></td>
+            <td>{{ '{columnId, title}' }}</td>
+            <td>Emitido ao adicionar card</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Interfaces</h3>
+    <pre><code>interface KanbanColumn {{'{'}}{{'{'}}
+  id: string | number;
+  title: string;
+  color?: string;
+  cards: KanbanCard[];
+  limit?: number; // Limite WIP
+}
+
+interface KanbanCard {{'{'}}{{'{'}}
+  id: string | number;
+  title: string;
+  description?: string;
+  assignee?: string;
+  avatar?: string;
+  priority?: 'low' | 'medium' | 'high' | 'urgent';
+  tags?: string[];
+  dueDate?: Date;
+  attachments?: number;
+  comments?: number;
+  completed?: boolean;
+}</code></pre>
+  </section>
+
+  <!-- Casos de Uso -->
+  <section class="doc-section">
+    <h2>💼 Casos de Uso</h2>
+    <div class="use-cases">
+      <div class="use-case">
+        <h4>🎯 Gerenciamento de Projetos</h4>
+        <p>Organize sprints, backlogs e tarefas da equipe</p>
+      </div>
+      <div class="use-case">
+        <h4>🐛 Bug Tracking</h4>
+        <p>Acompanhe bugs desde a descoberta até a resolução</p>
+      </div>
+      <div class="use-case">
+        <h4>📝 Workflow de Conteúdo</h4>
+        <p>Gerencie artigos, posts e publicações</p>
+      </div>
+      <div class="use-case">
+        <h4>🎨 Pipeline de Design</h4>
+        <p>Controle tarefas de design e revisões</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instalação -->
+  <section class="doc-section">
+    <h2>📦 Instalação</h2>
+    <pre><code>npm install &#64;muxima-ui/kanban &#64;angular/cdk</code></pre>
+    
+    <p><strong>Importante:</strong> Requer Angular CDK para drag & drop.</p>
+  </section>
+</div>

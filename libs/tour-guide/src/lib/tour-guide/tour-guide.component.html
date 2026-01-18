@@ -1,0 +1,80 @@
+<div *ngIf="isActive" class="tour-guide-container">
+  <!-- Backdrop -->
+  <div class="tour-backdrop" 
+       [style.background]="backdropColor"
+       (click)="onOverlayClick()">
+  </div>
+
+  <!-- Highlight -->
+  <div *ngIf="targetElement && currentStep?.target" 
+       class="tour-highlight"
+       [style.top]="highlightPosition.top"
+       [style.left]="highlightPosition.left"
+       [style.width]="highlightPosition.width"
+       [style.height]="highlightPosition.height"
+       [style.box-shadow]="'0 0 0 4px ' + highlightColor + ', 0 0 0 9999px ' + backdropColor">
+  </div>
+
+  <!-- Tooltip -->
+  <div #tooltipElement
+       class="tour-tooltip"
+       [class.arrow-top]="arrowPosition === 'top'"
+       [class.arrow-bottom]="arrowPosition === 'bottom'"
+       [class.arrow-left]="arrowPosition === 'left'"
+       [class.arrow-right]="arrowPosition === 'right'"
+       [style.top]="tooltipPosition.top"
+       [style.left]="tooltipPosition.left">
+    
+    <!-- Progress Bar -->
+    <div *ngIf="showProgress" class="tour-progress-bar">
+      <div class="tour-progress-fill" [style.width.%]="getProgress()"></div>
+    </div>
+
+    <!-- Header -->
+    <div class="tour-header">
+      <div class="tour-step-number" *ngIf="showStepNumbers">
+        <span class="step-badge">{{ currentStepIndex + 1 }}</span>
+        <span class="step-total">{{ getStepNumber() }}</span>
+      </div>
+      <button class="tour-close-btn" (click)="skip()" title="Fechar tour">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Content -->
+    <div class="tour-content">
+      <h3 class="tour-title" *ngIf="currentStep?.title">{{ currentStep.title }}</h3>
+      <p class="tour-description">{{ currentStep?.content }}</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="tour-footer">
+      <div class="tour-footer-left">
+        <button *ngIf="hasSkipButton()" 
+                class="tour-btn tour-btn-secondary" 
+                (click)="skip()">
+          Pular Tour
+        </button>
+      </div>
+      
+      <div class="tour-footer-right">
+        <button *ngIf="hasBackButton()" 
+                class="tour-btn tour-btn-secondary" 
+                (click)="previous()">
+          ← Anterior
+        </button>
+        
+        <button *ngIf="hasNextButton()" 
+                class="tour-btn tour-btn-primary" 
+                (click)="next()">
+          {{ isLastStep() ? 'Concluir' : 'Próximo →' }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Arrow -->
+    <div class="tour-arrow" *ngIf="arrowPosition"></div>
+  </div>
+</div>

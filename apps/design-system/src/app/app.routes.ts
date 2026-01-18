@@ -163,6 +163,18 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/components/data-table-doc.component').then(m => m.DataTableDocComponent)
   },
   {
+    path: 'components/quill-editor',
+    loadComponent: () => import('./pages/components/quill-editor-doc.component').then(m => m.QuillEditorDocComponent)
+  },
+  {
+    path: 'components/kanban',
+    loadComponent: () => import('./pages/components/kanban-doc.component').then(m => m.KanbanDocComponent)
+  },
+  {
+    path: 'components/command-palette',
+    loadComponent: () => import('./pages/components/command-palette-doc.component').then(m => m.CommandPaletteDocComponent)
+  },
+  {
     path: '**',
     redirectTo: ''
   }

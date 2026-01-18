@@ -1,0 +1,463 @@
+<div class="doc-container">
+  <div class="doc-header">
+    <h1>✍️ Quill Editor</h1>
+    <p class="doc-description">
+      Editor de texto rico extremamente poderoso com todas as funcionalidades essenciais do Microsoft Word.
+      Suporta formatação avançada, inserção de mídia, fórmulas matemáticas e muito mais!
+    </p>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="quick-actions">
+    <button class="action-btn" (click)="loadTemplate('article')">
+      📰 Carregar Artigo
+    </button>
+    <button class="action-btn" (click)="loadTemplate('email')">
+      ✉️ Carregar Email
+    </button>
+    <button class="action-btn" (click)="loadTemplate('notes')">
+      📝 Notas Rápidas
+    </button>
+    <button class="action-btn" (click)="loadTemplate('todo')">
+      ✅ Lista de Tarefas
+    </button>
+    <button class="action-btn danger" (click)="clearContent()">
+      🗑️ Limpar Tudo
+    </button>
+  </div>
+
+  <!-- Editor Completo com Toolbar Customizada -->
+  <section class="doc-section">
+    <h2>🎨 Editor Completo (Toolbar Customizada)</h2>
+    <p>Editor com toolbar visual aprimorada, organizada por categorias e com gradiente roxo.</p>
+    
+    <div class="example-container">
+      <div class="editor-actions">
+        <button class="btn-primary" (click)="exportHTML()">
+          💾 Exportar HTML
+        </button>
+        <button class="btn-secondary" (click)="exportJSON()">
+          📦 Exportar JSON
+        </button>
+        <div class="stats-display">
+          <span class="stat">📊 {{ currentWordCount }} palavras</span>
+          <span class="stat">🔤 {{ currentCharCount }} caracteres</span>
+        </div>
+      </div>
+
+      <muxima-quill-editor
+        #editor1
+        [(ngModel)]="basicContent"
+        [height]="'500px'"
+        [placeholder]="'Escreva seu documento aqui...'"
+        (contentChanged)="onContentChanged($event)"
+        (selectionChanged)="onSelectionChanged($event)">
+      </muxima-quill-editor>
+    </div>
+
+    <div class="code-example">
+      <h4>Código</h4>
+      <pre><code>&lt;muxima-quill-editor
+  [(ngModel)]="content"
+  [height]="'500px'"
+  [placeholder]="'Escreva seu documento aqui...'"
+  (contentChanged)="onContentChanged($event)"&gt;
+&lt;/muxima-quill-editor&gt;</code></pre>
+    </div>
+  </section>
+
+  <!-- Editor com Form -->
+  <section class="doc-section">
+    <h2>📋 Integração com Reactive Forms</h2>
+    <p>Perfeito para formulários complexos com validação.</p>
+
+    <div class="example-container">
+      <form [formGroup]="form" class="editor-form">
+        <div class="form-group">
+          <label for="title">Título do Documento *</label>
+          <input 
+            id="title" 
+            type="text" 
+            formControlName="title" 
+            placeholder="Digite o título..."
+            class="form-input">
+          <span class="error" *ngIf="form.get('title')?.invalid && form.get('title')?.touched">
+            Campo obrigatório
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="content">Conteúdo *</label>
+          <muxima-quill-editor
+            id="content"
+            formControlName="content"
+            [height]="'350px'"
+            [placeholder]="'Escreva o conteúdo...'">
+          </muxima-quill-editor>
+          <span class="error" *ngIf="form.get('content')?.invalid && form.get('content')?.touched">
+            Conteúdo é obrigatório
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="tags">Tags (separadas por vírgula)</label>
+          <input 
+            id="tags" 
+            type="text" 
+            formControlName="tags" 
+            placeholder="tecnologia, tutorial, angular..."
+            class="form-input">
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-primary" (click)="submitForm()">
+            💾 Salvar Documento
+          </button>
+          <button type="button" class="btn-secondary" (click)="resetForm()">
+            🔄 Resetar
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="code-example">
+      <h4>TypeScript</h4>
+      <pre><code>form = this.fb.group({{'{'}}}
+  title: ['', Validators.required],
+  content: ['&lt;p&gt;Inicial&lt;/p&gt;', Validators.required],
+  tags: ['']
+{{'}'}});
+
+submitForm() {{'{'}}}
+  if (this.form.valid) {{'{'}}}
+    console.log(this.form.value);
+  {{'}'}}
+{{'}'}}</code></pre>
+    </div>
+  </section>
+
+  <!-- Editor Minimalista -->
+  <section class="doc-section">
+    <h2>✨ Editor Minimalista (Sem Toolbar)</h2>
+    <p>Ideal para comentários, notas rápidas ou quando você quer um editor limpo.</p>
+
+    <div class="example-container">
+      <muxima-quill-editor
+        [(ngModel)]="minimalContent"
+        [showToolbar]="false"
+        [height]="'200px'"
+        [placeholder]="'Digite suas notas aqui...'">
+      </muxima-quill-editor>
+    </div>
+
+    <div class="code-example">
+      <h4>Código</h4>
+      <pre><code>&lt;muxima-quill-editor
+  [(ngModel)]="content"
+  [showToolbar]="false"
+  [height]="'200px'"&gt;
+&lt;/muxima-quill-editor&gt;</code></pre>
+    </div>
+  </section>
+
+  <!-- Editor Bubble Theme -->
+  <section class="doc-section">
+    <h2>💬 Tema Bubble (Estilo Medium)</h2>
+    <p>Toolbar aparece ao selecionar o texto, ideal para experiência inline.</p>
+
+    <div class="example-container">
+      <muxima-quill-editor
+        [(ngModel)]="collaborativeContent"
+        [height]="'300px'"
+        [placeholder]="'Selecione o texto para ver a toolbar...'">
+      </muxima-quill-editor>
+      <p class="hint">💡 Dica: Selecione qualquer texto para ver a toolbar aparecer!</p>
+    </div>
+
+    <div class="code-example">
+      <h4>Código</h4>
+      <pre><code>&lt;muxima-quill-editor
+  [(ngModel)]="content"
+  [height]="'300px'"&gt;
+&lt;/muxima-quill-editor&gt;</code></pre>
+    </div>
+  </section>
+
+  <!-- Diferentes Tamanhos -->
+  <section class="doc-section">
+    <h2>📏 Tamanhos Variados</h2>
+    
+    <div class="size-grid">
+      <div class="size-item">
+        <h4>Compacto (200px)</h4>
+        <muxima-quill-editor
+          [(ngModel)]="noteContent"
+          [height]="'200px'"
+          [placeholder]="'Notas rápidas...'">
+        </muxima-quill-editor>
+      </div>
+
+      <div class="size-item">
+        <h4>Médio (350px)</h4>
+        <muxima-quill-editor
+          [(ngModel)]="emailContent"
+          [height]="'350px'"
+          [placeholder]="'Email...'">
+        </muxima-quill-editor>
+      </div>
+
+      <div class="size-item full-width">
+        <h4>Grande (600px) - Ideal para Artigos</h4>
+        <muxima-quill-editor
+          [(ngModel)]="articleContent"
+          [height]="'600px'"
+          [placeholder]="'Escreva seu artigo...'">
+        </muxima-quill-editor>
+      </div>
+    </div>
+  </section>
+
+  <!-- Somente Leitura -->
+  <section class="doc-section">
+    <h2>👁️ Modo Somente Leitura</h2>
+    <p>Perfeito para exibir conteúdo sem permitir edição.</p>
+
+    <div class="example-container">
+      <muxima-quill-editor
+        [(ngModel)]="articleContent"
+        [readOnly]="true"
+        [height]="'400px'">
+      </muxima-quill-editor>
+    </div>
+
+    <div class="code-example">
+      <h4>Código</h4>
+      <pre><code>&lt;muxima-quill-editor
+  [(ngModel)]="content"
+  [readOnly]="true"&gt;
+&lt;/muxima-quill-editor&gt;</code></pre>
+    </div>
+  </section>
+
+  <!-- Recursos Especiais -->
+  <section class="doc-section">
+    <h2>🌟 Recursos Especiais</h2>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📐</div>
+        <h3>Fórmulas Matemáticas</h3>
+        <p>Suporte completo para LaTeX e fórmulas científicas</p>
+        <muxima-quill-editor
+          [(ngModel)]="mathContent"
+          [height]="'250px'">
+        </muxima-quill-editor>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">✅</div>
+        <h3>Listas de Tarefas</h3>
+        <p>Checkboxes interativos para gerenciar tarefas</p>
+        <muxima-quill-editor
+          [(ngModel)]="todoContent"
+          [height]="'250px'">
+        </muxima-quill-editor>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <h3>8 Fontes Diferentes</h3>
+        <p>Arial, Times New Roman, Courier, Georgia, Verdana, Trebuchet, Impact, Comic Sans</p>
+        <div class="font-showcase">
+          <p style="font-family: Arial;">Arial - Texto moderno e limpo</p>
+          <p style="font-family: 'Times New Roman';">Times New Roman - Clássico e elegante</p>
+          <p style="font-family: 'Courier New';">Courier - Monoespaçado para código</p>
+          <p style="font-family: Georgia;">Georgia - Serifada para web</p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Estatísticas em Tempo Real</h3>
+        <p>Contador de palavras e caracteres automático</p>
+        <div class="stats-demo">
+          <div class="stat-box">
+            <span class="stat-number">{{ currentWordCount }}</span>
+            <span class="stat-label">Palavras</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-number">{{ currentCharCount }}</span>
+            <span class="stat-label">Caracteres</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">⌨️</div>
+        <h3>Atalhos de Teclado</h3>
+        <p>Todos os atalhos familiares do Word</p>
+        <div class="shortcuts-list">
+          <div class="shortcut"><kbd>Ctrl+B</kbd> Negrito</div>
+          <div class="shortcut"><kbd>Ctrl+I</kbd> Itálico</div>
+          <div class="shortcut"><kbd>Ctrl+U</kbd> Sublinhado</div>
+          <div class="shortcut"><kbd>Ctrl+Z</kbd> Desfazer</div>
+          <div class="shortcut"><kbd>Ctrl+K</kbd> Inserir Link</div>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🌙</div>
+        <h3>Dark Mode</h3>
+        <p>Suporte automático para tema escuro</p>
+        <div class="theme-info">
+          <p>O editor detecta automaticamente as preferências do sistema e ajusta o tema.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- API Reference -->
+  <section class="doc-section">
+    <h2>📚 Referência da API</h2>
+
+    <div class="api-table">
+      <h3>Inputs</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>placeholder</code></td>
+            <td>string</td>
+            <td>'Escreva algo incrível...'</td>
+            <td>Texto placeholder</td>
+          </tr>
+          <tr>
+            <td><code>readOnly</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Modo somente leitura</td>
+          </tr>
+          <tr>
+            <td><code>height</code></td>
+            <td>string</td>
+            <td>'400px'</td>
+            <td>Altura do editor</td>
+          </tr>
+          <tr>
+            <td><code>theme</code></td>
+            <td>'snow' | 'bubble'</td>
+            <td>'snow'</td>
+            <td>Tema visual</td>
+          </tr>
+          <tr>
+            <td><code>showToolbar</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Exibir toolbar</td>
+          </tr>
+          <tr>
+            <td><code>customToolbar</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Usar toolbar customizada</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Outputs</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>contentChanged</code></td>
+            <td>EventEmitter&lt;any&gt;</td>
+            <td>Emitido quando o conteúdo muda</td>
+          </tr>
+          <tr>
+            <td><code>selectionChanged</code></td>
+            <td>EventEmitter&lt;any&gt;</td>
+            <td>Emitido quando a seleção muda</td>
+          </tr>
+          <tr>
+            <td><code>editorCreated</code></td>
+            <td>EventEmitter&lt;any&gt;</td>
+            <td>Emitido quando o editor é criado</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Métodos</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Método</th>
+            <th>Retorno</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>getWordCount()</code></td>
+            <td>number</td>
+            <td>Retorna contagem de palavras</td>
+          </tr>
+          <tr>
+            <td><code>getCharCount()</code></td>
+            <td>number</td>
+            <td>Retorna contagem de caracteres</td>
+          </tr>
+          <tr>
+            <td><code>clear()</code></td>
+            <td>void</td>
+            <td>Limpa todo o conteúdo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Casos de Uso -->
+  <section class="doc-section">
+    <h2>💼 Casos de Uso</h2>
+    
+    <div class="use-cases">
+      <div class="use-case">
+        <h3>📰 Blogs & CMS</h3>
+        <p>Perfeito para sistemas de gerenciamento de conteúdo e plataformas de blog.</p>
+      </div>
+      <div class="use-case">
+        <h3>✉️ Emails</h3>
+        <p>Compose emails ricos com formatação profissional.</p>
+      </div>
+      <div class="use-case">
+        <h3>📝 Documentação</h3>
+        <p>Criar e editar documentação técnica com código e fórmulas.</p>
+      </div>
+      <div class="use-case">
+        <h3>💬 Comentários</h3>
+        <p>Comentários ricos em fóruns e sistemas de discussão.</p>
+      </div>
+      <div class="use-case">
+        <h3>📚 E-Learning</h3>
+        <p>Plataformas educacionais com conteúdo interativo.</p>
+      </div>
+      <div class="use-case">
+        <h3>📊 Relatórios</h3>
+        <p>Gerar relatórios profissionais com tabelas e gráficos.</p>
+      </div>
+    </div>
+  </section>
+</div>

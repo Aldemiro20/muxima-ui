@@ -1,0 +1,124 @@
+<div class="gantt-container" [style.height]="height">
+  <!-- Toolbar -->
+  <div class="gantt-toolbar">
+    <div class="toolbar-left">
+      <h3 class="gantt-title">📊 Cronograma do Projeto</h3>
+    </div>
+    <div class="toolbar-right">
+      <button class="toolbar-btn" (click)="zoomOut()" [disabled]="zoomLevel === 'month'" title="Diminuir zoom">
+        <span>🔍−</span>
+      </button>
+      <span class="zoom-level">{{ zoomLevel === 'day' ? 'Dia' : zoomLevel === 'week' ? 'Semana' : 'Mês' }}</span>
+      <button class="toolbar-btn" (click)="zoomIn()" [disabled]="zoomLevel === 'day'" title="Aumentar zoom">
+        <span>🔍+</span>
+      </button>
+      <button class="toolbar-btn" (click)="exportToPNG()" title="Exportar">
+        <span>📥</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Gantt Chart -->
+  <div class="gantt-wrapper">
+    <!-- Task List (Left Side) -->
+    <div class="gantt-task-list">
+      <div class="task-list-header">
+        <div class="header-cell">Tarefa</div>
+        <div class="header-cell">Período</div>
+        <div class="header-cell">Progresso</div>
+      </div>
+      
+      <div class="task-list-body">
+        <div *ngFor="let task of getVisibleTasks()" 
+             class="task-row"
+             [class.has-children]="hasChildren(task)"
+             [style.padding-left.px]="getTaskLevel(task) * 20 + 12">
+          
+          <div class="task-info">
+            <button *ngIf="hasChildren(task)" 
+                    class="collapse-btn"
+                    (click)="toggleCollapse(task)">
+              {{ task.collapsed ? '▶' : '▼' }}
+            </button>
+            <span class="priority-icon">{{ getPriorityIcon(task.priority) }}</span>
+            <span class="task-name" [title]="task.description || task.name">{{ task.name }}</span>
+          </div>
+          
+          <div class="task-dates">
+            {{ formatDateRange(task) }}
+          </div>
+          
+          <div class="task-progress-text">
+            {{ task.progress }}%
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline (Right Side) -->
+    <div class="gantt-timeline">
+      <div class="timeline-header" [style.grid-template-columns]="gridTemplateColumns">
+        <div *ngFor="let header of timelineHeaders" 
+             class="timeline-header-cell"
+             [class.weekend]="!showWeekends && isWeekend(header.date)"
+             [class.today]="showToday && isToday(header.date)">
+          {{ header.label }}
+        </div>
+      </div>
+      
+      <div class="timeline-body">
+        <!-- Grid Background -->
+        <div class="timeline-grid" [style.grid-template-columns]="gridTemplateColumns">
+          <div *ngFor="let date of dateRange" 
+               class="grid-cell"
+               [class.weekend]="!showWeekends && isWeekend(date)"
+               [class.today]="showToday && isToday(date)">
+          </div>
+        </div>
+
+        <!-- Today Line -->
+        <div *ngIf="showToday" class="today-line" [style.left]="getMilestonePosition({id: 'today', name: 'Hoje', date: today})"></div>
+
+        <!-- Task Bars -->
+        <div class="timeline-tasks">
+          <div *ngFor="let task of getVisibleTasks(); let i = index" 
+               class="task-bar-wrapper"
+               [style.top.px]="i * rowHeight">
+            
+            <div class="task-bar"
+                 [style.left]="getTaskPosition(task).left"
+                 [style.width]="getTaskPosition(task).width"
+                 [style.background]="getTaskColor(task)"
+                 (click)="onTaskClick(task)"
+                 [title]="task.name + ' (' + task.progress + '%)'">
+              
+              <div *ngIf="showProgress" 
+                   class="task-progress"
+                   [style.width]="getProgressWidth(task)">
+              </div>
+              
+              <span class="task-label">{{ task.name }}</span>
+              
+              <div class="task-handles">
+                <div class="handle handle-left"></div>
+                <div class="handle handle-right"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestones -->
+        <div class="timeline-milestones">
+          <div *ngFor="let milestone of milestones" 
+               class="milestone"
+               [style.left]="getMilestonePosition(milestone)"
+               [style.background]="milestone.color || '#f6ad55'"
+               [title]="milestone.name">
+            <span class="milestone-icon">{{ milestone.icon || '📍' }}</span>
+            <span class="milestone-label">{{ milestone.name }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

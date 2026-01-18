@@ -1,0 +1,10 @@
+{
+  "name": "@muxima-ui/kanban",
+  "version": "1.0.0",
+  "description": "Kanban Board component for Angular 18+ with drag & drop",
+  "peerDependencies": {
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0",
+    "@angular/cdk": "^18.0.0"
+  }
+}

@@ -1,0 +1,356 @@
+<div class="doc-container">
+  <div class="doc-header">
+    <h1>⌨️ Command Palette</h1>
+    <p class="doc-subtitle">Paleta de comandos com busca fuzzy e atalhos de teclado</p>
+  </div>
+
+  <!-- Introdução -->
+  <section class="doc-section">
+    <h2>📖 Visão Geral</h2>
+    <p>
+      O <strong>Command Palette</strong> é uma paleta de comandos estilo Spotlight/VSCode, 
+      que permite acesso rápido a funcionalidades através de busca fuzzy e atalhos de teclado. 
+      Ideal para melhorar a produtividade e navegação em aplicações complexas.
+    </p>
+    
+    <div class="feature-grid">
+      <div class="feature-item">
+        <span class="feature-icon">⚡</span>
+        <h4>Atalho Global</h4>
+        <p>Abra com Ctrl+K de qualquer lugar</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🔍</span>
+        <h4>Busca Fuzzy</h4>
+        <p>Encontre comandos rapidamente</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">⌨️</span>
+        <h4>Navegação</h4>
+        <p>Use setas e Enter para navegar</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🎯</span>
+        <h4>Categorizado</h4>
+        <p>Comandos organizados por categoria</p>
+      </div>
+    </div>
+
+    <div class="shortcut-box">
+      <div class="shortcut-hint">
+        <kbd>Ctrl</kbd> + <kbd>K</kbd> para abrir a paleta
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo Interativa -->
+  <section class="doc-section">
+    <h2>🎮 Demo Interativa</h2>
+    <p>Clique no botão abaixo ou pressione <kbd>Ctrl</kbd> + <kbd>K</kbd> para testar:</p>
+    
+    <div class="demo-actions">
+      <button class="demo-button" (click)="openPalette()">
+        <span class="button-icon">⌨️</span>
+        Abrir Command Palette
+        <span class="button-hint">Ctrl+K</span>
+      </button>
+    </div>
+
+    <muxima-command-palette
+      [commands]="commands"
+      placeholder="Digite um comando ou busque..."
+      [maxResults]="8"
+      (commandExecuted)="onCommandExecuted($event)"
+      (closed)="onPaletteClosed()">
+    </muxima-command-palette>
+  </section>
+
+  <!-- Exemplo de Uso -->
+  <section class="doc-section">
+    <h2>🚀 Exemplo de Uso</h2>
+    
+    <h4>TypeScript (Component)</h4>
+    <pre><code>import {{'{'}}{{'{'}} CommandPaletteComponent, CommandItem } from '&#64;muxima-ui/command-palette';
+
+commands: CommandItem[] = [
+  {{'{'}}{{'{'}}
+    id: 'nav-home',
+    label: 'Ir para Home',
+    description: 'Navegar para página inicial',
+    icon: '🏠',
+    category: 'Navegação',
+    shortcut: 'Ctrl+H',
+    action: () => this.navigateTo('/'),
+    keywords: ['home', 'início', 'principal']
+  },
+  {{'{'}}{{'{'}}
+    id: 'action-new-project',
+    label: 'Novo Projeto',
+    description: 'Criar um novo projeto',
+    icon: '➕',
+    category: 'Ações',
+    shortcut: 'Ctrl+N',
+    action: () => this.createNew(),
+    keywords: ['new', 'novo', 'criar']
+  }
+];
+
+onCommandExecuted(command: CommandItem): void {{'{'}}{{'{'}}
+  console.log('Comando executado:', command);
+}</code></pre>
+
+    <h4>HTML (Template)</h4>
+    <pre><code>&lt;muxima-command-palette
+  [commands]="commands"
+  placeholder="Digite um comando..."
+  [maxResults]="8"
+  (commandExecuted)="onCommandExecuted($event)"&gt;
+&lt;/muxima-command-palette&gt;</code></pre>
+  </section>
+
+  <!-- Categorias de Exemplo -->
+  <section class="doc-section">
+    <h2>🗂️ Categorias Disponíveis</h2>
+    <p>Os comandos do exemplo estão organizados nas seguintes categorias:</p>
+    
+    <div class="categories-grid">
+      <div class="category-card">
+        <span class="category-icon">🧭</span>
+        <h4>Navegação</h4>
+        <p>Home, Dashboard, Configurações, Perfil</p>
+        <span class="category-count">4 comandos</span>
+      </div>
+      <div class="category-card">
+        <span class="category-icon">⚡</span>
+        <h4>Ações</h4>
+        <p>Novo Projeto, Nova Tarefa, Buscar, Exportar</p>
+        <span class="category-count">4 comandos</span>
+      </div>
+      <div class="category-card">
+        <span class="category-icon">✏️</span>
+        <h4>Edição</h4>
+        <p>Desfazer, Refazer, Copiar</p>
+        <span class="category-count">3 comandos</span>
+      </div>
+      <div class="category-card">
+        <span class="category-icon">👁️</span>
+        <h4>Visualização</h4>
+        <p>Tema Escuro, Tema Claro, Tela Cheia</p>
+        <span class="category-count">3 comandos</span>
+      </div>
+      <div class="category-card">
+        <span class="category-icon">❓</span>
+        <h4>Ajuda</h4>
+        <p>Documentação, Atalhos, Sobre</p>
+        <span class="category-count">3 comandos</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2>📚 API Reference</h2>
+    
+    <h3>Inputs</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>commands</code></td>
+            <td>CommandItem[]</td>
+            <td>[]</td>
+            <td>Array de comandos disponíveis</td>
+          </tr>
+          <tr>
+            <td><code>placeholder</code></td>
+            <td>string</td>
+            <td>'Digite um comando...'</td>
+            <td>Placeholder do input de busca</td>
+          </tr>
+          <tr>
+            <td><code>shortcut</code></td>
+            <td>string</td>
+            <td>'Ctrl+K'</td>
+            <td>Atalho para abrir a paleta</td>
+          </tr>
+          <tr>
+            <td><code>maxResults</code></td>
+            <td>number</td>
+            <td>8</td>
+            <td>Número máximo de resultados</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Outputs</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Payload</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>commandExecuted</code></td>
+            <td>CommandItem</td>
+            <td>Emitido ao executar um comando</td>
+          </tr>
+          <tr>
+            <td><code>closed</code></td>
+            <td>void</td>
+            <td>Emitido ao fechar a paleta</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Métodos Públicos</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Método</th>
+            <th>Parâmetros</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>open()</code></td>
+            <td>void</td>
+            <td>Abre a paleta programaticamente</td>
+          </tr>
+          <tr>
+            <td><code>close()</code></td>
+            <td>void</td>
+            <td>Fecha a paleta</td>
+          </tr>
+          <tr>
+            <td><code>toggle()</code></td>
+            <td>void</td>
+            <td>Alterna entre aberto/fechado</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Interface CommandItem</h3>
+    <pre><code>interface CommandItem {{'{'}}{{'{'}}
+  id: string;
+  label: string;
+  description?: string;
+  icon?: string;
+  shortcut?: string;
+  category?: string;
+  action: () => void;
+  keywords?: string[];
+}</code></pre>
+  </section>
+
+  <!-- Atalhos de Teclado -->
+  <section class="doc-section">
+    <h2>⌨️ Atalhos de Teclado</h2>
+    
+    <div class="shortcuts-grid">
+      <div class="shortcut-item">
+        <div class="shortcut-keys">
+          <kbd>Ctrl</kbd> + <kbd>K</kbd>
+        </div>
+        <p>Abrir/Fechar paleta</p>
+      </div>
+      <div class="shortcut-item">
+        <div class="shortcut-keys">
+          <kbd>↑</kbd> <kbd>↓</kbd>
+        </div>
+        <p>Navegar entre comandos</p>
+      </div>
+      <div class="shortcut-item">
+        <div class="shortcut-keys">
+          <kbd>Enter</kbd>
+        </div>
+        <p>Executar comando selecionado</p>
+      </div>
+      <div class="shortcut-item">
+        <div class="shortcut-keys">
+          <kbd>ESC</kbd>
+        </div>
+        <p>Fechar paleta</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Busca Fuzzy -->
+  <section class="doc-section">
+    <h2>🔍 Busca Fuzzy</h2>
+    <p>
+      O Command Palette utiliza busca fuzzy para encontrar comandos mesmo com 
+      digitação incompleta ou fora de ordem. Exemplos:
+    </p>
+    
+    <div class="search-examples">
+      <div class="search-example">
+        <code class="search-query">nvhm</code>
+        <span class="search-arrow">→</span>
+        <span class="search-result"><mark>Nav</mark>egar para <mark>Hom</mark>e</span>
+      </div>
+      <div class="search-example">
+        <code class="search-query">nprj</code>
+        <span class="search-arrow">→</span>
+        <span class="search-result"><mark>N</mark>ovo <mark>Pr</mark>o<mark>j</mark>eto</span>
+      </div>
+      <div class="search-example">
+        <code class="search-query">doc</code>
+        <span class="search-arrow">→</span>
+        <span class="search-result"><mark>Doc</mark>umentação</span>
+      </div>
+    </div>
+
+    <div class="hint-box">
+      💡 <strong>Dica:</strong> A busca também procura nas palavras-chave (keywords) 
+      definidas em cada comando, ampliando as possibilidades de correspondência.
+    </div>
+  </section>
+
+  <!-- Casos de Uso -->
+  <section class="doc-section">
+    <h2>💼 Casos de Uso</h2>
+    <div class="use-cases">
+      <div class="use-case">
+        <h4>🎯 Navegação Rápida</h4>
+        <p>Acesse qualquer página sem usar menus</p>
+      </div>
+      <div class="use-case">
+        <h4>⚡ Power Users</h4>
+        <p>Fluxos de trabalho otimizados com teclado</p>
+      </div>
+      <div class="use-case">
+        <h4>🔧 Ações Globais</h4>
+        <p>Execute comandos de qualquer contexto</p>
+      </div>
+      <div class="use-case">
+        <h4>📱 Acessibilidade</h4>
+        <p>Navegação sem mouse para todos</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instalação -->
+  <section class="doc-section">
+    <h2>📦 Instalação</h2>
+    <pre><code>npm install &#64;muxima-ui/command-palette</code></pre>
+    
+    <p><strong>Dependências:</strong> Apenas Angular Common e Core (standalone component)</p>
+  </section>
+</div>

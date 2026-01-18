@@ -1,0 +1,243 @@
+// Command Palette
+.command-palette-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 15vh;
+  animation: fadeIn 0.15s ease;
+}
+
+.command-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+.command-palette {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  background: #1a202c;
+  border-radius: 12px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(102, 126, 234, 0.3);
+  overflow: hidden;
+  animation: slideUp 0.2s ease;
+}
+
+.command-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+
+  .search-icon {
+    color: #667eea;
+    flex-shrink: 0;
+  }
+
+  .command-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #f7fafc;
+    font-size: 16px;
+    outline: none;
+
+    &::placeholder {
+      color: #a0aec0;
+    }
+  }
+
+  .shortcut-hint {
+    background: rgba(255, 255, 255, 0.05);
+    color: #a0aec0;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: 'Monaco', monospace;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+.command-results {
+  max-height: 400px;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 4px;
+  }
+}
+
+.command-category {
+  .category-label {
+    padding: 12px 20px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #667eea;
+  }
+}
+
+.command-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover,
+  &.selected {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+    
+    .command-icon {
+      transform: scale(1.1);
+    }
+  }
+
+  .command-icon {
+    font-size: 20px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 8px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  .command-content {
+    flex: 1;
+    min-width: 0;
+
+    .command-label {
+      color: #f7fafc;
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      ::ng-deep mark {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-weight: 600;
+      }
+    }
+
+    .command-description {
+      color: #a0aec0;
+      font-size: 12px;
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .command-shortcut {
+    background: rgba(255, 255, 255, 0.05);
+    color: #a0aec0;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-family: 'Monaco', monospace;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+  }
+}
+
+.command-empty {
+  padding: 60px 20px;
+  text-align: center;
+  color: #a0aec0;
+
+  svg {
+    opacity: 0.3;
+    margin-bottom: 16px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}
+
+.command-footer {
+  padding: 12px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+
+  .footer-hint {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    color: #a0aec0;
+
+    kbd {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 3px 6px;
+      border-radius: 3px;
+      font-family: 'Monaco', monospace;
+      font-size: 11px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .command-palette-wrapper {
+    padding: 16px;
+    padding-top: 10vh;
+  }
+
+  .command-palette {
+    max-width: 100%;
+  }
+}

@@ -45,6 +45,7 @@ export class DocLayoutComponent {
         { label: 'Navbar', route: '/components/navbar', icon: '🧭' },
         { label: 'Pagination', route: '/components/pagination', icon: '📄' },
         { label: 'Progress', route: '/components/progress', icon: '📊' },
+        { label: 'Quill Editor', route: '/components/quill-editor', icon: '✍️' },
         { label: 'Radio Button', route: '/components/radio', icon: '🔘' },
         { label: 'Rich Text Editor', route: '/components/rich-text-editor', icon: '✍️' },
         { label: 'Search Bar', route: '/components/search-bar', icon: '🔍' },
@@ -60,7 +61,9 @@ export class DocLayoutComponent {
         { label: 'Toggle', route: '/components/toggle', icon: '🎯' },
         { label: 'Tooltip', route: '/components/tooltip', icon: '💬' },
         { label: 'Tree View', route: '/components/tree-view', icon: '🌳' },
-        { label: 'User Profile Menu', route: '/components/user-profile-menu', icon: '👤' }
+        { label: 'User Profile Menu', route: '/components/user-profile-menu', icon: '👤' },
+        { label: 'Kanban Board', route: '/components/kanban', icon: '📋' },
+        { label: 'Command Palette', route: '/components/command-palette', icon: '⌨️' }
       ]
     }
   ];
