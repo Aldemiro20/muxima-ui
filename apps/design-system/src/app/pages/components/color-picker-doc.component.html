@@ -1,0 +1,96 @@
+<div class="doc-container">
+  <div class="doc-header">
+    <h1>🎨 Color Picker</h1>
+    <p>Seletor de cores avançado com suporte a múltiplos formatos, paletas predefinidas e criador de gradientes. Segue o tema Muxima UI.</p>
+  </div>
+
+  <div class="section">
+    <h2>Exemplo Básico</h2>
+    <div class="examples-grid">
+      <div class="example-card">
+        <h4>Dropdown</h4>
+        <muxima-color-picker [(ngModel)]="selectedColor" (colorChange)="onColorChange($event)"></muxima-color-picker>
+        <div class="code-block"><pre><code>&lt;muxima-color-picker [(ngModel)]="selectedColor"&gt;&lt;/muxima-color-picker&gt;</code></pre></div>
+        <p>Cor selecionada: <span [style.color]="selectedColor">{{ selectedColor }}</span></p>
+      </div>
+      <div class="example-card">
+        <h4>Inline</h4>
+        <muxima-color-picker [inline]="true" [(ngModel)]="selectedColor"></muxima-color-picker>
+        <div class="code-block"><pre><code>&lt;muxima-color-picker [inline]="true" [(ngModel)]="selectedColor"&gt;&lt;/muxima-color-picker&gt;</code></pre></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Formatos e Paletas</h2>
+    <div class="examples-grid">
+      <div class="example-card">
+        <h4>HEX, RGB, HSL</h4>
+        <muxima-color-picker [(ngModel)]="selectedColor" [format]="format" (formatChange)="onFormatChange($event)"></muxima-color-picker>
+        <div class="code-block"><pre><code>&lt;muxima-color-picker [(ngModel)]="selectedColor" [format]="format" (formatChange)="onFormatChange($event)"&gt;&lt;/muxima-color-picker&gt;</code></pre></div>
+        <p>Formato atual: <b>{{ format }}</b></p>
+      </div>
+      <div class="example-card">
+        <h4>Paleta Customizada</h4>
+        <muxima-color-picker [(ngModel)]="selectedColor" [customPalettes]="customPalettes"></muxima-color-picker>
+        <div class="code-block"><pre><code>&lt;muxima-color-picker [(ngModel)]="selectedColor" [customPalettes]="customPalettes"&gt;&lt;/muxima-color-picker&gt;</code></pre></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Gradiente e Opacidade</h2>
+    <div class="examples-grid">
+      <div class="example-card">
+        <h4>Gradiente</h4>
+        <muxima-color-picker [showGradient]="true" [inline]="true"></muxima-color-picker>
+        <div class="code-block"><pre><code>&lt;muxima-color-picker [showGradient]="true" [inline]="true"&gt;&lt;/muxima-color-picker&gt;</code></pre></div>
+      </div>
+      <div class="example-card">
+        <h4>Com Opacidade</h4>
+        <muxima-color-picker [(ngModel)]="colorWithAlpha" [showAlpha]="true"></muxima-color-picker>
+        <div class="code-block"><pre><code>&lt;muxima-color-picker [(ngModel)]="colorWithAlpha" [showAlpha]="true"&gt;&lt;/muxima-color-picker&gt;</code></pre></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>API</h2>
+    <table class="api-table">
+      <thead>
+        <tr><th>Propriedade</th><th>Tipo</th><th>Padrão</th><th>Descrição</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>format</td><td>'hex' | 'rgb' | 'hsl'</td><td>'hex'</td><td>Formato de exibição da cor</td></tr>
+        <tr><td>showPalettes</td><td>boolean</td><td>true</td><td>Mostrar paletas de cores</td></tr>
+        <tr><td>showGradient</td><td>boolean</td><td>false</td><td>Mostrar criador de gradientes</td></tr>
+        <tr><td>showAlpha</td><td>boolean</td><td>false</td><td>Mostrar controle de opacidade</td></tr>
+        <tr><td>inline</td><td>boolean</td><td>false</td><td>Exibir sempre aberto</td></tr>
+        <tr><td>disabled</td><td>boolean</td><td>false</td><td>Desabilitar o componente</td></tr>
+        <tr><td>size</td><td>'small' | 'medium' | 'large'</td><td>'medium'</td><td>Tamanho do botão trigger</td></tr>
+        <tr><td>customPalettes</td><td>ColorPalette[]</td><td>[]</td><td>Paletas personalizadas</td></tr>
+      </tbody>
+    </table>
+    <h3>Eventos</h3>
+    <ul>
+      <li><b>colorChange</b>: <code>ColorFormat</code> - Emitido quando a cor muda</li>
+      <li><b>formatChange</b>: <code>'hex' | 'rgb' | 'hsl'</code> - Emitido quando o formato muda</li>
+    </ul>
+    <h3>Interface ColorFormat</h3>
+      <div class="code-block"><pre><code>interface ColorFormat {{ '{' }}
+    hex: string;
+    rgb: {{ '{' }} r: number; g: number; b: number {{ '}' }};
+    hsl: {{ '{' }} h: number; s: number; l: number {{ '}' }};
+  {{ '}' }}</code></pre></div>
+  </div>
+
+  <div class="section">
+    <h2>Dicas</h2>
+    <ul class="tips-list">
+      <li>Use <b>paletas customizadas</b> para adaptar ao seu branding.</li>
+      <li>O gradiente segue o tema Muxima UI: <code>linear-gradient(135deg, #667eea 0%, #764ba2 100%)</code></li>
+      <li>Compatível com <b>ngModel</b> e <b>Reactive Forms</b>.</li>
+      <li>Ideal para seletores de cor em editores, dashboards e formulários avançados.</li>
+    </ul>
+  </div>
+</div>

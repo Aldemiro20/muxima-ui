@@ -1,0 +1,358 @@
+<div class="doc-container">
+  <div class="doc-header">
+    <h1>🔐 OTP Input</h1>
+    <p class="doc-subtitle">Input de código de verificação para autenticação 2FA e segurança</p>
+  </div>
+
+  <div class="doc-section">
+    <h2>📊 Visão Geral</h2>
+    <p>Componente especializado para entrada de códigos OTP (One-Time Password), ideal para autenticação em dois fatores, verificação de email, SMS e códigos de segurança.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-icon">⌨️</span>
+        <h4>Auto-Focus</h4>
+        <p>Foco automático e navegação inteligente</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📋</span>
+        <h4>Paste Support</h4>
+        <p>Cole o código completo de uma vez</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔒</span>
+        <h4>Modo Seguro</h4>
+        <p>Oculta os dígitos como senha</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📏</span>
+        <h4>Flexível</h4>
+        <p>4, 6 ou qualquer quantidade de dígitos</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>🎨 Exemplos Interativos</h2>
+
+    <!-- Exemplo 1: OTP Padrão -->
+    <div class="example-card">
+      <h3>📱 OTP Padrão (6 dígitos)</h3>
+      <p>Input padrão com 6 dígitos para verificação de SMS ou Email</p>
+      <div class="example-demo">
+        <muxima-otp-input
+          [(ngModel)]="basicOtp"
+          [length]="6"
+          [autoFocus]="true"
+          (otpComplete)="onOtpComplete($event)"
+          (otpChange)="onOtpChange($event)">
+        </muxima-otp-input>
+        <p class="example-value" *ngIf="basicOtp">Valor: <code>{{ basicOtp }}</code></p>
+      </div>
+    </div>
+
+    <!-- Exemplo 2: OTP Curto -->
+    <div class="example-card">
+      <h3>🔢 OTP com 4 Dígitos</h3>
+      <p>Ideal para PINs e códigos de acesso rápido</p>
+      <div class="example-demo">
+        <muxima-otp-input
+          [(ngModel)]="shortOtp"
+          [length]="4"
+          size="large"
+          placeholder="•">
+        </muxima-otp-input>
+        <p class="example-value" *ngIf="shortOtp">PIN: <code>{{ shortOtp }}</code></p>
+      </div>
+    </div>
+
+    <!-- Exemplo 3: OTP Seguro -->
+    <div class="example-card">
+      <h3>🔒 Modo Seguro (Password)</h3>
+      <p>Oculta os dígitos para maior segurança</p>
+      <div class="example-demo">
+        <muxima-otp-input
+          [(ngModel)]="secureOtp"
+          [length]="6"
+          [secure]="true"
+          size="medium">
+        </muxima-otp-input>
+        <p class="example-hint">💡 Os dígitos ficam ocultos como senha</p>
+      </div>
+    </div>
+
+    <!-- Exemplo 4: Tamanhos -->
+    <div class="example-card">
+      <h3>📏 Diferentes Tamanhos</h3>
+      <div class="sizes-grid">
+        <div class="size-example">
+          <label>Small</label>
+          <muxima-otp-input
+            [(ngModel)]="smallOtp"
+            [length]="4"
+            size="small">
+          </muxima-otp-input>
+        </div>
+        <div class="size-example">
+          <label>Medium (Padrão)</label>
+          <muxima-otp-input
+            [length]="4"
+            size="medium">
+          </muxima-otp-input>
+        </div>
+        <div class="size-example">
+          <label>Large</label>
+          <muxima-otp-input
+            [(ngModel)]="largeOtp"
+            [length]="4"
+            size="large">
+          </muxima-otp-input>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exemplo 5: OTP Alfanumérico -->
+    <div class="example-card">
+      <h3>🔤 Alfanumérico</h3>
+      <p>Aceita letras e números para códigos mais complexos</p>
+      <div class="example-demo">
+        <muxima-otp-input
+          [(ngModel)]="alphaOtp"
+          [length]="6"
+          type="text">
+        </muxima-otp-input>
+        <p class="example-hint">💡 Digite letras ou números</p>
+      </div>
+    </div>
+
+    <!-- Exemplo 6: Com Verificação -->
+    <div class="example-card">
+      <h3>✅ Com Verificação Automática</h3>
+      <p>Verifica o código automaticamente ao completar (teste com: 123456)</p>
+      <div class="example-demo">
+        <muxima-otp-input
+          [(ngModel)]="verificationOtp"
+          [length]="6"
+          (otpComplete)="verifyOtp($event)">
+        </muxima-otp-input>
+        
+        <div class="verification-status" *ngIf="isVerifying || verificationResult">
+          <div class="status-loading" *ngIf="isVerifying">
+            <span class="spinner"></span>
+            Verificando código...
+          </div>
+          <div class="status-success" *ngIf="verificationResult === 'success'">
+            ✅ Código verificado com sucesso!
+          </div>
+          <div class="status-error" *ngIf="verificationResult === 'error'">
+            ❌ Código inválido. Tente novamente.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exemplo 7: Desabilitado -->
+    <div class="example-card">
+      <h3>🚫 Estado Desabilitado</h3>
+      <p>Input bloqueado para visualização</p>
+      <div class="example-demo">
+        <muxima-otp-input
+          [(ngModel)]="disabledOtp"
+          [length]="6"
+          [disabled]="true">
+        </muxima-otp-input>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>💻 Código</h2>
+
+    <h3>TypeScript</h3>
+    <pre><code>{{ typescriptCode }}</code></pre>
+
+    <h3>HTML</h3>
+    <pre><code>{{ htmlCode }}</code></pre>
+
+    <h3>Uso com Reactive Forms</h3>
+    <pre><code>{{ formCode }}</code></pre>
+
+    <h3>Customização de Estilos</h3>
+    <pre><code>{{ stylingCode }}</code></pre>
+  </div>
+
+  <div class="doc-section">
+    <h2>📋 API</h2>
+
+    <h3>Inputs</h3>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Prop</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>length</code></td>
+            <td><code>number</code></td>
+            <td><code>6</code></td>
+            <td>Quantidade de dígitos do código</td>
+          </tr>
+          <tr>
+            <td><code>type</code></td>
+            <td><code>'number' | 'text'</code></td>
+            <td><code>'number'</code></td>
+            <td>Tipo de caracteres aceitos</td>
+          </tr>
+          <tr>
+            <td><code>placeholder</code></td>
+            <td><code>string</code></td>
+            <td><code>''</code></td>
+            <td>Placeholder para cada campo</td>
+          </tr>
+          <tr>
+            <td><code>disabled</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Desabilita o input</td>
+          </tr>
+          <tr>
+            <td><code>secure</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Oculta os dígitos (password)</td>
+          </tr>
+          <tr>
+            <td><code>autoFocus</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Foco automático no primeiro campo</td>
+          </tr>
+          <tr>
+            <td><code>size</code></td>
+            <td><code>'small' | 'medium' | 'large'</code></td>
+            <td><code>'medium'</code></td>
+            <td>Tamanho dos campos</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Outputs</h3>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>otpComplete</code></td>
+            <td><code>EventEmitter&lt;string&gt;</code></td>
+            <td>Emitido quando todos os campos são preenchidos</td>
+          </tr>
+          <tr>
+            <td><code>otpChange</code></td>
+            <td><code>EventEmitter&lt;string&gt;</code></td>
+            <td>Emitido a cada mudança no código</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Métodos</h3>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Método</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>clear()</code></td>
+            <td>Limpa todos os campos e retorna o foco ao primeiro</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>🎯 Casos de Uso</h2>
+    <div class="use-cases-grid">
+      <div class="use-case-card">
+        <div class="use-case-icon">📱</div>
+        <h4>Verificação de SMS</h4>
+        <p>Códigos de verificação enviados por SMS</p>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-icon">📧</div>
+        <h4>Verificação de Email</h4>
+        <p>Confirmação de endereço de email</p>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-icon">🔐</div>
+        <h4>2FA / MFA</h4>
+        <p>Autenticação em dois fatores</p>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-icon">🔑</div>
+        <h4>PIN de Acesso</h4>
+        <p>Senhas numéricas de 4-6 dígitos</p>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-icon">🏦</div>
+        <h4>Transações Bancárias</h4>
+        <p>Confirmação de operações financeiras</p>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-icon">🎫</div>
+        <h4>Códigos de Acesso</h4>
+        <p>Eventos, ingressos e vouchers</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>💡 Dicas e Boas Práticas</h2>
+    <div class="tips-container">
+      <div class="tip-item">
+        <span class="tip-icon">✨</span>
+        <div>
+          <strong>Auto-Complete</strong>
+          <p>Use <code>autocomplete="one-time-code"</code> para integração com SMS no iOS/Android</p>
+        </div>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">⚡</span>
+        <div>
+          <strong>Verificação Automática</strong>
+          <p>Use o evento <code>otpComplete</code> para verificar o código automaticamente</p>
+        </div>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">🔒</span>
+        <div>
+          <strong>Segurança</strong>
+          <p>Sempre valide o código no backend e implemente rate limiting</p>
+        </div>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">♿</span>
+        <div>
+          <strong>Acessibilidade</strong>
+          <p>O componente possui navegação por teclado e suporte a screen readers</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

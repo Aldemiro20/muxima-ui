@@ -1,0 +1,18 @@
+<div class="otp-container" [class.otp-disabled]="disabled" [attr.data-size]="size">
+  <input
+    #otpInput
+    *ngFor="let value of otpValues; let i = index; trackBy: trackByIndex"
+    class="otp-input"
+    [type]="secure ? 'password' : 'text'"
+    [attr.inputmode]="type === 'number' ? 'numeric' : 'text'"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    [value]="value"
+    maxlength="1"
+    (input)="onInput($event, i)"
+    (keydown)="onKeyDown($event, i)"
+    (paste)="onPaste($event)"
+    (focus)="onFocus(i)"
+    autocomplete="off"
+  />
+</div>

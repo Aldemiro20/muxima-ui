@@ -1,0 +1,267 @@
+.doc-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.doc-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  padding: 3rem;
+  margin-bottom: 3rem;
+  color: white;
+  box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+  text-align: center;
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .doc-subtitle {
+    font-size: 1.25rem;
+    opacity: 0.95;
+    margin: 0;
+    line-height: 1.6;
+  }
+}
+
+.doc-section {
+  margin-bottom: 4rem;
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #667eea;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #667eea;
+    margin: 2rem 0 1rem;
+  }
+
+  h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #4b5563;
+    margin: 1rem 0 0.5rem;
+  }
+
+  p {
+    line-height: 1.8;
+    color: #6b7280;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    margin: 1rem 0;
+    padding-left: 2rem;
+
+    li {
+      line-height: 1.8;
+      color: #6b7280;
+      margin-bottom: 0.5rem;
+
+      strong {
+        color: #1f2937;
+      }
+    }
+  }
+
+  code {
+    background: #f3f4f6;
+    color: #667eea;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.feature-card {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+    border-color: #667eea;
+  }
+
+  .feature-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 0.5rem;
+  }
+
+  p {
+    color: #6b7280;
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+}
+
+.example-container {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 1.5rem 0;
+  overflow: auto;
+
+  &.gantt-example {
+    padding: 0;
+    background: white;
+    border: 2px solid #e5e7eb;
+  }
+}
+
+pre {
+  background: #1f2937;
+  border-radius: 8px;
+  padding: 1.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+
+  code {
+    background: none;
+    color: #e5e7eb;
+    padding: 0;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    white-space: pre;
+  }
+}
+
+.table-container {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border-radius: 12px;
+  border: 2px solid #e5e7eb;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+
+    thead {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+      th {
+        padding: 1rem;
+        text-align: left;
+        font-weight: 600;
+        color: white;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+    }
+
+    tbody {
+      tr {
+        border-bottom: 1px solid #e5e7eb;
+        transition: background 0.2s ease;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &:hover {
+          background: #f9fafb;
+        }
+
+        td {
+          padding: 1rem;
+          color: #4b5563;
+          font-size: 0.875rem;
+
+          code {
+            font-size: 0.8125rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+.use-cases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.use-case {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+    border-color: #667eea;
+  }
+
+  h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 0.5rem;
+  }
+
+  p {
+    color: #6b7280;
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 768px) {
+  .doc-container {
+    padding: 1rem;
+  }
+
+  .doc-header h1 {
+    font-size: 2rem;
+  }
+
+  .feature-grid,
+  .use-cases-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .table-container {
+    overflow-x: scroll;
+  }
+}
+

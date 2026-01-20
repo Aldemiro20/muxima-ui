@@ -1,0 +1,305 @@
+<div class="doc-container">
+  <div class="doc-header">
+    <h1>Tour Guide</h1>
+    <p class="doc-subtitle">Crie tours interativos guiados para onboarding de usuários</p>
+  </div>
+
+  <div class="doc-section">
+    <h2>📊 Visão Geral</h2>
+    <p>O Tour Guide permite criar experiências guiadas para novos usuários, destacando elementos da interface com tooltips informativos e navegação sequencial.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🎯</span>
+        <h4>Highlight de Elementos</h4>
+        <p>Destaque elementos específicos com overlay escurecido</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📍</span>
+        <h4>5 Posicionamentos</h4>
+        <p>Top, bottom, left, right e center</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⌨️</span>
+        <h4>Navegação por Teclado</h4>
+        <p>ESC para sair, setas para navegar</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📊</span>
+        <h4>Barra de Progresso</h4>
+        <p>Mostre o progresso do tour</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>🚀 Exemplos Interativos</h2>
+    <p>Explore 10 variantes diferentes de tours guiados para diversos casos de uso:</p>
+
+    <!-- Grid de Tours -->
+    <div class="tours-grid">
+      <!-- 1. Tour Básico -->
+      <div class="tour-card">
+        <div class="tour-icon">👋</div>
+        <h3>Tour Básico</h3>
+        <p>Boas-vindas simples com 3 passos essenciais</p>
+        <div class="demo-elements">
+          <div id="welcome-step" class="demo-element">Bem-vindo</div>
+          <div id="navigation-step" class="demo-element">Navegação</div>
+          <div id="theme-step" class="demo-element">Tema</div>
+        </div>
+        <button class="tour-btn" (click)="startBasicTour()">Iniciar Tour Básico</button>
+      </div>
+
+      <!-- 2. Onboarding Completo -->
+      <div class="tour-card">
+        <div class="tour-icon">🎓</div>
+        <h3>Onboarding Completo</h3>
+        <p>5 passos para novos usuários</p>
+        <div class="demo-elements">
+          <div id="onb-dashboard" class="demo-element">Dashboard</div>
+          <div id="onb-create" class="demo-element">Criar</div>
+          <div id="onb-library" class="demo-element">Biblioteca</div>
+          <div id="onb-team" class="demo-element">Equipe</div>
+          <div id="onb-settings" class="demo-element">Config</div>
+        </div>
+        <button class="tour-btn" (click)="startOnboardingTour()">Iniciar Onboarding</button>
+      </div>
+
+      <!-- 3. Tour de Funcionalidades -->
+      <div class="tour-card">
+        <div class="tour-icon">⚡</div>
+        <h3>Funcionalidades</h3>
+        <p>Recursos e atalhos avançados</p>
+        <div class="demo-elements">
+          <div id="feat-search" class="demo-element">🔍 Busca</div>
+          <div id="feat-shortcuts" class="demo-element">⌨️ Atalhos</div>
+          <div id="feat-export" class="demo-element">📤 Export</div>
+          <div id="feat-notifications" class="demo-element">🔔 Alertas</div>
+        </div>
+        <button class="tour-btn" (click)="startFeatureTour()">Ver Funcionalidades</button>
+      </div>
+
+      <!-- 4. Tour de Ferramentas -->
+      <div class="tour-card">
+        <div class="tour-icon">🛠️</div>
+        <h3>Ferramentas</h3>
+        <p>Editor e recursos de design</p>
+        <div class="demo-elements">
+          <div id="tool-palette" class="demo-element">🎨 Cores</div>
+          <div id="tool-components" class="demo-element">🧩 Comp</div>
+          <div id="tool-preview" class="demo-element">👁️ Preview</div>
+        </div>
+        <button class="tour-btn">Tour de Ferramentas</button>
+      </div>
+
+      <!-- 5. Tour Rápido -->
+      <div class="tour-card">
+        <div class="tour-icon">🚀</div>
+        <h3>Tour Rápido</h3>
+        <p>2 minutos para usuários experientes</p>
+        <div class="demo-elements">
+          <div id="quick-new" class="demo-element">⚡ Novo</div>
+          <div id="quick-shortcuts" class="demo-element">⌨️ Atalhos</div>
+        </div>
+        <button class="tour-btn">Início Rápido</button>
+      </div>
+
+      <!-- 6. Tour de Colaboração -->
+      <div class="tour-card">
+        <div class="tour-icon">👥</div>
+        <h3>Colaboração</h3>
+        <p>Trabalho em equipe e compartilhamento</p>
+        <div class="demo-elements">
+          <div id="collab-share" class="demo-element">🔗 Share</div>
+          <div id="collab-comments" class="demo-element">💬 Chat</div>
+          <div id="collab-versions" class="demo-element">📜 Versões</div>
+          <div id="collab-live" class="demo-element">🟢 Live</div>
+        </div>
+        <button class="tour-btn">Tour Colaborativo</button>
+      </div>
+
+      <!-- 7. Tour de Integração -->
+      <div class="tour-card">
+        <div class="tour-icon">🔌</div>
+        <h3>Integrações</h3>
+        <p>APIs, webhooks e conectores</p>
+        <div class="demo-elements">
+          <div id="int-api" class="demo-element">🔌 API</div>
+          <div id="int-database" class="demo-element">🗄️ DB</div>
+          <div id="int-webhooks" class="demo-element">🪝 Hooks</div>
+        </div>
+        <button class="tour-btn">Ver Integrações</button>
+      </div>
+
+      <!-- 8. Tour de Deploy -->
+      <div class="tour-card">
+        <div class="tour-icon">🚀</div>
+        <h3>Deploy & CI/CD</h3>
+        <p>Publicação e monitoramento</p>
+        <div class="demo-elements">
+          <div id="deploy-build" class="demo-element">🏗️ Build</div>
+          <div id="deploy-env" class="demo-element">🌍 Env</div>
+          <div id="deploy-publish" class="demo-element">🚀 Deploy</div>
+          <div id="deploy-monitor" class="demo-element">📈 Monitor</div>
+        </div>
+        <button class="tour-btn">Tour de Deploy</button>
+      </div>
+
+      <!-- 9. Tour de Acessibilidade -->
+      <div class="tour-card">
+        <div class="tour-icon">♿</div>
+        <h3>Acessibilidade</h3>
+        <p>Recursos de A11y e inclusão</p>
+        <div class="demo-elements">
+          <div id="a11y-checker" class="demo-element">♿ Check</div>
+          <div id="a11y-keyboard" class="demo-element">⌨️ Nav</div>
+          <div id="a11y-screen-reader" class="demo-element">📢 SR</div>
+        </div>
+        <button class="tour-btn">Tour A11y</button>
+      </div>
+
+      <!-- 10. Tour Avançado -->
+      <div class="tour-card">
+        <div class="tour-icon">💻</div>
+        <h3>Desenvolvimento</h3>
+        <p>Recursos para desenvolvedores</p>
+        <div class="demo-elements">
+          <div id="adv-custom-code" class="demo-element">💻 Code</div>
+          <div id="adv-plugins" class="demo-element">🔧 Plugins</div>
+          <div id="adv-devtools" class="demo-element">🛠️ Tools</div>
+          <div id="adv-version-control" class="demo-element">🔀 Git</div>
+          <div id="adv-testing" class="demo-element">🧪 Tests</div>
+        </div>
+        <button class="tour-btn">Tour Avançado</button>
+      </div>
+    </div>
+
+    <!-- Tour Components -->
+    <muxima-tour-guide
+      #basicTour
+      [steps]="basicSteps"
+      [showProgress]="true"
+      (tourComplete)="onTourComplete()"
+      (tourSkip)="onTourSkip()">
+    </muxima-tour-guide>
+
+    <muxima-tour-guide
+      #onboardingTour
+      [steps]="onboardingSteps"
+      [showProgress]="true"
+      (tourComplete)="onTourComplete()"
+      (tourSkip)="onTourSkip()">
+    </muxima-tour-guide>
+
+    <muxima-tour-guide
+      #featureTour
+      [steps]="featureSteps"
+      [showProgress]="true"
+      (tourComplete)="onTourComplete()"
+      (tourSkip)="onTourSkip()">
+    </muxima-tour-guide>
+
+    <h3>💡 Características dos Tours</h3>
+    <div class="characteristics-grid">
+      <div class="char-item">
+        <span class="char-icon">📍</span>
+        <div>
+          <strong>Posicionamento Inteligente</strong>
+          <p>Top, bottom, left, right e center automático</p>
+        </div>
+      </div>
+      <div class="char-item">
+        <span class="char-icon">🎨</span>
+        <div>
+          <strong>Customização Visual</strong>
+          <p>Classes CSS personalizadas para cada passo</p>
+        </div>
+      </div>
+      <div class="char-item">
+        <span class="char-icon">⌨️</span>
+        <div>
+          <strong>Controles de Teclado</strong>
+          <p>ESC para sair, setas para navegar</p>
+        </div>
+      </div>
+      <div class="char-item">
+        <span class="char-icon">📊</span>
+        <div>
+          <strong>Progresso Visual</strong>
+          <p>Barra de progresso e contador de passos</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>Código TypeScript</h3>
+    <pre><code>{{ typescriptCode }}</code></pre>
+
+    <h3>Código HTML</h3>
+    <pre><code>{{ htmlCode }}</code></pre>
+  </div>
+
+  <div class="doc-section">
+    <h2>📋 Props</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Prop</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>steps</code></td>
+            <td><code>TourStep[]</code></td>
+            <td><code>[]</code></td>
+            <td>Array de passos do tour</td>
+          </tr>
+          <tr>
+            <td><code>isActive</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Controla se o tour está ativo</td>
+          </tr>
+          <tr>
+            <td><code>showProgress</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Exibir barra de progresso</td>
+          </tr>
+          <tr>
+            <td><code>allowClose</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Permitir fechar o tour</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>💡 Casos de Uso</h2>
+    <div class="use-cases-grid">
+      <div class="use-case">
+        <h4>🎓 Onboarding</h4>
+        <p>Guie novos usuários pelas funcionalidades principais</p>
+      </div>
+      <div class="use-case">
+        <h4>✨ Novas Features</h4>
+        <p>Apresente recursos recém-lançados</p>
+      </div>
+      <div class="use-case">
+        <h4>📚 Tutoriais</h4>
+        <p>Crie tutoriais passo a passo</p>
+      </div>
+      <div class="use-case">
+        <h4>🔧 Demonstrações</h4>
+        <p>Demonstre funcionalidades complexas</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,440 @@
+<div class="doc-container">
+  <div class="doc-header">
+    <h1>⭐ Star Rating</h1>
+    <p class="doc-subtitle">Sistema de avaliação por estrelas com suporte a meias-estrelas e customização completa</p>
+  </div>
+
+  <div class="doc-section">
+    <h2>📊 Visão Geral</h2>
+    <p>Componente de avaliação por estrelas perfeito para reviews de produtos, feedback de usuários, classificações de conteúdo e qualquer sistema que precise de avaliação visual.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-icon">⭐</span>
+        <h4>Half-Stars</h4>
+        <p>Suporte a meias-estrelas para precisão</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">👁️</span>
+        <h4>Readonly Mode</h4>
+        <p>Exibição de avaliações existentes</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🎨</span>
+        <h4>Customizável</h4>
+        <p>Cores, tamanhos e labels personalizados</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">✨</span>
+        <h4>Animações</h4>
+        <p>Transições suaves e feedback visual</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>🎨 Exemplos Interativos</h2>
+
+    <!-- Exemplo 1: Rating Básico -->
+    <div class="example-card">
+      <h3>⭐ Avaliação Básica</h3>
+      <p>Clique nas estrelas para avaliar</p>
+      <div class="example-demo">
+        <muxima-star-rating
+          [(ngModel)]="basicRating"
+          [maxStars]="5"
+          [allowHalf]="true"
+          (ratingChange)="onRatingChange($event)"
+          (ratingHover)="onRatingHover($event)">
+        </muxima-star-rating>
+        <p class="example-value" *ngIf="basicRating > 0">
+          Sua avaliação: <code>{{ basicRating }} estrelas</code>
+        </p>
+      </div>
+    </div>
+
+    <!-- Exemplo 2: Com Half-Stars -->
+    <div class="example-card">
+      <h3>✨ Meias-Estrelas</h3>
+      <p>Clique na metade esquerda da estrela para meia-estrela</p>
+      <div class="example-demo">
+        <muxima-star-rating
+          [(ngModel)]="halfRating"
+          [allowHalf]="true"
+          [showCount]="true"
+          size="large">
+        </muxima-star-rating>
+        <p class="example-hint">💡 Precisão de 0.5 estrelas</p>
+      </div>
+    </div>
+
+    <!-- Exemplo 3: Readonly -->
+    <div class="example-card">
+      <h3>👁️ Somente Leitura</h3>
+      <p>Exibição de avaliações sem interação</p>
+      <div class="example-demo">
+        <muxima-star-rating
+          [(ngModel)]="readonlyRating"
+          [readonly]="true"
+          [showCount]="true"
+          size="medium">
+        </muxima-star-rating>
+        <p class="example-hint">Avaliação média do produto</p>
+      </div>
+    </div>
+
+    <!-- Exemplo 4: Com Labels -->
+    <div class="example-card">
+      <h3>🏷️ Com Labels Descritivos</h3>
+      <p>Feedback textual baseado na avaliação</p>
+      <div class="example-demo">
+        <muxima-star-rating
+          [(ngModel)]="labelRating"
+          [showLabel]="true"
+          [customLabels]="customLabels"
+          size="large">
+        </muxima-star-rating>
+      </div>
+    </div>
+
+    <!-- Exemplo 5: Tamanhos -->
+    <div class="example-card">
+      <h3>📏 Diferentes Tamanhos</h3>
+      <div class="sizes-grid">
+        <div class="size-example">
+          <label>Small</label>
+          <muxima-star-rating
+            [(ngModel)]="smallRating"
+            size="small"
+            [readonly]="true">
+          </muxima-star-rating>
+        </div>
+        <div class="size-example">
+          <label>Medium (Padrão)</label>
+          <muxima-star-rating
+            [(ngModel)]="mediumRating"
+            size="medium"
+            [readonly]="true">
+          </muxima-star-rating>
+        </div>
+        <div class="size-example">
+          <label>Large</label>
+          <muxima-star-rating
+            [(ngModel)]="largeRating"
+            size="large"
+            [readonly]="true">
+          </muxima-star-rating>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exemplo 6: Cores Customizadas -->
+    <div class="example-card">
+      <h3>🎨 Cores Personalizadas</h3>
+      <div class="colors-grid">
+        <div class="color-example">
+          <label>Dourado (Padrão)</label>
+          <muxima-star-rating
+            [(ngModel)]="customColorRating"
+            color="#fbbf24"
+            emptyColor="#d1d5db">
+          </muxima-star-rating>
+        </div>
+        <div class="color-example">
+          <label>Rosa</label>
+          <muxima-star-rating
+            [rating]="4"
+            [readonly]="true"
+            color="#f43f5e"
+            emptyColor="#fecdd3">
+          </muxima-star-rating>
+        </div>
+        <div class="color-example">
+          <label>Verde</label>
+          <muxima-star-rating
+            [rating]="5"
+            [readonly]="true"
+            color="#10b981"
+            emptyColor="#d1fae5">
+          </muxima-star-rating>
+        </div>
+        <div class="color-example">
+          <label>Roxo</label>
+          <muxima-star-rating
+            [rating]="3.5"
+            [readonly]="true"
+            [allowHalf]="true"
+            color="#8b5cf6"
+            emptyColor="#ddd6fe">
+          </muxima-star-rating>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exemplo 7: Card de Produto -->
+    <div class="example-card">
+      <h3>🛍️ Avaliação de Produto</h3>
+      <div class="product-example">
+        <div class="product-card">
+          <div class="product-image">📱</div>
+          <div class="product-info">
+            <h4>Smartphone Premium</h4>
+            <div class="product-rating">
+              <muxima-star-rating
+                [(ngModel)]="productRating"
+                [readonly]="true"
+                [allowHalf]="true"
+                size="small">
+              </muxima-star-rating>
+              <span class="rating-count">{{ productRating }} ({{ productReviews }} avaliações)</span>
+            </div>
+            <p class="product-price">R$ 2.999,00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exemplo 8: Formulário de Feedback -->
+    <div class="example-card">
+      <h3>💬 Formulário de Avaliação</h3>
+      <p>Colete feedback dos usuários</p>
+      <div class="feedback-form">
+        <h4>Como foi sua experiência?</h4>
+        <muxima-star-rating
+          [rating]="0"
+          [showLabel]="true"
+          [customLabels]="customLabels"
+          size="large"
+          (ratingChange)="submitFeedback($event)">
+        </muxima-star-rating>
+        
+        <div class="feedback-result" *ngIf="userFeedback">
+          <div class="feedback-success">
+            ✅ Obrigado pelo seu feedback! Você avaliou como:
+            <strong>{{ userFeedback.label }} ({{ userFeedback.rating }} estrelas)</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exemplo 9: Estatísticas de Rating -->
+    <div class="example-card">
+      <h3>📊 Estatísticas de Avaliações</h3>
+      <div class="stats-container">
+        <div class="stats-summary">
+          <div class="average-rating">
+            <span class="average-number">{{ averageRating }}</span>
+            <muxima-star-rating
+              [rating]="averageRating"
+              [readonly]="true"
+              [allowHalf]="true"
+              size="medium">
+            </muxima-star-rating>
+            <span class="total-reviews">{{ totalReviews }} avaliações</span>
+          </div>
+        </div>
+        
+        <div class="stats-breakdown">
+          <div class="rating-bar" *ngFor="let data of ratingsData">
+            <span class="bar-stars">{{ data.stars }} ⭐</span>
+            <div class="bar-progress">
+              <div class="bar-fill" [style.width.%]="data.percentage"></div>
+            </div>
+            <span class="bar-count">{{ data.count }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>💻 Código</h2>
+
+    <h3>TypeScript</h3>
+    <pre><code>{{ typescriptCode }}</code></pre>
+
+    <h3>HTML</h3>
+    <pre><code>{{ htmlCode }}</code></pre>
+
+    <h3>Exemplo de Produto</h3>
+    <pre><code>{{ productCode }}</code></pre>
+
+    <h3>Customização de Estilos</h3>
+    <pre><code>{{ stylingCode }}</code></pre>
+  </div>
+
+  <div class="doc-section">
+    <h2>📋 API</h2>
+
+    <h3>Inputs</h3>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Prop</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>maxStars</code></td>
+            <td><code>number</code></td>
+            <td><code>5</code></td>
+            <td>Quantidade máxima de estrelas</td>
+          </tr>
+          <tr>
+            <td><code>allowHalf</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Permite meias-estrelas</td>
+          </tr>
+          <tr>
+            <td><code>readonly</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Modo somente leitura</td>
+          </tr>
+          <tr>
+            <td><code>disabled</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Desabilita a interação</td>
+          </tr>
+          <tr>
+            <td><code>size</code></td>
+            <td><code>'small' | 'medium' | 'large'</code></td>
+            <td><code>'medium'</code></td>
+            <td>Tamanho das estrelas</td>
+          </tr>
+          <tr>
+            <td><code>color</code></td>
+            <td><code>string</code></td>
+            <td><code>'#fbbf24'</code></td>
+            <td>Cor das estrelas preenchidas</td>
+          </tr>
+          <tr>
+            <td><code>emptyColor</code></td>
+            <td><code>string</code></td>
+            <td><code>'#d1d5db'</code></td>
+            <td>Cor das estrelas vazias</td>
+          </tr>
+          <tr>
+            <td><code>showCount</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Exibe o contador numérico</td>
+          </tr>
+          <tr>
+            <td><code>showLabel</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Exibe label descritivo</td>
+          </tr>
+          <tr>
+            <td><code>customLabels</code></td>
+            <td><code>string[]</code></td>
+            <td><code>['Péssimo', ...]</code></td>
+            <td>Labels personalizados</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Outputs</h3>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>ratingChange</code></td>
+            <td><code>EventEmitter&lt;number&gt;</code></td>
+            <td>Emitido quando a avaliação muda</td>
+          </tr>
+          <tr>
+            <td><code>ratingHover</code></td>
+            <td><code>EventEmitter&lt;number&gt;</code></td>
+            <td>Emitido ao passar o mouse sobre as estrelas</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>🎯 Casos de Uso</h2>
+    <div class="use-cases-grid">
+      <div class="use-case-card">
+        <div class="use-case-icon">🛍️</div>
+        <h4>E-commerce</h4>
+        <p>Avaliação de produtos e sellers</p>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-icon">🍽️</div>
+        <h4>Restaurantes</h4>
+        <p>Reviews de comida e serviço</p>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-icon">🎬</div>
+        <h4>Mídia</h4>
+        <p>Filmes, séries e músicas</p>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-icon">📚</div>
+        <h4>Educação</h4>
+        <p>Cursos e professores</p>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-icon">🏨</div>
+        <h4>Hotelaria</h4>
+        <p>Hospedagens e experiências</p>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-icon">💬</div>
+        <h4>Feedback</h4>
+        <p>Satisfação e NPS</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>💡 Dicas e Boas Práticas</h2>
+    <div class="tips-container">
+      <div class="tip-item">
+        <span class="tip-icon">✨</span>
+        <div>
+          <strong>Half-Stars para Precisão</strong>
+          <p>Use <code>[allowHalf]="true"</code> para avaliações mais precisas e médias mais exatas</p>
+        </div>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">👁️</span>
+        <div>
+          <strong>Readonly para Exibição</strong>
+          <p>Use modo readonly para mostrar avaliações existentes sem permitir edição</p>
+        </div>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">🎨</span>
+        <div>
+          <strong>Cores Consistentes</strong>
+          <p>Mantenha cores consistentes com seu brand para melhor UX</p>
+        </div>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">📊</span>
+        <div>
+          <strong>Mostre Estatísticas</strong>
+          <p>Combine com contadores e gráficos para dar contexto às avaliações</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

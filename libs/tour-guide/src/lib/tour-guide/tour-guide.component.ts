@@ -47,7 +47,7 @@ export class TourGuideComponent implements OnInit, OnDestroy {
   highlightPosition = { top: '0px', left: '0px', width: '0px', height: '0px' };
   arrowPosition = '';
 
-  private targetElement?: HTMLElement;
+  targetElement?: HTMLElement;
   private resizeObserver?: ResizeObserver;
   private keydownListener?: () => void;
 

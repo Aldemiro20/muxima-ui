@@ -175,6 +175,38 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/components/command-palette-doc.component').then(m => m.CommandPaletteDocComponent)
   },
   {
+    path: 'components/gantt-chart',
+    loadComponent: () => import('./pages/components/gantt-chart-doc.component').then(m => m.GanttChartDocComponent)
+  },
+  {
+    path: 'components/tour-guide',
+    loadComponent: () => import('./pages/components/tour-guide-doc.component').then(m => m.TourGuideDocComponent)
+  },
+  {
+    path: 'components/calendar',
+    loadComponent: () => import('./pages/components/calendar-doc.component').then(m => m.CalendarDocComponent)
+  },
+  {
+    path: 'components/file-manager',
+    loadComponent: () => import('./pages/components/file-manager-doc.component').then(m => m.FileManagerDocComponent)
+  },
+  {
+    path: 'components/otp-input',
+    loadComponent: () => import('./pages/components/otp-input-doc.component').then(m => m.OtpInputDocComponent)
+  },
+  {
+    path: 'components/star-rating',
+    loadComponent: () => import('./pages/components/star-rating-doc.component').then(m => m.StarRatingDocComponent)
+  },
+  {
+    path: 'components/credit-card',
+    loadComponent: () => import('./pages/components/credit-card-doc.component').then(m => m.CreditCardDocComponent)
+  },
+  {
+    path: 'components/color-picker',
+    loadComponent: () => import('./pages/components/color-picker-doc.component').then(m => m.ColorPickerDocComponent)
+  },
+  {
     path: '**',
     redirectTo: ''
   }

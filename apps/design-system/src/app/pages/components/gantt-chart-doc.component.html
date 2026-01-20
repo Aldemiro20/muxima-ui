@@ -1,0 +1,225 @@
+<div class="doc-container">
+  <div class="doc-header">
+    <h1>Gantt Chart</h1>
+    <p class="doc-subtitle">Visualize cronogramas de projetos com tarefas, dependências e marcos</p>
+  </div>
+
+  <div class="doc-section">
+    <h2>📊 Visão Geral</h2>
+    <p>
+      O componente Gantt Chart é uma ferramenta poderosa para visualização de cronogramas de projetos. 
+      Ele permite exibir tarefas ao longo do tempo, com suporte a hierarquias, dependências, 
+      progresso e marcos importantes.
+    </p>
+
+    <h3>Recursos Principais</h3>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-icon">📅</span>
+        <h4>Timeline Interativa</h4>
+        <p>Visualize tarefas em uma linha do tempo com 3 níveis de zoom (dia/semana/mês)</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔗</span>
+        <h4>Dependências</h4>
+        <p>Defina relações entre tarefas para mostrar o fluxo de trabalho</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📊</span>
+        <h4>Progresso Visual</h4>
+        <p>Barras de progresso dentro das tarefas mostram percentual completo</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🎯</span>
+        <h4>Marcos</h4>
+        <p>Destaque datas importantes com marcadores visuais</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🌳</span>
+        <h4>Hierarquia</h4>
+        <p>Organize tarefas em estrutura pai-filho com colapso</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🎨</span>
+        <h4>Personalização</h4>
+        <p>Cores, prioridades e responsáveis por tarefa</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>🚀 Exemplo Básico</h2>
+    <div class="example-container gantt-example">
+      <muxima-gantt-chart
+        [tasks]="basicTasks"
+        [milestones]="basicMilestones"
+        (taskClicked)="onTaskClick($event)">
+      </muxima-gantt-chart>
+    </div>
+
+    <h3>Código TypeScript</h3>
+    <pre><code>{{ typescriptCode }}</code></pre>
+
+    <h3>Código HTML</h3>
+    <pre><code>{{ htmlCode }}</code></pre>
+  </div>
+
+  <div class="doc-section">
+    <h2>📋 Props (Inputs)</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Prop</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>tasks</code></td>
+            <td><code>GanttTask[]</code></td>
+            <td><code>[]</code></td>
+            <td>Array de tarefas a serem exibidas</td>
+          </tr>
+          <tr>
+            <td><code>milestones</code></td>
+            <td><code>GanttMilestone[]</code></td>
+            <td><code>[]</code></td>
+            <td>Array de marcos importantes</td>
+          </tr>
+          <tr>
+            <td><code>startDate</code></td>
+            <td><code>Date</code></td>
+            <td><code>auto</code></td>
+            <td>Data inicial do cronograma (calculada automaticamente se não fornecida)</td>
+          </tr>
+          <tr>
+            <td><code>endDate</code></td>
+            <td><code>Date</code></td>
+            <td><code>auto</code></td>
+            <td>Data final do cronograma (calculada automaticamente se não fornecida)</td>
+          </tr>
+          <tr>
+            <td><code>zoom</code></td>
+            <td><code>'day' | 'week' | 'month'</code></td>
+            <td><code>'week'</code></td>
+            <td>Nível de zoom da timeline</td>
+          </tr>
+          <tr>
+            <td><code>showWeekends</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Exibir finais de semana na timeline</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>🎭 Eventos (Outputs)</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Payload</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>taskClick</code></td>
+            <td><code>GanttTask</code></td>
+            <td>Emitido quando uma tarefa é clicada</td>
+          </tr>
+          <tr>
+            <td><code>taskDragEnd</code></td>
+            <td><code>GanttTask</code></td>
+            <td>Emitido quando uma tarefa é arrastada (se habilitado)</td>
+          </tr>
+          <tr>
+            <td><code>milestoneClick</code></td>
+            <td><code>GanttMilestone</code></td>
+            <td>Emitido quando um marco é clicado</td>
+          </tr>
+          <tr>
+            <td><code>zoomChange</code></td>
+            <td><code>string</code></td>
+            <td>Emitido quando o nível de zoom muda</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>🔧 Interfaces</h2>
+
+    <h3>GanttTask</h3>
+    <pre><code>{{ ganttTaskInterface }}</code></pre>
+
+    <h3>GanttMilestone</h3>
+    <pre><code>{{ ganttMilestoneInterface }}</code></pre>
+  </div>
+
+  <div class="doc-section">
+    <h2>🎨 Exemplo com Hierarquia</h2>
+    <div class="example-container gantt-example">
+      <muxima-gantt-chart
+        [tasks]="hierarchicalTasks"
+        [milestones]="hierarchicalMilestones"
+        (taskClicked)="onTaskClick($event)">
+      </muxima-gantt-chart>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>💡 Casos de Uso</h2>
+    <div class="use-cases-grid">
+      <div class="use-case">
+        <h4>📐 Gestão de Projetos</h4>
+        <p>Visualize todas as fases do projeto, dependências e cronograma completo</p>
+      </div>
+      <div class="use-case">
+        <h4>🏗️ Construção</h4>
+        <p>Planeje etapas de construção com marcos de entregas importantes</p>
+      </div>
+      <div class="use-case">
+        <h4>💻 Desenvolvimento de Software</h4>
+        <p>Organize sprints, features e releases em uma timeline visual</p>
+      </div>
+      <div class="use-case">
+        <h4>🎬 Produção de Eventos</h4>
+        <p>Coordene todas as atividades e preparativos até a data do evento</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>🎨 Personalização com SCSS</h2>
+    <pre><code>{{ scssCode }}</code></pre>
+  </div>
+
+  <div class="doc-section">
+    <h2>⚡ Dicas de Performance</h2>
+    <ul>
+      <li><strong>Virtualize tarefas:</strong> Para muitas tarefas (&gt;100), considere implementar scroll virtual</li>
+      <li><strong>Agrupe por hierarquia:</strong> Use a estrutura pai-filho para organizar muitas tarefas</li>
+      <li><strong>Otimize zoom:</strong> Comece com zoom "week" ou "month" para grandes períodos</li>
+      <li><strong>Lazy load:</strong> Carregue dados sob demanda conforme o usuário navega</li>
+    </ul>
+  </div>
+
+  <div class="doc-section">
+    <h2>♿ Acessibilidade</h2>
+    <ul>
+      <li>Navegação por teclado completa com Tab</li>
+      <li>Controles de zoom acessíveis</li>
+      <li>Cores com contraste adequado</li>
+      <li>Tooltips descritivos em todas as interações</li>
+    </ul>
+  </div>
+</div>

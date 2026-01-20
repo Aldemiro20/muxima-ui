@@ -1,0 +1,109 @@
+<div class="doc-container">
+  <div class="doc-header">
+    <h1>File Manager</h1>
+    <p class="doc-subtitle">Gerenciador de arquivos completo com grid/list view e multi-seleção</p>
+  </div>
+
+  <div class="doc-section">
+    <h2>📊 Visão Geral</h2>
+    <p>Componente completo de gerenciamento de arquivos com navegação por pastas, busca, ordenação e múltiplas visualizações.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-icon">⊞</span>
+        <h4>2 Visualizações</h4>
+        <p>Grid com cards e lista com tabela</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">✓</span>
+        <h4>Multi-Seleção</h4>
+        <p>Selecione múltiplos arquivos com Ctrl+Click</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔍</span>
+        <h4>Busca e Ordenação</h4>
+        <p>Encontre e organize arquivos facilmente</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📂</span>
+        <h4>Navegação</h4>
+        <p>Breadcrumb trail completo</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>🚀 Exemplo</h2>
+    <div class="example-container file-example">
+      <muxima-file-manager
+        [files]="files"
+        (fileSelected)="onFileSelect($event)">
+      </muxima-file-manager>
+    </div>
+
+    <h3>Código TypeScript</h3>
+    <pre><code>{{ typescriptCode }}</code></pre>
+
+    <h3>Código HTML</h3>
+    <pre><code>{{ htmlCode }}</code></pre>
+  </div>
+
+  <div class="doc-section">
+    <h2>📋 Props</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Prop</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>files</code></td>
+            <td><code>FileItem[]</code></td>
+            <td>Array de arquivos e pastas</td>
+          </tr>
+          <tr>
+            <td><code>viewMode</code></td>
+            <td><code>'grid' | 'list'</code></td>
+            <td>Modo de visualização</td>
+          </tr>
+          <tr>
+            <td><code>allowUpload</code></td>
+            <td><code>boolean</code></td>
+            <td>Permitir upload de arquivos</td>
+          </tr>
+          <tr>
+            <td><code>allowMultiSelect</code></td>
+            <td><code>boolean</code></td>
+            <td>Permitir seleção múltipla</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>💡 Casos de Uso</h2>
+    <div class="use-cases-grid">
+      <div class="use-case">
+        <h4>☁️ Cloud Storage</h4>
+        <p>Interface para serviços de armazenamento</p>
+      </div>
+      <div class="use-case">
+        <h4>📁 Documentos</h4>
+        <p>Gerencie bibliotecas de documentos</p>
+      </div>
+      <div class="use-case">
+        <h4>🖼️ Galeria de Mídia</h4>
+        <p>Organize fotos e vídeos</p>
+      </div>
+      <div class="use-case">
+        <h4>📦 Assets</h4>
+        <p>Gerencie assets de projetos</p>
+      </div>
+    </div>
+  </div>
+</div>

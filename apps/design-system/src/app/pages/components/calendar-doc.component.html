@@ -1,0 +1,210 @@
+<div class="doc-container">
+  <div class="doc-header">
+    <h1>Calendar / Scheduler</h1>
+    <p class="doc-subtitle">Calendário completo com 4 modos de visualização e gerenciamento de eventos</p>
+  </div>
+
+  <div class="doc-section">
+    <h2>📊 Visão Geral</h2>
+    <p>Componente de calendário/agendador completo com múltiplas visualizações, eventos all-day, eventos recorrentes e gerenciamento completo de agenda.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-icon">📅</span>
+        <h4>4 Visualizações</h4>
+        <p>Mês, semana, dia e agenda</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔄</span>
+        <h4>Eventos Recorrentes</h4>
+        <p>Suporte a eventos que se repetem</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🏷️</span>
+        <h4>Categorias</h4>
+        <p>Organize eventos por categorias</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⏰</span>
+        <h4>Time Slots</h4>
+        <p>Slots de tempo configuráveis</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>🚀 Exemplo Interativo</h2>
+    <div class="calendar-toolbar">
+      <button class="add-event-btn" (click)="addEvent()">
+        ➕ Adicionar Evento
+      </button>
+      <p class="toolbar-hint">Clique em uma data vazia para criar um evento ou use o botão acima</p>
+    </div>
+    
+    <div class="example-container calendar-example">
+      <muxima-calendar
+        [events]="events"
+        (eventClicked)="onEventClick($event)"
+        (dateClicked)="onDateClick($event)">
+      </muxima-calendar>
+    </div>
+
+    <h3>💡 Recursos Disponíveis</h3>
+    <div class="resources-grid">
+      <div class="resource-item">
+        <span class="resource-icon">➕</span>
+        <div>
+          <strong>Adicionar Eventos</strong>
+          <p>Clique no botão ou em uma data</p>
+        </div>
+      </div>
+      <div class="resource-item">
+        <span class="resource-icon">👆</span>
+        <div>
+          <strong>Eventos Clicáveis</strong>
+          <p>Clique em qualquer evento para ver detalhes</p>
+        </div>
+      </div>
+      <div class="resource-item">
+        <span class="resource-icon">🔄</span>
+        <div>
+          <strong>Eventos Recorrentes</strong>
+          <p>Veja eventos que se repetem</p>
+        </div>
+      </div>
+      <div class="resource-item">
+        <span class="resource-icon">📅</span>
+        <div>
+          <strong>Multi-dia</strong>
+          <p>Eventos que duram vários dias</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>Código TypeScript</h3>
+    <pre><code>import {{ '{' }} CalendarComponent, CalendarEvent {{ '}' }} from '@muxima-ui/calendar';
+
+events: CalendarEvent[] = [
+  {{'{'}}{{'{'}}
+    id: 1,
+    title: '☕ Stand-up Diário',
+    start: new Date(2026, 0, 20, 9, 0),
+    end: new Date(2026, 0, 20, 9, 15),
+    color: '#667eea',
+    category: 'Reunião',
+    recurring: 'daily'
+  {{'}'}}},
+  {{'{'}}{{'{'}}
+    id: 2,
+    title: '✈️ Viagem de Negócios',
+    start: new Date(2026, 0, 27),
+    end: new Date(2026, 0, 29, 23, 59),
+    allDay: true,
+    color: '#805ad5',
+    category: 'Viagem'
+  {{'}'}}}
+];
+
+// Adicionar evento programaticamente
+addEvent() {{'{'}}{{'{'}}
+  const newEvent: CalendarEvent = {{'{'}}{{'{'}}
+    id: this.events.length + 1,
+    title: '📝 Novo Evento',
+    start: new Date(),
+    end: new Date(Date.now() + 3600000),
+    color: '#667eea',
+    category: 'Novo'
+  {{'}'}}};
+  this.events = [...this.events, newEvent];
+{{'}'}}}
+
+// Criar evento ao clicar em data
+onDateClick(date: Date) {{'{'}}{{'{'}}
+  const title = prompt('Título do evento:');
+  if (title) {{'{'}}{{'{'}}
+    const newEvent: CalendarEvent = {{'{'}}{{'{'}}
+      id: this.events.length + 1,
+      title: title,
+      start: date,
+      end: new Date(date.getTime() + 3600000),
+      color: '#667eea'
+    {{'}'}}};
+    this.events = [...this.events, newEvent];
+  {{'}'}}}
+{{'}'}}}
+
+// Lidar com clique em evento
+onEventClick(event: CalendarEvent) {{'{'}}{{'{'}}
+  console.log('Evento:', event);
+  alert(`${{'{'}}{{'{'}}event.title{{'}'}}} - ${{'{'}}{{'{'}}event.start.toLocaleString(){{'}'}}}`);
+{{'}'}}}</code></pre>
+
+    <h3>Código HTML</h3>
+    <pre><code>&lt;muxima-calendar
+  [events]="events"
+  [view]="'month'"
+  [locale]="'pt-BR'"
+  (eventClicked)="onEventClick($event)"
+  (dateClicked)="onDateClick($event)"&gt;
+&lt;/muxima-calendar&gt;</code></pre>
+  </div>
+
+  <div class="doc-section">
+    <h2>📋 Props</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Prop</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>events</code></td>
+            <td><code>CalendarEvent[]</code></td>
+            <td>Array de eventos do calendário</td>
+          </tr>
+          <tr>
+            <td><code>view</code></td>
+            <td><code>'month' | 'week' | 'day' | 'agenda'</code></td>
+            <td>Modo de visualização</td>
+          </tr>
+          <tr>
+            <td><code>locale</code></td>
+            <td><code>string</code></td>
+            <td>Localização (pt-BR, en-US, etc)</td>
+          </tr>
+          <tr>
+            <td><code>weekStartsOn</code></td>
+            <td><code>'sunday' | 'monday'</code></td>
+            <td>Dia de início da semana</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>💡 Casos de Uso</h2>
+    <div class="use-cases-grid">
+      <div class="use-case">
+        <h4>📅 Agenda Pessoal</h4>
+        <p>Organize compromissos e tarefas</p>
+      </div>
+      <div class="use-case">
+        <h4>🏢 Reuniões</h4>
+        <p>Agende e gerencie reuniões de equipe</p>
+      </div>
+      <div class="use-case">
+        <h4>🎯 Eventos</h4>
+        <p>Planeje e divulgue eventos</p>
+      </div>
+      <div class="use-case">
+        <h4>📚 Aulas</h4>
+        <p>Organize horários de aulas e cursos</p>
+      </div>
+    </div>
+  </div>
+</div>

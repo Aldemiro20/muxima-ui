@@ -1,0 +1,36 @@
+{
+  "name": "star-rating",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/star-rating/src",
+  "prefix": "agt",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/star-rating/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/star-rating/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/star-rating/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/star-rating/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

@@ -61,9 +61,22 @@ export class DocLayoutComponent {
         { label: 'Toggle', route: '/components/toggle', icon: '🎯' },
         { label: 'Tooltip', route: '/components/tooltip', icon: '💬' },
         { label: 'Tree View', route: '/components/tree-view', icon: '🌳' },
-        { label: 'User Profile Menu', route: '/components/user-profile-menu', icon: '👤' },
+        { label: 'User Profile Menu', route: '/components/user-profile-menu', icon: '👤' }
+      ]
+    },
+    {
+      section: 'Componentes Avançados',
+      items: [
+        { label: 'Calendar', route: '/components/calendar', icon: '📅' },
+        { label: 'Command Palette', route: '/components/command-palette', icon: '⌨️' },
+        { label: 'Credit Card', route: '/components/credit-card', icon: '💳' },
+        { label: 'File Manager', route: '/components/file-manager', icon: '📁' },
+        { label: 'Gantt Chart', route: '/components/gantt-chart', icon: '📊' },
         { label: 'Kanban Board', route: '/components/kanban', icon: '📋' },
-        { label: 'Command Palette', route: '/components/command-palette', icon: '⌨️' }
+        { label: 'OTP Input', route: '/components/otp-input', icon: '🔐' },
+        { label: 'Star Rating', route: '/components/star-rating', icon: '⭐' },
+        { label: 'Tour Guide', route: '/components/tour-guide', icon: '🎯' }
+          ,{ label: 'Color Picker', route: '/components/color-picker', icon: '🎨' }
       ]
     }
   ];

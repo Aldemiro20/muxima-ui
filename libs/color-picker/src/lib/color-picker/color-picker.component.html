@@ -1,0 +1,171 @@
+<div class="color-picker-wrapper" [attr.data-size]="size" [class.disabled]="disabled">
+  <!-- Trigger Button -->
+  <button 
+    *ngIf="!inline"
+    class="color-trigger"
+    [style.background]="currentColor"
+    [disabled]="disabled"
+    (click)="togglePicker()"
+    type="button">
+    <span class="color-value">{{ getFormattedColor() }}</span>
+  </button>
+
+  <!-- Picker Dropdown/Inline -->
+  <div class="color-picker-panel" [class.open]="isOpen" [class.inline]="inline">
+    <div class="picker-header">
+      <div class="format-tabs">
+        <button 
+          *ngFor="let fmt of ['hex', 'rgb', 'hsl']"
+          [class.active]="format === fmt"
+          (click)="changeFormat(asFormat(fmt))"
+          type="button">
+          {{ fmt.toUpperCase() }}
+        </button>
+      </div>
+      <button *ngIf="!inline" class="close-btn" (click)="closePicker()" type="button">×</button>
+    </div>
+
+    <!-- Color Preview -->
+    <div class="color-preview">
+      <div class="preview-box" [style.background]="currentColor"></div>
+      <input 
+        type="text" 
+        class="color-input"
+        [value]="getFormattedColor()"
+        (input)="onHexInput($event)"
+        [disabled]="disabled"
+      />
+    </div>
+
+    <!-- HSL Sliders -->
+    <div class="color-sliders">
+      <div class="slider-group">
+        <label>Matiz</label>
+        <input 
+          type="range" 
+          min="0" 
+          max="360" 
+          [value]="hue"
+          (input)="onHueChange($event)"
+          [disabled]="disabled"
+          class="slider hue-slider"
+        />
+        <span class="slider-value">{{ hue }}°</span>
+      </div>
+
+      <div class="slider-group">
+        <label>Saturação</label>
+        <input 
+          type="range" 
+          min="0" 
+          max="100" 
+          [value]="saturation"
+          (input)="onSaturationChange($event)"
+          [disabled]="disabled"
+          class="slider saturation-slider"
+          [style.--base-color]="'hsl(' + hue + ', 100%, 50%)'"
+        />
+        <span class="slider-value">{{ saturation }}%</span>
+      </div>
+
+      <div class="slider-group">
+        <label>Luminosidade</label>
+        <input 
+          type="range" 
+          min="0" 
+          max="100" 
+          [value]="lightness"
+          (input)="onLightnessChange($event)"
+          [disabled]="disabled"
+          class="slider lightness-slider"
+          [style.--base-color]="'hsl(' + hue + ', ' + saturation + '%, 50%)'"
+        />
+        <span class="slider-value">{{ lightness }}%</span>
+      </div>
+
+      <div class="slider-group" *ngIf="showAlpha">
+        <label>Opacidade</label>
+        <input 
+          type="range" 
+          min="0" 
+          max="1" 
+          step="0.01"
+          [value]="alpha"
+          (input)="onAlphaChange($event)"
+          [disabled]="disabled"
+          class="slider alpha-slider"
+        />
+        <span class="slider-value">{{ (alpha * 100).toFixed(0) }}%</span>
+      </div>
+    </div>
+
+    <!-- Color Palettes -->
+    <div class="palettes-section" *ngIf="showPalettes">
+      <div class="palette" *ngFor="let palette of getPalettes()">
+        <h4>{{ palette.name }}</h4>
+        <div class="palette-colors">
+          <button
+            *ngFor="let color of palette.colors"
+            class="palette-color"
+            [style.background]="color"
+            [class.selected]="currentColor === color"
+            (click)="selectPaletteColor(color)"
+            [disabled]="disabled"
+            type="button"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gradient Section -->
+    <div class="gradient-section" *ngIf="showGradient">
+      <h4>Criador de Gradiente</h4>
+      
+      <div class="gradient-preview" [style.background]="getGradientStyle()"></div>
+      
+      <div class="gradient-controls">
+        <div class="gradient-colors">
+          <div class="gradient-color-input">
+            <label>Início</label>
+            <input 
+              type="color" 
+              [(ngModel)]="gradientStart"
+              (change)="onGradientStartChange(gradientStart)"
+              [disabled]="disabled"
+            />
+            <span>{{ gradientStart }}</span>
+          </div>
+          
+          <div class="gradient-color-input">
+            <label>Fim</label>
+            <input 
+              type="color" 
+              [(ngModel)]="gradientEnd"
+              (change)="onGradientEndChange(gradientEnd)"
+              [disabled]="disabled"
+            />
+            <span>{{ gradientEnd }}</span>
+          </div>
+        </div>
+
+        <div class="slider-group">
+          <label>Ângulo</label>
+          <input 
+            type="range" 
+            min="0" 
+            max="360" 
+            [value]="gradientAngle"
+            (input)="onGradientAngleChange($event)"
+            [disabled]="disabled"
+            class="slider"
+          />
+          <span class="slider-value">{{ gradientAngle }}°</span>
+        </div>
+
+        <button class="copy-btn" (click)="copyGradientCSS()" [disabled]="disabled" type="button">
+          📋 Copiar CSS
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

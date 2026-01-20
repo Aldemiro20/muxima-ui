@@ -86,7 +86,17 @@
       "@muxima-ui/gantt-chart": ["libs/gantt-chart/src/index.ts"],
       "@muxima-ui/tour-guide": ["libs/tour-guide/src/index.ts"],
       "@muxima-ui/calendar": ["libs/calendar/src/index.ts"],
-      "@muxima-ui/file-manager": ["libs/file-manager/src/index.ts"]
+      "@muxima-ui/file-manager": ["libs/file-manager/src/index.ts"],
+      "@muxima-ui/otp-input": ["libs/otp-input/src/index.ts"],
+      "@muxima-ui/star-rating": ["libs/star-rating/src/index.ts"],
+      "@muxima-ui/credit-card": ["libs/credit-card/src/index.ts"],
+      "@muxima-ui/color-picker": ["libs/color-picker/src/index.ts"],
+      "@muxima-ui/shopping-cart": ["libs/shopping-cart/src/index.ts"],
+      "@muxima-ui/copy-to-clipboard": ["libs/copy-to-clipboard/src/index.ts"],
+      "@muxima-ui/comments": ["libs/comments/src/index.ts"],
+      "@muxima-ui/image-cropper": ["libs/image-cropper/src/index.ts"],
+      "@muxima-ui/video-player": ["libs/video-player/src/index.ts"],
+      "@muxima-ui/notification-center": ["libs/notification-center/src/index.ts"]
     },
     "rootDir": ".",
     "skipLibCheck": true

@@ -1,0 +1,45 @@
+<div class="star-rating-container" 
+     [class.star-rating-readonly]="readonly"
+     [class.star-rating-disabled]="disabled"
+     [attr.data-size]="size">
+  
+  <div class="stars-wrapper" (mouseleave)="onMouseLeave()">
+    <span
+      *ngFor="let star of stars; trackBy: trackByStar"
+      class="star"
+      [class.star-full]="getStarFill(star) === 'full'"
+      [class.star-half]="getStarFill(star) === 'half'"
+      [class.star-empty]="getStarFill(star) === 'empty'"
+      [style.color]="getStarFill(star) !== 'empty' ? color : emptyColor"
+      (click)="onStarClick(star, $event)"
+      (mousemove)="onStarHover(star, $event)"
+    >
+      <svg
+        class="star-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <defs>
+          <linearGradient [id]="'half-grad-' + star">
+            <stop offset="50%" [attr.stop-color]="color" />
+            <stop offset="50%" [attr.stop-color]="emptyColor" />
+          </linearGradient>
+        </defs>
+        <path
+          [attr.fill]="getStarFill(star) === 'half' ? 'url(#half-grad-' + star + ')' : 'currentColor'"
+          d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+        />
+      </svg>
+    </span>
+  </div>
+
+  <div class="rating-info" *ngIf="showCount || showLabel">
+    <span class="rating-count" *ngIf="showCount">
+      {{ (hoverRating || rating).toFixed(allowHalf ? 1 : 0) }} / {{ maxStars }}
+    </span>
+    <span class="rating-label" *ngIf="showLabel && getCurrentLabel()">
+      {{ getCurrentLabel() }}
+    </span>
+  </div>
+</div>

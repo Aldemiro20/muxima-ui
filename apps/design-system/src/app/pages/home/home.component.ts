@@ -57,7 +57,7 @@ export class AppComponent {}`;
   ];
 
   stats = [
-    { value: '20+', label: 'Componentes' },
+    { value: '50+', label: 'Componentes' },
     { value: '100%', label: 'TypeScript' },
     { value: 'Angular 15+', label: 'Versão' },
     { value: 'MIT', label: 'Licença' }

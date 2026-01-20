@@ -1,0 +1,111 @@
+.otp-container {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+
+  &[data-size="small"] {
+    gap: 0.5rem;
+
+    .otp-input {
+      width: 2.5rem;
+      height: 2.5rem;
+      font-size: 1rem;
+    }
+  }
+
+  &[data-size="medium"] {
+    gap: 0.75rem;
+
+    .otp-input {
+      width: 3rem;
+      height: 3rem;
+      font-size: 1.25rem;
+    }
+  }
+
+  &[data-size="large"] {
+    gap: 1rem;
+
+    .otp-input {
+      width: 3.5rem;
+      height: 3.5rem;
+      font-size: 1.5rem;
+    }
+  }
+
+  &.otp-disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+.otp-input {
+  width: 3rem;
+  height: 3rem;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  background: white;
+  border: 2px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease;
+  font-family: 'Courier New', Courier, monospace;
+
+  &:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    transform: scale(1.05);
+  }
+
+  &:disabled {
+    background: #f3f4f6;
+    cursor: not-allowed;
+  }
+
+  &::placeholder {
+    color: #9ca3af;
+  }
+
+  // Remove spinner for number inputs
+  &[type="number"]::-webkit-inner-spin-button,
+  &[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  // Animation when filled
+  &:not(:placeholder-shown) {
+    background: linear-gradient(135deg, #f0f4ff 0%, #e9f0ff 100%);
+    border-color: #667eea;
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .otp-input {
+    background: #1f2937;
+    color: #f3f4f6;
+    border-color: #4b5563;
+
+    &:focus {
+      border-color: #818cf8;
+      box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.1);
+    }
+
+    &:disabled {
+      background: #111827;
+    }
+
+    &:not(:placeholder-shown) {
+      background: linear-gradient(135deg, #312e81 0%, #3730a3 100%);
+      border-color: #818cf8;
+    }
+  }
+}

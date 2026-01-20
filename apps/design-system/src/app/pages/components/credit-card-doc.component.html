@@ -1,0 +1,388 @@
+<div class="doc-container">
+  <div class="doc-header">
+    <h1>💳 Credit Card Input</h1>
+    <p class="doc-subtitle">Input de cartão de crédito com validação, detecção de bandeira e cartão visual 3D</p>
+  </div>
+
+  <div class="doc-section">
+    <h2>📊 Visão Geral</h2>
+    <p>Componente completo para entrada de dados de cartão de crédito com validação Luhn, detecção automática de bandeira, formatação inteligente e cartão visual animado em 3D.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🎴</span>
+        <h4>Cartão Visual 3D</h4>
+        <p>Representação visual com flip animation</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔍</span>
+        <h4>Detecção de Bandeira</h4>
+        <p>Visa, Mastercard, Amex, Discover</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">✅</span>
+        <h4>Validação Luhn</h4>
+        <p>Algoritmo de validação de cartão</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">✨</span>
+        <h4>Auto-Formatação</h4>
+        <p>Formata número, data e CVV automaticamente</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>🎨 Exemplos Interativos</h2>
+
+    <!-- Exemplo 1: Card Completo -->
+    <div class="example-card">
+      <h3>💳 Cartão Completo com Visual</h3>
+      <p>Experimente digitar os dados e veja o cartão se atualizar em tempo real</p>
+      <div class="example-demo">
+        <muxima-credit-card
+          [(ngModel)]="basicCard"
+          [showCard]="true"
+          (cardTypeChange)="onCardTypeChange($event)"
+          (validationChange)="onValidationChange($event)">
+        </muxima-credit-card>
+        
+        <div class="card-info" *ngIf="detectedCardType && detectedCardType !== 'unknown'">
+          <p>✅ Bandeira detectada: <strong>{{ detectedCardType | uppercase }}</strong></p>
+        </div>
+      </div>
+      
+      <div class="test-cards">
+        <h4>🧪 Cartões de Teste:</h4>
+        <div class="test-card-grid">
+          <div class="test-card-item">
+            <strong>Visa</strong>
+            <code>4532 0151 1283 0366</code>
+          </div>
+          <div class="test-card-item">
+            <strong>Mastercard</strong>
+            <code>5425 2334 3010 9903</code>
+          </div>
+          <div class="test-card-item">
+            <strong>Amex</strong>
+            <code>3782 822463 10005</code>
+          </div>
+          <div class="test-card-item">
+            <strong>Discover</strong>
+            <code>6011 1111 1111 1117</code>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exemplo 2: Apenas Formulário -->
+    <div class="example-card">
+      <h3>📝 Somente Formulário</h3>
+      <p>Versão compacta sem o cartão visual</p>
+      <div class="example-demo">
+        <muxima-credit-card
+          [(ngModel)]="formOnlyCard"
+          [showCard]="false">
+        </muxima-credit-card>
+      </div>
+    </div>
+
+    <!-- Exemplo 3: Card Pré-preenchido (Readonly) -->
+    <div class="example-card">
+      <h3>👁️ Cartão Salvo (Visualização)</h3>
+      <p>Exibição de cartão previamente salvo</p>
+      <div class="example-demo">
+        <muxima-credit-card
+          [(ngModel)]="filledCard"
+          [disabled]="true"
+          [showCard]="true">
+        </muxima-credit-card>
+        <p class="example-hint">💡 Cartão desabilitado para visualização apenas</p>
+      </div>
+    </div>
+
+    <!-- Exemplo 4: Com Validação -->
+    <div class="example-card">
+      <h3>✅ Com Validação em Tempo Real</h3>
+      <p>Feedback visual de validação dos campos</p>
+      <div class="example-demo">
+        <muxima-credit-card
+          [(ngModel)]="validationCard"
+          (validationChange)="onValidationChange($event)">
+        </muxima-credit-card>
+        
+        <div class="validation-status">
+          <h4>Status de Validação:</h4>
+          <div class="validation-grid">
+            <div class="validation-item" [class.valid]="validationStatus.number === true" [class.invalid]="validationStatus.number === false">
+              <span class="validation-icon">{{ validationStatus.number === true ? '✅' : validationStatus.number === false ? '❌' : '⏳' }}</span>
+              <span>Número do Cartão</span>
+            </div>
+            <div class="validation-item" [class.valid]="validationStatus.name === true" [class.invalid]="validationStatus.name === false">
+              <span class="validation-icon">{{ validationStatus.name === true ? '✅' : validationStatus.name === false ? '❌' : '⏳' }}</span>
+              <span>Nome</span>
+            </div>
+            <div class="validation-item" [class.valid]="validationStatus.expiry === true" [class.invalid]="validationStatus.expiry === false">
+              <span class="validation-icon">{{ validationStatus.expiry === true ? '✅' : validationStatus.expiry === false ? '❌' : '⏳' }}</span>
+              <span>Validade</span>
+            </div>
+            <div class="validation-item" [class.valid]="validationStatus.cvv === true" [class.invalid]="validationStatus.cvv === false">
+              <span class="validation-icon">{{ validationStatus.cvv === true ? '✅' : validationStatus.cvv === false ? '❌' : '⏳' }}</span>
+              <span>CVV</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exemplo 5: Checkout Completo -->
+    <div class="example-card">
+      <h3>🛒 Formulário de Checkout</h3>
+      <p>Exemplo de integração em fluxo de pagamento</p>
+      <div class="checkout-example">
+        <div class="checkout-summary">
+          <h4>Resumo do Pedido</h4>
+          <div class="summary-item">
+            <span>Subtotal</span>
+            <span>R$ 299,90</span>
+          </div>
+          <div class="summary-item">
+            <span>Frete</span>
+            <span>R$ 15,00</span>
+          </div>
+          <div class="summary-item total">
+            <span>Total</span>
+            <span>R$ 314,90</span>
+          </div>
+        </div>
+        
+        <div class="checkout-payment">
+          <h4>Dados do Cartão</h4>
+          <muxima-credit-card
+            [(ngModel)]="basicCard"
+            [showCard]="true">
+          </muxima-credit-card>
+          
+          <button class="checkout-button" (click)="submitPayment(basicCard)">
+            💳 Finalizar Pagamento - R$ 314,90
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>💻 Código</h2>
+
+    <h3>TypeScript</h3>
+    <pre><code>{{ typescriptCode }}</code></pre>
+
+    <h3>HTML</h3>
+    <pre><code>{{ htmlCode }}</code></pre>
+
+    <h3>Labels Personalizados</h3>
+    <pre><code>{{ customLabelsCode }}</code></pre>
+
+    <h3>⚠️ Segurança</h3>
+    <pre><code>{{ securityCode }}</code></pre>
+  </div>
+
+  <div class="doc-section">
+    <h2>📋 API</h2>
+
+    <h3>Inputs</h3>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Prop</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>showCard</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Exibe o cartão visual 3D</td>
+          </tr>
+          <tr>
+            <td><code>disabled</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Desabilita o formulário</td>
+          </tr>
+          <tr>
+            <td><code>labels</code></td>
+            <td><code>object</code></td>
+            <td><code>{{ '{' }}...{{ '}' }}</code></td>
+            <td>Labels personalizados dos campos</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Outputs</h3>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>cardTypeChange</code></td>
+            <td><code>EventEmitter&lt;string&gt;</code></td>
+            <td>Emitido quando a bandeira é detectada</td>
+          </tr>
+          <tr>
+            <td><code>validationChange</code></td>
+            <td><code>EventEmitter&lt;object&gt;</code></td>
+            <td>Emitido quando um campo é validado</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Interface CreditCardData</h3>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>number</code></td>
+            <td><code>string</code></td>
+            <td>Número do cartão (13-19 dígitos)</td>
+          </tr>
+          <tr>
+            <td><code>name</code></td>
+            <td><code>string</code></td>
+            <td>Nome no cartão</td>
+          </tr>
+          <tr>
+            <td><code>expiry</code></td>
+            <td><code>string</code></td>
+            <td>Data de validade (MM/AA)</td>
+          </tr>
+          <tr>
+            <td><code>cvv</code></td>
+            <td><code>string</code></td>
+            <td>Código de segurança (3-4 dígitos)</td>
+          </tr>
+          <tr>
+            <td><code>type</code></td>
+            <td><code>string</code></td>
+            <td>Bandeira detectada (visa, mastercard, etc)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>🎯 Casos de Uso</h2>
+    <div class="use-cases-grid">
+      <div class="use-case-card">
+        <div class="use-case-icon">🛍️</div>
+        <h4>E-commerce</h4>
+        <p>Checkout de lojas online</p>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-icon">💰</div>
+        <h4>Assinaturas</h4>
+        <p>Pagamentos recorrentes</p>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-icon">🎫</div>
+        <h4>Ingressos</h4>
+        <p>Venda de tickets e eventos</p>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-icon">📱</div>
+        <h4>Apps</h4>
+        <p>Compras in-app</p>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-icon">🏨</div>
+        <h4>Reservas</h4>
+        <p>Hotéis e viagens</p>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-icon">💳</div>
+        <h4>Carteiras Digitais</h4>
+        <p>Adicionar métodos de pagamento</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>🔒 Segurança e Compliance</h2>
+    <div class="security-grid">
+      <div class="security-card">
+        <span class="security-icon">⚠️</span>
+        <h4>NUNCA Salve CVV</h4>
+        <p>O código de segurança não deve ser armazenado em nenhuma circunstância.</p>
+      </div>
+      <div class="security-card">
+        <span class="security-icon">🔐</span>
+        <h4>Use Tokenização</h4>
+        <p>Processe pagamentos através de gateways que fornecem tokens seguros.</p>
+      </div>
+      <div class="security-card">
+        <span class="security-icon">🛡️</span>
+        <h4>PCI DSS</h4>
+        <p>Siga as normas PCI DSS se processar ou armazenar dados de cartão.</p>
+      </div>
+      <div class="security-card">
+        <span class="security-icon">🔒</span>
+        <h4>HTTPS Obrigatório</h4>
+        <p>Sempre use HTTPS para transmitir dados de pagamento.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>💡 Dicas e Boas Práticas</h2>
+    <div class="tips-container">
+      <div class="tip-item">
+        <span class="tip-icon">✨</span>
+        <div>
+          <strong>Validação em Tempo Real</strong>
+          <p>Use o evento <code>validationChange</code> para dar feedback imediato ao usuário</p>
+        </div>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">🎨</span>
+        <div>
+          <strong>Visual do Cartão</strong>
+          <p>O cartão visual melhora a UX e reduz erros de digitação</p>
+        </div>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">🔍</span>
+        <div>
+          <strong>Detecção de Bandeira</strong>
+          <p>A detecção automática ajuda a validar e exibir o logo correto</p>
+        </div>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">⚡</span>
+        <div>
+          <strong>Auto-Complete</strong>
+          <p>Use atributos autocomplete para facilitar o preenchimento</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
