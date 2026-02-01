@@ -1,10 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "nx build docs --prod",
-  "outputDirectory": "dist/apps/docs",
-  "framework": "angular",
-  "installCommand": "npm install",
-  "devCommand": "nx serve docs",
+  "buildCommand": "npm run build:docs",
+  "outputDirectory": "dist/apps/docs/browser",
+  "installCommand": "npm ci --legacy-peer-deps",
+  "devCommand": "npm run dev",
+  "framework": null,
   "rewrites": [
     {
       "source": "/(.*)",

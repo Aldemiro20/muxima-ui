@@ -1,0 +1,37 @@
+# Dependencies
+node_modules
+
+# Build outputs
+dist
+tmp
+.nx
+
+# Testing
+coverage
+*.spec.ts
+jest.config.ts
+karma.conf.js
+
+# Development
+.vscode
+.idea
+*.log
+*.tmp
+
+# Git
+.git
+.github
+
+# Cache
+.cache
+.angular
+
+# Documentation source (we only need the built version)
+docs/
+
+# Other packages (we only build docs)
+packages/*/node_modules
+
+# OS files
+.DS_Store
+Thumbs.db
