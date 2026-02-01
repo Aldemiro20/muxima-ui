@@ -1,0 +1,31 @@
+import { EventEmitter } from '@angular/core';
+import * as i0 from "@angular/core";
+export type CopyStatus = 'idle' | 'copying' | 'success' | 'error';
+export declare class CopyToClipboardComponent {
+    content: string;
+    label: string;
+    successMessage: string;
+    errorMessage: string;
+    disabled: boolean;
+    size: 'small' | 'medium' | 'large';
+    variant: 'button' | 'icon' | 'inline';
+    showFeedback: boolean;
+    feedbackDuration: number;
+    showTooltip: boolean;
+    copied: EventEmitter<string>;
+    error: EventEmitter<Error>;
+    status: CopyStatus;
+    tooltipVisible: boolean;
+    private feedbackTimeout;
+    copyToClipboard(): Promise<void>;
+    private copyUsingExecCommand;
+    private showFeedbackMessage;
+    showTooltipHandler(): void;
+    hideTooltipHandler(): void;
+    getButtonClass(): string;
+    getIcon(): string;
+    getLabel(): string;
+    ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<CopyToClipboardComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CopyToClipboardComponent, "muxima-copy-to-clipboard", never, { "content": "content"; "label": "label"; "successMessage": "successMessage"; "errorMessage": "errorMessage"; "disabled": "disabled"; "size": "size"; "variant": "variant"; "showFeedback": "showFeedback"; "feedbackDuration": "feedbackDuration"; "showTooltip": "showTooltip"; }, { "copied": "copied"; "error": "error"; }, never, never, true, never>;
+}

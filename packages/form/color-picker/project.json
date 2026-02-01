@@ -1,7 +1,7 @@
 {
   "name": "color-picker",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/color-picker/src",
+  "sourceRoot": "packages/form/color-picker/src",
   "prefix": "agt",
   "projectType": "library",
   "tags": [],
@@ -10,14 +10,14 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/color-picker/ng-package.json"
+        "project": "packages/form/color-picker/ng-package.json"
       },
       "configurations": {
         "production": {
-          "tsConfig": "packages/color-picker/tsconfig.lib.prod.json"
+          "tsConfig": "packages/form/color-picker/tsconfig.lib.prod.json"
         },
         "development": {
-          "tsConfig": "packages/color-picker/tsconfig.lib.json"
+          "tsConfig": "packages/form/color-picker/tsconfig.lib.json"
         }
       },
       "defaultConfiguration": "production"
@@ -26,7 +26,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "packages/color-picker/jest.config.ts"
+        "jestConfig": "packages/form/color-picker/jest.config.ts"
       }
     },
     "lint": {

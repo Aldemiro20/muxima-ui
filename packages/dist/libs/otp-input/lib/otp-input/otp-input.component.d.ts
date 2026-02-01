@@ -1,0 +1,32 @@
+import { EventEmitter, QueryList, ElementRef, AfterViewInit } from '@angular/core';
+import { ControlValueAccessor } from '@angular/forms';
+import * as i0 from "@angular/core";
+export declare class OtpInputComponent implements ControlValueAccessor, AfterViewInit {
+    length: number;
+    type: 'number' | 'text';
+    placeholder: string;
+    disabled: boolean;
+    secure: boolean;
+    autoFocus: boolean;
+    size: 'small' | 'medium' | 'large';
+    otpComplete: EventEmitter<string>;
+    otpChange: EventEmitter<string>;
+    inputs: QueryList<ElementRef<HTMLInputElement>>;
+    otpValues: string[];
+    private onChange;
+    private onTouched;
+    ngAfterViewInit(): void;
+    writeValue(value: string): void;
+    registerOnChange(fn: any): void;
+    registerOnTouched(fn: any): void;
+    setDisabledState(isDisabled: boolean): void;
+    onInput(event: Event, index: number): void;
+    onKeyDown(event: KeyboardEvent, index: number): void;
+    onPaste(event: ClipboardEvent): void;
+    onFocus(index: number): void;
+    private emitValue;
+    clear(): void;
+    trackByIndex(index: number): number;
+    static ɵfac: i0.ɵɵFactoryDeclaration<OtpInputComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<OtpInputComponent, "muxima-otp-input", never, { "length": "length"; "type": "type"; "placeholder": "placeholder"; "disabled": "disabled"; "secure": "secure"; "autoFocus": "autoFocus"; "size": "size"; }, { "otpComplete": "otpComplete"; "otpChange": "otpChange"; }, never, never, true, never>;
+}

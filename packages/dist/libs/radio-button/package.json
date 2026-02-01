@@ -1,0 +1,31 @@
+{
+  "name": "@agt-ui/radio-button",
+  "version": "1.0.0",
+  "peerDependencies": {
+    "@angular/common": "^15.2.0",
+    "@angular/core": "^15.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "module": "fesm2015/agt-ui-radio-button.mjs",
+  "es2020": "fesm2020/agt-ui-radio-button.mjs",
+  "esm2020": "esm2020/agt-ui-radio-button.mjs",
+  "fesm2020": "fesm2020/agt-ui-radio-button.mjs",
+  "fesm2015": "fesm2015/agt-ui-radio-button.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2020": "./esm2020/agt-ui-radio-button.mjs",
+      "es2020": "./fesm2020/agt-ui-radio-button.mjs",
+      "es2015": "./fesm2015/agt-ui-radio-button.mjs",
+      "node": "./fesm2015/agt-ui-radio-button.mjs",
+      "default": "./fesm2020/agt-ui-radio-button.mjs"
+    }
+  }
+}

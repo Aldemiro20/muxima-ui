@@ -1,0 +1,33 @@
+{
+  "name": "@muxima-ui/kanban",
+  "version": "1.0.0",
+  "description": "Kanban Board component for Angular 18+ with drag & drop",
+  "peerDependencies": {
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0",
+    "@angular/cdk": "^18.0.0"
+  },
+  "module": "fesm2015/muxima-ui-kanban.mjs",
+  "es2020": "fesm2020/muxima-ui-kanban.mjs",
+  "esm2020": "esm2020/muxima-ui-kanban.mjs",
+  "fesm2020": "fesm2020/muxima-ui-kanban.mjs",
+  "fesm2015": "fesm2015/muxima-ui-kanban.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2020": "./esm2020/muxima-ui-kanban.mjs",
+      "es2020": "./fesm2020/muxima-ui-kanban.mjs",
+      "es2015": "./fesm2015/muxima-ui-kanban.mjs",
+      "node": "./fesm2015/muxima-ui-kanban.mjs",
+      "default": "./fesm2020/muxima-ui-kanban.mjs"
+    }
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

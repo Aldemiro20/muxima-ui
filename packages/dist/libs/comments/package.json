@@ -1,0 +1,32 @@
+{
+  "name": "@muxima-ui/comments",
+  "version": "1.0.0",
+  "peerDependencies": {
+    "@angular/common": "^15.2.0",
+    "@angular/core": "^15.2.0",
+    "@angular/forms": "^15.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "module": "fesm2015/muxima-ui-comments.mjs",
+  "es2020": "fesm2020/muxima-ui-comments.mjs",
+  "esm2020": "esm2020/muxima-ui-comments.mjs",
+  "fesm2020": "fesm2020/muxima-ui-comments.mjs",
+  "fesm2015": "fesm2015/muxima-ui-comments.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2020": "./esm2020/muxima-ui-comments.mjs",
+      "es2020": "./fesm2020/muxima-ui-comments.mjs",
+      "es2015": "./fesm2015/muxima-ui-comments.mjs",
+      "node": "./fesm2015/muxima-ui-comments.mjs",
+      "default": "./fesm2020/muxima-ui-comments.mjs"
+    }
+  }
+}

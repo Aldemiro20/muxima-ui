@@ -1,0 +1,31 @@
+{
+  "name": "@muxima-ui/copy-to-clipboard",
+  "version": "1.0.0",
+  "peerDependencies": {
+    "@angular/common": "^15.2.0",
+    "@angular/core": "^15.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "module": "fesm2015/muxima-ui-copy-to-clipboard.mjs",
+  "es2020": "fesm2020/muxima-ui-copy-to-clipboard.mjs",
+  "esm2020": "esm2020/muxima-ui-copy-to-clipboard.mjs",
+  "fesm2020": "fesm2020/muxima-ui-copy-to-clipboard.mjs",
+  "fesm2015": "fesm2015/muxima-ui-copy-to-clipboard.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2020": "./esm2020/muxima-ui-copy-to-clipboard.mjs",
+      "es2020": "./fesm2020/muxima-ui-copy-to-clipboard.mjs",
+      "es2015": "./fesm2015/muxima-ui-copy-to-clipboard.mjs",
+      "node": "./fesm2015/muxima-ui-copy-to-clipboard.mjs",
+      "default": "./fesm2020/muxima-ui-copy-to-clipboard.mjs"
+    }
+  }
+}

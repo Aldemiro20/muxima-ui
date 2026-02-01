@@ -1,0 +1,40 @@
+{
+  "name": "@muxima-ui/quill-editor",
+  "version": "1.0.0",
+  "description": "Advanced WYSIWYG rich text editor built from scratch",
+  "keywords": [
+    "angular",
+    "editor",
+    "wysiwyg",
+    "rich-text",
+    "contenteditable"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0",
+    "@angular/forms": "^18.0.0"
+  },
+  "module": "fesm2015/muxima-ui-quill-editor.mjs",
+  "es2020": "fesm2020/muxima-ui-quill-editor.mjs",
+  "esm2020": "esm2020/muxima-ui-quill-editor.mjs",
+  "fesm2020": "fesm2020/muxima-ui-quill-editor.mjs",
+  "fesm2015": "fesm2015/muxima-ui-quill-editor.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2020": "./esm2020/muxima-ui-quill-editor.mjs",
+      "es2020": "./fesm2020/muxima-ui-quill-editor.mjs",
+      "es2015": "./fesm2015/muxima-ui-quill-editor.mjs",
+      "node": "./fesm2015/muxima-ui-quill-editor.mjs",
+      "default": "./fesm2020/muxima-ui-quill-editor.mjs"
+    }
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

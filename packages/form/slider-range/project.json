@@ -1,7 +1,7 @@
 {
   "name": "slider-range",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/slider-range/src",
+  "sourceRoot": "packages/form/slider-range/src",
   "prefix": "muxima",
   "projectType": "library"
 }

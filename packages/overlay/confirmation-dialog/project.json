@@ -1,17 +1,39 @@
 {
-  "name": "confirmation-dialog",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/confirmation-dialog/src",
-  "prefix": "muxima",
-  "projectType": "library",
-  "targets": {
-    "build": {
-      "executor": "@nx/angular:package",
-      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
-      "options": {
-        "project": "packages/confirmation-dialog/ng-package.json"
-      }
-    }
-  }
+    "name":  "confirmation-dialog",
+    "$schema":  "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot":  "packages/overlay/confirmation-dialog/src",
+    "prefix":  "muxima",
+    "projectType":  "library",
+    "targets":  {
+                    "build":  {
+                                  "executor":  "@nx/angular:package",
+                                  "outputs":  [
+                                                  "{workspaceRoot}/dist/{projectRoot}"
+                                              ],
+                                  "options":  {
+                                                  "project":  "packages/overlay/confirmation-dialog/ng-package.json"
+                                              },
+                                  "configurations": {
+                                      "production": {
+                                          "tsConfig": "packages/overlay/confirmation-dialog/tsconfig.lib.prod.json"
+                                      },
+                                      "development": {
+                                          "tsConfig": "packages/overlay/confirmation-dialog/tsconfig.lib.json"
+                                      }
+                                  },
+                                  "defaultConfiguration": "production"
+                              },
+                    "test":  {
+                                 "outputs":  [
+                                                 "{workspaceRoot}/coverage/{projectRoot}"
+                                             ],
+                                 "executor":  "@nx/jest:jest",
+                                 "options":  {
+                                                 "jestConfig":  "packages\\overlay\\confirmation-dialog/jest.config.ts"
+                                             }
+                             },
+                    "lint":  {
+                                 "executor":  "@nx/eslint:lint"
+                             }
+                }
 }
-

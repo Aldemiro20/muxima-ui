@@ -1,17 +1,39 @@
 {
-  "name": "multi-select",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/multi-select/src",
-  "prefix": "muxima",
-  "projectType": "library",
-  "targets": {
-    "build": {
-      "executor": "@nx/angular:package",
-      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
-      "options": {
-        "project": "packages/multi-select/ng-package.json"
-      }
-    }
-  }
+    "name":  "multi-select",
+    "$schema":  "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot":  "packages/form/multi-select/src",
+    "prefix":  "muxima",
+    "projectType":  "library",
+    "targets":  {
+                    "build":  {
+                                  "executor":  "@nx/angular:package",
+                                  "outputs":  [
+                                                  "{workspaceRoot}/dist/{projectRoot}"
+                                              ],
+                                  "options":  {
+                                                  "project":  "packages/form/multi-select/ng-package.json"
+                                              },
+                                  "configurations": {
+                                      "production": {
+                                          "tsConfig": "packages/form/multi-select/tsconfig.lib.prod.json"
+                                      },
+                                      "development": {
+                                          "tsConfig": "packages/form/multi-select/tsconfig.lib.json"
+                                      }
+                                  },
+                                  "defaultConfiguration": "production"
+                              },
+                    "test":  {
+                                 "outputs":  [
+                                                 "{workspaceRoot}/coverage/{projectRoot}"
+                                             ],
+                                 "executor":  "@nx/jest:jest",
+                                 "options":  {
+                                                 "jestConfig":  "packages\\form\\multi-select/jest.config.ts"
+                                             }
+                             },
+                    "lint":  {
+                                 "executor":  "@nx/eslint:lint"
+                             }
+                }
 }
-

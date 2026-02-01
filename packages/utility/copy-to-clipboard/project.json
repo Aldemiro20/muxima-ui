@@ -1,7 +1,7 @@
 {
   "name": "copy-to-clipboard",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/copy-to-clipboard/src",
+  "sourceRoot": "packages/utility/copy-to-clipboard/src",
   "prefix": "muxima",
   "projectType": "library",
   "tags": [],
@@ -10,14 +10,14 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/copy-to-clipboard/ng-package.json"
+        "project": "packages/utility/copy-to-clipboard/ng-package.json"
       },
       "configurations": {
         "production": {
-          "tsConfig": "packages/copy-to-clipboard/tsconfig.lib.prod.json"
+          "tsConfig": "packages/utility/copy-to-clipboard/tsconfig.lib.prod.json"
         },
         "development": {
-          "tsConfig": "packages/copy-to-clipboard/tsconfig.lib.json"
+          "tsConfig": "packages/utility/copy-to-clipboard/tsconfig.lib.json"
         }
       },
       "defaultConfiguration": "production"
@@ -26,7 +26,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "packages/copy-to-clipboard/jest.config.ts"
+        "jestConfig": "packages/utility/copy-to-clipboard/jest.config.ts"
       }
     },
     "lint": {

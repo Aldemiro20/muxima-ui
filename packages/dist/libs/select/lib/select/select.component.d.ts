@@ -1,0 +1,67 @@
+import { ElementRef, OnDestroy, OnInit } from '@angular/core';
+import { ControlValueAccessor } from '@angular/forms';
+import * as i0 from "@angular/core";
+export type SelectSize = 'sm' | 'md' | 'lg';
+export type SelectVariant = 'default' | 'outlined' | 'filled' | 'gradient' | 'glass';
+export interface SelectOption {
+    label: string;
+    value: any;
+    icon?: string;
+    disabled?: boolean;
+    group?: string;
+}
+export declare class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy {
+    dropdownButton: ElementRef;
+    private uniqueId;
+    dropdownPosition: {
+        top: string;
+        left: string;
+        width: string;
+    };
+    dropdownOpen: boolean;
+    openUpward: boolean;
+    dropdownTop: number;
+    dropdownLeft: number;
+    useFixed: boolean;
+    placeholder: string;
+    label?: string;
+    helperText?: string;
+    size: SelectSize;
+    variant: SelectVariant;
+    disabled: boolean;
+    readonly: boolean;
+    options: SelectOption[];
+    multiple: boolean;
+    searchable: boolean;
+    clearable: boolean;
+    hasError: boolean;
+    errorMessage?: string;
+    prefixIcon?: string;
+    value: any;
+    selectedValues: any[];
+    searchText: string;
+    filteredOptions: SelectOption[];
+    focusedIndex: number;
+    onChange: (value: any) => void;
+    onTouched: () => void;
+    toggleDropdown(): void;
+    ngOnInit(): void;
+    ngOnDestroy(): void;
+    onOtherSelectOpened: (event: any) => void;
+    checkDropdownDirection(): void;
+    writeValue(value: any): void;
+    registerOnChange(fn: any): void;
+    registerOnTouched(fn: any): void;
+    setDisabledState(isDisabled: boolean): void;
+    onWindowChange(): void;
+    selectOption(option: SelectOption): void;
+    onSearch(): void;
+    clearSelection(event?: Event): void;
+    getSelectedLabel(): string;
+    isSelected(option: SelectOption): boolean;
+    getClasses(): string[];
+    onClickOutside(event: Event): void;
+    onKeyDown(event: KeyboardEvent): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SelectComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SelectComponent, "muxima-select", never, { "placeholder": "placeholder"; "label": "label"; "helperText": "helperText"; "size": "size"; "variant": "variant"; "disabled": "disabled"; "readonly": "readonly"; "options": "options"; "multiple": "multiple"; "searchable": "searchable"; "clearable": "clearable"; "hasError": "hasError"; "errorMessage": "errorMessage"; "prefixIcon": "prefixIcon"; }, {}, never, never, true, never>;
+}

@@ -1,0 +1,35 @@
+import { ControlValueAccessor } from '@angular/forms';
+import * as i0 from "@angular/core";
+type InputType = 'text' | 'number' | 'email' | 'password' | 'tel' | 'url' | 'search' | 'date' | 'color' | 'month' | 'datetime' | 'datetime-local' | 'time';
+type InputSize = 'sm' | 'md' | 'lg';
+type InputVariant = 'default' | 'outlined' | 'filled' | 'underlined' | 'gradient';
+export declare class InputComponent implements ControlValueAccessor {
+    type: InputType;
+    size: InputSize;
+    variant: InputVariant;
+    disabled: boolean;
+    readonly: boolean;
+    placeholder?: string;
+    label?: string;
+    helperText?: string;
+    hasError: boolean;
+    errorMessage?: string;
+    prefixIcon?: string;
+    suffixIcon?: string;
+    showPasswordToggle: boolean;
+    value: string;
+    showPassword: boolean;
+    onChange: (value: string) => void;
+    onTouched: () => void;
+    writeValue(value: string): void;
+    registerOnChange(fn: any): void;
+    registerOnTouched(fn: any): void;
+    setDisabledState(isDisabled: boolean): void;
+    onInput(event: Event): void;
+    togglePasswordVisibility(): void;
+    getInputType(): InputType;
+    getClasses(): string[];
+    static ɵfac: i0.ɵɵFactoryDeclaration<InputComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<InputComponent, "muxima-input", never, { "type": "type"; "size": "size"; "variant": "variant"; "disabled": "disabled"; "readonly": "readonly"; "placeholder": "placeholder"; "label": "label"; "helperText": "helperText"; "hasError": "hasError"; "errorMessage": "errorMessage"; "prefixIcon": "prefixIcon"; "suffixIcon": "suffixIcon"; "showPasswordToggle": "showPasswordToggle"; }, {}, never, never, true, never>;
+}
+export {};

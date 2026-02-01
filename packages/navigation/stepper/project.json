@@ -1,7 +1,7 @@
 {
   "name": "stepper",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/stepper/src",
+  "sourceRoot": "packages/navigation/stepper/src",
   "prefix": "agt",
   "projectType": "library",
   "tags": [],
@@ -10,14 +10,14 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/stepper/ng-package.json"
+        "project": "packages/navigation/stepper/ng-package.json"
       },
       "configurations": {
         "production": {
-          "tsConfig": "packages/stepper/tsconfig.lib.prod.json"
+          "tsConfig": "packages/navigation/stepper/tsconfig.lib.prod.json"
         },
         "development": {
-          "tsConfig": "packages/stepper/tsconfig.lib.json"
+          "tsConfig": "packages/navigation/stepper/tsconfig.lib.json"
         }
       },
       "defaultConfiguration": "production"
@@ -26,7 +26,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "packages/stepper/jest.config.ts"
+        "jestConfig": "packages/navigation/stepper/jest.config.ts"
       }
     },
     "lint": {

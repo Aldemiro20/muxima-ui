@@ -1,17 +1,39 @@
 {
-  "name": "drawer",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/drawer/src",
-  "prefix": "muxima",
-  "projectType": "library",
-  "targets": {
-    "build": {
-      "executor": "@nx/angular:package",
-      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
-      "options": {
-        "project": "packages/drawer/ng-package.json"
-      }
-    }
-  }
+    "name":  "drawer",
+    "$schema":  "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot":  "packages/overlay/drawer/src",
+    "prefix":  "muxima",
+    "projectType":  "library",
+    "targets":  {
+                    "build":  {
+                                  "executor":  "@nx/angular:package",
+                                  "outputs":  [
+                                                  "{workspaceRoot}/dist/{projectRoot}"
+                                              ],
+                                  "options":  {
+                                                  "project":  "packages/overlay/drawer/ng-package.json"
+                                              },
+                                  "configurations": {
+                                      "production": {
+                                          "tsConfig": "packages/overlay/drawer/tsconfig.lib.prod.json"
+                                      },
+                                      "development": {
+                                          "tsConfig": "packages/overlay/drawer/tsconfig.lib.json"
+                                      }
+                                  },
+                                  "defaultConfiguration": "production"
+                              },
+                    "test":  {
+                                 "outputs":  [
+                                                 "{workspaceRoot}/coverage/{projectRoot}"
+                                             ],
+                                 "executor":  "@nx/jest:jest",
+                                 "options":  {
+                                                 "jestConfig":  "packages\\overlay\\drawer/jest.config.ts"
+                                             }
+                             },
+                    "lint":  {
+                                 "executor":  "@nx/eslint:lint"
+                             }
+                }
 }
-

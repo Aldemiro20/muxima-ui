@@ -1,0 +1,32 @@
+{
+  "name": "@muxima-ui/command-palette",
+  "version": "1.0.0",
+  "description": "Command Palette component for Angular 18+ - Ctrl+K quick actions",
+  "peerDependencies": {
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0"
+  },
+  "module": "fesm2015/muxima-ui-command-palette.mjs",
+  "es2020": "fesm2020/muxima-ui-command-palette.mjs",
+  "esm2020": "esm2020/muxima-ui-command-palette.mjs",
+  "fesm2020": "fesm2020/muxima-ui-command-palette.mjs",
+  "fesm2015": "fesm2015/muxima-ui-command-palette.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2020": "./esm2020/muxima-ui-command-palette.mjs",
+      "es2020": "./fesm2020/muxima-ui-command-palette.mjs",
+      "es2015": "./fesm2015/muxima-ui-command-palette.mjs",
+      "node": "./fesm2015/muxima-ui-command-palette.mjs",
+      "default": "./fesm2020/muxima-ui-command-palette.mjs"
+    }
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

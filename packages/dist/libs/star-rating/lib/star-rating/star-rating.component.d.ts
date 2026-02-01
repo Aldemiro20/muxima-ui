@@ -1,0 +1,37 @@
+import { EventEmitter } from '@angular/core';
+import { ControlValueAccessor } from '@angular/forms';
+import * as i0 from "@angular/core";
+export declare class StarRatingComponent implements ControlValueAccessor {
+    maxStars: number;
+    allowHalf: boolean;
+    readonly: boolean;
+    disabled: boolean;
+    size: 'small' | 'medium' | 'large';
+    color: string;
+    emptyColor: string;
+    showCount: boolean;
+    showLabel: boolean;
+    customLabels: string[];
+    set rating(value: number);
+    get rating(): number;
+    ratingChange: EventEmitter<number>;
+    ratingHover: EventEmitter<number>;
+    private _rating;
+    hoverRating: number;
+    stars: number[];
+    private onChange;
+    private onTouched;
+    ngOnInit(): void;
+    writeValue(value: number): void;
+    registerOnChange(fn: any): void;
+    registerOnTouched(fn: any): void;
+    setDisabledState(isDisabled: boolean): void;
+    onStarClick(star: number, event: MouseEvent): void;
+    onStarHover(star: number, event: MouseEvent): void;
+    onMouseLeave(): void;
+    getStarFill(star: number): 'full' | 'half' | 'empty';
+    getCurrentLabel(): string;
+    trackByStar(index: number): number;
+    static ɵfac: i0.ɵɵFactoryDeclaration<StarRatingComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StarRatingComponent, "muxima-star-rating", never, { "maxStars": "maxStars"; "allowHalf": "allowHalf"; "readonly": "readonly"; "disabled": "disabled"; "size": "size"; "color": "color"; "emptyColor": "emptyColor"; "showCount": "showCount"; "showLabel": "showLabel"; "customLabels": "customLabels"; "rating": "rating"; }, { "ratingChange": "ratingChange"; "ratingHover": "ratingHover"; }, never, never, true, never>;
+}
