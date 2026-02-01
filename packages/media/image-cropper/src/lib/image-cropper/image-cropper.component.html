@@ -1,0 +1,63 @@
+<div class="image-cropper-wrapper" [class.disabled]="disabled">
+  <!-- File Input -->
+  <div class="cropper-upload" *ngIf="!imageUrl">
+    <input type="file" #fileInput (change)="handleFileInput($event)" accept="image/*" hidden />
+    <button class="upload-btn" (click)="fileInput.click()" [disabled]="disabled">
+      📁 Selecionar Imagem
+    </button>
+  </div>
+
+  <!-- Cropper Area -->
+  <div class="cropper-container" *ngIf="imageUrl">
+    <canvas
+      #canvas
+      width="600"
+      height="400"
+      (mousedown)="onMouseDown($event)"
+      (mousemove)="onMouseMove($event)"
+      (mouseup)="onMouseUp()"
+      (mouseleave)="onMouseUp()">
+    </canvas>
+  </div>
+
+  <!-- Hidden canvas for crop output -->
+  <canvas #cropCanvas style="display: none;"></canvas>
+
+  <!-- Controls -->
+  <div class="cropper-controls" *ngIf="imageUrl">
+    <div class="control-group">
+      <button class="control-btn" (click)="rotate(-90)" [disabled]="disabled" title="Rotacionar -90°">
+        ↺
+      </button>
+      <button class="control-btn" (click)="rotate(90)" [disabled]="disabled" title="Rotacionar +90°">
+        ↻
+      </button>
+    </div>
+
+    <div class="control-group">
+      <button class="control-btn" (click)="zoom(-0.1)" [disabled]="disabled" title="Zoom Out">
+        🔍-
+      </button>
+      <button class="control-btn" (click)="zoom(0.1)" [disabled]="disabled" title="Zoom In">
+        🔍+
+      </button>
+    </div>
+
+    <div class="control-group">
+      <button class="control-btn" (click)="reset()" [disabled]="disabled" title="Reset">
+        🔄
+      </button>
+    </div>
+
+    <div class="control-group">
+      <button class="control-btn control-btn--primary" (click)="crop()" [disabled]="disabled">
+        ✂️ Cortar Imagem
+      </button>
+    </div>
+  </div>
+
+  <!-- Info -->
+  <div class="cropper-info" *ngIf="imageUrl">
+    <small>Escala: {{ (scale * 100).toFixed(0) }}% | Rotação: {{ rotation }}°</small>
+  </div>
+</div>

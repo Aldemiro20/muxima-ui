@@ -1,10 +1,51 @@
 {
-  "name": "@./source",
-  "version": "0.0.0",
+  "name": "muxima-ui",
+  "version": "1.0.0",
+  "description": "A modern, professional Angular UI component library",
+  "keywords": [
+    "angular",
+    "ui",
+    "components",
+    "library",
+    "design-system",
+    "muxima"
+  ],
+  "homepage": "https://muxima-ui.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aldemiro20/muxima-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Aldemiro20/muxima-ui/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Aldemiro Valentim",
+    "url": "https://github.com/Aldemiro20"
+  },
   "scripts": {
-    "dev": "nx run design-system:serve",
+    "dev": "nx serve docs",
+    "build": "nx build docs --configuration=production",
+    "build:docs": "nx build docs --configuration=production",
+    "build:all": "nx run-many --target=build --all --parallel=3 --configuration=production",
+    "build:affected": "nx affected --target=build --parallel=3 --configuration=production",
+    "test": "nx run-many --target=test --all --parallel=3",
+    "test:affected": "nx affected --target=test --parallel=3",
+    "lint": "nx run-many --target=lint --all --parallel=3",
+    "lint:affected": "nx affected --target=lint --parallel=3",
+    "lint:fix": "nx run-many --target=lint --all --parallel=3 --fix",
+    "format": "prettier --write \"**/*.{ts,js,json,md,html,css,scss}\"",
+    "format:check": "prettier --check \"**/*.{ts,js,json,md,html,css,scss}\"",
+    "storybook": "nx run storybook-host:storybook",
     "build-storybook": "nx run storybook-host:build-storybook",
-    "storybook": "nx run storybook-host:storybook"
+    "graph": "nx graph",
+    "affected:graph": "nx affected:graph",
+    "version:bump": "node tools/scripts/version-bump.js",
+    "publish:all": "node tools/scripts/publish-all.js",
+    "publish:package": "node tools/scripts/publish-package.js",
+    "prepare": "husky install",
+    "clean": "nx reset && rm -rf dist node_modules",
+    "clean:cache": "nx reset"
   },
   "private": true,
   "dependencies": {
@@ -76,3 +117,4 @@
     "typescript": "~4.9.4"
   }
 }
+

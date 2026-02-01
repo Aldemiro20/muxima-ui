@@ -1,0 +1,27 @@
+<button [ngClass]="getClasses()" [disabled]="disabled" type="{{type}}">
+  <!-- SVG Icon via ng-content (left position) -->
+  <span *ngIf="iconSvg && iconPosition === 'left'" class="icon-svg">
+    <ng-content select="[slot='icon-left']"></ng-content>
+  </span>
+
+  <!-- Image Icon (left position) -->
+  <ng-container *ngIf="icon && !iconSvg">
+    <img *ngIf="iconPosition === 'left'" [src]="icon" alt="icon" class="icon">
+  </ng-container>
+
+  <!-- Button Text -->
+  <span *ngIf="text">{{text}}</span>
+  
+  <!-- Text via ng-content (if no text input) -->
+  <ng-content *ngIf="!text"></ng-content>
+
+  <!-- SVG Icon via ng-content (right position) -->
+  <span *ngIf="iconSvg && iconPosition === 'right'" class="icon-svg">
+    <ng-content select="[slot='icon-right']"></ng-content>
+  </span>
+
+  <!-- Image Icon (right position) -->
+  <ng-container *ngIf="icon && !iconSvg">
+    <img *ngIf="iconPosition === 'right'" [src]="icon" alt="icon" class="icon">
+  </ng-container>
+</button>

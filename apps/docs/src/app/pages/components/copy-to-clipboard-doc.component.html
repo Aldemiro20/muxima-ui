@@ -1,0 +1,421 @@
+<div class="doc-container">
+  <!-- Header -->
+  <div class="doc-header">
+    <h1>📋 Copy to Clipboard</h1>
+    <p>Componente de cópia para clipboard com feedback visual, múltiplas variantes e suporte cross-browser.</p>
+  </div>
+
+  <!-- Example 1: Basic Usage -->
+  <div class="section">
+    <h2>💎 Uso Básico</h2>
+    <p>Botão simples para copiar texto para o clipboard.</p>
+    
+    <div class="demo-box">
+      <div class="copy-demo">
+        <div class="content-box">
+          <p>{{ simpleText }}</p>
+        </div>
+        <muxima-copy-to-clipboard
+          [content]="simpleText"
+          (copied)="onCopied($event)"
+          (error)="onError($event)">
+        </muxima-copy-to-clipboard>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <pre><code>{{ codeExamples.basic }}</code></pre>
+    </div>
+  </div>
+
+  <!-- Example 2: Code Snippet -->
+  <div class="section">
+    <h2>💻 Copiar Código</h2>
+    <p>Ideal para documentações técnicas e snippets de código.</p>
+    
+    <div class="demo-box">
+      <div class="code-snippet-demo">
+        <pre class="code-content">{{ codeSnippet }}</pre>
+        <muxima-copy-to-clipboard
+          [content]="codeSnippet"
+          label="Copiar Código"
+          successMessage="Código copiado!"
+          (copied)="onCopied($event)">
+        </muxima-copy-to-clipboard>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <pre><code>{{ codeExamples.withEvents }}</code></pre>
+    </div>
+  </div>
+
+  <!-- Example 3: Size Variants -->
+  <div class="section">
+    <h2>📏 Tamanhos</h2>
+    <p>Três tamanhos disponíveis: small, medium e large.</p>
+    
+    <div class="demo-box">
+      <div class="size-demo">
+        <div class="size-item">
+          <label>Small:</label>
+          <muxima-copy-to-clipboard
+            content="Small size"
+            size="small"
+            label="Pequeno">
+          </muxima-copy-to-clipboard>
+        </div>
+
+        <div class="size-item">
+          <label>Medium:</label>
+          <muxima-copy-to-clipboard
+            content="Medium size"
+            size="medium"
+            label="Médio">
+          </muxima-copy-to-clipboard>
+        </div>
+
+        <div class="size-item">
+          <label>Large:</label>
+          <muxima-copy-to-clipboard
+            content="Large size"
+            size="large"
+            label="Grande">
+          </muxima-copy-to-clipboard>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 4: Variant Styles -->
+  <div class="section">
+    <h2>🎨 Variantes de Estilo</h2>
+    <p>Diferentes estilos para diferentes contextos de uso.</p>
+    
+    <div class="demo-box">
+      <div class="variant-demo">
+        <div class="variant-item">
+          <h4>Button (Padrão)</h4>
+          <muxima-copy-to-clipboard
+            content="Botão padrão"
+            variant="button"
+            label="Copiar">
+          </muxima-copy-to-clipboard>
+        </div>
+
+        <div class="variant-item">
+          <h4>Icon</h4>
+          <muxima-copy-to-clipboard
+            content="Apenas ícone"
+            variant="icon">
+          </muxima-copy-to-clipboard>
+        </div>
+
+        <div class="variant-item">
+          <h4>Inline</h4>
+          <p>
+            Meu email é: {{ email }}
+            <muxima-copy-to-clipboard
+              [content]="email"
+              variant="inline"
+              label="copiar"
+              size="small">
+            </muxima-copy-to-clipboard>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <pre><code>{{ codeExamples.inline }}</code></pre>
+    </div>
+  </div>
+
+  <!-- Example 5: Real World Examples -->
+  <div class="section">
+    <h2>🌍 Casos de Uso Reais</h2>
+    <p>Exemplos práticos de uso em diferentes contextos.</p>
+    
+    <div class="demo-box">
+      <!-- URL Copy -->
+      <div class="real-world-item">
+        <label>🔗 URL do Projeto:</label>
+        <div class="content-with-copy">
+          <input type="text" [value]="url" readonly />
+          <muxima-copy-to-clipboard
+            [content]="url"
+            variant="icon"
+            size="small">
+          </muxima-copy-to-clipboard>
+        </div>
+      </div>
+
+      <!-- API Key Copy -->
+      <div class="real-world-item">
+        <label>🔑 API Key:</label>
+        <div class="content-with-copy">
+          <code class="api-key">{{ apiKey }}</code>
+          <muxima-copy-to-clipboard
+            [content]="apiKey"
+            label="Copiar Key"
+            size="small">
+          </muxima-copy-to-clipboard>
+        </div>
+      </div>
+
+      <!-- Long Text Copy -->
+      <div class="real-world-item">
+        <label>📄 Texto Longo:</label>
+        <div class="content-with-copy-vertical">
+          <div class="text-box">{{ longText }}</div>
+          <muxima-copy-to-clipboard
+            [content]="longText"
+            label="Copiar Texto">
+          </muxima-copy-to-clipboard>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 6: Interactive Playground -->
+  <div class="section">
+    <h2>🎮 Playground Interativo</h2>
+    <p>Experimente diferentes configurações em tempo real.</p>
+    
+    <div class="controls-grid">
+      <div class="control-group">
+        <label>Tamanho:</label>
+        <div class="radio-group">
+          <label>
+            <input type="radio" name="size" value="small" [(ngModel)]="selectedSize" />
+            Small
+          </label>
+          <label>
+            <input type="radio" name="size" value="medium" [(ngModel)]="selectedSize" />
+            Medium
+          </label>
+          <label>
+            <input type="radio" name="size" value="large" [(ngModel)]="selectedSize" />
+            Large
+          </label>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Variante:</label>
+        <div class="radio-group">
+          <label>
+            <input type="radio" name="variant" value="button" [(ngModel)]="selectedVariant" />
+            Button
+          </label>
+          <label>
+            <input type="radio" name="variant" value="icon" [(ngModel)]="selectedVariant" />
+            Icon
+          </label>
+          <label>
+            <input type="radio" name="variant" value="inline" [(ngModel)]="selectedVariant" />
+            Inline
+          </label>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Opções:</label>
+        <div class="checkbox-group">
+          <label>
+            <input type="checkbox" [(ngModel)]="showFeedback" />
+            Mostrar Feedback
+          </label>
+          <label>
+            <input type="checkbox" [(ngModel)]="showTooltip" />
+            Mostrar Tooltip
+          </label>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Label Customizado:</label>
+        <input type="text" [(ngModel)]="customLabel" class="text-input" />
+      </div>
+
+      <div class="control-group">
+        <label>Conteúdo:</label>
+        <textarea [(ngModel)]="customContent" class="textarea-input" rows="3"></textarea>
+      </div>
+    </div>
+
+    <div class="demo-box">
+      <div class="playground-result">
+        <muxima-copy-to-clipboard
+          [content]="customContent"
+          [label]="customLabel"
+          [size]="selectedSize"
+          [variant]="selectedVariant"
+          [showFeedback]="showFeedback"
+          [showTooltip]="showTooltip"
+          (copied)="onCopied($event)"
+          (error)="onError($event)">
+        </muxima-copy-to-clipboard>
+      </div>
+    </div>
+  </div>
+
+  <!-- TypeScript Example -->
+  <div class="section">
+    <h2>💻 Exemplo TypeScript</h2>
+    <div class="code-block">
+      <pre><code>{{ codeExamples.typescript }}</code></pre>
+    </div>
+  </div>
+
+  <!-- API Documentation -->
+  <div class="section">
+    <h2>📚 API</h2>
+    
+    <h3>Inputs</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>content</code></td>
+            <td>string</td>
+            <td>''</td>
+            <td>Conteúdo a ser copiado</td>
+          </tr>
+          <tr>
+            <td><code>label</code></td>
+            <td>string</td>
+            <td>'Copiar'</td>
+            <td>Texto do botão</td>
+          </tr>
+          <tr>
+            <td><code>successMessage</code></td>
+            <td>string</td>
+            <td>'Copiado!'</td>
+            <td>Mensagem de sucesso</td>
+          </tr>
+          <tr>
+            <td><code>errorMessage</code></td>
+            <td>string</td>
+            <td>'Erro ao copiar'</td>
+            <td>Mensagem de erro</td>
+          </tr>
+          <tr>
+            <td><code>disabled</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Desabilita o botão</td>
+          </tr>
+          <tr>
+            <td><code>size</code></td>
+            <td>'small' | 'medium' | 'large'</td>
+            <td>'medium'</td>
+            <td>Tamanho do botão</td>
+          </tr>
+          <tr>
+            <td><code>variant</code></td>
+            <td>'button' | 'icon' | 'inline'</td>
+            <td>'button'</td>
+            <td>Estilo do botão</td>
+          </tr>
+          <tr>
+            <td><code>showFeedback</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Mostra feedback visual</td>
+          </tr>
+          <tr>
+            <td><code>feedbackDuration</code></td>
+            <td>number</td>
+            <td>2000</td>
+            <td>Duração do feedback (ms)</td>
+          </tr>
+          <tr>
+            <td><code>showTooltip</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Mostra tooltip ao hover</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Outputs</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>copied</code></td>
+            <td>EventEmitter&lt;string&gt;</td>
+            <td>Emitido quando o conteúdo é copiado com sucesso</td>
+          </tr>
+          <tr>
+            <td><code>error</code></td>
+            <td>EventEmitter&lt;Error&gt;</td>
+            <td>Emitido quando ocorre um erro ao copiar</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="section">
+    <h2>✨ Recursos</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <h4>Tema Roxo</h4>
+        <p>Gradiente #667eea → #764ba2</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h4>Cross-Browser</h4>
+        <p>Suporte Clipboard API + fallback</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✅</div>
+        <h4>Feedback Visual</h4>
+        <p>Animações suaves de sucesso/erro</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h4>Múltiplas Variantes</h4>
+        <p>Button, icon e inline</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h4>Responsivo</h4>
+        <p>Funciona em mobile e desktop</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">♿</div>
+        <h4>Acessível</h4>
+        <p>Tooltips e estados focáveis</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Installation -->
+  <div class="section">
+    <h2>📦 Instalação</h2>
+    <div class="code-block">
+      <pre><code>npm install @muxima-ui/copy-to-clipboard</code></pre>
+    </div>
+  </div>
+</div>

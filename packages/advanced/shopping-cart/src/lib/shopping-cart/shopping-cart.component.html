@@ -1,0 +1,137 @@
+<div class="shopping-cart-wrapper" [attr.data-size]="size" [class.disabled]="disabled">
+  <!-- Cart Header -->
+  <div class="cart-header">
+    <div class="cart-title">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="9" cy="21" r="1"/>
+        <circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+      <h2>Carrinho de Compras</h2>
+      <span class="item-count" *ngIf="itemCount > 0">({{ itemCount }} {{ itemCount === 1 ? 'item' : 'itens' }})</span>
+    </div>
+    <button 
+      *ngIf="items.length > 0"
+      class="clear-btn"
+      (click)="clearAllItems()"
+      [disabled]="disabled"
+      type="button">
+      🗑️ Limpar Carrinho
+    </button>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" *ngIf="items.length === 0">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+      <circle cx="60" cy="60" r="60" fill="#f3f4f6"/>
+      <path d="M40 45h40l-5 25H45l-5-25z" fill="#d1d5db" stroke="#9ca3af" stroke-width="2"/>
+      <circle cx="50" cy="80" r="4" fill="#9ca3af"/>
+      <circle cx="70" cy="80" r="4" fill="#9ca3af"/>
+    </svg>
+    <p>{{ emptyMessage }}</p>
+  </div>
+
+  <!-- Cart Items -->
+  <div class="cart-items" *ngIf="items.length > 0">
+    <div 
+      class="cart-item"
+      *ngFor="let item of items; trackBy: trackByItemId"
+      [@itemAnimation]>
+      
+      <!-- Item Image -->
+      <div class="item-image" *ngIf="config.showImages">
+        <img [src]="getItemImage(item)" [alt]="item.name" />
+      </div>
+
+      <!-- Item Details -->
+      <div class="item-details">
+        <h3 class="item-name">{{ item.name }}</h3>
+        <p class="item-description" *ngIf="item.description">{{ item.description }}</p>
+        <div class="item-price">{{ formatCurrency(item.price) }}</div>
+      </div>
+
+      <!-- Quantity Controls -->
+      <div class="quantity-controls" *ngIf="config.allowQuantityEdit">
+        <button 
+          class="qty-btn"
+          (click)="decrementQuantity(item)"
+          [disabled]="disabled || item.quantity <= 1"
+          type="button">
+          −
+        </button>
+        <input 
+          type="number"
+          class="qty-input"
+          [value]="item.quantity"
+          (change)="updateQuantity(item, +$any($event.target).value)"
+          [disabled]="disabled"
+          min="1"
+          [max]="item.maxQuantity || 999"
+        />
+        <button 
+          class="qty-btn"
+          (click)="incrementQuantity(item)"
+          [disabled]="disabled || (item.maxQuantity && item.quantity >= item.maxQuantity)"
+          type="button">
+          +
+        </button>
+      </div>
+
+      <!-- Quantity Display (non-editable) -->
+      <div class="quantity-display" *ngIf="!config.allowQuantityEdit">
+        <span>Qtd: {{ item.quantity }}</span>
+      </div>
+
+      <!-- Item Subtotal -->
+      <div class="item-subtotal" *ngIf="config.showSubtotal">
+        {{ formatCurrency(item.price * item.quantity) }}
+      </div>
+
+      <!-- Remove Button -->
+      <button 
+        class="remove-btn"
+        (click)="removeItem(item)"
+        [disabled]="disabled"
+        type="button"
+        title="Remover item">
+        ×
+      </button>
+    </div>
+  </div>
+
+  <!-- Cart Summary -->
+  <div class="cart-summary" *ngIf="items.length > 0">
+    <div class="summary-row">
+      <span>Subtotal:</span>
+      <span class="summary-value">{{ formatCurrency(subtotal) }}</span>
+    </div>
+
+    <div class="summary-row" *ngIf="config.taxRate && config.taxRate > 0">
+      <span>Impostos ({{ (config.taxRate * 100).toFixed(0) }}%):</span>
+      <span class="summary-value">{{ formatCurrency(tax) }}</span>
+    </div>
+
+    <div class="summary-row" *ngIf="config.shippingCost && config.shippingCost > 0">
+      <span>Frete:</span>
+      <span class="summary-value">{{ formatCurrency(shipping) }}</span>
+    </div>
+
+    <div class="summary-row total-row">
+      <span>Total:</span>
+      <span class="summary-value total-value">{{ formatCurrency(total) }}</span>
+    </div>
+
+    <button 
+      *ngIf="showCheckout"
+      class="checkout-btn"
+      (click)="onCheckout()"
+      [disabled]="disabled"
+      type="button">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+        <line x1="1" y1="10" x2="23" y2="10"/>
+      </svg>
+      Finalizar Compra
+    </button>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+{
+  "name": "multi-select",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/multi-select/src",
+  "prefix": "muxima",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "packages/multi-select/ng-package.json"
+      }
+    }
+  }
+}
+

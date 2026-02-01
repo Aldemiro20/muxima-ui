@@ -1,0 +1,37 @@
+{
+  "name": "kanban",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/kanban/src",
+  "prefix": "muxima",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "packages/kanban/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/kanban/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "packages/kanban/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/kanban/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}
+

@@ -1,0 +1,102 @@
+<!-- Notification Bell Icon -->
+<div class="notification-bell" (click)="togglePanel()">
+  <span class="bell-icon">🔔</span>
+  <span class="badge" *ngIf="showBadge && unreadCount > 0">{{ unreadCount > 99 ? '99+' : unreadCount }}</span>
+</div>
+
+<!-- Notification Panel -->
+<div class="notification-panel" [class.open]="isOpen" [@slideDown]>
+  <div class="panel-header">
+    <h3>Notificações</h3>
+    <div class="header-actions">
+      <button class="action-btn" (click)="markAllAsRead()" *ngIf="unreadCount > 0" title="Marcar todas como lidas">
+        <span>✓</span>
+      </button>
+      <button class="action-btn" (click)="clearAll()" *ngIf="notifications.length > 0" title="Limpar todas">
+        <span>🗑️</span>
+      </button>
+      <button class="action-btn close-btn" (click)="closePanel()" title="Fechar">
+        <span>✕</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <div *ngIf="notifications.length === 0" class="empty-state">
+      <div class="empty-icon">🔕</div>
+      <p>Nenhuma notificação</p>
+    </div>
+
+    <div *ngIf="notifications.length > 0">
+      <div *ngFor="let group of groupedNotifications" class="notification-group">
+        <h4 class="group-title" *ngIf="groupByCategory">{{ group.category }}</h4>
+        
+        <div *ngFor="let notification of group.notifications" 
+             class="notification-item"
+             [class.unread]="!notification.read"
+             [class.type-success]="notification.type === 'success'"
+             [class.type-info]="notification.type === 'info'"
+             [class.type-warning]="notification.type === 'warning'"
+             [class.type-error]="notification.type === 'error'"
+             (click)="markAsRead(notification)">
+          
+          <div class="notification-icon">
+            <span>{{ getIcon(notification.type) }}</span>
+          </div>
+
+          <div class="notification-content">
+            <div class="notification-header">
+              <h5 class="notification-title">{{ notification.title }}</h5>
+              <span class="notification-time">{{ formatTimestamp(notification.timestamp) }}</span>
+            </div>
+            <p class="notification-message">{{ notification.message }}</p>
+            
+            <button *ngIf="notification.actionLabel" 
+                    class="notification-action"
+                    (click)="executeAction(notification, $event)">
+              {{ notification.actionLabel }}
+            </button>
+          </div>
+
+          <button class="dismiss-btn" (click)="dismissNotification(notification, $event)" title="Dispensar">
+            <span>✕</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Notifications -->
+<div class="toast-container" [class]="positionClass">
+  <div *ngFor="let toast of activeToasts" 
+       class="toast-notification"
+       [class.type-success]="toast.type === 'success'"
+       [class.type-info]="toast.type === 'info'"
+       [class.type-warning]="toast.type === 'warning'"
+       [class.type-error]="toast.type === 'error'"
+       [@slideIn]>
+    
+    <div class="toast-icon">
+      <span>{{ getIcon(toast.type) }}</span>
+    </div>
+
+    <div class="toast-content">
+      <h5 class="toast-title">{{ toast.title }}</h5>
+      <p class="toast-message">{{ toast.message }}</p>
+      
+      <button *ngIf="toast.actionLabel" 
+              class="toast-action"
+              (click)="executeAction(toast, $event)">
+        {{ toast.actionLabel }}
+      </button>
+    </div>
+
+    <button class="toast-close" (click)="dismissToast(toast.id)" title="Fechar">
+      <span>✕</span>
+    </button>
+  </div>
+</div>
+
+<!-- Overlay -->
+<div class="overlay" *ngIf="isOpen" (click)="closePanel()"></div>

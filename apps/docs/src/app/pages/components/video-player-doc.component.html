@@ -1,0 +1,204 @@
+<div class="doc-container">
+  <header class="doc-header">
+    <h1>Video Player</h1>
+    <p class="subtitle">Player de vídeo personalizado com controles avançados, legendas e múltiplas qualidades</p>
+  </header>
+
+  <!-- Example 1: Basic Usage -->
+  <section class="doc-section">
+    <h2>Player Básico</h2>
+    <p>Player de vídeo simples com controles padrão.</p>
+
+    <div class="example">
+      <muxima-video-player
+        [sources]="basicSources"
+        [config]="basicConfig"
+        width="100%"
+        height="auto">
+      </muxima-video-player>
+    </div>
+
+    <div class="code-example">
+      <h3>Código</h3>
+      <pre><code>{{ basicCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Example 2: With Subtitles -->
+  <section class="doc-section">
+    <h2>Com Legendas</h2>
+    <p>Adicione legendas em múltiplos idiomas.</p>
+
+    <div class="example">
+      <muxima-video-player
+        [sources]="subtitleSources"
+        [subtitles]="subtitles"
+        width="100%"
+        height="auto">
+      </muxima-video-player>
+    </div>
+
+    <div class="code-example">
+      <h3>Código</h3>
+      <pre><code>{{ subtitlesCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Example 3: Multiple Qualities -->
+  <section class="doc-section">
+    <h2>Múltiplas Qualidades</h2>
+    <p>Permita que usuários escolham a qualidade do vídeo.</p>
+
+    <div class="example">
+      <muxima-video-player
+        [sources]="qualitySources"
+        width="100%"
+        height="auto">
+      </muxima-video-player>
+    </div>
+
+    <div class="code-example">
+      <h3>Código</h3>
+      <pre><code>{{ qualityCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Example 4: Autoplay & Loop -->
+  <section class="doc-section">
+    <h2>Autoplay e Loop</h2>
+    <p>Configure reprodução automática e loop.</p>
+
+    <div class="example">
+      <muxima-video-player
+        [sources]="autoplaySources"
+        [config]="autoplayConfig"
+        width="100%"
+        height="auto">
+      </muxima-video-player>
+    </div>
+  </section>
+
+  <!-- API Reference -->
+  <section class="doc-section api-reference">
+    <h2>📚 Referência da API</h2>
+
+    <div class="api-table">
+      <h3>Inputs</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>sources</code></td>
+            <td><code>VideoSource[]</code></td>
+            <td><code>[]</code></td>
+            <td>Array de fontes de vídeo</td>
+          </tr>
+          <tr>
+            <td><code>subtitles</code></td>
+            <td><code>Subtitle[]</code></td>
+            <td><code>[]</code></td>
+            <td>Array de legendas disponíveis</td>
+          </tr>
+          <tr>
+            <td><code>config</code></td>
+            <td><code>VideoPlayerConfig</code></td>
+            <td><code>{{'{}'}}</code></td>
+            <td>Configurações do player</td>
+          </tr>
+          <tr>
+            <td><code>width</code></td>
+            <td><code>string</code></td>
+            <td><code>'100%'</code></td>
+            <td>Largura do player</td>
+          </tr>
+          <tr>
+            <td><code>height</code></td>
+            <td><code>string</code></td>
+            <td><code>'auto'</code></td>
+            <td>Altura do player</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="api-table">
+      <h3>Outputs</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>play</code></td>
+            <td><code>void</code></td>
+            <td>Emitido quando o vídeo começa a tocar</td>
+          </tr>
+          <tr>
+            <td><code>pause</code></td>
+            <td><code>void</code></td>
+            <td>Emitido quando o vídeo é pausado</td>
+          </tr>
+          <tr>
+            <td><code>ended</code></td>
+            <td><code>void</code></td>
+            <td>Emitido quando o vídeo termina</td>
+          </tr>
+          <tr>
+            <td><code>timeUpdate</code></td>
+            <td><code>number</code></td>
+            <td>Emitido quando o tempo atual muda</td>
+          </tr>
+          <tr>
+            <td><code>volumeChange</code></td>
+            <td><code>number</code></td>
+            <td>Emitido quando o volume muda</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="api-table">
+      <h3>Interfaces</h3>
+      <pre><code>interface VideoSource {{'{'}}
+  src: string;
+  type: string;
+  quality?: string;
+{{'}'}}
+
+interface Subtitle {{'{'}}
+  src: string;
+  srclang: string;
+  label: string;
+{{'}'}}
+
+interface VideoPlayerConfig {{'{'}}
+  autoplay?: boolean;
+  loop?: boolean;
+  muted?: boolean;
+  controls?: boolean;
+  playbackRates?: number[];
+  showSubtitles?: boolean;
+  poster?: string;
+{{'}'}}</code></pre>
+    </div>
+  </section>
+
+  <!-- Full Example -->
+  <section class="doc-section">
+    <h2>💻 Exemplo Completo</h2>
+    <div class="code-example">
+      <pre><code>{{ componentCode }}</code></pre>
+    </div>
+  </section>
+</div>

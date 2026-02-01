@@ -83,6 +83,7 @@
   },
   "nxCloudAccessToken": "NDliZDgzYTMtMGQ5My00NWYxLTliYjItNWUzNzk2ZmRhYjQ1fHJlYWQtd3JpdGU=",
   "release": {
-    "projects": ["libs/select"]
+    "projects": ["packages/select"]
   }
 }
+

@@ -1,0 +1,77 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  --font-code: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  
+  /* Cores do Tema - Purple Gradient (padrão) */
+  --muxima-primary: #667eea;
+  --muxima-primary-light: #8b9df8;
+  --muxima-primary-dark: #4c63d2;
+  --muxima-secondary: #764ba2;
+  --muxima-secondary-light: #9d6cc9;
+  --muxima-secondary-dark: #5a3a7d;
+  --muxima-accent: #8b9df8;
+  --muxima-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  
+  /* Cores de Status */
+  --muxima-success: #10b981;
+  --muxima-success-light: #34d399;
+  --muxima-success-dark: #059669;
+  --muxima-warning: #f59e0b;
+  --muxima-warning-light: #fbbf24;
+  --muxima-warning-dark: #d97706;
+  --muxima-danger: #ef4444;
+  --muxima-danger-light: #f87171;
+  --muxima-danger-dark: #dc2626;
+  --muxima-info: #3b82f6;
+  --muxima-info-light: #60a5fa;
+  --muxima-info-dark: #2563eb;
+  
+  /* Cores Neutras */
+  --muxima-text: #1f2937;
+  --muxima-text-light: #6b7280;
+  --muxima-text-lighter: #9ca3af;
+  --muxima-background: #ffffff;
+  --muxima-background-alt: #f9fafb;
+  --muxima-border: #e5e7eb;
+  --muxima-border-light: #f3f4f6;
+  
+  /* Sombras */
+  --muxima-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --muxima-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --muxima-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --muxima-shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+  
+  /* Raios de Borda */
+  --muxima-radius-sm: 6px;
+  --muxima-radius: 8px;
+  --muxima-radius-lg: 12px;
+  --muxima-radius-xl: 16px;
+  
+  /* Transições */
+  --muxima-transition: all 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-family: var(--font-family);
+  background-color: #F2F2F2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+code, pre {
+  font-family: var(--font-code);
+}

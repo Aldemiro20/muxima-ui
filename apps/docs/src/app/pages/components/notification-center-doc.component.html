@@ -1,0 +1,233 @@
+<div class="doc-container">
+  <header class="doc-header">
+    <h1>Notification Center</h1>
+    <p class="subtitle">Centro de notificações completo com painel, toasts e gerenciamento avançado</p>
+  </header>
+
+  <!-- Example 1: Basic Notifications -->
+  <section class="doc-section">
+    <h2>Notificações Básicas</h2>
+    <p>Centro de notificações com painel dropdown e badge de contagem.</p>
+
+    <div class="example">
+      <div class="demo-container">
+        <muxima-notification-center
+          [notifications]="basicNotifications"
+          [position]="'top-right'"
+          (notificationRead)="onNotificationRead($event)"
+          (notificationDismissed)="onNotificationDismissed($event)">
+        </muxima-notification-center>
+      </div>
+    </div>
+
+    <div class="code-example">
+      <h3>Código</h3>
+      <pre><code>{{ basicCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Example 2: With Actions -->
+  <section class="doc-section">
+    <h2>Com Ações</h2>
+    <p>Notificações com botões de ação personalizados.</p>
+
+    <div class="example">
+      <div class="demo-container">
+        <muxima-notification-center
+          [notifications]="actionNotifications"
+          [position]="'top-left'"
+          (notificationAction)="onAction($event)">
+        </muxima-notification-center>
+      </div>
+    </div>
+
+    <div class="code-example">
+      <h3>Código</h3>
+      <pre><code>{{ actionCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Example 3: Categorized Notifications -->
+  <section class="doc-section">
+    <h2>Agrupadas por Categoria</h2>
+    <p>Organize notificações em categorias diferentes.</p>
+
+    <div class="example">
+      <div class="demo-container">
+        <muxima-notification-center
+          [notifications]="categorizedNotifications"
+          [position]="'bottom-right'"
+          [groupByCategory]="true">
+        </muxima-notification-center>
+      </div>
+    </div>
+
+    <div class="code-example">
+      <h3>Código</h3>
+      <pre><code>{{ categorizedCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Example 4: Toast Notifications -->
+  <section class="doc-section">
+    <h2>Toast Notifications</h2>
+    <p>Notificações temporárias que aparecem e desaparecem automaticamente.</p>
+
+    <div class="example">
+      <div class="toast-buttons">
+        <button class="btn btn-success" (click)="addToast('success')">
+          ✅ Toast Sucesso
+        </button>
+        <button class="btn btn-info" (click)="addToast('info')">
+          ℹ️ Toast Info
+        </button>
+        <button class="btn btn-warning" (click)="addToast('warning')">
+          ⚠️ Toast Warning
+        </button>
+        <button class="btn btn-error" (click)="addToast('error')">
+          ❌ Toast Erro
+        </button>
+      </div>
+
+      <div class="demo-container">
+        <muxima-notification-center
+          [notifications]="toastNotifications"
+          [position]="'bottom-center'"
+          [maxToasts]="3">
+        </muxima-notification-center>
+      </div>
+    </div>
+  </section>
+
+  <!-- API Reference -->
+  <section class="doc-section api-reference">
+    <h2>📚 Referência da API</h2>
+
+    <div class="api-table">
+      <h3>Inputs</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>notifications</code></td>
+            <td><code>Notification[]</code></td>
+            <td><code>[]</code></td>
+            <td>Array de notificações</td>
+          </tr>
+          <tr>
+            <td><code>position</code></td>
+            <td><code>NotificationPosition</code></td>
+            <td><code>'top-right'</code></td>
+            <td>Posição dos toasts</td>
+          </tr>
+          <tr>
+            <td><code>maxToasts</code></td>
+            <td><code>number</code></td>
+            <td><code>3</code></td>
+            <td>Máximo de toasts visíveis</td>
+          </tr>
+          <tr>
+            <td><code>defaultDuration</code></td>
+            <td><code>number</code></td>
+            <td><code>5000</code></td>
+            <td>Duração padrão dos toasts (ms)</td>
+          </tr>
+          <tr>
+            <td><code>showBadge</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Mostrar badge de contagem</td>
+          </tr>
+          <tr>
+            <td><code>groupByCategory</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Agrupar por categoria</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="api-table">
+      <h3>Outputs</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>notificationRead</code></td>
+            <td><code>string</code></td>
+            <td>ID da notificação marcada como lida</td>
+          </tr>
+          <tr>
+            <td><code>notificationDismissed</code></td>
+            <td><code>string</code></td>
+            <td>ID da notificação dispensada</td>
+          </tr>
+          <tr>
+            <td><code>notificationAction</code></td>
+            <td><code>Notification</code></td>
+            <td>Notificação com ação executada</td>
+          </tr>
+          <tr>
+            <td><code>allRead</code></td>
+            <td><code>void</code></td>
+            <td>Todas marcadas como lidas</td>
+          </tr>
+          <tr>
+            <td><code>allCleared</code></td>
+            <td><code>void</code></td>
+            <td>Todas removidas</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="api-table">
+      <h3>Interfaces</h3>
+      <pre><code>interface Notification {{'{'}}
+  id: string;
+  type: NotificationType;
+  title: string;
+  message: string;
+  timestamp: Date;
+  read: boolean;
+  category?: string;
+  actionLabel?: string;
+  actionCallback?: () => void;
+  autoClose?: boolean;
+  duration?: number;
+{{'}'}}
+
+type NotificationType = 'success' | 'info' | 'warning' | 'error';
+
+type NotificationPosition = 
+  | 'top-right' 
+  | 'top-left' 
+  | 'bottom-right' 
+  | 'bottom-left' 
+  | 'top-center' 
+  | 'bottom-center';</code></pre>
+    </div>
+  </section>
+
+  <!-- Full Example -->
+  <section class="doc-section">
+    <h2>💻 Exemplo Completo</h2>
+    <div class="code-example">
+      <pre><code>{{ componentCode }}</code></pre>
+    </div>
+  </section>
+</div>

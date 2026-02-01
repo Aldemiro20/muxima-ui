@@ -1,0 +1,13 @@
+{
+  "name": "@muxima-ui/autocomplete",
+  "version": "1.0.0",
+  "description": "Autocomplete component with real-time search suggestions",
+  "peerDependencies": {
+    "@angular/common": "^15.2.0",
+    "@angular/core": "^15.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

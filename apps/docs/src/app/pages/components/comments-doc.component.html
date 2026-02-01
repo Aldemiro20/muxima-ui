@@ -1,0 +1,306 @@
+<div class="doc-container">
+  <!-- Header -->
+  <div class="doc-header">
+    <h1>💬 Comments Section</h1>
+    <p>Sistema completo de comentários com replies aninhadas, edição, curtidas e integração com forms.</p>
+  </div>
+
+  <!-- Example 1: Basic Usage -->
+  <div class="section">
+    <h2>💎 Uso Básico</h2>
+    <p>Sistema de comentários com todas as funcionalidades ativadas.</p>
+    
+    <div class="demo-box">
+      <muxima-comments
+        [comments]="basicComments"
+        [currentUser]="currentUser"
+        (commentAdded)="onCommentAdded($event)"
+        (commentEdited)="onCommentEdited($event)"
+        (commentDeleted)="onCommentDeleted($event)"
+        (commentLiked)="onCommentLiked($event)"
+        (replyAdded)="onReplyAdded($event)">
+      </muxima-comments>
+    </div>
+
+    <div class="code-block">
+      <pre><code>{{ codeExamples.basic }}</code></pre>
+    </div>
+  </div>
+
+  <!-- Example 2: With Deep Nesting -->
+  <div class="section">
+    <h2>🌳 Replies Aninhadas</h2>
+    <p>Suporte a múltiplos níveis de respostas (configurável via maxDepth).</p>
+    
+    <div class="demo-box">
+      <muxima-comments
+        [comments]="nestedComments"
+        [currentUser]="currentUser"
+        [maxDepth]="3">
+      </muxima-comments>
+    </div>
+  </div>
+
+  <!-- Example 3: Empty State -->
+  <div class="section">
+    <h2>📭 Estado Vazio</h2>
+    <p>Interface amigável quando não há comentários.</p>
+    
+    <div class="demo-box">
+      <muxima-comments
+        [comments]="emptyComments"
+        [currentUser]="currentUser">
+      </muxima-comments>
+    </div>
+  </div>
+
+  <!-- Example 4: Configuration Playground -->
+  <div class="section">
+    <h2>🎮 Playground Interativo</h2>
+    <p>Experimente diferentes configurações em tempo real.</p>
+    
+    <div class="controls-grid">
+      <div class="control-group">
+        <label>
+          <input type="checkbox" [(ngModel)]="allowReplies" />
+          Permitir Respostas
+        </label>
+      </div>
+      <div class="control-group">
+        <label>
+          <input type="checkbox" [(ngModel)]="allowEdit" />
+          Permitir Edição
+        </label>
+      </div>
+      <div class="control-group">
+        <label>
+          <input type="checkbox" [(ngModel)]="allowDelete" />
+          Permitir Exclusão
+        </label>
+      </div>
+      <div class="control-group">
+        <label>
+          <input type="checkbox" [(ngModel)]="allowLikes" />
+          Permitir Curtidas
+        </label>
+      </div>
+      <div class="control-group">
+        <label>
+          <input type="checkbox" [(ngModel)]="showTimestamps" />
+          Mostrar Timestamps
+        </label>
+      </div>
+      <div class="control-group">
+        <label>Ordenar por:</label>
+        <select [(ngModel)]="sortBy">
+          <option value="newest">Mais recentes</option>
+          <option value="oldest">Mais antigos</option>
+          <option value="likes">Mais curtidos</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="demo-box">
+      <muxima-comments
+        [(ngModel)]="formComments"
+        [currentUser]="currentUser"
+        [allowReplies]="allowReplies"
+        [allowEdit]="allowEdit"
+        [allowDelete]="allowDelete"
+        [allowLikes]="allowLikes"
+        [showTimestamps]="showTimestamps"
+        [sortBy]="sortBy">
+      </muxima-comments>
+    </div>
+
+    <div class="info-box">
+      <strong>Dados do modelo:</strong>
+      <pre>{{ formComments | json }}</pre>
+    </div>
+  </div>
+
+  <!-- TypeScript Example -->
+  <div class="section">
+    <h2>💻 Exemplo TypeScript</h2>
+    <div class="code-block">
+      <pre><code>{{ codeExamples.typescript }}</code></pre>
+    </div>
+  </div>
+
+  <!-- API Documentation -->
+  <div class="section">
+    <h2>📚 API</h2>
+    
+    <h3>Inputs</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>comments</code></td>
+            <td>Comment[]</td>
+            <td>[]</td>
+            <td>Lista de comentários</td>
+          </tr>
+          <tr>
+            <td><code>currentUser</code></td>
+            <td>&#123;name, avatar?&#125;</td>
+            <td>null</td>
+            <td>Usuário logado atual</td>
+          </tr>
+          <tr>
+            <td><code>allowReplies</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Permite respostas</td>
+          </tr>
+          <tr>
+            <td><code>allowEdit</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Permite edição</td>
+          </tr>
+          <tr>
+            <td><code>allowDelete</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Permite exclusão</td>
+          </tr>
+          <tr>
+            <td><code>allowLikes</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Permite curtidas</td>
+          </tr>
+          <tr>
+            <td><code>maxDepth</code></td>
+            <td>number</td>
+            <td>3</td>
+            <td>Profundidade máxima de replies</td>
+          </tr>
+          <tr>
+            <td><code>sortBy</code></td>
+            <td>'newest' | 'oldest' | 'likes'</td>
+            <td>'newest'</td>
+            <td>Ordenação dos comentários</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Outputs</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>commentAdded</code></td>
+            <td>EventEmitter&lt;Comment&gt;</td>
+            <td>Novo comentário adicionado</td>
+          </tr>
+          <tr>
+            <td><code>commentEdited</code></td>
+            <td>EventEmitter&lt;Comment&gt;</td>
+            <td>Comentário editado</td>
+          </tr>
+          <tr>
+            <td><code>commentDeleted</code></td>
+            <td>EventEmitter&lt;Comment&gt;</td>
+            <td>Comentário removido</td>
+          </tr>
+          <tr>
+            <td><code>commentLiked</code></td>
+            <td>EventEmitter&lt;Comment&gt;</td>
+            <td>Comentário curtido</td>
+          </tr>
+          <tr>
+            <td><code>replyAdded</code></td>
+            <td>EventEmitter&lt;&#123;comment, parentId&#125;&gt;</td>
+            <td>Resposta adicionada</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Comment Interface</h3>
+    <div class="code-block">
+      <pre><code>interface Comment &#123;
+  id: string;
+  author: string;
+  avatar?: string;
+  content: string;
+  timestamp: Date;
+  likes?: number;
+  replies?: Comment[];
+&#125;</code></pre>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="section">
+    <h2>✨ Recursos</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <h4>Tema Roxo</h4>
+        <p>Gradiente #667eea → #764ba2</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌳</div>
+        <h4>Replies Aninhadas</h4>
+        <p>Múltiplos níveis de respostas</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✏️</div>
+        <h4>Edição em Tempo Real</h4>
+        <p>Edite seus próprios comentários</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👍</div>
+        <h4>Sistema de Curtidas</h4>
+        <p>Curtir comentários e replies</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔄</div>
+        <h4>Ordenação Flexível</h4>
+        <p>Por data ou curtidas</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⏰</div>
+        <h4>Timestamps Relativos</h4>
+        <p>"2 horas atrás", "1 dia atrás"</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎭</div>
+        <h4>Avatares Automáticos</h4>
+        <p>Iniciais quando sem foto</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📦</div>
+        <h4>ControlValueAccessor</h4>
+        <p>Integração com Angular Forms</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Installation -->
+  <div class="section">
+    <h2>📦 Instalação</h2>
+    <div class="code-block">
+      <pre><code>npm install @muxima-ui/comments</code></pre>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+{
+  "name": "drawer",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/drawer/src",
+  "prefix": "muxima",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "packages/drawer/ng-package.json"
+      }
+    }
+  }
+}
+

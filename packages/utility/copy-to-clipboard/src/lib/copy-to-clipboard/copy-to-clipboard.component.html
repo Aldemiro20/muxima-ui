@@ -1,0 +1,23 @@
+<button
+  [class]="getButtonClass()"
+  (click)="copyToClipboard()"
+  (mouseenter)="showTooltipHandler()"
+  (mouseleave)="hideTooltipHandler()"
+  [disabled]="disabled"
+  type="button">
+  
+  <!-- Icon -->
+  <span class="copy-icon" *ngIf="variant === 'icon' || status !== 'idle'">
+    {{ getIcon() }}
+  </span>
+
+  <!-- Label -->
+  <span class="copy-label" *ngIf="variant !== 'icon'">
+    {{ getLabel() }}
+  </span>
+
+  <!-- Tooltip -->
+  <span class="copy-tooltip" *ngIf="tooltipVisible && status === 'idle'">
+    {{ label }}
+  </span>
+</button>

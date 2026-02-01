@@ -1,0 +1,8 @@
+{
+  "name": "date-range-picker",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/date-range-picker/src",
+  "prefix": "muxima",
+  "projectType": "library"
+}
+

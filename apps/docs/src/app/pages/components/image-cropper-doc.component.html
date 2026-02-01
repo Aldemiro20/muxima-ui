@@ -1,0 +1,312 @@
+<div class="doc-container">
+  <header class="doc-header">
+    <h1>Image Cropper</h1>
+    <p class="subtitle">Componente de crop de imagens com zoom, rotação e preview em tempo real</p>
+  </header>
+
+  <!-- Example 1: Basic Usage -->
+  <section class="doc-section">
+    <h2>Uso Básico</h2>
+    <p>Image cropper simples com funcionalidade de arrastar e redimensionar.</p>
+
+    <div class="example">
+      <div class="cropper-container">
+        <muxima-image-cropper
+          [imageUrl]="imageUrl1"
+          (imageCropped)="onImageCropped1($event)">
+        </muxima-image-cropper>
+      </div>
+
+      <div class="preview-result" *ngIf="croppedImage1">
+        <h3>Resultado:</h3>
+        <img [src]="croppedImage1" alt="Cropped Image" class="cropped-preview">
+        <button class="download-btn" (click)="downloadCroppedImage(croppedImage1)">
+          <span class="icon">⬇️</span> Download
+        </button>
+      </div>
+    </div>
+
+    <div class="code-example">
+      <h3>Código</h3>
+      <pre><code>{{ basicUsageCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Example 2: Aspect Ratios -->
+  <section class="doc-section">
+    <h2>Aspect Ratios</h2>
+    <p>Defina proporções fixas para o crop da imagem.</p>
+
+    <div class="controls">
+      <label>
+        Aspect Ratio:
+        <select [(ngModel)]="aspectRatio">
+          <option *ngFor="let ratio of aspectRatios" [ngValue]="ratio.value">
+            {{ ratio.label }}
+          </option>
+        </select>
+      </label>
+    </div>
+
+    <div class="example">
+      <div class="cropper-container">
+        <muxima-image-cropper
+          [imageUrl]="imageUrl2"
+          [aspectRatio]="aspectRatio">
+        </muxima-image-cropper>
+      </div>
+    </div>
+
+    <div class="code-example">
+      <h3>Código</h3>
+      <pre><code>{{ aspectRatioCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Example 3: Output Configuration -->
+  <section class="doc-section">
+    <h2>Configuração de Saída</h2>
+    <p>Configure dimensões, formato e qualidade da imagem resultante.</p>
+
+    <div class="controls">
+      <label>
+        Largura:
+        <input type="number" [(ngModel)]="outputWidth" min="100" max="2000">
+      </label>
+      <label>
+        Altura:
+        <input type="number" [(ngModel)]="outputHeight" min="100" max="2000">
+      </label>
+      <label>
+        Formato:
+        <select [(ngModel)]="outputFormat">
+          <option value="png">PNG</option>
+          <option value="jpeg">JPEG</option>
+          <option value="webp">WebP</option>
+        </select>
+      </label>
+      <label>
+        Qualidade:
+        <input type="range" [(ngModel)]="outputQuality" min="0" max="1" step="0.01">
+        <span class="value">{{ (outputQuality * 100).toFixed(0) }}%</span>
+      </label>
+    </div>
+
+    <div class="example">
+      <div class="cropper-container">
+        <muxima-image-cropper
+          [imageUrl]="imageUrl3"
+          [outputWidth]="outputWidth"
+          [outputHeight]="outputHeight"
+          [outputFormat]="outputFormat"
+          [outputQuality]="outputQuality"
+          (imageCropped)="onImageCropped3($event)">
+        </muxima-image-cropper>
+      </div>
+
+      <div class="preview-result" *ngIf="croppedImage3">
+        <h3>Resultado ({{ outputWidth }}x{{ outputHeight }}):</h3>
+        <img [src]="croppedImage3" alt="Cropped Image" class="cropped-preview">
+        <button class="download-btn" (click)="downloadCroppedImage(croppedImage3)">
+          <span class="icon">⬇️</span> Download {{ outputFormat.toUpperCase() }}
+        </button>
+      </div>
+    </div>
+
+    <div class="code-example">
+      <h3>Código</h3>
+      <pre><code>{{ outputConfigCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Example 4: Upload Custom Image -->
+  <section class="doc-section">
+    <h2>Upload de Imagem</h2>
+    <p>Permita que usuários façam upload de suas próprias imagens para crop.</p>
+
+    <div class="example">
+      <div class="upload-area">
+        <label class="upload-btn">
+          <span class="icon">📁</span> Escolher Imagem
+          <input type="file" accept="image/*" (change)="onFileSelected($event)" hidden>
+        </label>
+      </div>
+
+      <div class="cropper-container" *ngIf="uploadedImage">
+        <muxima-image-cropper
+          [imageUrl]="uploadedImage"
+          [aspectRatio]="1"
+          [outputWidth]="400"
+          [outputHeight]="400"
+          (imageCropped)="onUploadCropped($event)">
+        </muxima-image-cropper>
+      </div>
+
+      <div class="preview-result" *ngIf="croppedUpload">
+        <h3>Imagem Cortada:</h3>
+        <img [src]="croppedUpload" alt="Cropped Upload" class="cropped-preview">
+        <button class="download-btn" (click)="downloadCroppedImage(croppedUpload)">
+          <span class="icon">⬇️</span> Download
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Playground -->
+  <section class="doc-section playground">
+    <h2>🎮 Playground</h2>
+    <p>Experimente diferentes configurações do Image Cropper.</p>
+
+    <div class="playground-controls">
+      <div class="control-group">
+        <h3>Aspect Ratio</h3>
+        <select [(ngModel)]="playgroundAspectRatio">
+          <option *ngFor="let ratio of aspectRatios" [ngValue]="ratio.value">
+            {{ ratio.label }}
+          </option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <h3>Dimensões de Saída</h3>
+        <label>
+          Largura:
+          <input type="number" [(ngModel)]="playgroundOutputWidth" min="100" max="2000">
+        </label>
+        <label>
+          Altura:
+          <input type="number" [(ngModel)]="playgroundOutputHeight" min="100" max="2000">
+        </label>
+      </div>
+
+      <div class="control-group">
+        <h3>Formato e Qualidade</h3>
+        <label>
+          Formato:
+          <select [(ngModel)]="playgroundOutputFormat">
+            <option value="png">PNG</option>
+            <option value="jpeg">JPEG</option>
+            <option value="webp">WebP</option>
+          </select>
+        </label>
+        <label>
+          Qualidade:
+          <input type="range" [(ngModel)]="playgroundOutputQuality" min="0" max="1" step="0.01">
+          <span class="value">{{ (playgroundOutputQuality * 100).toFixed(0) }}%</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="example">
+      <div class="cropper-container">
+        <muxima-image-cropper
+          [imageUrl]="playgroundImage"
+          [aspectRatio]="playgroundAspectRatio"
+          [outputWidth]="playgroundOutputWidth"
+          [outputHeight]="playgroundOutputHeight"
+          [outputFormat]="playgroundOutputFormat"
+          [outputQuality]="playgroundOutputQuality"
+          (imageCropped)="onPlaygroundCropped($event)">
+        </muxima-image-cropper>
+      </div>
+
+      <div class="preview-result" *ngIf="playgroundCropped">
+        <h3>Resultado:</h3>
+        <img [src]="playgroundCropped" alt="Playground Cropped" class="cropped-preview">
+        <button class="download-btn" (click)="downloadPlaygroundImage()">
+          <span class="icon">⬇️</span> Download {{ playgroundOutputFormat.toUpperCase() }}
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- API Reference -->
+  <section class="doc-section api-reference">
+    <h2>📚 Referência da API</h2>
+
+    <div class="api-table">
+      <h3>Inputs</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>imageUrl</code></td>
+            <td><code>string</code></td>
+            <td><code>''</code></td>
+            <td>URL ou data URL da imagem a ser cortada</td>
+          </tr>
+          <tr>
+            <td><code>aspectRatio</code></td>
+            <td><code>number</code></td>
+            <td><code>undefined</code></td>
+            <td>Proporção fixa do crop (ex: 16/9, 1, 4/3)</td>
+          </tr>
+          <tr>
+            <td><code>outputWidth</code></td>
+            <td><code>number</code></td>
+            <td><code>400</code></td>
+            <td>Largura da imagem cortada em pixels</td>
+          </tr>
+          <tr>
+            <td><code>outputHeight</code></td>
+            <td><code>number</code></td>
+            <td><code>400</code></td>
+            <td>Altura da imagem cortada em pixels</td>
+          </tr>
+          <tr>
+            <td><code>outputFormat</code></td>
+            <td><code>'png' | 'jpeg' | 'webp'</code></td>
+            <td><code>'png'</code></td>
+            <td>Formato da imagem de saída</td>
+          </tr>
+          <tr>
+            <td><code>outputQuality</code></td>
+            <td><code>number</code></td>
+            <td><code>0.92</code></td>
+            <td>Qualidade da imagem (0-1)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="api-table">
+      <h3>Outputs</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>imageCropped</code></td>
+            <td><code>CropResult</code></td>
+            <td>Emitido quando a imagem é cortada</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="api-table">
+      <h3>Interfaces</h3>
+      <pre><code [innerHTML]="interfaceCode"></code></pre>
+    </div>
+  </section>
+
+  <!-- Full Example -->
+  <section class="doc-section">
+    <h2>💻 Exemplo Completo</h2>
+    <div class="code-example">
+      <pre><code [innerHTML]="componentCode"></code></pre>
+    </div>
+  </section>
+</div>

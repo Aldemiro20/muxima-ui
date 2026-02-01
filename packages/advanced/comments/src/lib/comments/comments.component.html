@@ -1,0 +1,179 @@
+<div class="comments-wrapper" [class.disabled]="disabled">
+  <!-- Header -->
+  <div class="comments-header">
+    <h3 class="comments-title">
+      💬 Comentários
+      <span class="comments-count">({{ comments.length }})</span>
+    </h3>
+    
+    <div class="comments-sort" *ngIf="comments.length > 0">
+      <label>Ordenar por:</label>
+      <select [(ngModel)]="sortBy" [disabled]="disabled">
+        <option value="newest">Mais recentes</option>
+        <option value="oldest">Mais antigos</option>
+        <option value="likes" *ngIf="allowLikes">Mais curtidos</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- New Comment Form -->
+  <div class="comment-form" *ngIf="currentUser">
+    <img [src]="currentUser.avatar || getDefaultAvatar()" 
+         alt="{{ currentUser.name }}" 
+         class="comment-avatar" />
+    
+    <div class="comment-input-wrapper">
+      <textarea
+        [(ngModel)]="newCommentText"
+        [placeholder]="placeholder"
+        [disabled]="disabled"
+        class="comment-input"
+        rows="3"
+        (keydown.ctrl.enter)="addComment()"
+        (keydown.meta.enter)="addComment()"></textarea>
+      
+      <div class="comment-actions">
+        <span class="comment-hint" *ngIf="newCommentText.length > 0">
+          Ctrl/Cmd + Enter para enviar
+        </span>
+        <button 
+          class="btn-primary"
+          (click)="addComment()"
+          [disabled]="disabled || !newCommentText.trim()">
+          Comentar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comments List -->
+  <div class="comments-list">
+    <ng-container *ngFor="let comment of sortedComments; trackBy: trackByCommentId">
+      <ng-container *ngTemplateOutlet="commentTemplate; context: { $implicit: comment, depth: 0 }"></ng-container>
+    </ng-container>
+
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="comments.length === 0">
+      <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="50" r="40" fill="#f3f4f6"/>
+        <path d="M30 45 Q50 35 70 45" stroke="#9ca3af" stroke-width="3" fill="none"/>
+        <circle cx="38" cy="42" r="3" fill="#9ca3af"/>
+        <circle cx="62" cy="42" r="3" fill="#9ca3af"/>
+      </svg>
+      <p>Nenhum comentário ainda. Seja o primeiro!</p>
+    </div>
+  </div>
+</div>
+
+<!-- Comment Template (Recursive) -->
+<ng-template #commentTemplate let-comment let-depth="depth">
+  <div class="comment-item" [attr.data-depth]="depth">
+    <img [src]="getAvatar(comment)" 
+         [alt]="comment.author" 
+         class="comment-avatar" />
+    
+    <div class="comment-content">
+      <!-- Comment Header -->
+      <div class="comment-meta">
+        <span class="comment-author">{{ comment.author }}</span>
+        <span class="comment-timestamp" *ngIf="showTimestamps">
+          {{ getRelativeTime(comment.timestamp) }}
+        </span>
+      </div>
+
+      <!-- Comment Body (Read Mode) -->
+      <div class="comment-body" *ngIf="!comment.isEditing">
+        <p>{{ comment.content }}</p>
+      </div>
+
+      <!-- Comment Body (Edit Mode) -->
+      <div class="comment-edit" *ngIf="comment.isEditing">
+        <textarea
+          #editInput
+          [value]="comment.content"
+          class="comment-input"
+          rows="3"></textarea>
+        <div class="comment-edit-actions">
+          <button class="btn-secondary" (click)="cancelEdit(comment)">
+            Cancelar
+          </button>
+          <button class="btn-primary" (click)="saveEdit(comment, editInput.value)">
+            Salvar
+          </button>
+        </div>
+      </div>
+
+      <!-- Comment Actions -->
+      <div class="comment-footer" *ngIf="!comment.isEditing">
+        <button 
+          class="comment-action"
+          *ngIf="allowLikes"
+          (click)="likeComment(comment)"
+          [disabled]="disabled">
+          <span class="action-icon">👍</span>
+          <span *ngIf="comment.likes && comment.likes > 0">{{ comment.likes }}</span>
+        </button>
+
+        <button 
+          class="comment-action"
+          *ngIf="allowReplies && depth < maxDepth"
+          (click)="startReply(comment)"
+          [disabled]="disabled">
+          <span class="action-icon">💬</span>
+          Responder
+        </button>
+
+        <button 
+          class="comment-action"
+          *ngIf="allowEdit && currentUser && comment.author === currentUser.name"
+          (click)="editComment(comment)"
+          [disabled]="disabled">
+          <span class="action-icon">✏️</span>
+          Editar
+        </button>
+
+        <button 
+          class="comment-action comment-action--danger"
+          *ngIf="allowDelete && currentUser && comment.author === currentUser.name"
+          (click)="deleteComment(comment)"
+          [disabled]="disabled">
+          <span class="action-icon">🗑️</span>
+          Excluir
+        </button>
+      </div>
+
+      <!-- Reply Form -->
+      <div class="comment-reply-form" *ngIf="replyingTo === comment.id">
+        <div class="comment-input-wrapper">
+          <textarea
+            [(ngModel)]="replyText"
+            placeholder="Escreva uma resposta..."
+            [disabled]="disabled"
+            class="comment-input"
+            rows="2"
+            (keydown.ctrl.enter)="addReply(comment)"
+            (keydown.meta.enter)="addReply(comment)"></textarea>
+          
+          <div class="comment-actions">
+            <button class="btn-secondary" (click)="cancelReply()">
+              Cancelar
+            </button>
+            <button 
+              class="btn-primary"
+              (click)="addReply(comment)"
+              [disabled]="disabled || !replyText.trim()">
+              Responder
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nested Replies -->
+      <div class="comment-replies" *ngIf="comment.replies && comment.replies.length > 0">
+        <ng-container *ngFor="let reply of comment.replies; trackBy: trackByCommentId">
+          <ng-container *ngTemplateOutlet="commentTemplate; context: { $implicit: reply, depth: depth + 1 }"></ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</ng-template>

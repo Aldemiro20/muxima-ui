@@ -1,0 +1,159 @@
+// ==============================
+// 🌺 MUXIMA UI DYNAMIC THEME
+// Conecta variáveis SCSS com CSS Variables
+// ==============================
+
+// Importar variáveis CSS do root
+// Estas são definidas em styles.css e podem ser mudadas via JavaScript
+:root {
+  // Cores dinâmicas do tema (definidas via ThemeService)
+  --muxima-primary: #667eea;
+  --muxima-primary-light: #8b9df8;
+  --muxima-primary-dark: #4c63d2;
+  --muxima-secondary: #764ba2;
+  --muxima-secondary-light: #9d6cc9;
+  --muxima-secondary-dark: #5a3a7d;
+  --muxima-accent: #8b9df8;
+  --muxima-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  
+  // Cores de status (fixas mas podem ser customizadas)
+  --muxima-success: #10b981;
+  --muxima-success-light: #34d399;
+  --muxima-success-dark: #059669;
+  --muxima-warning: #f59e0b;
+  --muxima-warning-light: #fbbf24;
+  --muxima-warning-dark: #d97706;
+  --muxima-danger: #ef4444;
+  --muxima-danger-light: #f87171;
+  --muxima-danger-dark: #dc2626;
+  --muxima-info: #3b82f6;
+  --muxima-info-light: #60a5fa;
+  --muxima-info-dark: #2563eb;
+}
+
+// Função para usar CSS Variables em SCSS
+// Os componentes podem usar estas variáveis SCSS que pegam valores das CSS Variables
+$primary: var(--muxima-primary);
+$primary-50: #eff6ff;
+$primary-100: #dbeafe;
+$primary-200: #bfdbfe;
+$primary-400: var(--muxima-primary-light);
+$primary-600: var(--muxima-primary);
+$primary-700: var(--muxima-primary-dark);
+$primary-800: var(--muxima-primary-dark);
+$primary-900: #1e3a8a;
+
+$accent: var(--muxima-accent);
+$accent-100: #fce7f3;
+$accent-200: #fbcfe8;
+$accent-400: var(--muxima-accent);
+$accent-600: var(--muxima-accent);
+$accent-800: #a21caf;
+$accent-900: #701a75;
+
+$warn: var(--muxima-warning);
+$warn-50: #fff7ed;
+$warn-100: #ffedd5;
+$warn-200: #fed7aa;
+$warn-400: var(--muxima-warning-light);
+$warn-600: var(--muxima-warning);
+$warn-800: var(--muxima-warning-dark);
+$warn-900: #78350f;
+
+// Cores semânticas
+$success: var(--muxima-success);
+$success-100: #dcfce7;
+$success-200: #bbf7d0;
+$success-400: var(--muxima-success-light);
+$success-600: var(--muxima-success);
+
+$error: var(--muxima-danger);
+$error-100: #fee2e2;
+$error-200: #fecaca;
+$error-400: var(--muxima-danger-light);
+$error-600: var(--muxima-danger);
+$error-700: var(--muxima-danger-dark);
+
+$info: var(--muxima-info);
+$warning: var(--muxima-warning);
+
+// Grayscale (fixo)
+$gray-50: #f9fafb;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-300: #d1d5db;
+$gray-400: #9ca3af;
+$gray-500: #6b7280;
+$gray-600: #4b5563;
+$gray-700: #374151;
+$gray-800: #1f2937;
+$gray-900: #111827;
+
+// Background & Surfaces
+$bg-default: #ffffff;
+$bg-muted: $gray-100;
+$bg-subtle: $gray-50;
+$bg-inverse: $gray-900;
+$bg-card: #ffffff;
+$surface-card: $bg-default;
+$surface-muted: $bg-muted;
+
+// Text
+$text-default: $gray-900;
+$text-muted: $gray-600;
+$text-inverse: $gray-100;
+$text-link: var(--muxima-primary);
+
+// Border & Radius
+$border-color: $gray-300;
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 16px;
+$border-radius-full: 9999px;
+
+// Spacing
+$space-0: 0;
+$space-1: 0.25rem;
+$space-2: 0.5rem;
+$space-3: 0.75rem;
+$space-4: 1rem;
+$space-5: 1.25rem;
+$space-6: 1.5rem;
+$space-8: 2rem;
+$space-10: 2.5rem;
+$space-12: 3rem;
+$space-16: 4rem;
+
+// Shadows
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+// Transitions
+$transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+// Z-index scale
+$z-dropdown: 1000;
+$z-sticky: 1020;
+$z-fixed: 1030;
+$z-modal-backdrop: 1040;
+$z-modal: 1050;
+$z-popover: 1060;
+$z-tooltip: 1070;
+
+// Icon sizes
+$icon-size-sm: 16px;
+$icon-size-md: 20px;
+$icon-size-lg: 24px;
+$icon-size-xl: 32px;
+
+// Font weights
+$font-light: 300;
+$font-normal: 400;
+$font-medium: 500;
+$font-semibold: 600;
+$font-bold: 700;
+$font-extrabold: 800;

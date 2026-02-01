@@ -1,0 +1,17 @@
+{
+  "name": "confirmation-dialog",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/confirmation-dialog/src",
+  "prefix": "muxima",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "packages/confirmation-dialog/ng-package.json"
+      }
+    }
+  }
+}
+

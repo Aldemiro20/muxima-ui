@@ -1,0 +1,62 @@
+<div class="multi-select-wrapper" (blur)="onBlur()">
+  <div class="multi-select-container" (click)="toggleDropdown()" [class.disabled]="disabled" [class.open]="isOpen">
+    <div class="multi-select-content">
+      <div class="selected-tags" *ngIf="selectedValues.length > 0">
+        <span *ngFor="let value of selectedValues" class="tag">
+          {{ getOptionLabel(value) }}
+          <svg class="tag-remove" (click)="removeTag(value, $event)" viewBox="0 0 24 24">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          </svg>
+        </span>
+      </div>
+      
+      <span *ngIf="selectedValues.length === 0" class="placeholder">
+        {{ placeholder }}
+      </span>
+    </div>
+
+    <div class="multi-select-icons">
+      <svg *ngIf="clearable && selectedValues.length > 0" class="clear-icon" (click)="clearAll($event)" viewBox="0 0 24 24">
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+      </svg>
+      
+      <svg class="arrow-icon" [class.open]="isOpen" viewBox="0 0 24 24">
+        <path d="M7 10l5 5 5-5z"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="multi-select-dropdown" *ngIf="isOpen">
+    <div *ngIf="searchable" class="search-container">
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Search..."
+        [(ngModel)]="searchTerm"
+        (input)="onSearch($event)"
+        (click)="$event.stopPropagation()"
+      />
+    </div>
+
+    <div class="options-container">
+      <div
+        *ngFor="let option of filteredOptions"
+        class="option"
+        [class.selected]="isSelected(option)"
+        [class.disabled]="option.disabled"
+        (click)="toggleOption(option)"
+      >
+        <div class="option-checkbox">
+          <svg *ngIf="isSelected(option)" viewBox="0 0 24 24">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
+        </div>
+        <span class="option-label">{{ option.label }}</span>
+      </div>
+
+      <div *ngIf="filteredOptions.length === 0" class="empty-message">
+        No options found
+      </div>
+    </div>
+  </div>
+</div>

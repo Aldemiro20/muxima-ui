@@ -1,0 +1,46 @@
+<div class="slider-range-wrapper" [class.disabled]="disabled">
+  <div class="slider-container">
+    <div class="slider-track">
+      <div 
+        class="slider-range-fill"
+        [style.left.%]="getMinPosition()"
+        [style.width.%]="getMaxPosition() - getMinPosition()"
+      ></div>
+
+      <div *ngIf="showTicks" class="slider-ticks">
+        <div
+          *ngFor="let tick of getTicks()"
+          class="tick"
+          [style.left.%]="getTickPosition(tick)"
+        ></div>
+      </div>
+
+      <div 
+        class="slider-thumb slider-thumb-min"
+        [style.left.%]="getMinPosition()"
+        (mousedown)="onMinMouseDown()"
+        [class.dragging]="isDraggingMin"
+      >
+        <div *ngIf="showTooltip" class="thumb-tooltip">
+          {{ value.min }}
+        </div>
+      </div>
+
+      <div 
+        class="slider-thumb slider-thumb-max"
+        [style.left.%]="getMaxPosition()"
+        (mousedown)="onMaxMouseDown()"
+        [class.dragging]="isDraggingMax"
+      >
+        <div *ngIf="showTooltip" class="thumb-tooltip">
+          {{ value.max }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slider-labels">
+    <span class="label-min">{{ min }}</span>
+    <span class="label-max">{{ max }}</span>
+  </div>
+</div>

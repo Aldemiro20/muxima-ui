@@ -1,0 +1,307 @@
+<div class="video-player-container" 
+     [class.theater-mode]="isTheaterMode"
+     [style.width]="width" 
+     [style.height]="height"
+     (mousemove)="onMouseMove()"
+     (mouseleave)="onMouseLeave()">
+  
+  <!-- Video Element -->
+  <video #videoElement
+         class="video-element"
+         [style.filter]="videoFilters"
+         [poster]="config.poster"
+         [loop]="config.loop || false"
+         [muted]="config.muted || false"
+         (loadedmetadata)="onVideoLoaded()"
+         (timeupdate)="onTimeUpdate()"
+         (ended)="onVideoEnded()"
+         (click)="onVideoTap($event)">
+    
+    <source *ngFor="let source of sources" 
+            [src]="source.src" 
+            [type]="source.type">
+    
+    <track *ngFor="let subtitle of subtitles"
+           [src]="subtitle.src"
+           [srclang]="subtitle.srclang"
+           [label]="subtitle.label"
+           kind="subtitles">
+    
+    Seu navegador não suporta o elemento de vídeo.
+  </video>
+
+  <!-- Play/Pause Overlay -->
+  <div class="play-overlay" *ngIf="!isPlaying && duration > 0" (click)="togglePlay()">
+    <div class="play-button">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div class="loading-spinner" *ngIf="duration === 0">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Controls -->
+  <div class="controls" [class.hidden]="!showControls">
+    
+    <!-- Progress Bar -->
+    <div class="progress-container">
+      <div #progressBar 
+           class="progress-bar" 
+           (click)="seek($event)"
+           (mousemove)="showTimelinePreview($event)"
+           (mouseleave)="hideTimelinePreview()">
+        <div class="buffered" [style.width.%]="bufferedPercentage"></div>
+        <div class="progress" [style.width.%]="progressPercentage"></div>
+        <div class="progress-handle" [style.left.%]="progressPercentage"></div>
+      </div>
+    </div>
+
+    <!-- Control Buttons -->
+    <div class="controls-row">
+      
+      <!-- Left Controls -->
+      <div class="controls-left">
+        <!-- Play/Pause -->
+        <button class="control-btn" (click)="togglePlay()" title="Play/Pause">
+          <svg *ngIf="!isPlaying" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <svg *ngIf="isPlaying" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="6" y="4" width="4" height="16"></rect>
+            <rect x="14" y="4" width="4" height="16"></rect>
+          </svg>
+        </button>
+
+        <!-- Skip Backward -->
+        <button class="control-btn" (click)="skipBackward(10)" title="Voltar 10s">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 19 2 12 11 5 11 19"></polygon>
+            <polygon points="22 19 13 12 22 5 22 19"></polygon>
+          </svg>
+        </button>
+
+        <!-- Skip Forward -->
+        <button class="control-btn" (click)="skipForward(10)" title="Avançar 10s">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="13 19 22 12 13 5 13 19"></polygon>
+            <polygon points="2 19 11 12 2 5 2 19"></polygon>
+          </svg>
+        </button>
+
+        <!-- Volume -->
+        <div class="volume-control" 
+             (mouseenter)="showVolumeSlider = true"
+             (mouseleave)="showVolumeSlider = false">
+          <button class="control-btn" (click)="toggleMute()" title="Mudo">
+            <!-- Muted -->
+            <svg *ngIf="isMuted || volume === 0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <line x1="23" y1="9" x2="17" y2="15"></line>
+              <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+            <!-- Low Volume -->
+            <svg *ngIf="!isMuted && volume > 0 && volume < 0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+            <!-- High Volume -->
+            <svg *ngIf="!isMuted && volume >= 0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+          </button>
+          
+          <div class="volume-slider" [class.show]="showVolumeSlider">
+            <input type="range" 
+                   min="0" 
+                   max="1" 
+                   step="0.01" 
+                   [value]="volume"
+                   (input)="setVolume($event)">
+          </div>
+        </div>
+
+        <!-- Time Display -->
+        <div class="time-display">
+          {{ formatTime(currentTime) }} / {{ formatTime(duration) }}
+        </div>
+      </div>
+
+      <!-- Right Controls -->
+      <div class="controls-right">
+        
+        <!-- Playback Rate -->
+        <div class="menu-control">
+          <button class="control-btn" 
+                  (click)="showPlaybackRateMenu = !showPlaybackRateMenu"
+                  title="Velocidade">
+            <span class="icon">{{ currentPlaybackRate }}x</span>
+          </button>
+          
+          <div class="dropdown-menu" *ngIf="showPlaybackRateMenu">
+            <div class="menu-header">Velocidade</div>
+            <button *ngFor="let rate of playbackRates"
+                    class="menu-item"
+                    [class.active]="currentPlaybackRate === rate"
+                    (click)="setPlaybackRate(rate)">
+              {{ rate }}x
+            </button>
+          </div>
+        </div>
+
+        <!-- Subtitles -->
+        <div class="menu-control" *ngIf="subtitles.length > 0">
+          <button class="control-btn" 
+                  (click)="showSubtitlesMenu = !showSubtitlesMenu"
+                  title="Legendas">
+            <span class="icon">CC</span>
+          </button>
+          
+          <div class="dropdown-menu" *ngIf="showSubtitlesMenu">
+            <div class="menu-header">Legendas</div>
+            <button class="menu-item"
+                    [class.active]="currentSubtitle === null"
+                    (click)="setSubtitle(null)">
+              Desativado
+            </button>
+            <button *ngFor="let subtitle of subtitles"
+                    class="menu-item"
+                    [class.active]="currentSubtitle === subtitle.label"
+                    (click)="setSubtitle(subtitle)">
+              {{ subtitle.label }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Quality -->
+        <div class="menu-control" *ngIf="qualitySources.length > 0">
+          <button class="control-btn" 
+                  (click)="showQualityMenu = !showQualityMenu"
+                  title="Qualidade">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M12 1v6m0 6v6m5.2-13.2l-4.2 4.2m0 6l4.2 4.2M23 12h-6m-6 0H1m17.8 5.2l-4.2-4.2m0-6l4.2-4.2"></path>
+            </svg>
+          </button>
+          
+          <div class="dropdown-menu" *ngIf="showQualityMenu">
+            <div class="menu-header">Qualidade</div>
+            <button *ngFor="let source of qualitySources"
+                    class="menu-item"
+                    [class.active]="currentQuality === source.quality"
+                    (click)="setQuality(source)">
+              {{ source.quality }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Screenshot -->
+        <button class="control-btn" 
+                *ngIf="config.enableScreenshot !== false"
+                (click)="captureScreenshot()" 
+                title="Capturar Screenshot (S)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+            <circle cx="12" cy="13" r="4"></circle>
+          </svg>
+        </button>
+
+        <!-- Picture-in-Picture -->
+        <button class="control-btn" 
+                *ngIf="config.enablePiP !== false"
+                (click)="togglePiP()" 
+                title="Picture-in-Picture (I)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 3H3C1.9 3 1 3.9 1 5v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"></path>
+            <rect x="13" y="13" width="9" height="7" stroke="currentColor" stroke-width="2" fill="none"></rect>
+          </svg>
+        </button>
+
+        <!-- Theater Mode -->
+        <button class="control-btn" 
+                (click)="toggleTheaterMode()" 
+                title="Modo Teatro (T)">
+          <svg *ngIf="!isTheaterMode" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="7" width="20" height="10" rx="2"></rect>
+          </svg>
+          <svg *ngIf="isTheaterMode" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="18" rx="2"></rect>
+          </svg>
+        </button>
+
+        <!-- Settings / Filters -->
+        <div class="menu-control">
+          <button class="control-btn" 
+                  (click)="showSettingsMenu = !showSettingsMenu"
+                  title="Configurações">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M12 1v6m0 6v6m5.2-13.2l-4.2 4.2m0 6l4.2 4.2M23 12h-6m-6 0H1m17.8 5.2l-4.2-4.2m0-6l4.2-4.2"></path>
+            </svg>
+          </button>
+          
+          <div class="dropdown-menu settings-menu" *ngIf="showSettingsMenu">
+            <div class="menu-header">Filtros de Vídeo</div>
+            
+            <div class="filter-control">
+              <label>Brilho: {{ brightness }}%</label>
+              <input type="range" 
+                     min="0" 
+                     max="200" 
+                     [value]="brightness"
+                     (input)="setBrightness($any($event.target).value)">
+            </div>
+            
+            <div class="filter-control">
+              <label>Contraste: {{ contrast }}%</label>
+              <input type="range" 
+                     min="0" 
+                     max="200" 
+                     [value]="contrast"
+                     (input)="setContrast($any($event.target).value)">
+            </div>
+            
+            <div class="filter-control">
+              <label>Saturação: {{ saturation }}%</label>
+              <input type="range" 
+                     min="0" 
+                     max="200" 
+                     [value]="saturation"
+                     (input)="setSaturation($any($event.target).value)">
+            </div>
+            
+            <button class="menu-item reset-btn" (click)="resetFilters()">
+              Resetar Filtros
+            </button>
+          </div>
+        </div>
+
+        <!-- Fullscreen -->
+        <button class="control-btn" (click)="toggleFullscreen()" title="Tela Cheia (F)">
+          <svg *ngIf="!isFullscreen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+          </svg>
+          <svg *ngIf="isFullscreen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timeline Preview -->
+  <div class="timeline-preview" 
+       *ngIf="showPreview"
+       [style.left.px]="previewPosition">
+    <div class="preview-time">{{ formatTime(previewTime) }}</div>
+  </div>
+
+  <!-- Keyboard Shortcuts Help -->
+  <div class="keyboard-shortcuts-hint" *ngIf="showControls && config.enableKeyboardShortcuts !== false">
+    <span>Pressione '?' para atalhos</span>
+  </div>
+</div>
