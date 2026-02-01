@@ -43,7 +43,7 @@
     "version:bump": "node tools/scripts/version-bump.js",
     "publish:all": "node tools/scripts/publish-all.js",
     "publish:package": "node tools/scripts/publish-package.js",
-    "prepare": "husky install",
+    "prepare": "husky install || echo 'Husky not installed'",
     "clean": "nx reset && rm -rf dist node_modules",
     "clean:cache": "nx reset"
   },
