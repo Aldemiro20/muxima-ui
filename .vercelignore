@@ -26,8 +26,8 @@ karma.conf.js
 .cache
 .angular
 
-# Documentation source (we only need the built version)
-docs/
+# Markdown documentation in docs/ folder (not the apps/docs app)
+docs/*.md
 
 # Other packages (we only build docs)
 packages/*/node_modules

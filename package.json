@@ -26,7 +26,6 @@
   "scripts": {
     "dev": "nx serve docs",
     "build": "nx build docs --configuration=production",
-    "build:docs": "nx build docs --configuration=production",
     "vercel-build": "nx build docs --configuration=production",
     "build:all": "nx run-many --target=build --all --parallel=3 --configuration=production",
     "build:affected": "nx affected --target=build --parallel=3 --configuration=production",
