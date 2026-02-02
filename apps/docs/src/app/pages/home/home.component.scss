@@ -39,6 +39,22 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    .logo-image {
+      height: 80px;
+      width: auto;
+      object-fit: contain;
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
   }
 
   .hero-subtitle {
