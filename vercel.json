@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "outputDirectory": "dist/apps/docs/browser",
+  "outputDirectory": "dist/apps/docs",
   "framework": null,
   "rewrites": [
     {
