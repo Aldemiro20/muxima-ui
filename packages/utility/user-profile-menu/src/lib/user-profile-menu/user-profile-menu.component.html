@@ -3,11 +3,11 @@
   <button class="avatar-button" (click)="toggleMenu()" [class.active]="isOpen">
     <div class="avatar-container">
       <img
-        *ngIf="user?.avatar"
+        *ngIf="user.avatar"
         [src]="user.avatar"
         [alt]="user.name"
         class="avatar-image">
-      <div *ngIf="!user?.avatar" class="avatar-initials">
+      <div *ngIf="!user.avatar" class="avatar-initials">
         {{ getInitials() }}
       </div>
       <span *ngIf="showOnlineStatus" class="online-status" [class.online]="isOnline"></span>
@@ -20,18 +20,18 @@
     <div class="menu-header">
       <div class="user-avatar">
         <img
-          *ngIf="user?.avatar"
+          *ngIf="user.avatar"
           [src]="user.avatar"
           [alt]="user.name"
           class="header-avatar">
-        <div *ngIf="!user?.avatar" class="header-initials">
+        <div *ngIf="!user.avatar" class="header-initials">
           {{ getInitials() }}
         </div>
       </div>
       <div class="user-info">
-        <div class="user-name">{{ user?.name }}</div>
-        <div class="user-email">{{ user?.email }}</div>
-        <div *ngIf="user?.role" class="user-role">
+        <div class="user-name">{{ user.name }}</div>
+        <div class="user-email">{{ user.email }}</div>
+        <div *ngIf="user.role" class="user-role">
           <span class="role-badge">{{ user.role }}</span>
         </div>
       </div>
