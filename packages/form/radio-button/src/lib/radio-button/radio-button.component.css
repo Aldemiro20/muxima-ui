@@ -1,40 +1,253 @@
-﻿/* CSS Variables - usando as variáveis globais do tema */
+/* ==========================================
+   RADIO BUTTON COMPONENT - COMPLETE STYLES
+   ========================================== */
+
 :host {
   --muxima-white: #FFFFFF;
-  /* Estas variáveis agora vêm do :root global e mudam dinamicamente */
   --muxima-primary: var(--muxima-primary, #3B82F6);
   --muxima-primary-dark: var(--muxima-primary-dark, #2563EB);
+  --muxima-primary-light: var(--muxima-primary-light, #DBEAFE);
   --muxima-success: var(--muxima-success, #10B981);
   --muxima-success-dark: var(--muxima-success-dark, #059669);
+  --muxima-success-light: var(--muxima-success-light, #D1FAE5);
   --muxima-warning: var(--muxima-warning, #F59E0B);
   --muxima-warning-dark: var(--muxima-warning-dark, #D97706);
+  --muxima-warning-light: var(--muxima-warning-light, #FEF3C7);
   --muxima-danger: var(--muxima-danger, #EF4444);
   --muxima-danger-dark: var(--muxima-danger-dark, #DC2626);
+  --muxima-danger-light: var(--muxima-danger-light, #FEE2E2);
   --muxima-info: var(--muxima-info, #06B6D4);
   --muxima-info-dark: var(--muxima-info-dark, #0891B2);
+  --muxima-info-light: var(--muxima-info-light, #CFFAFE);
+  --muxima-purple: #8B5CF6;
+  --muxima-purple-dark: #7C3AED;
+  --muxima-purple-light: #EDE9FE;
+  --muxima-pink: #EC4899;
+  --muxima-pink-dark: #DB2777;
+  --muxima-pink-light: #FCE7F3;
+  --muxima-gray-100: #F3F4F6;
+  --muxima-gray-200: #E5E7EB;
   --muxima-gray-300: #D1D5DB;
   --muxima-gray-400: #9CA3AF;
+  --muxima-gray-500: #6B7280;
+  --muxima-gray-600: #4B5563;
   --muxima-gray-700: #374151;
+  --muxima-gray-900: #111827;
   
   display: inline-block;
 }
 
-/* Wrapper */
+/* ==========================================
+   DEFAULT VARIANT - WRAPPER
+   ========================================== */
+
 .muxima-radio-wrapper {
+  position: relative;
   display: inline-flex;
   align-items: flex-start;
   gap: 0.75rem;
   cursor: pointer;
   user-select: none;
+  transition: all 0.2s ease;
 }
 
 .muxima-radio-wrapper--disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  pointer-events: none;
 }
 
-/* Radio Button */
+/* ==========================================
+   CARD VARIANT
+   ========================================== */
+
+.muxima-radio-wrapper--card {
+  flex-direction: column;
+  padding: 1.5rem;
+  border: 2px solid var(--muxima-gray-200);
+  border-radius: 12px;
+  background: var(--muxima-white);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 200px;
+}
+
+.muxima-radio-wrapper--card:hover:not(.muxima-radio-wrapper--disabled) {
+  border-color: var(--muxima-primary);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+  transform: translateY(-2px);
+}
+
+.muxima-radio-wrapper--card.muxima-radio-wrapper--checked {
+  border-color: var(--muxima-primary);
+  background: var(--muxima-primary-light);
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2);
+}
+
+/* ==========================================
+   BUTTON VARIANT
+   ========================================== */
+
+.muxima-radio-wrapper--button {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--muxima-gray-300);
+  border-radius: 8px;
+  background: var(--muxima-white);
+  transition: all 0.2s ease;
+  justify-content: center;
+  min-width: 120px;
+}
+
+.muxima-radio-wrapper--button:hover:not(.muxima-radio-wrapper--disabled) {
+  border-color: var(--muxima-primary);
+  background: var(--muxima-gray-100);
+}
+
+.muxima-radio-wrapper--button.muxima-radio-wrapper--checked {
+  border-color: var(--muxima-primary);
+  background: var(--muxima-primary);
+  color: var(--muxima-white);
+}
+
+.muxima-radio-wrapper--button.muxima-radio-wrapper--checked .muxima-radio-label {
+  color: var(--muxima-white);
+  font-weight: 600;
+}
+
+.muxima-radio-wrapper--button .muxima-radio {
+  display: none;
+}
+
+/* ==========================================
+   TILE VARIANT
+   ========================================== */
+
+.muxima-radio-wrapper--tile {
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1.5rem;
+  border: 2px solid var(--muxima-gray-200);
+  border-radius: 16px;
+  background: var(--muxima-white);
+  transition: all 0.3s ease;
+  min-width: 150px;
+  text-align: center;
+}
+
+.muxima-radio-wrapper--tile:hover:not(.muxima-radio-wrapper--disabled) {
+  border-color: var(--muxima-primary);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.12);
+  transform: scale(1.02);
+}
+
+.muxima-radio-wrapper--tile.muxima-radio-wrapper--checked {
+  border-color: var(--muxima-primary);
+  background: linear-gradient(135deg, var(--muxima-primary-light) 0%, var(--muxima-white) 100%);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
+}
+
+.muxima-radio-wrapper--tile .muxima-radio {
+  order: -1;
+  margin-bottom: 1rem;
+}
+
+/* ==========================================
+   MINIMAL VARIANT
+   ========================================== */
+
+.muxima-radio-wrapper--minimal {
+  gap: 0.5rem;
+}
+
+.muxima-radio-wrapper--minimal .muxima-radio-outer {
+  border-width: 1px;
+}
+
+/* ==========================================
+   GLOW EFFECT
+   ========================================== */
+
+.muxima-radio-wrapper--glow.muxima-radio-wrapper--checked {
+  filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.6));
+}
+
+/* ==========================================
+   NO BORDER
+   ========================================== */
+
+.muxima-radio-wrapper--no-border {
+  border: none !important;
+}
+
+/* ==========================================
+   SQUARE (NO ROUNDED)
+   ========================================== */
+
+.muxima-radio-wrapper--square {
+  border-radius: 0 !important;
+}
+
+/* ==========================================
+   ERROR STATE
+   ========================================== */
+
+.muxima-radio-wrapper--error .muxima-radio-outer {
+  border-color: var(--muxima-danger) !important;
+}
+
+.muxima-radio-wrapper--error.muxima-radio-wrapper--card,
+.muxima-radio-wrapper--error.muxima-radio-wrapper--tile {
+  border-color: var(--muxima-danger) !important;
+}
+
+/* ==========================================
+   BADGE
+   ========================================== */
+
+.muxima-radio-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  padding: 0.25rem 0.5rem;
+  background: linear-gradient(135deg, var(--muxima-primary) 0%, var(--muxima-primary-dark) 100%);
+  color: var(--muxima-white);
+  font-size: 0.625rem;
+  font-weight: 700;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
+  z-index: 10;
+}
+
+/* ==========================================
+   ICON
+   ========================================== */
+
+.muxima-radio-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--muxima-gray-100);
+  border-radius: 12px;
+  margin-bottom: 0.75rem;
+}
+
+.muxima-radio-icon-content {
+  font-size: 1.5rem;
+}
+
+.muxima-radio-wrapper--checked .muxima-radio-icon {
+  background: var(--muxima-primary-light);
+}
+
+/* ==========================================
+   RADIO CIRCLE
+   ========================================== */
+
 .muxima-radio {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,7 +261,6 @@
   border-radius: 50%;
 }
 
-/* Radio Outer Circle */
 .muxima-radio-outer {
   width: 20px;
   height: 20px;
@@ -59,6 +271,7 @@
   justify-content: center;
   transition: all 200ms ease;
   background: var(--muxima-white);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .muxima-radio:hover:not(.muxima-radio--disabled) .muxima-radio-outer {
@@ -66,28 +279,63 @@
   box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
 }
 
-/* Radio Inner Circle */
 .muxima-radio-inner {
   width: 10px;
   height: 10px;
   border-radius: 50%;
   animation: radioAppear 200ms ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Checked State */
-.muxima-radio--checked .muxima-radio-outer {
-  border-width: 2px;
+@keyframes radioAppear {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
-/* Colors */
+/* ==========================================
+   CHECK ICON (Alternative)
+   ========================================== */
+
+.muxima-radio-check-icon {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  color: var(--muxima-white);
+  animation: checkAppear 200ms ease;
+}
+
+@keyframes checkAppear {
+  from {
+    transform: scale(0) rotate(-45deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* ==========================================
+   COLOR VARIANTS
+   ========================================== */
+
+/* Primary */
 .muxima-radio--primary.muxima-radio--checked .muxima-radio-outer {
   border-color: var(--muxima-primary);
+  background: var(--muxima-white);
 }
 
 .muxima-radio--primary.muxima-radio--checked .muxima-radio-inner {
   background: linear-gradient(135deg, var(--muxima-primary) 0%, var(--muxima-primary-dark) 100%);
 }
 
+/* Success */
 .muxima-radio--success.muxima-radio--checked .muxima-radio-outer {
   border-color: var(--muxima-success);
 }
@@ -96,6 +344,7 @@
   background: linear-gradient(135deg, var(--muxima-success) 0%, var(--muxima-success-dark) 100%);
 }
 
+/* Warning */
 .muxima-radio--warning.muxima-radio--checked .muxima-radio-outer {
   border-color: var(--muxima-warning);
 }
@@ -104,6 +353,7 @@
   background: linear-gradient(135deg, var(--muxima-warning) 0%, var(--muxima-warning-dark) 100%);
 }
 
+/* Danger */
 .muxima-radio--danger.muxima-radio--checked .muxima-radio-outer {
   border-color: var(--muxima-danger);
 }
@@ -112,6 +362,7 @@
   background: linear-gradient(135deg, var(--muxima-danger) 0%, var(--muxima-danger-dark) 100%);
 }
 
+/* Info */
 .muxima-radio--info.muxima-radio--checked .muxima-radio-outer {
   border-color: var(--muxima-info);
 }
@@ -120,7 +371,40 @@
   background: linear-gradient(135deg, var(--muxima-info) 0%, var(--muxima-info-dark) 100%);
 }
 
-/* Sizes */
+/* Purple */
+.muxima-radio--purple.muxima-radio--checked .muxima-radio-outer {
+  border-color: var(--muxima-purple);
+}
+
+.muxima-radio--purple.muxima-radio--checked .muxima-radio-inner {
+  background: linear-gradient(135deg, var(--muxima-purple) 0%, var(--muxima-purple-dark) 100%);
+}
+
+/* Pink */
+.muxima-radio--pink.muxima-radio--checked .muxima-radio-outer {
+  border-color: var(--muxima-pink);
+}
+
+.muxima-radio--pink.muxima-radio--checked .muxima-radio-inner {
+  background: linear-gradient(135deg, var(--muxima-pink) 0%, var(--muxima-pink-dark) 100%);
+}
+
+/* ==========================================
+   SIZE VARIANTS
+   ========================================== */
+
+/* Extra Small */
+.muxima-radio--xs .muxima-radio-outer {
+  width: 14px;
+  height: 14px;
+}
+
+.muxima-radio--xs .muxima-radio-inner {
+  width: 6px;
+  height: 6px;
+}
+
+/* Small */
 .muxima-radio--sm .muxima-radio-outer {
   width: 16px;
   height: 16px;
@@ -131,6 +415,7 @@
   height: 8px;
 }
 
+/* Medium (default) */
 .muxima-radio--md .muxima-radio-outer {
   width: 20px;
   height: 20px;
@@ -141,6 +426,7 @@
   height: 10px;
 }
 
+/* Large */
 .muxima-radio--lg .muxima-radio-outer {
   width: 24px;
   height: 24px;
@@ -151,31 +437,60 @@
   height: 12px;
 }
 
-/* Wrapper Sizes */
-.muxima-radio-wrapper--sm {
-  gap: 0.5rem;
+/* Extra Large */
+.muxima-radio--xl .muxima-radio-outer {
+  width: 28px;
+  height: 28px;
 }
 
-.muxima-radio-wrapper--md {
-  gap: 0.75rem;
+.muxima-radio--xl .muxima-radio-inner {
+  width: 14px;
+  height: 14px;
 }
 
-.muxima-radio-wrapper--lg {
-  gap: 1rem;
-}
+/* ==========================================
+   WRAPPER SIZES
+   ========================================== */
 
-/* Content */
+.muxima-radio-wrapper--xs { gap: 0.375rem; }
+.muxima-radio-wrapper--sm { gap: 0.5rem; }
+.muxima-radio-wrapper--md { gap: 0.75rem; }
+.muxima-radio-wrapper--lg { gap: 1rem; }
+.muxima-radio-wrapper--xl { gap: 1.25rem; }
+
+/* ==========================================
+   CONTENT
+   ========================================== */
+
 .muxima-radio-content {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  flex: 1;
 }
 
 .muxima-radio-label {
   font-size: 0.9375rem;
   font-weight: 500;
-  color: var(--muxima-gray-700);
+  color: var(--muxima-gray-900);
   line-height: 1.5;
+}
+
+.muxima-radio-label--disabled {
+  color: var(--muxima-gray-400);
+}
+
+.muxima-radio-subtitle {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--muxima-gray-600);
+  line-height: 1.4;
+}
+
+.muxima-radio-description {
+  font-size: 0.875rem;
+  color: var(--muxima-gray-500);
+  line-height: 1.4;
 }
 
 .muxima-radio-required {
@@ -183,59 +498,99 @@
   margin-left: 0.25rem;
 }
 
-.muxima-radio-description {
-  font-size: 0.875rem;
-  color: var(--muxima-gray-400);
-  line-height: 1.4;
+/* ==========================================
+   PRICE (for pricing cards)
+   ========================================== */
+
+.muxima-radio-price {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--muxima-primary);
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--muxima-primary) 0%, var(--muxima-primary-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.muxima-radio-wrapper--sm .muxima-radio-label {
-  font-size: 0.875rem;
+/* ==========================================
+   SELECTED INDICATOR
+   ========================================== */
+
+.muxima-radio-selected-indicator {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  background: var(--muxima-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
+  animation: indicatorAppear 300ms ease;
 }
 
-.muxima-radio-wrapper--sm .muxima-radio-description {
-  font-size: 0.8125rem;
+.muxima-radio-selected-indicator svg {
+  width: 14px;
+  height: 14px;
+  color: var(--muxima-white);
 }
 
-.muxima-radio-wrapper--lg .muxima-radio-label {
-  font-size: 1rem;
-}
-
-.muxima-radio-wrapper--lg .muxima-radio-description {
-  font-size: 0.9375rem;
-}
-
-/* Disabled State */
-.muxima-radio--disabled {
-  cursor: not-allowed;
-}
-
-.muxima-radio--disabled .muxima-radio-outer {
-  background: #F3F4F6;
-}
-
-/* Animation */
-@keyframes radioAppear {
-  0% {
-    transform: scale(0);
+@keyframes indicatorAppear {
+  from {
+    transform: scale(0) rotate(-180deg);
     opacity: 0;
   }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
+  to {
+    transform: scale(1) rotate(0deg);
     opacity: 1;
   }
 }
 
-/* Responsive */
+/* ==========================================
+   HELPER TEXT
+   ========================================== */
+
+.muxima-radio-helper {
+  margin-top: 0.375rem;
+  font-size: 0.8125rem;
+  color: var(--muxima-gray-500);
+  line-height: 1.4;
+}
+
+.muxima-radio-error-text {
+  color: var(--muxima-danger);
+  font-weight: 500;
+}
+
+/* ==========================================
+   LABEL SIZE VARIANTS
+   ========================================== */
+
+.muxima-radio-label--xs { font-size: 0.8125rem; }
+.muxima-radio-label--sm { font-size: 0.875rem; }
+.muxima-radio-label--md { font-size: 0.9375rem; }
+.muxima-radio-label--lg { font-size: 1rem; }
+.muxima-radio-label--xl { font-size: 1.125rem; }
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
 @media (max-width: 640px) {
-  .muxima-radio-label {
-    font-size: 0.875rem;
+  .muxima-radio-wrapper--card,
+  .muxima-radio-wrapper--tile {
+    min-width: 100%;
   }
   
-  .muxima-radio-description {
-    font-size: 0.8125rem;
+  .muxima-radio-wrapper--button {
+    min-width: 100px;
+    padding: 0.625rem 1rem;
+  }
+  
+  .muxima-radio-price {
+    font-size: 1.5rem;
   }
 }

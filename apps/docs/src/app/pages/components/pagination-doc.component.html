@@ -1,27 +1,49 @@
 <div class="doc-container">
-  <h1 class="doc-title">📄 Pagination</h1>
-  <p class="doc-description">
-    Componente para navegação entre páginas de conteúdo paginado.
-  </p>
+  <div class="doc-header">
+    <div class="header-content">
+      <div class="component-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="9" y1="3" x2="9" y2="21"></line>
+        </svg>
+      </div>
+      <div>
+        <h1>Pagination</h1>
+        <p class="component-description">
+          Componente profissional para navegação entre páginas de conteúdo paginado,
+          com suporte a múltiplas variantes e indicadores visuais elegantes.
+        </p>
+      </div>
+    </div>
+  </div>
 
   <!-- Instalação -->
   <section class="doc-section">
-    <h2 class="doc-section-title">📦 Instalação</h2>
-    <div class="doc-code-block">
-      <pre><code>{{ importCode }}</code></pre>
-      <button class="doc-copy-btn" (click)="copyCode(importCode)">📋 Copiar</button>
+    <h2 class="section-title">Instalação</h2>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('install') }}</code></pre>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('import') }}</code></pre>
     </div>
   </section>
 
-  <!-- Exemplo Básico -->
+  <!-- Pagination Básico -->
   <section class="doc-section">
-    <h2 class="doc-section-title">🎯 Exemplo Básico</h2>
-    <div class="doc-example">
+    <h2 class="section-title">Pagination Básico</h2>
+    <p class="section-description">
+      Paginação completa com navegação por páginas numeradas e indicadores visuais.
+      Ideal para listas e tabelas com muitos itens.
+    </p>
+    <div class="demo-container">
       <nav class="pagination">
         <button class="pagination-btn pagination-prev" 
                 (click)="previousPage()" 
                 [disabled]="currentPage === 1">
-          ‹ Anterior
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+            <path d="M10 12L6 8L10 4" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Anterior
         </button>
 
         <button *ngFor="let page of getVisiblePages()"
@@ -36,7 +58,10 @@
         <button class="pagination-btn pagination-next" 
                 (click)="nextPage()" 
                 [disabled]="currentPage === totalPages">
-          Próximo ›
+          Próximo
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+            <path d="M6 4L10 8L6 12" stroke-width="2" stroke-linecap="round"/>
+          </svg>
         </button>
       </nav>
 
@@ -44,47 +69,352 @@
         Página {{ currentPage }} de {{ totalPages }} • Total: {{ totalItems }} itens
       </div>
     </div>
-    <div class="doc-code-block">
-      <pre><code>{{ basicCode }}</code></pre>
-      <button class="doc-copy-btn" (click)="copyCode(basicCode)">📋 Copiar</button>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('basic') }}</code></pre>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('basicTs') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Pagination Compacto -->
+  <section class="doc-section">
+    <h2 class="section-title">Pagination Compacto</h2>
+    <p class="section-description">
+      Versão compacta ideal para espaços reduzidos, mostrando apenas página atual e total.
+    </p>
+    <div class="demo-container">
+      <nav class="pagination pagination-compact">
+        <button class="pagination-btn" 
+                (click)="compactPrevious()" 
+                [disabled]="compactPage === 1">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+            <path d="M10 12L6 8L10 4" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <span class="pagination-info-compact">{{ compactPage }} / {{ compactTotal }}</span>
+        <button class="pagination-btn" 
+                (click)="compactNext()" 
+                [disabled]="compactPage === compactTotal">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+            <path d="M6 4L10 8L6 12" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </nav>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('compact') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Pagination Simples -->
+  <section class="doc-section">
+    <h2 class="section-title">Pagination Simples</h2>
+    <p class="section-description">
+      Paginação simplificada mostrando apenas algumas páginas ao redor da atual.
+    </p>
+    <div class="demo-container">
+      <nav class="pagination pagination-simple">
+        <button class="pagination-btn" 
+                (click)="simplePrevious()" 
+                [disabled]="simplePage === 1">
+          ← Anterior
+        </button>
+
+        <button *ngFor="let page of getSimplePages()"
+                class="pagination-btn"
+                [class.pagination-active]="page === simplePage"
+                (click)="simpleGoTo(page)">
+          {{ page }}
+        </button>
+
+        <button class="pagination-btn" 
+                (click)="simpleNext()" 
+                [disabled]="simplePage === simpleTotal">
+          Próximo →
+        </button>
+      </nav>
+      <div class="pagination-info">
+        Página {{ simplePage }} de {{ simpleTotal }}
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('simple') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Pagination Minimal -->
+  <section class="doc-section">
+    <h2 class="section-title">Pagination Minimal</h2>
+    <p class="section-description">
+      Versão minimalista com apenas navegação anterior/próximo e indicador de página.
+    </p>
+    <div class="demo-container">
+      <nav class="pagination pagination-minimal">
+        <button class="pagination-btn-minimal" 
+                (click)="minimalPrevious()" 
+                [disabled]="minimalPage === 1">
+          Anterior
+        </button>
+        <span class="pagination-text">Página {{ minimalPage }} de {{ minimalTotal }}</span>
+        <button class="pagination-btn-minimal" 
+                (click)="minimalNext()" 
+                [disabled]="minimalPage === minimalTotal">
+          Próximo
+        </button>
+      </nav>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('minimal') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Pagination Rounded -->
+  <section class="doc-section">
+    <h2 class="section-title">Pagination Rounded</h2>
+    <p class="section-description">
+      Estilo arredondado moderno para interfaces clean e contemporâneas.
+    </p>
+    <div class="demo-container">
+      <nav class="pagination pagination-rounded">
+        <button class="pagination-btn" 
+                (click)="roundedPrevious()" 
+                [disabled]="roundedPage === 1">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+            <path d="M10 12L6 8L10 4" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <button *ngFor="let page of getRoundedPages()"
+                class="pagination-btn"
+                [class.pagination-active]="page === roundedPage"
+                (click)="roundedGoTo(page)">
+          {{ page }}
+        </button>
+
+        <button class="pagination-btn" 
+                (click)="roundedNext()" 
+                [disabled]="roundedPage === roundedTotal">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+            <path d="M6 4L10 8L6 12" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </nav>
+      <div class="pagination-info">
+        Página {{ roundedPage }} de {{ roundedTotal }}
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('rounded') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Pagination Outlined -->
+  <section class="doc-section">
+    <h2 class="section-title">Pagination Outlined</h2>
+    <p class="section-description">
+      Estilo outlined com bordas destacadas para interfaces com fundo colorido.
+    </p>
+    <div class="demo-container">
+      <nav class="pagination pagination-outlined">
+        <button class="pagination-btn" 
+                (click)="outlinedPrevious()" 
+                [disabled]="outlinedPage === 1">
+          ← Anterior
+        </button>
+
+        <button *ngFor="let page of getOutlinedPages()"
+                class="pagination-btn"
+                [class.pagination-active]="page === outlinedPage"
+                (click)="outlinedGoTo(page)">
+          {{ page }}
+        </button>
+
+        <button class="pagination-btn" 
+                (click)="outlinedNext()" 
+                [disabled]="outlinedPage === outlinedTotal">
+          Próximo →
+        </button>
+      </nav>
+      <div class="pagination-info">
+        Página {{ outlinedPage }} de {{ outlinedTotal }}
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('outlined') }}</code></pre>
     </div>
   </section>
 
   <!-- API -->
   <section class="doc-section">
-    <h2 class="doc-section-title">📚 API</h2>
-    <div class="doc-api">
-      <h3>Propriedades</h3>
-      <table class="doc-api-table">
-        <thead>
-          <tr>
-            <th>Propriedade</th>
-            <th>Tipo</th>
-            <th>Padrão</th>
-            <th>Descrição</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>currentPage</code></td>
-            <td>number</td>
-            <td>1</td>
-            <td>Página atual</td>
-          </tr>
-          <tr>
-            <td><code>totalPages</code></td>
-            <td>number</td>
-            <td>-</td>
-            <td>Total de páginas</td>
-          </tr>
-          <tr>
-            <td><code>itemsPerPage</code></td>
-            <td>number</td>
-            <td>10</td>
-            <td>Itens por página</td>
-          </tr>
-        </tbody>
-      </table>
+    <h2 class="section-title">API</h2>
+    
+    <h3 class="subsection-title">Propriedades</h3>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Propriedade</th>
+          <th>Tipo</th>
+          <th>Padrão</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>currentPage</code></td>
+          <td><code>number</code></td>
+          <td><code>1</code></td>
+          <td>Página atual selecionada</td>
+        </tr>
+        <tr>
+          <td><code>totalPages</code></td>
+          <td><code>number</code></td>
+          <td>-</td>
+          <td>Número total de páginas</td>
+        </tr>
+        <tr>
+          <td><code>itemsPerPage</code></td>
+          <td><code>number</code></td>
+          <td><code>10</code></td>
+          <td>Quantidade de itens por página</td>
+        </tr>
+        <tr>
+          <td><code>totalItems</code></td>
+          <td><code>number</code></td>
+          <td>-</td>
+          <td>Total de itens no conjunto de dados</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="subsection-title">Métodos</h3>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Método</th>
+          <th>Parâmetros</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>goToPage</code></td>
+          <td><code>page: number</code></td>
+          <td>Navega para uma página específica</td>
+        </tr>
+        <tr>
+          <td><code>previousPage</code></td>
+          <td>-</td>
+          <td>Navega para a página anterior</td>
+        </tr>
+        <tr>
+          <td><code>nextPage</code></td>
+          <td>-</td>
+          <td>Navega para a próxima página</td>
+        </tr>
+        <tr>
+          <td><code>getVisiblePages</code></td>
+          <td>-</td>
+          <td>Retorna array de páginas visíveis com '...'</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Funcionalidades -->
+  <section class="doc-section">
+    <h2 class="section-title">Funcionalidades</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <h3>Múltiplas Variantes</h3>
+        <p>6 estilos diferentes para se adaptar a qualquer design</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Navegação Inteligente</h3>
+        <p>Sistema de ... para economizar espaço em muitas páginas</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3>Responsivo</h3>
+        <p>Adapta-se perfeitamente a dispositivos móveis</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">♿</div>
+        <h3>Acessível</h3>
+        <p>Suporte completo a navegação por teclado</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <h3>Customizável</h3>
+        <p>Fácil personalização via CSS</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Performance</h3>
+        <p>Renderização otimizada para grandes conjuntos</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Estilos SCSS -->
+  <section class="doc-section">
+    <h2 class="section-title">Estilos SCSS</h2>
+    <p class="section-description">
+      Exemplo de estilos básicos para customização do componente.
+    </p>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('scss') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Dicas de Uso -->
+  <section class="doc-section">
+    <h2 class="section-title">Dicas de Uso</h2>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <span class="tip-icon">💡</span>
+        <div>
+          <strong>Escolha a variante certa:</strong> Use <code>compact</code> para espaços limitados, 
+          <code>basic</code> para listagens completas, e <code>minimal</code> para interfaces simples.
+        </div>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">⚡</span>
+        <div>
+          <strong>Performance:</strong> Para grandes conjuntos de dados (1000+ páginas), 
+          use o método <code>getVisiblePages()</code> para limitar botões renderizados.
+        </div>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">📱</span>
+        <div>
+          <strong>Mobile:</strong> Em telas pequenas, considere usar a variante <code>compact</code> 
+          ou <code>minimal</code> para melhor experiência.
+        </div>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">♿</span>
+        <div>
+          <strong>Acessibilidade:</strong> Sempre desabilite botões quando não aplicável 
+          e use aria-labels descritivos para leitores de tela.
+        </div>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🎯</span>
+        <div>
+          <strong>Estado de Loading:</strong> Desabilite a paginação durante carregamento de dados 
+          para evitar múltiplas requisições simultâneas.
+        </div>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🔗</span>
+        <div>
+          <strong>URL Sync:</strong> Sincronize a página com query params da URL 
+          para permitir compartilhamento e bookmarking.
+        </div>
+      </div>
     </div>
   </section>
 </div>

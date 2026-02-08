@@ -1,23 +1,67 @@
-﻿<label [ngClass]="getWrapperClasses()">
+﻿<label [ngClass]="getWrapperClasses()" (click)="selectRadio($event)">
+  <!-- Badge (New, Popular, etc) -->
+  <div class="muxima-radio-badge" *ngIf="badge && !disabled">
+    {{ badge }}
+  </div>
+
+  <!-- Icon (for card/tile variants) -->
+  <div class="muxima-radio-icon" *ngIf="icon">
+    <span class="muxima-radio-icon-content">{{ icon }}</span>
+  </div>
+
+  <!-- Radio Circle -->
   <div 
     [ngClass]="getRadioClasses()"
     [attr.aria-checked]="isChecked"
     [attr.aria-disabled]="disabled"
     [attr.tabindex]="disabled ? -1 : 0"
     role="radio"
-    (click)="selectRadio()"
-    (keydown.space)="$event.preventDefault(); selectRadio()"
-    (keydown.enter)="$event.preventDefault(); selectRadio()">
+    (keydown.space)="$event.preventDefault(); selectRadio($event)"
+    (keydown.enter)="$event.preventDefault(); selectRadio($event)">
     <div class="muxima-radio-outer">
       <div class="muxima-radio-inner" *ngIf="isChecked"></div>
     </div>
+    
+    <!-- Check Icon (alternative to dot) -->
+    <svg *ngIf="showCheckIcon && isChecked" 
+         class="muxima-radio-check-icon" 
+         viewBox="0 0 24 24" 
+         fill="none" 
+         stroke="currentColor" 
+         stroke-width="3">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
   </div>
   
-  <div class="muxima-radio-content" *ngIf="label || description">
-    <span class="muxima-radio-label" *ngIf="label">
+  <!-- Content -->
+  <div class="muxima-radio-content" *ngIf="label || description || subtitle || price">
+    <!-- Price (for pricing cards) -->
+    <div class="muxima-radio-price" *ngIf="price">
+      {{ price }}
+    </div>
+    
+    <!-- Label -->
+    <span [ngClass]="getLabelClasses()" *ngIf="label">
       {{ label }}
       <span class="muxima-radio-required" *ngIf="required">*</span>
     </span>
+    
+    <!-- Subtitle -->
+    <span class="muxima-radio-subtitle" *ngIf="subtitle">{{ subtitle }}</span>
+    
+    <!-- Description -->
     <span class="muxima-radio-description" *ngIf="description">{{ description }}</span>
   </div>
+  
+  <!-- Selected Indicator (for button/tile variants) -->
+  <div class="muxima-radio-selected-indicator" *ngIf="isChecked && (variant === 'card' || variant === 'tile')">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+    </svg>
+  </div>
 </label>
+
+<!-- Helper Text / Error Message -->
+<div class="muxima-radio-helper" *ngIf="helperText && !variant">
+  <span [class.muxima-radio-error-text]="error">{{ helperText }}</span>
+</div>

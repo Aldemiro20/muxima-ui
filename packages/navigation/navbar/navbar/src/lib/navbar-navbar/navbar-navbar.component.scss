@@ -48,6 +48,25 @@
   justify-content: space-between;
 }
 
+.item-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.5rem;
+  width: 18px;
+  height: 18px;
+  
+  svg {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+  }
+}
+
 .navbar-logo {
   a {
     font-size: 1.5rem;

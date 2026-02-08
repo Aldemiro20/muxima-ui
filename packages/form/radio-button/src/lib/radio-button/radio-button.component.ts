@@ -2,6 +2,10 @@ import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/cor
 import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+type RadioSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+type RadioColor = 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'purple' | 'pink';
+type RadioVariant = 'default' | 'card' | 'button' | 'tile' | 'minimal';
+
 @Component({
   selector: 'muxima-radio-button',
   standalone: true,
@@ -21,12 +25,24 @@ export class RadioButtonComponent implements ControlValueAccessor {
   @Input() name: string = '';
   @Input() label: string = '';
   @Input() description: string = '';
+  @Input() icon: string = ''; // Icon or emoji
+  @Input() badge: string = ''; // Badge text (e.g., "New", "Popular")
+  @Input() price: string = ''; // For pricing cards
+  @Input() subtitle: string = ''; // Additional subtitle
   @Input() disabled: boolean = false;
-  @Input() size: 'sm' | 'md' | 'lg' = 'md';
-  @Input() color: 'primary' | 'success' | 'warning' | 'danger' | 'info' = 'primary';
+  @Input() size: RadioSize = 'md';
+  @Input() color: RadioColor = 'primary';
+  @Input() variant: RadioVariant = 'default';
   @Input() required: boolean = false;
+  @Input() error: boolean = false;
+  @Input() helperText: string = '';
+  @Input() showCheckIcon: boolean = false; // Show checkmark when selected
+  @Input() glow: boolean = false; // Glow effect when selected
+  @Input() bordered: boolean = true; // Show border
+  @Input() rounded: boolean = true; // Rounded corners
   
   @Output() valueChange = new EventEmitter<any>();
+  @Output() radioChange = new EventEmitter<any>();
 
   private selectedValue: any;
   private onChange: (value: any) => void = () => {};
@@ -36,11 +52,18 @@ export class RadioButtonComponent implements ControlValueAccessor {
     return this.selectedValue === this.value;
   }
 
-  selectRadio(): void {
-    if (this.disabled) return;
+  selectRadio(event?: Event): void {
+    if (this.disabled) {
+      event?.preventDefault();
+      return;
+    }
     
     this.selectedValue = this.value;
     this.valueChange.emit(this.value);
+    this.radioChange.emit({
+      value: this.value,
+      label: this.label
+    });
     this.onChange(this.value);
     this.onTouched();
   }
@@ -67,6 +90,12 @@ export class RadioButtonComponent implements ControlValueAccessor {
     
     if (this.disabled) classes.push('muxima-radio-wrapper--disabled');
     if (this.size) classes.push(`muxima-radio-wrapper--${this.size}`);
+    if (this.variant) classes.push(`muxima-radio-wrapper--${this.variant}`);
+    if (this.isChecked) classes.push('muxima-radio-wrapper--checked');
+    if (this.error) classes.push('muxima-radio-wrapper--error');
+    if (this.glow && this.isChecked) classes.push('muxima-radio-wrapper--glow');
+    if (!this.bordered) classes.push('muxima-radio-wrapper--no-border');
+    if (!this.rounded) classes.push('muxima-radio-wrapper--square');
     
     return classes;
   }
@@ -78,6 +107,16 @@ export class RadioButtonComponent implements ControlValueAccessor {
     if (this.disabled) classes.push('muxima-radio--disabled');
     if (this.size) classes.push(`muxima-radio--${this.size}`);
     if (this.color) classes.push(`muxima-radio--${this.color}`);
+    if (this.error) classes.push('muxima-radio--error');
+    
+    return classes;
+  }
+
+  getLabelClasses(): string[] {
+    const classes = ['muxima-radio-label'];
+    
+    if (this.disabled) classes.push('muxima-radio-label--disabled');
+    if (this.size) classes.push(`muxima-radio-label--${this.size}`);
     
     return classes;
   }

@@ -1,121 +1,357 @@
-<div class="doc-page">
-  <header class="doc-header">
-    <h1>Progress</h1>
-    <p>Indicadores de progresso visuais para operações de carregamento e processamento.</p>
-  </header>
+<div class="doc-container">
+  <div class="doc-header">
+    <div class="header-content">
+      <div class="component-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="12" y1="2" x2="12" y2="6"></line>
+          <line x1="12" y1="18" x2="12" y2="22"></line>
+          <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+          <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+          <line x1="2" y1="12" x2="6" y2="12"></line>
+          <line x1="18" y1="12" x2="22" y2="12"></line>
+          <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+          <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+        </svg>
+      </div>
+      <div>
+        <h1>Progress</h1>
+        <p class="component-description">
+          Indicadores visuais de progresso para operações de carregamento, processamento e 
+          acompanhamento de tarefas com múltiplas variantes e estilos.
+        </p>
+      </div>
+    </div>
+  </div>
 
-  <!-- Import Section -->
+  <!-- Instalação -->
   <section class="doc-section">
-    <h2>Importação</h2>
+    <h2 class="section-title">Instalação</h2>
     <div class="code-block">
-      <button class="copy-btn" (click)="copyCode(importCode)">📋 Copiar</button>
-      <pre><code>{{ importCode }}</code></pre>
+      <pre><code>{{ getCodeExample('install') }}</code></pre>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('import') }}</code></pre>
     </div>
   </section>
 
-  <!-- Linear Progress -->
+  <!-- Progress Linear -->
   <section class="doc-section">
-    <h2>Progress Linear</h2>
-    <p>Barra de progresso horizontal com gradiente animado.</p>
-    
+    <h2 class="section-title">Progress Linear</h2>
+    <p class="section-description">
+      Barra de progresso horizontal básica com gradiente suave e animações fluídas.
+      Ideal para indicar progresso de upload, download ou processamento.
+    </p>
     <div class="demo-container">
-      <muxima-progress 
-        [value]="linearProgress" 
-        [color]="'primary'"
-        type="linear">
-      </muxima-progress>
-      
-      <div style="margin-top: 1rem;">
-        <input type="range" min="0" max="100" [(ngModel)]="linearProgress" style="width: 100%;">
-        <p>Valor: {{ linearProgress }}%</p>
+      <div class="progress-demo">
+        <muxima-progress 
+          [value]="linearProgress" 
+          [color]="'primary'"
+          type="linear">
+        </muxima-progress>
+        <div class="progress-controls">
+          <input type="range" min="0" max="100" [(ngModel)]="linearProgress" class="progress-slider">
+          <span class="progress-value">{{ linearProgress }}%</span>
+        </div>
       </div>
     </div>
-
     <div class="code-block">
-      <button class="copy-btn" (click)="copyCode(basicLinearCode)">📋 Copiar</button>
-      <pre><code>{{ basicLinearCode }}</code></pre>
+      <pre><code>{{ getCodeExample('linear') }}</code></pre>
     </div>
-  </section>
-
-  <!-- Circular Progress -->
-  <section class="doc-section">
-    <h2>Progress Circular</h2>
-    <p>Indicador circular com gradiente SVG.</p>
-    
-    <div class="demo-container" style="display: flex; gap: 2rem; justify-content: center; align-items: center;">
-      <muxima-progress 
-        [value]="circularProgress" 
-        [color]="'primary'"
-        type="circular"
-        size="lg">
-      </muxima-progress>
-
-      <muxima-progress 
-        [value]="circularProgress" 
-        [color]="'success'"
-        type="circular"
-        size="lg">
-      </muxima-progress>
-
-      <muxima-progress 
-        [value]="circularProgress" 
-        [color]="'warning'"
-        type="circular"
-        size="lg">
-      </muxima-progress>
-    </div>
-
     <div class="code-block">
-      <button class="copy-btn" (click)="copyCode(circularCode)">📋 Copiar</button>
-      <pre><code>{{ circularCode }}</code></pre>
+      <pre><code>{{ getCodeExample('linearTs') }}</code></pre>
     </div>
   </section>
 
-  <!-- Colors -->
+  <!-- Progress Listrado -->
   <section class="doc-section">
-    <h2>Cores</h2>
-    <div class="demo-grid">
-      <div class="demo-item">
-        <muxima-progress [value]="75" [color]="'primary'" type="linear"></muxima-progress>
-        <span>Primary</span>
-      </div>
-      <div class="demo-item">
-        <muxima-progress [value]="75" [color]="'success'" type="linear"></muxima-progress>
-        <span>Success</span>
-      </div>
-      <div class="demo-item">
-        <muxima-progress [value]="75" [color]="'warning'" type="linear"></muxima-progress>
-        <span>Warning</span>
-      </div>
-      <div class="demo-item">
-        <muxima-progress [value]="75" [color]="'error'" type="linear"></muxima-progress>
-        <span>Error</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Interactive Demo -->
-  <section class="doc-section">
-    <h2>Demo Interativo</h2>
+    <h2 class="section-title">Progress com Listras</h2>
+    <p class="section-description">
+      Variante com padrão listrado para melhor visualização do progresso ativo.
+    </p>
     <div class="demo-container">
-      <muxima-progress 
-        [value]="dynamicProgress" 
-        [color]="'primary'"
-        type="linear">
-      </muxima-progress>
-      
-      <button 
-        (click)="animateProgress()"
-        [disabled]="isAnimating"
-        style="margin-top: 1rem; padding: 0.5rem 1rem; background: linear-gradient(135deg, #3B82F6, #6366F1); color: white; border: none; border-radius: 0.5rem; cursor: pointer;">
-        {{ isAnimating ? 'Animando...' : 'Iniciar Animação' }}
-      </button>
+      <div class="progress-demo">
+        <muxima-progress 
+          [value]="stripedProgress" 
+          [color]="'primary'"
+          type="linear"
+          [striped]="true">
+        </muxima-progress>
+        <div class="progress-controls">
+          <input type="range" min="0" max="100" [(ngModel)]="stripedProgress" class="progress-slider">
+          <span class="progress-value">{{ stripedProgress }}%</span>
+        </div>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('striped') }}</code></pre>
     </div>
   </section>
 
-  <!-- API Table -->
+  <!-- Progress Animado -->
   <section class="doc-section">
-    <h2>API</h2>
+    <h2 class="section-title">Progress Animado</h2>
+    <p class="section-description">
+      Listras com animação contínua para indicar processamento ativo.
+    </p>
+    <div class="demo-container">
+      <div class="progress-demo">
+        <muxima-progress 
+          [value]="animatedProgress" 
+          [color]="'success'"
+          type="linear"
+          [striped]="true"
+          [animated]="true">
+        </muxima-progress>
+        <div class="progress-controls">
+          <input type="range" min="0" max="100" [(ngModel)]="animatedProgress" class="progress-slider">
+          <span class="progress-value">{{ animatedProgress }}%</span>
+        </div>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('animated') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Progress com Label -->
+  <section class="doc-section">
+    <h2 class="section-title">Progress com Label</h2>
+    <p class="section-description">
+      Mostra a porcentagem de progresso dentro da barra para melhor feedback visual.
+    </p>
+    <div class="demo-container">
+      <div class="progress-demo">
+        <muxima-progress 
+          [value]="labelProgress" 
+          [color]="'primary'"
+          type="linear"
+          [showLabel]="true">
+        </muxima-progress>
+        <div class="progress-controls">
+          <input type="range" min="0" max="100" [(ngModel)]="labelProgress" class="progress-slider">
+          <span class="progress-value">{{ labelProgress }}%</span>
+        </div>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('label') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Progress Circular -->
+  <section class="doc-section">
+    <h2 class="section-title">Progress Circular</h2>
+    <p class="section-description">
+      Indicador circular moderno com gradiente SVG, perfeito para dashboards e cards.
+    </p>
+    <div class="demo-container">
+      <div class="circular-grid">
+        <div class="circular-item">
+          <muxima-progress 
+            [value]="circularSmall" 
+            [color]="'primary'"
+            type="circular"
+            size="sm">
+          </muxima-progress>
+          <span>Pequeno ({{ circularSmall }}%)</span>
+        </div>
+        <div class="circular-item">
+          <muxima-progress 
+            [value]="circularProgress" 
+            [color]="'success'"
+            type="circular"
+            size="md">
+          </muxima-progress>
+          <span>Médio ({{ circularProgress }}%)</span>
+        </div>
+        <div class="circular-item">
+          <muxima-progress 
+            [value]="circularLarge" 
+            [color]="'warning'"
+            type="circular"
+            size="lg">
+          </muxima-progress>
+          <span>Grande ({{ circularLarge }}%)</span>
+        </div>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('circular') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Cores -->
+  <section class="doc-section">
+    <h2 class="section-title">Variantes de Cores</h2>
+    <p class="section-description">
+      Quatro cores predefinidas para diferentes contextos e significados.
+    </p>
+    <div class="demo-container">
+      <div class="colors-grid">
+        <div class="color-item">
+          <span class="color-label">Primary</span>
+          <muxima-progress [value]="75" [color]="'primary'" type="linear"></muxima-progress>
+        </div>
+        <div class="color-item">
+          <span class="color-label">Success</span>
+          <muxima-progress [value]="75" [color]="'success'" type="linear"></muxima-progress>
+        </div>
+        <div class="color-item">
+          <span class="color-label">Warning</span>
+          <muxima-progress [value]="75" [color]="'warning'" type="linear"></muxima-progress>
+        </div>
+        <div class="color-item">
+          <span class="color-label">Error</span>
+          <muxima-progress [value]="75" [color]="'error'" type="linear"></muxima-progress>
+        </div>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('colors') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Tamanhos -->
+  <section class="doc-section">
+    <h2 class="section-title">Tamanhos</h2>
+    <p class="section-description">
+      Três tamanhos disponíveis para adaptar a diferentes contextos de interface.
+    </p>
+    <div class="demo-container">
+      <div class="sizes-grid">
+        <div class="size-item">
+          <span class="size-label">Small (sm)</span>
+          <muxima-progress [value]="smallProgress" size="sm" [color]="'primary'"></muxima-progress>
+        </div>
+        <div class="size-item">
+          <span class="size-label">Medium (md)</span>
+          <muxima-progress [value]="mediumProgress" size="md" [color]="'success'"></muxima-progress>
+        </div>
+        <div class="size-item">
+          <span class="size-label">Large (lg)</span>
+          <muxima-progress [value]="largeProgress" size="lg" [color]="'warning'"></muxima-progress>
+        </div>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('sizes') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Progress Dinâmico -->
+  <section class="doc-section">
+    <h2 class="section-title">Progress Dinâmico</h2>
+    <p class="section-description">
+      Exemplos de progresso com atualização automática simulando operações reais.
+    </p>
+    <div class="demo-container">
+      <div class="dynamic-grid">
+        <div class="dynamic-item">
+          <div class="dynamic-header">
+            <span class="dynamic-icon">📤</span>
+            <div>
+              <h4>Upload</h4>
+              <span class="dynamic-value">{{ uploadProgress.toFixed(0) }}%</span>
+            </div>
+          </div>
+          <muxima-progress 
+            [value]="uploadProgress" 
+            [color]="'primary'"
+            [striped]="true"
+            [animated]="true">
+          </muxima-progress>
+        </div>
+        
+        <div class="dynamic-item">
+          <div class="dynamic-header">
+            <span class="dynamic-icon">📥</span>
+            <div>
+              <h4>Download</h4>
+              <span class="dynamic-value">{{ downloadProgress.toFixed(0) }}%</span>
+            </div>
+          </div>
+          <muxima-progress 
+            [value]="downloadProgress" 
+            [color]="'success'"
+            [striped]="true"
+            [animated]="true">
+          </muxima-progress>
+        </div>
+        
+        <div class="dynamic-item">
+          <div class="dynamic-header">
+            <span class="dynamic-icon">⚙️</span>
+            <div>
+              <h4>Processando</h4>
+              <span class="dynamic-value">{{ processingProgress.toFixed(0) }}%</span>
+            </div>
+          </div>
+          <muxima-progress 
+            [value]="processingProgress" 
+            [color]="'warning'"
+            [striped]="true"
+            [animated]="true">
+          </muxima-progress>
+        </div>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('dynamic') }}</code></pre>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('dynamicTs') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Multi-Step Progress -->
+  <section class="doc-section">
+    <h2 class="section-title">Progress Multi-Etapas</h2>
+    <p class="section-description">
+      Ideal para wizards e processos sequenciais com múltiplas etapas.
+    </p>
+    <div class="demo-container">
+      <div class="steps-container">
+        <div class="steps-header">
+          <h4>Passo {{ currentStep }} de {{ totalSteps }}</h4>
+          <span class="steps-percentage">{{ stepProgress.toFixed(0) }}%</span>
+        </div>
+        <muxima-progress 
+          [value]="stepProgress" 
+          [color]="'success'"
+          [showLabel]="false"
+          size="lg">
+        </muxima-progress>
+        <div class="steps-indicators">
+          <div *ngFor="let step of [1,2,3,4]" 
+               class="step-indicator"
+               [class.active]="step <= currentStep"
+               [class.current]="step === currentStep">
+            <span>{{ step }}</span>
+          </div>
+        </div>
+        <div class="steps-actions">
+          <button class="step-btn" (click)="previousStep()" [disabled]="currentStep === 1">
+            ← Anterior
+          </button>
+          <button class="step-btn primary" (click)="nextStep()" [disabled]="currentStep === totalSteps">
+            Próximo →
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('steps') }}</code></pre>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('stepsTs') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2 class="section-title">API</h2>
+    
+    <h3 class="subsection-title">Propriedades</h3>
     <table class="api-table">
       <thead>
         <tr>
@@ -128,29 +364,173 @@
       <tbody>
         <tr>
           <td><code>value</code></td>
-          <td>number</td>
-          <td>0</td>
-          <td>Valor do progresso (0-100)</td>
+          <td><code>number</code></td>
+          <td><code>0</code></td>
+          <td>Valor atual do progresso</td>
         </tr>
         <tr>
-          <td><code>color</code></td>
-          <td>'primary' | 'success' | 'warning' | 'error'</td>
-          <td>'primary'</td>
-          <td>Cor do indicador</td>
+          <td><code>max</code></td>
+          <td><code>number</code></td>
+          <td><code>100</code></td>
+          <td>Valor máximo do progresso</td>
         </tr>
         <tr>
           <td><code>type</code></td>
-          <td>'linear' | 'circular'</td>
-          <td>'linear'</td>
-          <td>Tipo do indicador</td>
+          <td><code>'linear' | 'circular'</code></td>
+          <td><code>'linear'</code></td>
+          <td>Tipo de exibição do progresso</td>
+        </tr>
+        <tr>
+          <td><code>color</code></td>
+          <td><code>'primary' | 'success' | 'warning' | 'error'</code></td>
+          <td><code>'primary'</code></td>
+          <td>Cor do indicador de progresso</td>
         </tr>
         <tr>
           <td><code>size</code></td>
-          <td>'sm' | 'md' | 'lg'</td>
-          <td>'md'</td>
-          <td>Tamanho do indicador</td>
+          <td><code>'sm' | 'md' | 'lg'</code></td>
+          <td><code>'md'</code></td>
+          <td>Tamanho do componente</td>
+        </tr>
+        <tr>
+          <td><code>showLabel</code></td>
+          <td><code>boolean</code></td>
+          <td><code>false</code></td>
+          <td>Exibe a porcentagem dentro da barra</td>
+        </tr>
+        <tr>
+          <td><code>striped</code></td>
+          <td><code>boolean</code></td>
+          <td><code>false</code></td>
+          <td>Ativa o padrão listrado</td>
+        </tr>
+        <tr>
+          <td><code>animated</code></td>
+          <td><code>boolean</code></td>
+          <td><code>false</code></td>
+          <td>Ativa animação das listras</td>
         </tr>
       </tbody>
     </table>
+
+    <h3 class="subsection-title">Getters</h3>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Getter</th>
+          <th>Tipo</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>percentage</code></td>
+          <td><code>number</code></td>
+          <td>Retorna a porcentagem calculada (0-100)</td>
+        </tr>
+        <tr>
+          <td><code>strokeDashoffset</code></td>
+          <td><code>number</code></td>
+          <td>Valor SVG para progresso circular</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Funcionalidades -->
+  <section class="doc-section">
+    <h2 class="section-title">Funcionalidades</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <h3>Múltiplas Variantes</h3>
+        <p>Linear e circular com diferentes estilos e animações</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌈</div>
+        <h3>4 Cores Predefinidas</h3>
+        <p>Primary, Success, Warning e Error para diferentes contextos</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📏</div>
+        <h3>3 Tamanhos</h3>
+        <p>Small, Medium e Large para adaptar ao design</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✨</div>
+        <h3>Animações Suaves</h3>
+        <p>Transições fluídas com suporte a listras animadas</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Altamente Customizável</h3>
+        <p>Fácil personalização via CSS e SCSS</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Performance</h3>
+        <p>Otimizado com CSS transforms e SVG eficiente</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Estilos SCSS -->
+  <section class="doc-section">
+    <h2 class="section-title">Customização SCSS</h2>
+    <p class="section-description">
+      Exemplo de customização avançada do componente via SCSS.
+    </p>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('scss') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Dicas de Uso -->
+  <section class="doc-section">
+    <h2 class="section-title">Dicas de Uso</h2>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <span class="tip-icon">💡</span>
+        <div>
+          <strong>Escolha o tipo certo:</strong> Use <code>linear</code> para operações longas 
+          e <code>circular</code> para espaços compactos como cards.
+        </div>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🎨</span>
+        <div>
+          <strong>Cores semânticas:</strong> Use <code>success</code> para conclusão, 
+          <code>warning</code> para atenção e <code>error</code> para falhas.
+        </div>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">⚡</span>
+        <div>
+          <strong>Animações:</strong> Ative <code>animated</code> apenas durante processamento ativo 
+          para indicar atividade contínua.
+        </div>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">📱</span>
+        <div>
+          <strong>Responsividade:</strong> Em mobile, prefira tamanho <code>sm</code> ou <code>md</code> 
+          para economizar espaço vertical.
+        </div>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">♿</span>
+        <div>
+          <strong>Acessibilidade:</strong> Sempre forneça feedback textual adicional 
+          além do indicador visual de progresso.
+        </div>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🔄</span>
+        <div>
+          <strong>Atualização:</strong> Atualize o valor do progresso de forma suave 
+          com intervalos de no mínimo 100ms para melhor performance.
+        </div>
+      </div>
+    </div>
   </section>
 </div>

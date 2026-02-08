@@ -1,61 +1,153 @@
 <!-- Linear Progress -->
-<div *ngIf="type === 'linear'" class="muxima-progress-linear" [ngClass]="'muxima-progress-' + size">
+<div *ngIf="type === 'linear' || type === 'bar' || type === 'gradient'" 
+     class="muxima-progress-linear" 
+     [ngClass]="[
+       'muxima-progress-' + size,
+       'muxima-progress-variant-' + variant,
+       'muxima-progress-thickness-' + thickness,
+       glow ? 'muxima-progress-glow' : ''
+     ]">
+  <!-- Buffer bar (for buffering progress like video) -->
+  <div *ngIf="buffer > 0" 
+       class="muxima-progress-buffer"
+       [style.width.%]="bufferPercentage">
+  </div>
+  
+  <!-- Main progress bar -->
   <div 
     class="muxima-progress-bar"
     [ngClass]="[
-      'muxima-progress-' + color,
+      'muxima-progress-' + getColorClass(),
       striped ? 'muxima-progress-striped' : '',
-      animated ? 'muxima-progress-animated' : ''
+      animated ? 'muxima-progress-animated' : '',
+      type === 'gradient' ? 'muxima-progress-gradient-effect' : '',
+      multiColor ? 'muxima-progress-multicolor' : ''
     ]"
     [style.width.%]="percentage">
+    <span *ngIf="showLabel" class="muxima-progress-label">
+      {{ percentage | number:'1.0-0' }}%
+    </span>
   </div>
-  <span *ngIf="showLabel" class="muxima-progress-label">{{ percentage | number:'1.0-0' }}%</span>
+  
+  <!-- External percentage label -->
+  <span *ngIf="showPercentage && !showLabel" class="muxima-progress-percentage">
+    {{ percentage | number:'1.0-0' }}%
+  </span>
+</div>
+
+<!-- Indeterminate Progress (Loading) -->
+<div *ngIf="type === 'indeterminate'" 
+     class="muxima-progress-indeterminate"
+     [ngClass]="[
+       'muxima-progress-' + size,
+       'muxima-progress-variant-' + variant,
+       'muxima-progress-' + color
+     ]">
+  <div class="muxima-progress-indeterminate-bar"></div>
 </div>
 
 <!-- Circular Progress -->
-<div *ngIf="type === 'circular'" class="muxima-progress-circular" [ngClass]="'muxima-progress-' + size">
+<div *ngIf="type === 'circular'" 
+     class="muxima-progress-circular" 
+     [ngClass]="[
+       'muxima-progress-' + size,
+       glow ? 'muxima-progress-glow' : ''
+     ]">
   <svg viewBox="0 0 100 100">
     <defs>
+      <!-- Primary Gradient -->
       <linearGradient id="gradient-primary" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
         <stop offset="50%" style="stop-color:#6366F1;stop-opacity:1" />
         <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
       </linearGradient>
+      
+      <!-- Success Gradient -->
       <linearGradient id="gradient-success" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
         <stop offset="50%" style="stop-color:#22C55E;stop-opacity:1" />
         <stop offset="100%" style="stop-color:#34D399;stop-opacity:1" />
       </linearGradient>
+      
+      <!-- Warning Gradient -->
       <linearGradient id="gradient-warning" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:1" />
         <stop offset="50%" style="stop-color:#FBBF24;stop-opacity:1" />
         <stop offset="100%" style="stop-color:#FCD34D;stop-opacity:1" />
       </linearGradient>
+      
+      <!-- Error Gradient -->
       <linearGradient id="gradient-error" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" />
         <stop offset="50%" style="stop-color:#F87171;stop-opacity:1" />
         <stop offset="100%" style="stop-color:#FCA5A5;stop-opacity:1" />
       </linearGradient>
+      
+      <!-- Info Gradient -->
+      <linearGradient id="gradient-info" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#06B6D4;stop-opacity:1" />
+        <stop offset="50%" style="stop-color:#22D3EE;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#67E8F9;stop-opacity:1" />
+      </linearGradient>
+      
+      <!-- Purple Gradient -->
+      <linearGradient id="gradient-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+        <stop offset="50%" style="stop-color:#A78BFA;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#C4B5FD;stop-opacity:1" />
+      </linearGradient>
+      
+      <!-- Animated Gradient for special effect -->
+      <linearGradient id="gradient-animated">
+        <stop offset="0%" style="stop-color:#667eea;stop-opacity:1">
+          <animate attributeName="stop-color" 
+                   values="#667eea;#764ba2;#f093fb;#667eea" 
+                   dur="3s" 
+                   repeatCount="indefinite" />
+        </stop>
+        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1">
+          <animate attributeName="stop-color" 
+                   values="#764ba2;#f093fb;#667eea;#764ba2" 
+                   dur="3s" 
+                   repeatCount="indefinite" />
+        </stop>
+      </linearGradient>
+      
+      <!-- Shadow Filter -->
+      <filter id="shadow">
+        <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.3"/>
+      </filter>
     </defs>
+    
+    <!-- Background Circle -->
     <circle
       class="muxima-progress-circle-bg"
       cx="50"
       cy="50"
-      r="45"
+      [attr.r]="getCircularRadius()"
       fill="none"
-      stroke-width="8"
+      [attr.stroke-width]="getStrokeWidth()"
     ></circle>
+    
+    <!-- Progress Circle -->
     <circle
       class="muxima-progress-circle-bar"
-      [ngClass]="'muxima-progress-' + color"
+      [ngClass]="'muxima-progress-' + getColorClass()"
       cx="50"
       cy="50"
-      r="45"
+      [attr.r]="getCircularRadius()"
       fill="none"
-      stroke-width="8"
-      [style.stroke-dasharray]="2 * 3.14159 * 45"
+      [attr.stroke-width]="getStrokeWidth()"
+      [style.stroke-dasharray]="strokeDasharray"
       [style.stroke-dashoffset]="strokeDashoffset"
+      [attr.filter]="glow ? 'url(#shadow)' : null"
     ></circle>
   </svg>
-  <div *ngIf="showLabel" class="muxima-progress-circular-label">{{ percentage | number:'1.0-0' }}%</div>
+  
+  <!-- Center Label -->
+  <div class="muxima-progress-circular-content">
+    <div *ngIf="showLabel || showPercentage" class="muxima-progress-circular-label">
+      {{ percentage | number:'1.0-0' }}%
+    </div>
+  </div>
 </div>

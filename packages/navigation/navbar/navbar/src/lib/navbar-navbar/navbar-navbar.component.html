@@ -15,8 +15,10 @@
            [routerLink]="item.route" 
            routerLinkActive="active"
            (click)="closeDropdown()">
-          <span *ngIf="item.icon" class="item-icon">{{ item.icon }}</span>
+          <span *ngIf="item.icon && isIconName(item.icon)" class="item-icon" [innerHTML]="getIconSvg(item.icon)"></span>
+          <span *ngIf="item.icon && !isIconName(item.icon)" class="item-icon">{{ item.icon }}</span>
           {{ item.label }}
+          <span *ngIf="item.badge" class="badge">{{ item.badge }}</span>
         </a>
         
         <!-- External Link -->
@@ -24,15 +26,19 @@
            [href]="item.href" 
            target="_blank"
            (click)="closeDropdown()">
-          <span *ngIf="item.icon" class="item-icon">{{ item.icon }}</span>
+          <span *ngIf="item.icon && isIconName(item.icon)" class="item-icon" [innerHTML]="getIconSvg(item.icon)"></span>
+          <span *ngIf="item.icon && !isIconName(item.icon)" class="item-icon">{{ item.icon }}</span>
           {{ item.label }}
+          <span *ngIf="item.badge" class="badge">{{ item.badge }}</span>
         </a>
         
         <!-- Dropdown -->
         <div *ngIf="item.children" class="dropdown">
           <button class="dropdown-toggle" (click)="toggleDropdown(i)">
-            <span *ngIf="item.icon" class="item-icon">{{ item.icon }}</span>
+            <span *ngIf="item.icon && isIconName(item.icon)" class="item-icon" [innerHTML]="getIconSvg(item.icon)"></span>
+            <span *ngIf="item.icon && !isIconName(item.icon)" class="item-icon">{{ item.icon }}</span>
             {{ item.label }}
+            <span *ngIf="item.badge" class="badge">{{ item.badge }}</span>
             <svg class="dropdown-arrow" [class.open]="activeDropdown === i" width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -44,15 +50,19 @@
                  [routerLink]="child.route" 
                  routerLinkActive="active"
                  (click)="closeDropdown()">
-                <span *ngIf="child.icon" class="item-icon">{{ child.icon }}</span>
+                <span *ngIf="child.icon && isIconName(child.icon)" class="item-icon" [innerHTML]="getIconSvg(child.icon)"></span>
+                <span *ngIf="child.icon && !isIconName(child.icon)" class="item-icon">{{ child.icon }}</span>
                 {{ child.label }}
+                <span *ngIf="child.badge" class="badge">{{ child.badge }}</span>
               </a>
               <a *ngIf="child.href" 
                  [href]="child.href" 
                  target="_blank"
                  (click)="closeDropdown()">
-                <span *ngIf="child.icon" class="item-icon">{{ child.icon }}</span>
+                <span *ngIf="child.icon && isIconName(child.icon)" class="item-icon" [innerHTML]="getIconSvg(child.icon)"></span>
+                <span *ngIf="child.icon && !isIconName(child.icon)" class="item-icon">{{ child.icon }}</span>
                 {{ child.label }}
+                <span *ngIf="child.badge" class="badge">{{ child.badge }}</span>
               </a>
             </li>
           </ul>
@@ -76,8 +86,10 @@
              [routerLink]="item.route" 
              routerLinkActive="active"
              (click)="closeMobileMenu()">
-            <span *ngIf="item.icon" class="item-icon">{{ item.icon }}</span>
+            <span *ngIf="item.icon && isIconName(item.icon)" class="item-icon" [innerHTML]="getIconSvg(item.icon)"></span>
+            <span *ngIf="item.icon && !isIconName(item.icon)" class="item-icon">{{ item.icon }}</span>
             {{ item.label }}
+            <span *ngIf="item.badge" class="badge">{{ item.badge }}</span>
           </a>
           
           <!-- External Link -->
@@ -85,15 +97,19 @@
              [href]="item.href" 
              target="_blank"
              (click)="closeMobileMenu()">
-            <span *ngIf="item.icon" class="item-icon">{{ item.icon }}</span>
+            <span *ngIf="item.icon && isIconName(item.icon)" class="item-icon" [innerHTML]="getIconSvg(item.icon)"></span>
+            <span *ngIf="item.icon && !isIconName(item.icon)" class="item-icon">{{ item.icon }}</span>
             {{ item.label }}
+            <span *ngIf="item.badge" class="badge">{{ item.badge }}</span>
           </a>
           
           <!-- Dropdown -->
           <div *ngIf="item.children" class="dropdown">
             <button class="dropdown-toggle" (click)="toggleDropdown(i)">
-              <span *ngIf="item.icon" class="item-icon">{{ item.icon }}</span>
+              <span *ngIf="item.icon && isIconName(item.icon)" class="item-icon" [innerHTML]="getIconSvg(item.icon)"></span>
+              <span *ngIf="item.icon && !isIconName(item.icon)" class="item-icon">{{ item.icon }}</span>
               {{ item.label }}
+              <span *ngIf="item.badge" class="badge">{{ item.badge }}</span>
               <svg class="dropdown-arrow" [class.open]="activeDropdown === i" width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -105,15 +121,19 @@
                    [routerLink]="child.route" 
                    routerLinkActive="active"
                    (click)="closeMobileMenu()">
-                  <span *ngIf="child.icon" class="item-icon">{{ child.icon }}</span>
+                  <span *ngIf="child.icon && isIconName(child.icon)" class="item-icon" [innerHTML]="getIconSvg(child.icon)"></span>
+                  <span *ngIf="child.icon && !isIconName(child.icon)" class="item-icon">{{ child.icon }}</span>
                   {{ child.label }}
+                  <span *ngIf="child.badge" class="badge">{{ child.badge }}</span>
                 </a>
                 <a *ngIf="child.href" 
                    [href]="child.href" 
                    target="_blank"
                    (click)="closeMobileMenu()">
-                  <span *ngIf="child.icon" class="item-icon">{{ child.icon }}</span>
+                  <span *ngIf="child.icon && isIconName(child.icon)" class="item-icon" [innerHTML]="getIconSvg(child.icon)"></span>
+                  <span *ngIf="child.icon && !isIconName(child.icon)" class="item-icon">{{ child.icon }}</span>
                   {{ child.label }}
+                  <span *ngIf="item.badge" class="badge">{{ item.badge }}</span>
                 </a>
               </li>
             </ul>
