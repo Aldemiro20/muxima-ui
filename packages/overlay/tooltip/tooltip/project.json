@@ -1,21 +1,42 @@
 {
-  "name": "tooltip-tooltip",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/tooltip/tooltip/src",
-  "prefix": "muxima",
-  "projectType": "library",
-  "tags": [],
-  "targets": {
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "packages/tooltip/tooltip/jest.config.ts"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    }
-  }
-}
+    "name":  "tooltip",
+    "$schema":  "../../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot":  "packages/tooltip/tooltip/src",
+    "prefix":  "muxima",
+    "projectType":  "library",
+    "tags":  [
 
+             ],
+    "targets":  {
+                    "test":  {
+                                 "executor":  "@nx/jest:jest",
+                                 "outputs":  [
+                                                 "{workspaceRoot}/coverage/{projectRoot}"
+                                             ],
+                                 "options":  {
+                                                 "jestConfig":  "packages/tooltip/tooltip/jest.config.ts"
+                                             }
+                             },
+                    "lint":  {
+                                 "executor":  "@nx/eslint:lint"
+                             },
+                    "build":  {
+                                  "outputs":  [
+                                                  "{workspaceRoot}/dist/{projectRoot}"
+                                              ],
+                                  "defaultConfiguration":  "production",
+                                  "executor":  "@nx/angular:package",
+                                  "configurations":  {
+                                                         "development":  {
+                                                                             "tsConfig":  "packages/overlay/tooltip/tooltip/tsconfig.lib.json"
+                                                                         },
+                                                         "production":  {
+                                                                            "tsConfig":  "packages/overlay/tooltip/tooltip/tsconfig.lib.prod.json"
+                                                                        }
+                                                     },
+                                  "options":  {
+                                                  "project":  "packages/overlay/tooltip/tooltip/ng-package.json"
+                                              }
+                              }
+                }
+}

@@ -1,21 +1,42 @@
 {
-  "name": "slider-slider",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/slider/slider/src",
-  "prefix": "muxima",
-  "projectType": "library",
-  "tags": [],
-  "targets": {
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "packages/slider/slider/jest.config.ts"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    }
-  }
-}
+    "name":  "slider",
+    "$schema":  "../../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot":  "packages/slider/slider/src",
+    "prefix":  "muxima",
+    "projectType":  "library",
+    "tags":  [
 
+             ],
+    "targets":  {
+                    "test":  {
+                                 "executor":  "@nx/jest:jest",
+                                 "outputs":  [
+                                                 "{workspaceRoot}/coverage/{projectRoot}"
+                                             ],
+                                 "options":  {
+                                                 "jestConfig":  "packages/slider/slider/jest.config.ts"
+                                             }
+                             },
+                    "lint":  {
+                                 "executor":  "@nx/eslint:lint"
+                             },
+                    "build":  {
+                                  "outputs":  [
+                                                  "{workspaceRoot}/dist/{projectRoot}"
+                                              ],
+                                  "defaultConfiguration":  "production",
+                                  "executor":  "@nx/angular:package",
+                                  "configurations":  {
+                                                         "development":  {
+                                                                             "tsConfig":  "packages/form/slider/slider/tsconfig.lib.json"
+                                                                         },
+                                                         "production":  {
+                                                                            "tsConfig":  "packages/form/slider/slider/tsconfig.lib.prod.json"
+                                                                        }
+                                                     },
+                                  "options":  {
+                                                  "project":  "packages/form/slider/slider/ng-package.json"
+                                              }
+                              }
+                }
+}

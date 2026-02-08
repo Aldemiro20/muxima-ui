@@ -1,19 +1,43 @@
 {
-  "name": "@agt-ui/toast",
+  "name": "@muxima-ui/toast",
   "version": "1.0.0",
+  "description": "Toast notification component for Angular 18+ - Muxima UI",
+  "keywords": [
+    "angular",
+    "toast",
+    "notification",
+    "snackbar",
+    "message",
+    "muxima-ui"
+  ],
+  "author": "Muxima UI Team (jokerscript)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aldemiro20/muxima-ui.git",
+    "directory": "packages/overlay/toast"
+  },
+  "homepage": "https://muxima-ui.vercel.app/components/toast",
+  "bugs": {
+    "url": "https://github.com/Aldemiro20/muxima-ui/issues"
+  },
+  "documentation": "https://muxima-ui.vercel.app",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
-    "@angular/common": "^15.2.0",
-    "@angular/core": "^15.2.0"
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
   },
   "sideEffects": false,
-  "module": "fesm2015/agt-ui-toast.mjs",
-  "es2020": "fesm2020/agt-ui-toast.mjs",
-  "esm2020": "esm2020/agt-ui-toast.mjs",
-  "fesm2020": "fesm2020/agt-ui-toast.mjs",
-  "fesm2015": "fesm2015/agt-ui-toast.mjs",
+  "module": "fesm2015/muxima-ui-toast.mjs",
+  "es2020": "fesm2020/muxima-ui-toast.mjs",
+  "esm2020": "esm2020/muxima-ui-toast.mjs",
+  "fesm2020": "fesm2020/muxima-ui-toast.mjs",
+  "fesm2015": "fesm2015/muxima-ui-toast.mjs",
   "typings": "index.d.ts",
   "exports": {
     "./package.json": {
@@ -21,11 +45,11 @@
     },
     ".": {
       "types": "./index.d.ts",
-      "esm2020": "./esm2020/agt-ui-toast.mjs",
-      "es2020": "./fesm2020/agt-ui-toast.mjs",
-      "es2015": "./fesm2015/agt-ui-toast.mjs",
-      "node": "./fesm2015/agt-ui-toast.mjs",
-      "default": "./fesm2020/agt-ui-toast.mjs"
+      "esm2020": "./esm2020/muxima-ui-toast.mjs",
+      "es2020": "./fesm2020/muxima-ui-toast.mjs",
+      "es2015": "./fesm2015/muxima-ui-toast.mjs",
+      "node": "./fesm2015/muxima-ui-toast.mjs",
+      "default": "./fesm2020/muxima-ui-toast.mjs"
     }
   }
 }

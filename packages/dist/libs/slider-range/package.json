@@ -1,0 +1,31 @@
+{
+  "name": "@muxima-ui/slider-range",
+  "version": "1.0.0",
+  "peerDependencies": {
+    "@angular/common": "^15.2.0",
+    "@angular/core": "^15.2.0"
+  },
+  "module": "fesm2015/muxima-ui-slider-range.mjs",
+  "es2020": "fesm2020/muxima-ui-slider-range.mjs",
+  "esm2020": "esm2020/muxima-ui-slider-range.mjs",
+  "fesm2020": "fesm2020/muxima-ui-slider-range.mjs",
+  "fesm2015": "fesm2015/muxima-ui-slider-range.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2020": "./esm2020/muxima-ui-slider-range.mjs",
+      "es2020": "./fesm2020/muxima-ui-slider-range.mjs",
+      "es2015": "./fesm2015/muxima-ui-slider-range.mjs",
+      "node": "./fesm2015/muxima-ui-slider-range.mjs",
+      "default": "./fesm2020/muxima-ui-slider-range.mjs"
+    }
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

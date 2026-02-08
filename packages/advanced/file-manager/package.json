@@ -1,8 +1,37 @@
 {
   "name": "@muxima-ui/file-manager",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "description": "File manager component for Angular 18+ - Muxima UI",
+  "keywords": [
+    "angular",
+    "file-manager",
+    "files",
+    "explorer",
+    "browse",
+    "advanced",
+    "muxima-ui"
+  ],
+  "author": "Muxima UI Team (jokerscript)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aldemiro20/muxima-ui.git",
+    "directory": "packages/advanced/file-manager"
+  },
+  "homepage": "https://muxima-ui.vercel.app/components/file-manager",
+  "bugs": {
+    "url": "https://github.com/Aldemiro20/muxima-ui/issues"
+  },
+  "documentation": "https://muxima-ui.vercel.app",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
     "@angular/common": "^18.0.0",
     "@angular/core": "^18.0.0"
-  }
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
 }

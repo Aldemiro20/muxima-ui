@@ -3,6 +3,24 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/form/date-range-picker/src",
   "prefix": "muxima",
-  "projectType": "library"
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "packages/form/date-range-picker/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/form/date-range-picker/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "packages/form/date-range-picker/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    }
+  }
 }
 

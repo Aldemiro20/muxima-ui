@@ -1,9 +1,33 @@
 {
   "name": "@muxima-ui/copy-to-clipboard",
   "version": "1.0.0",
+  "description": "Copy to clipboard component for Angular 18+ - Muxima UI",
+  "keywords": [
+    "angular",
+    "copy",
+    "clipboard",
+    "copy-to-clipboard",
+    "utility",
+    "muxima-ui"
+  ],
+  "author": "Muxima UI Team (jokerscript)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aldemiro20/muxima-ui.git",
+    "directory": "packages/utility/copy-to-clipboard"
+  },
+  "homepage": "https://muxima-ui.vercel.app/components/copy-to-clipboard",
+  "bugs": {
+    "url": "https://github.com/Aldemiro20/muxima-ui/issues"
+  },
+  "documentation": "https://muxima-ui.vercel.app",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
-    "@angular/common": "^15.2.0",
-    "@angular/core": "^15.2.0"
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

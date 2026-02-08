@@ -1,0 +1,12 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import * as i0 from "@angular/core";
+export class BreadcrumbBreadcrumbComponent {
+}
+BreadcrumbBreadcrumbComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.10", ngImport: i0, type: BreadcrumbBreadcrumbComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+BreadcrumbBreadcrumbComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.2.10", type: BreadcrumbBreadcrumbComponent, isStandalone: true, selector: "muxima-breadcrumb-breadcrumb", ngImport: i0, template: "<p>breadcrumb-breadcrumb works!</p>\n", styles: [""], dependencies: [{ kind: "ngmodule", type: CommonModule }] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.10", ngImport: i0, type: BreadcrumbBreadcrumbComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'muxima-breadcrumb-breadcrumb', standalone: true, imports: [CommonModule], template: "<p>breadcrumb-breadcrumb works!</p>\n" }]
+        }] });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYnJlYWRjcnVtYi1icmVhZGNydW1iLmNvbXBvbmVudC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL25hdmlnYXRpb24vYnJlYWRjcnVtYi9icmVhZGNydW1iL3NyYy9saWIvYnJlYWRjcnVtYi1icmVhZGNydW1iL2JyZWFkY3J1bWItYnJlYWRjcnVtYi5jb21wb25lbnQudHMiLCIuLi8uLi8uLi8uLi8uLi8uLi9uYXZpZ2F0aW9uL2JyZWFkY3J1bWIvYnJlYWRjcnVtYi9zcmMvbGliL2JyZWFkY3J1bWItYnJlYWRjcnVtYi9icmVhZGNydW1iLWJyZWFkY3J1bWIuY29tcG9uZW50Lmh0bWwiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUMxQyxPQUFPLEVBQUUsWUFBWSxFQUFFLE1BQU0saUJBQWlCLENBQUM7O0FBUy9DLE1BQU0sT0FBTyw2QkFBNkI7OzJIQUE3Qiw2QkFBNkI7K0dBQTdCLDZCQUE2Qix3RkNWMUMsdUNBQ0EseURES1ksWUFBWTs0RkFJWCw2QkFBNkI7a0JBUHpDLFNBQVM7K0JBQ0UsOEJBQThCLGNBQzVCLElBQUksV0FDUCxDQUFDLFlBQVksQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IENvbXBvbmVudCB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgQ29tbW9uTW9kdWxlIH0gZnJvbSAnQGFuZ3VsYXIvY29tbW9uJztcblxuQENvbXBvbmVudCh7XG4gIHNlbGVjdG9yOiAnbXV4aW1hLWJyZWFkY3J1bWItYnJlYWRjcnVtYicsXG4gIHN0YW5kYWxvbmU6IHRydWUsXG4gIGltcG9ydHM6IFtDb21tb25Nb2R1bGVdLFxuICB0ZW1wbGF0ZVVybDogJy4vYnJlYWRjcnVtYi1icmVhZGNydW1iLmNvbXBvbmVudC5odG1sJyxcbiAgc3R5bGVVcmxzOiBbJy4vYnJlYWRjcnVtYi1icmVhZGNydW1iLmNvbXBvbmVudC5jc3MnXSxcbn0pXG5leHBvcnQgY2xhc3MgQnJlYWRjcnVtYkJyZWFkY3J1bWJDb21wb25lbnQge31cbiIsIjxwPmJyZWFkY3J1bWItYnJlYWRjcnVtYiB3b3JrcyE8L3A+XG4iXX0=

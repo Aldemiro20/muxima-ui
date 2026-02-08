@@ -1,8 +1,8 @@
 {
-  "name": "utility-settings-item-settings-item",
+  "name": "settings-item",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/utility/settings-item/settings-item/src",
-  "prefix": "lib",
+  "prefix": "muxima",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -15,6 +15,22 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
+    },
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "packages/utility/settings-item/settings-item/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/utility/settings-item/settings-item/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "packages/utility/settings-item/settings-item/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
     }
   }
 }

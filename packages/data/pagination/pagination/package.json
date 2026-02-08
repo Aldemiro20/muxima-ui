@@ -1,0 +1,37 @@
+{
+  "name": "@muxima-ui/pagination",
+  "version": "1.0.0",
+  "description": "Pagination component for Angular 18+ - Muxima UI",
+  "keywords": [
+    "angular",
+    "pagination",
+    "pager",
+    "navigation",
+    "data",
+    
+    "muxima-ui"
+  ],
+  "author": "Muxima UI Team (jokerscript)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aldemiro20/muxima-ui.git",
+    "directory": "packages/data/pagination/pagination"
+  },
+  "homepage": "https://muxima-ui.vercel.app/components/pagination",
+  "bugs": {
+    "url": "https://github.com/Aldemiro20/muxima-ui/issues"
+  },
+  "documentation": "https://muxima-ui.vercel.app",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

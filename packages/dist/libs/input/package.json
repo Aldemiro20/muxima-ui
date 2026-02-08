@@ -1,20 +1,44 @@
 {
-  "name": "@agt-ui/input",
-  "version": "8.0.0",
+  "name": "@muxima-ui/input",
+  "version": "1.0.0",
+  "description": "Text input component with validation for Angular 18+ - Muxima UI",
+  "keywords": [
+    "angular",
+    "input",
+    "form",
+    "text",
+    "component",
+    "muxima-ui"
+  ],
+  "author": "Muxima UI Team (jokerscript)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aldemiro20/muxima-ui.git",
+    "directory": "packages/form/input"
+  },
+  "homepage": "https://muxima-ui.vercel.app/components/input",
+  "bugs": {
+    "url": "https://github.com/Aldemiro20/muxima-ui/issues"
+  },
+  "documentation": "https://muxima-ui.vercel.app",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
-    "@angular/common": "^15.2.0",
-    "@angular/core": "^15.2.0",
-    "@angular/forms": "^15.2.0"
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0",
+    "@angular/forms": "^18.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
   },
   "sideEffects": false,
-  "module": "fesm2015/agt-ui-input.mjs",
-  "es2020": "fesm2020/agt-ui-input.mjs",
-  "esm2020": "esm2020/agt-ui-input.mjs",
-  "fesm2020": "fesm2020/agt-ui-input.mjs",
-  "fesm2015": "fesm2015/agt-ui-input.mjs",
+  "module": "fesm2015/muxima-ui-input.mjs",
+  "es2020": "fesm2020/muxima-ui-input.mjs",
+  "esm2020": "esm2020/muxima-ui-input.mjs",
+  "fesm2020": "fesm2020/muxima-ui-input.mjs",
+  "fesm2015": "fesm2015/muxima-ui-input.mjs",
   "typings": "index.d.ts",
   "exports": {
     "./package.json": {
@@ -22,11 +46,11 @@
     },
     ".": {
       "types": "./index.d.ts",
-      "esm2020": "./esm2020/agt-ui-input.mjs",
-      "es2020": "./fesm2020/agt-ui-input.mjs",
-      "es2015": "./fesm2015/agt-ui-input.mjs",
-      "node": "./fesm2015/agt-ui-input.mjs",
-      "default": "./fesm2020/agt-ui-input.mjs"
+      "esm2020": "./esm2020/muxima-ui-input.mjs",
+      "es2020": "./fesm2020/muxima-ui-input.mjs",
+      "es2015": "./fesm2015/muxima-ui-input.mjs",
+      "node": "./fesm2015/muxima-ui-input.mjs",
+      "default": "./fesm2020/muxima-ui-input.mjs"
     }
   }
 }

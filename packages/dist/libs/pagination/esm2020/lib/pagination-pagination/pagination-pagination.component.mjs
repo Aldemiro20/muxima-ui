@@ -1,0 +1,12 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import * as i0 from "@angular/core";
+export class PaginationPaginationComponent {
+}
+PaginationPaginationComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.10", ngImport: i0, type: PaginationPaginationComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+PaginationPaginationComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.2.10", type: PaginationPaginationComponent, isStandalone: true, selector: "muxima-pagination-pagination", ngImport: i0, template: "<p>pagination-pagination works!</p>\n", styles: [""], dependencies: [{ kind: "ngmodule", type: CommonModule }] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.10", ngImport: i0, type: PaginationPaginationComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'muxima-pagination-pagination', standalone: true, imports: [CommonModule], template: "<p>pagination-pagination works!</p>\n" }]
+        }] });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicGFnaW5hdGlvbi1wYWdpbmF0aW9uLmNvbXBvbmVudC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL2RhdGEvcGFnaW5hdGlvbi9wYWdpbmF0aW9uL3NyYy9saWIvcGFnaW5hdGlvbi1wYWdpbmF0aW9uL3BhZ2luYXRpb24tcGFnaW5hdGlvbi5jb21wb25lbnQudHMiLCIuLi8uLi8uLi8uLi8uLi8uLi9kYXRhL3BhZ2luYXRpb24vcGFnaW5hdGlvbi9zcmMvbGliL3BhZ2luYXRpb24tcGFnaW5hdGlvbi9wYWdpbmF0aW9uLXBhZ2luYXRpb24uY29tcG9uZW50Lmh0bWwiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUMxQyxPQUFPLEVBQUUsWUFBWSxFQUFFLE1BQU0saUJBQWlCLENBQUM7O0FBUy9DLE1BQU0sT0FBTyw2QkFBNkI7OzJIQUE3Qiw2QkFBNkI7K0dBQTdCLDZCQUE2Qix3RkNWMUMsdUNBQ0EseURES1ksWUFBWTs0RkFJWCw2QkFBNkI7a0JBUHpDLFNBQVM7K0JBQ0UsOEJBQThCLGNBQzVCLElBQUksV0FDUCxDQUFDLFlBQVksQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IENvbXBvbmVudCB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgQ29tbW9uTW9kdWxlIH0gZnJvbSAnQGFuZ3VsYXIvY29tbW9uJztcblxuQENvbXBvbmVudCh7XG4gIHNlbGVjdG9yOiAnbXV4aW1hLXBhZ2luYXRpb24tcGFnaW5hdGlvbicsXG4gIHN0YW5kYWxvbmU6IHRydWUsXG4gIGltcG9ydHM6IFtDb21tb25Nb2R1bGVdLFxuICB0ZW1wbGF0ZVVybDogJy4vcGFnaW5hdGlvbi1wYWdpbmF0aW9uLmNvbXBvbmVudC5odG1sJyxcbiAgc3R5bGVVcmxzOiBbJy4vcGFnaW5hdGlvbi1wYWdpbmF0aW9uLmNvbXBvbmVudC5jc3MnXSxcbn0pXG5leHBvcnQgY2xhc3MgUGFnaW5hdGlvblBhZ2luYXRpb25Db21wb25lbnQge31cbiIsIjxwPnBhZ2luYXRpb24tcGFnaW5hdGlvbiB3b3JrcyE8L3A+XG4iXX0=

@@ -1,13 +1,38 @@
 {
   "name": "@muxima-ui/drawer",
   "version": "1.0.0",
+  "description": "Drawer/sidebar component for Angular 18+ - Muxima UI",
+  "keywords": [
+    "angular",
+    "drawer",
+    "sidebar",
+    "panel",
+    "overlay",
+    "muxima-ui"
+  ],
+  "author": "Muxima UI Team (jokerscript)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aldemiro20/muxima-ui.git",
+    "directory": "packages/overlay/drawer"
+  },
+  "homepage": "https://muxima-ui.vercel.app/components/drawer",
+  "bugs": {
+    "url": "https://github.com/Aldemiro20/muxima-ui/issues"
+  },
+  "documentation": "https://muxima-ui.vercel.app",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
-    "@angular/common": "^15.2.0",
-    "@angular/core": "^15.2.0"
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
   },
+  "sideEffects": false,
   "module": "fesm2015/muxima-ui-drawer.mjs",
   "es2020": "fesm2020/muxima-ui-drawer.mjs",
   "esm2020": "esm2020/muxima-ui-drawer.mjs",
@@ -26,6 +51,5 @@
       "node": "./fesm2015/muxima-ui-drawer.mjs",
       "default": "./fesm2020/muxima-ui-drawer.mjs"
     }
-  },
-  "sideEffects": false
+  }
 }

@@ -1,0 +1,12 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import * as i0 from "@angular/core";
+export class LoadingLoadingComponent {
+}
+LoadingLoadingComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.10", ngImport: i0, type: LoadingLoadingComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+LoadingLoadingComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.2.10", type: LoadingLoadingComponent, isStandalone: true, selector: "muxima-loading-loading", ngImport: i0, template: "<p>loading-loading works!</p>\n", styles: [""], dependencies: [{ kind: "ngmodule", type: CommonModule }] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.10", ngImport: i0, type: LoadingLoadingComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'muxima-loading-loading', standalone: true, imports: [CommonModule], template: "<p>loading-loading works!</p>\n" }]
+        }] });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibG9hZGluZy1sb2FkaW5nLmNvbXBvbmVudC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL2NvbXBvbmVudHMvbG9hZGluZy9sb2FkaW5nL3NyYy9saWIvbG9hZGluZy1sb2FkaW5nL2xvYWRpbmctbG9hZGluZy5jb21wb25lbnQudHMiLCIuLi8uLi8uLi8uLi8uLi8uLi9jb21wb25lbnRzL2xvYWRpbmcvbG9hZGluZy9zcmMvbGliL2xvYWRpbmctbG9hZGluZy9sb2FkaW5nLWxvYWRpbmcuY29tcG9uZW50Lmh0bWwiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUMxQyxPQUFPLEVBQUUsWUFBWSxFQUFFLE1BQU0saUJBQWlCLENBQUM7O0FBUy9DLE1BQU0sT0FBTyx1QkFBdUI7O3FIQUF2Qix1QkFBdUI7eUdBQXZCLHVCQUF1QixrRkNWcEMsaUNBQ0EseURES1ksWUFBWTs0RkFJWCx1QkFBdUI7a0JBUG5DLFNBQVM7K0JBQ0Usd0JBQXdCLGNBQ3RCLElBQUksV0FDUCxDQUFDLFlBQVksQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IENvbXBvbmVudCB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgQ29tbW9uTW9kdWxlIH0gZnJvbSAnQGFuZ3VsYXIvY29tbW9uJztcblxuQENvbXBvbmVudCh7XG4gIHNlbGVjdG9yOiAnbXV4aW1hLWxvYWRpbmctbG9hZGluZycsXG4gIHN0YW5kYWxvbmU6IHRydWUsXG4gIGltcG9ydHM6IFtDb21tb25Nb2R1bGVdLFxuICB0ZW1wbGF0ZVVybDogJy4vbG9hZGluZy1sb2FkaW5nLmNvbXBvbmVudC5odG1sJyxcbiAgc3R5bGVVcmxzOiBbJy4vbG9hZGluZy1sb2FkaW5nLmNvbXBvbmVudC5jc3MnXSxcbn0pXG5leHBvcnQgY2xhc3MgTG9hZGluZ0xvYWRpbmdDb21wb25lbnQge31cbiIsIjxwPmxvYWRpbmctbG9hZGluZyB3b3JrcyE8L3A+XG4iXX0=

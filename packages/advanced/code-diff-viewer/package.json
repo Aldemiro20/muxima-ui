@@ -1,8 +1,38 @@
 {
   "name": "@muxima-ui/code-diff-viewer",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "description": "Code diff viewer component for Angular 18+ - Side-by-side code comparison - Muxima UI",
+  "keywords": [
+    "angular",
+    "code",
+    "diff",
+    "compare",
+    "viewer",
+    "git",
+    "advanced",
+    "muxima-ui"
+  ],
+  "author": "Muxima UI Team (jokerscript)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aldemiro20/muxima-ui.git",
+    "directory": "packages/advanced/code-diff-viewer"
+  },
+  "homepage": "https://muxima-ui.vercel.app/components/code-diff-viewer",
+  "bugs": {
+    "url": "https://github.com/Aldemiro20/muxima-ui/issues"
+  },
+  "documentation": "https://muxima-ui.vercel.app",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
-    "@angular/common": "^15.2.0",
-    "@angular/core": "^15.2.0"
-  }
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
 }

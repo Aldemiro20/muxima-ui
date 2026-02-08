@@ -1,19 +1,42 @@
 {
-  "name": "@agt-ui/button",
-  "version": "7.0.0",
+  "name": "@muxima-ui/button",
+  "version": "1.0.0",
+  "description": "Modern button component with variants and sizes for Angular 18+ - Muxima UI",
+  "keywords": [
+    "angular",
+    "button",
+    "component",
+    "ui",
+    "muxima-ui"
+  ],
+  "author": "Muxima UI Team (jokerscript)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aldemiro20/muxima-ui.git",
+    "directory": "packages/components/button"
+  },
+  "homepage": "https://muxima-ui.vercel.app/components/button",
+  "bugs": {
+    "url": "https://github.com/Aldemiro20/muxima-ui/issues"
+  },
+  "documentation": "https://muxima-ui.vercel.app",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
-    "@angular/common": "^15.2.0",
-    "@angular/core": "^15.2.0"
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
   },
   "sideEffects": false,
-  "module": "fesm2015/agt-ui-button.mjs",
-  "es2020": "fesm2020/agt-ui-button.mjs",
-  "esm2020": "esm2020/agt-ui-button.mjs",
-  "fesm2020": "fesm2020/agt-ui-button.mjs",
-  "fesm2015": "fesm2015/agt-ui-button.mjs",
+  "module": "fesm2015/muxima-ui-button.mjs",
+  "es2020": "fesm2020/muxima-ui-button.mjs",
+  "esm2020": "esm2020/muxima-ui-button.mjs",
+  "fesm2020": "fesm2020/muxima-ui-button.mjs",
+  "fesm2015": "fesm2015/muxima-ui-button.mjs",
   "typings": "index.d.ts",
   "exports": {
     "./package.json": {
@@ -21,11 +44,11 @@
     },
     ".": {
       "types": "./index.d.ts",
-      "esm2020": "./esm2020/agt-ui-button.mjs",
-      "es2020": "./fesm2020/agt-ui-button.mjs",
-      "es2015": "./fesm2015/agt-ui-button.mjs",
-      "node": "./fesm2015/agt-ui-button.mjs",
-      "default": "./fesm2020/agt-ui-button.mjs"
+      "esm2020": "./esm2020/muxima-ui-button.mjs",
+      "es2020": "./fesm2020/muxima-ui-button.mjs",
+      "es2015": "./fesm2015/muxima-ui-button.mjs",
+      "node": "./fesm2015/muxima-ui-button.mjs",
+      "default": "./fesm2020/muxima-ui-button.mjs"
     }
   }
 }

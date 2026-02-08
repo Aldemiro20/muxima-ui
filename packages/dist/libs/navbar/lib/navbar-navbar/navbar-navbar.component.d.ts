@@ -1,0 +1,55 @@
+import { EventEmitter } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import * as i0 from "@angular/core";
+export interface NavItem {
+    label: string;
+    route?: string;
+    href?: string;
+    icon?: string;
+    badge?: string | number;
+    disabled?: boolean;
+    children?: NavItem[];
+}
+export type NavbarVariant = 'default' | 'minimal' | 'centered' | 'dashboard' | 'landing' | 'ecommerce';
+export declare class NavbarNavbarComponent {
+    private sanitizer;
+    logo: string;
+    logoImage?: string;
+    logoRoute: string;
+    menuItems: NavItem[];
+    rightItems: NavItem[];
+    transparent: boolean;
+    fixed: boolean;
+    sticky: boolean;
+    variant: NavbarVariant;
+    showSearch: boolean;
+    showNotifications: boolean;
+    showProfile: boolean;
+    profileImage?: string;
+    userName?: string;
+    notificationCount: number;
+    searchClicked: EventEmitter<void>;
+    notificationClicked: EventEmitter<void>;
+    profileClicked: EventEmitter<void>;
+    logoClicked: EventEmitter<void>;
+    mobileMenuOpen: boolean;
+    scrolled: boolean;
+    activeDropdown: number | null;
+    searchOpen: boolean;
+    constructor(sanitizer: DomSanitizer);
+    onWindowScroll(): void;
+    onDocumentClick(event: MouseEvent): void;
+    toggleMobileMenu(): void;
+    toggleDropdown(index: number): void;
+    closeDropdown(): void;
+    closeMobileMenu(): void;
+    toggleSearch(): void;
+    onLogoClick(): void;
+    onSearchClick(): void;
+    onNotificationClick(): void;
+    onProfileClick(): void;
+    getIconSvg(iconName: string): SafeHtml;
+    isIconName(icon: string): boolean;
+    static ɵfac: i0.ɵɵFactoryDeclaration<NavbarNavbarComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<NavbarNavbarComponent, "muxima-navbar", never, { "logo": "logo"; "logoImage": "logoImage"; "logoRoute": "logoRoute"; "menuItems": "menuItems"; "rightItems": "rightItems"; "transparent": "transparent"; "fixed": "fixed"; "sticky": "sticky"; "variant": "variant"; "showSearch": "showSearch"; "showNotifications": "showNotifications"; "showProfile": "showProfile"; "profileImage": "profileImage"; "userName": "userName"; "notificationCount": "notificationCount"; }, { "searchClicked": "searchClicked"; "notificationClicked": "notificationClicked"; "profileClicked": "profileClicked"; "logoClicked": "logoClicked"; }, never, never, true, never>;
+}

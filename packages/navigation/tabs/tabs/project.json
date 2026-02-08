@@ -1,21 +1,42 @@
 {
-  "name": "tabs-tabs",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/tabs/tabs/src",
-  "prefix": "muxima",
-  "projectType": "library",
-  "tags": [],
-  "targets": {
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "packages/tabs/tabs/jest.config.ts"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    }
-  }
-}
+    "name":  "tabs",
+    "$schema":  "../../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot":  "packages/tabs/tabs/src",
+    "prefix":  "muxima",
+    "projectType":  "library",
+    "tags":  [
 
+             ],
+    "targets":  {
+                    "test":  {
+                                 "executor":  "@nx/jest:jest",
+                                 "outputs":  [
+                                                 "{workspaceRoot}/coverage/{projectRoot}"
+                                             ],
+                                 "options":  {
+                                                 "jestConfig":  "packages/tabs/tabs/jest.config.ts"
+                                             }
+                             },
+                    "lint":  {
+                                 "executor":  "@nx/eslint:lint"
+                             },
+                    "build":  {
+                                  "outputs":  [
+                                                  "{workspaceRoot}/dist/{projectRoot}"
+                                              ],
+                                  "defaultConfiguration":  "production",
+                                  "executor":  "@nx/angular:package",
+                                  "configurations":  {
+                                                         "development":  {
+                                                                             "tsConfig":  "packages/navigation/tabs/tabs/tsconfig.lib.json"
+                                                                         },
+                                                         "production":  {
+                                                                            "tsConfig":  "packages/navigation/tabs/tabs/tsconfig.lib.prod.json"
+                                                                        }
+                                                     },
+                                  "options":  {
+                                                  "project":  "packages/navigation/tabs/tabs/ng-package.json"
+                                              }
+                              }
+                }
+}

@@ -1,21 +1,42 @@
 {
-  "name": "toggle-toggle",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/toggle/toggle/src",
-  "prefix": "muxima",
-  "projectType": "library",
-  "tags": [],
-  "targets": {
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "packages/toggle/toggle/jest.config.ts"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    }
-  }
-}
+    "name":  "toggle",
+    "$schema":  "../../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot":  "packages/toggle/toggle/src",
+    "prefix":  "muxima",
+    "projectType":  "library",
+    "tags":  [
 
+             ],
+    "targets":  {
+                    "test":  {
+                                 "executor":  "@nx/jest:jest",
+                                 "outputs":  [
+                                                 "{workspaceRoot}/coverage/{projectRoot}"
+                                             ],
+                                 "options":  {
+                                                 "jestConfig":  "packages/toggle/toggle/jest.config.ts"
+                                             }
+                             },
+                    "lint":  {
+                                 "executor":  "@nx/eslint:lint"
+                             },
+                    "build":  {
+                                  "outputs":  [
+                                                  "{workspaceRoot}/dist/{projectRoot}"
+                                              ],
+                                  "defaultConfiguration":  "production",
+                                  "executor":  "@nx/angular:package",
+                                  "configurations":  {
+                                                         "development":  {
+                                                                             "tsConfig":  "packages/form/toggle/toggle/tsconfig.lib.json"
+                                                                         },
+                                                         "production":  {
+                                                                            "tsConfig":  "packages/form/toggle/toggle/tsconfig.lib.prod.json"
+                                                                        }
+                                                     },
+                                  "options":  {
+                                                  "project":  "packages/form/toggle/toggle/ng-package.json"
+                                              }
+                              }
+                }
+}

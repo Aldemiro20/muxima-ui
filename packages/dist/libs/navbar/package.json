@@ -1,0 +1,55 @@
+{
+  "name": "@muxima-ui/navbar",
+  "version": "1.0.0",
+  "description": "Navbar component for Angular 18+ - Muxima UI",
+  "keywords": [
+    "angular",
+    "navbar",
+    "navigation",
+    "menu",
+    "header",
+    "muxima-ui"
+  ],
+  "author": "Muxima UI Team (jokerscript)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aldemiro20/muxima-ui.git",
+    "directory": "packages/navigation/navbar/navbar"
+  },
+  "homepage": "https://muxima-ui.vercel.app/components/navbar",
+  "bugs": {
+    "url": "https://github.com/Aldemiro20/muxima-ui/issues"
+  },
+  "documentation": "https://muxima-ui.vercel.app",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "module": "fesm2015/muxima-ui-navbar.mjs",
+  "es2020": "fesm2020/muxima-ui-navbar.mjs",
+  "esm2020": "esm2020/muxima-ui-navbar.mjs",
+  "fesm2020": "fesm2020/muxima-ui-navbar.mjs",
+  "fesm2015": "fesm2015/muxima-ui-navbar.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2020": "./esm2020/muxima-ui-navbar.mjs",
+      "es2020": "./fesm2020/muxima-ui-navbar.mjs",
+      "es2015": "./fesm2015/muxima-ui-navbar.mjs",
+      "node": "./fesm2015/muxima-ui-navbar.mjs",
+      "default": "./fesm2020/muxima-ui-navbar.mjs"
+    }
+  }
+}

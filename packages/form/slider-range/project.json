@@ -3,6 +3,24 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/form/slider-range/src",
   "prefix": "muxima",
-  "projectType": "library"
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "packages/form/slider-range/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/form/slider-range/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "packages/form/slider-range/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    }
+  }
 }
 

@@ -4,9 +4,10 @@
 
 **A modern, professional Angular component library**
 
-[![npm version](https://img.shields.io/npm/v/@muxima-ui/core.svg)](https://www.npmjs.com/package/@muxima-ui/core)
+[![npm](https://img.shields.io/badge/npm-@muxima--ui-red)](https://www.npmjs.com/org/muxima-ui)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://github.com/Aldemiro20/muxima-ui/workflows/CI/badge.svg)](https://github.com/Aldemiro20/muxima-ui/actions)
+[![Angular](https://img.shields.io/badge/Angular-18+-red)](https://angular.io)
+[![Published](https://img.shields.io/badge/Status-Published-success)](https://www.npmjs.com/org/muxima-ui)
 
 [📚 Documentation](https://muxima-ui.vercel.app) · [🐛 Report Bug](https://github.com/Aldemiro20/muxima-ui/issues) · [✨ Request Feature](https://github.com/Aldemiro20/muxima-ui/issues)
 
@@ -14,18 +15,80 @@
 
 ---
 
+## 🎉 Now Available on NPM!
+
+**Muxima UI components are now published and ready to use!**
+
+```bash
+npm install @muxima-ui/kanban
+npm install @muxima-ui/comments
+npm install @muxima-ui/shopping-cart
+npm install @muxima-ui/quill-editor
+```
+
+👉 **[See all published packages](PUBLISHED_PACKAGES.md)**
+
+---
+
 ## ✨ Features
 
 - 🎯 **70+ Components** - Comprehensive UI component library
-- 📦 **Modular** - Install only what you need
+- 📦 **NPM Published** - Install directly from NPM
+- 🌍 **Public Access** - Free and open source
 - 🎨 **Themeable** - Fully customizable design system
 - 📱 **Responsive** - Mobile-first approach
 - ♿ **Accessible** - WCAG compliant
 - 💪 **TypeScript** - Full type safety
-- 🔧 **Standalone** - Angular 15+ standalone components
+- 🔧 **Standalone** - Angular 18+ standalone components
 - 📖 **Well Documented** - Comprehensive documentation
 
-## 📦 Installation
+## 📦 Published Packages
+
+### Advanced Components
+
+| Package | Description | Size | Install |
+|---------|-------------|------|---------|
+| `@muxima-ui/kanban` | Kanban board with drag & drop | 27 kB | `npm i @muxima-ui/kanban` |
+| `@muxima-ui/comments` | Comments system with replies | 32 kB | `npm i @muxima-ui/comments` |
+| `@muxima-ui/shopping-cart` | Shopping cart component | 17 kB | `npm i @muxima-ui/shopping-cart` |
+| `@muxima-ui/quill-editor` | Rich text WYSIWYG editor | 100 kB | `npm i @muxima-ui/quill-editor` |
+
+**[📖 Full installation guide →](PUBLISHED_PACKAGES.md)**
+
+## 🚀 Quick Start
+
+### 1. Install a Component
+
+```bash
+npm install @muxima-ui/kanban
+```
+
+### 2. Import in Your Angular App
+
+```typescript
+import { Component } from '@angular/core';
+import { KanbanComponent } from '@muxima-ui/kanban';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [KanbanComponent],
+  template: `
+    <muxima-kanban [boards]="boards"></muxima-kanban>
+  `
+})
+export class AppComponent {
+  boards = [/* your boards */];
+}
+```
+
+### 3. Start Using! 🎉
+
+That's it! No complex setup required.
+
+---
+
+## 📦 Legacy Installation (For Development)
 
 ### Quick Install
 

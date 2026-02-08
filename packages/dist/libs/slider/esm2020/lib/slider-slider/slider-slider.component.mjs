@@ -1,0 +1,12 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import * as i0 from "@angular/core";
+export class SliderSliderComponent {
+}
+SliderSliderComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.10", ngImport: i0, type: SliderSliderComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+SliderSliderComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.2.10", type: SliderSliderComponent, isStandalone: true, selector: "muxima-slider-slider", ngImport: i0, template: "<p>slider-slider works!</p>\n", styles: [""], dependencies: [{ kind: "ngmodule", type: CommonModule }] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.10", ngImport: i0, type: SliderSliderComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'muxima-slider-slider', standalone: true, imports: [CommonModule], template: "<p>slider-slider works!</p>\n" }]
+        }] });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2xpZGVyLXNsaWRlci5jb21wb25lbnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi9mb3JtL3NsaWRlci9zbGlkZXIvc3JjL2xpYi9zbGlkZXItc2xpZGVyL3NsaWRlci1zbGlkZXIuY29tcG9uZW50LnRzIiwiLi4vLi4vLi4vLi4vLi4vLi4vZm9ybS9zbGlkZXIvc2xpZGVyL3NyYy9saWIvc2xpZGVyLXNsaWRlci9zbGlkZXItc2xpZGVyLmNvbXBvbmVudC5odG1sIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sRUFBRSxTQUFTLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFDMUMsT0FBTyxFQUFFLFlBQVksRUFBRSxNQUFNLGlCQUFpQixDQUFDOztBQVMvQyxNQUFNLE9BQU8scUJBQXFCOzttSEFBckIscUJBQXFCO3VHQUFyQixxQkFBcUIsZ0ZDVmxDLCtCQUNBLHlEREtZLFlBQVk7NEZBSVgscUJBQXFCO2tCQVBqQyxTQUFTOytCQUNFLHNCQUFzQixjQUNwQixJQUFJLFdBQ1AsQ0FBQyxZQUFZLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDb21wb25lbnQgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7IENvbW1vbk1vZHVsZSB9IGZyb20gJ0Bhbmd1bGFyL2NvbW1vbic7XG5cbkBDb21wb25lbnQoe1xuICBzZWxlY3RvcjogJ211eGltYS1zbGlkZXItc2xpZGVyJyxcbiAgc3RhbmRhbG9uZTogdHJ1ZSxcbiAgaW1wb3J0czogW0NvbW1vbk1vZHVsZV0sXG4gIHRlbXBsYXRlVXJsOiAnLi9zbGlkZXItc2xpZGVyLmNvbXBvbmVudC5odG1sJyxcbiAgc3R5bGVVcmxzOiBbJy4vc2xpZGVyLXNsaWRlci5jb21wb25lbnQuY3NzJ10sXG59KVxuZXhwb3J0IGNsYXNzIFNsaWRlclNsaWRlckNvbXBvbmVudCB7fVxuIiwiPHA+c2xpZGVyLXNsaWRlciB3b3JrcyE8L3A+XG4iXX0=

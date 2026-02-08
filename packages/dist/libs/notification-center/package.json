@@ -1,10 +1,34 @@
 {
   "name": "@muxima-ui/notification-center",
   "version": "1.0.0",
+  "description": "Notification center component for Angular 18+ - Muxima UI",
+  "keywords": [
+    "angular",
+    "notification",
+    "notification-center",
+    "alerts",
+    "inbox",
+    "muxima-ui"
+  ],
+  "author": "Muxima UI Team (jokerscript)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aldemiro20/muxima-ui.git",
+    "directory": "packages/overlay/notification-center"
+  },
+  "homepage": "https://muxima-ui.vercel.app/components/notification-center",
+  "bugs": {
+    "url": "https://github.com/Aldemiro20/muxima-ui/issues"
+  },
+  "documentation": "https://muxima-ui.vercel.app",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
-    "@angular/animations": "^15.2.0",
-    "@angular/common": "^15.2.0",
-    "@angular/core": "^15.2.0"
+    "@angular/animations": "^18.0.0",
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

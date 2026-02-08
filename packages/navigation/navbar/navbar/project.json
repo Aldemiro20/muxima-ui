@@ -1,21 +1,42 @@
 {
-  "name": "navbar-navbar",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/navbar/navbar/src",
-  "prefix": "muxima",
-  "projectType": "library",
-  "tags": [],
-  "targets": {
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "packages/navbar/navbar/jest.config.ts"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    }
-  }
-}
+    "name":  "navbar",
+    "$schema":  "../../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot":  "packages/navbar/navbar/src",
+    "prefix":  "muxima",
+    "projectType":  "library",
+    "tags":  [
 
+             ],
+    "targets":  {
+                    "test":  {
+                                 "executor":  "@nx/jest:jest",
+                                 "outputs":  [
+                                                 "{workspaceRoot}/coverage/{projectRoot}"
+                                             ],
+                                 "options":  {
+                                                 "jestConfig":  "packages/navbar/navbar/jest.config.ts"
+                                             }
+                             },
+                    "lint":  {
+                                 "executor":  "@nx/eslint:lint"
+                             },
+                    "build":  {
+                                  "outputs":  [
+                                                  "{workspaceRoot}/dist/{projectRoot}"
+                                              ],
+                                  "defaultConfiguration":  "production",
+                                  "executor":  "@nx/angular:package",
+                                  "configurations":  {
+                                                         "development":  {
+                                                                             "tsConfig":  "packages/navigation/navbar/navbar/tsconfig.lib.json"
+                                                                         },
+                                                         "production":  {
+                                                                            "tsConfig":  "packages/navigation/navbar/navbar/tsconfig.lib.prod.json"
+                                                                        }
+                                                     },
+                                  "options":  {
+                                                  "project":  "packages/navigation/navbar/navbar/ng-package.json"
+                                              }
+                              }
+                }
+}

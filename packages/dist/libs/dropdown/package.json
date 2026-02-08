@@ -1,0 +1,55 @@
+{
+  "name": "@muxima-ui/dropdown",
+  "version": "1.0.0",
+  "description": "Dropdown component for Angular 18+ - Muxima UI",
+  "keywords": [
+    "angular",
+    "dropdown",
+    "menu",
+    "select",
+    "overlay",
+    "muxima-ui"
+  ],
+  "author": "Muxima UI Team (jokerscript)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aldemiro20/muxima-ui.git",
+    "directory": "packages/overlay/dropdown/dropdown"
+  },
+  "homepage": "https://muxima-ui.vercel.app/components/dropdown",
+  "bugs": {
+    "url": "https://github.com/Aldemiro20/muxima-ui/issues"
+  },
+  "documentation": "https://muxima-ui.vercel.app",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "module": "fesm2015/muxima-ui-dropdown.mjs",
+  "es2020": "fesm2020/muxima-ui-dropdown.mjs",
+  "esm2020": "esm2020/muxima-ui-dropdown.mjs",
+  "fesm2020": "fesm2020/muxima-ui-dropdown.mjs",
+  "fesm2015": "fesm2015/muxima-ui-dropdown.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2020": "./esm2020/muxima-ui-dropdown.mjs",
+      "es2020": "./fesm2020/muxima-ui-dropdown.mjs",
+      "es2015": "./fesm2015/muxima-ui-dropdown.mjs",
+      "node": "./fesm2015/muxima-ui-dropdown.mjs",
+      "default": "./fesm2020/muxima-ui-dropdown.mjs"
+    }
+  }
+}

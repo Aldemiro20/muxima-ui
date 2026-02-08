@@ -1,74 +1,145 @@
-# Quill Editor - Muxima UI
+# ✍️ @muxima-ui/quill-editor# Quill Editor - Muxima UI
 
-Um editor de texto rico extremamente poderoso **construído do zero**, sem dependências externas! Com todas as funcionalidades essenciais do Microsoft Word e recursos inovadores.
 
-## 🌟 Recursos Principais
+
+> Advanced WYSIWYG rich text editor built from scratch for Angular 18+Um editor de texto rico extremamente poderoso **construído do zero**, sem dependências externas! Com todas as funcionalidades essenciais do Microsoft Word e recursos inovadores.
+
+
+
+[![npm version](https://img.shields.io/npm/v/@muxima-ui/quill-editor.svg)](https://www.npmjs.com/package/@muxima-ui/quill-editor)## 🌟 Recursos Principais
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ### Formatação de Texto Avançada
-- **Fontes**: 8 fontes diferentes (Arial, Times New Roman, Courier, Georgia, Verdana, Trebuchet, Impact, Comic Sans)
-- **Tamanhos**: 13 tamanhos de fonte (10px a 54px)
-- **Estilos**: Negrito, Itálico, Sublinhado, Tachado
-- **Cores**: Cor de texto e cor de fundo com paleta customizada
-- **Picker de cores** com presets e seletor HTML5
 
-### Formatação de Parágrafo
+## 📦 Installation- **Fontes**: 8 fontes diferentes (Arial, Times New Roman, Courier, Georgia, Verdana, Trebuchet, Impact, Comic Sans)
+
+- **Tamanhos**: 13 tamanhos de fonte (10px a 54px)
+
+```bash- **Estilos**: Negrito, Itálico, Sublinhado, Tachado
+
+npm install @muxima-ui/quill-editor- **Cores**: Cor de texto e cor de fundo com paleta customizada
+
+```- **Picker de cores** com presets e seletor HTML5
+
+
+
+## 🚀 Quick Start### Formatação de Parágrafo
+
 - **Cabeçalhos**: 6 níveis de títulos (H1-H6)
-- **Listas**: Ordenadas e com marcadores
-- **Alinhamento**: Esquerda, Centro, Direita, Justificado
-- **Indentação**: Aumentar e diminuir recuo
+
+```typescript- **Listas**: Ordenadas e com marcadores
+
+import { Component } from '@angular/core';- **Alinhamento**: Esquerda, Centro, Direita, Justificado
+
+import { FormsModule } from '@angular/forms';- **Indentação**: Aumentar e diminuir recuo
+
+import { QuillEditorComponent } from '@muxima-ui/quill-editor';
 
 ### Inserções Ricas
-- **Links**: Modal customizado com texto e URL
-- **Imagens**: Com preview ao vivo
-- **Tabelas**: Customizáveis (linhas x colunas)
-- **Código**: Inline e blocos de código
-- **Citações**: Blocos de citação estilizados
-- **Linha Horizontal**: Separadores visuais
 
-### Recursos Inovadores
-- **Contador de Palavras e Caracteres**: Estatísticas em tempo real
-- **Histórico Undo/Redo**: 50 níveis de desfazer/refazer
-- **Atalhos de Teclado**: Todos os atalhos padrão (Ctrl+B, Ctrl+I, Ctrl+U, Ctrl+Z, Ctrl+Y, Ctrl+K)
-- **ContentEditable Nativo**: Performance superior
-- **Modais Elegantes**: Interface moderna para inserções
-- **Toolbar Organizada**: Grupos lógicos com separadores visuais
-- **Responsivo**: Adaptável a dispositivos móveis
-- **Scrollbar Customizada**: Com gradiente do tema
+@Component({- **Links**: Modal customizado com texto e URL
 
-## 📦 Instalação
+  selector: 'app-root',- **Imagens**: Com preview ao vivo
 
-```bash
-npm install @muxima-ui/quill-editor
-```
+  standalone: true,- **Tabelas**: Customizáveis (linhas x colunas)
 
-**Nenhuma dependência externa necessária!** 🎉
+  imports: [FormsModule, QuillEditorComponent],- **Código**: Inline e blocos de código
 
-## 🚀 Uso Básico
+  template: `- **Citações**: Blocos de citação estilizados
 
-```typescript
-import { Component } from '@angular/core';
-import { QuillEditorComponent } from '@muxima-ui/quill-editor';
-import { FormsModule } from '@angular/forms';
+    <muxima-quill-editor- **Linha Horizontal**: Separadores visuais
 
-@Component({
-  selector: 'app-my-component',
+      [(content)]="editorContent"
+
+      [placeholder]="'Digite seu texto aqui...'"### Recursos Inovadores
+
+      (contentChange)="onContentChange($event)">- **Contador de Palavras e Caracteres**: Estatísticas em tempo real
+
+    </muxima-quill-editor>- **Histórico Undo/Redo**: 50 níveis de desfazer/refazer
+
+    - **Atalhos de Teclado**: Todos os atalhos padrão (Ctrl+B, Ctrl+I, Ctrl+U, Ctrl+Z, Ctrl+Y, Ctrl+K)
+
+    <div [innerHTML]="editorContent"></div>- **ContentEditable Nativo**: Performance superior
+
+  `- **Modais Elegantes**: Interface moderna para inserções
+
+})- **Toolbar Organizada**: Grupos lógicos com separadores visuais
+
+export class AppComponent {- **Responsivo**: Adaptável a dispositivos móveis
+
+  editorContent = '<p>Hello <strong>World</strong>!</p>';- **Scrollbar Customizada**: Com gradiente do tema
+
+
+
+  onContentChange(html: string) {## 📦 Instalação
+
+    console.log('Content changed:', html);
+
+  }```bash
+
+}npm install @muxima-ui/quill-editor
+
+``````
+
+
+
+## ✨ Features**Nenhuma dependência externa necessária!** 🎉
+
+
+
+- ✅ Editor WYSIWYG completo## 🚀 Uso Básico
+
+- ✅ Formatação de texto (bold, italic, underline)
+
+- ✅ Listas (ordered, unordered)```typescript
+
+- ✅ Headers (H1-H6)import { Component } from '@angular/core';
+
+- ✅ Links e imagensimport { QuillEditorComponent } from '@muxima-ui/quill-editor';
+
+- ✅ Code blocksimport { FormsModule } from '@angular/forms';
+
+- ✅ Output em HTML
+
+- ✅ TypeScript support@Component({
+
+- ✅ Responsive design  selector: 'app-my-component',
+
   standalone: true,
-  imports: [QuillEditorComponent, FormsModule],
-  template: `
-    <muxima-quill-editor
-      [(ngModel)]="content"
-      [height]="'500px'"
-      [placeholder]="'Comece a escrever...'"
-      (contentChanged)="onContentChange($event)">
-    </muxima-quill-editor>
-  `
-})
-export class MyComponent {
-  content = '<p>Olá mundo!</p>';
 
-  onContentChange(event: any) {
+## 📚 Documentation  imports: [QuillEditorComponent, FormsModule],
+
+  template: `
+
+**Full documentation:** https://muxima-ui.vercel.app    <muxima-quill-editor
+
+      [(ngModel)]="content"
+
+**Component docs:** https://muxima-ui.vercel.app/components/quill-editor      [height]="'500px'"
+
+      [placeholder]="'Comece a escrever...'"
+
+## 🔗 Links      (contentChanged)="onContentChange($event)">
+
+    </muxima-quill-editor>
+
+- [NPM Package](https://www.npmjs.com/package/@muxima-ui/quill-editor)  `
+
+- [GitHub Repository](https://github.com/Aldemiro20/muxima-ui)})
+
+- [Documentation](https://muxima-ui.vercel.app)export class MyComponent {
+
+- [Report Issues](https://github.com/Aldemiro20/muxima-ui/issues)  content = '<p>Olá mundo!</p>';
+
+
+
+## 📝 License  onContentChange(event: any) {
+
     console.log('HTML:', event.html);
-    console.log('Texto:', event.text);
+
+MIT © Muxima UI Team    console.log('Texto:', event.text);
+
     console.log('Palavras:', event.wordCount);
   }
 }

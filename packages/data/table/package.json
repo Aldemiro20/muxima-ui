@@ -1,9 +1,33 @@
 {
-  "name": "@agt-ui/table",
-  "version": "6.0.7",
+  "name": "@muxima-ui/table",
+  "version": "1.0.0",
+  "description": "Data table component for Angular 18+ - Muxima UI",
+  "keywords": [
+    "angular",
+    "table",
+    "data",
+    "grid",
+    "datatable",
+    "muxima-ui"
+  ],
+  "author": "Muxima UI Team (jokerscript)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aldemiro20/muxima-ui.git",
+    "directory": "packages/data/table"
+  },
+  "homepage": "https://muxima-ui.vercel.app/components/table",
+  "bugs": {
+    "url": "https://github.com/Aldemiro20/muxima-ui/issues"
+  },
+  "documentation": "https://muxima-ui.vercel.app",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
-    "@angular/common": "^15.2.0",
-    "@angular/core": "^15.2.0"
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

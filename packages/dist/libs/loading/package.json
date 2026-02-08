@@ -1,0 +1,55 @@
+{
+  "name": "@muxima-ui/loading",
+  "version": "1.0.0",
+  "description": "Loading spinner component for Angular 18+ - Muxima UI",
+  "keywords": [
+    "angular",
+    "loading",
+    "spinner",
+    "loader",
+    "progress",
+    "muxima-ui"
+  ],
+  "author": "Muxima UI Team (jokerscript)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aldemiro20/muxima-ui.git",
+    "directory": "packages/components/loading/loading"
+  },
+  "homepage": "https://muxima-ui.vercel.app/components/loading",
+  "bugs": {
+    "url": "https://github.com/Aldemiro20/muxima-ui/issues"
+  },
+  "documentation": "https://muxima-ui.vercel.app",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "module": "fesm2015/muxima-ui-loading.mjs",
+  "es2020": "fesm2020/muxima-ui-loading.mjs",
+  "esm2020": "esm2020/muxima-ui-loading.mjs",
+  "fesm2020": "fesm2020/muxima-ui-loading.mjs",
+  "fesm2015": "fesm2015/muxima-ui-loading.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2020": "./esm2020/muxima-ui-loading.mjs",
+      "es2020": "./fesm2020/muxima-ui-loading.mjs",
+      "es2015": "./fesm2015/muxima-ui-loading.mjs",
+      "node": "./fesm2015/muxima-ui-loading.mjs",
+      "default": "./fesm2020/muxima-ui-loading.mjs"
+    }
+  }
+}

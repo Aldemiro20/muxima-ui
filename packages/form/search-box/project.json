@@ -16,5 +16,22 @@
     "lint": {
       "executor": "@nx/eslint:lint"
     }
+  ,
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "packages/form/search-box/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/form/search-box/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "packages/form/search-box/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    }
   }
 }

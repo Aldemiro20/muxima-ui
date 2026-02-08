@@ -1,0 +1,36 @@
+import { EventEmitter } from '@angular/core';
+import { ControlValueAccessor } from '@angular/forms';
+import * as i0 from "@angular/core";
+export type SearchBoxSize = 'sm' | 'md' | 'lg';
+export type SearchBoxVariant = 'default' | 'outlined' | 'filled';
+export declare class SearchBoxComponent implements ControlValueAccessor {
+    placeholder: string;
+    size: SearchBoxSize;
+    variant: SearchBoxVariant;
+    disabled: boolean;
+    clearable: boolean;
+    loading: boolean;
+    debounceTime: number;
+    search: EventEmitter<string>;
+    clear: EventEmitter<void>;
+    focus: EventEmitter<void>;
+    blur: EventEmitter<void>;
+    searchValue: string;
+    isFocused: boolean;
+    private debounceTimer;
+    private onChange;
+    private onTouched;
+    get sizeClass(): string;
+    get variantClass(): string;
+    get showClear(): boolean;
+    onInput(event: Event): void;
+    onClear(): void;
+    onFocus(): void;
+    onBlur(): void;
+    writeValue(value: string): void;
+    registerOnChange(fn: (value: string) => void): void;
+    registerOnTouched(fn: () => void): void;
+    setDisabledState(isDisabled: boolean): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SearchBoxComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SearchBoxComponent, "muxima-search-box", never, { "placeholder": "placeholder"; "size": "size"; "variant": "variant"; "disabled": "disabled"; "clearable": "clearable"; "loading": "loading"; "debounceTime": "debounceTime"; }, { "search": "search"; "clear": "clear"; "focus": "focus"; "blur": "blur"; }, never, never, true, never>;
+}

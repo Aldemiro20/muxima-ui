@@ -1,0 +1,12 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import * as i0 from "@angular/core";
+export class DropdownDropdownComponent {
+}
+DropdownDropdownComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.10", ngImport: i0, type: DropdownDropdownComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+DropdownDropdownComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.2.10", type: DropdownDropdownComponent, isStandalone: true, selector: "muxima-dropdown-dropdown", ngImport: i0, template: "<p>dropdown-dropdown works!</p>\n", styles: [""], dependencies: [{ kind: "ngmodule", type: CommonModule }] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.10", ngImport: i0, type: DropdownDropdownComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'muxima-dropdown-dropdown', standalone: true, imports: [CommonModule], template: "<p>dropdown-dropdown works!</p>\n" }]
+        }] });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZHJvcGRvd24tZHJvcGRvd24uY29tcG9uZW50LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vb3ZlcmxheS9kcm9wZG93bi9kcm9wZG93bi9zcmMvbGliL2Ryb3Bkb3duLWRyb3Bkb3duL2Ryb3Bkb3duLWRyb3Bkb3duLmNvbXBvbmVudC50cyIsIi4uLy4uLy4uLy4uLy4uLy4uL292ZXJsYXkvZHJvcGRvd24vZHJvcGRvd24vc3JjL2xpYi9kcm9wZG93bi1kcm9wZG93bi9kcm9wZG93bi1kcm9wZG93bi5jb21wb25lbnQuaHRtbCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsU0FBUyxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBQzFDLE9BQU8sRUFBRSxZQUFZLEVBQUUsTUFBTSxpQkFBaUIsQ0FBQzs7QUFTL0MsTUFBTSxPQUFPLHlCQUF5Qjs7dUhBQXpCLHlCQUF5QjsyR0FBekIseUJBQXlCLG9GQ1Z0QyxtQ0FDQSx5RERLWSxZQUFZOzRGQUlYLHlCQUF5QjtrQkFQckMsU0FBUzsrQkFDRSwwQkFBMEIsY0FDeEIsSUFBSSxXQUNQLENBQUMsWUFBWSxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ29tcG9uZW50IH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5pbXBvcnQgeyBDb21tb25Nb2R1bGUgfSBmcm9tICdAYW5ndWxhci9jb21tb24nO1xuXG5AQ29tcG9uZW50KHtcbiAgc2VsZWN0b3I6ICdtdXhpbWEtZHJvcGRvd24tZHJvcGRvd24nLFxuICBzdGFuZGFsb25lOiB0cnVlLFxuICBpbXBvcnRzOiBbQ29tbW9uTW9kdWxlXSxcbiAgdGVtcGxhdGVVcmw6ICcuL2Ryb3Bkb3duLWRyb3Bkb3duLmNvbXBvbmVudC5odG1sJyxcbiAgc3R5bGVVcmxzOiBbJy4vZHJvcGRvd24tZHJvcGRvd24uY29tcG9uZW50LmNzcyddLFxufSlcbmV4cG9ydCBjbGFzcyBEcm9wZG93bkRyb3Bkb3duQ29tcG9uZW50IHt9XG4iLCI8cD5kcm9wZG93bi1kcm9wZG93biB3b3JrcyE8L3A+XG4iXX0=

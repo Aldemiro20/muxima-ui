@@ -1,9 +1,37 @@
 {
   "name": "@muxima-ui/command-palette",
   "version": "1.0.0",
-  "description": "Command Palette component for Angular 18+ - Ctrl+K quick actions",
+  "description": "Command Palette component for Angular 18+ - Ctrl+K quick actions - Muxima UI",
+  "keywords": [
+    "angular",
+    "command-palette",
+    "command",
+    "search",
+    "quick-actions",
+    "keyboard",
+    "muxima-ui"
+  ],
+  "author": "Muxima UI Team (jokerscript)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aldemiro20/muxima-ui.git",
+    "directory": "packages/overlay/command-palette"
+  },
+  "homepage": "https://muxima-ui.vercel.app/components/command-palette",
+  "bugs": {
+    "url": "https://github.com/Aldemiro20/muxima-ui/issues"
+  },
+  "documentation": "https://muxima-ui.vercel.app",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
     "@angular/common": "^18.0.0",
     "@angular/core": "^18.0.0"
-  }
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
 }

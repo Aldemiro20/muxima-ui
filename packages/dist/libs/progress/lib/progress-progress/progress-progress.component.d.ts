@@ -1,0 +1,37 @@
+import { OnInit, OnDestroy } from '@angular/core';
+import * as i0 from "@angular/core";
+type ProgressType = 'linear' | 'circular' | 'bar' | 'gradient' | 'indeterminate';
+type ProgressColor = 'primary' | 'success' | 'warning' | 'error' | 'info' | 'purple';
+type ProgressVariant = 'default' | 'rounded' | 'square' | 'pill';
+export declare class ProgressProgressComponent implements OnInit, OnDestroy {
+    value: number;
+    max: number;
+    type: ProgressType;
+    color: ProgressColor;
+    showLabel: boolean;
+    striped: boolean;
+    animated: boolean;
+    size: 'sm' | 'md' | 'lg';
+    variant: ProgressVariant;
+    thickness: 'thin' | 'medium' | 'thick';
+    showPercentage: boolean;
+    buffer: number;
+    multiColor: boolean;
+    pulse: boolean;
+    glow: boolean;
+    private pulseInterval;
+    ngOnInit(): void;
+    ngOnDestroy(): void;
+    get percentage(): number;
+    get bufferPercentage(): number;
+    get strokeDashoffset(): number;
+    get strokeDasharray(): number;
+    getCircularRadius(): number;
+    getStrokeWidth(): number;
+    getColorClass(): string;
+    getGradientId(): string;
+    private startPulseAnimation;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ProgressProgressComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ProgressProgressComponent, "muxima-progress", never, { "value": "value"; "max": "max"; "type": "type"; "color": "color"; "showLabel": "showLabel"; "striped": "striped"; "animated": "animated"; "size": "size"; "variant": "variant"; "thickness": "thickness"; "showPercentage": "showPercentage"; "buffer": "buffer"; "multiColor": "multiColor"; "pulse": "pulse"; "glow": "glow"; }, {}, never, never, true, never>;
+}
+export {};

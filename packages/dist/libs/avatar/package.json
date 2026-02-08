@@ -1,0 +1,55 @@
+{
+  "name": "@muxima-ui/avatar",
+  "version": "1.0.0",
+  "description": "Avatar component for Angular 18+ - Muxima UI",
+  "keywords": [
+    "angular",
+    "avatar",
+    "profile",
+    "image",
+    "user",
+    "muxima-ui"
+  ],
+  "author": "Muxima UI Team (jokerscript)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aldemiro20/muxima-ui.git",
+    "directory": "packages/components/avatar/avatar"
+  },
+  "homepage": "https://muxima-ui.vercel.app/components/avatar",
+  "bugs": {
+    "url": "https://github.com/Aldemiro20/muxima-ui/issues"
+  },
+  "documentation": "https://muxima-ui.vercel.app",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "module": "fesm2015/muxima-ui-avatar.mjs",
+  "es2020": "fesm2020/muxima-ui-avatar.mjs",
+  "esm2020": "esm2020/muxima-ui-avatar.mjs",
+  "fesm2020": "fesm2020/muxima-ui-avatar.mjs",
+  "fesm2015": "fesm2015/muxima-ui-avatar.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2020": "./esm2020/muxima-ui-avatar.mjs",
+      "es2020": "./fesm2020/muxima-ui-avatar.mjs",
+      "es2015": "./fesm2015/muxima-ui-avatar.mjs",
+      "node": "./fesm2015/muxima-ui-avatar.mjs",
+      "default": "./fesm2020/muxima-ui-avatar.mjs"
+    }
+  }
+}

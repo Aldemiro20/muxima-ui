@@ -1,11 +1,37 @@
 {
   "name": "@muxima-ui/confirmation-dialog",
   "version": "1.0.0",
+  "description": "Confirmation dialog component for Angular 18+ - Muxima UI",
+  "keywords": [
+    "angular",
+    "confirmation",
+    "dialog",
+    "confirm",
+    "alert",
+    "overlay",
+    "muxima-ui"
+  ],
+  "author": "Muxima UI Team (jokerscript)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aldemiro20/muxima-ui.git",
+    "directory": "packages/overlay/confirmation-dialog"
+  },
+  "homepage": "https://muxima-ui.vercel.app/components/confirmation-dialog",
+  "bugs": {
+    "url": "https://github.com/Aldemiro20/muxima-ui/issues"
+  },
+  "documentation": "https://muxima-ui.vercel.app",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
-    "@angular/common": "^15.2.0",
-    "@angular/core": "^15.2.0"
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
-  }
+  },
+  "sideEffects": false
 }

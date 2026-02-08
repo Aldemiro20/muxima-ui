@@ -1,0 +1,30 @@
+import { EventEmitter } from '@angular/core';
+import * as i0 from "@angular/core";
+type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+type AvatarStatus = 'online' | 'offline' | 'away' | 'busy' | 'none';
+type AvatarShape = 'circle' | 'square' | 'rounded';
+export declare class AvatarAvatarComponent {
+    src?: string;
+    alt: string;
+    name?: string;
+    size: AvatarSize;
+    status: AvatarStatus;
+    badge?: string | number;
+    shape: AvatarShape;
+    bgColor?: string;
+    clickable: boolean;
+    tooltip?: string;
+    avatarClick: EventEmitter<MouseEvent>;
+    imageError: boolean;
+    showTooltip: boolean;
+    onClick(event: MouseEvent): void;
+    onMouseEnter(): void;
+    onMouseLeave(): void;
+    getInitials(): string;
+    onImageError(): void;
+    getRandomColor(): string;
+    getTooltipText(): string;
+    static ɵfac: i0.ɵɵFactoryDeclaration<AvatarAvatarComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<AvatarAvatarComponent, "muxima-avatar", never, { "src": "src"; "alt": "alt"; "name": "name"; "size": "size"; "status": "status"; "badge": "badge"; "shape": "shape"; "bgColor": "bgColor"; "clickable": "clickable"; "tooltip": "tooltip"; }, { "avatarClick": "avatarClick"; }, never, never, true, never>;
+}
+export {};

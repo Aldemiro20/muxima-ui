@@ -1,8 +1,8 @@
 {
-  "name": "data-product-card-product-card",
+  "name": "product-card",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/data/product-card/product-card/src",
-  "prefix": "lib",
+  "prefix": "muxima",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -15,6 +15,22 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
+    },
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "packages/data/product-card/product-card/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/data/product-card/product-card/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "packages/data/product-card/product-card/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
     }
   }
 }

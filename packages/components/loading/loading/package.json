@@ -1,0 +1,36 @@
+{
+  "name": "@muxima-ui/loading",
+  "version": "1.0.0",
+  "description": "Loading spinner component for Angular 18+ - Muxima UI",
+  "keywords": [
+    "angular",
+    "loading",
+    "spinner",
+    "loader",
+    "progress",
+    "muxima-ui"
+  ],
+  "author": "Muxima UI Team (jokerscript)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aldemiro20/muxima-ui.git",
+    "directory": "packages/components/loading/loading"
+  },
+  "homepage": "https://muxima-ui.vercel.app/components/loading",
+  "bugs": {
+    "url": "https://github.com/Aldemiro20/muxima-ui/issues"
+  },
+  "documentation": "https://muxima-ui.vercel.app",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

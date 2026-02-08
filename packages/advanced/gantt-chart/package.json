@@ -1,8 +1,38 @@
 {
   "name": "@muxima-ui/gantt-chart",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "description": "Gantt chart component for Angular 18+ - Project timeline visualization - Muxima UI",
+  "keywords": [
+    "angular",
+    "gantt",
+    "chart",
+    "timeline",
+    "project",
+    "schedule",
+    "advanced",
+    "muxima-ui"
+  ],
+  "author": "Muxima UI Team (jokerscript)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aldemiro20/muxima-ui.git",
+    "directory": "packages/advanced/gantt-chart"
+  },
+  "homepage": "https://muxima-ui.vercel.app/components/gantt-chart",
+  "bugs": {
+    "url": "https://github.com/Aldemiro20/muxima-ui/issues"
+  },
+  "documentation": "https://muxima-ui.vercel.app",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
     "@angular/common": "^18.0.0",
     "@angular/core": "^18.0.0"
-  }
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
 }

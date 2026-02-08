@@ -1,17 +1,36 @@
 {
   "name": "@muxima-ui/quill-editor",
-  "version": "1.0.0",
-  "description": "Advanced WYSIWYG rich text editor built from scratch",
+  "version": "1.0.1",
+  "description": "Advanced WYSIWYG rich text editor built from scratch for Angular 18+ - Muxima UI",
   "keywords": [
     "angular",
     "editor",
     "wysiwyg",
     "rich-text",
-    "contenteditable"
+    "contenteditable",
+    "text-editor",
+    "formatting",
+    "muxima-ui"
   ],
+  "author": "Muxima UI Team (jokerscript)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aldemiro20/muxima-ui.git",
+    "directory": "packages/advanced/quill-editor"
+  },
+  "homepage": "https://muxima-ui.vercel.app/components/quill-editor",
+  "bugs": {
+    "url": "https://github.com/Aldemiro20/muxima-ui/issues"
+  },
+  "documentation": "https://muxima-ui.vercel.app",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
     "@angular/common": "^18.0.0",
     "@angular/core": "^18.0.0",
     "@angular/forms": "^18.0.0"
-  }
+  },
+  "sideEffects": false
 }

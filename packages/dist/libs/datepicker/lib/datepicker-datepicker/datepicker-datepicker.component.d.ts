@@ -1,0 +1,50 @@
+import { EventEmitter, OnInit, ElementRef } from '@angular/core';
+import * as i0 from "@angular/core";
+export type DatepickerMode = 'single' | 'range';
+export interface DateRange {
+    start: Date | null;
+    end: Date | null;
+}
+export declare class DatepickerDatepickerComponent implements OnInit {
+    private elementRef;
+    mode: DatepickerMode;
+    placeholder: string;
+    minDate?: Date;
+    maxDate?: Date;
+    format: string;
+    value?: Date | DateRange;
+    valueChange: EventEmitter<DateRange | Date>;
+    dateSelect: EventEmitter<Date>;
+    isOpen: boolean;
+    currentMonth: Date;
+    selectedDate: Date | null;
+    rangeStart: Date | null;
+    rangeEnd: Date | null;
+    hoverDate: Date | null;
+    weekDays: string[];
+    calendarDays: (Date | null)[];
+    constructor(elementRef: ElementRef);
+    onDocumentClick(event: MouseEvent): void;
+    ngOnInit(): void;
+    generateCalendar(): void;
+    previousMonth(): void;
+    nextMonth(): void;
+    selectDate(date: Date): void;
+    isDateSelected(date: Date): boolean;
+    isDateInRange(date: Date): boolean;
+    isRangeStart(date: Date): boolean;
+    isRangeEnd(date: Date): boolean;
+    isDateDisabled(date: Date): boolean;
+    isToday(date: Date): boolean;
+    isSameDay(date1: Date, date2: Date): boolean;
+    onDateHover(date: Date | null): void;
+    toggleCalendar(): void;
+    closeCalendar(): void;
+    getFormattedDate(): string;
+    formatDate(date: Date): string;
+    getMonthYearLabel(): string;
+    selectToday(): void;
+    clearSelection(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<DatepickerDatepickerComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<DatepickerDatepickerComponent, "muxima-datepicker", never, { "mode": "mode"; "placeholder": "placeholder"; "minDate": "minDate"; "maxDate": "maxDate"; "format": "format"; "value": "value"; }, { "valueChange": "valueChange"; "dateSelect": "dateSelect"; }, never, never, true, never>;
+}
