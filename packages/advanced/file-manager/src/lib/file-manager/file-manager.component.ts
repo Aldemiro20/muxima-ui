@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -30,7 +30,7 @@ export type SortOrder = 'asc' | 'desc';
   templateUrl: './file-manager.component.html',
   styleUrls: ['./file-manager.component.scss']
 })
-export class FileManagerComponent implements OnInit {
+export class FileManagerComponent implements OnInit, OnChanges {
   @Input() files: FileItem[] = [];
   @Input() viewMode: FileViewMode = 'grid';
   @Input() allowUpload: boolean = true;
@@ -38,14 +38,16 @@ export class FileManagerComponent implements OnInit {
   @Input() showBreadcrumb: boolean = true;
   @Input() showSearch: boolean = true;
   @Input() showToolbar: boolean = true;
+  @Input() theme: 'light' | 'dark' = 'dark';
   
   @Output() fileSelected = new EventEmitter<FileItem[]>();
   @Output() fileOpened = new EventEmitter<FileItem>();
   @Output() folderOpened = new EventEmitter<FileItem>();
   @Output() fileDeleted = new EventEmitter<FileItem>();
   @Output() fileRenamed = new EventEmitter<{ file: FileItem; newName: string }>();
-  @Output() fileUploaded = new EventEmitter<File[]>();
-  @Output() folderCreated = new EventEmitter<string>();
+  @Output() fileUploaded = new EventEmitter<{ files: File[]; folderId?: string | number }>();
+  @Output() folderCreated = new EventEmitter<{ name: string; parentId?: string | number }>();
+  @Output() themeChanged = new EventEmitter<'light' | 'dark'>();
 
   currentFolderId?: string | number;
   selectedFiles: Set<string | number> = new Set();
@@ -55,13 +57,19 @@ export class FileManagerComponent implements OnInit {
   
   breadcrumbs: FileItem[] = [];
   filteredFiles: FileItem[] = [];
+  
+  // Modal state for folder creation
+  showCreateFolderModal = false;
+  newFolderName = '';
 
   ngOnInit(): void {
     this.updateFilteredFiles();
   }
 
-  ngOnChanges(): void {
-    this.updateFilteredFiles();
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['files']) {
+      this.updateFilteredFiles();
+    }
   }
 
   private updateFilteredFiles(): void {
@@ -177,6 +185,11 @@ export class FileManagerComponent implements OnInit {
     this.emitSelection();
   }
 
+  toggleTheme(): void {
+    this.theme = this.theme === 'dark' ? 'light' : 'dark';
+    this.themeChanged.emit(this.theme);
+  }
+
   selectAll(): void {
     this.filteredFiles.forEach(f => this.selectedFiles.add(f.id));
     this.emitSelection();
@@ -220,42 +233,80 @@ export class FileManagerComponent implements OnInit {
     this.selectedFiles.clear();
   }
 
+  getFileIconSvg(file: FileItem): string {
+    const iconType = this.getFileIcon(file);
+    const svgs: { [key: string]: string } = {
+      'folder': '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"></path></svg>',
+      'pdf': '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><path d="M14 2v6h6M9 13h6M9 17h3"></path></svg>',
+      'document': '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"></path></svg>',
+      'spreadsheet': '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="9" x2="15" y2="21"></line></svg>',
+      'presentation': '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>',
+      'image': '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>',
+      'video': '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 7l-7 5 7 5V7z"></path><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>',
+      'audio': '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>',
+      'archive': '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 8v13H3V8M1 3h22v5H1zM10 12h4"></path></svg>',
+      'text': '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"></path></svg>',
+      'code': '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"></path></svg>',
+      'file': '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"></path><path d="M13 2v7h7"></path></svg>'
+    };
+    return svgs[iconType] || svgs['file'];
+  }
+
+  getFileIconSvgSmall(file: FileItem): string {
+    const iconType = this.getFileIcon(file);
+    const svgs: { [key: string]: string } = {
+      'folder': '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"></path></svg>',
+      'pdf': '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><path d="M14 2v6h6"></path></svg>',
+      'document': '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><path d="M14 2v6h6M16 13H8"></path></svg>',
+      'spreadsheet': '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="3" x2="9" y2="21"></line></svg>',
+      'presentation': '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="12" y1="17" x2="12" y2="21"></line></svg>',
+      'image': '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>',
+      'video': '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"></path><rect x="1" y="5" width="15" height="14" rx="2"></rect></svg>',
+      'audio': '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle></svg>',
+      'archive': '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8v13H3V8M1 3h22v5H1z"></path></svg>',
+      'text': '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><path d="M14 2v6h6"></path></svg>',
+      'code': '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"></path></svg>',
+      'file': '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"></path><path d="M13 2v7h7"></path></svg>'
+    };
+    return svgs[iconType] || svgs['file'];
+  }
+
   getFileIcon(file: FileItem): string {
     if (file.icon) return file.icon;
     
     if (file.type === 'folder') {
-      return '📁';
+      return 'folder';
     }
 
     const ext = file.extension?.toLowerCase();
     switch (ext) {
-      case 'pdf': return '📄';
+      case 'pdf': return 'pdf';
       case 'doc':
-      case 'docx': return '📝';
+      case 'docx': return 'document';
       case 'xls':
-      case 'xlsx': return '📊';
+      case 'xlsx': return 'spreadsheet';
       case 'ppt':
-      case 'pptx': return '📽️';
+      case 'pptx': return 'presentation';
       case 'jpg':
       case 'jpeg':
       case 'png':
       case 'gif':
-      case 'svg': return '🖼️';
+      case 'svg': return 'image';
       case 'mp4':
       case 'avi':
-      case 'mov': return '🎥';
+      case 'mov': return 'video';
       case 'mp3':
-      case 'wav': return '🎵';
+      case 'wav': return 'audio';
       case 'zip':
       case 'rar':
-      case '7z': return '📦';
-      case 'txt': return '📃';
+      case '7z': return 'archive';
+      case 'txt': return 'text';
       case 'html':
       case 'css':
       case 'js':
       case 'ts':
-      case 'json': return '💻';
-      default: return '📄';
+      case 'json': return 'code';
+      default: return 'file';
     }
   }
 
@@ -297,16 +348,31 @@ export class FileManagerComponent implements OnInit {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       const files = Array.from(input.files);
-      this.fileUploaded.emit(files);
+      console.log('[FileManager] Uploading files:', files.length, 'to folder:', this.currentFolderId);
+      this.fileUploaded.emit({ files, folderId: this.currentFolderId });
       input.value = '';
     }
   }
 
   createFolder(): void {
-    const name = prompt('Nome da pasta:');
-    if (name) {
-      this.folderCreated.emit(name);
+    this.newFolderName = '';
+    this.showCreateFolderModal = true;
+  }
+  
+  confirmCreateFolder(): void {
+    if (this.newFolderName.trim()) {
+      console.log('[FileManager] Creating folder:', this.newFolderName.trim(), 'in folder:', this.currentFolderId);
+      this.folderCreated.emit({ 
+        name: this.newFolderName.trim(), 
+        parentId: this.currentFolderId 
+      });
+      this.cancelCreateFolder();
     }
+  }
+  
+  cancelCreateFolder(): void {
+    this.showCreateFolderModal = false;
+    this.newFolderName = '';
   }
 
   getSelectedCount(): number {

@@ -84,9 +84,20 @@
   }
 
   .feature-icon {
-    font-size: 2.5rem;
-    display: block;
-    margin-bottom: 0.75rem;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    color: white;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
   }
 
   h4 {
@@ -198,11 +209,17 @@ pre {
   border-radius: 12px;
   padding: 1.5rem;
   transition: all 0.3s ease;
+  text-align: center;
 
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
     border-color: #667eea;
+  }
+
+  svg {
+    color: #667eea;
+    margin-bottom: 1rem;
   }
 
   h4 {

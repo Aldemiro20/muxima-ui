@@ -1,0 +1,326 @@
+<div class="doc-container">
+  <div class="doc-header">
+    <div class="header-content">
+      <span class="component-icon">📑</span>
+      <div>
+        <h1>Tabs</h1>
+        <p class="component-description">
+          Componente de abas profissional e versátil para organizar conteúdo em seções navegáveis.
+          Suporta ícones, múltiplas variantes e é totalmente responsivo.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Instalação -->
+  <section class="doc-section">
+    <h2 class="section-title">📦 Instalação</h2>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('import') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Tabs Básicas -->
+  <section class="doc-section">
+    <h2 class="section-title">🚀 Tabs Básicas (Default)</h2>
+    <p class="section-description">
+      Layout padrão com borda inferior simples. Ideal para navegação básica de conteúdo.
+    </p>
+    <div class="demo-container">
+      <muxima-tabs
+        [tabs]="basicTabs"
+        [(activeTab)]="activeTabBasic"
+        variant="default"
+        (tabChange)="onTabChange($event)">
+        
+        <div class="tab-panel" *ngIf="activeTabBasic === 'home'">
+          <h3>Home</h3>
+          <p>Welcome to the home section. This is where your main content appears.</p>
+        </div>
+        <div class="tab-panel" *ngIf="activeTabBasic === 'profile'">
+          <h3>Profile</h3>
+          <p>Manage your profile information and settings here.</p>
+        </div>
+        <div class="tab-panel" *ngIf="activeTabBasic === 'settings'">
+          <h3>Settings</h3>
+          <p>Configure your application preferences and options.</p>
+        </div>
+        <div class="tab-panel" *ngIf="activeTabBasic === 'about'">
+          <h3>About</h3>
+          <p>Learn more about this application and its features.</p>
+        </div>
+      </muxima-tabs>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('basic') }}</code></pre>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('basicTabs') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Tabs Underline -->
+  <section class="doc-section">
+    <h2 class="section-title">✨ Tabs Underline</h2>
+    <p class="section-description">
+      Variante com linha colorida sob a aba ativa. Visual moderno e elegante com gradiente purple.
+    </p>
+    <div class="demo-container">
+      <muxima-tabs
+        [tabs]="underlineTabs"
+        [(activeTab)]="activeTabUnderline"
+        variant="underline">
+        
+        <div class="tab-panel" *ngIf="activeTabUnderline === 'profile'">
+          <h3>Profile Information</h3>
+          <p>Update your personal details and profile picture.</p>
+        </div>
+        <div class="tab-panel" *ngIf="activeTabUnderline === 'account'">
+          <h3>Account Settings</h3>
+          <p>Manage your account preferences and login credentials.</p>
+        </div>
+        <div class="tab-panel" *ngIf="activeTabUnderline === 'notifications'">
+          <h3>Notification Preferences</h3>
+          <p>Control how and when you receive notifications.</p>
+        </div>
+        <div class="tab-panel" *ngIf="activeTabUnderline === 'security'">
+          <h3>Security & Privacy</h3>
+          <p>Configure security settings and privacy options.</p>
+        </div>
+      </muxima-tabs>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('underline') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Tabs Pills -->
+  <section class="doc-section">
+    <h2 class="section-title">💊 Tabs Pills</h2>
+    <p class="section-description">
+      Variante com abas em formato de pílulas. Aba ativa tem gradiente purple completo.
+    </p>
+    <div class="demo-container">
+      <muxima-tabs
+        [tabs]="pillsTabs"
+        [(activeTab)]="activeTabPills"
+        variant="pills">
+        
+        <div class="tab-panel" *ngIf="activeTabPills === 'settings'">
+          <h3>General Settings</h3>
+          <p>Configure your general application settings.</p>
+        </div>
+        <div class="tab-panel" *ngIf="activeTabPills === 'integrations'">
+          <h3>Integrations</h3>
+          <p>Connect with third-party services and APIs.</p>
+        </div>
+        <div class="tab-panel" *ngIf="activeTabPills === 'billing'">
+          <h3>Billing & Payments</h3>
+          <p>Manage your subscription and payment methods.</p>
+        </div>
+      </muxima-tabs>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('pills') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Tabs Bordered -->
+  <section class="doc-section">
+    <h2 class="section-title">🎨 Tabs Bordered</h2>
+    <p class="section-description">
+      Variante com container bordered e fundo cinza. Aba ativa tem fundo branco e sombra.
+    </p>
+    <div class="demo-container">
+      <muxima-tabs
+        [tabs]="borderedTabs"
+        [(activeTab)]="activeTabBordered"
+        variant="bordered">
+        
+        <div class="tab-panel" *ngIf="activeTabBordered === 'about'">
+          <h3>About Us</h3>
+          <p>Learn about our company history and mission.</p>
+        </div>
+        <div class="tab-panel" *ngIf="activeTabBordered === 'features'">
+          <h3>Product Features</h3>
+          <p>Discover all the amazing features we offer.</p>
+        </div>
+        <div class="tab-panel" *ngIf="activeTabBordered === 'pricing'">
+          <h3>Pricing Plans</h3>
+          <p>Choose the perfect plan for your needs.</p>
+        </div>
+      </muxima-tabs>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('bordered') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Tabs com Ícones -->
+  <section class="doc-section">
+    <h2 class="section-title">🎯 Tabs com Ícones SVG</h2>
+    <p class="section-description">
+      Adicione ícones SVG às suas tabs para melhor contexto visual. Suporta ícones com múltiplos paths.
+    </p>
+    <div class="demo-container">
+      <muxima-tabs
+        [tabs]="iconTabs"
+        [(activeTab)]="activeTabIcons"
+        variant="underline">
+        
+        <div class="tab-panel" *ngIf="activeTabIcons === 'general'">
+          <h3>⚙️ General Settings</h3>
+          <p>Configure your application name, language, timezone and date format.</p>
+        </div>
+        <div class="tab-panel" *ngIf="activeTabIcons === 'notifications'">
+          <h3>🔔 Notification Settings</h3>
+          <p>Manage email notifications, push notifications and alerts.</p>
+        </div>
+        <div class="tab-panel" *ngIf="activeTabIcons === 'security'">
+          <h3>🔒 Security Settings</h3>
+          <p>Update password, enable 2FA and manage active sessions.</p>
+        </div>
+      </muxima-tabs>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('icons') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Tabs Desabilitadas -->
+  <section class="doc-section">
+    <h2 class="section-title">🚫 Tabs Desabilitadas</h2>
+    <p class="section-description">
+      Desabilite tabs específicas quando necessário. Elas aparecem com opacidade reduzida e não são clicáveis.
+    </p>
+    <div class="demo-container">
+      <muxima-tabs
+        [tabs]="disabledTabs"
+        [(activeTab)]="activeTabDisabled"
+        variant="underline">
+        
+        <div class="tab-panel" *ngIf="activeTabDisabled === 'active1'">
+          <h3>Active Tab 1</h3>
+          <p>This tab is active and clickable.</p>
+        </div>
+        <div class="tab-panel" *ngIf="activeTabDisabled === 'active2'">
+          <h3>Active Tab 2</h3>
+          <p>This tab is also active and clickable.</p>
+        </div>
+      </muxima-tabs>
+    </div>
+    <div class="code-block">
+      <pre><code>{{ getCodeExample('disabled') }}</code></pre>
+    </div>
+  </section>
+
+  <!-- API Reference -->
+  <section class="doc-section">
+    <h2 class="section-title">📚 API Reference</h2>
+    
+    <h3 class="subsection-title">Inputs</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>tabs</code></td>
+            <td>TabItem[]</td>
+            <td>[]</td>
+            <td>Array de tabs a serem exibidas</td>
+          </tr>
+          <tr>
+            <td><code>activeTab</code></td>
+            <td>string</td>
+            <td>''</td>
+            <td>ID da tab atualmente ativa</td>
+          </tr>
+          <tr>
+            <td><code>variant</code></td>
+            <td>'default' | 'underline' | 'pills' | 'bordered'</td>
+            <td>'underline'</td>
+            <td>Estilo visual das tabs</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="subsection-title">Outputs</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>activeTabChange</code></td>
+            <td>string</td>
+            <td>Emitido quando a tab ativa muda (two-way binding)</td>
+          </tr>
+          <tr>
+            <td><code>tabChange</code></td>
+            <td>TabItem</td>
+            <td>Emitido quando uma tab é clicada, retorna o objeto completo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="subsection-title">Interface TabItem</h3>
+    <div class="code-block">
+      <pre><code>interface TabItem {{'{' }}
+  id: string;              // Identificador único da tab
+  label: string;           // Texto exibido na tab
+  icon?: string;           // Path SVG do ícone (opcional)
+  icon2?: string;          // Segundo path SVG (opcional, para ícones complexos)
+  disabled?: boolean;      // Se true, a tab não pode ser clicada
+{{'}'}}</code></pre>
+    </div>
+  </section>
+
+  <!-- Boas Práticas -->
+  <section class="doc-section">
+    <h2 class="section-title">💡 Boas Práticas</h2>
+    <div class="best-practices">
+      <div class="practice-item">
+        <span class="practice-icon">✅</span>
+        <div>
+          <strong>Use 3-7 tabs</strong>
+          <p>Número ideal para não sobrecarregar a interface. Para mais opções, considere outro padrão de navegação.</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="practice-icon">✅</span>
+        <div>
+          <strong>Labels claras e concisas</strong>
+          <p>Use palavras simples que descrevam claramente o conteúdo de cada seção.</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="practice-icon">✅</span>
+        <div>
+          <strong>Ícones quando apropriado</strong>
+          <p>Ícones ajudam na identificação rápida, mas não são necessários em todos os casos.</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="practice-icon">✅</span>
+        <div>
+          <strong>Escolha a variante certa</strong>
+          <p>Underline para settings, Pills para filters, Bordered para cards/containers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

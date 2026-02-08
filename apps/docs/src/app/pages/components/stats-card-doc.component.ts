@@ -39,22 +39,22 @@ export class StatsCardDocComponent {
   [trend]="8.2"
   trendLabel="this week"
   [sparklineData]="[120, 132, 125, 145, 150, 165, 170, 180, 185, 195, 200, 210]"
-  color="success">
+  color="green">
 </muxima-stats-card>`,
     colors: `<!-- Primary (Purple) -->
 <muxima-stats-card color="primary" ...></muxima-stats-card>
 
-<!-- Success (Green) -->
-<muxima-stats-card color="success" ...></muxima-stats-card>
+<!-- Green -->
+<muxima-stats-card color="green" ...></muxima-stats-card>
 
-<!-- Warning (Orange) -->
-<muxima-stats-card color="warning" ...></muxima-stats-card>
+<!-- Orange -->
+<muxima-stats-card color="orange" ...></muxima-stats-card>
 
-<!-- Danger (Red) -->
-<muxima-stats-card color="danger" ...></muxima-stats-card>
+<!-- Red -->
+<muxima-stats-card color="red" ...></muxima-stats-card>
 
-<!-- Info (Blue) -->
-<muxima-stats-card color="info" ...></muxima-stats-card>`,
+<!-- Blue -->
+<muxima-stats-card color="blue" ...></muxima-stats-card>`,
     sizes: `<!-- Small -->
 <muxima-stats-card size="sm" ...></muxima-stats-card>
 
@@ -66,6 +66,36 @@ export class StatsCardDocComponent {
     loading: `<muxima-stats-card
   label="Loading Data"
   [loading]="true">
+</muxima-stats-card>`,
+    glass: `<!-- Glass Variant (Glassmorphism) -->
+<muxima-stats-card
+  variant="glass"
+  label="Total Users"
+  value="10K+"
+  icon="⚡"
+  [trend]="15.3"
+  trendLabel="this month"
+  color="primary">
+</muxima-stats-card>`,
+    neon: `<!-- Neon Variant (Cyberpunk) -->
+<muxima-stats-card
+  variant="neon"
+  label="Active Now"
+  value="1,234"
+  icon="🚀"
+  [trend]="8.7"
+  trendLabel="live users"
+  color="primary">
+</muxima-stats-card>`,
+    gradient: `<!-- Gradient Variant -->
+<muxima-stats-card
+  variant="gradient"
+  label="Revenue"
+  value="$45K"
+  icon="💎"
+  [trend]="23.5"
+  trendLabel="this quarter"
+  color="primary">
 </muxima-stats-card>`,
     dashboard: `<!-- Dashboard Grid -->
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
@@ -86,7 +116,7 @@ export class StatsCardDocComponent {
     [trend]="8.2"
     trendLabel="this week"
     [sparklineData]="usersData"
-    color="success">
+    color="green">
   </muxima-stats-card>
 
   <muxima-stats-card
@@ -96,7 +126,7 @@ export class StatsCardDocComponent {
     [trend]="-3.1"
     trendLabel="vs yesterday"
     [sparklineData]="ordersData"
-    color="info">
+    color="blue">
   </muxima-stats-card>
 
   <muxima-stats-card
@@ -106,7 +136,7 @@ export class StatsCardDocComponent {
     [trend]="-4.8"
     trendLabel="improvement"
     [sparklineData]="bounceData"
-    color="warning">
+    color="orange">
   </muxima-stats-card>
 </div>`
   };

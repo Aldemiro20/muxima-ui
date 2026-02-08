@@ -1,0 +1,20 @@
+<div 
+  [class]="'feature-card feature-card-' + variant + ' feature-card-' + size"
+  [class.feature-card-hoverable]="hoverable">
+  
+  <div class="feature-card-icon" [class]="'feature-card-icon-' + iconColor">
+    <span class="feature-card-icon-content">{{ icon }}</span>
+  </div>
+  
+  <div class="feature-card-content">
+    <h3 class="feature-card-title">{{ title }}</h3>
+    <p class="feature-card-description">{{ description }}</p>
+    
+    <a 
+      *ngIf="linkText && linkUrl" 
+      [href]="linkUrl" 
+      class="feature-card-link">
+      {{ linkText }} <span class="feature-card-link-arrow">→</span>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,196 @@
+<div class="doc-page">
+  <header class="doc-header">
+    <h1>Avatar</h1>
+    <p>Avatares elegantes com gradientes, status e badges.</p>
+  </header>
+
+  <!-- Import -->
+  <section class="doc-section">
+    <h2>Importação</h2>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(importCode)">📋 Copiar</button>
+      <pre><code>{{ importCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Basic Usage -->
+  <section class="doc-section">
+    <h2>Uso Básico</h2>
+    <div class="demo-container">
+      <muxima-avatar name="Aldemiro Valentim" size="lg"></muxima-avatar>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(basicCode)">📋 Copiar</button>
+      <pre><code>{{ basicCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Sizes -->
+  <section class="doc-section">
+    <h2>Tamanhos</h2>
+    <div class="demo-container">
+      <div style="display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;">
+        <muxima-avatar name="User" size="xs"></muxima-avatar>
+        <muxima-avatar name="User" size="sm"></muxima-avatar>
+        <muxima-avatar name="User" size="md"></muxima-avatar>
+        <muxima-avatar name="User" size="lg"></muxima-avatar>
+        <muxima-avatar name="User" size="xl"></muxima-avatar>
+        <muxima-avatar name="User" size="2xl"></muxima-avatar>
+      </div>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(sizesCode)">📋 Copiar</button>
+      <pre><code>{{ sizesCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Shapes -->
+  <section class="doc-section">
+    <h2>Formas</h2>
+    <div class="demo-container">
+      <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
+        <div style="text-align: center;">
+          <muxima-avatar name="Circle" size="xl" shape="circle"></muxima-avatar>
+          <p style="margin-top: 0.5rem; color: #64748B; font-size: 0.875rem;">Circle</p>
+        </div>
+        <div style="text-align: center;">
+          <muxima-avatar name="Square" size="xl" shape="square"></muxima-avatar>
+          <p style="margin-top: 0.5rem; color: #64748B; font-size: 0.875rem;">Square</p>
+        </div>
+        <div style="text-align: center;">
+          <muxima-avatar name="Rounded" size="xl" shape="rounded"></muxima-avatar>
+          <p style="margin-top: 0.5rem; color: #64748B; font-size: 0.875rem;">Rounded</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Status -->
+  <section class="doc-section">
+    <h2>Status</h2>
+    <div class="demo-container">
+      <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
+        <div style="text-align: center;">
+          <muxima-avatar name="Online" size="xl" status="online"></muxima-avatar>
+          <p style="margin-top: 0.5rem; color: #64748B; font-size: 0.875rem;">Online</p>
+        </div>
+        <div style="text-align: center;">
+          <muxima-avatar name="Away" size="xl" status="away"></muxima-avatar>
+          <p style="margin-top: 0.5rem; color: #64748B; font-size: 0.875rem;">Away</p>
+        </div>
+        <div style="text-align: center;">
+          <muxima-avatar name="Busy" size="xl" status="busy"></muxima-avatar>
+          <p style="margin-top: 0.5rem; color: #64748B; font-size: 0.875rem;">Busy</p>
+        </div>
+        <div style="text-align: center;">
+          <muxima-avatar name="Offline" size="xl" status="offline"></muxima-avatar>
+          <p style="margin-top: 0.5rem; color: #64748B; font-size: 0.875rem;">Offline</p>
+        </div>
+      </div>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(statusCode)">📋 Copiar</button>
+      <pre><code>{{ statusCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- With Badge -->
+  <section class="doc-section">
+    <h2>Com Badge</h2>
+    <div class="demo-container">
+      <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
+        <muxima-avatar name="User" size="xl" [badge]="5"></muxima-avatar>
+        <muxima-avatar name="User" size="xl" [badge]="12"></muxima-avatar>
+        <muxima-avatar name="User" size="xl" [badge]="99"></muxima-avatar>
+      </div>
+    </div>
+  </section>
+
+  <!-- Colors -->
+  <section class="doc-section">
+    <h2>Cores Personalizadas</h2>
+    <div class="demo-container">
+      <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+        <muxima-avatar name="Azul" size="lg" bgColor="#3B82F6"></muxima-avatar>
+        <muxima-avatar name="Verde" size="lg" bgColor="#10B981"></muxima-avatar>
+        <muxima-avatar name="Roxo" size="lg" bgColor="#8B5CF6"></muxima-avatar>
+        <muxima-avatar name="Rosa" size="lg" bgColor="#EC4899"></muxima-avatar>
+        <muxima-avatar name="Laranja" size="lg" bgColor="#F59E0B"></muxima-avatar>
+      </div>
+    </div>
+  </section>
+
+  <!-- Different Names -->
+  <section class="doc-section">
+    <h2>Iniciais Automáticas</h2>
+    <div class="demo-container">
+      <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+        <muxima-avatar name="Aldemiro Valentim" size="lg"></muxima-avatar>
+        <muxima-avatar name="João Silva" size="lg"></muxima-avatar>
+        <muxima-avatar name="Maria Santos" size="lg"></muxima-avatar>
+        <muxima-avatar name="Pedro Costa" size="lg"></muxima-avatar>
+        <muxima-avatar name="Ana Ferreira" size="lg"></muxima-avatar>
+        <muxima-avatar name="Carlos Mendes" size="lg"></muxima-avatar>
+      </div>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2>API</h2>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Propriedade</th>
+          <th>Tipo</th>
+          <th>Padrão</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>name</code></td>
+          <td>string</td>
+          <td>-</td>
+          <td>Nome para gerar iniciais</td>
+        </tr>
+        <tr>
+          <td><code>src</code></td>
+          <td>string</td>
+          <td>-</td>
+          <td>URL da imagem</td>
+        </tr>
+        <tr>
+          <td><code>size</code></td>
+          <td>'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'</td>
+          <td>'md'</td>
+          <td>Tamanho do avatar</td>
+        </tr>
+        <tr>
+          <td><code>shape</code></td>
+          <td>'circle' | 'square' | 'rounded'</td>
+          <td>'circle'</td>
+          <td>Forma do avatar</td>
+        </tr>
+        <tr>
+          <td><code>status</code></td>
+          <td>'online' | 'offline' | 'away' | 'busy' | 'none'</td>
+          <td>'none'</td>
+          <td>Indicador de status</td>
+        </tr>
+        <tr>
+          <td><code>badge</code></td>
+          <td>string | number</td>
+          <td>-</td>
+          <td>Número do badge</td>
+        </tr>
+        <tr>
+          <td><code>bgColor</code></td>
+          <td>string</td>
+          <td>auto</td>
+          <td>Cor de fundo personalizada</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

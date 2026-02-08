@@ -1,0 +1,9 @@
+<div class="muxima-settings-item" [class]="'muxima-settings-item-' + variant">
+  <div class="setting-info">
+    <label class="setting-label">{{ label }}</label>
+    <p class="setting-description" *ngIf="description">{{ description }}</p>
+  </div>
+  <div class="setting-control">
+    <ng-content></ng-content>
+  </div>
+</div>

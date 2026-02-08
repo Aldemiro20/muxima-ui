@@ -1,0 +1,37 @@
+<div 
+  class="muxima-toolbar" 
+  [ngClass]="[variantClass, alignmentClass, sticky ? 'sticky' : '', shadow ? 'with-shadow' : '']"
+>
+  <div class="toolbar-container">
+    <!-- Left Section -->
+    <div class="toolbar-left">
+      <div *ngIf="title || subtitle" class="toolbar-heading">
+        <h2 *ngIf="title" class="toolbar-title">{{ title }}</h2>
+        <p *ngIf="subtitle" class="toolbar-subtitle">{{ subtitle }}</p>
+      </div>
+      <div class="toolbar-left-content">
+        <ng-content select="[left]"></ng-content>
+      </div>
+    </div>
+
+    <!-- Center Section -->
+    <div class="toolbar-center">
+      <ng-content select="[center]"></ng-content>
+    </div>
+
+    <!-- Right Section -->
+    <div class="toolbar-right">
+      <ng-content select="[right]"></ng-content>
+    </div>
+
+    <!-- Actions Section (for buttons, etc.) -->
+    <div class="toolbar-actions">
+      <ng-content select="[actions]"></ng-content>
+    </div>
+  </div>
+
+  <!-- Bottom Section (for filters, search, etc.) -->
+  <div class="toolbar-bottom">
+    <ng-content select="[bottom]"></ng-content>
+  </div>
+</div>

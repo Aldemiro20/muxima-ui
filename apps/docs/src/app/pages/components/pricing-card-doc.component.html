@@ -1,0 +1,300 @@
+<div class="doc-page">
+  <header class="doc-header">
+    <h1>Pricing Card</h1>
+    <p>Cards de preços profissionais com suporte a glassmorphism e neon - perfeitos para páginas de pricing.</p>
+  </header>
+
+  <!-- Import -->
+  <section class="doc-section">
+    <h2>Importação</h2>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(importCode)">📋 Copiar</button>
+      <pre><code>{{ importCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Basic Usage -->
+  <section class="doc-section">
+    <h2>Uso Básico</h2>
+    <div class="demo-container">
+      <div style="max-width: 400px;">
+        <muxima-pricing-card
+          planName="Starter"
+          price="$9"
+          period="per month"
+          description="Perfect for individuals and small projects"
+          [features]="basicFeatures"
+          buttonText="Start Free Trial"
+          (buttonClick)="handlePricingClick('starter')"
+        ></muxima-pricing-card>
+      </div>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(basicCode)">📋 Copiar</button>
+      <pre><code>{{ basicCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Variants Comparison -->
+  <section class="doc-section">
+    <h2>Comparação de Planos</h2>
+    <p>Exemplo de três planos lado a lado com variante default.</p>
+    <div class="demo-container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+        <muxima-pricing-card
+          variant="default"
+          planName="Starter"
+          price="$9"
+          period="per month"
+          description="For individuals"
+          [features]="basicFeatures"
+          buttonText="Get Started"
+        ></muxima-pricing-card>
+        
+        <muxima-pricing-card
+          variant="default"
+          planName="Pro"
+          price="$49"
+          period="per month"
+          description="For growing teams"
+          [features]="proFeatures"
+          [popular]="true"
+          buttonText="Upgrade to Pro"
+        ></muxima-pricing-card>
+        
+        <muxima-pricing-card
+          variant="default"
+          planName="Enterprise"
+          price="$199"
+          period="per month"
+          description="For large organizations"
+          [features]="enterpriseFeatures"
+          buttonText="Contact Sales"
+        ></muxima-pricing-card>
+      </div>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(variantsCode)">📋 Copiar</button>
+      <pre><code>{{ variantsCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Popular Badge -->
+  <section class="doc-section">
+    <h2>Badge de Popular</h2>
+    <p>Destaque planos recomendados com o badge de popular.</p>
+    <div class="demo-container">
+      <div style="max-width: 400px;">
+        <muxima-pricing-card
+          planName="Pro"
+          price="$49"
+          period="per month"
+          [popular]="true"
+          popularText="Most Popular"
+          [features]="proFeatures"
+        ></muxima-pricing-card>
+      </div>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(popularCode)">📋 Copiar</button>
+      <pre><code>{{ popularCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Glass Variant -->
+  <section style="background: linear-gradient(135deg, #1e3a8a 0%, #3b0764 50%, #581c87 100%); padding: 40px; border-radius: 16px; margin-top: 2rem;">
+    <h2 style="color: white; margin-bottom: 1.5rem;">Glass Variant</h2>
+    <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Pricing cards com efeito glassmorphism - design translúcido moderno e sofisticado.</p>
+    
+    <div style="padding: 2rem 0;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+        <muxima-pricing-card
+          variant="glass"
+          planName="Starter"
+          price="$19"
+          period="per month"
+          description="Perfect to get started"
+          [features]="basicFeatures"
+          buttonText="Get Started"
+        ></muxima-pricing-card>
+        
+        <muxima-pricing-card
+          variant="glass"
+          planName="Premium"
+          price="$79"
+          period="per month"
+          description="Advanced features for growing teams"
+          [features]="proFeatures"
+          buttonText="Upgrade Now"
+          [popular]="true"
+        ></muxima-pricing-card>
+        
+        <muxima-pricing-card
+          variant="glass"
+          planName="Enterprise"
+          price="Custom"
+          period=""
+          description="Tailored for your needs"
+          [features]="enterpriseFeatures"
+          buttonText="Contact Us"
+        ></muxima-pricing-card>
+      </div>
+    </div>
+    
+    <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 1.5rem; margin-top: 2rem; backdrop-filter: blur(10px);">
+      <button class="copy-btn" (click)="copyCode(glassCode)" style="background: rgba(255,255,255,0.2);">📋 Copiar</button>
+      <pre style="margin: 0;"><code style="color: rgba(255,255,255,0.95);">{{ glassCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Neon Variant -->
+  <section style="background: #0a0e27; padding: 40px; border-radius: 16px; border: 2px solid rgba(0,255,255,0.2); margin-top: 2rem;">
+    <h2 style="color: #00ffff; text-shadow: 0 0 20px rgba(0,255,255,0.5); margin-bottom: 1.5rem;">Neon Variant</h2>
+    <p style="color: rgba(255,255,255,0.8); margin-bottom: 2rem;">Pricing cards com efeito neon cyberpunk - perfeitos para produtos tech e gaming.</p>
+    
+    <div style="padding: 2rem 0;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+        <muxima-pricing-card
+          variant="neon"
+          planName="Gamer"
+          price="$29"
+          period="per month"
+          description="Essential gaming features"
+          [features]="basicFeatures"
+          buttonText="Start Gaming"
+        ></muxima-pricing-card>
+        
+        <muxima-pricing-card
+          variant="neon"
+          planName="Elite Gaming"
+          price="$99"
+          period="per month"
+          description="Ultimate performance for serious gamers"
+          [features]="enterpriseFeatures"
+          buttonText="Join Elite"
+          [popular]="true"
+          popularText="BEST VALUE"
+        ></muxima-pricing-card>
+      </div>
+    </div>
+    
+    <div style="background: rgba(0,255,255,0.05); border: 1px solid rgba(0,255,255,0.2); border-radius: 8px; padding: 1.5rem; margin-top: 2rem;">
+      <button class="copy-btn" (click)="copyCode(neonCode)" style="background: rgba(0,255,255,0.1); color: #00ffff; border: 1px solid rgba(0,255,255,0.3);">📋 Copiar</button>
+      <pre style="margin: 0;"><code style="color: #00ffff;">{{ neonCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Gradient Variant -->
+  <section class="doc-section">
+    <h2>Gradient Variant</h2>
+    <p>Pricing cards com gradientes vibrantes para criar destaque visual.</p>
+    <div class="demo-container">
+      <div style="max-width: 400px;">
+        <muxima-pricing-card
+          variant="gradient"
+          planName="Premium"
+          price="$79"
+          period="per month"
+          description="Everything you need to scale"
+          [features]="proFeatures"
+          buttonText="Go Premium"
+          [popular]="true"
+        ></muxima-pricing-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2>API</h2>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Propriedade</th>
+          <th>Tipo</th>
+          <th>Padrão</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>planName</code></td>
+          <td>string</td>
+          <td>''</td>
+          <td>Nome do plano</td>
+        </tr>
+        <tr>
+          <td><code>price</code></td>
+          <td>string</td>
+          <td>''</td>
+          <td>Preço do plano</td>
+        </tr>
+        <tr>
+          <td><code>period</code></td>
+          <td>string</td>
+          <td>''</td>
+          <td>Período de cobrança (ex: "per month")</td>
+        </tr>
+        <tr>
+          <td><code>description</code></td>
+          <td>string</td>
+          <td>''</td>
+          <td>Descrição do plano</td>
+        </tr>
+        <tr>
+          <td><code>features</code></td>
+          <td>PricingFeature[]</td>
+          <td>[]</td>
+          <td>Lista de funcionalidades ({{ '{' }} text: string, included: boolean {{ '}' }})</td>
+        </tr>
+        <tr>
+          <td><code>buttonText</code></td>
+          <td>string</td>
+          <td>'Get Started'</td>
+          <td>Texto do botão de ação</td>
+        </tr>
+        <tr>
+          <td><code>popular</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Mostra badge de popular/recomendado</td>
+        </tr>
+        <tr>
+          <td><code>popularText</code></td>
+          <td>string</td>
+          <td>'Most Popular'</td>
+          <td>Texto do badge de popular</td>
+        </tr>
+        <tr>
+          <td><code>variant</code></td>
+          <td>'default' | 'glass' | 'neon' | 'gradient'</td>
+          <td>'default'</td>
+          <td>Variante visual do card</td>
+        </tr>
+        <tr>
+          <td><code>hoverable</code></td>
+          <td>boolean</td>
+          <td>true</td>
+          <td>Ativa efeito hover</td>
+        </tr>
+        <tr>
+          <td><code>buttonClick</code></td>
+          <td>EventEmitter&lt;void&gt;</td>
+          <td>-</td>
+          <td>Evento emitido ao clicar no botão</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Feature Type -->
+  <section class="doc-section">
+    <h2>PricingFeature Type</h2>
+    <div class="code-block">
+      <pre><code>export type PricingFeature = {{ '{' }}
+  text: string;      // Texto da funcionalidade
+  included: boolean; // Se está incluída no plano
+{{ '}' }};</code></pre>
+    </div>
+  </section>
+</div>

@@ -1,5 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule, Router, NavigationEnd } from '@angular/router';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { filter } from 'rxjs/operators';
 
 export interface SidebarItem {
   label: string;
@@ -7,28 +10,62 @@ export interface SidebarItem {
   route?: string;
   children?: SidebarItem[];
   badge?: string | number;
+  badgeVariant?: 'default' | 'success' | 'warning' | 'danger';
   active?: boolean;
+  count?: string | number;
+  section?: string;
 }
 
-export type SidebarVariant = 'default' | 'compact' | 'floating';
+export interface SidebarSection {
+  label: string;
+  items: SidebarItem[];
+}
+
+export interface SidebarUser {
+  name: string;
+  role?: string;
+  avatar?: string;
+  initials?: string;
+}
+
+export type SidebarVariant = 'default' | 'compact' | 'floating' | 'dashboard';
 
 @Component({
   selector: 'muxima-sidebar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
   @Input() items: SidebarItem[] = [];
+  @Input() sections: SidebarSection[] = [];
   @Input() collapsed: boolean = false;
   @Input() variant: SidebarVariant = 'default';
   @Input() header: string = '';
   @Input() footer: string = '';
+  @Input() logoText: string = '';
+  @Input() logoIcon: string = '';
+  @Input() user: SidebarUser | null = null;
   @Output() itemClick = new EventEmitter<SidebarItem>();
   @Output() collapsedChange = new EventEmitter<boolean>();
+  @Output() userClick = new EventEmitter<void>();
 
   expandedItems: Set<string> = new Set();
+  currentRoute: string = '';
+
+  constructor(
+    private router: Router,
+    private sanitizer: DomSanitizer
+  ) {
+    // Atualiza a rota atual quando a navegação muda
+    this.currentRoute = this.router.url;
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      this.currentRoute = event.urlAfterRedirects;
+    });
+  }
 
   toggleCollapse(): void {
     this.collapsed = !this.collapsed;
@@ -59,5 +96,27 @@ export class SidebarComponent {
 
   get variantClass(): string {
     return `sidebar-${this.variant}`;
+  }
+
+  onUserClick(): void {
+    this.userClick.emit();
+  }
+
+  get hasSections(): boolean {
+    return this.sections && this.sections.length > 0;
+  }
+
+  isItemActive(item: SidebarItem): boolean {
+    if (item.active !== undefined) {
+      return item.active;
+    }
+    if (item.route) {
+      return this.currentRoute === item.route || this.currentRoute.startsWith(item.route + '/');
+    }
+    return false;
+  }
+
+  getSafeIcon(icon: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(icon);
   }
 }

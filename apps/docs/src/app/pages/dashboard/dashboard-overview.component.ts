@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChartComponent, ChartData } from '@muxima-ui/chart';
+import { CardCardComponent } from '@muxima-ui/card';
 
 @Component({
   selector: 'muxima-dashboard-overview',
   standalone: true,
-  imports: [CommonModule, ChartComponent],
+  imports: [CommonModule, ChartComponent, CardCardComponent],
   template: `
     <div class="dashboard-overview">
       <div class="page-header">
@@ -15,7 +16,7 @@ import { ChartComponent, ChartData } from '@muxima-ui/chart';
 
       <!-- Stats Cards -->
       <div class="stats-grid">
-        <div class="stat-card">
+        <muxima-card variant="dashboard-stat" [hoverable]="true">
           <div class="stat-header">
             <div class="stat-icon revenue">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -37,9 +38,9 @@ import { ChartComponent, ChartData } from '@muxima-ui/chart';
               +20.1% from last month
             </span>
           </div>
-        </div>
+        </muxima-card>
 
-        <div class="stat-card">
+        <muxima-card variant="dashboard-stat" [hoverable]="true">
           <div class="stat-header">
             <div class="stat-icon users">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -63,9 +64,9 @@ import { ChartComponent, ChartData } from '@muxima-ui/chart';
               +18.2% from last month
             </span>
           </div>
-        </div>
+        </muxima-card>
 
-        <div class="stat-card">
+        <muxima-card variant="dashboard-stat" [hoverable]="true">
           <div class="stat-header">
             <div class="stat-icon orders">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -88,9 +89,9 @@ import { ChartComponent, ChartData } from '@muxima-ui/chart';
               -4.3% from last month
             </span>
           </div>
-        </div>
+        </muxima-card>
 
-        <div class="stat-card">
+        <muxima-card variant="dashboard-stat" [hoverable]="true">
           <div class="stat-header">
             <div class="stat-icon products">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -113,14 +114,14 @@ import { ChartComponent, ChartData } from '@muxima-ui/chart';
               +8.4% from last month
             </span>
           </div>
-        </div>
+        </muxima-card>
       </div>
 
       <!-- Charts and Recent Activity -->
       <div class="content-grid">
         <!-- Revenue Chart -->
-        <div class="chart-card">
-          <div class="card-header">
+        <muxima-card variant="dashboard" class="chart-card">
+          <div muximaCardHeader class="card-header">
             <h3>Revenue Overview</h3>
             <div class="period-selector">
               <button 
@@ -141,11 +142,11 @@ import { ChartComponent, ChartData } from '@muxima-ui/chart';
               [showGrid]="true">
             </muxima-chart>
           </div>
-        </div>
+        </muxima-card>
 
         <!-- Recent Activities -->
-        <div class="activity-card">
-          <div class="card-header">
+        <muxima-card variant="dashboard" class="activity-card">
+          <div muximaCardHeader class="card-header">
             <h3>Recent Activities</h3>
             <button class="view-all-btn">View All</button>
           </div>
@@ -164,14 +165,14 @@ import { ChartComponent, ChartData } from '@muxima-ui/chart';
               <span class="activity-badge" [ngClass]="activity.status">{{ activity.status }}</span>
             </div>
           </div>
-        </div>
+        </muxima-card>
       </div>
 
       <!-- Sales Comparison and Traffic Sources -->
       <div class="content-grid secondary-grid">
         <!-- Sales Comparison Chart -->
-        <div class="chart-card">
-          <div class="card-header">
+        <muxima-card variant="dashboard" class="chart-card">
+          <div muximaCardHeader class="card-header">
             <h3>Sales Comparison</h3>
             <button class="view-all-btn">Details</button>
           </div>
@@ -184,11 +185,11 @@ import { ChartComponent, ChartData } from '@muxima-ui/chart';
               [showGrid]="true">
             </muxima-chart>
           </div>
-        </div>
+        </muxima-card>
 
         <!-- Traffic Sources -->
-        <div class="chart-card">
-          <div class="card-header">
+        <muxima-card variant="dashboard" class="chart-card">
+          <div muximaCardHeader class="card-header">
             <h3>Traffic Sources</h3>
             <button class="view-all-btn">View Report</button>
           </div>
@@ -200,12 +201,12 @@ import { ChartComponent, ChartData } from '@muxima-ui/chart';
               [animated]="true">
             </muxima-chart>
           </div>
-        </div>
+        </muxima-card>
       </div>
 
       <!-- Top Products -->
-      <div class="products-card">
-        <div class="card-header">
+      <muxima-card variant="dashboard" class="products-card">
+        <div muximaCardHeader class="card-header">
           <h3>Top Products</h3>
           <button class="view-all-btn">View All Products</button>
         </div>
@@ -240,7 +241,7 @@ import { ChartComponent, ChartData } from '@muxima-ui/chart';
             </tbody>
           </table>
         </div>
-      </div>
+      </muxima-card>
     </div>
   `,
   styles: [`
@@ -276,19 +277,7 @@ import { ChartComponent, ChartData } from '@muxima-ui/chart';
       margin-bottom: 2rem;
     }
 
-    .stat-card {
-      background: white;
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-    }
-
-    .stat-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-
+    /* Stat Card Content Styles */
     .stat-header {
       display: flex;
       gap: 1rem;
@@ -388,24 +377,15 @@ import { ChartComponent, ChartData } from '@muxima-ui/chart';
       grid-template-columns: 1fr 1fr;
     }
 
+    /* Card Content Styles - Remove base card styles since muxima-card handles them */
     .chart-card, .activity-card, .products-card {
-      background: white;
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-    }
-
-    .chart-card:hover, .activity-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      /* Removed background, border-radius, padding, box-shadow - handled by muxima-card */
     }
 
     .card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1.5rem;
     }
 
     .card-header h3 {

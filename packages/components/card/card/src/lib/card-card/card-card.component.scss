@@ -211,6 +211,59 @@
   }
 }
 
+/* Dashboard - Modern clean card for dashboard layouts */
+.muxima-card-variant-dashboard {
+  background: white;
+  border-radius: 1.25rem;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  }
+  
+  .muxima-card-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .muxima-card-body {
+    padding: 1.5rem;
+  }
+  
+  .muxima-card-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+  }
+}
+
+/* Dashboard Stat - Special card for statistics */
+.muxima-card-variant-dashboard-stat {
+  background: white;
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  }
+  
+  .muxima-card-header,
+  .muxima-card-body,
+  .muxima-card-footer {
+    padding: 0;
+    border: none;
+  }
+}
+
 /* Sizes */
 .muxima-card-size-sm .muxima-card-header,
 .muxima-card-size-sm .muxima-card-body,

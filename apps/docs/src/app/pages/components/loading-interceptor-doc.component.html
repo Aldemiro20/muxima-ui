@@ -1,0 +1,540 @@
+<div class="doc-container">
+  <!-- Header -->
+  <header class="doc-header">
+    <div class="header-content">
+      <div class="icon-badge">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+          <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+      </div>
+      <h1>Loading Interceptor</h1>
+      <p class="subtitle">Interceptor HTTP profissional com animação de coração batendo no estilo Muxima</p>
+    </div>
+  </header>
+
+  <!-- Feature Grid -->
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="24" height="24" viewBox="0 0 32 29.6" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+            c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z" fill="currentColor"/>
+        </svg>
+      </div>
+      <h3>Coração Muxima</h3>
+      <p>Animação única de coração batendo com partículas de amor</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M12 6v6l4 2"></path>
+        </svg>
+      </div>
+      <h3>Automático</h3>
+      <p>Ativa automaticamente em requisições HTTP</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+        </svg>
+      </div>
+      <h3>Controle Manual</h3>
+      <p>API completa para controle programático</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+        </svg>
+      </div>
+      <h3>Personalizável</h3>
+      <p>Cores, tamanhos, mensagens e backdrop customizáveis</p>
+    </div>
+  </div>
+
+  <!-- Instalação -->
+  <section class="doc-section">
+    <h2 class="section-title">Instalação</h2>
+    
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-title">NPM</span>
+        <button class="copy-btn" (click)="copyCode(installCode, 'install')" [class.copied]="isCopied('install')">
+          <svg *ngIf="!isCopied('install')" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <svg *ngIf="isCopied('install')" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>{{ isCopied('install') ? 'Copiado!' : 'Copiar' }}</span>
+        </button>
+      </div>
+      <div class="code-body">
+        <pre><code>{{ installCode }}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Configuração -->
+  <section class="doc-section">
+    <h2 class="section-title">Configuração</h2>
+    
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-title">Setup Completo</span>
+        <button class="copy-btn" (click)="copyCode(importCode, 'import')" [class.copied]="isCopied('import')">
+          <svg *ngIf="!isCopied('import')" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <svg *ngIf="isCopied('import')" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>{{ isCopied('import') ? 'Copiado!' : 'Copiar' }}</span>
+        </button>
+      </div>
+      <div class="code-body">
+        <pre><code>{{ importCode }}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Uso Básico -->
+  <section class="doc-section">
+    <h2 class="section-title">Uso Básico</h2>
+    <p class="section-description">
+      Adicione o componente no root do seu aplicativo. Ele interceptará automaticamente todas as requisições HTTP.
+    </p>
+
+    <div class="demo-container">
+      <div class="demo-preview">
+        <button class="demo-button" (click)="simulateLoading()">
+          <svg width="20" height="20" viewBox="0 0 32 29.6" fill="currentColor">
+            <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+              c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+          </svg>
+          Simular Loading (3s)
+        </button>
+        <button class="demo-button secondary" (click)="stopLoading()">
+          Parar Loading
+        </button>
+      </div>
+    </div>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-title">Básico</span>
+        <button class="copy-btn" (click)="copyCode(basicCode, 'basic')" [class.copied]="isCopied('basic')">
+          <svg *ngIf="!isCopied('basic')" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <svg *ngIf="isCopied('basic')" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>{{ isCopied('basic') ? 'Copiado!' : 'Copiar' }}</span>
+        </button>
+      </div>
+      <div class="code-body">
+        <pre><code>{{ basicCode }}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mensagem Customizada -->
+  <section class="doc-section">
+    <h2 class="section-title">Mensagem Customizada</h2>
+    <p class="section-description">Personalize a mensagem exibida durante o carregamento.</p>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-title">Mensagem</span>
+        <button class="copy-btn" (click)="copyCode(customMessageCode, 'message')" [class.copied]="isCopied('message')">
+          <svg *ngIf="!isCopied('message')" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <svg *ngIf="isCopied('message')" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>{{ isCopied('message') ? 'Copiado!' : 'Copiar' }}</span>
+        </button>
+      </div>
+      <div class="code-body">
+        <pre><code>{{ customMessageCode }}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sem Backdrop -->
+  <section class="doc-section">
+    <h2 class="section-title">Sem Backdrop</h2>
+    <p class="section-description">Loading sem fundo escurecido, permitindo interação com a página.</p>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-title">No Backdrop</span>
+        <button class="copy-btn" (click)="copyCode(noBackdropCode, 'nobackdrop')" [class.copied]="isCopied('nobackdrop')">
+          <svg *ngIf="!isCopied('nobackdrop')" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <svg *ngIf="isCopied('nobackdrop')" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>{{ isCopied('nobackdrop') ? 'Copiado!' : 'Copiar' }}</span>
+        </button>
+      </div>
+      <div class="code-body">
+        <pre><code>{{ noBackdropCode }}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cores -->
+  <section class="doc-section">
+    <h2 class="section-title">Cores</h2>
+    <p class="section-description">Escolha entre 4 paletas de cores para o coração.</p>
+
+    <div class="color-grid">
+      <div class="color-demo" style="--demo-color: #e74c3c;">
+        <div class="color-sample muxima"></div>
+        <span>Muxima</span>
+      </div>
+      <div class="color-demo" style="--demo-color: #3b82f6;">
+        <div class="color-sample primary"></div>
+        <span>Primary</span>
+      </div>
+      <div class="color-demo" style="--demo-color: #8b5cf6;">
+        <div class="color-sample secondary"></div>
+        <span>Secondary</span>
+      </div>
+      <div class="color-demo" style="--demo-color: #10b981;">
+        <div class="color-sample accent"></div>
+        <span>Accent</span>
+      </div>
+    </div>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-title">Cores Disponíveis</span>
+        <button class="copy-btn" (click)="copyCode(colorsCode, 'colors')" [class.copied]="isCopied('colors')">
+          <svg *ngIf="!isCopied('colors')" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <svg *ngIf="isCopied('colors')" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>{{ isCopied('colors') ? 'Copiado!' : 'Copiar' }}</span>
+        </button>
+      </div>
+      <div class="code-body">
+        <pre><code>{{ colorsCode }}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tamanhos -->
+  <section class="doc-section">
+    <h2 class="section-title">Tamanhos</h2>
+    <p class="section-description">Três tamanhos disponíveis para diferentes necessidades.</p>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-title">Tamanhos</span>
+        <button class="copy-btn" (click)="copyCode(sizesCode, 'sizes')" [class.copied]="isCopied('sizes')">
+          <svg *ngIf="!isCopied('sizes')" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <svg *ngIf="isCopied('sizes')" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>{{ isCopied('sizes') ? 'Copiado!' : 'Copiar' }}</span>
+        </button>
+      </div>
+      <div class="code-body">
+        <pre><code>{{ sizesCode }}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Controle Manual -->
+  <section class="doc-section">
+    <h2 class="section-title">Controle Manual</h2>
+    <p class="section-description">Use o serviço para controlar o loading programaticamente.</p>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-title">API do Serviço</span>
+        <button class="copy-btn" (click)="copyCode(manualCode, 'manual')" [class.copied]="isCopied('manual')">
+          <svg *ngIf="!isCopied('manual')" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <svg *ngIf="isCopied('manual')" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>{{ isCopied('manual') ? 'Copiado!' : 'Copiar' }}</span>
+        </button>
+      </div>
+      <div class="code-body">
+        <pre><code>{{ manualCode }}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Excluir URLs -->
+  <section class="doc-section">
+    <h2 class="section-title">Excluir URLs Específicas</h2>
+    <p class="section-description">Desative o loading para requisições específicas adicionando header customizado.</p>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-title">Skip Loading</span>
+        <button class="copy-btn" (click)="copyCode(skipLoadingCode, 'skip')" [class.copied]="isCopied('skip')">
+          <svg *ngIf="!isCopied('skip')" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <svg *ngIf="isCopied('skip')" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>{{ isCopied('skip') ? 'Copiado!' : 'Copiar' }}</span>
+        </button>
+      </div>
+      <div class="code-body">
+        <pre><code>{{ skipLoadingCode }}</code></pre>
+      </div>
+    </div>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-title">Excluir por Padrão de URL</span>
+        <button class="copy-btn" (click)="copyCode(excludeUrlsCode, 'exclude')" [class.copied]="isCopied('exclude')">
+          <svg *ngIf="!isCopied('exclude')" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <svg *ngIf="isCopied('exclude')" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>{{ isCopied('exclude') ? 'Copiado!' : 'Copiar' }}</span>
+        </button>
+      </div>
+      <div class="code-body">
+        <pre><code>{{ excludeUrlsCode }}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- API Reference -->
+  <section class="doc-section">
+    <h2 class="section-title">API Reference</h2>
+
+    <div class="props-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>message</code></td>
+            <td><code>string</code></td>
+            <td><code>'Carregando...'</code></td>
+            <td>Mensagem exibida durante o loading</td>
+          </tr>
+          <tr>
+            <td><code>showMessage</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Se deve exibir a mensagem</td>
+          </tr>
+          <tr>
+            <td><code>backdrop</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Se deve exibir o fundo escurecido</td>
+          </tr>
+          <tr>
+            <td><code>color</code></td>
+            <td><code>'muxima' | 'primary' | 'secondary' | 'accent'</code></td>
+            <td><code>'muxima'</code></td>
+            <td>Cor do coração</td>
+          </tr>
+          <tr>
+            <td><code>size</code></td>
+            <td><code>'sm' | 'md' | 'lg'</code></td>
+            <td><code>'md'</code></td>
+            <td>Tamanho do loading</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="subsection-title">Métodos do Serviço</h3>
+    <div class="props-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Método</th>
+            <th>Retorno</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>show()</code></td>
+            <td><code>void</code></td>
+            <td>Exibe o loading (incrementa contador)</td>
+          </tr>
+          <tr>
+            <td><code>hide()</code></td>
+            <td><code>void</code></td>
+            <td>Esconde o loading (decrementa contador)</td>
+          </tr>
+          <tr>
+            <td><code>forceHide()</code></td>
+            <td><code>void</code></td>
+            <td>Força esconder o loading (zera contador)</td>
+          </tr>
+          <tr>
+            <td><code>isLoading()</code></td>
+            <td><code>boolean</code></td>
+            <td>Retorna o estado atual do loading</td>
+          </tr>
+          <tr>
+            <td><code>loading$</code></td>
+            <td><code>Observable&lt;boolean&gt;</code></td>
+            <td>Observable do estado de loading</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Best Practices -->
+  <section class="doc-section">
+    <h2 class="section-title">Boas Práticas</h2>
+    
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-icon success">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <div class="tip-content">
+          <h4>Adicione no Root</h4>
+          <p>Coloque o componente no app.component.html para interceptar todas as requisições globalmente.</p>
+        </div>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-icon success">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <div class="tip-content">
+          <h4>Use X-Skip-Loading</h4>
+          <p>Para requisições em background (polling, notificações), use o header X-Skip-Loading para não ativar o loading.</p>
+        </div>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-icon success">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <div class="tip-content">
+          <h4>ForceHide em Erro</h4>
+          <p>Use forceHide() em erros críticos para garantir que o loading seja removido mesmo com requests pendentes.</p>
+        </div>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-icon success">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <div class="tip-content">
+          <h4>Mensagens Contextuais</h4>
+          <p>Personalize a mensagem para diferentes contextos: "Salvando...", "Processando...", "Enviando..."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="doc-section">
+    <h2 class="section-title">Casos de Uso</h2>
+    
+    <div class="use-cases-grid">
+      <div class="use-case-card">
+        <div class="use-case-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
+        <h4>Requisições HTTP</h4>
+        <p>Intercepta automaticamente chamadas de API, exibindo feedback visual ao usuário.</p>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+        </div>
+        <h4>Upload de Arquivos</h4>
+        <p>Feedback durante uploads grandes com mensagem customizada "Enviando arquivo..."</p>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+          </svg>
+        </div>
+        <h4>Processamento de Dados</h4>
+        <p>Operações longas como relatórios, exportações ou cálculos complexos.</p>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <h4>Autenticação</h4>
+        <p>Login, logout e verificações de sessão com feedback amigável.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Componente Loading (sempre presente) -->
+<muxima-loading-interceptor></muxima-loading-interceptor>

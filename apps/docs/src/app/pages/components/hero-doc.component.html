@@ -1,0 +1,647 @@
+<div class="doc-page">
+  <!-- Header -->
+  <div class="doc-header">
+    <div class="header-content">
+      <h1 class="gradient-text">Hero Component</h1>
+      <p class="header-description">
+        Componente versátil para criar seções hero impactantes com múltiplas variantes e layouts.
+        Perfeito para landing pages, homepages e páginas de produtos.
+      </p>
+    </div>
+  </div>
+
+  <!-- Example 1: Default Hero -->
+  <section class="doc-section">
+    <div class="section-header">
+      <h2>Default Hero</h2>
+      <p>Layout padrão com conteúdo à esquerda e visual à direita. Ideal para landing pages principais.</p>
+    </div>
+    
+    <!-- Preview Card -->
+    <div class="preview-card">
+      <div class="preview-header">
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="preview-content">
+        <muxima-hero
+          variant="default"
+          announcement="🎯 Novo: Integração com IA lançada - <a href='#'>Conheça →</a>"
+          announcementBadge="Novo"
+          highlightText="Incríveis"
+          subtitle="A plataforma completa para desenvolvimento, deploy e escala de aplicações modernas. Integração perfeita, monitoramento em tempo real e automação inteligente."
+          [features]="['Grátis por 14 dias', 'Sem cartão de crédito', 'Cancele quando quiser']">
+          
+          <span title>Construa Produtos</span>
+          
+          <div cta>
+            <muxima-button text="Começar Grátis" variant="primary" size="lg"></muxima-button>
+            <muxima-button text="Agendar Demo" variant="outline" size="lg"></muxima-button>
+          </div>
+          
+          <div visual>
+            <div class="mockup-placeholder">
+              <div class="mockup-content">
+                <div class="mockup-bar"></div>
+                <div class="mockup-bar short"></div>
+                <div class="mockup-grid">
+                  <div class="mockup-card"></div>
+                  <div class="mockup-card"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </muxima-hero>
+      </div>
+    </div>
+
+    <!-- Code Card -->
+    <div class="code-card">
+      <div class="code-header">
+        <span class="code-label">Code</span>
+        <button class="copy-btn" title="Copy code">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="code-content">
+        <pre>{{ getCodeExample('basic') }}</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Example 2: Centered Hero -->
+  <section class="doc-section">
+    <div class="section-header">
+      <h2>Centered Hero</h2>
+      <p>Layout centralizado perfeito para páginas de produto ou anúncios importantes.</p>
+    </div>
+    
+    <!-- Preview Card -->
+    <div class="preview-card">
+      <div class="preview-header">
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="preview-content">
+        <muxima-hero
+          variant="centered"
+          size="xl"
+          announcement="🎉 Lançamento oficial - Junte-se a 10.000+ empresas"
+          highlightText="em Minutos"
+          subtitle="Sem configuração complexa. Sem DevOps. Apenas código e deploy."
+          [features]="['Deploy automático', 'SSL gratuito', 'CDN global']">
+          
+          <span title>Lance Seu Produto</span>
+          
+          <div cta>
+            <muxima-button text="Começar Agora" variant="primary" size="lg"></muxima-button>
+            <muxima-button text="Ver Demo" variant="ghost" size="lg"></muxima-button>
+          </div>
+        </muxima-hero>
+      </div>
+    </div>
+
+    <!-- Code Card -->
+    <div class="code-card">
+      <div class="code-header">
+        <span class="code-label">Code</span>
+        <button class="copy-btn" title="Copy code">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="code-content">
+        <pre>{{ getCodeExample('centered') }}</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Example 3: Split Hero -->
+  <section class="doc-section">
+    <div class="section-header">
+      <h2>Split Hero</h2>
+      <p>Layout dividido 50/50 com espaço igual para conteúdo e visual.</p>
+    </div>
+    
+    <!-- Preview Card -->
+    <div class="preview-card">
+      <div class="preview-header">
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="preview-content">
+        <muxima-hero
+          variant="split"
+          size="lg"
+          subtitle="Transforme ideias em realidade com nossa plataforma de desenvolvimento moderna"
+          [features]="['100% Open Source', 'API First', 'Cloud Native']"
+          highlightText="Deploy Mais Fácil">
+          
+          <span title>Desenvolva Mais Rápido,</span>
+          
+          <div cta>
+            <muxima-button text="Começar Gratuitamente" variant="primary" size="lg"></muxima-button>
+          </div>
+          
+          <div visual>
+            <div class="mockup-placeholder large">
+              <div class="mockup-content">
+                <div class="mockup-bar"></div>
+                <div class="mockup-bar"></div>
+                <div class="mockup-bar short"></div>
+              </div>
+            </div>
+          </div>
+        </muxima-hero>
+      </div>
+    </div>
+
+    <!-- Code Card -->
+    <div class="code-card">
+      <div class="code-header">
+        <span class="code-label">Code</span>
+        <button class="copy-btn" title="Copy code">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="code-content">
+        <pre>{{ getCodeExample('split') }}</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Example 4: Minimal Hero -->
+  <section class="doc-section">
+    <div class="section-header">
+      <h2>Minimal Hero</h2>
+      <p>Design minimalista e limpo, perfeito para páginas de documentação ou sobre.</p>
+    </div>
+    
+    <!-- Preview Card -->
+    <div class="preview-card">
+      <div class="preview-header">
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="preview-content">
+        <muxima-hero
+          variant="minimal"
+          size="md"
+          highlightText="Simples e Poderoso"
+          subtitle="Tudo que você precisa, nada que você não precisa. Design focado em performance e usabilidade.">
+          
+          <span title>Design</span>
+          
+          <div cta>
+            <muxima-button text="Explorar" variant="primary" size="md"></muxima-button>
+            <muxima-button text="Documentação" variant="outline" size="md"></muxima-button>
+          </div>
+        </muxima-hero>
+      </div>
+    </div>
+
+    <!-- Code Card -->
+    <div class="code-card">
+      <div class="code-header">
+        <span class="code-label">Code</span>
+        <button class="copy-btn" title="Copy code">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="code-content">
+        <pre>{{ getCodeExample('minimal') }}</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Example 5: Gradient Hero -->
+  <section class="doc-section">
+    <div class="section-header">
+      <h2>Gradient Hero</h2>
+      <p>Hero com background gradient sutil, ótimo para promoções e ofertas especiais.</p>
+    </div>
+    
+    <!-- Preview Card -->
+    <div class="preview-card">
+      <div class="preview-header">
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="preview-content">
+        <muxima-hero
+          variant="gradient"
+          size="lg"
+          announcement="⚡ Black Friday - 50% OFF em todos os planos"
+          announcementBadge="Oferta"
+          highlightText="50% OFF"
+          subtitle="Aproveite nossa oferta limitada e economize muito no seu próximo projeto"
+          [features]="['Desconto vitalício', 'Suporte premium', 'Todas as features']">
+          
+          <span title>Economia de até</span>
+          
+          <div cta>
+            <muxima-button text="Ver Planos" variant="primary" size="lg"></muxima-button>
+            <muxima-button text="Calcular Economia" variant="outline" size="lg"></muxima-button>
+          </div>
+        </muxima-hero>
+      </div>
+    </div>
+
+    <!-- Code Card -->
+    <div class="code-card">
+      <div class="code-header">
+        <span class="code-label">Code</span>
+        <button class="copy-btn" title="Copy code">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="code-content">
+        <pre>{{ getCodeExample('gradient') }}</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Example 6: Image Background Hero -->
+  <section class="doc-section">
+    <div class="section-header">
+      <h2>Image Background Hero</h2>
+      <p>Hero com imagem de fundo e overlay escuro. Perfeito para criar impacto visual forte.</p>
+    </div>
+    
+    <!-- Preview Card -->
+    <div class="preview-card">
+      <div class="preview-header">
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="preview-content">
+        <muxima-hero
+          variant="image-bg"
+          size="xl"
+          backgroundImage="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80"
+          announcement="💫 Novo produto disponível"
+          announcementBadge="Lançamento"
+          highlightText="do Futuro"
+          subtitle="Revolucione a forma como você trabalha com tecnologia de ponta e IA avançada"
+          [features]="['IA Integrada', 'Automação Total', 'Resultados Reais']">
+          
+          <span title>A Plataforma</span>
+          
+          <div cta>
+            <muxima-button text="Começar Teste Grátis" variant="primary" size="lg"></muxima-button>
+            <muxima-button text="Assistir Vídeo" variant="outline" size="lg"></muxima-button>
+          </div>
+        </muxima-hero>
+      </div>
+    </div>
+
+    <!-- Code Card -->
+    <div class="code-card">
+      <div class="code-header">
+        <span class="code-label">Code</span>
+        <button class="copy-btn" title="Copy code">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="code-content">
+        <pre>{{ getCodeExample('imageBg') }}</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Example 7: E-commerce Hero with Stats -->
+  <section class="doc-section">
+    <div class="section-header">
+      <h2>E-commerce Hero with Stats</h2>
+      <p>Hero especial para e-commerce com estatísticas inline e cards de produtos flutuantes.</p>
+    </div>
+    
+    <!-- Preview Card -->
+    <div class="preview-card">
+      <div class="preview-header">
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="preview-content">
+        <muxima-hero
+          variant="split"
+          size="lg"
+          announcement="⭐ Novidade: Coleção Verão 2026"
+          highlightText="Estilo de Vida"
+          subtitle="Descubra produtos exclusivos com até 50% de desconto. Qualidade premium, entrega grátis e garantia de satisfação.">
+          
+          <span title>Transforme Seu</span>
+          
+          <div cta>
+            <muxima-button text="Ver Produtos" variant="primary" size="lg"></muxima-button>
+            <muxima-button text="Assistir Vídeo" variant="outline" size="lg"></muxima-button>
+          </div>
+          
+          <div visual>
+            <div class="ecommerce-hero-stats">
+              <div class="stat-box">
+                <div class="stat-value">50k+</div>
+                <div class="stat-label">Clientes Felizes</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-value">4.9★</div>
+                <div class="stat-label">Avaliação Média</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-value">10k+</div>
+                <div class="stat-label">Produtos</div>
+              </div>
+            </div>
+            <div class="ecommerce-products">
+              <div class="product-card-float">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=400&fit=crop" alt="Smart Watch">
+                <div class="product-info">
+                  <div class="product-name">Smart Watch Pro</div>
+                  <div class="product-price">$899.99</div>
+                </div>
+              </div>
+              <div class="product-card-float delay">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=400&fit=crop" alt="Headphones">
+                <div class="product-info">
+                  <div class="product-name">Fone Bluetooth</div>
+                  <div class="product-price">$299.99</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </muxima-hero>
+      </div>
+    </div>
+
+    <!-- Code Card -->
+    <div class="code-card">
+      <div class="code-header">
+        <span class="code-label">Code</span>
+        <button class="copy-btn" title="Copy code">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="code-content">
+        <pre>{{ getCodeExample('ecommerce') }}</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- API Documentation -->
+  <section class="doc-section api-section">
+    <h2>API Reference</h2>
+    
+    <div class="api-table">
+      <h3>Properties</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>variant</code></td>
+            <td><code>'default' | 'centered' | 'split' | 'minimal' | 'gradient' | 'image-bg'</code></td>
+            <td><code>'default'</code></td>
+            <td>Variante visual do hero</td>
+          </tr>
+          <tr>
+            <td><code>size</code></td>
+            <td><code>'sm' | 'md' | 'lg' | 'xl'</code></td>
+            <td><code>'lg'</code></td>
+            <td>Tamanho do hero (afeta principalmente o título)</td>
+          </tr>
+          <tr>
+            <td><code>alignment</code></td>
+            <td><code>'left' | 'center' | 'right'</code></td>
+            <td><code>'left'</code></td>
+            <td>Alinhamento do conteúdo</td>
+          </tr>
+          <tr>
+            <td><code>announcement</code></td>
+            <td><code>string</code></td>
+            <td><code>''</code></td>
+            <td>Texto do badge de anúncio (suporta HTML)</td>
+          </tr>
+          <tr>
+            <td><code>announcementBadge</code></td>
+            <td><code>string</code></td>
+            <td><code>''</code></td>
+            <td>Label do badge destacado no anúncio</td>
+          </tr>
+          <tr>
+            <td><code>highlightText</code></td>
+            <td><code>string</code></td>
+            <td><code>''</code></td>
+            <td>Texto destacado com gradient no título</td>
+          </tr>
+          <tr>
+            <td><code>subtitle</code></td>
+            <td><code>string</code></td>
+            <td><code>''</code></td>
+            <td>Subtítulo descritivo</td>
+          </tr>
+          <tr>
+            <td><code>features</code></td>
+            <td><code>string[]</code></td>
+            <td><code>[]</code></td>
+            <td>Lista de features com checkmark</td>
+          </tr>
+          <tr>
+            <td><code>showCta</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Mostrar ou ocultar área de CTA</td>
+          </tr>
+          <tr>
+            <td><code>showVisual</code></td>
+            <td><code>boolean</code></td>
+            <td><code>true</code></td>
+            <td>Mostrar ou ocultar área visual (variants split/default)</td>
+          </tr>
+          <tr>
+            <td><code>backgroundImage</code></td>
+            <td><code>string</code></td>
+            <td><code>''</code></td>
+            <td>URL da imagem de fundo (variant image-bg)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="api-table">
+      <h3>Content Projection</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Selector</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>[title]</code></td>
+            <td>Conteúdo do título principal</td>
+          </tr>
+          <tr>
+            <td><code>[cta]</code></td>
+            <td>Botões de call-to-action</td>
+          </tr>
+          <tr>
+            <td><code>[visual]</code></td>
+            <td>Área visual/mockup (variants split/default)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="api-table">
+      <h3>Events</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>ctaClick</code></td>
+            <td><code>EventEmitter&lt;void&gt;</code></td>
+            <td>Emitido quando CTA é clicado</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Best Practices -->
+  <section class="doc-section">
+    <h2>Best Practices</h2>
+    <div class="best-practices">
+      <div class="practice-item">
+        <span class="practice-icon success">✅</span>
+        <div>
+          <strong>Use variant adequada ao contexto</strong>
+          <p>Default/Split para landing pages, Centered para produtos, Minimal para documentação</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="practice-icon success">✅</span>
+        <div>
+          <strong>Mantenha títulos concisos</strong>
+          <p>Títulos curtos e impactantes (3-7 palavras) convertem melhor</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="practice-icon success">✅</span>
+        <div>
+          <strong>Use highlightText estrategicamente</strong>
+          <p>Destaque a palavra-chave principal ou valor único da sua oferta</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="practice-icon success">✅</span>
+        <div>
+          <strong>Limite features a 3-4 itens</strong>
+          <p>Lista muito longa dilui a mensagem principal</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="practice-icon warning">⚠️</span>
+        <div>
+          <strong>Evite imagens pesadas no image-bg</strong>
+          <p>Otimize imagens para web (WebP, compressão) para melhor performance</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="practice-icon warning">⚠️</span>
+        <div>
+          <strong>Teste em mobile</strong>
+          <p>Heroes são responsivos mas teste sempre em diferentes tamanhos de tela</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="practice-icon success">✅</span>
+        <div>
+          <strong>Use CTAs com contraste</strong>
+          <p>Primeiro botão sempre primary, segundo outline/ghost para hierarquia clara</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="practice-icon success">✅</span>
+        <div>
+          <strong>Adicione visual impactante</strong>
+          <p>Mockups, screenshots ou ilustrações aumentam credibilidade e engajamento</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="practice-icon success">✅</span>
+        <div>
+          <strong>Use stats inline para e-commerce</strong>
+          <p>Estatísticas de clientes, avaliações e produtos reforçam confiança e credibilidade</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="practice-icon success">✅</span>
+        <div>
+          <strong>Floating elements criam dinamismo</strong>
+          <p>Cards de produtos com animação floating chamam atenção e melhoram engajamento visual</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="doc-section">
+    <h2>Use Cases</h2>
+    <div class="use-cases-grid">
+      <div class="use-case-card">
+        <h3>🚀 SaaS Landing Pages</h3>
+        <p>Use <strong>default</strong> ou <strong>split</strong> com mockup do dashboard e features principais.</p>
+      </div>
+      <div class="use-case-card">
+        <h3>🛍️ E-commerce</h3>
+        <p>Use <strong>split</strong> com stats inline, product cards flutuantes e CTAs de compra. Perfeito para mostrar produtos em destaque.</p>
+      </div>
+      <div class="use-case-card">
+        <h3>📱 App Landing</h3>
+        <p>Use <strong>centered</strong> com screenshots do app e links de download.</p>
+      </div>
+      <div class="use-case-card">
+        <h3>📚 Documentação</h3>
+        <p>Use <strong>minimal</strong> para páginas de getting started e overview.</p>
+      </div>
+      <div class="use-case-card">
+        <h3>🎉 Promoções</h3>
+        <p>Use <strong>gradient</strong> com anúncio destacado e countdown timer.</p>
+      </div>
+      <div class="use-case-card">
+        <h3>🏢 Corporate</h3>
+        <p>Use <strong>default</strong> com vídeo ou ilustração profissional.</p>
+      </div>
+      <div class="use-case-card">
+        <h3>🖼️ Portfolio/Creative</h3>
+        <p>Use <strong>image-bg</strong> com imagem de alta qualidade e overlay para criar impacto visual forte.</p>
+      </div>
+    </div>
+  </section>
+</div>

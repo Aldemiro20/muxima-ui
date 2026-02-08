@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 type CardVariant = 'default' | 'bordered' | 'elevated' | 'african-pattern' | 
                    'gradient-blue' | 'gradient-purple' | 'gradient-sunset' | 
                    'glassmorphism' | 'neon' | 'minimal' | 'shadow-lg' | 
-                   'outline-gradient' | 'dark';
+                   'outline-gradient' | 'dark' | 'dashboard' | 'dashboard-stat';
 type CardSize = 'sm' | 'md' | 'lg';
 
 @Component({

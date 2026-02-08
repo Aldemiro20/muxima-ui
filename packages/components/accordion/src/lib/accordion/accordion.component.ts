@@ -44,7 +44,7 @@ export class AccordionComponent implements ControlValueAccessor {
   @Input() size: 'sm' | 'md' | 'lg' | 'xl' | '2xl' = 'sm';
   @Input() children: any[] = [];
   @Input() isChild: boolean = false;
-@Input() childLevel: number = 0;
+  @Input() childLevel: number = 0;
 
 
 

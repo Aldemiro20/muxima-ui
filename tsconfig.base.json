@@ -22,78 +22,142 @@
     "paths": {
       "@muxima-ui/accordion": ["packages/components/accordion/src/index.ts"],
       "@muxima-ui/alert": ["packages/components/alert/src/index.ts"],
+      "@muxima-ui/autocomplete": ["packages/form/autocomplete/src/index.ts"],
       "@muxima-ui/avatar": ["packages/components/avatar/avatar/src/index.ts"],
       "@muxima-ui/badge": ["packages/components/badge/badge/src/index.ts"],
+      "@muxima-ui/breadcrumb": [
+        "packages/navigation/breadcrumb/breadcrumb/src/index.ts"
+      ],
       "@muxima-ui/button": ["packages/components/button/src/index.ts"],
+      "@muxima-ui/calendar": ["packages/advanced/calendar/src/index.ts"],
       "@muxima-ui/card": ["packages/components/card/card/src/index.ts"],
-      "@muxima-ui/chip": ["packages/components/chip/chip/src/index.ts"],
-      "@muxima-ui/loading": ["packages/components/loading/src/index.ts"],
-      "@muxima-ui/progress": ["packages/components/progress/progress/src/index.ts"],
-      "@muxima-ui/skeleton": ["packages/components/skeleton/src/index.ts"],
-      "@muxima-ui/autocomplete": ["packages/form/autocomplete/src/index.ts"],
+      "@muxima-ui/card-item": ["packages/components/card-item/src/index.ts"],
+      "@muxima-ui/feature-card": ["packages/components/card/feature-card/src/index.ts"],
+      "@muxima-ui/pricing-card": ["packages/components/card/pricing-card/src/index.ts"],
+      "@muxima-ui/carousel": ["packages/media/carousel/carousel/src/index.ts"],
+      "@muxima-ui/chart": ["packages/advanced/chart/src/index.ts"],
       "@muxima-ui/checkbox": ["packages/form/checkbox/src/index.ts"],
+      "@muxima-ui/chip": ["packages/components/chip/chip/src/index.ts"],
+      "@muxima-ui/code-diff-viewer": [
+        "packages/advanced/code-diff-viewer/src/index.ts"
+      ],
       "@muxima-ui/color-picker": ["packages/form/color-picker/src/index.ts"],
-      "@muxima-ui/date-range-picker": ["packages/form/date-range-picker/src/index.ts"],
-      "@muxima-ui/datepicker": ["packages/form/datepicker/datepicker/src/index.ts"],
+      "@muxima-ui/command-palette": [
+        "packages/overlay/command-palette/src/index.ts"
+      ],
+      "@muxima-ui/comments": ["packages/advanced/comments/src/index.ts"],
+      "@muxima-ui/confirmation-dialog": [
+        "packages/overlay/confirmation-dialog/src/index.ts"
+      ],
+      "@muxima-ui/copy-to-clipboard": [
+        "packages/utility/copy-to-clipboard/src/index.ts"
+      ],
+      "@muxima-ui/credit-card": ["packages/utility/credit-card/src/index.ts"],
+      "@muxima-ui/data-table": ["packages/data/data-table/src/index.ts"],
+      "@muxima-ui/date-range-picker": [
+        "packages/form/date-range-picker/src/index.ts"
+      ],
+      "@muxima-ui/datepicker": [
+        "packages/form/datepicker/datepicker/src/index.ts"
+      ],
+      "@muxima-ui/dialog": ["packages/overlay/dialog/src/index.ts"],
+      "@muxima-ui/document-viewer": [
+        "packages/media/document-viewer/src/index.ts"
+      ],
+      "@muxima-ui/drag-drop-zone": [
+        "packages/utility/drag-drop-zone/src/index.ts"
+      ],
+      "@muxima-ui/drawer": ["packages/overlay/drawer/src/index.ts"],
+      "@muxima-ui/dropdown": [
+        "packages/overlay/dropdown/dropdown/src/index.ts"
+      ],
+      "@muxima-ui/error-boundary": [
+        "packages/utility/error-boundary/src/index.ts"
+      ],
+      "@muxima-ui/file-manager": [
+        "packages/advanced/file-manager/src/index.ts"
+      ],
+      "@muxima-ui/file-upload": ["packages/utility/file-upload/src/index.ts"],
+      "@muxima-ui/gantt-chart": ["packages/advanced/gantt-chart/src/index.ts"],
+      "@muxima-ui/gesture-controller": [
+        "packages/utility/gesture-controller/src/index.ts"
+      ],
+      "@muxima-ui/hero": ["packages/components/hero/src/index.ts"],
+      "@muxima-ui/image-cropper": ["packages/media/image-cropper/src/index.ts"],
       "@muxima-ui/input": ["packages/form/input/src/index.ts"],
+      "@muxima-ui/kanban": ["packages/advanced/kanban/src/index.ts"],
+      "@muxima-ui/language-selector": [
+        "packages/utility/language-selector/src/index.ts"
+      ],
+      "@muxima-ui/loading": ["packages/components/loading/src/index.ts"],
+      "@muxima-ui/modal": ["packages/overlay/modal/modal/src/index.ts"],
       "@muxima-ui/multi-select": ["packages/form/multi-select/src/index.ts"],
+      "@muxima-ui/navbar": ["packages/navigation/navbar/navbar/src/index.ts"],
+      "@muxima-ui/notification-center": [
+        "packages/overlay/notification-center/src/index.ts"
+      ],
       "@muxima-ui/otp-input": ["packages/form/otp-input/src/index.ts"],
+      "@muxima-ui/pagination": [
+        "packages/data/pagination/pagination/src/index.ts"
+      ],
+      "@muxima-ui/product-card": [
+        "packages/data/product-card/product-card/src/index.ts"
+      ],
+      "@muxima-ui/progress": [
+        "packages/components/progress/progress/src/index.ts"
+      ],
+      "@muxima-ui/quill-editor": [
+        "packages/advanced/quill-editor/src/index.ts"
+      ],
       "@muxima-ui/radio-button": ["packages/form/radio-button/src/index.ts"],
+      "@muxima-ui/rich-text-editor": [
+        "packages/advanced/rich-text-editor/src/index.ts"
+      ],
       "@muxima-ui/search-bar": ["packages/form/search-bar/src/index.ts"],
+      "@muxima-ui/search-box": ["packages/form/search-box/src/index.ts"],
       "@muxima-ui/select": ["packages/form/select/src/index.ts"],
+      "@muxima-ui/settings-item": [
+        "packages/utility/settings-item/settings-item/src/index.ts"
+      ],
+      "@muxima-ui/shopping-cart": [
+        "packages/advanced/shopping-cart/src/index.ts"
+      ],
+      "@muxima-ui/sidebar": ["packages/navigation/sidebar/src/index.ts"],
+      "@muxima-ui/signature-pad": [
+        "packages/utility/signature-pad/src/index.ts"
+      ],
+      "@muxima-ui/skeleton": ["packages/components/skeleton/src/index.ts"],
       "@muxima-ui/slider": ["packages/form/slider/slider/src/index.ts"],
       "@muxima-ui/slider-range": ["packages/form/slider-range/src/index.ts"],
-      "@muxima-ui/time-picker": ["packages/form/time-picker/time-picker/src/index.ts"],
-      "@muxima-ui/toggle": ["packages/form/toggle/toggle/src/index.ts"],
-      "@muxima-ui/data-table": ["packages/data/data-table/src/index.ts"],
-      "@muxima-ui/pagination": ["packages/data/pagination/pagination/src/index.ts"],
-      "@muxima-ui/stats-card": ["packages/data/stats-card/src/index.ts"],
-      "@muxima-ui/table": ["packages/data/table/src/index.ts"],
-      "@muxima-ui/timeline": ["packages/data/timeline/timeline/src/index.ts"],
-      "@muxima-ui/tree-view": ["packages/data/tree-view/src/index.ts"],
-      "@muxima-ui/command-palette": ["packages/overlay/command-palette/src/index.ts"],
-      "@muxima-ui/confirmation-dialog": ["packages/overlay/confirmation-dialog/src/index.ts"],
-      "@muxima-ui/dialog": ["packages/overlay/dialog/src/index.ts"],
-      "@muxima-ui/drawer": ["packages/overlay/drawer/src/index.ts"],
-      "@muxima-ui/dropdown": ["packages/overlay/dropdown/dropdown/src/index.ts"],
-      "@muxima-ui/modal": ["packages/overlay/modal/modal/src/index.ts"],
-      "@muxima-ui/notification-center": ["packages/overlay/notification-center/src/index.ts"],
-      "@muxima-ui/toast": ["packages/overlay/toast/src/index.ts"],
-      "@muxima-ui/tooltip": ["packages/overlay/tooltip/tooltip/src/index.ts"],
-      "@muxima-ui/carousel": ["packages/media/carousel/carousel/src/index.ts"],
-      "@muxima-ui/document-viewer": ["packages/media/document-viewer/src/index.ts"],
-      "@muxima-ui/image-cropper": ["packages/media/image-cropper/src/index.ts"],
-      "@muxima-ui/video-player": ["packages/media/video-player/src/index.ts"],
-      "@muxima-ui/breadcrumb": ["packages/navigation/breadcrumb/breadcrumb/src/index.ts"],
-      "@muxima-ui/navbar": ["packages/navigation/navbar/navbar/src/index.ts"],
-      "@muxima-ui/sidebar": ["packages/navigation/sidebar/src/index.ts"],
-      "@muxima-ui/stepper": ["packages/navigation/stepper/src/index.ts"],
-      "@muxima-ui/tabs": ["packages/navigation/tabs/tabs/src/index.ts"],
-      "@muxima-ui/tour-guide": ["packages/navigation/tour-guide/src/index.ts"],
-      "@muxima-ui/calendar": ["packages/advanced/calendar/src/index.ts"],
-      "@muxima-ui/chart": ["packages/advanced/chart/src/index.ts"],
-      "@muxima-ui/code-diff-viewer": ["packages/advanced/code-diff-viewer/src/index.ts"],
-      "@muxima-ui/comments": ["packages/advanced/comments/src/index.ts"],
-      "@muxima-ui/file-manager": ["packages/advanced/file-manager/src/index.ts"],
-      "@muxima-ui/gantt-chart": ["packages/advanced/gantt-chart/src/index.ts"],
-      "@muxima-ui/kanban": ["packages/advanced/kanban/src/index.ts"],
-      "@muxima-ui/quill-editor": ["packages/advanced/quill-editor/src/index.ts"],
-      "@muxima-ui/rich-text-editor": ["packages/advanced/rich-text-editor/src/index.ts"],
-      "@muxima-ui/shopping-cart": ["packages/advanced/shopping-cart/src/index.ts"],
-      "@muxima-ui/smart-form-builder": ["packages/advanced/smart-form-builder/src/index.ts"],
-      "@muxima-ui/copy-to-clipboard": ["packages/utility/copy-to-clipboard/src/index.ts"],
-      "@muxima-ui/credit-card": ["packages/utility/credit-card/src/index.ts"],
-      "@muxima-ui/drag-drop-zone": ["packages/utility/drag-drop-zone/src/index.ts"],
-      "@muxima-ui/error-boundary": ["packages/utility/error-boundary/src/index.ts"],
-      "@muxima-ui/file-upload": ["packages/utility/file-upload/src/index.ts"],
-      "@muxima-ui/gesture-controller": ["packages/utility/gesture-controller/src/index.ts"],
-      "@muxima-ui/language-selector": ["packages/utility/language-selector/src/index.ts"],
-      "@muxima-ui/signature-pad": ["packages/utility/signature-pad/src/index.ts"],
-      "@muxima-ui/user-profile-menu": ["packages/utility/user-profile-menu/src/index.ts"],
-      "@muxima-ui/virtual-keyboard": ["packages/utility/virtual-keyboard/src/index.ts"],
-      "@muxima-ui/voice-command": ["packages/utility/voice-command/src/index.ts"],
+      "@muxima-ui/smart-form-builder": [
+        "packages/advanced/smart-form-builder/src/index.ts"
+      ],
       "@muxima-ui/star-rating": ["packages/star-rating/src/index.ts"],
-      "@muxima-ui/storybook-host": ["packages/storybook-host/src/index.ts"]
+      "@muxima-ui/stats-card": ["packages/data/stats-card/src/index.ts"],
+      "@muxima-ui/stepper": ["packages/navigation/stepper/src/index.ts"],
+      "@muxima-ui/storybook-host": ["packages/storybook-host/src/index.ts"],
+      "@muxima-ui/table": ["packages/data/table/src/index.ts"],
+      "@muxima-ui/tabs": ["packages/navigation/tabs/tabs/src/index.ts"],
+      "@muxima-ui/time-picker": [
+        "packages/form/time-picker/time-picker/src/index.ts"
+      ],
+      "@muxima-ui/timeline": ["packages/data/timeline/timeline/src/index.ts"],
+      "@muxima-ui/toast": ["packages/overlay/toast/src/index.ts"],
+      "@muxima-ui/toggle": ["packages/form/toggle/toggle/src/index.ts"],
+      "@muxima-ui/toolbar": ["packages/navigation/toolbar/src/index.ts"],
+      "@muxima-ui/tooltip": ["packages/overlay/tooltip/tooltip/src/index.ts"],
+      "@muxima-ui/tour-guide": ["packages/navigation/tour-guide/src/index.ts"],
+      "@muxima-ui/tree-view": ["packages/data/tree-view/src/index.ts"],
+      "@muxima-ui/user-profile-menu": [
+        "packages/utility/user-profile-menu/src/index.ts"
+      ],
+      "@muxima-ui/video-player": ["packages/media/video-player/src/index.ts"],
+      "@muxima-ui/virtual-keyboard": [
+        "packages/utility/virtual-keyboard/src/index.ts"
+      ],
+      "@muxima-ui/voice-command": [
+        "packages/utility/voice-command/src/index.ts"
+      ]
     },
     "rootDir": ".",
     "skipLibCheck": true

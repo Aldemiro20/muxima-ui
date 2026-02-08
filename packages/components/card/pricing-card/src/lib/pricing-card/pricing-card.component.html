@@ -1,0 +1,42 @@
+<div 
+  [class]="'pricing-card pricing-card-' + variant"
+  [class.pricing-card-hoverable]="hoverable"
+  [class.pricing-card-popular]="popular">
+  
+  <!-- Popular Badge -->
+  <div *ngIf="popular" class="pricing-card-badge">
+    {{ popularText }}
+  </div>
+  
+  <!-- Header -->
+  <div class="pricing-card-header">
+    <h3 class="pricing-card-plan">{{ planName }}</h3>
+    <p *ngIf="description" class="pricing-card-description">{{ description }}</p>
+  </div>
+  
+  <!-- Price -->
+  <div class="pricing-card-price">
+    <span class="pricing-card-price-amount">{{ price }}</span>
+    <span *ngIf="period" class="pricing-card-price-period">{{ period }}</span>
+  </div>
+  
+  <!-- Features -->
+  <ul class="pricing-card-features">
+    <li 
+      *ngFor="let feature of features" 
+      class="pricing-card-feature"
+      [class.pricing-card-feature-included]="feature.included"
+      [class.pricing-card-feature-excluded]="!feature.included">
+      <span class="pricing-card-feature-icon">{{ feature.included ? '✓' : '✕' }}</span>
+      <span class="pricing-card-feature-text">{{ feature.text }}</span>
+    </li>
+  </ul>
+  
+  <!-- CTA Button -->
+  <button 
+    class="pricing-card-button" 
+    type="button"
+    (click)="onButtonClick()">
+    {{ buttonText }}
+  </button>
+</div>

@@ -29,28 +29,34 @@ export class AlertDocComponent {
     { id: 3, type: 'success', title: 'Backup Completo', message: 'Backup realizado com sucesso às 14:30.', dismissible: true }
   ];
 
-  // Code examples with copy states
-  codeExamples = {
-    basic: { code: '', copied: false },
-    types: { code: '', copied: false },
-    appearances: { code: '', copied: false },
-    dismissible: { code: '', copied: false },
-    withTitle: { code: '', copied: false },
-    customIcon: { code: '', copied: false },
-    multiple: { code: '', copied: false },
-    spinner: { code: '', copied: false }
-  };
+  // Notification examples
+  notificationExamples = [
+    { type: 'info' as const, title: 'Atualização Disponível', message: 'Nova versão 2.0 disponível para download' },
+    { type: 'success' as const, title: 'Upload Completo', message: '5 arquivos enviados com sucesso' },
+    { type: 'warning' as const, title: 'Espaço Limitado', message: 'Você está usando 90% do armazenamento' },
+    { type: 'error' as const, title: 'Falha na Conexão', message: 'Não foi possível conectar ao servidor' }
+  ];
 
-  constructor() {
-    this.initializeCodeExamples();
-  }
+  // Form validation examples
+  formAlerts = [
+    { type: 'error' as const, message: 'Email inválido. Use o formato: exemplo@email.com' },
+    { type: 'error' as const, message: 'Senha deve ter no mínimo 8 caracteres' },
+    { type: 'warning' as const, message: 'Alguns campos opcionais estão vazios' }
+  ];
 
-  initializeCodeExamples() {
-    this.codeExamples.basic.code = `<muxima-alert type="info" appearance="fill">
+  // System status examples
+  systemAlerts = [
+    { type: 'success' as const, title: 'Sistema Online', message: 'Todos os serviços operando normalmente', icon: '✅' },
+    { type: 'warning' as const, title: 'Manutenção Programada', message: 'Sistema ficará offline amanhã às 02:00', icon: '🔧' },
+    { type: 'error' as const, title: 'Serviço Indisponível', message: 'API de pagamentos temporariamente offline', icon: '🚫' }
+  ];
+
+  // Code examples
+  basicCode = `<muxima-alert type="info" appearance="fill">
   Esta é uma mensagem informativa
 </muxima-alert>`;
 
-    this.codeExamples.types.code = `<!-- Info -->
+  typesCode = `<!-- Info -->
 <muxima-alert type="info">Informação importante</muxima-alert>
 
 <!-- Success -->
@@ -62,7 +68,7 @@ export class AlertDocComponent {
 <!-- Error -->
 <muxima-alert type="error">Erro ao processar</muxima-alert>`;
 
-    this.codeExamples.appearances.code = `<!-- Fill: Fundo sólido -->
+  appearancesCode = `<!-- Fill: Fundo sólido -->
 <muxima-alert type="success" appearance="fill">
   Salvo com sucesso
 </muxima-alert>
@@ -82,41 +88,28 @@ export class AlertDocComponent {
   Falha na validação
 </muxima-alert>`;
 
-    this.codeExamples.dismissible.code = `<muxima-alert 
+  withTitleCode = `<muxima-alert type="warning" appearance="fill">
+  <span muximaAlertTitle>Atenção Importante</span>
+  Por favor, revise os campos obrigatórios antes de continuar.
+</muxima-alert>`;
+
+  dismissibleCode = `<muxima-alert 
   type="success" 
   [dismissible]="true"
   (dismissedChanged)="onAlertDismiss()">
   Perfil atualizado com sucesso!
 </muxima-alert>`;
 
-    this.codeExamples.withTitle.code = `<muxima-alert 
-  type="warning" 
-  appearance="fill">
-  <span muximaAlertTitle>Atenção Importante</span>
-  Por favor, revise os campos obrigatórios antes de continuar.
-</muxima-alert>`;
-
-    this.codeExamples.customIcon.code = `<muxima-alert 
-  type="info" 
-  appearance="soft">
+  customIconCode = `<muxima-alert type="info" appearance="soft">
   <span muximaAlertIcon>🔔</span>
   Você tem 3 novas notificações
 </muxima-alert>`;
 
-    this.codeExamples.multiple.code = `<div *ngFor="let alert of alerts">
-  <muxima-alert 
-    [type]="alert.type"
-    [dismissible]="alert.dismissible"
-    (dismissedChanged)="removeAlert(alert.id)">
-    <span *ngIf="alert.title" muximaAlertTitle>{{ alert.title }}</span>
-    {{ alert.message }}
-  </muxima-alert>
-</div>`;
-
-    this.codeExamples.spinner.code = `<!-- HTML - Alert com Spinner -->
+  spinnerCode = `<!-- Alert com spinner animado -->
 <div class="alert-with-spinner info">
   <div class="spinner-container">
     <div class="spinner"></div>
+    <div class="spinner-pulse"></div>
   </div>
   <div class="alert-content">
     <strong>Processando...</strong>
@@ -124,29 +117,77 @@ export class AlertDocComponent {
   </div>
 </div>
 
-<!-- SCSS - Animação do Spinner -->
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+<!-- Variantes disponíveis: info, success, warning, error -->
+<div class="alert-with-spinner success">
+  <div class="spinner-container">
+    <div class="spinner"></div>
+  </div>
+  <div class="alert-content">
+    <strong>Salvando...</strong>
+    <p>Seus dados estão sendo salvos</p>
+  </div>
+</div>`;
 
-.alert-with-spinner {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.25rem;
-  border-radius: 12px;
+  actionsCode = `<!-- Alert com botões de ação -->
+<div class="alert-with-action info">
+  <div class="alert-icon">💡</div>
+  <div class="alert-body">
+    <strong>Nova versão disponível</strong>
+    <p>Atualize agora para acessar novas funcionalidades</p>
+  </div>
+  <div class="alert-actions">
+    <button class="action-btn primary">Atualizar</button>
+    <button class="action-btn secondary">Depois</button>
+  </div>
+</div>
+
+<!-- Variantes disponíveis: info, success, warning, error -->
+<div class="alert-with-action success">
+  <div class="alert-icon">✅</div>
+  <div class="alert-body">
+    <strong>Backup concluído</strong>
+    <p>Seus dados foram salvos com sucesso</p>
+  </div>
+  <div class="alert-actions">
+    <button class="action-btn primary">Ver Detalhes</button>
+    <button class="action-btn secondary">OK</button>
+  </div>
+</div>`;
+
+  multipleAlertsCode = `<div *ngFor="let alert of alerts">
+  <muxima-alert 
+    [type]="alert.type"
+    [dismissible]="alert.dismissible"
+    (dismissedChanged)="removeAlert(alert.id)">
+    <span *ngIf="alert.title" muximaAlertTitle>{{ alert.title }}</span>
+    {{ alert.message }}
+  </muxima-alert>
+</div>
+
+// TypeScript
+alerts: Alert[] = [
+  { id: 1, type: 'info', title: 'Nova Versão', message: '...', dismissible: true },
+  { id: 2, type: 'warning', title: 'Sessão Expirando', message: '...', dismissible: true }
+];
+
+removeAlert(id: number) {
+  this.alerts = this.alerts.filter(a => a.id !== id);
+}`;
+
+  typescriptCode = `import { MuximaAlertComponent } from '@muxima-ui/alert';
+
+@Component({
+  standalone: true,
+  imports: [MuximaAlertComponent],
+  // ...
+})
+export class MyComponent {
+  showAlert = true;
   
-  .spinner {
-    width: 32px;
-    height: 32px;
-    border: 3px solid rgba(0, 0, 0, 0.1);
-    border-radius: 50%;
-    border-top-color: currentColor;
-    animation: spin 1s linear infinite;
+  onAlertDismiss() {
+    this.showAlert = false;
   }
 }`;
-  }
 
   triggerAlert(type: 'info' | 'success' | 'warning' | 'error') {
     this.dynamicAlertType = type;
@@ -176,20 +217,18 @@ export class AlertDocComponent {
     this.alerts.unshift(newAlert);
   }
 
-  copyCode(example: keyof typeof this.codeExamples) {
-    const codeExample = this.codeExamples[example];
-    navigator.clipboard.writeText(codeExample.code);
-    codeExample.copied = true;
-    setTimeout(() => codeExample.copied = false, 2000);
+  copiedStates: { [key: string]: boolean } = {};
+
+  copyCode(code: string, key: string = 'default') {
+    navigator.clipboard.writeText(code).then(() => {
+      this.copiedStates[key] = true;
+      setTimeout(() => {
+        this.copiedStates[key] = false;
+      }, 2000);
+    });
   }
 
-  get importCode(): string {
-    return `import { MuximaAlertComponent } from '@muxima-ui/alert';
-
-@Component({
-  standalone: true,
-  imports: [MuximaAlertComponent],
-  // ...
-})`;
+  isCopied(key: string = 'default'): boolean {
+    return this.copiedStates[key] || false;
   }
 }

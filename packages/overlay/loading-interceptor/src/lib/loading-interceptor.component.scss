@@ -1,0 +1,224 @@
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  pointer-events: none;
+
+  &.with-backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    pointer-events: all;
+  }
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: transparent;
+  border-radius: 1.5rem;
+  animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// ===================================
+// CORAÇÃO BATENDO
+// ===================================
+
+.heart-loader {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .heart-icon {
+    width: 100px;
+    height: 100px;
+    fill: none;
+    stroke: #e74c3c;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 20px rgba(231, 76, 60, 0.5));
+    animation: heartbeat 2.5s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  // Cores do coração
+  &[data-color="muxima"] .heart-icon {
+    stroke: #e74c3c;
+    filter: drop-shadow(0 0 20px rgba(231, 76, 60, 0.5));
+  }
+
+  &[data-color="primary"] .heart-icon {
+    stroke: #3b82f6;
+    filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.5));
+  }
+
+  &[data-color="secondary"] .heart-icon {
+    stroke: #8b5cf6;
+    filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.5));
+  }
+
+  &[data-color="accent"] .heart-icon {
+    stroke: #10b981;
+    filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.5));
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.05);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.08);
+  }
+  56% {
+    transform: scale(1);
+  }
+}
+
+// ===================================
+// MENSAGEM DE LOADING
+// ===================================
+
+.loading-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+
+  .message-text {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1e293b;
+    letter-spacing: 0.5px;
+  }
+
+  .message-dots {
+    display: flex;
+    gap: 0.5rem;
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: #e74c3c;
+      border-radius: 50%;
+      animation: dotPulse 1.4s ease-in-out infinite;
+
+      &:nth-child(1) {
+        animation-delay: 0s;
+      }
+
+      &:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      &:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+    }
+  }
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+// ===================================
+// TAMANHOS
+// ===================================
+
+.loading-overlay[data-size="sm"] {
+  .loading-container {
+    padding: 1.5rem;
+  }
+
+  .heart-loader .heart-icon {
+    width: 70px;
+    height: 70px;
+    stroke-width: 2.5;
+  }
+
+  .loading-message .message-text {
+    font-size: 0.875rem;
+  }
+
+  .message-dots .dot {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+.loading-overlay[data-size="lg"] {
+  .loading-container {
+    padding: 3rem;
+  }
+
+  .heart-loader .heart-icon {
+    width: 140px;
+    height: 140px;
+    stroke-width: 4;
+  }
+
+  .loading-message .message-text {
+    font-size: 1.25rem;
+  }
+
+  .message-dots .dot {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+// ===================================
+// RESPONSIVO
+// ===================================
+
+@media (max-width: 768px) {
+  .loading-container {
+    padding: 1.5rem;
+  }
+
+  .heart-loader .heart-icon {
+    width: 70px;
+    height: 70px;
+    stroke-width: 2.5;
+  }
+
+  .loading-message .message-text {
+    font-size: 0.875rem;
+  }
+}

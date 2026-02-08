@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CardCardComponent } from '@muxima-ui/card';
 
 @Component({
   selector: 'muxima-analytics',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CardCardComponent],
   template: `
     <div class="analytics-page">
       <div class="page-header">
@@ -14,47 +15,47 @@ import { CommonModule } from '@angular/common';
 
       <!-- Key Metrics -->
       <div class="metrics-grid">
-        <div class="metric-card">
+        <muxima-card variant="dashboard-stat" [hoverable]="true">
           <div class="metric-header">
             <span class="metric-icon">👁️</span>
             <h3>Page Views</h3>
           </div>
           <div class="metric-value">45,678</div>
           <div class="metric-change positive">+12.5% vs last week</div>
-        </div>
+        </muxima-card>
 
-        <div class="metric-card">
+        <muxima-card variant="dashboard-stat" [hoverable]="true">
           <div class="metric-header">
             <span class="metric-icon">⏱️</span>
             <h3>Avg. Session</h3>
           </div>
           <div class="metric-value">3m 24s</div>
           <div class="metric-change positive">+8.2% vs last week</div>
-        </div>
+        </muxima-card>
 
-        <div class="metric-card">
+        <muxima-card variant="dashboard-stat" [hoverable]="true">
           <div class="metric-header">
             <span class="metric-icon">📊</span>
             <h3>Bounce Rate</h3>
           </div>
           <div class="metric-value">42.3%</div>
           <div class="metric-change negative">-3.1% vs last week</div>
-        </div>
+        </muxima-card>
 
-        <div class="metric-card">
+        <muxima-card variant="dashboard-stat" [hoverable]="true">
           <div class="metric-header">
             <span class="metric-icon">🎯</span>
             <h3>Conversion</h3>
           </div>
           <div class="metric-value">3.8%</div>
           <div class="metric-change positive">+0.5% vs last week</div>
-        </div>
+        </muxima-card>
       </div>
 
       <!-- Charts -->
       <div class="charts-grid">
-        <div class="chart-card large">
-          <div class="card-header">
+        <muxima-card variant="dashboard" class="chart-card large">
+          <div muximaCardHeader class="card-header">
             <h3>Traffic Overview</h3>
             <div class="filter-tabs">
               <button class="tab active">7 Days</button>
@@ -84,10 +85,10 @@ import { CommonModule } from '@angular/common';
               </svg>
             </div>
           </div>
-        </div>
+        </muxima-card>
 
-        <div class="chart-card">
-          <div class="card-header">
+        <muxima-card variant="dashboard" class="chart-card">
+          <div muximaCardHeader class="card-header">
             <h3>Traffic Sources</h3>
           </div>
           <div class="sources-list">
@@ -104,13 +105,13 @@ import { CommonModule } from '@angular/common';
               </div>
             </div>
           </div>
-        </div>
+        </muxima-card>
       </div>
 
       <!-- User Behavior -->
       <div class="behavior-grid">
-        <div class="behavior-card">
-          <div class="card-header">
+        <muxima-card variant="dashboard" class="behavior-card">
+          <div muximaCardHeader class="card-header">
             <h3>Top Pages</h3>
           </div>
           <div class="pages-list">
@@ -122,10 +123,10 @@ import { CommonModule } from '@angular/common';
               <span class="page-time">{{ page.avgTime }}</span>
             </div>
           </div>
-        </div>
+        </muxima-card>
 
-        <div class="behavior-card">
-          <div class="card-header">
+        <muxima-card variant="dashboard" class="behavior-card">
+          <div muximaCardHeader class="card-header">
             <h3>Device Breakdown</h3>
           </div>
           <div class="devices-chart">
@@ -140,7 +141,7 @@ import { CommonModule } from '@angular/common';
               <span class="device-percentage">{{ device.percentage }}%</span>
             </div>
           </div>
-        </div>
+        </muxima-card>
       </div>
     </div>
   `,

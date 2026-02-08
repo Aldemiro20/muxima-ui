@@ -1,0 +1,33 @@
+{
+  "name": "hero",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/components/hero/src",
+  "prefix": "muxima",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "packages/components/hero/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/components/hero/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "packages/components/hero/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/components/hero/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}

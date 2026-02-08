@@ -1,0 +1,256 @@
+// Muxima Toolbar Component
+// Purple gradient theme: #667eea → #764ba2
+
+.muxima-toolbar {
+  background: white;
+  border-radius: 12px;
+  padding: 1.25rem;
+  transition: all 0.3s ease;
+
+  &.with-shadow {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e7eb;
+  }
+
+  &.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+}
+
+.toolbar-container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+// Left Section
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.toolbar-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.toolbar-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.toolbar-subtitle {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.toolbar-left-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+
+  &:empty {
+    display: none;
+  }
+}
+
+// Center Section
+.toolbar-center {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  justify-content: center;
+
+  &:empty {
+    display: none;
+  }
+}
+
+// Right Section
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: auto;
+  flex-wrap: wrap;
+
+  &:empty {
+    display: none;
+  }
+}
+
+// Actions Section
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  &:empty {
+    display: none;
+  }
+}
+
+// Bottom Section
+.toolbar-bottom {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  &:empty {
+    display: none;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+}
+
+// Alignment Variants
+.toolbar-align-start {
+  .toolbar-container {
+    justify-content: flex-start;
+  }
+}
+
+.toolbar-align-center {
+  .toolbar-container {
+    justify-content: center;
+  }
+}
+
+.toolbar-align-between {
+  .toolbar-container {
+    justify-content: space-between;
+  }
+}
+
+.toolbar-align-end {
+  .toolbar-container {
+    justify-content: flex-end;
+  }
+}
+
+// Variant: Compact
+.toolbar-compact {
+  padding: 1rem;
+
+  .toolbar-title {
+    font-size: 1.25rem;
+  }
+
+  .toolbar-subtitle {
+    font-size: 0.8125rem;
+  }
+
+  .toolbar-bottom {
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+}
+
+// Variant: Minimal
+.toolbar-minimal {
+  padding: 0.75rem 0;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+  border-bottom: 1px solid #e5e7eb;
+
+  &.with-shadow {
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .toolbar-bottom {
+    padding-top: 0.75rem;
+    margin-top: 0.75rem;
+  }
+}
+
+// Responsive
+@media (max-width: 1024px) {
+  .toolbar-container {
+    gap: 1rem;
+  }
+
+  .toolbar-center {
+    flex: 0 0 100%;
+    order: 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .muxima-toolbar {
+    padding: 1rem;
+  }
+
+  .toolbar-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .toolbar-left {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .toolbar-left-content {
+    width: 100%;
+  }
+
+  .toolbar-right {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .toolbar-actions {
+    width: 100%;
+  }
+
+  .toolbar-center {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .toolbar-bottom {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .toolbar-title {
+    font-size: 1.25rem;
+  }
+
+  .toolbar-compact {
+    padding: 0.75rem;
+
+    .toolbar-title {
+      font-size: 1.125rem;
+    }
+  }
+}

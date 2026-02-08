@@ -1,1 +1,26 @@
-<p>tabs-tabs works!</p>
+<div class="muxima-tabs" [class]="'muxima-tabs-' + variant">
+  <div class="tabs-nav">
+    <button 
+      *ngFor="let tab of tabs" 
+      class="tab"
+      [class.active]="isActive(tab.id)"
+      [class.disabled]="tab.disabled"
+      [disabled]="tab.disabled"
+      (click)="selectTab(tab)">
+      <svg 
+        *ngIf="tab.icon" 
+        class="tab-icon"
+        viewBox="0 0 24 24" 
+        fill="none" 
+        stroke="currentColor" 
+        stroke-width="2">
+        <path [attr.d]="tab.icon"></path>
+        <path *ngIf="tab.icon2" [attr.d]="tab.icon2"></path>
+      </svg>
+      <span class="tab-label">{{ tab.label }}</span>
+    </button>
+  </div>
+  <div class="tabs-content">
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -38,7 +38,7 @@
         [trend]="8.2"
         trendLabel="this week"
         [sparklineData]="usersData"
-        color="success">
+        color="green">
       </muxima-stats-card>
     </div>
     <pre><code>{{ getCodeExample('withSparkline') }}</code></pre>
@@ -62,7 +62,7 @@
           value="2,543"
           icon="👥"
           [trend]="8.2"
-          color="success">
+          color="green">
         </muxima-stats-card>
 
         <muxima-stats-card
@@ -70,7 +70,7 @@
           value="1,234"
           icon="📦"
           [trend]="-3.1"
-          color="warning">
+          color="orange">
         </muxima-stats-card>
 
         <muxima-stats-card
@@ -78,7 +78,7 @@
           value="35.2%"
           icon="📊"
           [trend]="-4.8"
-          color="danger">
+          color="red">
         </muxima-stats-card>
 
         <muxima-stats-card
@@ -86,7 +86,7 @@
           value="8,456"
           icon="🌐"
           [trend]="5.3"
-          color="info">
+          color="blue">
         </muxima-stats-card>
       </div>
     </div>
@@ -164,7 +164,7 @@
           [trend]="8.2"
           trendLabel="this week"
           [sparklineData]="usersData"
-          color="success">
+          color="green">
         </muxima-stats-card>
 
         <muxima-stats-card
@@ -174,7 +174,7 @@
           [trend]="-3.1"
           trendLabel="vs yesterday"
           [sparklineData]="ordersData"
-          color="info">
+          color="blue">
         </muxima-stats-card>
 
         <muxima-stats-card
@@ -184,11 +184,135 @@
           [trend]="-4.8"
           trendLabel="improvement"
           [sparklineData]="bounceData"
-          color="warning">
+          color="orange">
         </muxima-stats-card>
       </div>
     </div>
     <pre><code>{{ getCodeExample('dashboard') }}</code></pre>
+  </section>
+
+  <!-- Glass Variant -->
+  <section class="doc-section" style="background: linear-gradient(135deg, #1e3a8a 0%, #3b0764 50%, #581c87 100%); padding: 40px; border-radius: 16px;">
+    <h2 style="color: white;">✨ Glass Variant (Glassmorphism)</h2>
+    <p style="color: rgba(255,255,255,0.9); margin-bottom: 24px;">
+      Efeito de vidro fosco moderno com backdrop-filter blur. Perfeito para fundos coloridos.
+    </p>
+    <div class="example" style="background: transparent;">
+      <div class="stats-grid">
+        <muxima-stats-card
+          variant="glass"
+          label="Total Users"
+          value="10K+"
+          icon="⚡"
+          [trend]="15.3"
+          trendLabel="this month"
+          color="primary">
+        </muxima-stats-card>
+
+        <muxima-stats-card
+          variant="glass"
+          label="Revenue"
+          value="$125K"
+          icon="💎"
+          [trend]="23.5"
+          trendLabel="this quarter"
+          color="green">
+        </muxima-stats-card>
+
+        <muxima-stats-card
+          variant="glass"
+          label="Growth"
+          value="45%"
+          icon="📈"
+          [trend]="12.8"
+          trendLabel="year over year"
+          color="primary">
+        </muxima-stats-card>
+      </div>
+    </div>
+    <pre style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2);"><code style="color: #e0e0e0;">{{ getCodeExample('glass') }}</code></pre>
+  </section>
+
+  <!-- Neon Variant -->
+  <section class="doc-section" style="background: #0a0e27; padding: 40px; border-radius: 16px; border: 2px solid rgba(0,255,255,0.2);">
+    <h2 style="color: #00ffff; text-shadow: 0 0 20px rgba(0,255,255,0.6);">⚡ Neon Variant (Cyberpunk)</h2>
+    <p style="color: rgba(255,255,255,0.8); margin-bottom: 24px;">
+      Estilo neon cyberpunk com glow effects e animações. Ideal para dashboards futuristas.
+    </p>
+    <div class="example" style="background: transparent;">
+      <div class="stats-grid">
+        <muxima-stats-card
+          variant="neon"
+          label="Active Now"
+          value="1,234"
+          icon="🚀"
+          [trend]="8.7"
+          trendLabel="live users"
+          color="primary">
+        </muxima-stats-card>
+
+        <muxima-stats-card
+          variant="neon"
+          label="Servers"
+          value="99.9%"
+          icon="⚙️"
+          [trend]="0.5"
+          trendLabel="uptime"
+          color="green">
+        </muxima-stats-card>
+
+        <muxima-stats-card
+          variant="neon"
+          label="Requests"
+          value="2.5M"
+          icon="⭐"
+          [trend]="18.3"
+          trendLabel="per second"
+          color="primary">
+        </muxima-stats-card>
+      </div>
+    </div>
+    <pre style="background: rgba(0,0,0,0.5); border: 1px solid rgba(0,255,255,0.3);"><code style="color: #00ffff;">{{ getCodeExample('neon') }}</code></pre>
+  </section>
+
+  <!-- Gradient Variant -->
+  <section class="doc-section">
+    <h2>🌈 Gradient Variant</h2>
+    <p>Cards com gradiente roxo vibrante e sombras destacadas.</p>
+    <div class="example">
+      <div class="stats-grid">
+        <muxima-stats-card
+          variant="gradient"
+          label="Revenue"
+          value="$45K"
+          icon="💎"
+          [trend]="23.5"
+          trendLabel="this quarter"
+          color="primary">
+        </muxima-stats-card>
+
+        <muxima-stats-card
+          variant="gradient"
+          label="Premium Users"
+          value="3,456"
+          icon="👑"
+          [trend]="16.2"
+          trendLabel="active subscriptions"
+          color="primary">
+        </muxima-stats-card>
+
+        <muxima-stats-card
+          variant="gradient"
+          label="Conversion"
+          value="12.8%"
+          icon="🎯"
+          [trend]="5.4"
+          trendLabel="rate improvement"
+          color="primary">
+        </muxima-stats-card>
+      </div>
+    </div>
+    <pre><code>{{ getCodeExample('gradient') }}</code></pre>
   </section>
 
   <!-- API -->
@@ -224,6 +348,12 @@
             <td>Emoji ou ícone para identificação visual</td>
           </tr>
           <tr>
+            <td><code>iconSvg</code></td>
+            <td>string</td>
+            <td>''</td>
+            <td>Código SVG customizado para o ícone</td>
+          </tr>
+          <tr>
             <td><code>trend</code></td>
             <td>number</td>
             <td>0</td>
@@ -237,9 +367,15 @@
           </tr>
           <tr>
             <td><code>color</code></td>
-            <td>'primary' | 'success' | 'warning' | 'danger' | 'info'</td>
+            <td>'primary' | 'blue' | 'green' | 'orange' | 'red' | 'purple'</td>
             <td>'primary'</td>
             <td>Cor do tema do card</td>
+          </tr>
+          <tr>
+            <td><code>variant</code></td>
+            <td>'default' | 'compact' | 'minimal'</td>
+            <td>'default'</td>
+            <td>Variante visual do card</td>
           </tr>
           <tr>
             <td><code>size</code></td>

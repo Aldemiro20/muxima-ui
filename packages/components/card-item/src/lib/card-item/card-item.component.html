@@ -1,0 +1,48 @@
+<div 
+  class="muxima-card-item" 
+  [ngClass]="[variantClass, orientationClass, hoverable ? 'hoverable' : '', loading ? 'loading' : '']"
+  (click)="onCardClick()"
+>
+  <!-- Loading State -->
+  <div *ngIf="loading" class="card-loading">
+    <div class="skeleton-image"></div>
+    <div class="skeleton-content">
+      <div class="skeleton-title"></div>
+      <div class="skeleton-subtitle"></div>
+      <div class="skeleton-description"></div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div *ngIf="!loading" class="card-content">
+    <!-- Image -->
+    <div *ngIf="image" class="card-image" (click)="onImageClick($event)">
+      <img [src]="image" [alt]="imageAlt || title" />
+      <div *ngIf="badge" class="card-badge" [ngClass]="badgeColorClass">
+        {{ badge }}
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="card-body">
+      <!-- Title -->
+      <h3 *ngIf="title" class="card-title">{{ title }}</h3>
+
+      <!-- Subtitle -->
+      <p *ngIf="subtitle" class="card-subtitle">{{ subtitle }}</p>
+
+      <!-- Description -->
+      <p *ngIf="description" class="card-description">{{ description }}</p>
+
+      <!-- Metadata Slot -->
+      <div class="card-metadata">
+        <ng-content select="[metadata]"></ng-content>
+      </div>
+
+      <!-- Actions Slot -->
+      <div class="card-actions">
+        <ng-content select="[actions]"></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

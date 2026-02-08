@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 interface BreadcrumbItem {
@@ -14,88 +14,68 @@ interface BreadcrumbItem {
   templateUrl: './breadcrumb-doc.component.html',
   styleUrls: ['./breadcrumb-doc.component.scss']
 })
-export class BreadcrumbDocComponent implements OnInit {
+export class BreadcrumbDocComponent {
   // Basic breadcrumbs
   basicBreadcrumbs: BreadcrumbItem[] = [
-    { label: 'Home', url: '/', icon: '🏠' },
-    { label: 'Produtos', url: '/produtos', icon: '📦' },
-    { label: 'Eletrônicos', url: '/produtos/eletronicos', icon: '💻' },
+    { label: 'Home', url: '/' },
+    { label: 'Produtos', url: '/produtos' },
+    { label: 'Eletrônicos', url: '/produtos/eletronicos' },
     { label: 'Notebook' }
   ];
 
   // Dashboard breadcrumbs
   dashboardBreadcrumbs: BreadcrumbItem[] = [
-    { label: 'Dashboard', url: '/dashboard', icon: '📊' },
-    { label: 'Relatórios', url: '/dashboard/relatorios', icon: '📈' },
-    { label: 'Vendas' }
+    { label: 'Dashboard', url: '/dashboard' },
+    { label: 'Relatórios', url: '/dashboard/relatorios' },
+    { label: 'Vendas Mensais' }
   ];
 
   // Admin breadcrumbs
   adminBreadcrumbs: BreadcrumbItem[] = [
-    { label: 'Admin', url: '/admin', icon: '⚙️' },
-    { label: 'Usuários', url: '/admin/usuarios', icon: '👥' },
-    { label: 'Perfil', url: '/admin/usuarios/perfil', icon: '👤' },
-    { label: 'Editar' }
+    { label: 'Admin', url: '/admin' },
+    { label: 'Usuários', url: '/admin/usuarios' },
+    { label: 'Perfil', url: '/admin/usuarios/perfil' },
+    { label: 'Editar Permissões' }
   ];
 
   // E-commerce breadcrumbs
   ecommerceBreadcrumbs: BreadcrumbItem[] = [
-    { label: 'Loja', url: '/', icon: '🛍️' },
-    { label: 'Moda', url: '/moda', icon: '👔' },
-    { label: 'Masculino', url: '/moda/masculino', icon: '👨' },
-    { label: 'Camisetas', url: '/moda/masculino/camisetas', icon: '👕' },
-    { label: 'Camiseta Premium' }
+    { label: 'Loja', url: '/' },
+    { label: 'Moda', url: '/moda' },
+    { label: 'Masculino', url: '/moda/masculino' },
+    { label: 'Camisetas', url: '/moda/masculino/camisetas' },
+    { label: 'Camiseta Premium Azul' }
   ];
 
   // Documentation breadcrumbs
   docsBreadcrumbs: BreadcrumbItem[] = [
-    { label: 'Docs', url: '/docs', icon: '📚' },
-    { label: 'Componentes', url: '/docs/components', icon: '🧩' },
-    { label: 'Navegação', url: '/docs/components/navigation', icon: '🧭' },
+    { label: 'Docs', url: '/docs' },
+    { label: 'Componentes', url: '/docs/components' },
+    { label: 'Navegação', url: '/docs/components/navigation' },
     { label: 'Breadcrumb' }
-  ];
-
-  // File system breadcrumbs
-  fileSystemBreadcrumbs: BreadcrumbItem[] = [
-    { label: 'Root', url: '/', icon: '💾' },
-    { label: 'Documentos', url: '/documentos', icon: '📁' },
-    { label: 'Projetos', url: '/documentos/projetos', icon: '📂' },
-    { label: 'Angular', url: '/documentos/projetos/angular', icon: '🅰️' },
-    { label: 'src', url: '/documentos/projetos/angular/src', icon: '📄' },
-    { label: 'app' }
   ];
 
   // Settings breadcrumbs
   settingsBreadcrumbs: BreadcrumbItem[] = [
-    { label: 'Configurações', url: '/settings', icon: '⚙️' },
-    { label: 'Conta', url: '/settings/account', icon: '👤' },
-    { label: 'Segurança' }
+    { label: 'Configurações', url: '/settings' },
+    { label: 'Conta', url: '/settings/account' },
+    { label: 'Segurança e Privacidade' }
   ];
 
-  // Blog breadcrumbs
-  blogBreadcrumbs: BreadcrumbItem[] = [
-    { label: 'Blog', url: '/blog', icon: '✍️' },
-    { label: 'Tecnologia', url: '/blog/tecnologia', icon: '💻' },
-    { label: 'Angular 17: Novidades' }
-  ];
+  // Code examples
+  installCode = `npm install @muxima-ui/breadcrumb`;
 
-  codeExamples = {
-    basic: { code: '', copied: false },
-    withIcons: { code: '', copied: false },
-    separators: { code: '', copied: false },
-    responsive: { code: '', copied: false },
-    collapsed: { code: '', copied: false }
-  };
+  importCode = `import { BreadcrumbComponent } from '@muxima-ui/breadcrumb';
 
-  ngOnInit() {
-    this.initializeCodeExamples();
-  }
+@Component({
+  standalone: true,
+  imports: [BreadcrumbComponent]
+})`;
 
-  initializeCodeExamples() {
-    this.codeExamples.basic.code = `<nav class="breadcrumb">
+  basicCode = `<nav class="breadcrumb">
   <ol class="breadcrumb-list">
     <li class="breadcrumb-item" *ngFor="let item of breadcrumbs; let last = last">
-      <a *ngIf="!last && item.url" [href]="item.url" class="breadcrumb-link">
+      <a *ngIf="!last" [href]="item.url" class="breadcrumb-link">
         {{ item.label }}
       </a>
       <span *ngIf="last" class="breadcrumb-current">
@@ -104,54 +84,55 @@ export class BreadcrumbDocComponent implements OnInit {
       <span *ngIf="!last" class="breadcrumb-separator">/</span>
     </li>
   </ol>
-</nav>`;
+</nav>
 
-    this.codeExamples.withIcons.code = `<nav class="breadcrumb">
-  <ol class="breadcrumb-list">
-    <li class="breadcrumb-item" *ngFor="let item of breadcrumbs; let last = last">
-      <a *ngIf="!last && item.url" [href]="item.url" class="breadcrumb-link">
-        <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
-        <span>{{ item.label }}</span>
-      </a>
-      <span *ngIf="last" class="breadcrumb-current">
-        <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
-        <span>{{ item.label }}</span>
-      </span>
-      <span *ngIf="!last" class="breadcrumb-separator">/</span>
-    </li>
-  </ol>
-</nav>`;
+// TypeScript
+breadcrumbs = [
+  { label: 'Home', url: '/' },
+  { label: 'Produtos', url: '/produtos' },
+  { label: 'Notebook' }
+];`;
 
-    this.codeExamples.separators.code = `<!-- Separador "/" -->
+  separatorsCode = `<!-- Separador Slash (/) -->
 <span class="breadcrumb-separator">/</span>
 
-<!-- Separador "›" -->
+<!-- Separador Chevron (›) -->
 <span class="breadcrumb-separator">›</span>
 
-<!-- Separador "→" -->
+<!-- Separador Arrow (→) -->
 <span class="breadcrumb-separator">→</span>
 
-<!-- Separador "•" -->
+<!-- Separador Dot (•) -->
 <span class="breadcrumb-separator">•</span>`;
 
-    this.codeExamples.responsive.code = `// SCSS - Breadcrumb Responsivo
+  stylesCode = `<!-- Dashboard Style -->
+<nav class="breadcrumb breadcrumb-dashboard">
+  <!-- conteúdo -->
+</nav>
+
+<!-- Admin Style -->
+<nav class="breadcrumb breadcrumb-admin">
+  <!-- conteúdo -->
+</nav>
+
+<!-- Minimal Style -->
+<nav class="breadcrumb breadcrumb-minimal">
+  <!-- conteúdo -->
+</nav>`;
+
+  responsiveCode = `// SCSS - Breadcrumb Responsivo
 .breadcrumb {
   @media (max-width: 768px) {
     .breadcrumb-item {
+      // Oculta itens intermediários
       &:not(:last-child):not(:first-child) {
-        display: none; // Oculta itens intermediários
-      }
-    }
-    
-    .breadcrumb-separator {
-      &:nth-last-child(2) {
-        content: '...'; // Mostra reticências
+        display: none;
       }
     }
   }
 }`;
 
-    this.codeExamples.collapsed.code = `<!-- TypeScript -->
+  collapsedCode = `// TypeScript - Breadcrumb Colapsado
 collapseBreadcrumb(items: BreadcrumbItem[]) {
   if (items.length <= 3) return items;
   
@@ -161,22 +142,19 @@ collapseBreadcrumb(items: BreadcrumbItem[]) {
     ...items.slice(-2)
   ];
 }`;
+
+  copiedStates: { [key: string]: boolean } = {};
+
+  copyCode(code: string, key: string = 'default'): void {
+    navigator.clipboard.writeText(code).then(() => {
+      this.copiedStates[key] = true;
+      setTimeout(() => {
+        this.copiedStates[key] = false;
+      }, 2000);
+    });
   }
 
-  copyCode(example: keyof typeof this.codeExamples) {
-    const codeExample = this.codeExamples[example];
-    navigator.clipboard.writeText(codeExample.code);
-    codeExample.copied = true;
-    setTimeout(() => codeExample.copied = false, 2000);
-  }
-
-  get importCode(): string {
-    return `import { BreadcrumbComponent } from '@muxima-ui/breadcrumb';
-
-@Component({
-  standalone: true,
-  imports: [BreadcrumbComponent],
-  // ...
-})`;
+  isCopied(key: string = 'default'): boolean {
+    return this.copiedStates[key] || false;
   }
 }

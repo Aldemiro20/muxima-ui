@@ -2,11 +2,14 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SelectComponent, SelectOption } from '@muxima-ui/select';
+import { TabsTabsComponent, TabItem } from '@muxima-ui/tabs';
+import { ToggleToggleComponent } from '@muxima-ui/toggle';
+import { UtilitySettingsItemSettingsItemComponent } from '@muxima-ui/settings-item';
 
 @Component({
   selector: 'muxima-settings',
   standalone: true,
-  imports: [CommonModule, FormsModule, SelectComponent],
+  imports: [CommonModule, FormsModule, SelectComponent, TabsTabsComponent, ToggleToggleComponent, UtilitySettingsItemSettingsItemComponent],
   template: `
     <div class="settings-page">
       <div class="page-header">
@@ -25,70 +28,54 @@ import { SelectComponent, SelectOption } from '@muxima-ui/select';
       </div>
 
       <!-- Tabs -->
-      <div class="tabs">
-        <button 
-          *ngFor="let tab of tabs" 
-          class="tab"
-          [class.active]="activeTab === tab.id"
-          (click)="activeTab = tab.id">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path [attr.d]="tab.icon"></path>
-            <ng-container *ngIf="tab.icon2">
-              <path [attr.d]="tab.icon2"></path>
-            </ng-container>
-          </svg>
-          {{ tab.label }}
-        </button>
-      </div>
+      <muxima-tabs 
+        [tabs]="tabs" 
+        [(activeTab)]="activeTab"
+        variant="underline">
 
       <!-- General Tab -->
       <div class="tab-content" *ngIf="activeTab === 'general'">
         <div class="settings-section">
           <h2>General Settings</h2>
           <div class="settings-group">
-            <div class="setting-item">
-              <div class="setting-info">
-                <label>Application Name</label>
-                <p>The name displayed across the application</p>
-              </div>
+            <muxima-settings-item
+              label="Application Name"
+              description="The name displayed across the application">
               <input type="text" value="Muxima Dashboard" class="setting-input">
-            </div>
-            <div class="setting-item">
-              <div class="setting-info">
-                <label>Language</label>
-                <p>Select your preferred language</p>
-              </div>
+            </muxima-settings-item>
+            
+            <muxima-settings-item
+              label="Language"
+              description="Select your preferred language">
               <muxima-select
                 [(ngModel)]="selectedLanguage"
                 [options]="languageOptions"
                 size="sm"
                 class="setting-select">
               </muxima-select>
-            </div>
-            <div class="setting-item">
-              <div class="setting-info">
-                <label>Timezone</label>
-                <p>Set your local timezone</p>
-              </div>
+            </muxima-settings-item>
+            
+            <muxima-settings-item
+              label="Timezone"
+              description="Set your local timezone">
               <muxima-select
                 [(ngModel)]="selectedTimezone"
                 [options]="timezoneOptions"
                 size="sm"
                 class="setting-select">
               </muxima-select>
-            </div>
-            <div class="setting-item">
-              <div class="setting-info">
-                <label>Date Format</label>
-                <p>Choose how dates are displayed</p>
-              </div>
+            </muxima-settings-item>
+            
+            <muxima-settings-item
+              label="Date Format"
+              description="Choose how dates are displayed">
               <muxima-select
                 [(ngModel)]="selectedDateFormat"
                 [options]="dateFormatOptions"
                 size="sm"
                 class="setting-select">
               </muxima-select>
-            </div>
+            </muxima-settings-item>
           </div>
         </div>
       </div>
@@ -98,56 +85,40 @@ import { SelectComponent, SelectOption } from '@muxima-ui/select';
         <div class="settings-section">
           <h2>Notification Preferences</h2>
           <div class="settings-group">
-            <div class="setting-item toggle-item">
-              <div class="setting-info">
-                <label>Email Notifications</label>
-                <p>Receive notifications via email</p>
-              </div>
-              <label class="toggle">
-                <input type="checkbox" checked>
-                <span class="toggle-slider"></span>
-              </label>
-            </div>
-            <div class="setting-item toggle-item">
-              <div class="setting-info">
-                <label>Push Notifications</label>
-                <p>Receive browser push notifications</p>
-              </div>
-              <label class="toggle">
-                <input type="checkbox" checked>
-                <span class="toggle-slider"></span>
-              </label>
-            </div>
-            <div class="setting-item toggle-item">
-              <div class="setting-info">
-                <label>Order Updates</label>
-                <p>Get notified about order status changes</p>
-              </div>
-              <label class="toggle">
-                <input type="checkbox" checked>
-                <span class="toggle-slider"></span>
-              </label>
-            </div>
-            <div class="setting-item toggle-item">
-              <div class="setting-info">
-                <label>Payment Alerts</label>
-                <p>Receive alerts for payment activities</p>
-              </div>
-              <label class="toggle">
-                <input type="checkbox">
-                <span class="toggle-slider"></span>
-              </label>
-            </div>
-            <div class="setting-item toggle-item">
-              <div class="setting-info">
-                <label>Weekly Reports</label>
-                <p>Get weekly summary reports via email</p>
-              </div>
-              <label class="toggle">
-                <input type="checkbox" checked>
-                <span class="toggle-slider"></span>
-              </label>
-            </div>
+            <muxima-settings-item
+              label="Email Notifications"
+              description="Receive notifications via email"
+              variant="toggle">
+              <muxima-toggle [checked]="true" size="md"></muxima-toggle>
+            </muxima-settings-item>
+            
+            <muxima-settings-item
+              label="Push Notifications"
+              description="Receive browser push notifications"
+              variant="toggle">
+              <muxima-toggle [checked]="true" size="md"></muxima-toggle>
+            </muxima-settings-item>
+            
+            <muxima-settings-item
+              label="Order Updates"
+              description="Get notified about order status changes"
+              variant="toggle">
+              <muxima-toggle [checked]="true" size="md"></muxima-toggle>
+            </muxima-settings-item>
+            
+            <muxima-settings-item
+              label="Payment Alerts"
+              description="Receive alerts for payment activities"
+              variant="toggle">
+              <muxima-toggle [checked]="false" size="md"></muxima-toggle>
+            </muxima-settings-item>
+            
+            <muxima-settings-item
+              label="Weekly Reports"
+              description="Get weekly summary reports via email"
+              variant="toggle">
+              <muxima-toggle [checked]="true" size="md"></muxima-toggle>
+            </muxima-settings-item>
           </div>
         </div>
       </div>
@@ -157,11 +128,10 @@ import { SelectComponent, SelectOption } from '@muxima-ui/select';
         <div class="settings-section">
           <h2>Security Settings</h2>
           <div class="settings-group">
-            <div class="setting-item">
-              <div class="setting-info">
-                <label>Change Password</label>
-                <p>Update your account password</p>
-              </div>
+            <muxima-settings-item
+              label="Change Password"
+              description="Update your account password"
+              variant="action">
               <button class="action-btn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
@@ -169,32 +139,26 @@ import { SelectComponent, SelectOption } from '@muxima-ui/select';
                 </svg>
                 Change
               </button>
-            </div>
-            <div class="setting-item toggle-item">
-              <div class="setting-info">
-                <label>Two-Factor Authentication</label>
-                <p>Add an extra layer of security to your account</p>
-              </div>
-              <label class="toggle">
-                <input type="checkbox">
-                <span class="toggle-slider"></span>
-              </label>
-            </div>
-            <div class="setting-item toggle-item">
-              <div class="setting-info">
-                <label>Session Timeout</label>
-                <p>Automatically log out after inactivity</p>
-              </div>
-              <label class="toggle">
-                <input type="checkbox" checked>
-                <span class="toggle-slider"></span>
-              </label>
-            </div>
-            <div class="setting-item">
-              <div class="setting-info">
-                <label>Active Sessions</label>
-                <p>Manage your active login sessions</p>
-              </div>
+            </muxima-settings-item>
+            
+            <muxima-settings-item
+              label="Two-Factor Authentication"
+              description="Add an extra layer of security to your account"
+              variant="toggle">
+              <muxima-toggle [checked]="false" size="md"></muxima-toggle>
+            </muxima-settings-item>
+            
+            <muxima-settings-item
+              label="Session Timeout"
+              description="Automatically log out after inactivity"
+              variant="toggle">
+              <muxima-toggle [checked]="true" size="md"></muxima-toggle>
+            </muxima-settings-item>
+            
+            <muxima-settings-item
+              label="Active Sessions"
+              description="Manage your active login sessions"
+              variant="action">
               <button class="action-btn danger">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
@@ -203,7 +167,7 @@ import { SelectComponent, SelectOption } from '@muxima-ui/select';
                 </svg>
                 Revoke All
               </button>
-            </div>
+            </muxima-settings-item>
           </div>
         </div>
       </div>
@@ -213,11 +177,9 @@ import { SelectComponent, SelectOption } from '@muxima-ui/select';
         <div class="settings-section">
           <h2>API & Integrations</h2>
           <div class="settings-group">
-            <div class="setting-item">
-              <div class="setting-info">
-                <label>API Key</label>
-                <p>Your unique API key for integrations</p>
-              </div>
+            <muxima-settings-item
+              label="API Key"
+              description="Your unique API key for integrations">
               <div class="api-key-group">
                 <code class="api-key">mk_live_xxxxxxxxxxxxxxxxxxxxxxxx</code>
                 <button class="icon-btn">
@@ -227,14 +189,14 @@ import { SelectComponent, SelectOption } from '@muxima-ui/select';
                   </svg>
                 </button>
               </div>
-            </div>
-            <div class="setting-item">
-              <div class="setting-info">
-                <label>Webhook URL</label>
-                <p>Receive real-time event notifications</p>
-              </div>
+            </muxima-settings-item>
+            
+            <muxima-settings-item
+              label="Webhook URL"
+              description="Receive real-time event notifications">
               <input type="text" value="https://yourdomain.com/webhook" class="setting-input">
-            </div>
+            </muxima-settings-item>
+            
             <div class="integration-cards">
               <div class="integration-card" *ngFor="let integration of integrations">
                 <div class="integration-header">
@@ -257,6 +219,7 @@ import { SelectComponent, SelectOption } from '@muxima-ui/select';
           </div>
         </div>
       </div>
+      </muxima-tabs>
     </div>
   `,
   styles: [`
@@ -268,32 +231,15 @@ import { SelectComponent, SelectOption } from '@muxima-ui/select';
     .save-btn svg { width: 18px; height: 18px; }
     .save-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4); }
     
-    .tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; border-bottom: 2px solid #f3f4f6; }
-    .tab { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.5rem; background: none; border: none; border-bottom: 2px solid transparent; color: #6b7280; cursor: pointer; font-size: 0.875rem; font-weight: 500; transition: all 0.2s; margin-bottom: -2px; }
-    .tab svg { width: 18px; height: 18px; }
-    .tab:hover { color: #667eea; }
-    .tab.active { color: #667eea; border-bottom-color: #667eea; }
-    
     .tab-content { animation: fadeIn 0.3s; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     
     .settings-section { background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
     .settings-section h2 { font-size: 1.25rem; font-weight: 600; margin: 0 0 1.5rem 0; color: #111827; }
     .settings-group { display: flex; flex-direction: column; gap: 1.5rem; }
-    .setting-item { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; border: 1px solid #e5e7eb; border-radius: 8px; }
-    .setting-item.toggle-item { padding: 1.25rem 1.5rem; }
-    .setting-info { flex: 1; }
-    .setting-info label { display: block; font-weight: 600; color: #111827; margin-bottom: 0.25rem; }
-    .setting-info p { color: #6b7280; font-size: 0.875rem; margin: 0; }
+    
     .setting-input, .setting-select { padding: 0.5rem 1rem; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 0.875rem; min-width: 250px; }
     .setting-input:focus, .setting-select:focus { outline: none; border-color: #667eea; }
-    
-    .toggle { position: relative; display: inline-block; width: 48px; height: 24px; }
-    .toggle input { opacity: 0; width: 0; height: 0; }
-    .toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #cbd5e1; transition: .3s; border-radius: 24px; }
-    .toggle-slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; }
-    .toggle input:checked + .toggle-slider { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-    .toggle input:checked + .toggle-slider:before { transform: translateX(24px); }
     
     .action-btn { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border: 1px solid #e5e7eb; border-radius: 6px; background: white; font-size: 0.875rem; cursor: pointer; transition: all 0.2s; }
     .action-btn svg { width: 14px; height: 14px; }
@@ -327,9 +273,6 @@ import { SelectComponent, SelectOption } from '@muxima-ui/select';
     @media (max-width: 768px) {
       .settings-page { padding: 1rem; }
       .page-header { flex-direction: column; gap: 1rem; }
-      .tabs { overflow-x: auto; }
-      .setting-item { flex-direction: column; align-items: flex-start; gap: 1rem; }
-      .setting-input, .setting-select { min-width: 100%; }
       .integration-cards { grid-template-columns: 1fr; }
     }
   `]

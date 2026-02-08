@@ -5,7 +5,7 @@
     'muxima-badge-' + color,
     'muxima-badge-' + size
   ]">
-  <span *ngIf="dot" class="muxima-badge-dot"></span>
+  <span *ngIf="dot" class="muxima-badge-dot" [class.pulse]="pulse"></span>
   <ng-content></ng-content>
   <button *ngIf="removable" class="muxima-badge-remove" type="button">×</button>
 </span>

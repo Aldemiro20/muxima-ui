@@ -71,6 +71,18 @@ export const routes: Routes = [
     path: 'templates/saas',
     loadComponent: () => import('./pages/templates/saas-landing.component').then(m => m.SaasLandingComponent)
   },
+  {
+    path: 'templates/glass-landing',
+    loadComponent: () => import('./pages/templates/glass-landing.component').then(m => m.GlassLandingComponent)
+  },
+  {
+    path: 'templates/neon-landing',
+    loadComponent: () => import('./pages/templates/neon-landing.component').then(m => m.NeonLandingComponent)
+  },
+  {
+    path: 'templates/workspace',
+    loadComponent: () => import('./pages/templates/workspace-template.component').then(m => m.WorkspaceTemplateComponent)
+  },
   // Documentation Routes (Com DocLayout)
   {
     path: '',
@@ -111,6 +123,14 @@ export const routes: Routes = [
       {
         path: 'components/card',
         loadComponent: () => import('./pages/components/card-doc.component').then(m => m.CardDocComponent)
+      },
+      {
+        path: 'components/feature-card',
+        loadComponent: () => import('./pages/components/feature-card-doc.component').then(m => m.FeatureCardDocComponent)
+      },
+      {
+        path: 'components/pricing-card',
+        loadComponent: () => import('./pages/components/pricing-card-doc.component').then(m => m.PricingCardDocComponent)
       },
   {
     path: 'components/carousel',
@@ -217,6 +237,22 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/components/tabs-doc.component').then(m => m.TabsDocComponent)
   },
   {
+    path: 'components/tabs-new',
+    loadComponent: () => import('./pages/components/tabs-component-doc.component').then(m => m.TabsComponentDocComponent)
+  },
+  {
+    path: 'components/settings-item',
+    loadComponent: () => import('./pages/components/settings-item-doc.component').then(m => m.SettingsItemDocComponent)
+  },
+  {
+    path: 'components/search-box',
+    loadComponent: () => import('./pages/components/search-box-doc.component').then(m => m.SearchBoxDocComponent)
+  },
+  {
+    path: 'components/hero',
+    loadComponent: () => import('./pages/components/hero-doc.component').then(m => m.HeroDocComponent)
+  },
+  {
     path: 'components/toast',
     loadComponent: () => import('./pages/components/toast-doc.component').then(m => m.ToastDocComponent)
   },
@@ -299,6 +335,10 @@ export const routes: Routes = [
   {
     path: 'components/image-cropper',
     loadComponent: () => import('./pages/components/image-cropper-doc.component').then(m => m.ImageCropperDocComponent)
+  },
+  {
+    path: 'components/loading-interceptor',
+    loadComponent: () => import('./pages/components/loading-interceptor-doc.component').then(m => m.LoadingInterceptorDocComponent)
   },
   {
     path: 'components/video-player',

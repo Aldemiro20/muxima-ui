@@ -1,0 +1,158 @@
+.muxima-tabs {
+  width: 100%;
+}
+
+.tabs-nav {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #f3f4f6;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #6b7280;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  margin-bottom: -2px;
+  white-space: nowrap;
+  font-family: inherit;
+
+  &:hover:not(.disabled) {
+    color: #667eea;
+  }
+
+  &.active {
+    color: #667eea;
+    border-bottom-color: #667eea;
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.tab-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.tab-label {
+  flex-shrink: 0;
+}
+
+.tabs-content {
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Variant: Pills
+.muxima-tabs-pills {
+  .tabs-nav {
+    border-bottom: none;
+    gap: 0.5rem;
+  }
+
+  .tab {
+    border-radius: 8px;
+    border-bottom: none;
+    margin-bottom: 0;
+
+    &:hover:not(.disabled) {
+      background: rgba(102, 126, 234, 0.1);
+    }
+
+    &.active {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-bottom: none;
+    }
+  }
+}
+
+// Variant: Bordered
+.muxima-tabs-bordered {
+  .tabs-nav {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 0.25rem;
+    background: #f9fafb;
+    border-bottom: none;
+  }
+
+  .tab {
+    border-radius: 6px;
+    border-bottom: none;
+    margin-bottom: 0;
+
+    &:hover:not(.disabled) {
+      background: white;
+    }
+
+    &.active {
+      background: white;
+      color: #667eea;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      border-bottom: none;
+    }
+  }
+}
+
+// Variant: Default
+.muxima-tabs-default {
+  .tabs-nav {
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .tab {
+    border-bottom: 2px solid transparent;
+
+    &.active {
+      color: #111827;
+      border-bottom-color: #111827;
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .tabs-nav {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .tab {
+    padding: 0.75rem 1rem;
+    font-size: 0.8125rem;
+  }
+
+  .tab-icon {
+    width: 16px;
+    height: 16px;
+  }
+}

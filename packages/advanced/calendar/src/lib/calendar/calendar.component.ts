@@ -38,7 +38,7 @@ export class CalendarComponent implements OnInit, OnChanges {
   @Input() slotDuration: number = 30; // minutes
   
   @Output() eventClicked = new EventEmitter<CalendarEvent>();
-  @Output() eventCreated = new EventEmitter<{ start: Date; end: Date }>();
+  @Output() eventCreated = new EventEmitter<CalendarEvent>();
   @Output() eventUpdated = new EventEmitter<CalendarEvent>();
   @Output() eventDeleted = new EventEmitter<CalendarEvent>();
   @Output() dateClicked = new EventEmitter<Date>();
@@ -52,12 +52,50 @@ export class CalendarComponent implements OnInit, OnChanges {
   today = new Date();
   selectedDate?: Date;
   
+  // Event Modal State
+  showEventModal = false;
+  editingEvent: CalendarEvent | null = null;
+  eventForm = {
+    title: '',
+    start: '',
+    startTime: '09:00',
+    end: '',
+    endTime: '10:00',
+    allDay: false,
+    description: '',
+    location: '',
+    category: '',
+    color: '#667eea',
+    recurring: 'none' as 'none' | 'daily' | 'weekly' | 'monthly'
+  };
+  
+  // Context Menu State
+  showContextMenu = false;
+  contextMenuX = 0;
+  contextMenuY = 0;
+  contextMenuEvent: CalendarEvent | null = null;
+  
+  // Search & Filter
+  searchQuery = '';
+  selectedCategory = '';
+  availableCategories: string[] = [];
+  
   readonly weekDayNames = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
   readonly monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 
                          'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+  
+  readonly categoryColors = [
+    { name: 'Trabalho', color: '#667eea' },
+    { name: 'Pessoal', color: '#f56565' },
+    { name: 'Reunião', color: '#48bb78' },
+    { name: 'Evento', color: '#ed8936' },
+    { name: 'Importante', color: '#e53e3e' },
+    { name: 'Outros', color: '#718096' }
+  ];
 
   ngOnInit(): void {
     this.generateCalendarData();
+    this.updateCategories();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -208,7 +246,8 @@ export class CalendarComponent implements OnInit, OnChanges {
 
   onEventClick(event: CalendarEvent, $event: Event): void {
     $event.stopPropagation();
-    this.eventClicked.emit(event);
+    // Open edit modal instead of just emitting
+    this.openEditEventModal(event);
   }
 
   previousPeriod(): void {
@@ -333,5 +372,202 @@ export class CalendarComponent implements OnInit, OnChanges {
       names.push(names.shift()!);
     }
     return names;
+  }
+  
+  // =====================================================
+  // EVENT MODAL METHODS
+  // =====================================================
+  
+  openCreateEventModal(date?: Date): void {
+    if (!this.allowEventCreation) return;
+    
+    this.editingEvent = null;
+    this.eventForm = {
+      title: '',
+      start: date ? this.formatDateInput(date) : this.formatDateInput(new Date()),
+      startTime: '09:00',
+      end: date ? this.formatDateInput(date) : this.formatDateInput(new Date()),
+      endTime: '10:00',
+      allDay: false,
+      description: '',
+      location: '',
+      category: '',
+      color: '#667eea',
+      recurring: 'none'
+    };
+    this.showEventModal = true;
+  }
+  
+  openEditEventModal(event: CalendarEvent): void {
+    if (!this.allowEventEdit) return;
+    
+    this.editingEvent = event;
+    this.eventForm = {
+      title: event.title,
+      start: this.formatDateInput(event.start),
+      startTime: this.formatTimeInput(event.start),
+      end: this.formatDateInput(event.end),
+      endTime: this.formatTimeInput(event.end),
+      allDay: event.allDay || false,
+      description: event.description || '',
+      location: event.location || '',
+      category: event.category || '',
+      color: event.color || '#667eea',
+      recurring: event.recurring || 'none'
+    };
+    this.showEventModal = true;
+  }
+  
+  closeEventModal(): void {
+    this.showEventModal = false;
+    this.editingEvent = null;
+  }
+  
+  saveEvent(): void {
+    if (!this.eventForm.title.trim()) {
+      alert('Por favor, insira um título para o evento.');
+      return;
+    }
+    
+    const startDate = new Date(this.eventForm.start + 'T' + this.eventForm.startTime);
+    const endDate = new Date(this.eventForm.end + 'T' + this.eventForm.endTime);
+    
+    if (endDate <= startDate) {
+      alert('A data de término deve ser posterior à data de início.');
+      return;
+    }
+    
+    const event: CalendarEvent = {
+      id: this.editingEvent ? this.editingEvent.id : Date.now(),
+      title: this.eventForm.title,
+      start: startDate,
+      end: endDate,
+      allDay: this.eventForm.allDay,
+      description: this.eventForm.description,
+      location: this.eventForm.location,
+      category: this.eventForm.category,
+      color: this.eventForm.color,
+      recurring: this.eventForm.recurring
+    };
+    
+    if (this.editingEvent) {
+      this.eventUpdated.emit(event);
+    } else {
+      this.eventCreated.emit(event);
+    }
+    
+    this.closeEventModal();
+    this.updateCategories();
+  }
+  
+  deleteEvent(event: CalendarEvent): void {
+    if (confirm(`Deseja excluir o evento "${event.title}"?`)) {
+      this.eventDeleted.emit(event);
+      this.closeContextMenu();
+      this.updateCategories();
+    }
+  }
+  
+  // =====================================================
+  // CONTEXT MENU METHODS
+  // =====================================================
+  
+  openContextMenu(event: CalendarEvent, mouseEvent: MouseEvent): void {
+    mouseEvent.preventDefault();
+    mouseEvent.stopPropagation();
+    
+    this.contextMenuEvent = event;
+    this.contextMenuX = mouseEvent.clientX;
+    this.contextMenuY = mouseEvent.clientY;
+    this.showContextMenu = true;
+  }
+  
+  closeContextMenu(): void {
+    this.showContextMenu = false;
+    this.contextMenuEvent = null;
+  }
+  
+  onContextMenuAction(action: 'view' | 'edit' | 'delete'): void {
+    if (!this.contextMenuEvent) return;
+    
+    switch (action) {
+      case 'view':
+        this.eventClicked.emit(this.contextMenuEvent);
+        break;
+      case 'edit':
+        this.openEditEventModal(this.contextMenuEvent);
+        break;
+      case 'delete':
+        this.deleteEvent(this.contextMenuEvent);
+        break;
+    }
+    
+    this.closeContextMenu();
+  }
+  
+  // =====================================================
+  // SEARCH & FILTER METHODS
+  // =====================================================
+  
+  get filteredEvents(): CalendarEvent[] {
+    let filtered = this.events;
+    
+    // Apply search filter
+    if (this.searchQuery) {
+      const query = this.searchQuery.toLowerCase();
+      filtered = filtered.filter(event => 
+        event.title.toLowerCase().includes(query) ||
+        event.description?.toLowerCase().includes(query) ||
+        event.location?.toLowerCase().includes(query)
+      );
+    }
+    
+    // Apply category filter
+    if (this.selectedCategory) {
+      filtered = filtered.filter(event => event.category === this.selectedCategory);
+    }
+    
+    return filtered;
+  }
+  
+  clearFilters(): void {
+    this.searchQuery = '';
+    this.selectedCategory = '';
+  }
+  
+  private updateCategories(): void {
+    const categories = new Set(this.events.map(e => e.category).filter(Boolean));
+    this.availableCategories = Array.from(categories) as string[];
+  }
+  
+  // =====================================================
+  // UTILITY METHODS
+  // =====================================================
+  
+  private formatDateInput(date: Date): string {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+  
+  private formatTimeInput(date: Date): string {
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${hours}:${minutes}`;
+  }
+  
+  onDateDoubleClick(date: Date): void {
+    this.openCreateEventModal(date);
+  }
+  
+  onEventDoubleClick(event: CalendarEvent, mouseEvent: Event): void {
+    mouseEvent.stopPropagation();
+    this.openEditEventModal(event);
+  }
+  
+  getCategoryColor(categoryName: string): string {
+    const category = this.categoryColors.find(c => c.name === categoryName);
+    return category ? category.color : '#718096';
   }
 }

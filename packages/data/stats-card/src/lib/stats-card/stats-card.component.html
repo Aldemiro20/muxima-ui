@@ -1,8 +1,9 @@
-<div class="muxima-stats-card" [ngClass]="[colorClass, sizeClass]">
+<div class="muxima-stats-card" [ngClass]="[colorClass, sizeClass, variantClass]">
   <div class="stats-container">
     <!-- Icon -->
-    <div *ngIf="icon" class="stats-icon">
-      <span class="icon-content">{{ icon }}</span>
+    <div *ngIf="icon || iconSvg" class="stats-icon">
+      <span *ngIf="icon && !iconSvg" class="icon-content">{{ icon }}</span>
+      <span *ngIf="iconSvg" class="icon-svg" [innerHTML]="getSafeIconSvg()"></span>
     </div>
 
     <!-- Content -->

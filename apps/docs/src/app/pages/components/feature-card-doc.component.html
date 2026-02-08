@@ -1,0 +1,240 @@
+<div class="doc-page">
+  <header class="doc-header">
+    <h1>Feature Card</h1>
+    <p>Cards informativos para destacar características e funcionalidades com suporte a glassmorphism e neon.</p>
+  </header>
+
+  <!-- Import -->
+  <section class="doc-section">
+    <h2>Importação</h2>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(importCode)">📋 Copiar</button>
+      <pre><code>{{ importCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Basic Usage -->
+  <section class="doc-section">
+    <h2>Uso Básico</h2>
+    <div class="demo-container">
+      <muxima-feature-card
+        icon="⚡"
+        title="Lightning Fast"
+        description="Optimized for performance with minimal bundle size and maximum speed."
+        linkText="Learn more"
+        linkUrl="#"
+      ></muxima-feature-card>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(basicCode)">📋 Copiar</button>
+      <pre><code>{{ basicCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Variants -->
+  <section class="doc-section">
+    <h2>Variantes</h2>
+    <div class="demo-container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+        <muxima-feature-card variant="default" icon="🎨" title="Beautiful Design" description="Stunning UI components with modern aesthetics"></muxima-feature-card>
+        <muxima-feature-card variant="gradient" icon="🌈" title="Gradient Colors" description="Vibrant gradient backgrounds"></muxima-feature-card>
+      </div>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(variantsCode)">📋 Copiar</button>
+      <pre><code>{{ variantsCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Sizes -->
+  <section class="doc-section">
+    <h2>Tamanhos</h2>
+    <div class="demo-container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+        <muxima-feature-card size="sm" icon="📱" title="Small Size" description="Compact card for tight spaces"></muxima-feature-card>
+        <muxima-feature-card size="md" icon="💻" title="Medium Size" description="Standard card size"></muxima-feature-card>
+        <muxima-feature-card size="lg" icon="🖥️" title="Large Size" description="Spacious card with more content"></muxima-feature-card>
+      </div>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(sizesCode)">📋 Copiar</button>
+      <pre><code>{{ sizesCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Icon Colors -->
+  <section class="doc-section">
+    <h2>Cores do Ícone</h2>
+    <p>Cores disponíveis para o ícone na variante default.</p>
+    <div class="demo-container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
+        <muxima-feature-card iconColor="primary" icon="💎" title="Primary" description="Primary color theme" size="sm"></muxima-feature-card>
+        <muxima-feature-card iconColor="success" icon="✅" title="Success" description="Success color theme" size="sm"></muxima-feature-card>
+        <muxima-feature-card iconColor="warning" icon="⚠️" title="Warning" description="Warning color theme" size="sm"></muxima-feature-card>
+        <muxima-feature-card iconColor="error" icon="❌" title="Error" description="Error color theme" size="sm"></muxima-feature-card>
+        <muxima-feature-card iconColor="info" icon="ℹ️" title="Info" description="Info color theme" size="sm"></muxima-feature-card>
+      </div>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(colorsCode)">📋 Copiar</button>
+      <pre><code>{{ colorsCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Glass Variant -->
+  <section style="background: linear-gradient(135deg, #1e3a8a 0%, #3b0764 50%, #581c87 100%); padding: 40px; border-radius: 16px; margin-top: 2rem;">
+    <h2 style="color: white; margin-bottom: 1.5rem;">Glass Variant</h2>
+    <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Feature cards com efeito glassmorphism - design translúcido moderno para interfaces sofisticadas.</p>
+    
+    <div style="padding: 2rem 0;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+        <muxima-feature-card
+          variant="glass"
+          icon="🔒"
+          title="Enterprise Security"
+          description="Bank-level encryption and security protocols to protect your data."
+          linkText="Read security docs"
+          linkUrl="#security"
+        ></muxima-feature-card>
+        <muxima-feature-card
+          variant="glass"
+          icon="⚙️"
+          title="Easy Integration"
+          description="Seamless integration with your existing Angular applications."
+          linkText="View integration guide"
+          linkUrl="#integration"
+        ></muxima-feature-card>
+      </div>
+    </div>
+    
+    <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 1.5rem; margin-top: 1.5rem; backdrop-filter: blur(10px);">
+      <button class="copy-btn" (click)="copyCode(glassCode)" style="background: rgba(255,255,255,0.2);">📋 Copiar</button>
+      <pre style="margin: 0;"><code style="color: rgba(255,255,255,0.95);">{{ glassCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Neon Variant -->
+  <section style="background: #0a0e27; padding: 40px; border-radius: 16px; border: 2px solid rgba(0,255,255,0.2); margin-top: 2rem;">
+    <h2 style="color: #00ffff; text-shadow: 0 0 20px rgba(0,255,255,0.5); margin-bottom: 1.5rem;">Neon Variant</h2>
+    <p style="color: rgba(255,255,255,0.8); margin-bottom: 2rem;">Feature cards com efeito neon cyberpunk - glow intenso e cores vibrantes para interfaces futuristas.</p>
+    
+    <div style="padding: 2rem 0;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+        <muxima-feature-card
+          variant="neon"
+          icon="🎮"
+          title="Gaming Performance"
+          description="Ultra-low latency and high frame rate for the best gaming experience."
+          linkText="Explore features"
+          linkUrl="#gaming"
+        ></muxima-feature-card>
+        <muxima-feature-card
+          variant="neon"
+          icon="🌐"
+          title="Global Network"
+          description="Distributed infrastructure across 50+ data centers worldwide."
+          linkText="View locations"
+          linkUrl="#network"
+        ></muxima-feature-card>
+      </div>
+    </div>
+    
+    <div style="background: rgba(0,255,255,0.05); border: 1px solid rgba(0,255,255,0.2); border-radius: 8px; padding: 1.5rem; margin-top: 1.5rem;">
+      <button class="copy-btn" (click)="copyCode(neonCode)" style="background: rgba(0,255,255,0.1); color: #00ffff; border: 1px solid rgba(0,255,255,0.3);">📋 Copiar</button>
+      <pre style="margin: 0;"><code style="color: #00ffff;">{{ neonCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Gradient Variant -->
+  <section class="doc-section">
+    <h2>Gradient Variant</h2>
+    <p>Feature cards com gradientes vibrantes para criar pontos focais visuais.</p>
+    <div class="demo-container">
+      <div style="max-width: 400px;">
+        <muxima-feature-card
+          variant="gradient"
+          icon="📊"
+          title="Advanced Analytics"
+          description="Powerful insights and real-time data visualization for better decisions."
+          linkText="See analytics"
+          linkUrl="#analytics"
+        ></muxima-feature-card>
+      </div>
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(gradientCode)">📋 Copiar</button>
+      <pre><code>{{ gradientCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2>API</h2>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Propriedade</th>
+          <th>Tipo</th>
+          <th>Padrão</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>icon</code></td>
+          <td>string</td>
+          <td>'✨'</td>
+          <td>Ícone a exibir (emoji ou classe de ícone)</td>
+        </tr>
+        <tr>
+          <td><code>title</code></td>
+          <td>string</td>
+          <td>''</td>
+          <td>Título do feature card</td>
+        </tr>
+        <tr>
+          <td><code>description</code></td>
+          <td>string</td>
+          <td>''</td>
+          <td>Descrição do feature</td>
+        </tr>
+        <tr>
+          <td><code>linkText</code></td>
+          <td>string</td>
+          <td>''</td>
+          <td>Texto do link (opcional)</td>
+        </tr>
+        <tr>
+          <td><code>linkUrl</code></td>
+          <td>string</td>
+          <td>''</td>
+          <td>URL do link (opcional)</td>
+        </tr>
+        <tr>
+          <td><code>variant</code></td>
+          <td>'default' | 'glass' | 'neon' | 'gradient'</td>
+          <td>'default'</td>
+          <td>Variante visual do card</td>
+        </tr>
+        <tr>
+          <td><code>size</code></td>
+          <td>'sm' | 'md' | 'lg'</td>
+          <td>'md'</td>
+          <td>Tamanho do card</td>
+        </tr>
+        <tr>
+          <td><code>hoverable</code></td>
+          <td>boolean</td>
+          <td>true</td>
+          <td>Ativa efeito hover</td>
+        </tr>
+        <tr>
+          <td><code>iconColor</code></td>
+          <td>'primary' | 'success' | 'warning' | 'error' | 'info'</td>
+          <td>'primary'</td>
+          <td>Cor de fundo do ícone (apenas variante default)</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

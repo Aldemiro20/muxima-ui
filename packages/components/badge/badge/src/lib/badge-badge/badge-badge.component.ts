@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-type BadgeVariant = 'solid' | 'outline' | 'soft';
+type BadgeVariant = 'solid' | 'outline' | 'soft' | 'glass' | 'neon';
 type BadgeColor = 'primary' | 'success' | 'warning' | 'error' | 'info' | 'neutral';
 type BadgeSize = 'sm' | 'md' | 'lg';
 
@@ -17,5 +17,6 @@ export class BadgeBadgeComponent {
   @Input() color: BadgeColor = 'primary';
   @Input() size: BadgeSize = 'md';
   @Input() dot = false;
+  @Input() pulse = false; // For neon/glass variants
   @Input() removable = false;
 }

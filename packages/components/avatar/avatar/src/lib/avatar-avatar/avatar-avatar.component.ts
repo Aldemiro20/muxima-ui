@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
@@ -21,8 +21,32 @@ export class AvatarAvatarComponent {
   @Input() badge?: string | number;
   @Input() shape: AvatarShape = 'circle';
   @Input() bgColor?: string;
+  @Input() clickable: boolean = false;
+  @Input() tooltip?: string;
+  
+  @Output() avatarClick = new EventEmitter<MouseEvent>();
   
   imageError = false;
+  showTooltip = false;
+
+  @HostListener('click', ['$event'])
+  onClick(event: MouseEvent): void {
+    if (this.clickable) {
+      this.avatarClick.emit(event);
+    }
+  }
+
+  @HostListener('mouseenter')
+  onMouseEnter(): void {
+    if (this.tooltip) {
+      this.showTooltip = true;
+    }
+  }
+
+  @HostListener('mouseleave')
+  onMouseLeave(): void {
+    this.showTooltip = false;
+  }
 
   getInitials(): string {
     if (!this.name) return '?';
@@ -48,5 +72,9 @@ export class AvatarAvatarComponent {
     ];
     const hash = this.name ? this.name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) : 0;
     return muximaColors[hash % muximaColors.length];
+  }
+
+  getTooltipText(): string {
+    return this.tooltip || this.name || this.alt;
   }
 }

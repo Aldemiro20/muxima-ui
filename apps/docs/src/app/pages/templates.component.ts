@@ -207,6 +207,120 @@ import { RouterModule, Router } from '@angular/router';
             </div>
           </div>
         </div>
+
+        <!-- Template 5: Glass Landing -->
+        <div class="template-card">
+          <div class="template-preview">
+            <img src="https://via.placeholder.com/600x400/764ba2/ffffff?text=Glass+Landing" alt="Glass Template">
+            <div class="template-overlay">
+              <button class="btn-preview" (click)="navigateTo('/templates/glass-landing')">
+                👁️ Ver Preview
+              </button>
+            </div>
+          </div>
+          <div class="template-info">
+            <div class="template-header">
+              <h3>✨ Glass Landing (Glassmorphism)</h3>
+              <span class="template-badge new">Novo</span>
+            </div>
+            <p class="template-description">
+              Landing page profissional com design glassmorphism moderno. Cards com efeito de vidro fosco,
+              backdrop blur, gradientes animados e transparências elegantes. Perfeito para projetos premium.
+            </p>
+            <div class="template-components">
+              <span class="component-tag">Glass Nav</span>
+              <span class="component-tag">Hero</span>
+              <span class="component-tag">Features</span>
+              <span class="component-tag">Services</span>
+              <span class="component-tag">Portfolio</span>
+              <span class="component-tag">Testimonials</span>
+            </div>
+            <div class="template-actions">
+              <button class="btn-secondary" (click)="navigateTo('/templates/glass-landing')">
+                Ver Template
+              </button>
+              <button class="btn-ghost" (click)="copyCode('glass-landing')">
+                📋 Copiar Código
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Template 6: Neon Landing -->
+        <div class="template-card">
+          <div class="template-preview">
+            <img src="https://via.placeholder.com/600x400/0a0e27/00ffff?text=Neon+Landing" alt="Neon Template">
+            <div class="template-overlay">
+              <button class="btn-preview" (click)="navigateTo('/templates/neon-landing')">
+                👁️ Ver Preview
+              </button>
+            </div>
+          </div>
+          <div class="template-info">
+            <div class="template-header">
+              <h3>⚡ Neon Landing (Cyberpunk)</h3>
+              <span class="template-badge new">Novo</span>
+            </div>
+            <p class="template-description">
+              Landing page futurista com design neon cyberpunk. Grid animado, efeitos de brilho neon vibrantes,
+              círculos flutuantes e estética anos 80/90. Perfeito para projetos tech e gaming.
+            </p>
+            <div class="template-components">
+              <span class="component-tag">Neon Nav</span>
+              <span class="component-tag">Hero</span>
+              <span class="component-tag">Features</span>
+              <span class="component-tag">Services</span>
+              <span class="component-tag">Portfolio</span>
+              <span class="component-tag">Pricing</span>
+            </div>
+            <div class="template-actions">
+              <button class="btn-secondary" (click)="navigateTo('/templates/neon-landing')">
+                Ver Template
+              </button>
+              <button class="btn-ghost" (click)="copyCode('neon-landing')">
+                📋 Copiar Código
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Template 7: Workspace Pro -->
+        <div class="template-card">
+          <div class="template-preview">
+            <img src="https://via.placeholder.com/600x400/3B82F6/ffffff?text=Workspace+Pro" alt="Workspace Template">
+            <div class="template-overlay">
+              <button class="btn-preview" (click)="navigateTo('/templates/workspace')">
+                👁️ Ver Preview
+              </button>
+            </div>
+          </div>
+          <div class="template-info">
+            <div class="template-header">
+              <h3>💼 Workspace Pro</h3>
+              <span class="template-badge popular">Popular</span>
+            </div>
+            <p class="template-description">
+              Sistema profissional de gerenciamento de workspace com file manager, document viewer e calendário integrados.
+              Interface completa tipo Dropbox/Google Drive com navegação avançada, preview de documentos e gestão de tarefas.
+            </p>
+            <div class="template-components">
+              <span class="component-tag">File Manager</span>
+              <span class="component-tag">Document Viewer</span>
+              <span class="component-tag">Calendar</span>
+              <span class="component-tag">Badge</span>
+              <span class="component-tag">Notifications</span>
+              <span class="component-tag">Tasks</span>
+            </div>
+            <div class="template-actions">
+              <button class="btn-secondary" (click)="navigateTo('/templates/workspace')">
+                Ver Template
+              </button>
+              <button class="btn-ghost" (click)="copyCode('workspace')">
+                📋 Copiar Código
+              </button>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- Benefits -->

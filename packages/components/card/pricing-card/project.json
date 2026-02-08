@@ -1,0 +1,33 @@
+{
+  "name": "pricing-card",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/components/card/pricing-card/src",
+  "prefix": "muxima",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:ng-packagr",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "packages/components/card/pricing-card/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/components/card/pricing-card/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "packages/components/card/pricing-card/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "tsConfig": "packages/components/card/pricing-card/tsconfig.spec.json",
+        "polyfills": ["zone.js", "zone.js/testing"]
+      }
+    }
+  }
+}

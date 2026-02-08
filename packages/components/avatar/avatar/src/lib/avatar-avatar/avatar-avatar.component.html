@@ -2,7 +2,8 @@
   class="muxima-avatar" 
   [ngClass]="[
     'muxima-avatar-' + size,
-    'muxima-avatar-' + shape
+    'muxima-avatar-' + shape,
+    clickable ? 'muxima-avatar-clickable' : ''
   ]">
   <!-- Imagem -->
   <img 
@@ -16,7 +17,7 @@
   <div 
     *ngIf="!src || imageError" 
     class="muxima-avatar-initials"
-    [style.background-color]="getRandomColor()">
+    [style.background]="getRandomColor()">
     {{ getInitials() }}
   </div>
 
@@ -33,4 +34,11 @@
     class="muxima-avatar-badge">
     {{ badge }}
   </span>
+
+  <!-- Tooltip -->
+  <div 
+    *ngIf="showTooltip && (tooltip || name)" 
+    class="muxima-avatar-tooltip">
+    {{ getTooltipText() }}
+  </div>
 </div>

@@ -1,0 +1,590 @@
+.doc-page {
+  padding: 0;
+}
+
+.doc-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 80px 32px;
+  margin-bottom: 60px;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+  }
+}
+
+.header-content {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+
+  h1 {
+    font-size: 56px;
+    font-weight: 900;
+    margin: 0 0 16px 0;
+    letter-spacing: -0.02em;
+
+    &.gradient-text {
+      background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.9) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  .header-description {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+    line-height: 1.7;
+  }
+}
+
+.doc-section {
+  max-width: 1200px;
+  margin: 0 auto 80px;
+  padding: 0 32px;
+}
+
+.section-header {
+  margin-bottom: 32px;
+
+  h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 12px 0;
+  }
+
+  p {
+    font-size: 16px;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1.6;
+  }
+}
+
+/* Preview Card */
+.preview-card {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  transition: all 0.3s;
+
+  &:hover {
+    border-color: #667eea;
+    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.1);
+  }
+}
+
+.preview-header {
+  background: #f9fafb;
+  padding: 12px 20px;
+  border-bottom: 2px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.preview-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.preview-content {
+  background: #f9fafb;
+  overflow: hidden;
+
+  muxima-hero {
+    display: block;
+  }
+}
+
+/* Code Card */
+.code-card {
+  background: #1e293b;
+  border: 2px solid #1e293b;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s;
+
+  &:hover {
+    border-color: #667eea;
+    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.1);
+  }
+}
+
+.code-header {
+  background: #0f172a;
+  padding: 12px 20px;
+  border-bottom: 1px solid #334155;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.code-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.copy-btn {
+  background: transparent;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #94a3b8;
+  font-size: 12px;
+  transition: all 0.2s;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+  }
+
+  &:hover {
+    background: #334155;
+    border-color: #667eea;
+    color: #e2e8f0;
+  }
+}
+
+.code-content {
+  padding: 24px;
+  overflow-x: auto;
+
+  pre {
+    margin: 0;
+    font-family: 'Fira Code', 'Monaco', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #e2e8f0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+}
+
+/* Mockup Placeholder Styles */
+.mockup-placeholder {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e5e7eb;
+  padding: 24px;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.large {
+    min-height: 400px;
+  }
+}
+
+.mockup-content {
+  width: 100%;
+}
+
+.mockup-bar {
+  height: 12px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 6px;
+  margin-bottom: 12px;
+  animation: shimmer 2s infinite;
+
+  &.short {
+    width: 60%;
+  }
+}
+
+.mockup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.mockup-card {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  border-radius: 8px;
+  height: 120px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(0.98); }
+}
+
+/* E-commerce Hero Styles */
+.ecommerce-hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.stat-box {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  border: 2px solid #e5e7eb;
+  transition: all 0.3s;
+
+  &:hover {
+    border-color: #667eea;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(102, 126, 234, 0.2);
+  }
+
+  .stat-value {
+    font-size: 32px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: #6b7280;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+.ecommerce-products {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+}
+
+.product-card-float {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  width: 200px;
+  transition: all 0.3s;
+  animation: floating 3s ease-in-out infinite;
+
+  &.delay {
+    animation-delay: 1.5s;
+  }
+
+  &:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+  }
+
+  img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+  }
+
+  .product-info {
+    padding: 16px;
+  }
+
+  .product-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 4px;
+  }
+
+  .product-price {
+    font-size: 18px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* API Documentation */
+.api-section {
+  background: #f9fafb;
+  border-radius: 16px;
+  padding: 48px 32px;
+  margin-bottom: 80px;
+
+  h2 {
+    font-size: 36px;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 40px 0;
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #374151;
+    margin: 32px 0 16px 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.api-table {
+  margin-bottom: 40px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  thead {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+
+    th {
+      color: white;
+      font-weight: 700;
+      text-align: left;
+      padding: 16px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #e5e7eb;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background: #f9fafb;
+      }
+    }
+
+    td {
+      padding: 16px;
+      color: #374151;
+      font-size: 14px;
+
+      code {
+        background: #f1f5f9;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-family: 'Fira Code', monospace;
+        font-size: 13px;
+        color: #667eea;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+/* Best Practices */
+.best-practices {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.practice-item {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  border: 2px solid #e5e7eb;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: #667eea;
+    transform: translateX(8px);
+  }
+
+  .practice-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+
+    &.success {
+      color: #10b981;
+    }
+
+    &.warning {
+      color: #f59e0b;
+    }
+  }
+
+  strong {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 4px;
+  }
+
+  p {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1.6;
+  }
+}
+
+/* Use Cases */
+.use-cases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.use-case-card {
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  border: 2px solid #e5e7eb;
+  transition: all 0.3s;
+
+  &:hover {
+    border-color: #667eea;
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 12px 0;
+  }
+
+  p {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1.6;
+
+    strong {
+      color: #667eea;
+      font-weight: 600;
+    }
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .doc-header {
+    padding: 60px 24px;
+
+    .header-content h1 {
+      font-size: 40px;
+    }
+
+    .header-description {
+      font-size: 18px;
+    }
+  }
+
+  .doc-section {
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .doc-header {
+    padding: 40px 20px;
+    margin-bottom: 40px;
+
+    .header-content h1 {
+      font-size: 32px;
+    }
+
+    .header-description {
+      font-size: 16px;
+    }
+  }
+
+  .section-header h2 {
+    font-size: 24px;
+  }
+
+  .api-section {
+    padding: 32px 20px;
+
+    h2 {
+      font-size: 28px;
+    }
+  }
+
+  .api-table {
+    table {
+      font-size: 12px;
+    }
+
+    thead th,
+    tbody td {
+      padding: 12px 8px;
+    }
+  }
+
+  .use-cases-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .code-block {
+    padding: 16px;
+
+    pre {
+      font-size: 12px;
+    }
+  }
+}

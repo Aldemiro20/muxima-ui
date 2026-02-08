@@ -28,71 +28,207 @@
   <!-- Variants -->
   <section class="doc-section">
     <h2>Variantes</h2>
-    <div class="demo-container">
-      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-        <muxima-badge variant="solid" color="primary">Solid</muxima-badge>
-        <muxima-badge variant="outline" color="primary">Outline</muxima-badge>
-        <muxima-badge variant="soft" color="primary">Soft</muxima-badge>
+    <p>Três estilos principais: Solid (preenchido), Outline (contornado) e Soft (suave).</p>
+    
+    <!-- Solid -->
+    <div style="margin-bottom: 2rem;">
+      <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem; color: #475569;">Solid</h3>
+      <div class="demo-container">
+        <muxima-badge variant="solid" color="primary">Solid Badge</muxima-badge>
+      </div>
+      <div class="code-block">
+        <button class="copy-btn" (click)="copyCode('<muxima-badge variant=&quot;solid&quot; color=&quot;primary&quot;>Solid Badge</muxima-badge>')">📋 Copiar</button>
+        <pre><code>&lt;muxima-badge variant="solid" color="primary"&gt;Solid Badge&lt;/muxima-badge&gt;</code></pre>
       </div>
     </div>
-    <div class="code-block">
-      <button class="copy-btn" (click)="copyCode(variantsCode)">📋 Copiar</button>
-      <pre><code>{{ variantsCode }}</code></pre>
+
+    <!-- Outline -->
+    <div style="margin-bottom: 2rem;">
+      <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem; color: #475569;">Outline</h3>
+      <div class="demo-container">
+        <muxima-badge variant="outline" color="primary">Outline Badge</muxima-badge>
+      </div>
+      <div class="code-block">
+        <button class="copy-btn" (click)="copyCode('<muxima-badge variant=&quot;outline&quot; color=&quot;primary&quot;>Outline Badge</muxima-badge>')">📋 Copiar</button>
+        <pre><code>&lt;muxima-badge variant="outline" color="primary"&gt;Outline Badge&lt;/muxima-badge&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Soft -->
+    <div style="margin-bottom: 2rem;">
+      <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem; color: #475569;">Soft</h3>
+      <div class="demo-container">
+        <muxima-badge variant="soft" color="primary">Soft Badge</muxima-badge>
+      </div>
+      <div class="code-block">
+        <button class="copy-btn" (click)="copyCode('<muxima-badge variant=&quot;soft&quot; color=&quot;primary&quot;>Soft Badge</muxima-badge>')">📋 Copiar</button>
+        <pre><code>&lt;muxima-badge variant="soft" color="primary"&gt;Soft Badge&lt;/muxima-badge&gt;</code></pre>
+      </div>
     </div>
   </section>
 
   <!-- Colors -->
   <section class="doc-section">
     <h2>Cores</h2>
+    <p>Paleta completa de cores disponíveis para todos os badges.</p>
     <div class="demo-container">
-      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-        <muxima-badge variant="solid" color="primary">Primary</muxima-badge>
-        <muxima-badge variant="solid" color="success">Success</muxima-badge>
-        <muxima-badge variant="solid" color="warning">Warning</muxima-badge>
-        <muxima-badge variant="solid" color="error">Error</muxima-badge>
-        <muxima-badge variant="solid" color="info">Info</muxima-badge>
-        <muxima-badge variant="solid" color="neutral">Neutral</muxima-badge>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+        <div style="text-align: center;">
+          <muxima-badge variant="solid" color="primary">Primary</muxima-badge>
+          <div class="code-block" style="margin-top: 0.5rem; padding: 0.5rem;">
+            <pre style="margin: 0;"><code style="font-size: 0.75rem;">color="primary"</code></pre>
+          </div>
+        </div>
+        <div style="text-align: center;">
+          <muxima-badge variant="solid" color="success">Success</muxima-badge>
+          <div class="code-block" style="margin-top: 0.5rem; padding: 0.5rem;">
+            <pre style="margin: 0;"><code style="font-size: 0.75rem;">color="success"</code></pre>
+          </div>
+        </div>
+        <div style="text-align: center;">
+          <muxima-badge variant="solid" color="warning">Warning</muxima-badge>
+          <div class="code-block" style="margin-top: 0.5rem; padding: 0.5rem;">
+            <pre style="margin: 0;"><code style="font-size: 0.75rem;">color="warning"</code></pre>
+          </div>
+        </div>
+        <div style="text-align: center;">
+          <muxima-badge variant="solid" color="error">Error</muxima-badge>
+          <div class="code-block" style="margin-top: 0.5rem; padding: 0.5rem;">
+            <pre style="margin: 0;"><code style="font-size: 0.75rem;">color="error"</code></pre>
+          </div>
+        </div>
+        <div style="text-align: center;">
+          <muxima-badge variant="solid" color="info">Info</muxima-badge>
+          <div class="code-block" style="margin-top: 0.5rem; padding: 0.5rem;">
+            <pre style="margin: 0;"><code style="font-size: 0.75rem;">color="info"</code></pre>
+          </div>
+        </div>
+        <div style="text-align: center;">
+          <muxima-badge variant="solid" color="neutral">Neutral</muxima-badge>
+          <div class="code-block" style="margin-top: 0.5rem; padding: 0.5rem;">
+            <pre style="margin: 0;"><code style="font-size: 0.75rem;">color="neutral"</code></pre>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="code-block">
-      <button class="copy-btn" (click)="copyCode(colorsCode)">📋 Copiar</button>
-      <pre><code>{{ colorsCode }}</code></pre>
     </div>
   </section>
 
   <!-- Sizes -->
   <section class="doc-section">
     <h2>Tamanhos</h2>
-    <div class="demo-container">
-      <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
-        <muxima-badge size="sm" variant="solid" color="primary">Small</muxima-badge>
-        <muxima-badge size="md" variant="solid" color="primary">Medium</muxima-badge>
-        <muxima-badge size="lg" variant="solid" color="primary">Large</muxima-badge>
+    <p>Três tamanhos: Small (sm), Medium (md - padrão) e Large (lg).</p>
+    
+    <div style="margin-bottom: 2rem;">
+      <div class="demo-container">
+        <div style="display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;">
+          <div style="text-align: center;">
+            <muxima-badge size="sm" variant="solid" color="primary">Small</muxima-badge>
+            <div class="code-block" style="margin-top: 0.5rem; padding: 0.5rem;">
+              <pre style="margin: 0;"><code style="font-size: 0.75rem;">size="sm"</code></pre>
+            </div>
+          </div>
+          <div style="text-align: center;">
+            <muxima-badge size="md" variant="solid" color="primary">Medium</muxima-badge>
+            <div class="code-block" style="margin-top: 0.5rem; padding: 0.5rem;">
+              <pre style="margin: 0;"><code style="font-size: 0.75rem;">size="md"</code></pre>
+            </div>
+          </div>
+          <div style="text-align: center;">
+            <muxima-badge size="lg" variant="solid" color="primary">Large</muxima-badge>
+            <div class="code-block" style="margin-top: 0.5rem; padding: 0.5rem;">
+              <pre style="margin: 0;"><code style="font-size: 0.75rem;">size="lg"</code></pre>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- With Dot -->
   <section class="doc-section">
-    <h2>Com Indicador</h2>
-    <div class="demo-container">
-      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-        <muxima-badge variant="solid" color="success" [dot]="true">Online</muxima-badge>
-        <muxima-badge variant="outline" color="warning" [dot]="true">Away</muxima-badge>
-        <muxima-badge variant="soft" color="error" [dot]="true">Busy</muxima-badge>
+    <h2>Com Indicador (Dot)</h2>
+    <p>Adicione um ponto de status antes do texto do badge.</p>
+    
+    <div style="margin-bottom: 2rem;">
+      <div class="demo-container">
+        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;">
+          <div style="text-align: center;">
+            <muxima-badge variant="solid" color="success" [dot]="true">Online</muxima-badge>
+            <div class="code-block" style="margin-top: 0.5rem; padding: 0.5rem;">
+              <pre style="margin: 0;"><code style="font-size: 0.75rem;">[dot]="true"</code></pre>
+            </div>
+          </div>
+          <div style="text-align: center;">
+            <muxima-badge variant="outline" color="warning" [dot]="true">Away</muxima-badge>
+            <div class="code-block" style="margin-top: 0.5rem; padding: 0.5rem;">
+              <pre style="margin: 0;"><code style="font-size: 0.75rem;">[dot]="true"</code></pre>
+            </div>
+          </div>
+          <div style="text-align: center;">
+            <muxima-badge variant="soft" color="error" [dot]="true">Busy</muxima-badge>
+            <div class="code-block" style="margin-top: 0.5rem; padding: 0.5rem;">
+              <pre style="margin: 0;"><code style="font-size: 0.75rem;">[dot]="true"</code></pre>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Removable -->
   <section class="doc-section">
-    <h2>Removível</h2>
-    <div class="demo-container">
-      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-        <muxima-badge variant="solid" color="primary" [removable]="true">Angular</muxima-badge>
-        <muxima-badge variant="solid" color="success" [removable]="true">TypeScript</muxima-badge>
-        <muxima-badge variant="solid" color="info" [removable]="true">SCSS</muxima-badge>
+    <h2>Badges Removíveis</h2>
+    <p>Badges com botão de remoção - perfeitos para tags e filtros removíveis.</p>
+    
+    <div style="margin-bottom: 2rem;">
+      <div class="demo-container">
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+          <!-- Solid Removable -->
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <muxima-badge variant="solid" color="primary" [removable]="true">Angular</muxima-badge>
+            <div class="code-block" style="padding: 0.5rem;">
+              <pre style="margin: 0;"><code style="font-size: 0.7rem;">variant="solid" [removable]="true"</code></pre>
+            </div>
+          </div>
+          
+          <!-- Outline Removable -->
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <muxima-badge variant="outline" color="success" [removable]="true">TypeScript</muxima-badge>
+            <div class="code-block" style="padding: 0.5rem;">
+              <pre style="margin: 0;"><code style="font-size: 0.7rem;">variant="outline" [removable]="true"</code></pre>
+            </div>
+          </div>
+          
+          <!-- Soft Removable -->
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <muxima-badge variant="soft" color="info" [removable]="true">SCSS</muxima-badge>
+            <div class="code-block" style="padding: 0.5rem;">
+              <pre style="margin: 0;"><code style="font-size: 0.7rem;">variant="soft" [removable]="true"</code></pre>
+            </div>
+          </div>
+
+          <!-- Glass Removable -->
+          <div style="display: flex; flex-direction: column; gap: 0.5rem; background: linear-gradient(135deg, #667eea, #764ba2); padding: 1rem; border-radius: 8px;">
+            <muxima-badge variant="glass" color="primary" [removable]="true">PREMIUM</muxima-badge>
+            <div class="code-block" style="padding: 0.5rem;">
+              <pre style="margin: 0;"><code style="font-size: 0.7rem;">variant="glass" [removable]="true"</code></pre>
+            </div>
+          </div>
+
+          <!-- Neon Removable -->
+          <div style="display: flex; flex-direction: column; gap: 0.5rem; background: #0a0e27; padding: 1rem; border-radius: 8px;">
+            <muxima-badge variant="neon" color="primary" [removable]="true">CYBER</muxima-badge>
+            <div class="code-block" style="padding: 0.5rem;">
+              <pre style="margin: 0;"><code style="font-size: 0.7rem;">variant="neon" [removable]="true"</code></pre>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
+
+    <div class="code-block">
+      <button class="copy-btn" (click)="copyCode(removableCode)">📋 Copiar Exemplo Completo</button>
+      <pre><code>{{ removableCode }}</code></pre>
     </div>
   </section>
 
@@ -121,6 +257,269 @@
     </div>
   </section>
 
+  <!-- Glass Variant -->
+  <section style="background: linear-gradient(135deg, #1e3a8a 0%, #3b0764 50%, #581c87 100%); padding: 40px; border-radius: 16px; margin-top: 2rem;">
+    <h2 style="color: white; margin-bottom: 1.5rem;">Glass Variant</h2>
+    <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Badges com efeito glassmorphism - design translúcido moderno com blur backdrop.</p>
+    
+    <div style="padding: 2rem 0;">
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+        <muxima-badge variant="glass" color="primary">PREMIUM</muxima-badge>
+        <muxima-badge variant="glass" color="success">VERIFIED</muxima-badge>
+        <muxima-badge variant="glass" color="warning">TRENDING</muxima-badge>
+        <muxima-badge variant="glass" color="error">LIVE</muxima-badge>
+        <muxima-badge variant="glass" color="info">NEW</muxima-badge>
+        <muxima-badge variant="glass" color="primary" size="lg">FEATURED</muxima-badge>
+      </div>
+    </div>
+    
+    <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 1.5rem; margin-top: 1.5rem; backdrop-filter: blur(10px);">
+      <button class="copy-btn" (click)="copyCode(glassCode)" style="background: rgba(255,255,255,0.2);">📋 Copiar</button>
+      <pre style="margin: 0;"><code style="color: rgba(255,255,255,0.95);">{{ glassCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Neon Variant -->
+  <section style="background: #0a0e27; padding: 40px; border-radius: 16px; border: 2px solid rgba(0,255,255,0.2); margin-top: 2rem;">
+    <h2 style="color: #00ffff; text-shadow: 0 0 20px rgba(0,255,255,0.5); margin-bottom: 1.5rem;">Neon Variant</h2>
+    <p style="color: rgba(255,255,255,0.8); margin-bottom: 2rem;">Badges com efeito neon cyberpunk - glow intenso e cores vibrantes.</p>
+    
+    <div style="padding: 2rem 0;">
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+        <muxima-badge variant="neon" color="primary">CYBERPUNK</muxima-badge>
+        <muxima-badge variant="neon" color="success">ONLINE</muxima-badge>
+        <muxima-badge variant="neon" color="warning">ALERT</muxima-badge>
+        <muxima-badge variant="neon" color="error">CRITICAL</muxima-badge>
+        <muxima-badge variant="neon" color="info">SYSTEM</muxima-badge>
+        <muxima-badge variant="neon" color="error" size="lg">EMERGENCY</muxima-badge>
+      </div>
+    </div>
+    
+    <div style="background: rgba(0,255,255,0.05); border: 1px solid rgba(0,255,255,0.2); border-radius: 8px; padding: 1.5rem; margin-top: 1.5rem;">
+      <button class="copy-btn" (click)="copyCode(neonCode)" style="background: rgba(0,255,255,0.1); color: #00ffff; border: 1px solid rgba(0,255,255,0.3);">📋 Copiar</button>
+      <pre style="margin: 0;"><code style="color: #00ffff;">{{ neonCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Pulse Animation -->
+  <section style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px; border-radius: 16px; margin-top: 2rem;">
+    <h2 style="color: white; margin-bottom: 1.5rem;">Pulse Animation</h2>
+    <p style="color: rgba(255,255,255,0.95); margin-bottom: 2rem;">Badges com indicador pulsante para status ao vivo - perfeito para streams e notificações em tempo real.</p>
+    
+    <div style="padding: 2rem 0;">
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+        <muxima-badge variant="glass" color="primary" [dot]="true" [pulse]="true">LIVE STREAM</muxima-badge>
+        <muxima-badge variant="neon" color="error" [dot]="true" [pulse]="true">BROADCASTING</muxima-badge>
+        <muxima-badge variant="glass" color="success" [dot]="true" [pulse]="true">RECORDING</muxima-badge>
+        <muxima-badge variant="neon" color="warning" [dot]="true" [pulse]="true">ON AIR</muxima-badge>
+      </div>
+    </div>
+    
+    <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 1.5rem; margin-top: 1.5rem; backdrop-filter: blur(10px);">
+      <button class="copy-btn" (click)="copyCode(pulseCode)" style="background: rgba(255,255,255,0.25);">📋 Copiar</button>
+      <pre style="margin: 0;"><code style="color: rgba(255,255,255,0.95);">{{ pulseCode }}</code></pre>
+    </div>
+  </section>
+
+  <!-- Practical Examples -->
+  <section class="doc-section">
+    <h2>Exemplos Práticos de Uso</h2>
+    <p>Veja como usar badges em cenários reais com botões, notificações, cards e listas.</p>
+
+    <!-- Buttons with Badges -->
+    <div style="margin-bottom: 3rem;">
+      <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: #1E293B;">Badges em Botões</h3>
+      <div class="demo-container">
+        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;">
+          <!-- Notification Button -->
+          <button style="position: relative; padding: 0.75rem 1.5rem; background: #3B82F6; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);">
+            Notificações
+            <span style="position: absolute; top: -8px; right: -8px;">
+              <muxima-badge variant="solid" color="error" size="sm">12</muxima-badge>
+            </span>
+          </button>
+
+          <!-- Messages Button -->
+          <button style="position: relative; padding: 0.75rem 1.5rem; background: white; color: #1E293B; border: 2px solid #E2E8F0; border-radius: 8px; font-weight: 600; cursor: pointer;">
+            Mensagens
+            <span style="position: absolute; top: -8px; right: -8px;">
+              <muxima-badge variant="solid" color="success" size="sm" [dot]="true" [pulse]="true"></muxima-badge>
+            </span>
+          </button>
+
+          <!-- Cart Button -->
+          <button style="position: relative; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);">
+            🛒 Carrinho
+            <span style="position: absolute; top: -8px; right: -8px;">
+              <muxima-badge variant="glass" color="primary" size="sm">3</muxima-badge>
+            </span>
+          </button>
+
+          <!-- Updates Button -->
+          <button style="position: relative; padding: 0.75rem 1.5rem; background: #10B981; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
+            Atualizações
+            <muxima-badge variant="solid" color="warning" size="sm" style="margin-left: 0.5rem;">NEW</muxima-badge>
+          </button>
+        </div>
+      </div>
+      <div class="code-block">
+        <button class="copy-btn" (click)="copyCode(buttonBadgeCode)">📋 Copiar</button>
+        <pre><code>{{ buttonBadgeCode }}</code></pre>
+      </div>
+    </div>
+
+    <!-- User Profile with Status -->
+    <div style="margin-bottom: 3rem;">
+      <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: #1E293B;">Status de Usuários</h3>
+      <div class="demo-container">
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <!-- User 1 -->
+          <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: #F8FAFC; border-radius: 8px;">
+            <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #3B82F6, #6366F1); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700;">JD</div>
+            <div style="flex: 1;">
+              <div style="font-weight: 600; color: #1E293B;">John Doe</div>
+              <div style="font-size: 0.875rem; color: #64748B;">john@example.com</div>
+            </div>
+            <muxima-badge variant="soft" color="success" [dot]="true">Online</muxima-badge>
+          </div>
+
+          <!-- User 2 -->
+          <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: #F8FAFC; border-radius: 8px;">
+            <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #8B5CF6, #A855F7); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700;">MS</div>
+            <div style="flex: 1;">
+              <div style="font-weight: 600; color: #1E293B;">Maria Silva</div>
+              <div style="font-size: 0.875rem; color: #64748B;">maria@example.com</div>
+            </div>
+            <muxima-badge variant="soft" color="warning" [dot]="true">Away</muxima-badge>
+          </div>
+
+          <!-- User 3 -->
+          <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: #F8FAFC; border-radius: 8px;">
+            <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #EC4899, #F43F5E); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700;">PS</div>
+            <div style="flex: 1;">
+              <div style="font-weight: 600; color: #1E293B;">Pedro Santos</div>
+              <div style="font-size: 0.875rem; color: #64748B;">pedro@example.com</div>
+            </div>
+            <muxima-badge variant="soft" color="error" [dot]="true">Busy</muxima-badge>
+          </div>
+        </div>
+      </div>
+      <div class="code-block">
+        <button class="copy-btn" (click)="copyCode(userStatusCode)">📋 Copiar</button>
+        <pre><code>{{ userStatusCode }}</code></pre>
+      </div>
+    </div>
+
+    <!-- Product Cards -->
+    <div style="margin-bottom: 3rem;">
+      <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: #1E293B;">Badges em Cards de Produtos</h3>
+      <div class="demo-container">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+          <!-- Product 1 -->
+          <div style="position: relative; background: white; border: 1px solid #E2E8F0; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+            <div style="position: absolute; top: 12px; right: 12px;">
+              <muxima-badge variant="solid" color="error" size="sm">-30%</muxima-badge>
+            </div>
+            <div style="width: 100%; height: 150px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 8px; margin-bottom: 1rem;"></div>
+            <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Premium Template</h4>
+            <p style="font-size: 0.875rem; color: #64748B; margin-bottom: 1rem;">Landing page moderna</p>
+            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+              <muxima-badge variant="soft" color="primary" size="sm">Angular</muxima-badge>
+              <muxima-badge variant="soft" color="info" size="sm">TypeScript</muxima-badge>
+            </div>
+            <div style="font-size: 1.5rem; font-weight: 700; color: #1E293B;">$49</div>
+          </div>
+
+          <!-- Product 2 -->
+          <div style="position: relative; background: white; border: 1px solid #E2E8F0; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+            <div style="position: absolute; top: 12px; right: 12px;">
+              <muxima-badge variant="solid" color="success" size="sm">NEW</muxima-badge>
+            </div>
+            <div style="width: 100%; height: 150px; background: linear-gradient(135deg, #3B82F6, #6366F1); border-radius: 8px; margin-bottom: 1rem;"></div>
+            <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Dashboard Pro</h4>
+            <p style="font-size: 0.875rem; color: #64748B; margin-bottom: 1rem;">Admin completo</p>
+            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+              <muxima-badge variant="soft" color="primary" size="sm">React</muxima-badge>
+              <muxima-badge variant="soft" color="success" size="sm">Charts</muxima-badge>
+            </div>
+            <div style="font-size: 1.5rem; font-weight: 700; color: #1E293B;">$79</div>
+          </div>
+
+          <!-- Product 3 -->
+          <div style="position: relative; background: white; border: 1px solid #E2E8F0; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+            <div style="position: absolute; top: 12px; right: 12px;">
+              <muxima-badge variant="solid" color="warning" size="sm">HOT</muxima-badge>
+            </div>
+            <div style="width: 100%; height: 150px; background: linear-gradient(135deg, #10B981, #059669); border-radius: 8px; margin-bottom: 1rem;"></div>
+            <h4 style="font-weight: 600; margin-bottom: 0.5rem;">E-commerce UI</h4>
+            <p style="font-size: 0.875rem; color: #64748B; margin-bottom: 1rem;">Loja completa</p>
+            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+              <muxima-badge variant="soft" color="primary" size="sm">Vue.js</muxima-badge>
+              <muxima-badge variant="soft" color="warning" size="sm">Tailwind</muxima-badge>
+            </div>
+            <div style="font-size: 1.5rem; font-weight: 700; color: #1E293B;">$99</div>
+          </div>
+        </div>
+      </div>
+      <div class="code-block">
+        <button class="copy-btn" (click)="copyCode(productCardCode)">📋 Copiar</button>
+        <pre><code>{{ productCardCode }}</code></pre>
+      </div>
+    </div>
+
+    <!-- Notification List -->
+    <div style="margin-bottom: 3rem;">
+      <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: #1E293B;">Lista de Notificações</h3>
+      <div class="demo-container">
+        <div style="background: white; border-radius: 12px; border: 1px solid #E2E8F0;">
+          <!-- Notification 1 -->
+          <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-bottom: 1px solid #E2E8F0;">
+            <div style="width: 40px; height: 40px; background: #DBEAFE; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">💬</div>
+            <div style="flex: 1;">
+              <div style="font-weight: 600; color: #1E293B; margin-bottom: 0.25rem;">Nova mensagem</div>
+              <div style="font-size: 0.875rem; color: #64748B;">Maria enviou uma mensagem</div>
+            </div>
+            <muxima-badge variant="soft" color="primary" [dot]="true" [pulse]="true">Novo</muxima-badge>
+          </div>
+
+          <!-- Notification 2 -->
+          <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-bottom: 1px solid #E2E8F0;">
+            <div style="width: 40px; height: 40px; background: #D1FAE5; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">✅</div>
+            <div style="flex: 1;">
+              <div style="font-weight: 600; color: #1E293B; margin-bottom: 0.25rem;">Pedido aprovado</div>
+              <div style="font-size: 0.875rem; color: #64748B;">Seu pedido #1234 foi aprovado</div>
+            </div>
+            <muxima-badge variant="outline" color="success">Concluído</muxima-badge>
+          </div>
+
+          <!-- Notification 3 -->
+          <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-bottom: 1px solid #E2E8F0;">
+            <div style="width: 40px; height: 40px; background: #FEF3C7; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">⚠️</div>
+            <div style="flex: 1;">
+              <div style="font-weight: 600; color: #1E293B; margin-bottom: 0.25rem;">Ação necessária</div>
+              <div style="font-size: 0.875rem; color: #64748B;">Atualize suas informações de pagamento</div>
+            </div>
+            <muxima-badge variant="soft" color="warning">Pendente</muxima-badge>
+          </div>
+
+          <!-- Notification 4 -->
+          <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem;">
+            <div style="width: 40px; height: 40px; background: #FEE2E2; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">❌</div>
+            <div style="flex: 1;">
+              <div style="font-weight: 600; color: #1E293B; margin-bottom: 0.25rem;">Falha no pagamento</div>
+              <div style="font-size: 0.875rem; color: #64748B;">Não foi possível processar o pagamento</div>
+            </div>
+            <muxima-badge variant="solid" color="error">Erro</muxima-badge>
+          </div>
+        </div>
+      </div>
+      <div class="code-block">
+        <button class="copy-btn" (click)="copyCode(notificationListCode)">📋 Copiar</button>
+        <pre><code>{{ notificationListCode }}</code></pre>
+      </div>
+    </div>
+  </section>
+
   <!-- API -->
   <section class="doc-section">
     <h2>API</h2>
@@ -136,7 +535,7 @@
       <tbody>
         <tr>
           <td><code>variant</code></td>
-          <td>'solid' | 'outline' | 'soft'</td>
+          <td>'solid' | 'outline' | 'soft' | 'glass' | 'neon'</td>
           <td>'solid'</td>
           <td>Estilo visual do badge</td>
         </tr>
@@ -157,6 +556,12 @@
           <td>boolean</td>
           <td>false</td>
           <td>Mostra indicador animado</td>
+        </tr>
+        <tr>
+          <td><code>pulse</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Ativa animação pulsante no indicador (requer dot=true)</td>
         </tr>
         <tr>
           <td><code>removable</code></td>

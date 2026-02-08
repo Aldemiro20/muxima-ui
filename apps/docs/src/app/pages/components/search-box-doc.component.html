@@ -1,0 +1,258 @@
+<div class="doc-container">
+  <!-- Cabeçalho -->
+  <header class="doc-header">
+    <h1>🔍 Search Box</h1>
+    <p class="subtitle">Componente de pesquisa com debounce, loading state e suporte a limpeza</p>
+  </header>
+
+  <!-- Exemplo Básico -->
+  <section class="doc-section">
+    <h2>📦 Uso Básico</h2>
+    <div class="example">
+      <muxima-search-box
+        placeholder="Pesquisar produtos, categorias..."
+        [(ngModel)]="searchValue1"
+        (search)="onSearch($event)">
+      </muxima-search-box>
+    </div>
+    <pre><code>{{ getCodeExample('basic') }}</code></pre>
+  </section>
+
+  <!-- Tamanhos -->
+  <section class="doc-section">
+    <h2>📏 Tamanhos</h2>
+    <div class="example">
+      <div class="size-examples">
+        <muxima-search-box
+          placeholder="Pequeno (sm)"
+          size="sm">
+        </muxima-search-box>
+        
+        <muxima-search-box
+          placeholder="Médio (md) - Padrão"
+          size="md">
+        </muxima-search-box>
+        
+        <muxima-search-box
+          placeholder="Grande (lg)"
+          size="lg">
+        </muxima-search-box>
+      </div>
+    </div>
+    <pre><code>{{ getCodeExample('sizes') }}</code></pre>
+  </section>
+
+  <!-- Variantes -->
+  <section class="doc-section">
+    <h2>🎨 Variantes de Estilo</h2>
+    <div class="example">
+      <div class="variant-examples">
+        <div class="variant-item">
+          <label>Default</label>
+          <muxima-search-box
+            placeholder="Variante padrão"
+            variant="default">
+          </muxima-search-box>
+        </div>
+        
+        <div class="variant-item">
+          <label>Outlined</label>
+          <muxima-search-box
+            placeholder="Variante contornada"
+            variant="outlined">
+          </muxima-search-box>
+        </div>
+        
+        <div class="variant-item">
+          <label>Filled</label>
+          <muxima-search-box
+            placeholder="Variante preenchida"
+            variant="filled">
+          </muxima-search-box>
+        </div>
+      </div>
+    </div>
+    <pre><code>{{ getCodeExample('variants') }}</code></pre>
+  </section>
+
+  <!-- Loading State -->
+  <section class="doc-section">
+    <h2>⏳ Estado de Carregamento</h2>
+    <div class="example">
+      <muxima-search-box
+        placeholder="Pesquisar com loading..."
+        [(ngModel)]="searchValue2"
+        [loading]="isLoading"
+        (search)="simulateSearch()">
+      </muxima-search-box>
+    </div>
+    <pre><code>{{ getCodeExample('loading') }}</code></pre>
+  </section>
+
+  <!-- Estado Desabilitado -->
+  <section class="doc-section">
+    <h2>🚫 Estado Desabilitado</h2>
+    <div class="example">
+      <muxima-search-box
+        placeholder="Campo de pesquisa desabilitado"
+        [disabled]="true"
+        [(ngModel)]="searchValue3">
+      </muxima-search-box>
+    </div>
+    <pre><code>{{ getCodeExample('disabled') }}</code></pre>
+  </section>
+
+  <!-- Exemplo Avançado -->
+  <section class="doc-section">
+    <h2>⚡ Configuração Avançada</h2>
+    <div class="example">
+      <muxima-search-box
+        placeholder="Pesquisa com eventos customizados..."
+        [(ngModel)]="searchValue4"
+        [debounceTime]="500"
+        [clearable]="true"
+        (search)="onSearch($event)"
+        (clear)="onClear()">
+      </muxima-search-box>
+      <p class="helper-text">Debounce de 500ms, com eventos de limpar, foco e blur</p>
+    </div>
+    <pre><code>{{ getCodeExample('advanced') }}</code></pre>
+  </section>
+
+  <!-- API -->
+  <section class="doc-section">
+    <h2>📋 API</h2>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>placeholder</code></td>
+            <td>string</td>
+            <td>'Search...'</td>
+            <td>Texto placeholder do input</td>
+          </tr>
+          <tr>
+            <td><code>size</code></td>
+            <td>'sm' | 'md' | 'lg'</td>
+            <td>'md'</td>
+            <td>Tamanho do componente</td>
+          </tr>
+          <tr>
+            <td><code>variant</code></td>
+            <td>'default' | 'outlined' | 'filled'</td>
+            <td>'default'</td>
+            <td>Variante visual do componente</td>
+          </tr>
+          <tr>
+            <td><code>disabled</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Desabilita o componente</td>
+          </tr>
+          <tr>
+            <td><code>clearable</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Mostra botão de limpar quando há texto</td>
+          </tr>
+          <tr>
+            <td><code>loading</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Exibe spinner de carregamento</td>
+          </tr>
+          <tr>
+            <td><code>debounceTime</code></td>
+            <td>number</td>
+            <td>300</td>
+            <td>Tempo de debounce em milissegundos</td>
+          </tr>
+          <tr>
+            <td><code>ngModel</code></td>
+            <td>string</td>
+            <td>''</td>
+            <td>Valor do input (two-way binding)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Eventos</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>(search)</code></td>
+            <td>EventEmitter&lt;string&gt;</td>
+            <td>Emitido após o debounce quando o usuário digita</td>
+          </tr>
+          <tr>
+            <td><code>(clear)</code></td>
+            <td>EventEmitter&lt;void&gt;</td>
+            <td>Emitido quando o botão de limpar é clicado</td>
+          </tr>
+          <tr>
+            <td><code>(focus)</code></td>
+            <td>EventEmitter&lt;void&gt;</td>
+            <td>Emitido quando o input recebe foco</td>
+          </tr>
+          <tr>
+            <td><code>(blur)</code></td>
+            <td>EventEmitter&lt;void&gt;</td>
+            <td>Emitido quando o input perde foco</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Melhores Práticas -->
+  <section class="doc-section best-practices">
+    <h2>💡 Melhores Práticas</h2>
+    <ul>
+      <li>✅ Use debounce para evitar muitas chamadas de API durante a digitação</li>
+      <li>✅ Mostre o estado de loading durante pesquisas assíncronas</li>
+      <li>✅ Use placeholders descritivos que indiquem o que pode ser pesquisado</li>
+      <li>✅ Mantenha o botão de limpar visível para melhor UX</li>
+      <li>✅ Use o tamanho 'sm' em toolbars e 'md' em páginas principais</li>
+      <li>⚠️ Evite debounce muito curto (< 200ms) para não sobrecarregar o servidor</li>
+      <li>⚠️ Considere usar a variante 'filled' em fundos escuros</li>
+    </ul>
+  </section>
+
+  <!-- Casos de Uso -->
+  <section class="doc-section">
+    <h2>🎯 Casos de Uso</h2>
+    <div class="use-cases">
+      <div class="use-case">
+        <h3>🛍️ E-commerce</h3>
+        <p>Pesquisa de produtos com filtros e sugestões</p>
+      </div>
+      <div class="use-case">
+        <h3>📊 Dashboards</h3>
+        <p>Filtrar dados em tabelas e listas</p>
+      </div>
+      <div class="use-case">
+        <h3>📁 Gerenciadores de Arquivos</h3>
+        <p>Buscar arquivos e pastas rapidamente</p>
+      </div>
+      <div class="use-case">
+        <h3>👥 Diretórios de Usuários</h3>
+        <p>Pesquisar contatos e perfis</p>
+      </div>
+    </div>
+  </section>
+</div>

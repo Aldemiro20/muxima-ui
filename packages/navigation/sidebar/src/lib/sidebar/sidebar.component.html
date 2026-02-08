@@ -1,7 +1,17 @@
 <div class="muxima-sidebar" [class.collapsed]="collapsed" [ngClass]="variantClass">
   <div class="sidebar-container">
-    <!-- Header -->
-    <div class="sidebar-header" *ngIf="header || !collapsed">
+    <!-- Dashboard Header with Logo -->
+    <div class="sidebar-header" *ngIf="variant === 'dashboard' && (logoText || logoIcon)">
+      <div class="logo">
+        <svg *ngIf="logoIcon" class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg>
+        <span *ngIf="logoText && !collapsed" class="logo-text">{{ logoText }}</span>
+      </div>
+    </div>
+
+    <!-- Default Header -->
+    <div class="sidebar-header" *ngIf="variant !== 'dashboard' && (header || !collapsed)">
       <div class="header-content">
         <span *ngIf="!collapsed" class="header-title">{{ header || 'Menu' }}</span>
         <button class="collapse-btn" (click)="toggleCollapse()" type="button">
@@ -15,8 +25,28 @@
       </div>
     </div>
 
-    <!-- Navigation items -->
-    <nav class="sidebar-nav">
+    <!-- Navigation with Sections (Dashboard variant) -->
+    <nav class="sidebar-nav" *ngIf="variant === 'dashboard' && hasSections">
+      <div *ngFor="let section of sections" class="nav-section">
+        <div class="nav-label">{{ section.label }}</div>
+        <a *ngFor="let item of section.items" 
+          class="nav-item" 
+          [class.active]="isItemActive(item)"
+          [routerLink]="item.route"
+          routerLinkActive="active"
+          (click)="onItemClick(item, $event)">
+          <div *ngIf="item.icon" class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" [innerHTML]="getSafeIcon(item.icon)"></svg>
+          </div>
+          <span class="nav-text">{{ item.label }}</span>
+          <span *ngIf="item.badge" class="nav-badge" [ngClass]="'badge-' + (item.badgeVariant || 'default')">{{ item.badge }}</span>
+          <span *ngIf="item.count" class="nav-count">{{ item.count }}</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Navigation items (Default) -->
+    <nav class="sidebar-nav" *ngIf="variant !== 'dashboard' || !hasSections">
       <ul class="nav-list">
         <li *ngFor="let item of items" class="nav-item">
           <div 
@@ -63,8 +93,20 @@
       </ul>
     </nav>
 
-    <!-- Footer -->
-    <div class="sidebar-footer" *ngIf="footer && !collapsed">
+    <!-- Dashboard Footer with User Profile -->
+    <div class="sidebar-footer" *ngIf="variant === 'dashboard' && user">
+      <div class="user-profile" (click)="onUserClick()">
+        <div class="user-avatar">{{ user.initials || user.name.substring(0, 2).toUpperCase() }}</div>
+        <div class="user-info" *ngIf="!collapsed">
+          <div class="user-name">{{ user.name }}</div>
+          <div class="user-role" *ngIf="user.role">{{ user.role }}</div>
+        </div>
+        <button class="user-menu-btn" *ngIf="!collapsed">⋮</button>
+      </div>
+    </div>
+
+    <!-- Default Footer -->
+    <div class="sidebar-footer" *ngIf="variant !== 'dashboard' && footer && !collapsed">
       <p class="footer-text">{{ footer }}</p>
     </div>
   </div>
