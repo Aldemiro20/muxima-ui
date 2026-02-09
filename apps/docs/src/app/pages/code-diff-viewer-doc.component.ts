@@ -11,8 +11,8 @@ import { CodeDiffViewerComponent } from '@muxima-ui/code-diff-viewer';
       <div class="doc-header">
         <h1>📊 Code Diff Viewer</h1>
         <p class="doc-description">
-          Visualizador de diferenças de código com syntax highlighting.
-          Desenvolvido por <strong>Aldemiro Valentim</strong>.
+          Code difference viewer with syntax highlighting.
+          Perfect for code reviews and documentation.
         </p>
       </div>
 
@@ -20,9 +20,9 @@ import { CodeDiffViewerComponent } from '@muxima-ui/code-diff-viewer';
         <h2>Exemplos</h2>
 
         <div class="example-card">
-          <h3>Componente Angular - Antes vs Depois</h3>
+          <h3>Angular Component - Before vs After</h3>
           <muxima-code-diff-viewer
-            [title]="'user.component.ts - Refatoração por Aldemiro Valentim'"
+            [title]="'user.component.ts - Refactoring Example'"
             [oldCode]="oldComponentCode"
             [newCode]="newComponentCode"
             [oldFileName]="'user.component.ts (v1.0)'"
@@ -32,9 +32,9 @@ import { CodeDiffViewerComponent } from '@muxima-ui/code-diff-viewer';
         </div>
 
         <div class="example-card">
-          <h3>Service TypeScript</h3>
+          <h3>TypeScript Service</h3>
           <muxima-code-diff-viewer
-            [title]="'auth.service.ts - Melhorias de Segurança'"
+            [title]="'auth.service.ts - Security Improvements'"
             [oldCode]="oldServiceCode"
             [newCode]="newServiceCode"
             [language]="'typescript'">
@@ -43,23 +43,23 @@ import { CodeDiffViewerComponent } from '@muxima-ui/code-diff-viewer';
       </section>
 
       <section class="doc-section">
-        <h2>Funcionalidades</h2>
+        <h2>Features</h2>
         <ul class="features-list">
-          <li>✅ Split view e Unified view</li>
-          <li>✅ Syntax highlighting automático</li>
-          <li>✅ Números de linha</li>
-          <li>✅ Estatísticas (additions, deletions, modifications)</li>
-          <li>✅ Indicadores visuais (+, -, ~)</li>
-          <li>✅ Cores diferenciadas por tipo de mudança</li>
-          <li>✅ Scroll sincronizado</li>
-          <li>✅ Responsivo</li>
+          <li>✅ Split view and Unified view</li>
+          <li>✅ Automatic syntax highlighting</li>
+          <li>✅ Line numbers</li>
+          <li>✅ Statistics (additions, deletions, modifications)</li>
+          <li>✅ Visual indicators (+, -, ~)</li>
+          <li>✅ Color-coded changes</li>
+          <li>✅ Synchronized scrolling</li>
+          <li>✅ Responsive design</li>
         </ul>
       </section>
 
       <div class="pro-tip">
-        <h3>💡 Dica Profissional - Aldemiro Valentim</h3>
-        <p>Use este componente para code reviews, documentação de mudanças, 
-        e visualização de histórico Git. Perfeito para DevOps e equipes de desenvolvimento!</p>
+        <h3>💡 Pro Tip</h3>
+        <p>Use this component for code reviews, change documentation, 
+        and Git history visualization. Perfect for DevOps and development teams!</p>
       </div>
     </div>
   `,
@@ -157,8 +157,8 @@ export class CodeDiffViewerDocComponent {
 })
 export class UserComponent {
   user = {
-    name: 'João Silva',
-    email: 'joao@email.com'
+    name: 'John Doe',
+    email: 'john@example.com'
   };
   
   constructor() {
@@ -177,14 +177,14 @@ import { CommonModule } from '@angular/common';
     <div class="user-card">
       <h2>{{ user.name }}</h2>
       <p>{{ user.email }}</p>
-      <small>Desenvolvido por Aldemiro Valentim</small>
+      <small>Muxima UI Component Library</small>
     </div>
   \`
 })
 export class UserComponent {
   user = {
-    name: 'Aldemiro Valentim',
-    email: 'aldemiro.valentim@exemplo.com',
+    name: 'John Doe',
+    email: 'john@example.com',
     role: 'Full Stack Developer'
   };
   

@@ -41,6 +41,24 @@ testem.log
 .DS_Store
 Thumbs.db
 
-
+# Nx
 .nx/cache
 .angular
+
+# Environment and Credentials
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+*.p12
+.npmrc
+.yarnrc
+
+# Secrets and sensitive data
+secrets/
+credentials/
+*.secret
+*.token
+config/secrets.json
+
