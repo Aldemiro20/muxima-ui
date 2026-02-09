@@ -1,4 +1,5 @@
 {
+  "outputDirectory": "dist/apps/docs",
   "rewrites": [
     {
       "source": "/(.*)",
