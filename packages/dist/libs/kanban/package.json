@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "@muxima-ui/kanban",
   "version": "1.0.1",
   "description": "Kanban Board component for Angular 18+ with drag & drop - Muxima UI",
@@ -28,9 +28,9 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@angular/common": "^18.0.0",
-    "@angular/core": "^18.0.0",
-    "@angular/cdk": "^18.0.0"
+    "@angular/common": ">=15.0.0",
+    "@angular/core": ">=15.0.0",
+    "@angular/cdk": ">=15.0.0"
   },
   "sideEffects": false,
   "module": "fesm2015/muxima-ui-kanban.mjs",

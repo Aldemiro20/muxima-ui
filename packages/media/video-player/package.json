@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "@muxima-ui/video-player",
   "version": "1.0.0",
   "description": "Video player component for Angular 18+ - Muxima UI",
@@ -26,11 +26,12 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@angular/common": "^18.0.0",
-    "@angular/core": "^18.0.0"
+    "@angular/common": ">=15.0.0",
+    "@angular/core": ">=15.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
   },
   "sideEffects": false
 }
+

@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "@muxima-ui/code-diff-viewer",
   "version": "1.0.1",
   "description": "Code diff viewer component for Angular 18+ - Side-by-side code comparison - Muxima UI",
@@ -28,11 +28,12 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@angular/common": "^18.0.0",
-    "@angular/core": "^18.0.0"
+    "@angular/common": ">=15.0.0",
+    "@angular/core": ">=15.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
   },
   "sideEffects": false
 }
+

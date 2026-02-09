@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "@muxima-ui/loading-interceptor",
   "version": "1.0.0",
   "description": "Loading Interceptor component with animated heart - Muxima UI",
@@ -11,7 +11,8 @@
     "muxima"
   ],
   "peerDependencies": {
-    "@angular/common": "^17.0.0",
-    "@angular/core": "^17.0.0"
+    "@angular/common": ">=15.0.0",
+    "@angular/core": ">=15.0.0"
   }
 }
+

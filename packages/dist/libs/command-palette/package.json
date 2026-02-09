@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "@muxima-ui/command-palette",
   "version": "1.0.0",
   "description": "Command Palette component for Angular 18+ - Ctrl+K quick actions - Muxima UI",
@@ -27,8 +27,8 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@angular/common": "^18.0.0",
-    "@angular/core": "^18.0.0"
+    "@angular/common": ">=15.0.0",
+    "@angular/core": ">=15.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

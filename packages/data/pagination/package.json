@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "@muxima-ui/pagination",
   "version": "1.0.0",
   "description": "Professional pagination component for Angular - Multiple variants with elegant visual indicators",
@@ -24,8 +24,8 @@
   "homepage": "https://muxima-ui.vercel.app/components/pagination",
   "documentation": "https://muxima-ui.vercel.app",
   "peerDependencies": {
-    "@angular/common": "^18.0.0",
-    "@angular/core": "^18.0.0"
+    "@angular/common": ">=15.0.0",
+    "@angular/core": ">=15.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
@@ -35,3 +35,4 @@
   },
   "sideEffects": false
 }
+
