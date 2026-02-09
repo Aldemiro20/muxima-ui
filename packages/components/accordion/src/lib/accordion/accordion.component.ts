@@ -11,7 +11,7 @@ import {
 } from '@angular/animations';
 
 @Component({
-  selector: 'agt-accordion',
+  selector: 'muxima-accordion',
   standalone: true,
   imports: [CommonModule,FormsModule],
   templateUrl: './accordion.component.html',

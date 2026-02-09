@@ -42,7 +42,7 @@
     <ng-content *ngIf="!children || children.length === 0"></ng-content>
 
     <div *ngIf="children && children.length > 0" class="accordion-children"  [ngClass]="getPaddingClass()">
-      <agt-accordion
+      <muxima-accordion
         *ngFor="let child of children"
         [title]="child.title"
         [subtitle]="child.subtitle"
@@ -51,7 +51,7 @@
         [isChild]="true"
         [childLevel]="(childLevel || 0) + 2"
       >
-      </agt-accordion>
+      </muxima-accordion>
     </div>
   </div>
 </div>

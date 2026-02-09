@@ -88,7 +88,7 @@ Adicione os path aliases no seu `tsconfig.json`:
     "baseUrl": ".",
     "paths": {
       "@muxima-ui/*": ["node_modules/@muxima-ui/*/src/index.ts"],
-      "@agt-ui/*": ["node_modules/@agt-ui/*/src/index.ts"]
+      "@muxima-ui/*": ["node_modules/@muxima-ui/*/src/index.ts"]
     }
   }
 }
@@ -190,7 +190,7 @@ ng serve
 
 ```typescript
 import { Component } from '@angular/core';
-import { ButtonComponent } from '@agt-ui/button';
+import { ButtonComponent } from '@muxima-ui/button';
 
 @Component({
   standalone: true,
@@ -232,9 +232,9 @@ export class ButtonDemoComponent {}
 ```typescript
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { InputComponent } from '@agt-ui/input';
-import { SelectComponent } from '@agt-ui/select';
-import { CheckboxComponent } from '@agt-ui/checkbox';
+import { InputComponent } from '@muxima-ui/input';
+import { SelectComponent } from '@muxima-ui/select';
+import { CheckboxComponent } from '@muxima-ui/checkbox';
 
 @Component({
   standalone: true,
@@ -596,9 +596,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Importe os componentes necessários
 import { MuximaAlertComponent } from '@muxima-ui/alert';
-import { InputComponent } from '@agt-ui/input';
-import { SelectComponent } from '@agt-ui/select';
-import { ButtonComponent } from '@agt-ui/button';
+import { InputComponent } from '@muxima-ui/input';
+import { SelectComponent } from '@muxima-ui/select';
+import { ButtonComponent } from '@muxima-ui/button';
 
 @NgModule({
   declarations: [
@@ -691,7 +691,7 @@ export class MyComponent {}
     "baseUrl": ".",
     "paths": {
       "@muxima-ui/*": ["libs/*/src/index.ts"],
-      "@agt-ui/*": ["libs/*/src/index.ts"]
+      "@muxima-ui/*": ["libs/*/src/index.ts"]
     }
   }
 }

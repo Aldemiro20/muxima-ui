@@ -50,12 +50,12 @@
     
     <div class="example-container">
       <div class="accordion-demo">
-        <agt-accordion 
+        <muxima-accordion 
           *ngFor="let item of basicItems"
           [title]="item.title"
           [expanded]="item.expanded">
           <p>{{ item.content }}</p>
-        </agt-accordion>
+        </muxima-accordion>
       </div>
     </div>
 
@@ -70,13 +70,13 @@
     
     <div class="example-container">
       <div class="accordion-demo">
-        <agt-accordion 
+        <muxima-accordion 
           *ngFor="let item of settingsItems"
           [title]="item.title"
           [subtitle]="item.subtitle"
           [expanded]="item.expanded">
           <p>{{ item.content }}</p>
-        </agt-accordion>
+        </muxima-accordion>
       </div>
     </div>
 
@@ -91,13 +91,13 @@
     
     <div class="example-container">
       <div class="accordion-demo">
-        <agt-accordion 
+        <muxima-accordion 
           *ngFor="let plan of pricingItems"
           [title]="plan.title"
           [subtitle]="plan.subtitle"
           [expanded]="plan.expanded">
           <div style="white-space: pre-line; line-height: 1.8;">{{ plan.content }}</div>
-        </agt-accordion>
+        </muxima-accordion>
       </div>
     </div>
 
@@ -112,12 +112,12 @@
     
     <div class="example-container">
       <div class="accordion-demo">
-        <agt-accordion 
+        <muxima-accordion 
           *ngFor="let item of nestedItems"
           [title]="item.title"
           [subtitle]="item.subtitle"
           [children]="item.children">
-        </agt-accordion>
+        </muxima-accordion>
       </div>
     </div>
 
@@ -132,12 +132,12 @@
     
     <div class="example-container">
       <div class="accordion-demo">
-        <agt-accordion 
+        <muxima-accordion 
           *ngFor="let doc of docsItems"
           [title]="doc.title"
           [subtitle]="doc.subtitle"
           [children]="doc.children">
-        </agt-accordion>
+        </muxima-accordion>
       </div>
     </div>
   </div>

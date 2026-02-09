@@ -11,5 +11,5 @@ export declare class DialogComponent {
     ngOnInit(): void;
     close(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<DialogComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<DialogComponent, "agt-dialog", never, { "id": "id"; "title": "title"; "subtitle": "subtitle"; "icon": "icon"; }, {}, never, ["*"], true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<DialogComponent, "muxima-dialog", never, { "id": "id"; "title": "title"; "subtitle": "subtitle"; "icon": "icon"; }, {}, never, ["*"], true, never>;
 }

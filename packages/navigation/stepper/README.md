@@ -3,7 +3,7 @@
 ## Como instalar
 
 ```bash
-npm install @agt-ui/stepper --registry http://massinga.minfin.gov.ao:4873/
+npm install @muxima-ui/stepper --registry http://massinga.minfin.gov.ao:4873/
 ```
 
 ### Imports
@@ -13,7 +13,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 
-+ import { StepsComponent } from '@agt-ui/steps'
++ import { StepsComponent } from '@muxima-ui/steps'
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,7 +28,7 @@ export class AppModule {}
 O exemplo abaixo mostra a lógica para implementação padrão do componente
 
 ```
-+ import { StepsComponent } from '@agt-ui/steps'
++ import { StepsComponent } from '@muxima-ui/steps'
 
 @Component({
   selector: 'app-root',
@@ -72,7 +72,7 @@ export class AppComponent {
 #### A seguir a utilização do componente no arquivo .html
 
 ```
-<agt-stepper [steps]="steps" [(currentStep)]="currentStep" />
+<muxima-stepper [steps]="steps" [(currentStep)]="currentStep" />
 
 
 <div *ngIf="currentPage === 1">

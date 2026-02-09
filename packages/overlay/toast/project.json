@@ -2,7 +2,7 @@
   "name": "toast",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/overlay/toast/src",
-  "prefix": "agt",
+  "prefix": "muxima",
   "projectType": "library",
   "tags": [],
   "targets": {

@@ -21,7 +21,7 @@ foreach ($folder in $folders) {
         $content = Get-Content $file.FullName -Raw
         
         # Verificar se precisa atualizar
-        if ($content -match '@agt-ui/' -or $content -match '@jokerscript/') {
+        if ($content -match '@muxima-ui/' -or $content -match '@jokerscript/') {
             $componentName = $file.Directory.Name
             
             # Extrair descrição atual se existir

@@ -23,5 +23,5 @@ export declare class AccordionComponent implements ControlValueAccessor {
     setDisabledState(isDisabled: boolean): void;
     getPaddingClass(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<AccordionComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<AccordionComponent, "agt-accordion", never, { "title": "title"; "subtitle": "subtitle"; "icon": "icon"; "iconUrl": "iconUrl"; "expanded": "expanded"; "checked": "checked"; "disabled": "disabled"; "size": "size"; "children": "children"; "isChild": "isChild"; "childLevel": "childLevel"; }, {}, never, ["*"], true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<AccordionComponent, "muxima-accordion", never, { "title": "title"; "subtitle": "subtitle"; "icon": "icon"; "iconUrl": "iconUrl"; "expanded": "expanded"; "checked": "checked"; "disabled": "disabled"; "size": "size"; "children": "children"; "isChild": "isChild"; "childLevel": "childLevel"; }, {}, never, ["*"], true, never>;
 }

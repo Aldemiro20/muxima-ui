@@ -2,7 +2,7 @@
   "name": "star-rating",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/star-rating/src",
-  "prefix": "agt",
+  "prefix": "muxima",
   "projectType": "library",
   "tags": [],
   "targets": {

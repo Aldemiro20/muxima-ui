@@ -1,17 +1,17 @@
-<div class="agt--dialog-backdrop" *ngIf="isOpen">
-  <div class="agt--dialog-content">
-    <header class="agt--dialog-header">
-      <div class="agt--dialog-header-left">
-        <!-- <div *ngIf="icon" class="agt--dialog-header-icon">
+<div class="muxima--dialog-backdrop" *ngIf="isOpen">
+  <div class="muxima--dialog-content">
+    <header class="muxima--dialog-header">
+      <div class="muxima--dialog-header-left">
+        <!-- <div *ngIf="icon" class="muxima--dialog-header-icon">
           <ng-container *ngTemplateOutlet="icon"></ng-container>
         </div> -->
 
-        <div *ngIf="icon" class="agt--dialog-header-icon">
+        <div *ngIf="icon" class="muxima--dialog-header-icon">
           <img [src]="icon" alt="icon" >
         </div>
-        <div class="agt-dialog-header-titles">
-          <span class="agt--dialog-title">{{title}}</span>
-          <span *ngIf="subtitle" class="agt--dialog-subtitle">{{subtitle}}</span>
+        <div class="muxima-dialog-header-titles">
+          <span class="muxima--dialog-title">{{title}}</span>
+          <span *ngIf="subtitle" class="muxima--dialog-subtitle">{{subtitle}}</span>
         </div>
       </div>
       <button class="close--btn" (click)="close()">
@@ -19,7 +19,7 @@
       </button>
     </header>
 
-    <div class="agt--dialog-outlet">
+    <div class="muxima--dialog-outlet">
       <ng-content></ng-content>
     </div>
 

@@ -1,4 +1,4 @@
-.agt--dialog-backdrop {
+.muxima--dialog-backdrop {
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -12,7 +12,7 @@
   z-index: 1000;
 }
 
-.agt--dialog-content {
+.muxima--dialog-content {
   position: relative;
   left: 50%;
   top: 50%;
@@ -30,7 +30,7 @@
   flex-direction: column;
 }
 
-.agt--dialog-header {
+.muxima--dialog-header {
   display: flex;
   justify-content: space-between;
 
@@ -38,26 +38,26 @@
   border-bottom: 2px solid #f1f1f1;
 }
 
-.agt-dialog-header-titles {
+.muxima-dialog-header-titles {
   display: flex;
   flex-direction: column;
 }
 
-.agt--dialog-title  {
+.muxima--dialog-title  {
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 20px;
   color: #667085;
 }
 
-.agt--dialog-subtitle {
+.muxima--dialog-subtitle {
   font-family: Roboto, Inter, 'sans-serif';
   font-size: 14px;
   color: #667085;
   margin-top: 4px;
 }
 
-.agt--dialog-header-icon {
+.muxima--dialog-header-icon {
   background-color: #f1f1f1;
   width: 46px;
   height: 46px;
@@ -68,12 +68,12 @@
   border-radius: 100%;
 }
 
-.agt--dialog-header-icon > svg {
+.muxima--dialog-header-icon > svg {
   width: 20px;
   height: 20px;
 }
 
-.agt--dialog-header-left {
+.muxima--dialog-header-left {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -92,7 +92,7 @@
   cursor: pointer;
 }
 
-.agt--dialog-outlet {
+.muxima--dialog-outlet {
   flex: 1;
   max-height: calc(80vh - 48px); /* Altura do modal menos padding */
   overflow-y: auto;

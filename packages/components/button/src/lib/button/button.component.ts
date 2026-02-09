@@ -31,6 +31,6 @@ export class ButtonComponent {
   @Input() hoverEffect: 'shadow' | 'gradient' | 'lift' | 'scale' | 'none' = 'shadow';
 
   getClasses() {
-    return ['agt--button', `agt--button--${this.size}`, `agt--button--${this.variant}`, `agt--button--hover-${this.hoverEffect}`, `${this.wFull ? 'agt--button-w-full' : ''}`];
+    return ['muxima--button', `muxima--button--${this.size}`, `muxima--button--${this.variant}`, `muxima--button--hover-${this.hoverEffect}`, `${this.wFull ? 'muxima--button-w-full' : ''}`];
   }
 }

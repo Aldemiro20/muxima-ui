@@ -3,7 +3,7 @@ import { DialogService } from './dialog.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'agt-dialog',
+  selector: 'muxima-dialog',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './dialog.component.html',

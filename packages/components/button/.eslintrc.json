@@ -13,7 +13,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "agt",
+            "prefix": "muxima",
             "style": "camelCase"
           }
         ],
@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "agt",
+            "prefix": "muxima",
             "style": "kebab-case"
           }
         ]

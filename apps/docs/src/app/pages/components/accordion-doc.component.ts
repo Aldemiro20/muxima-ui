@@ -134,12 +134,12 @@ export class AccordionDocComponent {
   imports: [AccordionComponent]
 })`;
 
-  basicCode = `<agt-accordion 
+  basicCode = `<muxima-accordion 
   *ngFor="let item of items"
   [title]="item.title"
   [expanded]="item.expanded">
   <p>{{ item.content }}</p>
-</agt-accordion>`;
+</muxima-accordion>`;
 
   typescriptCode = `import { AccordionComponent } from '@muxima-ui/accordion';
 
@@ -157,26 +157,26 @@ export class MyComponent {
   ];
 }`;
 
-  htmlCodeBasic = `<agt-accordion 
+  htmlCodeBasic = `<muxima-accordion 
   *ngFor="let item of items"
   [title]="item.title"
   [expanded]="item.expanded">
   <p>{{ item.content }}</p>
-</agt-accordion>`;
+</muxima-accordion>`;
 
-  htmlCodeWithSubtitle = `<agt-accordion 
+  htmlCodeWithSubtitle = `<muxima-accordion 
   title="Performance Otimizada"
   subtitle="Renderização eficiente e rápida"
   [expanded]="false">
   <p>Conteúdo detalhado aqui...</p>
-</agt-accordion>`;
+</muxima-accordion>`;
 
-  htmlCodeNested = `<agt-accordion 
+  htmlCodeNested = `<muxima-accordion 
   *ngFor="let item of nestedItems"
   [title]="item.title"
   [subtitle]="item.subtitle"
   [children]="item.children">
-</agt-accordion>
+</muxima-accordion>
 
 // No TypeScript:
 nestedItems = [
@@ -190,21 +190,21 @@ nestedItems = [
   }
 ];`;
 
-  htmlCodeSettings = `<agt-accordion 
+  htmlCodeSettings = `<muxima-accordion 
   *ngFor="let item of settingsItems"
   [title]="item.title"
   [subtitle]="item.subtitle"
   [expanded]="item.expanded">
   <p>{{ item.content }}</p>
-</agt-accordion>`;
+</muxima-accordion>`;
 
-  htmlCodePricing = `<agt-accordion 
+  htmlCodePricing = `<muxima-accordion 
   *ngFor="let plan of pricingItems"
   [title]="plan.title"
   [subtitle]="plan.subtitle"
   [expanded]="plan.expanded">
   <div style="white-space: pre-line;">{{ plan.content }}</div>
-</agt-accordion>`;
+</muxima-accordion>`;
 
   copiedStates: { [key: string]: boolean } = {};
 

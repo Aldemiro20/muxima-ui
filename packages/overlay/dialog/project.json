@@ -2,7 +2,7 @@
   "name": "dialog",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/overlay/dialog/src",
-  "prefix": "agt",
+  "prefix": "muxima",
   "projectType": "library",
   "tags": [],
   "targets": {

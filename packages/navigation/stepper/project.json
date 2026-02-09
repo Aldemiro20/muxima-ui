@@ -2,7 +2,7 @@
   "name": "stepper",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/navigation/stepper/src",
-  "prefix": "agt",
+  "prefix": "muxima",
   "projectType": "library",
   "tags": [],
   "targets": {
