@@ -1,10 +1,7 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "outputDirectory": "dist/apps/docs",
-  "framework": null,
   "rewrites": [
     {
-      "source": "/((?!.*\\.).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ],
@@ -42,10 +39,5 @@
       "destination": "/",
       "permanent": true
     }
-  ],
-  "trailingSlash": false,
-  "cleanUrls": true,
-  "github": {
-    "silent": true
-  }
+  ]
 }
