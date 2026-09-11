@@ -129,15 +129,15 @@ export class AppComponent {      price: 99.90,
 ## 📚 DocumentationMIT
 
 
-**Full documentation:** https://muxima-ui.vercel.app
+**Full documentation:** https://muxima-ui.up.railway.app
 
-**Component docs:** https://muxima-ui.vercel.app/components/shopping-cart
+**Component docs:** https://muxima-ui.up.railway.app/components/shopping-cart
 
 ## 🔗 Links
 
 - [NPM Package](https://www.npmjs.com/package/@muxima-ui/shopping-cart)
 - [GitHub Repository](https://github.com/Aldemiro20/muxima-ui)
-- [Documentation](https://muxima-ui.vercel.app)
+- [Documentation](https://muxima-ui.up.railway.app)
 - [Report Issues](https://github.com/Aldemiro20/muxima-ui/issues)
 
 ## 📝 License

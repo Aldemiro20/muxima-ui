@@ -50,11 +50,11 @@ foreach ($folder in $folders) {
     "type": "git",
     "url": "https://github.com/Aldemiro20/muxima-ui.git"
   },
-  "homepage": "https://muxima-ui.vercel.app/components/$componentName",
+  "homepage": "https://muxima-ui.up.railway.app/components/$componentName",
   "bugs": {
     "url": "https://github.com/Aldemiro20/muxima-ui/issues"
   },
-  "documentation": "https://muxima-ui.vercel.app",
+  "documentation": "https://muxima-ui.up.railway.app",
   "publishConfig": {
     "access": "public"
   },

@@ -34,11 +34,11 @@ $template = @'
     "url": "https://github.com/Aldemiro20/muxima-ui.git",
     "directory": "{DIR}"
   },
-  "homepage": "https://muxima-ui.vercel.app/components/{NAME}",
+  "homepage": "https://muxima-ui.up.railway.app/components/{NAME}",
   "bugs": {
     "url": "https://github.com/Aldemiro20/muxima-ui/issues"
   },
-  "documentation": "https://muxima-ui.vercel.app",
+  "documentation": "https://muxima-ui.up.railway.app",
   "publishConfig": {
     "access": "public"
   },

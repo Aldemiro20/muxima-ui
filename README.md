@@ -9,7 +9,7 @@
 [![Angular](https://img.shields.io/badge/Angular-15%2B-red)](https://angular.io)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0%2B-blue)](https://www.typescriptlang.org/)
 
-[📚 Documentation](https://muxima-ui.vercel.app) · [🐛 Report Bug](https://github.com/Aldemiro20/muxima-ui/issues) · [✨ Request Feature](https://github.com/Aldemiro20/muxima-ui/issues) · [💬 Discussions](https://github.com/Aldemiro20/muxima-ui/discussions)
+[📚 Documentation](https://muxima-ui.up.railway.app) · [🐛 Report Bug](https://github.com/Aldemiro20/muxima-ui/issues) · [✨ Request Feature](https://github.com/Aldemiro20/muxima-ui/issues) · [💬 Discussions](https://github.com/Aldemiro20/muxima-ui/discussions)
 
 </div>
 
@@ -308,7 +308,7 @@ Muxima UI is released under the **[MIT License](LICENSE)**. In short:
 
 ## 💬 Support
 
-- 📖 [Documentation](https://muxima-ui.vercel.app)
+- 📖 [Documentation](https://muxima-ui.up.railway.app)
 - 🐛 [Issue Tracker](https://github.com/Aldemiro20/muxima-ui/issues)
 - 💡 [Discussions](https://github.com/Aldemiro20/muxima-ui/discussions)
 - 🔗 [NPM Organization](https://www.npmjs.com/org/muxima-ui)

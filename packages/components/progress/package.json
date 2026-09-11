@@ -22,8 +22,8 @@
   "bugs": {
     "url": "https://github.com/Aldemiro20/muxima-ui/issues"
   },
-  "homepage": "https://muxima-ui.vercel.app/components/progress",
-  "documentation": "https://muxima-ui.vercel.app",
+  "homepage": "https://muxima-ui.up.railway.app/components/progress",
+  "documentation": "https://muxima-ui.up.railway.app",
   "peerDependencies": {
     "@angular/common": ">=15.0.0",
     "@angular/core": ">=15.0.0"

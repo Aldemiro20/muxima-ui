@@ -19,11 +19,11 @@
     "url": "https://github.com/Aldemiro20/muxima-ui.git",
     "directory": "packages/advanced/comments"
   },
-  "homepage": "https://muxima-ui.vercel.app/components/comments",
+  "homepage": "https://muxima-ui.up.railway.app/components/comments",
   "bugs": {
     "url": "https://github.com/Aldemiro20/muxima-ui/issues"
   },
-  "documentation": "https://muxima-ui.vercel.app",
+  "documentation": "https://muxima-ui.up.railway.app",
   "publishConfig": {
     "access": "public"
   },

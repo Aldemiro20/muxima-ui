@@ -112,11 +112,11 @@ export class AppComponent {- **Responsivo**: Adaptável a dispositivos móveis
 
   template: `
 
-**Full documentation:** https://muxima-ui.vercel.app    <muxima-quill-editor
+**Full documentation:** https://muxima-ui.up.railway.app    <muxima-quill-editor
 
       [(ngModel)]="content"
 
-**Component docs:** https://muxima-ui.vercel.app/components/quill-editor      [height]="'500px'"
+**Component docs:** https://muxima-ui.up.railway.app/components/quill-editor      [height]="'500px'"
 
       [placeholder]="'Comece a escrever...'"
 
@@ -128,7 +128,7 @@ export class AppComponent {- **Responsivo**: Adaptável a dispositivos móveis
 
 - [GitHub Repository](https://github.com/Aldemiro20/muxima-ui)})
 
-- [Documentation](https://muxima-ui.vercel.app)export class MyComponent {
+- [Documentation](https://muxima-ui.up.railway.app)export class MyComponent {
 
 - [Report Issues](https://github.com/Aldemiro20/muxima-ui/issues)  content = '<p>Olá mundo!</p>';
 

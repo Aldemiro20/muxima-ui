@@ -18,11 +18,11 @@
     "url": "https://github.com/Aldemiro20/muxima-ui.git",
     "directory": "packages/media/image-cropper"
   },
-  "homepage": "https://muxima-ui.vercel.app/components/image-cropper",
+  "homepage": "https://muxima-ui.up.railway.app/components/image-cropper",
   "bugs": {
     "url": "https://github.com/Aldemiro20/muxima-ui/issues"
   },
-  "documentation": "https://muxima-ui.vercel.app",
+  "documentation": "https://muxima-ui.up.railway.app",
   "publishConfig": {
     "access": "public"
   },

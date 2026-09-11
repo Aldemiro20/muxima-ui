@@ -150,7 +150,7 @@ if [ $FAILED -eq 0 ]; then
     echo "https://www.npmjs.com/~$NPM_USER"
     echo ""
     echo "📖 Documentation available at:"
-    echo "https://muxima-ui.vercel.app"
+    echo "https://muxima-ui.up.railway.app"
 else
     echo -e "${RED}⚠️  Some packages failed to publish. Please check the errors above.${NC}"
     exit 1

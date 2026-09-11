@@ -152,7 +152,7 @@ if ($failed -eq 0) {
     Write-Host "https://www.npmjs.com/~$npmUser"
     Write-Host ""
     Write-Host "📖 Documentation available at:"
-    Write-Host "https://muxima-ui.vercel.app"
+    Write-Host "https://muxima-ui.up.railway.app"
 } else {
     Write-Host "⚠️  Some packages failed to publish. Please check the errors above." -ForegroundColor Red
     exit 1

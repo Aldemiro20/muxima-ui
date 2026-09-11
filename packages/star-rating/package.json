@@ -18,11 +18,11 @@
     "url": "https://github.com/Aldemiro20/muxima-ui.git",
     "directory": "packages/star-rating"
   },
-  "homepage": "https://muxima-ui.vercel.app/components/star-rating",
+  "homepage": "https://muxima-ui.up.railway.app/components/star-rating",
   "bugs": {
     "url": "https://github.com/Aldemiro20/muxima-ui/issues"
   },
-  "documentation": "https://muxima-ui.vercel.app",
+  "documentation": "https://muxima-ui.up.railway.app",
   "publishConfig": {
     "access": "public"
   },

@@ -17,11 +17,11 @@
     "url": "https://github.com/Aldemiro20/muxima-ui.git",
     "directory": "packages/navigation/sidebar/sidebar"
   },
-  "homepage": "https://muxima-ui.vercel.app/components/sidebar",
+  "homepage": "https://muxima-ui.up.railway.app/components/sidebar",
   "bugs": {
     "url": "https://github.com/Aldemiro20/muxima-ui/issues"
   },
-  "documentation": "https://muxima-ui.vercel.app",
+  "documentation": "https://muxima-ui.up.railway.app",
   "publishConfig": {
     "access": "public"
   },
