@@ -1,6 +1,6 @@
 {
   "name": "@muxima-ui/gantt-chart",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Gantt chart component for Angular 18+ - Project timeline visualization - Muxima UI",
   "keywords": [
     "angular",
@@ -36,4 +36,3 @@
   },
   "sideEffects": false
 }
-

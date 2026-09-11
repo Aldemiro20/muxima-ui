@@ -1,6 +1,6 @@
 {
   "name": "@muxima-ui/otp-input",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "OTP/PIN input component for Angular 18+ - Muxima UI",
   "keywords": [
     "angular",
@@ -36,4 +36,3 @@
   },
   "sideEffects": false
 }
-

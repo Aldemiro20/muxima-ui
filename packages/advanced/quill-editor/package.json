@@ -1,6 +1,6 @@
 {
   "name": "@muxima-ui/quill-editor",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Advanced WYSIWYG rich text editor built from scratch for Angular 18+ - Muxima UI",
   "keywords": [
     "angular",
@@ -34,4 +34,3 @@
   },
   "sideEffects": false
 }
-

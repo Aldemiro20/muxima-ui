@@ -1,6 +1,6 @@
 {
   "name": "@muxima-ui/navbar",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Navbar component for Angular 18+ - Muxima UI",
   "keywords": [
     "angular",
@@ -8,7 +8,6 @@
     "navigation",
     "menu",
     "header",
-    
     "muxima-ui"
   ],
   "author": "Muxima UI Team (jokerscript)",
@@ -35,4 +34,3 @@
   },
   "sideEffects": false
 }
-

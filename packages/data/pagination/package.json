@@ -1,6 +1,6 @@
 {
   "name": "@muxima-ui/pagination",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Professional pagination component for Angular - Multiple variants with elegant visual indicators",
   "author": "Muxima UI Team (jokerscript)",
   "license": "MIT",
@@ -35,4 +35,3 @@
   },
   "sideEffects": false
 }
-

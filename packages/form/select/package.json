@@ -1,6 +1,6 @@
 {
   "name": "@muxima-ui/select",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Select dropdown component for Angular 18+ - Muxima UI",
   "keywords": [
     "angular",
@@ -35,4 +35,3 @@
   },
   "sideEffects": false
 }
-

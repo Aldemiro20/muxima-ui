@@ -346,17 +346,25 @@ The scope should be the name of the package/component affected:
 
 ## Package Publishing
 
-For maintainers publishing to NPM:
+For maintainers publishing to NPM. The version bump must run **before** the
+build, so the compiled output in `packages/dist/libs` picks up the new
+version number:
 
 ```bash
-# Build all packages
-npm run build:all
-
-# Version bump (patch/minor/major)
+# 1. Bump version across all packages (patch/minor/major, or an explicit x.y.z)
 npm run version:bump -- --version patch
 
-# Publish to NPM
+# 2. Build all packages with the new version
+npm run build:all
+
+# 3. Publish every built package to NPM
 npm run publish:all
+
+# Or preview without publishing anything:
+npm run publish:all -- --dry-run
+
+# To publish just one package:
+npm run publish:package -- button
 ```
 
 ## Questions?

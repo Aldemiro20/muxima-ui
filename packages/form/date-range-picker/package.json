@@ -1,9 +1,8 @@
 {
   "name": "@muxima-ui/date-range-picker",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "peerDependencies": {
     "@angular/common": ">=15.0.0",
     "@angular/core": ">=15.0.0"
   }
 }
-

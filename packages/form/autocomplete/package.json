@@ -1,6 +1,6 @@
 {
   "name": "@muxima-ui/autocomplete",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Autocomplete component with real-time search suggestions for Angular 18+ - Muxima UI",
   "keywords": [
     "angular",
@@ -35,4 +35,3 @@
   },
   "sideEffects": false
 }
-

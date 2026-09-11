@@ -1,6 +1,6 @@
 {
   "name": "@muxima-ui/radio-button",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Radio button component for Angular 18+ - Muxima UI",
   "keywords": [
     "angular",
@@ -35,4 +35,3 @@
   },
   "sideEffects": false
 }
-

@@ -1,6 +1,6 @@
 {
   "name": "@muxima-ui/smart-form-builder",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Smart form builder component for Angular 18+ - Dynamic form generation - Muxima UI",
   "keywords": [
     "angular",
@@ -37,4 +37,3 @@
   },
   "sideEffects": false
 }
-

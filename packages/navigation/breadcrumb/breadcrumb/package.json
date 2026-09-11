@@ -1,6 +1,6 @@
 {
   "name": "@muxima-ui/breadcrumb",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Breadcrumb navigation component for Angular 18+ - Muxima UI",
   "keywords": [
     "angular",
@@ -8,7 +8,6 @@
     "navigation",
     "path",
     "trail",
-    
     "muxima-ui"
   ],
   "author": "Muxima UI Team (jokerscript)",
@@ -35,4 +34,3 @@
   },
   "sideEffects": false
 }
-

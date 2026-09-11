@@ -1,6 +1,6 @@
 {
   "name": "@muxima-ui/datepicker",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Datepicker component for Angular 18+ - Muxima UI",
   "keywords": [
     "angular",
@@ -8,7 +8,6 @@
     "date",
     "calendar",
     "form",
-    
     "muxima-ui"
   ],
   "author": "Muxima UI Team (jokerscript)",
@@ -35,4 +34,3 @@
   },
   "sideEffects": false
 }
-

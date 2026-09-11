@@ -1,6 +1,6 @@
 {
   "name": "@muxima-ui/comments",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Advanced comments system for Angular 18+ with replies, reactions, and mentions - Muxima UI",
   "keywords": [
     "angular",
@@ -37,4 +37,3 @@
   },
   "sideEffects": false
 }
-
