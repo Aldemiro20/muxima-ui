@@ -44,7 +44,9 @@ function main() {
     return;
   }
 
-  execFileSync('npm', ['publish', '--access', 'public'], { cwd: dir, stdio: 'inherit' });
+  // On Windows, `npm` resolves to the `npm.cmd` shim, which execFileSync
+  // cannot exec directly without going through a shell.
+  execFileSync('npm', ['publish', '--access', 'public'], { cwd: dir, stdio: 'inherit', shell: true });
   console.log(`Published ${pkg.name}@${pkg.version}`);
 }
 

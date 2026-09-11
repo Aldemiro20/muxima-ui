@@ -20,9 +20,15 @@ const ROOT = path.resolve(__dirname, '..', '..');
 const DIST_DIR = path.join(ROOT, 'packages', 'dist', 'libs');
 const dryRun = process.argv.includes('--dry-run');
 
+// On Windows, `npm` resolves to the `npm.cmd` shim, which execFileSync
+// cannot exec directly without going through a shell.
+function runNpm(args, options = {}) {
+  return execFileSync('npm', args, { shell: true, ...options });
+}
+
 function whoami() {
   try {
-    return execFileSync('npm', ['whoami'], { encoding: 'utf8' }).trim();
+    return runNpm(['whoami'], { encoding: 'utf8' }).trim();
   } catch {
     return null;
   }
@@ -72,7 +78,7 @@ function main() {
     }
 
     try {
-      execFileSync('npm', ['publish', '--access', 'public'], { cwd: dir, stdio: 'pipe' });
+      runNpm(['publish', '--access', 'public'], { cwd: dir, stdio: 'pipe' });
       console.log('done');
       published++;
     } catch (err) {
