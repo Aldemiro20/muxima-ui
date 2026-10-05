@@ -1,6 +1,6 @@
 {
   "name": "@muxima-ui/toast",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Toast notification component for Angular 18+ - Muxima UI",
   "keywords": [
     "angular",
@@ -17,11 +17,11 @@
     "url": "https://github.com/Aldemiro20/muxima-ui.git",
     "directory": "packages/overlay/toast"
   },
-  "homepage": "https://muxima-ui.vercel.app/components/toast",
+  "homepage": "https://muxima-ui.up.railway.app/components/toast",
   "bugs": {
     "url": "https://github.com/Aldemiro20/muxima-ui/issues"
   },
-  "documentation": "https://muxima-ui.vercel.app",
+  "documentation": "https://muxima-ui.up.railway.app",
   "publishConfig": {
     "access": "public"
   },

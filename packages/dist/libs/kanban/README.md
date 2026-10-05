@@ -101,15 +101,15 @@ export class AppComponent {  (cardMoved)="onCardMoved($event)">
 
 ## 📚 Documentation
 
-**Full documentation:** https://muxima-ui.vercel.app
+**Full documentation:** https://muxima-ui.up.railway.app
 
-**Component docs:** https://muxima-ui.vercel.app/components/kanban
+**Component docs:** https://muxima-ui.up.railway.app/components/kanban
 
 ## 🔗 Links
 
 - [NPM Package](https://www.npmjs.com/package/@muxima-ui/kanban)
 - [GitHub Repository](https://github.com/Aldemiro20/muxima-ui)
-- [Documentation](https://muxima-ui.vercel.app)
+- [Documentation](https://muxima-ui.up.railway.app)
 - [Report Issues](https://github.com/Aldemiro20/muxima-ui/issues)
 
 ## 📝 License

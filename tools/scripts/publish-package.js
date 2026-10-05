@@ -18,9 +18,20 @@ const { execFileSync } = require('child_process');
 const ROOT = path.resolve(__dirname, '..', '..');
 const DIST_DIR = path.join(ROOT, 'packages', 'dist', 'libs');
 
+// npm publish runs with cwd set to the built package directory
+// (packages/dist/libs/<name>), which has its own package.json. npm treats
+// that as the project root for config lookup, so it does NOT inherit this
+// repo's root .npmrc (which pins the public registry) — it falls back to
+// whatever registry is configured globally for the user. On a machine with
+// a private/company registry set globally, packages silently end up there
+// instead of on npmjs.org. Always pass --registry explicitly.
 function main() {
   const dryRun = process.argv.includes('--dry-run');
-  const name = process.argv.slice(2).find((a) => !a.startsWith('--'));
+  const registryIdx = process.argv.indexOf('--registry');
+  const registry = registryIdx !== -1 && process.argv[registryIdx + 1]
+    ? process.argv[registryIdx + 1]
+    : 'https://registry.npmjs.org/';
+  const name = process.argv.slice(2).find((a) => !a.startsWith('--') && a !== registry);
 
   if (!name) {
     console.error('Usage: node tools/scripts/publish-package.js <package-name> [--dry-run]');
@@ -38,6 +49,7 @@ function main() {
 
   const pkg = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf8'));
   console.log(`Publishing ${pkg.name}@${pkg.version}...`);
+  console.log(`Registry: ${registry}`);
 
   if (dryRun) {
     console.log('(dry run, not published)');
@@ -46,7 +58,11 @@ function main() {
 
   // On Windows, `npm` resolves to the `npm.cmd` shim, which execFileSync
   // cannot exec directly without going through a shell.
-  execFileSync('npm', ['publish', '--access', 'public'], { cwd: dir, stdio: 'inherit', shell: true });
+  execFileSync('npm', ['publish', '--access', 'public', '--registry', registry], {
+    cwd: dir,
+    stdio: 'inherit',
+    shell: true,
+  });
   console.log(`Published ${pkg.name}@${pkg.version}`);
 }
 

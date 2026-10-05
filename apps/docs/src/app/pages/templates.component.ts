@@ -27,16 +27,16 @@ import { RouterModule, Router } from '@angular/router';
         <!-- Template 1: Dashboard -->
         <div class="template-card">
           <div class="template-preview">
-            <img src="https://via.placeholder.com/600x400/667eea/ffffff?text=Dashboard+Admin" alt="Dashboard Template">
+            <img src="../../assets/dashboard.png" alt="Dashboard Template">
             <div class="template-overlay">
               <button class="btn-preview" (click)="navigateTo('/templates/dashboard')">
-                👁️ Ver Preview
+                Ver Preview
               </button>
             </div>
           </div>
           <div class="template-info">
             <div class="template-header">
-              <h3>📊 Dashboard Admin</h3>
+              <h3>Dashboard Admin</h3>
               <span class="template-badge popular">Popular</span>
             </div>
             <p class="template-description">
@@ -65,16 +65,16 @@ import { RouterModule, Router } from '@angular/router';
         <!-- Template 2: Sign In -->
         <div class="template-card">
           <div class="template-preview">
-            <img src="https://via.placeholder.com/600x400/667eea/ffffff?text=Sign+In" alt="Sign In Template">
+            <img src="../../assets/signIn.png" alt="Sign In Template">
             <div class="template-overlay">
               <button class="btn-preview" (click)="navigateTo('/templates/signin')">
-                👁️ Ver Preview
+               Ver Preview
               </button>
             </div>
           </div>
           <div class="template-info">
             <div class="template-header">
-              <h3>� Sign In (Login)</h3>
+              <h3>Sign In (Login)</h3>
               <span class="template-badge new">Novo</span>
             </div>
             <p class="template-description">
@@ -100,16 +100,16 @@ import { RouterModule, Router } from '@angular/router';
         <!-- Template 3: Sign Up -->
         <div class="template-card">
           <div class="template-preview">
-            <img src="https://via.placeholder.com/600x400/764ba2/ffffff?text=Sign+Up" alt="Sign Up Template">
+            <img src="../../assets/signUp.png" alt="Sign Up Template">
             <div class="template-overlay">
               <button class="btn-preview" (click)="navigateTo('/templates/signup')">
-                👁️ Ver Preview
+                Ver Preview
               </button>
             </div>
           </div>
           <div class="template-info">
             <div class="template-header">
-              <h3>📝 Sign Up (Registro)</h3>
+              <h3>Sign Up (Registro)</h3>
               <span class="template-badge new">Novo</span>
             </div>
             <p class="template-description">
@@ -135,16 +135,16 @@ import { RouterModule, Router } from '@angular/router';
         <!-- Template 4: E-commerce Landing -->
         <div class="template-card">
           <div class="template-preview">
-            <img src="https://via.placeholder.com/600x400/10b981/ffffff?text=E-commerce+Landing" alt="E-commerce Template">
+            <img src="../../assets/muximaShop.png" alt="E-commerce Template">
             <div class="template-overlay">
               <button class="btn-preview" (click)="navigateTo('/templates/ecommerce')">
-                👁️ Ver Preview
+                Ver Preview
               </button>
             </div>
           </div>
           <div class="template-info">
             <div class="template-header">
-              <h3>🛍️ E-commerce Landing Page</h3>
+              <h3>E-commerce Landing Page</h3>
               <span class="template-badge premium">Premium</span>
             </div>
             <p class="template-description">
@@ -164,7 +164,7 @@ import { RouterModule, Router } from '@angular/router';
                 Ver Template
               </button>
               <button class="btn-ghost" (click)="copyCode('ecommerce')">
-                📋 Copiar Código
+                Copiar Código
               </button>
             </div>
           </div>
@@ -173,16 +173,16 @@ import { RouterModule, Router } from '@angular/router';
         <!-- Template 4: SaaS Landing -->
         <div class="template-card">
           <div class="template-preview">
-            <img src="https://via.placeholder.com/600x400/3b82f6/ffffff?text=SaaS+Landing" alt="SaaS Template">
+            <img src="../../assets/sass.png" alt="SaaS Template">
             <div class="template-overlay">
               <button class="btn-preview" (click)="navigateTo('/templates/saas')">
-                👁️ Ver Preview
+                Ver Preview
               </button>
             </div>
           </div>
           <div class="template-info">
             <div class="template-header">
-              <h3>⚡ SaaS Landing Page</h3>
+              <h3>SaaS Landing Page</h3>
               <span class="template-badge premium">Premium</span>
             </div>
             <p class="template-description">
@@ -202,7 +202,7 @@ import { RouterModule, Router } from '@angular/router';
                 Ver Template
               </button>
               <button class="btn-ghost" (click)="copyCode('saas')">
-                📋 Copiar Código
+                 Copiar Código
               </button>
             </div>
           </div>
@@ -211,16 +211,16 @@ import { RouterModule, Router } from '@angular/router';
         <!-- Template 5: Glass Landing -->
         <div class="template-card">
           <div class="template-preview">
-            <img src="https://via.placeholder.com/600x400/764ba2/ffffff?text=Glass+Landing" alt="Glass Template">
+            <img src="../../assets/glass.png" alt="Glass Template">
             <div class="template-overlay">
               <button class="btn-preview" (click)="navigateTo('/templates/glass-landing')">
-                👁️ Ver Preview
+                Ver Preview
               </button>
             </div>
           </div>
           <div class="template-info">
             <div class="template-header">
-              <h3>✨ Glass Landing (Glassmorphism)</h3>
+              <h3>Glass Landing (Glassmorphism)</h3>
               <span class="template-badge new">Novo</span>
             </div>
             <p class="template-description">
@@ -240,7 +240,7 @@ import { RouterModule, Router } from '@angular/router';
                 Ver Template
               </button>
               <button class="btn-ghost" (click)="copyCode('glass-landing')">
-                📋 Copiar Código
+                Copiar Código
               </button>
             </div>
           </div>
@@ -249,16 +249,16 @@ import { RouterModule, Router } from '@angular/router';
         <!-- Template 6: Neon Landing -->
         <div class="template-card">
           <div class="template-preview">
-            <img src="https://via.placeholder.com/600x400/0a0e27/00ffff?text=Neon+Landing" alt="Neon Template">
+            <img src="../../assets/neon.png" alt="Neon Template">
             <div class="template-overlay">
               <button class="btn-preview" (click)="navigateTo('/templates/neon-landing')">
-                👁️ Ver Preview
+                 Ver Preview
               </button>
             </div>
           </div>
           <div class="template-info">
             <div class="template-header">
-              <h3>⚡ Neon Landing (Cyberpunk)</h3>
+              <h3>Neon Landing (Cyberpunk)</h3>
               <span class="template-badge new">Novo</span>
             </div>
             <p class="template-description">
@@ -278,7 +278,7 @@ import { RouterModule, Router } from '@angular/router';
                 Ver Template
               </button>
               <button class="btn-ghost" (click)="copyCode('neon-landing')">
-                📋 Copiar Código
+                Copiar Código
               </button>
             </div>
           </div>
@@ -287,16 +287,16 @@ import { RouterModule, Router } from '@angular/router';
         <!-- Template 7: Workspace Pro -->
         <div class="template-card">
           <div class="template-preview">
-            <img src="https://via.placeholder.com/600x400/3B82F6/ffffff?text=Workspace+Pro" alt="Workspace Template">
+            <img src="../../assets/workspace.png" alt="Workspace Template">
             <div class="template-overlay">
               <button class="btn-preview" (click)="navigateTo('/templates/workspace')">
-                👁️ Ver Preview
+                Ver Preview
               </button>
             </div>
           </div>
           <div class="template-info">
             <div class="template-header">
-              <h3>💼 Workspace Pro</h3>
+              <h3>Workspace Pro</h3>
               <span class="template-badge popular">Popular</span>
             </div>
             <p class="template-description">
@@ -316,7 +316,7 @@ import { RouterModule, Router } from '@angular/router';
                 Ver Template
               </button>
               <button class="btn-ghost" (click)="copyCode('workspace')">
-                📋 Copiar Código
+                Copiar Código
               </button>
             </div>
           </div>

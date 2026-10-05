@@ -20,10 +20,23 @@ const ROOT = path.resolve(__dirname, '..', '..');
 const DIST_DIR = path.join(ROOT, 'packages', 'dist', 'libs');
 const dryRun = process.argv.includes('--dry-run');
 
+// npm publish is run with cwd set to each built package directory
+// (packages/dist/libs/<name>), which has its own package.json. npm treats
+// that as the project root for config lookup, so it does NOT inherit this
+// repo's root .npmrc (which pins the public registry) — it falls back to
+// whatever registry is configured globally for the user. On a machine with
+// a private/company registry set globally (e.g. a corporate npm proxy),
+// packages silently end up there instead of on npmjs.org. Always pass
+// --registry explicitly so this can't happen regardless of cwd.
+const registryIdx = process.argv.indexOf('--registry');
+const REGISTRY = registryIdx !== -1 && process.argv[registryIdx + 1]
+  ? process.argv[registryIdx + 1]
+  : 'https://registry.npmjs.org/';
+
 // On Windows, `npm` resolves to the `npm.cmd` shim, which execFileSync
 // cannot exec directly without going through a shell.
 function runNpm(args, options = {}) {
-  return execFileSync('npm', args, { shell: true, ...options });
+  return execFileSync('npm', [...args, '--registry', REGISTRY], { shell: true, ...options });
 }
 
 function whoami() {
@@ -40,7 +53,8 @@ function main() {
     console.error('Not logged in to npm. Run `npm login` first.');
     process.exit(1);
   }
-  console.log(`Logged in to npm as: ${user}\n`);
+  console.log(`Logged in to npm as: ${user}`);
+  console.log(`Registry: ${REGISTRY}\n`);
 
   if (!fs.existsSync(DIST_DIR)) {
     console.error(`Build output not found at ${DIST_DIR}.`);
@@ -82,14 +96,20 @@ function main() {
       console.log('done');
       published++;
     } catch (err) {
-      const message = (err.stderr ? err.stderr.toString() : err.message) || '';
-      if (/cannot publish over/i.test(message) || /you cannot publish over/i.test(message)) {
+      const combined = [err.stdout, err.stderr]
+        .filter(Boolean)
+        .map((b) => b.toString())
+        .join('\n');
+      if (/cannot publish over/i.test(combined)) {
         console.log('skipped (version already published)');
         skipped++;
       } else {
         console.log('FAILED');
         failed++;
-        failures.push({ name: pkg.name, message: message.trim() });
+        const errorLine = combined
+          .split('\n')
+          .find((line) => /error|ERR!/i.test(line)) || combined.trim().split('\n')[0] || err.message;
+        failures.push({ name: pkg.name, message: errorLine.trim() });
       }
     }
   }
@@ -101,7 +121,7 @@ function main() {
 
   if (failures.length) {
     console.log('\nFailures:');
-    failures.forEach((f) => console.log(`  ${f.name}: ${f.message.split('\n')[0]}`));
+    failures.forEach((f) => console.log(`  ${f.name}: ${f.message}`));
     process.exit(1);
   }
 }

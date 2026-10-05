@@ -1,6 +1,6 @@
 {
   "name": "@muxima-ui/table",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Data table component for Angular 18+ - Muxima UI",
   "keywords": [
     "angular",
@@ -17,11 +17,11 @@
     "url": "https://github.com/Aldemiro20/muxima-ui.git",
     "directory": "packages/data/table"
   },
-  "homepage": "https://muxima-ui.vercel.app/components/table",
+  "homepage": "https://muxima-ui.up.railway.app/components/table",
   "bugs": {
     "url": "https://github.com/Aldemiro20/muxima-ui/issues"
   },
-  "documentation": "https://muxima-ui.vercel.app",
+  "documentation": "https://muxima-ui.up.railway.app",
   "publishConfig": {
     "access": "public"
   },

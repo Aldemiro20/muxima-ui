@@ -1,6 +1,6 @@
 {
   "name": "@muxima-ui/shopping-cart",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Advanced shopping cart component for Angular 18+ with cart management and checkout - Muxima UI",
   "keywords": [
     "angular",
@@ -19,11 +19,11 @@
     "url": "https://github.com/Aldemiro20/muxima-ui.git",
     "directory": "packages/advanced/shopping-cart"
   },
-  "homepage": "https://muxima-ui.vercel.app/components/shopping-cart",
+  "homepage": "https://muxima-ui.up.railway.app/components/shopping-cart",
   "bugs": {
     "url": "https://github.com/Aldemiro20/muxima-ui/issues"
   },
-  "documentation": "https://muxima-ui.vercel.app",
+  "documentation": "https://muxima-ui.up.railway.app",
   "publishConfig": {
     "access": "public"
   },
