@@ -1,0 +1,38 @@
+{
+  "name": "@muxima-ui/core",
+  "version": "0.1.0",
+  "description": "Componentes Angular acessíveis e sóbrios para aplicações empresariais.",
+  "keywords": ["angular", "components", "ui", "design-system", "accessibility", "muxima"],
+  "license": "MIT",
+  "author": "Aldemiro Valentim",
+  "homepage": "https://github.com/Aldemiro20/muxima-ui",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aldemiro20/muxima-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Aldemiro20/muxima-ui/issues"
+  },
+  "peerDependencies": {
+    "@angular/cdk": ">=21.0.0 <23.0.0",
+    "@angular/common": ">=21.0.0 <23.0.0",
+    "@angular/core": ">=21.0.0 <23.0.0",
+    "@angular/forms": ">=21.0.0 <23.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "exports": {
+    "./styles.css": {
+      "style": "./styles/muxima.css",
+      "default": "./styles/muxima.css"
+    },
+    "./styles/*": {
+      "default": "./styles/*"
+    }
+  },
+  "sideEffects": ["*.css"],
+  "publishConfig": {
+    "access": "public"
+  }
+}

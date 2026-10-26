@@ -1,0 +1,111 @@
+/*
+ * Muxima UI — tokens
+ *
+ * Todos os componentes leem só estas variáveis. Para adaptar a biblioteca à tua marca,
+ * basta normalmente mudar --mx-accent (e, se quiseres, --mx-radius):
+ *
+ *   :root { --mx-accent: #7a1f3d; --mx-radius: 8px; }
+ *
+ * Modo escuro: segue o sistema por omissão. Força um modo em toda a página com
+ *   <html data-theme="light"> ou <html data-theme="dark">.
+ *
+ * Temas locais: qualquer elemento com data-theme="light|dark" ou com a classe
+ * mx-theme recalcula as cores derivadas, por isso podes mudar --mx-accent
+ * só numa parte da página.
+ */
+
+/* ---------- Paleta clara (por omissão) ---------- */
+:root,
+[data-theme='light'] {
+  --mx-paper: #fafaf9;
+  --mx-surface: #ffffff;
+  --mx-subtle: #f3f2f0;
+  --mx-stone: #e7e5e2;
+  --mx-stone-strong: #d6d3cf;
+  --mx-muted: #6b6762;
+  --mx-ink: #1c1b1a;
+  --mx-accent: #0f5257;
+  --mx-danger: #b42318;
+  --mx-on-accent: #ffffff;
+  --mx-on-danger: #ffffff;
+  --mx-backdrop: rgb(28 27 26 / 0.4);
+  --mx-shadow-overlay: 0 1px 2px rgb(28 27 26 / 0.06), 0 12px 32px -8px rgb(28 27 26 / 0.18);
+  color-scheme: light;
+}
+
+/* ---------- Paleta escura ---------- */
+[data-theme='dark'] {
+  --mx-paper: #141413;
+  --mx-surface: #1c1b1a;
+  --mx-subtle: #262523;
+  --mx-stone: #33312e;
+  --mx-stone-strong: #46433f;
+  --mx-muted: #a29e98;
+  --mx-ink: #f2f1ef;
+  --mx-accent: #6ab3b0;
+  --mx-danger: #f97066;
+  --mx-on-accent: #0e1a1a;
+  --mx-on-danger: #1c0a08;
+  --mx-backdrop: rgb(0 0 0 / 0.6);
+  --mx-shadow-overlay: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 32px -8px rgb(0 0 0 / 0.6);
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --mx-paper: #141413;
+    --mx-surface: #1c1b1a;
+    --mx-subtle: #262523;
+    --mx-stone: #33312e;
+    --mx-stone-strong: #46433f;
+    --mx-muted: #a29e98;
+    --mx-ink: #f2f1ef;
+    --mx-accent: #6ab3b0;
+    --mx-danger: #f97066;
+    --mx-on-accent: #0e1a1a;
+    --mx-on-danger: #1c0a08;
+    --mx-backdrop: rgb(0 0 0 / 0.6);
+    --mx-shadow-overlay: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 32px -8px rgb(0 0 0 / 0.6);
+    color-scheme: dark;
+  }
+}
+
+/* ---------- Tokens independentes do modo ---------- */
+:root {
+  /* Tipografia */
+  --mx-font-sans: 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --mx-font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  --mx-text-xs: 0.75rem; /* 12 px */
+  --mx-text-sm: 0.8125rem; /* 13 px */
+  --mx-text-md: 0.875rem; /* 14 px: base dos componentes */
+  --mx-text-lg: 1rem; /* 16 px */
+
+  /* Forma */
+  --mx-radius: 6px;
+
+  /* Alturas dos controlos */
+  --mx-control-height-sm: 32px;
+  --mx-control-height: 36px;
+  --mx-control-height-lg: 40px;
+
+  /* Foco: o mesmo em todos os componentes */
+  --mx-focus-width: 2px;
+  --mx-focus-offset: 2px;
+
+  /* Movimento */
+  --mx-duration: 120ms;
+  --mx-ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* ---------- Derivados: recalculados em cada tema ---------- */
+:root,
+[data-theme],
+.mx-theme {
+  --mx-on-ink: var(--mx-paper);
+  --mx-ink-hover: color-mix(in oklab, var(--mx-ink) 85%, var(--mx-paper));
+  --mx-accent-soft: color-mix(in oklab, var(--mx-accent) 9%, var(--mx-surface));
+  --mx-danger-soft: color-mix(in oklab, var(--mx-danger) 8%, var(--mx-surface));
+  --mx-danger-hover: color-mix(in oklab, var(--mx-danger) 88%, black);
+  --mx-radius-surface: calc(var(--mx-radius) + 4px);
+  --mx-border: 1px solid var(--mx-stone);
+}

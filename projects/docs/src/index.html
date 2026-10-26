@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-AO">
+  <head>
+    <meta charset="utf-8" />
+    <title>Muxima UI — Componentes Angular com coração angolano</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Biblioteca de componentes Angular acessíveis e sóbrios para aplicações empresariais. Gratuita, MIT, feita em Angola."
+    />
+    <meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#141413" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <script>
+      // Aplica o modo escolhido antes da primeira pintura, para evitar o "flash".
+      try {
+        var t = localStorage.getItem('muxima-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <doc-root></doc-root>
+  </body>
+</html>

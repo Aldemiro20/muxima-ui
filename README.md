@@ -1,0 +1,66 @@
+# Muxima UI
+
+Biblioteca de componentes para Angular 21 ou superior, com documentação em português.
+Componentes acessíveis, temas por variáveis CSS e modo escuro incluído.
+
+## Estrutura
+
+| Pasta | Conteúdo |
+| --- | --- |
+| `projects/core` | Pacote `@muxima-ui/core` (botão, campos, selecção, diálogo, separadores, tabela, tokens e estilos) |
+| `projects/docs` | Site de documentação (início, introdução, instalação, temas, modo escuro, componentes, templates, preços, consultoria, changelog) |
+
+## Requisitos
+
+- Node.js 20.19 ou superior (22 recomendado)
+- npm 11 (o npm 10.9 falha a instalar este workspace com o erro `edgesOut`; usa `npx npm@11 install` se for preciso)
+
+## Comandos
+
+```bash
+npm install          # instalar dependências
+npm start            # site de documentação em http://localhost:4200
+npm test             # testes da biblioteca (Vitest)
+npm run build:core   # gerar o pacote em dist/core
+npm run build:docs   # gerar o site em dist/docs
+```
+
+## Usar a biblioteca numa aplicação
+
+```bash
+npm install @muxima-ui/core @angular/cdk
+```
+
+Em `angular.json`, acrescenta os estilos:
+
+```json
+"styles": ["@muxima-ui/core/styles.css", "src/styles.css"]
+```
+
+Depois importa só o que precisas:
+
+```ts
+import { MxButton } from '@muxima-ui/core/button';
+import { MxFormField, MxLabel, MxInput } from '@muxima-ui/core/form-field';
+```
+
+## Tema
+
+Todas as cores vêm de variáveis `--mx-*`. Para adaptar à tua marca:
+
+```css
+:root {
+  --mx-accent: #7a1f3d;
+  --mx-radius: 8px;
+}
+```
+
+Modo escuro: segue o sistema por omissão; força com `<html data-theme="dark">` ou `data-theme="light"`.
+
+## Compatibilidade
+
+Angular 21 e 22 (`peerDependencies: >=21.0.0 <23.0.0`). Versões anteriores não são suportadas.
+
+## Licença
+
+MIT. Autor: Aldemiro Valentim.
