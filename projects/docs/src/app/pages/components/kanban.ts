@@ -227,6 +227,90 @@ function quadroInicial(): MxKanbanColumn<Tarefa>[] {
               </ul>
             </div>
           </doc-example>
+
+          <doc-example
+            title="Desfazer o último movimento"
+            [note]="
+              anteriores().length
+                ? anteriores().length + ' movimento(s) para desfazer.'
+                : 'Cada (moved) guarda o movimento; desfazer faz o inverso.'
+            "
+          >
+            <div class="stack w-full">
+              <mx-kanban
+                class="w-full"
+                [(columns)]="desfazer"
+                (moved)="anteriores.set([...anteriores().slice(-9), $event])"
+                [itemLabel]="nomeTarefa"
+                aria-label="Tarefas com desfazer"
+              />
+              <div>
+                <button
+                  mxButton
+                  size="sm"
+                  variant="outline"
+                  type="button"
+                  [disabled]="!anteriores().length"
+                  (click)="desfazerUltimo()"
+                >
+                  Desfazer
+                </button>
+              </div>
+            </div>
+          </doc-example>
+
+          <doc-example
+            title="Acções dentro do cartão"
+            note="Os botões do cartão entram no Tab; Espaço num botão não agarra o cartão."
+          >
+            <mx-kanban
+              class="w-full"
+              [(columns)]="comAccoes"
+              [itemLabel]="nomeTarefa"
+              aria-label="Pedidos de suporte"
+            >
+              <ng-template mxKanbanCard let-t let-col="column">
+                <div class="kanban-card">
+                  <p class="kanban-card-title">{{ t.titulo }}</p>
+                  <div class="kanban-card-meta">
+                    @if (col.id !== 'resolvido') {
+                      <button
+                        mxButton
+                        size="sm"
+                        variant="outline"
+                        type="button"
+                        (click)="resolver(t)"
+                      >
+                        Resolver<span class="mx-visually-hidden"> {{ t.titulo }}</span>
+                      </button>
+                    }
+                    <button
+                      mxButton
+                      size="sm"
+                      variant="ghost"
+                      type="button"
+                      (click)="arquivar(t)"
+                    >
+                      Arquivar<span class="mx-visually-hidden"> {{ t.titulo }}</span>
+                    </button>
+                  </div>
+                </div>
+              </ng-template>
+            </mx-kanban>
+          </doc-example>
+
+          <doc-example
+            title="Limite por coluna"
+            note="limit: 2 em Em produção. Cheia, a coluna não aceita mais e isso é anunciado."
+          >
+            <mx-kanban
+              class="w-full"
+              [(columns)]="producao"
+              [itemLabel]="nomeTarefa"
+              aria-label="Encomendas"
+              emptyText="Nenhuma encomenda"
+            />
+          </doc-example>
         </div>
       </section>
 
@@ -368,6 +452,86 @@ export class KanbanPage {
   protected descrever(m: MxKanbanMove<Tarefa>): string {
     return `${m.item.titulo}: ${m.from} (${m.fromIndex + 1}) → ${m.to} (${m.toIndex + 1})`;
   }
+
+  protected readonly desfazer = signal<MxKanbanColumn<Tarefa>[]>([
+    {
+      id: 'a',
+      title: 'Por fazer',
+      items: [
+        { id: 1, titulo: 'Pedir orçamento' },
+        { id: 2, titulo: 'Marcar reunião' },
+      ],
+    },
+    { id: 'b', title: 'Em curso', items: [{ id: 3, titulo: 'Rever stock' }] },
+    { id: 'c', title: 'Feito', items: [] },
+  ]);
+  protected readonly anteriores = signal<MxKanbanMove<Tarefa>[]>([]);
+  protected desfazerUltimo(): void {
+    const m = this.anteriores()[this.anteriores().length - 1];
+    if (!m) return;
+    this.desfazer.update((cols) => {
+      // tira o cartão de onde ficou e devolve-o ao sítio de onde saiu
+      const semCartao = cols.map((c) =>
+        c.id === m.to ? { ...c, items: c.items.filter((i) => i.id !== m.item.id) } : c,
+      );
+      return semCartao.map((c) =>
+        c.id === m.from
+          ? {
+              ...c,
+              items: [...c.items.slice(0, m.fromIndex), m.item, ...c.items.slice(m.fromIndex)],
+            }
+          : c,
+      );
+    });
+    this.anteriores.update((h) => h.slice(0, -1));
+  }
+
+  protected readonly comAccoes = signal<MxKanbanColumn<Tarefa>[]>([
+    {
+      id: 'aberto',
+      title: 'Abertos',
+      items: [
+        { id: 1, titulo: 'Factura sem NIF' },
+        { id: 2, titulo: 'Erro ao exportar SAF-T' },
+      ],
+    },
+    { id: 'resolvido', title: 'Resolvidos', items: [{ id: 3, titulo: 'Mudar palavra-passe' }] },
+  ]);
+  protected resolver(t: Tarefa): void {
+    this.comAccoes.update((cols) =>
+      cols.map((c) =>
+        c.id === 'resolvido'
+          ? { ...c, items: [t, ...c.items] }
+          : { ...c, items: c.items.filter((i) => i.id !== t.id) },
+      ),
+    );
+  }
+  protected arquivar(t: Tarefa): void {
+    this.comAccoes.update((cols) =>
+      cols.map((c) => ({ ...c, items: c.items.filter((i) => i.id !== t.id) })),
+    );
+  }
+
+  protected readonly producao = signal<MxKanbanColumn<Tarefa>[]>([
+    {
+      id: 'fila',
+      title: 'Na fila',
+      items: [
+        { id: 1, titulo: 'Encomenda 1041' },
+        { id: 2, titulo: 'Encomenda 1042' },
+      ],
+    },
+    {
+      id: 'producao',
+      title: 'Em produção',
+      limit: 2,
+      items: [
+        { id: 3, titulo: 'Encomenda 1038' },
+        { id: 4, titulo: 'Encomenda 1039' },
+      ],
+    },
+    { id: 'entregue', title: 'Entregue', items: [] },
+  ]);
 
   protected readonly previewCode = `<mx-kanban [(columns)]="quadro" aria-label="Tarefas da equipa" (moved)="guardar($event)">
   <ng-template mxKanbanCard let-tarefa>

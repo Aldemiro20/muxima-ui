@@ -256,6 +256,62 @@ function fotografia(largura = 960, altura = 640): string {
               alt="Pôr do sol"
             />
           </doc-example>
+
+          <doc-example
+            title="Pré-visualização ao vivo"
+            note="Em cada areaChange, toDataURL (uma vez por frame) mostra o avatar em três tamanhos."
+          >
+            <div class="stack w-full">
+              <mx-image-cropper
+                #aoVivo
+                [src]="foto"
+                [aspectRatio]="1"
+                round
+                height="220px"
+                alt="Pôr do sol"
+                (areaChange)="previsualizar(aoVivo)"
+              />
+              <div class="cropper-sizes" role="group" aria-label="Pré-visualização do avatar">
+                @for (t of [72, 48, 32]; track t) {
+                  @if (avatar()) {
+                    <img
+                      class="cropper-size"
+                      [src]="avatar()"
+                      [style.width.px]="t"
+                      [style.height.px]="t"
+                      [alt]="'Avatar com ' + t + ' píxeis'"
+                    />
+                  }
+                }
+              </div>
+            </div>
+          </doc-example>
+
+          <doc-example
+            title="Tamanho final fixo"
+            [note]="
+              banner() ||
+              'toCanvas() e depois redimensionar: a capa sai sempre com 1200 × 300 píxeis.'
+            "
+          >
+            <div class="stack w-full">
+              <mx-image-cropper
+                #faixa
+                [src]="foto"
+                [aspectRatio]="4"
+                height="200px"
+                alt="Pôr do sol"
+              />
+              <div>
+                <button mxButton size="sm" type="button" (click)="gerarBanner(faixa)">
+                  Gerar banner 1200 × 300
+                </button>
+              </div>
+              @if (bannerUrl()) {
+                <img class="cropper-banner" [src]="bannerUrl()" alt="Banner gerado" />
+              }
+            </div>
+          </doc-example>
         </div>
       </section>
 
@@ -314,6 +370,27 @@ export class ImageCropperPage {
   protected async guardar(c: MxImageCropper): Promise<void> {
     const blob = await c.toBlob('image/jpeg', 0.82);
     if (blob) this.tamanho.set(`Capa gerada: JPEG de ${Math.round(blob.size / 1000)} kB.`);
+  }
+
+  protected readonly avatar = signal('');
+  private frame = 0;
+  protected previsualizar(c: MxImageCropper): void {
+    cancelAnimationFrame(this.frame);
+    this.frame = requestAnimationFrame(() => this.avatar.set(c.toDataURL()));
+  }
+
+  protected readonly banner = signal('');
+  protected readonly bannerUrl = signal('');
+  protected gerarBanner(c: MxImageCropper): void {
+    const origem = c.toCanvas();
+    const destino = document.createElement('canvas');
+    destino.width = 1200;
+    destino.height = 300;
+    destino.getContext('2d')?.drawImage(origem, 0, 0, 1200, 300);
+    this.bannerUrl.set(destino.toDataURL('image/jpeg', 0.85));
+    this.banner.set(
+      `Recorte de ${origem.width} × ${origem.height} px redimensionado para 1200 × 300 px.`,
+    );
   }
 
   protected readonly previewCode = `<mx-image-cropper #perfil [src]="ficheiro" [aspectRatio]="1" round alt="Fotografia" />

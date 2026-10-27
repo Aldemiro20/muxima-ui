@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { MxAvatar } from '@muxima-ui/core/avatar';
 import { MxBadge, MxBadgeVariant } from '@muxima-ui/core/badge';
 import { MxButton } from '@muxima-ui/core/button';
@@ -41,7 +42,7 @@ const FACTURAS: Factura[] = [
 
 @Component({
   selector: 'doc-table-page',
-  imports: [DOC_UI, MX_TABLE, MxBadge, MxButton, MxCheckbox, MxInput, MxSelect, MxOption, MxPagination, MX_MENU, MxSeparator, MxSkeleton, MxAvatar, Icon],
+  imports: [DOC_UI, MX_TABLE, MxBadge, MxButton, MxCheckbox, MxInput, MxSelect, MxOption, MxPagination, MX_MENU, MxSeparator, MxSkeleton, MxAvatar, Icon, RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
@@ -83,6 +84,12 @@ const FACTURAS: Factura[] = [
       <section>
         <h2>Instalação</h2>
         <doc-code code="import { MX_TABLE, mxSortData } from '@muxima-ui/core/table';" />
+        <doc-callout
+          >Table é HTML simples com estilo: tu escreves as linhas e as células. Serve quando o
+          utilizador só lê os dados. Se precisa de trabalhar com eles (filtrar, seleccionar, ajustar
+          colunas, percorrer milhares de linhas), usa a
+          <a routerLink="/componentes/data-grid">Data grid</a>.</doc-callout
+        >
       </section>
 
       <section>
@@ -481,7 +488,7 @@ const FACTURAS: Factura[] = [
 
       <section>
         <h2>Componentes relacionados</h2>
-        <doc-related [items]="[{ name: 'Data Table (Pro)' }, { name: 'Pagination' }, { name: 'Select', path: '/componentes/select' }]" />
+        <doc-related [items]="[{ name: 'Data grid' }, { name: 'Pagination' }, { name: 'Select', path: '/componentes/select' }]" />
       </section>
     </article>
   `,

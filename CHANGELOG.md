@@ -13,6 +13,11 @@ Componentes avançados. Com esta versão, todos os componentes do plano 1.x est�
 - **Image cropper** (`@muxima-ui/core/image-cropper`): área de recorte com rato e teclado, proporção, máscara redonda, zoom, rodar e exportação na resolução original (`toBlob`, `toDataURL`, `areaChange`).
 - **Rich text editor** (`@muxima-ui/core/editor`): sobre o Tiptap 3 (dependência opcional), barra role=toolbar com setas e Alt + F10, ligações, contagem com limite, só leitura e integração com formulários; o valor é HTML.
 
+### Alterado
+
+- Documentação: mais 13 exemplos (filtros iniciais, acções em massa, totais e colunas escondidas na Data grid; desfazer, acções no cartão e limite no Kanban; pré-visualização ao vivo e tamanho final no Image cropper; ngModel, contagem de palavras, rascunho automático e pré-visualização no editor) e nota sobre quando usar Table ou Data grid.
+- Kanban: a contagem lida pelo leitor de ecrã diz "1 cartão" no singular.
+
 ## [1.2.0] - 2026-10-27
 
 Navegação e conteúdo.

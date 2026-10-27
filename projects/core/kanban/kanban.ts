@@ -94,7 +94,7 @@ export class MxKanbanColumnFooter {
             <span class="mx-kanban-count">
               {{ col.items.length }}{{ col.limit ? ' / ' + col.limit : '' }}
               <span class="mx-visually-hidden">{{
-                col.limit ? 'cartões, máximo ' + col.limit : 'cartões'
+                (col.items.length === 1 ? 'cartão' : 'cartões') + (col.limit ? ', máximo ' + col.limit : '')
               }}</span>
             </span>
           </div>

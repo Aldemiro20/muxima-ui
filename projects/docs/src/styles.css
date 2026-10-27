@@ -3118,3 +3118,33 @@ a.text-link:hover,
   white-space: pre-wrap;
   word-break: break-all;
 }
+.grid-total {
+  font-variant-numeric: tabular-nums;
+}
+.cropper-sizes {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  min-height: 72px;
+}
+.cropper-size {
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px var(--mx-stone);
+}
+.cropper-banner {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--mx-radius);
+}
+.editor-split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.editor-output {
+  padding: 4px 16px;
+  border: var(--mx-border);
+  border-radius: var(--mx-radius);
+  background: var(--mx-subtle);
+}

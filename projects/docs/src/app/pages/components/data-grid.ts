@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, effect, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { MxBadge } from '@muxima-ui/core/badge';
 import { MxButton } from '@muxima-ui/core/button';
 import { MX_DATA_GRID, MxGridColumn, MxGridSort } from '@muxima-ui/core/data-grid';
@@ -57,7 +58,7 @@ const corEstado = (e: string) =>
 
 @Component({
   selector: 'doc-data-grid-page',
-  imports: [DOC_UI, MX_DATA_GRID, MxBadge, MxButton, MxInput, MX_MENU, MxPagination],
+  imports: [DOC_UI, MX_DATA_GRID, MxBadge, MxButton, MxInput, MX_MENU, MxPagination, RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
@@ -91,9 +92,9 @@ const corEstado = (e: string) =>
         <h2>Instalação</h2>
         <doc-code code="import { MX_DATA_GRID, MxGridColumn } from '@muxima-ui/core/data-grid';" />
         <doc-callout
-          >Para listas curtas, ou quando só precisas de ordenar, a Table é mais leve: é HTML simples
-          com estilo. Usa a Data grid quando há filtros, muitas linhas ou trabalho célula a
-          célula.</doc-callout
+          >Se o utilizador só lê os dados, a <a routerLink="/componentes/table">Table</a> chega e é
+          mais leve: é HTML simples com estilo. Usa a Data grid quando ele trabalha com os dados:
+          filtra, selecciona, ajusta colunas ou percorre milhares de linhas.</doc-callout
         >
       </section>
 
@@ -345,6 +346,141 @@ const corEstado = (e: string) =>
               />
             </mx-data-grid>
           </doc-example>
+
+          <doc-example
+            title="Filtros já aplicados"
+            [note]="'filters = ' + json(filtrosIniciais())"
+          >
+            <div class="stack w-full">
+              <mx-data-grid
+                class="w-full"
+                [data]="facturas"
+                [columns]="colunasFiltro"
+                rowKey="numero"
+                [(filters)]="filtrosIniciais"
+                height="300px"
+                [columnMenu]="false"
+                aria-label="Facturas grandes em atraso"
+              >
+                <ng-template mxGridCell="estado" let-row
+                  ><span mxBadge size="sm" [variant]="cor(row.estado)">{{
+                    row.estado
+                  }}</span></ng-template
+                >
+              </mx-data-grid>
+              <p class="muted small">
+                No filtro de número: 100, &gt;100, &gt;=100, &lt;100, &lt;=100 ou um intervalo
+                10-20.
+              </p>
+              <div>
+                <button
+                  mxButton
+                  size="sm"
+                  variant="outline"
+                  type="button"
+                  (click)="filtrosIniciais.set({})"
+                >
+                  Limpar filtros
+                </button>
+              </div>
+            </div>
+          </doc-example>
+
+          <doc-example
+            title="Acções em massa"
+            [note]="
+              emMassa().length
+                ? emMassa().length + ' seleccionadas'
+                : 'Selecciona linhas para aparecerem as acções.'
+            "
+          >
+            <mx-data-grid
+              class="w-full"
+              [data]="lote()"
+              [columns]="colunasCurtas"
+              rowKey="numero"
+              selection="multiple"
+              [(selected)]="emMassa"
+              [columnMenu]="false"
+              aria-label="Facturas por cobrar"
+            >
+              <div mxGridToolbar class="row-wrap">
+                @if (emMassa().length) {
+                  <button mxButton size="sm" type="button" (click)="marcarPagas()">
+                    Marcar como pagas ({{ emMassa().length }})
+                  </button>
+                  <button
+                    mxButton
+                    size="sm"
+                    variant="ghost"
+                    type="button"
+                    (click)="emMassa.set([])"
+                  >
+                    Cancelar selecção
+                  </button>
+                } @else {
+                  <span class="muted small">{{ porPagar() }} facturas por pagar</span>
+                }
+              </div>
+              <ng-template mxGridCell="estado" let-row
+                ><span mxBadge size="sm" [variant]="cor(row.estado)">{{
+                  row.estado
+                }}</span></ng-template
+              >
+            </mx-data-grid>
+          </doc-example>
+
+          <doc-example
+            title="Totais no rodapé"
+            note="O total lê grid.rows(), por isso segue os filtros: experimenta filtrar o Estado."
+          >
+            <mx-data-grid
+              #totais
+              class="w-full"
+              [data]="facturas"
+              [columns]="colunasTotais"
+              rowKey="numero"
+              height="300px"
+              [columnMenu]="false"
+              aria-label="Facturas com totais"
+            >
+              <ng-template mxGridCell="estado" let-row
+                ><span mxBadge size="sm" [variant]="cor(row.estado)">{{
+                  row.estado
+                }}</span></ng-template
+              >
+              <span mxGridFooter class="grid-total"
+                >Total <strong>{{ kz(soma(totais.rows())) }}</strong></span
+              >
+            </mx-data-grid>
+          </doc-example>
+
+          <doc-example
+            title="Ordem inicial e colunas escondidas"
+            [note]="
+              'sort = ' +
+              (ordem().key ?? 'nenhuma') +
+              ' ' +
+              ordem().direction +
+              '. Província e IVA estão escondidas: abre Colunas.'
+            "
+          >
+            <mx-data-grid
+              class="w-full"
+              [data]="facturas"
+              [columns]="colunasEscondidas"
+              rowKey="numero"
+              [(sort)]="ordem"
+              height="300px"
+              aria-label="Maiores facturas primeiro"
+            >
+              <ng-template mxGridCell="estado" let-row
+                ><span mxBadge size="sm" [variant]="cor(row.estado)">{{
+                  row.estado
+                }}</span></ng-template
+              >
+            </mx-data-grid>
+          </doc-example>
         </div>
       </section>
 
@@ -462,6 +598,70 @@ export class DataGridPage {
       resizable: false,
       hideable: false,
       align: 'center',
+    },
+  ];
+
+  protected readonly kz = kz;
+  protected json(v: unknown): string {
+    return JSON.stringify(v);
+  }
+
+  protected readonly colunasFiltro: MxGridColumn<Factura>[] = [
+    { key: 'numero', header: 'Número', width: 150 },
+    { key: 'cliente', header: 'Cliente', width: 200, filter: 'text' },
+    { key: 'estado', header: 'Estado', width: 140, filter: 'select' },
+    {
+      key: 'valor',
+      header: 'Valor',
+      width: 170,
+      align: 'end',
+      filter: 'number',
+      format: (v: number) => kz(v),
+    },
+  ];
+  protected readonly filtrosIniciais = signal<Record<string, string>>({
+    estado: 'Em atraso',
+    valor: '>3000000',
+  });
+
+  protected readonly lote = signal(gerarFacturas(12));
+  protected readonly emMassa = signal<readonly unknown[]>([]);
+  protected porPagar(): number {
+    return this.lote().filter((f) => f.estado !== 'Paga').length;
+  }
+  protected marcarPagas(): void {
+    const escolhidas = new Set(this.emMassa());
+    this.lote.update((l) =>
+      l.map((f) => (escolhidas.has(f.numero) ? { ...f, estado: 'Paga' as const } : f)),
+    );
+    this.emMassa.set([]);
+  }
+
+  protected readonly colunasTotais: MxGridColumn<Factura>[] = [
+    { key: 'numero', header: 'Número', width: 150 },
+    { key: 'cliente', header: 'Cliente', width: 200, filter: 'text' },
+    { key: 'estado', header: 'Estado', width: 140, filter: 'select' },
+    { key: 'valor', header: 'Valor', width: 170, align: 'end', format: (v: number) => kz(v) },
+  ];
+  protected soma(linhas: readonly Factura[]): number {
+    return linhas.reduce((t, f) => t + f.valor, 0);
+  }
+
+  protected readonly ordem = signal<MxGridSort>({ key: 'valor', direction: 'desc' });
+  protected readonly colunasEscondidas: MxGridColumn<Factura>[] = [
+    { key: 'numero', header: 'Número', width: 150, hideable: false },
+    { key: 'cliente', header: 'Cliente', width: 200 },
+    { key: 'provincia', header: 'Província', width: 140, hidden: true },
+    { key: 'estado', header: 'Estado', width: 140 },
+    { key: 'valor', header: 'Valor', width: 170, align: 'end', format: (v: number) => kz(v) },
+    {
+      key: 'iva',
+      header: 'IVA (14%)',
+      width: 160,
+      align: 'end',
+      hidden: true,
+      value: (f) => f.valor * 0.14,
+      format: (v: number) => kz(v),
     },
   ];
 

@@ -1,5 +1,11 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, effect, signal } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MxButton } from '@muxima-ui/core/button';
 import { MxEditor } from '@muxima-ui/core/editor';
 import { MxError, MxFormField, MxHint, MxLabel } from '@muxima-ui/core/form-field';
@@ -7,7 +13,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
 @Component({
   selector: 'doc-editor-page',
-  imports: [DOC_UI, MxEditor, MxFormField, MxLabel, MxHint, MxError, MxButton, ReactiveFormsModule],
+  imports: [DOC_UI, MxEditor, MxFormField, MxLabel, MxHint, MxError, MxButton, ReactiveFormsModule, FormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
@@ -254,6 +260,72 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               />
             </mx-form-field>
           </doc-example>
+
+          <doc-example
+            title="Com ngModel"
+            note="Também funciona com formulários de template: [(ngModel)] e required."
+          >
+            <form class="stack w-full" #f="ngForm">
+              <mx-form-field>
+                <label mxLabel>Mensagem ao cliente</label>
+                <mx-editor
+                  name="mensagem"
+                  [(ngModel)]="mensagem"
+                  required
+                  minHeight="80px"
+                  [toolbar]="['bold', 'italic', '|', 'bulletList', 'link']"
+                />
+                <mx-error>Escreve a mensagem.</mx-error>
+              </mx-form-field>
+              <p class="muted small">Formulário {{ f.valid ? 'válido' : 'inválido' }}.</p>
+            </form>
+          </doc-example>
+
+          <doc-example
+            title="Palavras e tempo de leitura"
+            [note]="palavras(textoLongo()) + ' palavras, cerca de ' + leitura(textoLongo()) + ' min de leitura.'"
+          >
+            <mx-form-field class="w-full">
+              <label mxLabel>Publicação no blogue</label>
+              <mx-editor
+                [(value)]="textoLongo"
+                minHeight="120px"
+                [toolbar]="['heading2', 'bold', 'italic', '|', 'bulletList', 'blockquote']"
+              />
+            </mx-form-field>
+          </doc-example>
+
+          <doc-example
+            title="Rascunho guardado sozinho"
+            [note]="guardadoAs() ? 'Rascunho guardado às ' + guardadoAs() + '.' : 'Escreve: guarda 1 s depois de parares.'"
+          >
+            <mx-form-field class="w-full">
+              <label mxLabel>Resposta ao pedido</label>
+              <mx-editor
+                [(value)]="rascunho"
+                minHeight="100px"
+                placeholder="A resposta é guardada enquanto escreves"
+                [toolbar]="['bold', 'italic', '|', 'bulletList', '|', 'undo', 'redo']"
+              />
+            </mx-form-field>
+          </doc-example>
+
+          <doc-example
+            title="Editar e ver o resultado"
+            note="O HTML do editor mostrado com [innerHTML], que o Angular limpa de scripts."
+          >
+            <div class="editor-split w-full">
+              <mx-editor
+                aria-label="Texto do anúncio"
+                [(value)]="anuncio"
+                minHeight="120px"
+                [toolbar]="['heading3', 'bold', 'italic', '|', 'bulletList', 'link']"
+              />
+              <div class="editor-output" role="region" aria-label="Resultado">
+                <div [innerHTML]="anuncio()"></div>
+              </div>
+            </div>
+          </doc-example>
         </div>
       </section>
 
@@ -305,6 +377,39 @@ export class EditorPage {
     '<h3>Condições</h3><p>O pagamento vence <strong>30 dias</strong> após a emissão.</p><ul><li>Juros de mora de 1% ao mês.</li><li>Reclamações em 8 dias.</li></ul>';
   protected readonly artigo =
     '<h2>Como emitir uma nota de crédito</h2><p>Abre a factura e escolhe <strong>Criar nota de crédito</strong>.</p><blockquote><p>A nota de crédito anula total ou parcialmente uma factura já emitida.</p></blockquote>';
+
+  protected readonly mensagem = signal('');
+
+  protected readonly textoLongo = signal(
+    '<h2>Novidades de Outubro</h2><p>Este mês chegaram as <strong>notas de crédito</strong> e a exportação do SAF-T. Também melhorámos a pesquisa de clientes e os relatórios de IVA.</p>',
+  );
+  protected palavras(html: string): number {
+    const texto = html.replace(/<[^>]+>/g, ' ').trim();
+    return texto ? texto.split(/\s+/).length : 0;
+  }
+  protected leitura(html: string): number {
+    return Math.max(1, Math.round(this.palavras(html) / 200));
+  }
+
+  protected readonly rascunho = signal('');
+  protected readonly guardadoAs = signal('');
+
+  protected readonly anuncio = signal(
+    '<h3>Promoção de Novembro</h3><p>Planos anuais com <strong>20% de desconto</strong>:</p><ul><li>Facturação</li><li>Stock</li></ul>',
+  );
+
+  constructor() {
+    // guarda o rascunho 1 s depois da última alteração
+    effect((onCleanup) => {
+      const texto = this.rascunho();
+      if (!texto) return;
+      const t = setTimeout(
+        () => this.guardadoAs.set(new Date().toLocaleTimeString('pt-AO')),
+        1000,
+      );
+      onCleanup(() => clearTimeout(t));
+    });
+  }
 
   protected readonly previewCode = `<mx-form-field>
   <label mxLabel>Notas da factura</label>
