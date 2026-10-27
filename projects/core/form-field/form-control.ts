@@ -20,3 +20,11 @@ let nextId = 0;
 export function mxUniqueId(prefix: string): string {
   return `${prefix}-${nextId++}`;
 }
+
+/** Normaliza texto para pesquisa: sem acentos e em minúsculas ("Huíla" → "huila"). */
+export function mxNormalize(text: string): string {
+  return text
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase();
+}

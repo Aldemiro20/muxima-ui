@@ -7,8 +7,8 @@ Componentes acessíveis, temas por variáveis CSS e modo escuro incluído.
 
 | Pasta | Conteúdo |
 | --- | --- |
-| `projects/core` | Pacote `@muxima-ui/core` (botão, campos, selecção, diálogo, separadores, tabela, tokens e estilos) |
-| `projects/docs` | Site de documentação (início, introdução, instalação, temas, modo escuro, componentes, templates, preços, consultoria, changelog) |
+| `projects/core` | Pacote `@muxima-ui/core`: 33 componentes, tokens e estilos (lista em `projects/core/README.md`) |
+| `projects/docs` | Site de documentação: uma página por componente, temas, modo escuro, padrão de qualidade, templates, preços, consultoria e changelog |
 
 ## Padrão de qualidade
 

@@ -4,13 +4,13 @@ import {
   AfterContentInit,
   ChangeDetectionStrategy,
   Component,
-  ContentChildren,
   DestroyRef,
   ElementRef,
-  QueryList,
   ViewEncapsulation,
   booleanAttribute,
+  Injector,
   computed,
+  contentChildren,
   inject,
   input,
   model,
@@ -147,6 +147,7 @@ const POSITIONS: ConnectedPosition[] = [
       <div
         class="mx-select-panel"
         role="listbox"
+        [attr.aria-multiselectable]="multiple() ? 'true' : null"
         [id]="panelId"
         [attr.aria-labelledby]="field?.labelId() ?? null"
         [attr.aria-label]="field?.labelId() ? null : (ariaLabel() ?? placeholder())"
@@ -161,7 +162,9 @@ const POSITIONS: ConnectedPosition[] = [
 })
 export class MxSelect<T = unknown> implements ControlValueAccessor, MxFormFieldControl, AfterContentInit {
   /** Valor seleccionado. Também funciona com ngModel e Reactive Forms. */
-  readonly value = model<T | null>(null);
+  readonly value = model<T | T[] | null>(null);
+  /** Escolha múltipla: o valor passa a ser uma lista e o painel não fecha ao escolher. */
+  readonly multiple = input(false, { transform: booleanAttribute });
   readonly placeholder = input('Seleccionar');
   readonly disabled = input(false, { transform: booleanAttribute });
   readonly required = input(false, { transform: booleanAttribute });
@@ -180,7 +183,8 @@ export class MxSelect<T = unknown> implements ControlValueAccessor, MxFormFieldC
   readonly opened = output<void>();
   readonly closed = output<void>();
 
-  @ContentChildren(MxOption, { descendants: true }) private options!: QueryList<MxOption<T>>;
+  private readonly options = contentChildren<MxOption<T>>(MxOption, { descendants: true });
+  private readonly injector = inject(Injector);
 
   protected readonly field = inject(MxFormField, { optional: true });
   private readonly ngControl = inject(NgControl, { self: true, optional: true });
@@ -196,22 +200,25 @@ export class MxSelect<T = unknown> implements ControlValueAccessor, MxFormFieldC
   protected readonly panelWidth = signal<number>(0);
   protected readonly activeId = signal<string | null>(null);
   private readonly formDisabled = signal(false);
-  private readonly optionsVersion = signal(0);
   protected readonly isDisabled = computed(() => this.disabled() || this.formDisabled());
 
   protected readonly optionCount = computed(() => {
-    this.optionsVersion();
-    return this.options?.length ?? 0;
+    return this.options().length;
   });
 
   protected readonly selectedLabel = computed(() => {
-    this.optionsVersion();
-    const v = this.value();
-    return this.options?.find((o) => this.compareWith()(o.value(), v))?.getLabel() ?? '';
+    const options = this.options();
+    if (this.multiple()) {
+      const labels = options.filter((o) => this.isSelected(o.value())).map((o) => o.getLabel());
+      if (labels.length > 2) return `${labels.length} seleccionados`;
+      return labels.join(', ');
+    }
+    const v = this.value() as T | null;
+    return options.find((o) => this.compareWith()(o.value(), v))?.getLabel() ?? '';
   });
 
   private keyManager?: ActiveDescendantKeyManager<MxOption<T>>;
-  private onChange: (value: T | null) => void = () => {};
+  private onChange: (value: T | T[] | null) => void = () => {};
   private onTouched: () => void = () => {};
 
   constructor() {
@@ -219,24 +226,23 @@ export class MxSelect<T = unknown> implements ControlValueAccessor, MxFormFieldC
   }
 
   ngAfterContentInit(): void {
-    this.keyManager = new ActiveDescendantKeyManager(this.options)
+    this.keyManager = new ActiveDescendantKeyManager(this.options, this.injector)
       .withWrap(false)
       .withVerticalOrientation()
       .withHomeAndEnd()
       .withTypeAhead(250)
       .skipPredicate((o) => o.disabled);
     const sub = this.keyManager.change.subscribe(() => this.activeId.set(this.keyManager?.activeItem?.id ?? null));
-    const changes = this.options.changes.subscribe(() => this.optionsVersion.update((n) => n + 1));
-    this.optionsVersion.update((n) => n + 1);
     this.destroyRef.onDestroy(() => {
       sub.unsubscribe();
-      changes.unsubscribe();
       this.keyManager?.destroy();
     });
   }
 
   isSelected(value: T): boolean {
-    return this.compareWith()(value, this.value());
+    const current = this.value();
+    if (this.multiple()) return Array.isArray(current) && current.some((c) => this.compareWith()(value, c));
+    return this.compareWith()(value, current as T | null);
   }
 
   open(): void {
@@ -245,7 +251,7 @@ export class MxSelect<T = unknown> implements ControlValueAccessor, MxFormFieldC
     this.isOpen.set(true);
     this.opened.emit();
     queueMicrotask(() => {
-      const index = this.options.toArray().findIndex((o) => this.isSelected(o.value()));
+      const index = this.options().findIndex((o) => this.isSelected(o.value()));
       if (index >= 0) this.keyManager?.setActiveItem(index);
       else this.keyManager?.setFirstItemActive();
     });
@@ -268,6 +274,16 @@ export class MxSelect<T = unknown> implements ControlValueAccessor, MxFormFieldC
   /** Chamado por uma opção quando é escolhida. */
   choose(option: MxOption<T>): void {
     const v = option.value();
+    if (this.multiple()) {
+      const current = Array.isArray(this.value()) ? (this.value() as T[]) : [];
+      const next = this.isSelected(v) ? current.filter((c) => !this.compareWith()(v, c)) : [...current, v];
+      this.value.set(next);
+      this.onChange(next);
+      // o painel fica aberto; a opção activa passa a ser a escolhida
+      const index = this.options().indexOf(option);
+      if (index >= 0) this.keyManager?.setActiveItem(index);
+      return;
+    }
     this.value.set(v);
     this.onChange(v);
     this.close();
@@ -337,10 +353,10 @@ export class MxSelect<T = unknown> implements ControlValueAccessor, MxFormFieldC
   }
 
   // ---- ControlValueAccessor ----
-  writeValue(value: T | null): void {
-    this.value.set(value ?? null);
+  writeValue(value: T | T[] | null): void {
+    this.value.set(this.multiple() ? (Array.isArray(value) ? value : []) : (value ?? null));
   }
-  registerOnChange(fn: (value: T | null) => void): void {
+  registerOnChange(fn: (value: T | T[] | null) => void): void {
     this.onChange = fn;
   }
   registerOnTouched(fn: () => void): void {

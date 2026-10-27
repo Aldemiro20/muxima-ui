@@ -1,0 +1,92 @@
+/* ---------- Command ---------- */
+
+.mx-command {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--mx-font-sans);
+  color: var(--mx-ink);
+}
+.mx-command-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  border-bottom: var(--mx-border);
+}
+.mx-command-search svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--mx-muted);
+}
+.mx-command-input {
+  flex: 1;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--mx-ink);
+  font: inherit;
+  font-size: var(--mx-text-md);
+  outline: none;
+}
+.mx-command-input:is(:focus, :focus-visible) {
+  outline: none;
+}
+.mx-command-input::placeholder {
+  color: var(--mx-muted);
+}
+.mx-command-list {
+  max-height: 340px;
+  overflow-y: auto;
+  padding: 6px;
+}
+.mx-command-group + .mx-command-group {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: var(--mx-border);
+}
+.mx-command-group-label {
+  padding: 6px 8px 4px;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-xs);
+  font-weight: 500;
+}
+.mx-command-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 36px;
+  padding: 0 8px;
+  border-radius: calc(var(--mx-radius) - 2px);
+  font-size: var(--mx-text-md);
+  cursor: pointer;
+}
+.mx-command-item svg {
+  width: 16px;
+  height: 16px;
+  color: var(--mx-muted);
+}
+.mx-command-item[data-active] {
+  background: var(--mx-subtle);
+  box-shadow: inset 2px 0 0 var(--mx-accent);
+}
+.mx-command-item:is([aria-disabled='true'], [data-disabled]) {
+  color: var(--mx-muted);
+  cursor: not-allowed;
+}
+.mx-command-hint {
+  margin-left: auto;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-xs);
+}
+.mx-command-empty {
+  padding: 24px 8px;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+  text-align: center;
+}
+.mx-command-panel .cdk-dialog-container {
+  align-self: flex-start;
+  margin-top: 12vh;
+}

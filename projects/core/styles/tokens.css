@@ -22,6 +22,8 @@
   --mx-subtle: #f3f2f0;
   --mx-stone: #e7e5e2;
   --mx-stone-strong: #d6d3cf;
+  /* Contorno de controlos: 3:1 contra o fundo (WCAG 1.4.11) */
+  --mx-control-border: #86817b;
   --mx-muted: #6b6762;
   --mx-ink: #1c1b1a;
   --mx-accent: #0f5257;
@@ -43,6 +45,7 @@
   --mx-subtle: #262523;
   --mx-stone: #33312e;
   --mx-stone-strong: #46433f;
+  --mx-control-border: #7d7872;
   --mx-muted: #a29e98;
   --mx-ink: #f2f1ef;
   --mx-accent: #6ab3b0;
@@ -64,6 +67,7 @@
     --mx-subtle: #262523;
     --mx-stone: #33312e;
     --mx-stone-strong: #46433f;
+    --mx-control-border: #7d7872;
     --mx-muted: #a29e98;
     --mx-ink: #f2f1ef;
     --mx-accent: #6ab3b0;

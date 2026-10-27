@@ -64,7 +64,7 @@ export class PadraoPage {
     {
       title: 'Acessibilidade',
       text: 'Padrões WAI-ARIA e navegação completa por teclado, com o @angular/cdk (a11y, overlay, dialog).',
-      checks: ['dialog, tabs, menu, listbox e combobox segundo o WAI-ARIA', 'Foco preso nos modais e devolvido ao fechar', 'Contraste AA nos modos claro e escuro'],
+      checks: ['dialog, tabs, menu, listbox e combobox segundo o WAI-ARIA', 'Foco preso nos modais e devolvido ao fechar', 'Contraste AA nos modos claro e escuro, e 3:1 nos contornos dos controlos'],
     },
     {
       title: 'Formulários',

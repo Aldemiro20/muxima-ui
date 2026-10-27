@@ -36,7 +36,7 @@
   height: var(--mx-control-height);
   padding: 0 12px;
   margin: 0;
-  border: 1px solid var(--mx-stone-strong);
+  border: 1px solid var(--mx-control-border);
   border-radius: var(--mx-radius);
   background: var(--mx-surface);
   color: var(--mx-ink);

@@ -1,0 +1,103 @@
+/* ---------- Stepper ---------- */
+
+.mx-stepper {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: mx-step;
+  font-family: var(--mx-font-sans);
+}
+.mx-step {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+  counter-increment: mx-step;
+}
+.mx-step:not(:last-child)::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  min-width: 16px;
+  background: var(--mx-stone);
+}
+.mx-step[data-state='complete']:not(:last-child)::after {
+  background: var(--mx-accent);
+}
+.mx-step-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--mx-stone-strong);
+  border-radius: 50%;
+  background: var(--mx-surface);
+  font-size: var(--mx-text-xs);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.mx-step-marker::before {
+  content: counter(mx-step);
+}
+.mx-step-label {
+  white-space: nowrap;
+}
+.mx-step[data-state='current'] {
+  color: var(--mx-ink);
+  font-weight: 600;
+}
+.mx-step[data-state='current'] .mx-step-marker {
+  border: 2px solid var(--mx-accent);
+  color: var(--mx-accent);
+}
+.mx-step[data-state='complete'] {
+  color: var(--mx-ink);
+}
+.mx-step[data-state='complete'] .mx-step-marker {
+  border-color: var(--mx-accent);
+  background: var(--mx-accent);
+}
+.mx-step[data-state='complete'] .mx-step-marker::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: var(--mx-on-accent);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.mx-stepper[data-orientation='vertical'] {
+  flex-direction: column;
+  gap: 0;
+}
+.mx-stepper[data-orientation='vertical'] .mx-step {
+  position: relative;
+  flex: none;
+  padding-bottom: 24px;
+}
+.mx-stepper[data-orientation='vertical'] .mx-step:not(:last-child)::after {
+  position: absolute;
+  left: 11.5px;
+  top: 28px;
+  bottom: 4px;
+  width: 1px;
+  height: auto;
+  min-width: 0;
+}
+@media (max-width: 560px) {
+  .mx-stepper:not([data-orientation='vertical']) .mx-step:not([data-state='current']) .mx-step-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}

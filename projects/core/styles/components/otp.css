@@ -1,0 +1,92 @@
+/* ---------- OTP ---------- */
+
+.mx-otp {
+  --_size: 40px;
+  position: relative;
+  display: inline-block;
+  font-family: var(--mx-font-sans);
+}
+.mx-otp[data-size='sm'] {
+  --_size: 32px;
+}
+.mx-otp[data-size='lg'] {
+  --_size: 48px;
+}
+.mx-otp-slots {
+  display: flex;
+  gap: 8px;
+}
+.mx-otp-slot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--_size);
+  height: calc(var(--_size) + 4px);
+  border: 1px solid var(--mx-control-border);
+  border-radius: var(--mx-radius);
+  background: var(--mx-surface);
+  color: var(--mx-ink);
+  font-size: calc(var(--_size) * 0.45);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  transition: border-color var(--mx-duration) var(--mx-ease);
+}
+/* O input real cobre as caixas: recebe o texto, o foco e o clique */
+.mx-otp-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: transparent;
+  caret-color: transparent;
+  font-size: 16px;
+  letter-spacing: -1em;
+  opacity: 1;
+  outline: none;
+  cursor: text;
+}
+.mx-otp-input:is(:focus, :focus-visible) {
+  outline: none;
+}
+.mx-otp-input::selection {
+  background: transparent;
+}
+.mx-otp:is(:hover, [data-mx-state='hover']):not([data-disabled]) .mx-otp-slot {
+  border-color: var(--mx-muted);
+}
+.mx-otp-slot[data-active],
+.mx-otp[data-mx-state='focus'] .mx-otp-slot:first-child {
+  border-color: var(--mx-accent);
+  outline: var(--mx-focus-width) solid var(--mx-accent);
+  outline-offset: 0;
+}
+.mx-otp-slot[data-active]:not([data-filled])::after {
+  content: '';
+  width: 1px;
+  height: 45%;
+  background: var(--mx-ink);
+  animation: mx-otp-caret 1s steps(1) infinite;
+}
+@keyframes mx-otp-caret {
+  50% {
+    opacity: 0;
+  }
+}
+.mx-otp[data-invalid] .mx-otp-slot {
+  border-color: var(--mx-danger);
+}
+.mx-otp[data-invalid] .mx-otp-slot[data-active] {
+  outline-color: var(--mx-danger);
+}
+.mx-otp[data-disabled] .mx-otp-slot {
+  background: var(--mx-subtle);
+  color: var(--mx-muted);
+}
+.mx-otp[data-disabled] .mx-otp-input {
+  cursor: not-allowed;
+}

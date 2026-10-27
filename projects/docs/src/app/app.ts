@@ -34,7 +34,7 @@ export class App {
     if (this.searchOpen) return;
     this.searchOpen = true;
     const ref = this.dialog.open(CommandPalette, { size: 'md', ariaLabel: 'Pesquisa' });
-    ref.addPanelClass('palette-panel');
+    ref.addPanelClass('mx-command-panel');
     ref.closed.subscribe(() => (this.searchOpen = false));
   }
 }

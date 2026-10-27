@@ -46,7 +46,7 @@
   flex-shrink: 0;
   box-sizing: border-box;
   margin: 0;
-  border: 1px solid var(--mx-stone-strong);
+  border: 1px solid var(--mx-control-border);
   background: var(--mx-surface);
   cursor: pointer;
   vertical-align: middle;
@@ -120,7 +120,7 @@
   width: var(--_w);
   height: var(--_h);
   border-radius: 999px;
-  background: var(--mx-stone-strong);
+  background: var(--mx-control-border);
   border-color: transparent;
 }
 .mx-switch[data-size='sm'] {

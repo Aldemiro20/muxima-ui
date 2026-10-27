@@ -102,7 +102,10 @@ button.mx-card:is(:focus-visible, [data-mx-state='focus']),
 .mx-toast-close:is(:focus-visible, [data-mx-state='focus']),
 .mx-accordion-trigger:is(:focus-visible, [data-mx-state='focus']),
 .mx-breadcrumb a:is(:focus-visible, [data-mx-state='focus']),
-.mx-pagination-button:is(:focus-visible, [data-mx-state='focus']) {
+.mx-pagination-button:is(:focus-visible, [data-mx-state='focus']),
+.mx-date-picker-toggle:is(:focus-visible, [data-mx-state='focus']),
+.mx-calendar-nav:is(:focus-visible, [data-mx-state='focus']),
+.mx-calendar-day:is(:focus-visible, [data-mx-state='focus']) {
   outline: var(--mx-focus-width) solid var(--mx-accent);
   outline-offset: var(--mx-focus-offset);
 }

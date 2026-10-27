@@ -1660,65 +1660,6 @@ a.text-link:hover,
 
 /* ---------- Pesquisa (Ctrl+K) ---------- */
 
-.palette-panel {
-  align-items: flex-start !important;
-  padding-top: 12vh !important;
-}
-.palette-search {
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding: 12px;
-  border-bottom: 1px solid var(--mx-stone);
-}
-.palette-search .doc-icon {
-  position: absolute;
-  left: 24px;
-  color: var(--mx-muted);
-}
-.palette-input.mx-input {
-  height: 40px;
-  padding-left: 36px;
-  border-color: transparent;
-  font-size: 15px;
-}
-.palette-input.mx-input:focus-visible {
-  outline: none;
-  border-color: transparent;
-}
-.palette-list {
-  max-height: 340px;
-  margin: 0;
-  padding: 6px;
-  overflow-y: auto;
-  list-style: none;
-}
-.palette-option {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 10px;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
-}
-.palette-option .doc-icon {
-  color: var(--mx-muted);
-}
-.palette-option[aria-selected='true'] {
-  background: var(--mx-subtle);
-  box-shadow: inset 2px 0 0 var(--mx-accent);
-}
-.palette-group {
-  margin-left: auto;
-  color: var(--mx-muted);
-  font-size: 12px;
-}
-.palette-empty {
-  padding: 18px 10px;
-  color: var(--mx-muted);
-  font-size: 14px;
-}
 .palette-footer {
   display: flex;
   gap: 18px;
@@ -2080,4 +2021,29 @@ a.text-link:hover,
 .popover-title {
   margin: 0 0 4px;
   font-weight: 600;
+}
+.mini-command {
+  width: 100%;
+}
+.mini-command .mx-command-item {
+  font-size: 13px;
+}
+.kbd-inline {
+  margin-left: 6px;
+  padding: 1px 5px;
+  border: 1px solid var(--mx-stone-strong);
+  border-radius: 4px;
+  font-family: var(--mx-font-mono);
+  font-size: 11px;
+  color: var(--mx-muted);
+}
+.static-panel {
+  width: 100%;
+  margin: 0;
+  box-shadow: none;
+}
+.fake-input {
+  display: flex;
+  align-items: center;
+  color: var(--mx-ink);
 }

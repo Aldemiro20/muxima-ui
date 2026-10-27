@@ -65,7 +65,7 @@ export class ChangelogPage {
       date: 'Data por anunciar',
       title: 'Versão de lançamento',
       items: [
-        'Catálogo base completo (cerca de 35 componentes)',
+        'Revisão final da API e congelamento dos nomes',
         'Revisão de acessibilidade de todos os componentes',
         'Publicação no npm como @muxima-ui/core',
         'Site de documentação em domínio próprio',
@@ -79,9 +79,10 @@ export class ChangelogPage {
       items: [
         'Angular 21 e 22, standalone e signals',
         'Sistema de temas com tokens CSS e modo escuro',
-        'Button, Form field e Input, Select, Dialog, Tabs e Table',
-        'Testes de comportamento e de teclado',
-        'Nova documentação com pesquisa Ctrl+K',
+        '33 componentes base: formulários, dados, navegação, sobreposições e feedback',
+        'Padrão de qualidade aplicado a todos: HTML nativo primeiro, WAI-ARIA, estados completos, só tokens',
+        'Testes de comportamento e de teclado, com axe em cada componente e em cada página',
+        'Nova documentação com secção de estados em cada componente e pesquisa Ctrl+K',
       ],
     },
   ];
