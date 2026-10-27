@@ -62,6 +62,22 @@ import { Icon } from '../../ui/icon';
             <button mxButton type="button" variant="ghost" icon aria-label="Pesquisar" mxTooltip="Pesquisar"><doc-icon name="search" /></button>
             <button mxButton type="button" variant="ghost" icon aria-label="Definições" mxTooltip="Definições"><doc-icon name="sliders" /></button>
           </doc-example>
+          <doc-example title="Em texto abreviado" note="O elemento recebe foco (tabindex=0) para o tooltip também aparecer com teclado.">
+            <p class="tooltip-text">Valor sujeito a <abbr tabindex="0" mxTooltip="Imposto sobre o Valor Acrescentado, 14%">IVA</abbr> e <abbr tabindex="0" mxTooltip="Número de Identificação Fiscal">NIF</abbr> obrigatório.</p>
+          </doc-example>
+          <doc-example title="Atalho de teclado">
+            <button mxButton type="button" variant="outline" mxTooltip="Guardar (Ctrl + S)">Guardar</button>
+            <button mxButton type="button" variant="outline" mxTooltip="Pesquisar (Ctrl + K)">Pesquisar</button>
+          </doc-example>
+          <doc-example title="Num botão desactivado" note="Um botão disabled não recebe foco: envolve-o num elemento focável e explica porquê.">
+            <span tabindex="0" class="tooltip-wrap" mxTooltip="Só o administrador pode eliminar a conta.">
+              <button mxButton type="button" variant="destructive" disabled>Eliminar conta</button>
+            </span>
+          </doc-example>
+          <doc-example title="Atraso no hover" note="mxTooltipShowDelay em ms; com teclado aparece sempre de imediato.">
+            <button mxButton type="button" variant="outline" size="sm" mxTooltip="Aparece logo" [mxTooltipShowDelay]="0">Sem atraso</button>
+            <button mxButton type="button" variant="outline" size="sm" mxTooltip="Aparece depois de 1 segundo" [mxTooltipShowDelay]="1000">1 segundo</button>
+          </doc-example>
         </div>
         <doc-callout>Não ponhas no tooltip informação que não exista noutro lado: em ecrãs tácteis não há hover. Para conteúdo com ligações ou botões, usa um Popover.</doc-callout>
       </section>

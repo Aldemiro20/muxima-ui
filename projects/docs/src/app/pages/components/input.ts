@@ -1,12 +1,13 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Icon } from '../../ui/icon';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MxButton } from '@muxima-ui/core/button';
-import { MxError, MxFormField, MxHint, MxInput, MxLabel } from '@muxima-ui/core/form-field';
+import { MxError, MxFormField, MxHint, MxInput, MxInputAddon, MxInputGroup, MxLabel } from '@muxima-ui/core/form-field';
 import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
 @Component({
   selector: 'doc-input-page',
-  imports: [DOC_UI, ReactiveFormsModule, MxFormField, MxLabel, MxInput, MxHint, MxError, MxButton],
+  imports: [DOC_UI, ReactiveFormsModule, MxFormField, MxLabel, MxInput, MxHint, MxError, MxButton, MxInputGroup, MxInputAddon, Icon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
@@ -108,6 +109,56 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               <mx-hint>Máximo 500 caracteres.</mx-hint>
             </mx-form-field>
           </doc-example>
+          <doc-example title="Prefixo e sufixo" note="mxInputGroup e mxInputAddon. A unidade também está no label.">
+            <div class="stack w-full">
+              <mx-form-field>
+                <label mxLabel>Valor em kwanzas</label>
+                <div mxInputGroup>
+                  <span mxInputAddon>Kz</span>
+                  <input mxInput inputmode="decimal" value="1 250 000" />
+                  <span mxInputAddon>,00</span>
+                </div>
+              </mx-form-field>
+              <mx-form-field>
+                <label mxLabel>Telefone</label>
+                <div mxInputGroup>
+                  <span mxInputAddon>+244</span>
+                  <input mxInput type="tel" autocomplete="tel-national" placeholder="923 000 000" />
+                </div>
+              </mx-form-field>
+            </div>
+          </doc-example>
+          <doc-example title="Pesquisa com ícone e limpar">
+            <mx-form-field class="w-full">
+              <label mxLabel class="mx-visually-hidden">Pesquisar clientes</label>
+              <div mxInputGroup>
+                <span mxInputAddon aria-hidden="true"><doc-icon name="search" [size]="16" /></span>
+                <input mxInput type="search" placeholder="Pesquisar clientes" [value]="search()" (input)="search.set($any($event.target).value)" />
+                @if (search()) {
+                  <button mxInputAddon type="button" aria-label="Limpar pesquisa" (click)="search.set('')"><doc-icon name="x" [size]="16" /></button>
+                }
+              </div>
+            </mx-form-field>
+          </doc-example>
+          <doc-example title="Palavra-passe com mostrar" note="O botão diz o que faz e o estado (aria-pressed).">
+            <mx-form-field class="w-full">
+              <label mxLabel>Palavra-passe</label>
+              <div mxInputGroup>
+                <input mxInput [type]="showPass() ? 'text' : 'password'" autocomplete="new-password" value="kianda2026" />
+                <button mxInputAddon type="button" [attr.aria-pressed]="showPass()" (click)="showPass.set(!showPass())">{{ showPass() ? 'Esconder' : 'Mostrar' }}</button>
+              </div>
+              <mx-hint>Pelo menos 8 caracteres.</mx-hint>
+            </mx-form-field>
+          </doc-example>
+          <doc-example title="Formulário em duas colunas" note="Em ecrãs estreitos passa a uma coluna.">
+            <div class="form-2col w-full">
+              <mx-form-field><label mxLabel>Nome</label><input mxInput autocomplete="given-name" /></mx-form-field>
+              <mx-form-field><label mxLabel>Apelido</label><input mxInput autocomplete="family-name" /></mx-form-field>
+              <mx-form-field class="span-2"><label mxLabel>Email</label><input mxInput type="email" autocomplete="email" /></mx-form-field>
+              <mx-form-field><label mxLabel>NIF</label><input mxInput inputmode="numeric" /></mx-form-field>
+              <mx-form-field><label mxLabel>Província</label><input mxInput value="Luanda" /></mx-form-field>
+            </div>
+          </doc-example>
         </div>
       </section>
 
@@ -141,6 +192,9 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   `,
 })
 export class InputPage {
+  protected readonly search = signal('');
+  protected readonly showPass = signal(false);
+
   protected readonly email = new FormControl('', [Validators.email]);
   protected readonly form = new FormGroup({
     empresa: new FormControl('', Validators.required),

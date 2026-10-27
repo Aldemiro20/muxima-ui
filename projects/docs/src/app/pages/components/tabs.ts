@@ -1,10 +1,12 @@
+import { MxSwitch } from '@muxima-ui/core/switch';
+import { MxChoice, MxFormField, MxInput, MxLabel } from '@muxima-ui/core/form-field';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { MxTab, MxTabs } from '@muxima-ui/core/tabs';
 import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
 @Component({
   selector: 'doc-tabs-page',
-  imports: [DOC_UI, MxTabs, MxTab],
+  imports: [DOC_UI, MxTabs, MxTab, MxFormField, MxLabel, MxInput, MxChoice, MxSwitch],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
@@ -75,6 +77,41 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               <mx-tab label="Confirmação"><p class="tab-copy">Passo 3 de 3.</p></mx-tab>
             </mx-tabs>
           </doc-example>
+          <doc-example title="Dentro de um cartão">
+            <section class="mx-card w-full" aria-labelledby="tabs-card-t">
+              <header class="mx-card-header"><h3 class="mx-card-title" id="tabs-card-t">Cliente: Banco Mutamba</h3></header>
+              <div class="mx-card-content">
+                <mx-tabs aria-label="Detalhe do cliente">
+                  <mx-tab label="Resumo"><p class="tab-copy">Saldo de 4 870 500,00 Kz, 2 facturas pendentes.</p></mx-tab>
+                  <mx-tab label="Contactos"><p class="tab-copy">Dra. Luísa Gomes · luisa&#64;mutamba.ao</p></mx-tab>
+                  <mx-tab label="Notas"><p class="tab-copy">Paga por transferência no fim do mês.</p></mx-tab>
+                </mx-tabs>
+              </div>
+            </section>
+          </doc-example>
+          <doc-example title="Com formulários" note="O conteúdo de cada separador só é criado quando é aberto.">
+            <mx-tabs aria-label="Definições" class="w-full">
+              <mx-tab label="Perfil">
+                <div class="stack tab-form">
+                  <mx-form-field><label mxLabel>Nome</label><input mxInput value="Ana Kiala" /></mx-form-field>
+                  <mx-form-field><label mxLabel>Email</label><input mxInput type="email" value="ana&#64;kianda.co.ao" /></mx-form-field>
+                </div>
+              </mx-tab>
+              <mx-tab label="Segurança">
+                <div class="stack tab-form">
+                  <label mxChoice><input type="checkbox" mxSwitch checked /> Verificação em dois passos</label>
+                  <label mxChoice><input type="checkbox" mxSwitch /> Alertas de novo início de sessão</label>
+                </div>
+              </mx-tab>
+            </mx-tabs>
+          </doc-example>
+          <doc-example title="Muitos separadores" note="A lista faz scroll horizontal quando não cabe; as setas continuam a funcionar.">
+            <mx-tabs aria-label="Meses" class="w-full narrow-tabs">
+              @for (m of meses; track m) {
+                <mx-tab [label]="m"><p class="tab-copy">Facturação de {{ m }}.</p></mx-tab>
+              }
+            </mx-tabs>
+          </doc-example>
         </div>
       </section>
 
@@ -108,6 +145,8 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   `,
 })
 export class TabsPage {
+  protected readonly meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+
   protected readonly index = signal(0);
 
   protected readonly previewCode = `<mx-tabs aria-label="Definições da conta">

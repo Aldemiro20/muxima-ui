@@ -103,6 +103,7 @@ button.mx-card:is(:focus-visible, [data-mx-state='focus']),
 .mx-accordion-trigger:is(:focus-visible, [data-mx-state='focus']),
 .mx-breadcrumb a:is(:focus-visible, [data-mx-state='focus']),
 .mx-pagination-button:is(:focus-visible, [data-mx-state='focus']),
+button.mx-input-addon:is(:focus-visible, [data-mx-state='focus']),
 .mx-date-picker-toggle:is(:focus-visible, [data-mx-state='focus']),
 .mx-calendar-nav:is(:focus-visible, [data-mx-state='focus']),
 .mx-calendar-day:is(:focus-visible, [data-mx-state='focus']) {

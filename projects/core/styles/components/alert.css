@@ -46,3 +46,39 @@
   --_tone: var(--mx-danger);
   --_icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round'%3E%3Ccircle cx='8' cy='8' r='6.25'/%3E%3Cpath d='M8 4.9v3.6M8 10.9v.01'/%3E%3C/svg%3E");
 }
+.mx-alert:has(> .mx-alert-close) {
+  grid-template-columns: 16px 1fr auto;
+}
+.mx-alert > .mx-alert-close {
+  grid-column: 3;
+  grid-row: 1 / span 9;
+  align-self: start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin: -4px -6px 0 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--mx-radius);
+  background: transparent;
+  color: var(--mx-muted);
+  cursor: pointer;
+}
+.mx-alert > .mx-alert-close::before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 4l8 8M12 4l-8 8' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 4l8 8M12 4l-8 8' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.mx-alert > .mx-alert-close:is(:hover, [data-mx-state='hover']) {
+  color: var(--mx-ink);
+  background: color-mix(in oklab, var(--_tone) 12%, var(--mx-surface));
+}
+.mx-alert > .mx-alert-close:focus-visible {
+  outline: var(--mx-focus-width) solid var(--mx-accent);
+  outline-offset: 0;
+}

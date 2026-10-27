@@ -1,3 +1,5 @@
+import { Icon } from '../../ui/icon';
+import { MxButton } from '@muxima-ui/core/button';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MxBadge } from '@muxima-ui/core/badge';
 import { MX_TABLE } from '@muxima-ui/core/table';
@@ -5,7 +7,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
 @Component({
   selector: 'doc-badge-page',
-  imports: [DOC_UI, MxBadge, MX_TABLE],
+  imports: [DOC_UI, MxBadge, MX_TABLE, MxButton, Icon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
@@ -73,6 +75,33 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
             <span mxBadge variant="secondary">Média</span>
             <span mxBadge variant="secondary" size="lg">Grande</span>
           </doc-example>
+          <doc-example title="Com ponto" note="dot: um ponto de cor antes do texto, bom para listas de estado.">
+            <span mxBadge dot variant="success">Online</span>
+            <span mxBadge dot variant="warning">Ausente</span>
+            <span mxBadge dot variant="danger">Ocupado</span>
+            <span mxBadge dot variant="outline">Desligado</span>
+          </doc-example>
+          <doc-example title="Com ícone">
+            <span mxBadge variant="success"><doc-icon name="check" [size]="12" /> Verificado</span>
+            <span mxBadge variant="secondary"><doc-icon name="lock" [size]="12" /> Privado</span>
+            <span mxBadge variant="outline"><doc-icon name="sparkle" [size]="12" /> Novo</span>
+          </doc-example>
+          <doc-example title="Em botões e títulos" note="O número entra no nome acessível do botão.">
+            <div class="stack">
+              <h3 class="inline-heading">Facturas <span mxBadge variant="secondary">142</span></h3>
+              <div class="row-inline">
+                <button mxButton type="button" variant="outline" size="sm">Pendentes <span mxBadge size="sm" variant="warning">9</span></button>
+                <button mxButton type="button" variant="outline" size="sm">Em atraso <span mxBadge size="sm" variant="danger">3</span></button>
+              </div>
+            </div>
+          </doc-example>
+          <doc-example title="Etiquetas de categoria">
+            <div class="row-wrap">
+              @for (t of tags; track t) {
+                <span mxBadge variant="outline">{{ t }}</span>
+              }
+            </div>
+          </doc-example>
         </div>
         <doc-callout>A cor ajuda, mas o texto tem de dizer o estado sozinho: há quem não distinga as cores.</doc-callout>
       </section>
@@ -103,6 +132,8 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   `,
 })
 export class BadgePage {
+  protected readonly tags = ['Logística', 'Banca', 'Agricultura', 'Energia', 'Seguros', 'Pescas'];
+
   protected readonly previewCode = `<span mxBadge>Novo</span>
 <span mxBadge variant="secondary">Rascunho</span>
 <span mxBadge variant="outline">Interno</span>

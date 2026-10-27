@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MxButton } from '@muxima-ui/core/button';
-import { MxChoice, MxError, MxFieldset, MxFormField } from '@muxima-ui/core/form-field';
+import { MxChoice, MxChoiceDescription, MxError, MxFieldset, MxFormField } from '@muxima-ui/core/form-field';
 import { MxRadio } from '@muxima-ui/core/radio';
 import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
 @Component({
   selector: 'doc-radio-page',
-  imports: [DOC_UI, FormsModule, ReactiveFormsModule, MxRadio, MxChoice, MxFieldset, MxFormField, MxError, MxButton],
+  imports: [DOC_UI, FormsModule, ReactiveFormsModule, MxRadio, MxChoice, MxFieldset, MxFormField, MxError, MxButton, MxChoiceDescription],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
@@ -88,6 +88,33 @@ import { MxChoice, MxFieldset } from '@muxima-ui/core/form-field';" />
               </fieldset>
             </div>
           </doc-example>
+          <doc-example title="Com descrição">
+            <fieldset mxFieldset>
+              <legend>Envio</legend>
+              <label mxChoice><input type="radio" mxRadio name="envio" checked /><span>Normal<span mxChoiceDescription>3 a 5 dias úteis · grátis</span></span></label>
+              <label mxChoice><input type="radio" mxRadio name="envio" /><span>Expresso<span mxChoiceDescription>24 horas em Luanda · 5 000 Kz</span></span></label>
+              <label mxChoice><input type="radio" mxRadio name="envio" /><span>Levantar na loja<span mxChoiceDescription>Talatona, a partir de amanhã</span></span></label>
+            </fieldset>
+          </doc-example>
+          <doc-example title="Em cartões" [note]="'Escolhido: ' + plano">
+            <fieldset mxFieldset class="w-full">
+              <legend>Plano</legend>
+              @for (p of planos; track p.id) {
+                <label mxChoice card>
+                  <input type="radio" mxRadio name="plano-card" [value]="p.id" [(ngModel)]="plano" />
+                  <span>{{ p.nome }}<span mxChoiceDescription>{{ p.desc }}</span></span>
+                </label>
+              }
+            </fieldset>
+          </doc-example>
+          <doc-example title="Opção desactivada" note="Explica porquê, no próprio texto.">
+            <fieldset mxFieldset>
+              <legend>Moeda da factura</legend>
+              <label mxChoice><input type="radio" mxRadio name="moeda" checked /> Kwanza (AOA)</label>
+              <label mxChoice><input type="radio" mxRadio name="moeda" /> Dólar (USD)</label>
+              <label mxChoice><input type="radio" mxRadio name="moeda" disabled /> Euro (EUR), disponível em Dezembro</label>
+            </fieldset>
+          </doc-example>
         </div>
       </section>
 
@@ -121,6 +148,13 @@ import { MxChoice, MxFieldset } from '@muxima-ui/core/form-field';" />
   `,
 })
 export class RadioPage {
+  protected plano = 'equipa';
+  protected readonly planos = [
+    { id: 'basico', nome: 'Básico', desc: 'Grátis, 1 utilizador' },
+    { id: 'equipa', nome: 'Equipa', desc: '25 000 Kz/mês, até 10 utilizadores' },
+    { id: 'empresa', nome: 'Empresa', desc: 'Sob consulta, utilizadores ilimitados' },
+  ];
+
   protected periodo = 'mensal';
   protected readonly pagamento = new FormControl<string | null>(null, Validators.required);
 

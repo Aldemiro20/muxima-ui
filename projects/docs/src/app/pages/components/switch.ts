@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MxChoice, MxFieldset } from '@muxima-ui/core/form-field';
+import { MxChoice, MxChoiceDescription, MxFieldset } from '@muxima-ui/core/form-field';
 import { MxSwitch } from '@muxima-ui/core/switch';
 import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
 @Component({
   selector: 'doc-switch-page',
-  imports: [DOC_UI, FormsModule, MxSwitch, MxChoice, MxFieldset],
+  imports: [DOC_UI, FormsModule, MxSwitch, MxChoice, MxFieldset, MxChoiceDescription],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
@@ -67,6 +67,22 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
             <label mxChoice><input type="checkbox" mxSwitch checked /> Médio</label>
             <label mxChoice><input type="checkbox" mxSwitch size="lg" checked /> Grande</label>
           </doc-example>
+          <doc-example title="Lista de preferências" note="Texto à esquerda, interruptor à direita; o label envolve tudo.">
+            <div class="pref-list w-full">
+              @for (p of prefs; track p.id) {
+                <label mxChoice class="pref-row">
+                  <span>{{ p.title }}<span mxChoiceDescription>{{ p.desc }}</span></span>
+                  <input type="checkbox" mxSwitch [checked]="p.on" />
+                </label>
+              }
+            </div>
+          </doc-example>
+          <doc-example title="Desactivado com motivo">
+            <label mxChoice>
+              <input type="checkbox" mxSwitch disabled aria-describedby="sw-motivo" />
+              <span>Facturação automática<span mxChoiceDescription id="sw-motivo">Disponível depois de configurar a série de facturas.</span></span>
+            </label>
+          </doc-example>
         </div>
         <doc-callout>Usa o switch quando a mudança tem efeito logo. Num formulário que só conta ao enviar, usa um Checkbox.</doc-callout>
       </section>
@@ -97,6 +113,12 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   `,
 })
 export class SwitchPage {
+  protected readonly prefs = [
+    { id: 'email', title: 'Resumo diário por email', desc: 'Às 8h, com as facturas do dia anterior.', on: true },
+    { id: 'sms', title: 'Alertas de pagamento por SMS', desc: 'Quando um cliente paga.', on: false },
+    { id: 'dark', title: 'Modo escuro', desc: 'Segue o sistema quando desligado.', on: false },
+  ];
+
   protected email = true;
   protected sms = false;
   protected twoFactor = false;

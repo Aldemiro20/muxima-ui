@@ -1,3 +1,4 @@
+import { MxFormField, MxInput, MxLabel } from '@muxima-ui/core/form-field';
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { MxButton } from '@muxima-ui/core/button';
 import { MX_STEPPER, MxStepState } from '@muxima-ui/core/stepper';
@@ -5,7 +6,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
 @Component({
   selector: 'doc-stepper-page',
-  imports: [DOC_UI, MX_STEPPER, MxButton],
+  imports: [DOC_UI, MX_STEPPER, MxButton, MxFormField, MxLabel, MxInput],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
@@ -58,6 +59,42 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               <li mxStep>Entregue</li>
             </ol>
           </doc-example>
+          <doc-example title="Formulário em passos" note="O conteúdo muda por baixo do stepper; o título do passo recebe o foco.">
+            <div class="stack w-full">
+              <ol mxStepper aria-label="Nova factura">
+                @for (s of fSteps; track s; let i = $index) {
+                  <li mxStep [state]="i < f() ? 'complete' : i === f() ? 'current' : 'upcoming'">{{ s }}</li>
+                }
+              </ol>
+              <div class="step-panel">
+                <h4 tabindex="-1" #stepTitle>{{ fSteps[f()] }}</h4>
+                @switch (f()) {
+                  @case (0) { <mx-form-field><label mxLabel>Cliente</label><input mxInput value="Kianda Logística" /></mx-form-field> }
+                  @case (1) { <mx-form-field><label mxLabel>Valor (Kz)</label><input mxInput inputmode="decimal" value="1 250 000" /></mx-form-field> }
+                  @case (2) { <p class="muted">Confirma os dados e emite a factura.</p> }
+                }
+              </div>
+              <div class="row-end">
+                <button mxButton type="button" variant="outline" size="sm" [disabled]="f() === 0" (click)="go(f() - 1, stepTitle)">Anterior</button>
+                <button mxButton type="button" size="sm" (click)="go(f() + 1, stepTitle)" [disabled]="f() === fSteps.length - 1">Seguinte</button>
+              </div>
+            </div>
+          </doc-example>
+          <doc-example title="Só números, compacto">
+            <ol mxStepper aria-label="Progresso" class="w-full">
+              <li mxStep state="complete"><span class="mx-visually-hidden">Carrinho</span></li>
+              <li mxStep state="complete"><span class="mx-visually-hidden">Morada</span></li>
+              <li mxStep state="current"><span class="mx-visually-hidden">Pagamento</span></li>
+              <li mxStep><span class="mx-visually-hidden">Confirmação</span></li>
+            </ol>
+          </doc-example>
+          <doc-example title="Vertical com descrições">
+            <ol mxStepper orientation="vertical" aria-label="Abertura de conta">
+              <li mxStep state="complete">Dados da empresa <span class="step-desc">NIF validado na AGT</span></li>
+              <li mxStep state="current">Documentos <span class="step-desc">Alvará e certidão comercial</span></li>
+              <li mxStep>Assinatura <span class="step-desc">Assinatura digital do gerente</span></li>
+            </ol>
+          </doc-example>
         </div>
         <doc-callout>Em ecrãs estreitos, o stepper horizontal só mostra o nome da etapa actual; as outras ficam só com o número, mas continuam a ser lidas pelo leitor de ecrã.</doc-callout>
       </section>
@@ -88,6 +125,13 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   `,
 })
 export class StepperPage {
+  protected readonly fSteps = ['Cliente', 'Valores', 'Confirmação'];
+  protected readonly f = signal(0);
+  protected go(i: number, title: HTMLElement): void {
+    this.f.set(i);
+    setTimeout(() => title.focus());
+  }
+
   protected readonly steps = ['Empresa', 'Contacto', 'Plano', 'Confirmação'];
   protected readonly current = signal(1);
   protected readonly live = computed(() =>

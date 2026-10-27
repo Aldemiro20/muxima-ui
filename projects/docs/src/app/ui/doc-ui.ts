@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { EXAMPLE_CODE, ExampleCode } from '../data/examples.generated';
 import { MxTab, MxTabs } from '@muxima-ui/core/tabs';
 import { MxTable } from '@muxima-ui/core/table';
 import { Icon } from './icon';
@@ -53,7 +54,7 @@ export class PageHeader {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="code-block" [class.flush]="flush()">
-      <pre><code>{{ code() }}</code></pre>
+      <pre tabindex="0"><code>{{ code() }}</code></pre>
       <button type="button" class="copy-button" (click)="copy()" [attr.aria-label]="copied() ? 'Copiado' : 'Copiar código'">
         <doc-icon [name]="copied() ? 'check' : 'copy'" [size]="14" />
         <span aria-hidden="true">{{ copied() ? 'Copiado' : 'Copiar' }}</span>
@@ -225,9 +226,63 @@ export class Callout {
   readonly icon = input('info');
 }
 
-/** Cartão de exemplo com título. */
+let nextCodeId = 0;
+
+/** Código de um exemplo: separadores HTML e TypeScript. */
+@Component({
+  selector: 'doc-example-code',
+  imports: [MxTabs, MxTab, CodeBlock],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <div class="example-code">
+      <mx-tabs [aria-label]="'Código de ' + label()">
+        <mx-tab label="HTML"><doc-code [code]="code().html" [flush]="true" /></mx-tab>
+        <mx-tab label="TypeScript"><doc-code [code]="code().ts" [flush]="true" /></mx-tab>
+      </mx-tabs>
+    </div>
+  `,
+})
+export class ExampleCodeView {
+  readonly code = input.required<ExampleCode>();
+  readonly label = input('');
+}
+
+/** Procura o código gerado para um exemplo desta página. */
+function lookupCode(router: Router, title: string): ExampleCode | undefined {
+  const path = router.url.split(/[?#]/)[0].replace(/^\//, '');
+  return EXAMPLE_CODE[`${path}|${title}`];
+}
+
+/** Botão "Ver código" partilhado pelos exemplos e pela grelha de estados. */
+@Component({
+  selector: 'doc-code-toggle',
+  imports: [ExampleCodeView, Icon],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <div class="code-toggle">
+      <button type="button" class="code-toggle-button" [attr.aria-expanded]="open()" [attr.aria-controls]="panelId" (click)="open.set(!open())">
+        <doc-icon name="code" [size]="14" />
+        {{ open() ? 'Esconder código' : 'Ver código' }}
+      </button>
+    </div>
+    <div [id]="panelId" [hidden]="!open()">
+      @if (open()) {
+        <doc-example-code [code]="code()" [label]="label()" />
+      }
+    </div>
+  `,
+})
+export class CodeToggle {
+  readonly code = input.required<ExampleCode>();
+  readonly label = input('');
+  protected readonly open = signal(false);
+  protected readonly panelId = `code-${nextCodeId++}`;
+}
+
+/** Cartão de exemplo com título e o seu código (HTML e TypeScript). */
 @Component({
   selector: 'doc-example',
+  imports: [CodeToggle],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="card example-card" [attr.aria-label]="title()">
@@ -236,12 +291,19 @@ export class Callout {
       @if (note()) {
         <p class="example-note">{{ note() }}</p>
       }
+      @if (resolved(); as c) {
+        <doc-code-toggle [code]="c" [label]="title()" />
+      }
     </section>
   `,
 })
 export class Example {
   readonly title = input.required<string>();
   readonly note = input('');
+  /** Código explícito; por omissão vem do ficheiro gerado a partir da página. */
+  readonly code = input<ExampleCode | undefined>(undefined);
+  private readonly router = inject(Router);
+  protected readonly resolved = computed(() => this.code() ?? lookupCode(this.router, this.title()));
 }
 
 /** Os dois cartões de acessibilidade de cada componente. */
@@ -283,11 +345,19 @@ export class A11y {
  */
 @Component({
   selector: 'doc-states',
+  imports: [CodeToggle],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { class: 'states-grid', role: 'list' },
-  template: `<ng-content />`,
+  host: { class: 'states-block' },
+  template: `
+    <div class="states-grid" role="list"><ng-content /></div>
+    @if (code; as c) {
+      <doc-code-toggle [code]="c" label="Estados" />
+    }
+  `,
 })
-export class States {}
+export class States {
+  protected readonly code = lookupCode(inject(Router), 'Estados');
+}
 
 @Component({
   selector: 'doc-state',
@@ -306,4 +376,4 @@ export class State {
   readonly note = input('');
 }
 
-export const DOC_UI = [PageHeader, CodeBlock, Preview, Structure, ApiTable, Related, Callout, Example, A11y, States, State] as const;
+export const DOC_UI = [PageHeader, CodeBlock, Preview, Structure, ApiTable, Related, Callout, Example, A11y, States, State, CodeToggle] as const;

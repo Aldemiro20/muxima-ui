@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MxFormField, MxHint, MxInput, MxLabel } from '@muxima-ui/core/form-field';
+import { MxFieldset, MxFormField, MxHint, MxInput, MxLabel } from '@muxima-ui/core/form-field';
 import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
 @Component({
   selector: 'doc-time-picker-page',
-  imports: [DOC_UI, MxFormField, MxLabel, MxHint, MxInput, FormsModule],
+  imports: [DOC_UI, MxFormField, MxLabel, MxHint, MxInput, FormsModule, MxFieldset],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
@@ -59,6 +59,20 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               <input mxInput type="datetime-local" value="2026-11-02T08:00" />
             </mx-form-field>
           </doc-example>
+          <doc-example title="Início e fim" note="Dois campos num fieldset, com min no segundo.">
+            <fieldset mxFieldset orientation="horizontal" class="w-full">
+              <legend>Horário de atendimento</legend>
+              <mx-form-field class="grow"><label mxLabel>Abre</label><input mxInput type="time" [(ngModel)]="abre" /></mx-form-field>
+              <mx-form-field class="grow"><label mxLabel>Fecha</label><input mxInput type="time" [(ngModel)]="fecha" [min]="abre" /></mx-form-field>
+            </fieldset>
+          </doc-example>
+          <doc-example title="Tamanhos e estados">
+            <div class="stack w-full">
+              <input mxInput type="time" size="sm" value="09:00" aria-label="Pequeno" />
+              <input mxInput type="time" size="lg" value="09:00" aria-label="Grande" />
+              <input mxInput type="time" value="09:00" disabled aria-label="Desactivado" />
+            </div>
+          </doc-example>
         </div>
       </section>
 
@@ -87,6 +101,9 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   `,
 })
 export class TimePickerPage {
+  protected abre = '08:00';
+  protected fecha = '17:00';
+
   protected hora = '10:00';
   protected readonly previewCode = `<mx-form-field>
   <label mxLabel>Hora da reunião</label>

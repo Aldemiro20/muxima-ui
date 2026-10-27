@@ -1,14 +1,16 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Icon } from '../../ui/icon';
+import { MxAvatar } from '@muxima-ui/core/avatar';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MxButton } from '@muxima-ui/core/button';
-import { MxChoice, MxFieldset, MxFormField, MxInput, MxLabel } from '@muxima-ui/core/form-field';
+import { MxChoice, MxFieldset, MxFormField, MxInput, MxInputAddon, MxInputGroup, MxLabel } from '@muxima-ui/core/form-field';
 import { MxCheckbox } from '@muxima-ui/core/checkbox';
 import { MX_POPOVER } from '@muxima-ui/core/popover';
 import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
 @Component({
   selector: 'doc-popover-page',
-  imports: [DOC_UI, MX_POPOVER, MxButton, MxFormField, MxLabel, MxInput, MxCheckbox, MxChoice, MxFieldset, FormsModule],
+  imports: [DOC_UI, MX_POPOVER, MxButton, MxFormField, MxLabel, MxInput, MxCheckbox, MxChoice, MxFieldset, FormsModule, MxInputGroup, MxInputAddon, MxAvatar, Icon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
@@ -89,6 +91,45 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               </mx-popover>
             </div>
           </doc-example>
+          <doc-example title="Ajuda contextual" note="Um botão ? ao lado do label abre a explicação.">
+            <mx-form-field class="w-full">
+              <div class="label-row">
+                <label mxLabel>Regime de IVA</label>
+                <button type="button" class="help-button" aria-label="Ajuda sobre o regime de IVA" [mxPopoverTrigger]="ajuda">?</button>
+              </div>
+              <input mxInput value="Regime geral" />
+            </mx-form-field>
+            <mx-popover #ajuda aria-labelledby="ajuda-iva" width="280px">
+              <p class="popover-title" id="ajuda-iva">Regime de IVA</p>
+              <p class="muted">Empresas com facturação anual acima de 350 milhões de Kz estão no regime geral. As restantes podem optar pelo regime simplificado.</p>
+            </mx-popover>
+          </doc-example>
+          <doc-example title="Partilhar ligação">
+            <button mxButton type="button" variant="outline" [mxPopoverTrigger]="partilha"><doc-icon name="external" /> Partilhar</button>
+            <mx-popover #partilha aria-labelledby="partilha-t" width="320px">
+              <p class="popover-title" id="partilha-t">Partilhar relatório</p>
+              <div class="stack">
+                <div mxInputGroup>
+                  <input mxInput readonly value="https://muxima.ao/r/2026-10" aria-label="Ligação do relatório" />
+                  <button mxInputAddon type="button" (click)="copied.set(true)">{{ copied() ? 'Copiado' : 'Copiar' }}</button>
+                </div>
+                <label mxChoice><input type="checkbox" mxCheckbox checked /> Qualquer pessoa com a ligação</label>
+              </div>
+            </mx-popover>
+          </doc-example>
+          <doc-example title="Cartão de pessoa">
+            <button mxButton type="button" variant="link" [mxPopoverTrigger]="pessoa">Joana Mbala</button>
+            <mx-popover #pessoa aria-label="Joana Mbala" width="280px">
+              <div class="person">
+                <mx-avatar name="Joana Mbala" src="exemplos/pessoa-2.svg" status="online" decorative />
+                <div><strong>Joana Mbala</strong><span class="muted">Directora financeira</span></div>
+              </div>
+              <div class="row-inline popover-actions">
+                <button mxButton type="button" size="sm">Mensagem</button>
+                <button mxButton type="button" size="sm" variant="outline">Perfil</button>
+              </div>
+            </mx-popover>
+          </doc-example>
         </div>
       </section>
 
@@ -121,6 +162,8 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   `,
 })
 export class PopoverPage {
+  protected readonly copied = signal(false);
+
   protected nome = 'Portal do cliente';
   protected readonly previewCode = `<button mxButton variant="outline" [mxPopoverTrigger]="filtros">Filtros</button>
 <mx-popover #filtros aria-label="Filtros">

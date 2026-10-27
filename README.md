@@ -24,10 +24,11 @@ Cada componente segue as oito regras descritas em `/docs/padrao-de-qualidade` no
 
 ```bash
 npm install          # instalar dependências
-npm start            # site de documentação em http://localhost:4200
+npm start            # site de documentação em http://localhost:4200 (gera antes o código dos exemplos)
 npm test             # testes da biblioteca (Vitest), com axe em cada componente
 npm run build:core   # gerar o pacote em dist/core
 npm run build:docs   # gerar o site em dist/docs
+npm run docs:examples # só regenerar o código mostrado em cada exemplo
 npm run test:a11y    # axe em todas as páginas do site, claro e escuro (depois de build:docs)
 ```
 

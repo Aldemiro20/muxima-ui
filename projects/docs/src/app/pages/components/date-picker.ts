@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MxButton } from '@muxima-ui/core/button';
 import { MxCalendar, MxDatePicker } from '@muxima-ui/core/date-picker';
-import { MxError, MxFormField, MxHint, MxLabel } from '@muxima-ui/core/form-field';
+import { MxError, MxFieldset, MxFormField, MxHint, MxLabel } from '@muxima-ui/core/form-field';
 import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
 @Component({
   selector: 'doc-date-picker-page',
-  imports: [DOC_UI, MxDatePicker, MxCalendar, MxFormField, MxLabel, MxHint, MxError, MxButton, ReactiveFormsModule],
+  imports: [DOC_UI, MxDatePicker, MxCalendar, MxFormField, MxLabel, MxHint, MxError, MxButton, ReactiveFormsModule, MxFieldset],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
@@ -71,6 +71,38 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               <div><button mxButton type="button" size="sm" (click)="reuniao.markAsTouched()">Validar</button></div>
             </div>
           </doc-example>
+          <doc-example title="Período de / até" note="Dois campos; o mínimo do segundo é a data do primeiro.">
+            <fieldset mxFieldset orientation="horizontal" class="w-full">
+              <legend>Período do relatório</legend>
+              <mx-form-field class="grow">
+                <label mxLabel>De</label>
+                <mx-date-picker [(value)]="de" [max]="ate()" />
+              </mx-form-field>
+              <mx-form-field class="grow">
+                <label mxLabel>Até</label>
+                <mx-date-picker [(value)]="ate" [min]="de()" />
+              </mx-form-field>
+            </fieldset>
+          </doc-example>
+          <doc-example title="Pré-preenchido e só leitura" note="disabled mostra a data mas não deixa mudar.">
+            <div class="stack w-full">
+              <mx-form-field>
+                <label mxLabel>Data de emissão</label>
+                <mx-date-picker [value]="exemplo" />
+              </mx-form-field>
+              <mx-form-field>
+                <label mxLabel>Data de registo</label>
+                <mx-date-picker [value]="registo" disabled />
+              </mx-form-field>
+            </div>
+          </doc-example>
+          <doc-example title="Tamanhos">
+            <div class="stack w-full">
+              <mx-date-picker size="sm" aria-label="Pequeno" [value]="exemplo" />
+              <mx-date-picker aria-label="Médio" [value]="exemplo" />
+              <mx-date-picker size="lg" aria-label="Grande" [value]="exemplo" />
+            </div>
+          </doc-example>
         </div>
         <doc-callout>Para uma data que a pessoa sabe de cor, como a data de nascimento, três campos ou o input type=date nativo são mais rápidos do que um calendário.</doc-callout>
       </section>
@@ -109,6 +141,10 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   `,
 })
 export class DatePickerPage {
+  protected readonly de = signal<Date | null>(new Date(2026, 9, 1));
+  protected readonly ate = signal<Date | null>(new Date(2026, 9, 31));
+  protected readonly registo = new Date(2021, 2, 15);
+
   protected readonly hoje = new Date();
   protected readonly daquiA30 = new Date(Date.now() + 30 * 86400000);
   protected readonly exemplo = new Date(2026, 10, 13);

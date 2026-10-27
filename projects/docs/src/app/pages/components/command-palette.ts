@@ -71,6 +71,19 @@ const COMANDOS: MxCommandItem<string>[] = [
               </mx-command>
             </div>
           </doc-example>
+          <doc-example title="Itens desactivados e atalhos" note="hint mostra o atalho; disabled fica visível mas não se escolhe.">
+            <div class="mx-card w-full">
+              <mx-command [items]="comAtalhos" aria-label="Comandos com atalhos" placeholder="Pesquisar comandos" (selected)="ultimo.set($event.label)" />
+            </div>
+          </doc-example>
+          <doc-example title="Sem grupos" note="Lista simples, por exemplo para escolher um cliente.">
+            <div class="mx-card w-full">
+              <mx-command [items]="clientes" aria-label="Escolher cliente" placeholder="Pesquisar cliente" (selected)="ultimo.set($event.label)" />
+            </div>
+          </doc-example>
+          <doc-example title="Atalho global" note="Ctrl + K nesta página abre a pesquisa do site; o mesmo código serve para a tua aplicação.">
+            <doc-code [code]="atalho" />
+          </doc-example>
         </div>
       </section>
 
@@ -104,6 +117,27 @@ const COMANDOS: MxCommandItem<string>[] = [
   `,
 })
 export class CommandPalettePage {
+  protected readonly comAtalhos: MxCommandItem[] = [
+    { label: 'Guardar', group: 'Ficheiro', hint: 'Ctrl S' },
+    { label: 'Imprimir', group: 'Ficheiro', hint: 'Ctrl P' },
+    { label: 'Anular factura', group: 'Factura', hint: 'Sem permissão', disabled: true },
+    { label: 'Duplicar factura', group: 'Factura', hint: 'Ctrl D' },
+  ];
+  protected readonly clientes: MxCommandItem[] = ['Kianda Logística', 'Banco Mutamba', 'Huíla Agro', 'Energia do Cuanza', 'Atlântico Seguros'].map((label) => ({ label }));
+  protected readonly atalho = `@Component({
+  host: { '(document:keydown)': 'onKey($event)' },
+})
+export class App {
+  private readonly palette = inject(MxCommandPalette);
+
+  onKey(e: KeyboardEvent) {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      this.palette.open(COMANDOS).closed.subscribe((item) => item && executar(item));
+    }
+  }
+}`;
+
   private readonly palette = inject(MxCommandPalette);
   protected readonly comandos = COMANDOS;
   protected readonly ultimo = signal('');

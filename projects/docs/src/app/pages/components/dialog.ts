@@ -1,3 +1,4 @@
+import { DialogPlano, DialogSucesso, DialogTamanho, DialogTermos } from './dialog-examples';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MxButton } from '@muxima-ui/core/button';
@@ -117,6 +118,20 @@ export class RenameDialog {
           <doc-example title="Confirmação obrigatória" note="Com disableClose, só os botões fecham o diálogo.">
             <button mxButton type="button" variant="outline" (click)="mandatory()">Aceitar termos</button>
           </doc-example>
+          <doc-example title="Tamanhos" note="sm 400 px, md 520 px, lg 720 px.">
+            <button mxButton type="button" variant="outline" size="sm" (click)="size('sm', '400 px')">Pequeno</button>
+            <button mxButton type="button" variant="outline" size="sm" (click)="size('md', '520 px')">Médio</button>
+            <button mxButton type="button" variant="outline" size="sm" (click)="size('lg', '720 px')">Grande</button>
+          </doc-example>
+          <doc-example title="Conteúdo longo" note="O corpo faz scroll; título e botões ficam sempre visíveis.">
+            <button mxButton type="button" variant="outline" (click)="terms()">Ler os termos</button>
+          </doc-example>
+          <doc-example title="Escolha num diálogo" [note]="'Plano: ' + plan()">
+            <button mxButton type="button" variant="outline" (click)="choosePlan()">Mudar de plano</button>
+          </doc-example>
+          <doc-example title="Confirmação de sucesso" note="Para resultados que a pessoa deve ver antes de seguir.">
+            <button mxButton type="button" variant="outline" (click)="success()">Registar pagamento</button>
+          </doc-example>
         </div>
       </section>
 
@@ -150,6 +165,20 @@ export class RenameDialog {
   `,
 })
 export class DialogPage {
+  protected readonly plan = signal('equipa');
+  protected size(size: 'sm' | 'md' | 'lg', width: string): void {
+    this.dialog.open(DialogTamanho, { size, data: { size, width } });
+  }
+  protected terms(): void {
+    this.dialog.open<boolean>(DialogTermos, { size: 'md' }).closed.subscribe((ok) => this.result.set(ok ? 'Termos aceites.' : ''));
+  }
+  protected choosePlan(): void {
+    this.dialog.open<string>(DialogPlano).closed.subscribe((p) => p && this.plan.set(p));
+  }
+  protected success(): void {
+    this.dialog.open(DialogSucesso, { size: 'sm' });
+  }
+
   private readonly dialog = inject(MxDialog);
   protected readonly result = signal('');
   protected readonly projectName = signal('Portal do cliente');

@@ -31,3 +31,31 @@
   height: 100%;
   object-fit: cover;
 }
+.mx-avatar {
+  position: relative;
+  overflow: visible;
+}
+.mx-avatar img {
+  border-radius: 50%;
+}
+.mx-avatar-status {
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  width: calc(var(--_s) * 0.28);
+  height: calc(var(--_s) * 0.28);
+  min-width: 8px;
+  min-height: 8px;
+  border-radius: 50%;
+  background: var(--mx-muted);
+  box-shadow: 0 0 0 2px var(--mx-surface);
+}
+.mx-avatar-status[data-status='online'] {
+  background: var(--mx-success);
+}
+.mx-avatar-status[data-status='away'] {
+  background: var(--mx-warning);
+}
+.mx-avatar-status[data-status='busy'] {
+  background: var(--mx-danger);
+}

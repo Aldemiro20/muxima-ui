@@ -1,3 +1,4 @@
+import { MxAvatar } from '@muxima-ui/core/avatar';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { MxButton } from '@muxima-ui/core/button';
 import { MX_MENU } from '@muxima-ui/core/menu';
@@ -8,7 +9,7 @@ import { Icon } from '../../ui/icon';
 
 @Component({
   selector: 'doc-dropdown-menu-page',
-  imports: [DOC_UI, MX_MENU, MxButton, MxSeparator, Icon],
+  imports: [DOC_UI, MX_MENU, MxButton, MxSeparator, Icon, MxAvatar],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
@@ -85,6 +86,39 @@ import { Icon } from '../../ui/icon';
               <div mxMenu>
                 <button mxMenuItem>Descarregar PDF</button>
                 <button mxMenuItem>Enviar por email</button>
+              </div>
+            </ng-template>
+          </doc-example>
+          <doc-example title="Submenu" note="Um item com [mxMenuTriggerFor] abre outro menu; seta para a direita entra, para a esquerda sai.">
+            <button mxButton type="button" variant="outline" [mxMenuTriggerFor]="ficheiro">Ficheiro</button>
+            <ng-template #ficheiro>
+              <div mxMenu>
+                <button mxMenuItem (mxMenuItemTriggered)="say('Novo')">Novo <span class="mx-menu-shortcut">Ctrl N</span></button>
+                <button mxMenuItem [mxMenuTriggerFor]="exportar">Exportar como</button>
+                <hr mxSeparator />
+                <button mxMenuItem (mxMenuItemTriggered)="say('Imprimir')">Imprimir <span class="mx-menu-shortcut">Ctrl P</span></button>
+              </div>
+            </ng-template>
+            <ng-template #exportar>
+              <div mxMenu>
+                <button mxMenuItem (mxMenuItemTriggered)="say('PDF')">PDF</button>
+                <button mxMenuItem (mxMenuItemTriggered)="say('Excel')">Excel</button>
+                <button mxMenuItem (mxMenuItemTriggered)="say('CSV')">CSV</button>
+              </div>
+            </ng-template>
+          </doc-example>
+          <doc-example title="Menu de utilizador" note="O botão com avatar tem nome acessível próprio.">
+            <button type="button" class="user-trigger" aria-label="Conta de Ana Kiala" [mxMenuTriggerFor]="conta">
+              <mx-avatar name="Ana Kiala" src="exemplos/pessoa-1.svg" size="sm" decorative /> Ana Kiala
+            </button>
+            <ng-template #conta>
+              <div mxMenu>
+                <span mxMenuLabel>ana&#64;kianda.co.ao</span>
+                <button mxMenuItem>Perfil</button>
+                <button mxMenuItem>Definições</button>
+                <button mxMenuItem>Facturação</button>
+                <hr mxSeparator />
+                <button mxMenuItem variant="destructive">Terminar sessão</button>
               </div>
             </ng-template>
           </doc-example>

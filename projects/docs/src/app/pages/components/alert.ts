@@ -70,6 +70,39 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               <div class="alert-actions"><button mxButton type="button" size="sm" variant="outline">Activar</button></div>
             </div>
           </doc-example>
+          <doc-example title="Variantes" note="Ícone próprio em cada uma, para não depender da cor.">
+            <div class="stack w-full">
+              <div mxAlert><p mxAlertTitle>Informação</p><p>A AGT actualizou as regras de facturação.</p></div>
+              <div mxAlert variant="success"><p mxAlertTitle>Tudo em dia</p><p>Todas as facturas de Outubro foram pagas.</p></div>
+              <div mxAlert variant="warning"><p mxAlertTitle>Atenção</p><p>O certificado digital expira em 12 dias.</p></div>
+              <div mxAlert variant="danger"><p mxAlertTitle>Erro</p><p>Não foi possível ligar ao banco.</p></div>
+            </div>
+          </doc-example>
+          <doc-example title="Com botão de fechar" note="mxAlertClose; esconder o alerta fica a cargo da aplicação.">
+            <div class="stack w-full">
+              @if (showInfo()) {
+                <div mxAlert>
+                  <p mxAlertTitle>Novidade</p>
+                  <p>Já podes exportar facturas em CSV.</p>
+                  <button mxAlertClose (click)="showInfo.set(false)"></button>
+                </div>
+              } @else {
+                <div><button mxButton type="button" variant="outline" size="sm" (click)="showInfo.set(true)">Mostrar de novo</button></div>
+              }
+            </div>
+          </doc-example>
+          <doc-example title="Resumo de erros de um formulário" note="Lista os campos com erro, com ligações para cada um.">
+            <div mxAlert variant="danger" class="w-full" tabindex="-1">
+              <p mxAlertTitle>Corrige 2 campos para continuar</p>
+              <ul class="alert-list">
+                <li><a href="#campo-nif" (click)="$event.preventDefault()">O NIF tem de ter 10 algarismos</a></li>
+                <li><a href="#campo-email" (click)="$event.preventDefault()">O email não é válido</a></li>
+              </ul>
+            </div>
+          </doc-example>
+          <doc-example title="Compacto, só com texto" note="Sem título, para mensagens curtas junto a um campo.">
+            <div mxAlert variant="warning" class="w-full"><p>Este cliente tem 3 facturas em atraso.</p></div>
+          </doc-example>
         </div>
       </section>
 
@@ -99,6 +132,8 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   `,
 })
 export class AlertPage {
+  protected readonly showInfo = signal(true);
+
   protected readonly result = signal<'erro' | null>(null);
   protected send(): void {
     this.result.set(null);

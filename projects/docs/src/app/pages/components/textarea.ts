@@ -1,3 +1,4 @@
+import { MxButton } from '@muxima-ui/core/button';
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MxError, MxFormField, MxHint, MxInput, MxLabel } from '@muxima-ui/core/form-field';
@@ -5,7 +6,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
 @Component({
   selector: 'doc-textarea-page',
-  imports: [DOC_UI, ReactiveFormsModule, MxFormField, MxLabel, MxHint, MxError, MxInput],
+  imports: [DOC_UI, ReactiveFormsModule, MxFormField, MxLabel, MxHint, MxError, MxInput, MxButton],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
@@ -69,6 +70,33 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               <textarea mxInput autosize rows="2" placeholder="Escreve várias linhas para ver o campo crescer"></textarea>
             </mx-form-field>
           </doc-example>
+          <doc-example title="Só leitura e desactivado">
+            <div class="stack w-full">
+              <mx-form-field>
+                <label mxLabel>Observações do cliente</label>
+                <textarea mxInput rows="2" readonly>Entregar na recepção, entre as 8h e as 12h.</textarea>
+              </mx-form-field>
+              <mx-form-field>
+                <label mxLabel>Notas internas</label>
+                <textarea mxInput rows="2" disabled>Disponível no plano Pro.</textarea>
+              </mx-form-field>
+            </div>
+          </doc-example>
+          <doc-example title="Comentário com acções" note="Ctrl + Enter envia; Enter muda de linha.">
+            <form class="stack w-full" (submit)="$event.preventDefault(); sendComment()">
+              <mx-form-field>
+                <label mxLabel>Comentário</label>
+                <textarea mxInput autosize rows="2" placeholder="Escreve um comentário" [value]="comment()" (input)="comment.set($any($event.target).value)" (keydown.control.enter)="sendComment()"></textarea>
+              </mx-form-field>
+              <div class="row-end">
+                <button mxButton type="button" variant="ghost" size="sm" (click)="comment.set('')">Cancelar</button>
+                <button mxButton type="submit" size="sm" [disabled]="!comment().trim()">Comentar</button>
+              </div>
+              @if (sent()) {
+                <p class="small-label" aria-live="polite">Comentário enviado.</p>
+              }
+            </form>
+          </doc-example>
         </div>
       </section>
 
@@ -98,6 +126,14 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   `,
 })
 export class TextareaPage {
+  protected readonly comment = signal('');
+  protected readonly sent = signal(false);
+  protected sendComment(): void {
+    if (!this.comment().trim()) return;
+    this.comment.set('');
+    this.sent.set(true);
+  }
+
   protected readonly max = 280;
   protected readonly descricao = new FormControl('', [Validators.required, Validators.minLength(20)]);
   private readonly texto = signal('');

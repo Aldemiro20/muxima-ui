@@ -19,10 +19,13 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation, booleanAttribute
     class: 'mx-avatar',
     '[attr.data-size]': 'size() === "md" ? null : size()',
     '[attr.role]': 'decorative() ? null : "img"',
-    '[attr.aria-label]': 'decorative() ? null : name()',
+    '[attr.aria-label]': 'decorative() ? null : label()',
     '[attr.aria-hidden]': 'decorative() ? "true" : null',
   },
   template: `
+    @if (status()) {
+      <span class="mx-avatar-status" [attr.data-status]="status()" aria-hidden="true"></span>
+    }
     @if (src() && !failed()) {
       <img [src]="src()" alt="" (error)="failed.set(true)" />
     } @else {
@@ -37,6 +40,14 @@ export class MxAvatar {
   /** sm 24 px, md 32 px, lg 40 px. */
   readonly size = input<'sm' | 'md' | 'lg'>('md');
   readonly decorative = input(false, { transform: booleanAttribute });
+  /** Ponto de estado no canto. O estado é anunciado com o nome. */
+  readonly status = input<'online' | 'away' | 'busy' | 'offline' | null>(null);
+
+  private static readonly STATUS_TEXT = { online: 'disponível', away: 'ausente', busy: 'ocupado', offline: 'desligado' };
+  protected readonly label = computed(() => {
+    const s = this.status();
+    return s ? `${this.name()}, ${MxAvatar.STATUS_TEXT[s]}` : this.name();
+  });
 
   protected readonly failed = signal(false);
   protected readonly initials = computed(() => {

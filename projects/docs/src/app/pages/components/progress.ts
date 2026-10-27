@@ -67,6 +67,28 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               <progress mxProgress size="lg" value="70" max="100" aria-label="Grande"></progress>
             </div>
           </doc-example>
+          <doc-example title="Vários ficheiros" note="Uma barra por ficheiro, com o nome no label.">
+            <ul class="upload-list w-full">
+              @for (f of ficheiros; track f.nome) {
+                <li>
+                  <div class="row-between"><label [for]="'up-' + $index">{{ f.nome }}</label><span class="small-label">{{ f.valor === 100 ? 'Concluído' : f.valor + '%' }}</span></div>
+                  <progress [id]="'up-' + $index" mxProgress size="sm" [value]="f.valor" max="100"></progress>
+                </li>
+              }
+            </ul>
+          </doc-example>
+          <doc-example title="Indeterminado com texto" note="Quando não se sabe quanto falta.">
+            <div class="stack w-full">
+              <label for="prog-sync" class="small-label">A sincronizar com a AGT...</label>
+              <progress id="prog-sync" mxProgress></progress>
+            </div>
+          </doc-example>
+          <doc-example title="Spinner num carregamento de página">
+            <div class="spinner-block w-full">
+              <span mxSpinner size="lg" label="A carregar facturas"></span>
+              <span class="small-label" aria-hidden="true">A carregar facturas...</span>
+            </div>
+          </doc-example>
         </div>
       </section>
 
@@ -97,6 +119,12 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   `,
 })
 export class ProgressPage {
+  protected readonly ficheiros = [
+    { nome: 'facturas-outubro.pdf', valor: 100 },
+    { nome: 'extracto-banco.xlsx', valor: 64 },
+    { nome: 'contratos.zip', valor: 12 },
+  ];
+
   protected readonly value = signal(0);
   protected readonly sent = signal(0);
 

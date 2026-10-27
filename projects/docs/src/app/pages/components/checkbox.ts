@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/c
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MxButton } from '@muxima-ui/core/button';
 import { MxCheckbox } from '@muxima-ui/core/checkbox';
-import { MxChoice, MxError, MxFieldset, MxFormField } from '@muxima-ui/core/form-field';
+import { MxChoice, MxChoiceDescription, MxError, MxFieldset, MxFormField } from '@muxima-ui/core/form-field';
 import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
 @Component({
   selector: 'doc-checkbox-page',
-  imports: [DOC_UI, ReactiveFormsModule, MxCheckbox, MxChoice, MxFieldset, MxFormField, MxError, MxButton],
+  imports: [DOC_UI, ReactiveFormsModule, MxCheckbox, MxChoice, MxFieldset, MxFormField, MxError, MxButton, MxChoiceDescription],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
@@ -95,6 +95,22 @@ import { MxChoice, MxFieldset } from '@muxima-ui/core/form-field';" />
               <label mxChoice><input type="checkbox" mxCheckbox checked /> Ter</label>
               <label mxChoice><input type="checkbox" mxCheckbox checked /> Qua</label>
               <label mxChoice><input type="checkbox" mxCheckbox /> Sáb</label>
+            </fieldset>
+          </doc-example>
+          <doc-example title="Com descrição" note="mxChoiceDescription por baixo do título.">
+            <fieldset mxFieldset>
+              <legend>Permissões</legend>
+              <label mxChoice><input type="checkbox" mxCheckbox checked /><span>Emitir facturas<span mxChoiceDescription>Criar e enviar facturas aos clientes.</span></span></label>
+              <label mxChoice><input type="checkbox" mxCheckbox /><span>Anular facturas<span mxChoiceDescription>Exige justificação; fica no histórico.</span></span></label>
+              <label mxChoice><input type="checkbox" mxCheckbox disabled /><span>Gerir utilizadores<span mxChoiceDescription>Só o administrador da conta.</span></span></label>
+            </fieldset>
+          </doc-example>
+          <doc-example title="Em cartões" note="card: a área toda é clicável e a escolhida fica com borda Kwanza.">
+            <fieldset mxFieldset class="w-full">
+              <legend>Módulos a activar</legend>
+              <label mxChoice card><input type="checkbox" mxCheckbox checked /><span>Facturação<span mxChoiceDescription>Facturas, recibos e notas de crédito.</span></span></label>
+              <label mxChoice card><input type="checkbox" mxCheckbox /><span>Stock<span mxChoiceDescription>Armazéns, entradas e saídas.</span></span></label>
+              <label mxChoice card><input type="checkbox" mxCheckbox /><span>Recursos humanos<span mxChoiceDescription>Processamento de salários.</span></span></label>
             </fieldset>
           </doc-example>
         </div>

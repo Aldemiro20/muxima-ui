@@ -188,3 +188,43 @@
 .mx-switch:disabled:checked {
   background: color-mix(in oklab, var(--mx-accent) 40%, var(--mx-surface));
 }
+
+/* ---------- Opção com descrição e opção em cartão ---------- */
+.mx-choice:has(.mx-choice-description) {
+  align-items: flex-start;
+}
+.mx-choice:has(.mx-choice-description) > input {
+  margin-top: 2px;
+}
+.mx-choice-description {
+  display: block;
+  margin-top: 2px;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+  line-height: 1.4;
+}
+.mx-choice[data-card] {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--mx-stone);
+  border-radius: var(--mx-radius-surface);
+  background: var(--mx-surface);
+  transition: border-color var(--mx-duration) var(--mx-ease);
+}
+.mx-choice[data-card]:is(:hover, [data-mx-state='hover']):not(:has(:disabled)) {
+  border-color: var(--mx-control-border);
+}
+.mx-choice[data-card]:has(:checked) {
+  border-color: var(--mx-accent);
+  background: var(--mx-accent-soft);
+  box-shadow: inset 0 0 0 1px var(--mx-accent);
+}
+.mx-choice[data-card]:has(:focus-visible) {
+  outline: var(--mx-focus-width) solid var(--mx-accent);
+  outline-offset: var(--mx-focus-offset);
+}
+.mx-choice[data-card]:has(:disabled) {
+  background: var(--mx-subtle);
+}

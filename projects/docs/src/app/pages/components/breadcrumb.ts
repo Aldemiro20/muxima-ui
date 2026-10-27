@@ -1,3 +1,6 @@
+import { Icon } from '../../ui/icon';
+import { MX_MENU } from '@muxima-ui/core/menu';
+import { MxButton } from '@muxima-ui/core/button';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MxBreadcrumb } from '@muxima-ui/core/breadcrumb';
@@ -5,7 +8,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
 @Component({
   selector: 'doc-breadcrumb-page',
-  imports: [DOC_UI, MxBreadcrumb, RouterLink],
+  imports: [DOC_UI, MxBreadcrumb, RouterLink, MxButton, MX_MENU, Icon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
@@ -41,6 +44,59 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
           <doc-state name="Foco"><nav mxBreadcrumb aria-label="Foco"><ol><li><a href="#" data-mx-state="focus">Clientes</a></li></ol></nav></doc-state>
           <doc-state name="Página actual" note="aria-current=page"><nav mxBreadcrumb aria-label="Actual"><ol><li><span aria-current="page">Facturas</span></li></ol></nav></doc-state>
         </doc-states>
+      </section>
+
+      <section>
+        <h2>Exemplos</h2>
+        <div class="grid-2">
+          <doc-example title="Com ícone de início" note="O ícone tem texto escondido: Início.">
+            <nav mxBreadcrumb aria-label="Localização com ícone">
+              <ol>
+                <li><a routerLink="/"><doc-icon name="grid" [size]="14" /><span class="mx-visually-hidden">Início</span></a></li>
+                <li><a routerLink="/componentes">Clientes</a></li>
+                <li><span aria-current="page">Kianda Logística</span></li>
+              </ol>
+            </nav>
+          </doc-example>
+          <doc-example title="Caminho longo, recolhido" note="Os níveis do meio ficam num menu, para caber em ecrãs estreitos.">
+            <nav mxBreadcrumb aria-label="Localização recolhida">
+              <ol>
+                <li><a routerLink="/">Início</a></li>
+                <li>
+                  <button type="button" class="crumb-more" aria-label="Mostrar níveis escondidos" [mxMenuTriggerFor]="niveis">…</button>
+                  <ng-template #niveis>
+                    <div mxMenu>
+                      <a mxMenuItem routerLink="/componentes">Clientes</a>
+                      <a mxMenuItem routerLink="/componentes">Empresas</a>
+                      <a mxMenuItem routerLink="/componentes">Kianda Logística</a>
+                    </div>
+                  </ng-template>
+                </li>
+                <li><a routerLink="/componentes">Facturas</a></li>
+                <li><span aria-current="page">FT 2026/0142</span></li>
+              </ol>
+            </nav>
+          </doc-example>
+          <doc-example title="No cabeçalho de uma página">
+            <div class="page-head-demo w-full">
+              <nav mxBreadcrumb aria-label="Localização da página">
+                <ol>
+                  <li><a routerLink="/">Início</a></li>
+                  <li><a routerLink="/componentes">Facturas</a></li>
+                  <li><span aria-current="page">Nova factura</span></li>
+                </ol>
+              </nav>
+              <div class="row-between"><h3>Nova factura</h3><button mxButton type="button" size="sm">Emitir</button></div>
+            </div>
+          </doc-example>
+          <doc-example title="Só voltar, em telemóvel" note="Em ecrãs estreitos mostra só o nível acima.">
+            <nav mxBreadcrumb aria-label="Voltar">
+              <ol>
+                <li><a routerLink="/componentes" class="crumb-back"><doc-icon name="chevronRight" [size]="14" class="flip" /> Facturas</a></li>
+              </ol>
+            </nav>
+          </doc-example>
+        </div>
       </section>
 
       <section>

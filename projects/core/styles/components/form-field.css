@@ -87,3 +87,64 @@ textarea.mx-input {
 .mx-input[readonly] {
   background: var(--mx-subtle);
 }
+
+/* ---------- Input group ---------- */
+.mx-input-group {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+.mx-input-group > .mx-input {
+  flex: 1;
+  min-width: 0;
+  border-radius: 0;
+}
+.mx-input-group > :first-child {
+  border-top-left-radius: var(--mx-radius);
+  border-bottom-left-radius: var(--mx-radius);
+}
+.mx-input-group > :last-child {
+  border-top-right-radius: var(--mx-radius);
+  border-bottom-right-radius: var(--mx-radius);
+}
+.mx-input-group > .mx-input + *,
+.mx-input-group > * + .mx-input {
+  margin-left: -1px;
+}
+.mx-input-group > .mx-input:is(:focus-visible, [data-mx-state='focus']) {
+  position: relative;
+  z-index: 1;
+}
+.mx-input-addon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  min-width: var(--mx-control-height);
+  padding: 0 10px;
+  border: 1px solid var(--mx-control-border);
+  background: var(--mx-subtle);
+  color: var(--mx-muted);
+  font-family: var(--mx-font-sans);
+  font-size: var(--mx-text-sm);
+  white-space: nowrap;
+}
+.mx-input-addon svg {
+  width: 16px;
+  height: 16px;
+}
+button.mx-input-addon {
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--mx-text-sm);
+}
+button.mx-input-addon:is(:hover, [data-mx-state='hover']) {
+  color: var(--mx-ink);
+  background: var(--mx-stone);
+}
+.mx-input-group > .mx-button {
+  height: auto;
+  border-radius: 0;
+}

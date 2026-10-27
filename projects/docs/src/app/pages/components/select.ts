@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MxButton } from '@muxima-ui/core/button';
 import { MxError, MxFormField, MxHint, MxLabel } from '@muxima-ui/core/form-field';
@@ -115,6 +115,53 @@ interface Plano {
               <mx-select placeholder="Indisponível neste plano" disabled />
             </mx-form-field>
           </doc-example>
+          <doc-example title="Tamanhos" note="32, 36 e 40 px, como o Input.">
+            <div class="stack w-full">
+              <mx-select size="sm" aria-label="Pequeno" [value]="'aoa'"><mx-option value="aoa">Kwanza (AOA)</mx-option></mx-select>
+              <mx-select aria-label="Médio" [value]="'aoa'"><mx-option value="aoa">Kwanza (AOA)</mx-option></mx-select>
+              <mx-select size="lg" aria-label="Grande" [value]="'aoa'"><mx-option value="aoa">Kwanza (AOA)</mx-option></mx-select>
+            </div>
+          </doc-example>
+          <doc-example title="Filtros numa barra" [note]="'A mostrar: ' + resumo()">
+            <div class="filter-bar w-full">
+              <mx-select size="sm" aria-label="Estado" [(value)]="fEstado">
+                <mx-option value="todos">Todos os estados</mx-option>
+                <mx-option value="paga">Pagas</mx-option>
+                <mx-option value="pendente">Pendentes</mx-option>
+              </mx-select>
+              <mx-select size="sm" aria-label="Período" [(value)]="fPeriodo">
+                <mx-option value="mes">Este mês</mx-option>
+                <mx-option value="trimestre">Este trimestre</mx-option>
+                <mx-option value="ano">Este ano</mx-option>
+              </mx-select>
+            </div>
+          </doc-example>
+          <doc-example title="Lista vazia" note="Sem opções, o painel mostra emptyText.">
+            <mx-form-field class="w-full">
+              <label mxLabel>Armazém</label>
+              <mx-select placeholder="Escolhe um armazém" emptyText="Ainda não criaste armazéns." />
+            </mx-form-field>
+          </doc-example>
+          <doc-example title="Opções dependentes" note="A segunda lista muda conforme a primeira.">
+            <div class="stack w-full">
+              <mx-form-field>
+                <label mxLabel>Província</label>
+                <mx-select [value]="prov()" (valueChange)="setProv($any($event))">
+                  @for (p of provDep; track p) {
+                    <mx-option [value]="p">{{ p }}</mx-option>
+                  }
+                </mx-select>
+              </mx-form-field>
+              <mx-form-field>
+                <label mxLabel>Município</label>
+                <mx-select placeholder="Escolhe o município" [(value)]="mun">
+                  @for (m of municipios(); track m) {
+                    <mx-option [value]="m">{{ m }}</mx-option>
+                  }
+                </mx-select>
+              </mx-form-field>
+            </div>
+          </doc-example>
         </div>
       </section>
 
@@ -151,6 +198,23 @@ interface Plano {
   `,
 })
 export class SelectPage {
+  protected readonly fEstado = signal<unknown>('todos');
+  protected readonly fPeriodo = signal<unknown>('mes');
+  protected readonly resumo = computed(() => `${this.fEstado()}, ${this.fPeriodo()}`);
+  protected readonly provDep = ['Luanda', 'Benguela', 'Huíla'];
+  private readonly MUNICIPIOS: Record<string, string[]> = {
+    Luanda: ['Belas', 'Cacuaco', 'Cazenga', 'Talatona', 'Viana'],
+    Benguela: ['Benguela', 'Lobito', 'Catumbela'],
+    Huíla: ['Lubango', 'Matala', 'Chibia'],
+  };
+  protected readonly prov = signal('Luanda');
+  protected readonly mun = signal<unknown>(null);
+  protected readonly municipios = computed(() => this.MUNICIPIOS[this.prov()] ?? []);
+  protected setProv(p: string): void {
+    this.prov.set(p);
+    this.mun.set(null);
+  }
+
   protected readonly provincias = ['Bengo', 'Benguela', 'Bié', 'Cabinda', 'Cuanza Norte', 'Cuanza Sul', 'Huambo', 'Huíla', 'Luanda', 'Malanje', 'Namibe', 'Uíge', 'Zaire'];
   protected provincia: string | null = 'Luanda';
   protected moeda = 'AOA';

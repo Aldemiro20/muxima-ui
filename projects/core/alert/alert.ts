@@ -32,4 +32,13 @@ export class MxAlert {
 @Directive({ selector: '[mxAlertTitle]', host: { class: 'mx-alert-title' } })
 export class MxAlertTitle {}
 
-export const MX_ALERT = [MxAlert, MxAlertTitle] as const;
+/** Botão de fechar do alerta. Esconder o alerta fica a cargo da aplicação (ex.: com @if). */
+@Directive({
+  selector: 'button[mxAlertClose]',
+  host: { class: 'mx-alert-close', type: 'button', '[attr.aria-label]': 'label()' },
+})
+export class MxAlertClose {
+  readonly label = input('Fechar aviso', { alias: 'aria-label' });
+}
+
+export const MX_ALERT = [MxAlert, MxAlertTitle, MxAlertClose] as const;

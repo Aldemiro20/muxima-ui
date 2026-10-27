@@ -56,3 +56,13 @@
   border-color: color-mix(in oklab, var(--_tone) 30%, var(--mx-surface));
   color: var(--_tone);
 }
+.mx-badge[data-dot]::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.mx-badge[data-dot]:is([data-variant='secondary'], [data-variant='outline'], :not([data-variant]))::before {
+  background: var(--mx-muted);
+}

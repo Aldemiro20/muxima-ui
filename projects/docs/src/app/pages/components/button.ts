@@ -1,3 +1,4 @@
+import { MxBadge } from '@muxima-ui/core/badge';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -8,7 +9,7 @@ import { Icon } from '../../ui/icon';
 
 @Component({
   selector: 'doc-button-page',
-  imports: [DOC_UI, MxButton, MxInput, FormsModule, RouterLink, Icon],
+  imports: [DOC_UI, MxButton, MxInput, FormsModule, RouterLink, Icon, MxBadge],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
@@ -102,6 +103,30 @@ import { Icon } from '../../ui/icon';
             <a mxButton variant="outline" routerLink="/componentes">Ver catálogo</a>
             <a mxButton variant="link" routerLink="/precos">Ver preços</a>
           </doc-example>
+          <doc-example title="Grupo de botões" note="Acções relacionadas lado a lado, num role=group com nome.">
+            <div class="button-group" role="group" aria-label="Formatação">
+              <button mxButton type="button" variant="outline" size="sm" [attr.aria-pressed]="align() === 'left'" (click)="align.set('left')">Esquerda</button>
+              <button mxButton type="button" variant="outline" size="sm" [attr.aria-pressed]="align() === 'center'" (click)="align.set('center')">Centro</button>
+              <button mxButton type="button" variant="outline" size="sm" [attr.aria-pressed]="align() === 'right'" (click)="align.set('right')">Direita</button>
+            </div>
+          </doc-example>
+          <doc-example title="Largura total" note="Em formulários estreitos e em telemóvel.">
+            <div class="stack w-full">
+              <button mxButton type="button" size="lg" class="w-full">Continuar para o pagamento</button>
+              <button mxButton type="button" variant="ghost" class="w-full">Voltar</button>
+            </div>
+          </doc-example>
+          <doc-example title="Com contador" note="O número faz parte do nome acessível.">
+            <button mxButton type="button" variant="outline">Pendentes <span mxBadge size="sm" variant="warning">9</span></button>
+            <button mxButton type="button" variant="ghost">Mensagens <span mxBadge size="sm">3</span></button>
+          </doc-example>
+          <doc-example title="Ordem num rodapé" note="Secundária à esquerda, principal à direita; a destrutiva nunca é a principal por omissão.">
+            <div class="row-end w-full">
+              <button mxButton type="button" variant="ghost">Cancelar</button>
+              <button mxButton type="button" variant="outline">Guardar rascunho</button>
+              <button mxButton type="button">Publicar</button>
+            </div>
+          </doc-example>
         </div>
       </section>
 
@@ -136,6 +161,8 @@ import { Icon } from '../../ui/icon';
   `,
 })
 export class ButtonPage {
+  protected readonly align = signal<'left' | 'center' | 'right'>('left');
+
   protected readonly saving = signal(false);
   protected readonly sent = signal(false);
   protected name = '';

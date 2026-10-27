@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MxButton } from '@muxima-ui/core/button';
 import { MxCombobox } from '@muxima-ui/core/combobox';
-import { MxError, MxFormField, MxHint, MxLabel } from '@muxima-ui/core/form-field';
+import { MxError, MxFormField, MxHint, MxLabel, mxNormalize } from '@muxima-ui/core/form-field';
 import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
 interface Cliente {
@@ -76,6 +76,34 @@ const PROVINCIAS = ['Bengo', 'Benguela', 'Bié', 'Cabinda', 'Cuando', 'Cuanza No
               <div><button mxButton type="button" size="sm" (click)="cliente.markAsTouched()">Validar</button></div>
             </div>
           </doc-example>
+          <doc-example title="Pesquisa no servidor" note="(search) emite o texto; mostra A pesquisar... enquanto espera.">
+            <mx-form-field class="w-full">
+              <label mxLabel>Produto</label>
+              <mx-combobox [options]="remote()" placeholder="Escreve pelo menos 2 letras" [emptyText]="searching() ? 'A pesquisar...' : 'Sem resultados'" (search)="query($event)" [(ngModel)]="produto" />
+              <mx-hint>{{ produto ? 'Escolhido: ' + produto : 'Os resultados chegam 400 ms depois.' }}</mx-hint>
+            </mx-form-field>
+          </doc-example>
+          <doc-example title="Tamanhos">
+            <div class="stack w-full">
+              <mx-combobox size="sm" [options]="provincias" aria-label="Pequeno" />
+              <mx-combobox [options]="provincias" aria-label="Médio" />
+              <mx-combobox size="lg" [options]="provincias" aria-label="Grande" />
+            </div>
+          </doc-example>
+          <doc-example title="Desactivado e obrigatório">
+            <div class="stack w-full">
+              <mx-form-field>
+                <label mxLabel>Província de origem</label>
+                <mx-combobox [options]="provincias" [value]="'Luanda'" disabled />
+              </mx-form-field>
+              <mx-form-field>
+                <label mxLabel>Província de destino</label>
+                <mx-combobox [options]="provincias" required [formControl]="destino" />
+                <mx-error>Escolhe a província de destino.</mx-error>
+              </mx-form-field>
+              <div><button mxButton type="button" size="sm" (click)="destino.markAsTouched()">Validar</button></div>
+            </div>
+          </doc-example>
         </div>
         <doc-callout>Para listas curtas (até 10 opções) usa o Select. O Combobox compensa quando há muito por onde escolher.</doc-callout>
       </section>
@@ -112,6 +140,26 @@ const PROVINCIAS = ['Bengo', 'Benguela', 'Bié', 'Cabinda', 'Cuando', 'Cuanza No
   `,
 })
 export class ComboboxPage {
+  private readonly PRODUTOS = ['Arroz 25 kg', 'Açúcar 1 kg', 'Óleo vegetal 5 L', 'Farinha de milho 25 kg', 'Feijão 1 kg', 'Fuba de bombó', 'Massa esparguete', 'Leite em pó'];
+  protected readonly remote = signal<string[]>([]);
+  protected readonly searching = signal(false);
+  protected produto: string | null = null;
+  protected readonly destino = new FormControl<string | null>(null, Validators.required);
+  private timer?: ReturnType<typeof setTimeout>;
+  protected query(text: string): void {
+    clearTimeout(this.timer);
+    if (text.trim().length < 2) {
+      this.remote.set([]);
+      return;
+    }
+    this.searching.set(true);
+    this.timer = setTimeout(() => {
+      const q = mxNormalize(text);
+      this.remote.set(this.PRODUTOS.filter((p) => mxNormalize(p).includes(q)));
+      this.searching.set(false);
+    }, 400);
+  }
+
   protected readonly provincias = PROVINCIAS;
   protected provincia: string | null = null;
   protected readonly clientes: Cliente[] = [

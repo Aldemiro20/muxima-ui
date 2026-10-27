@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MxButton } from '@muxima-ui/core/button';
 import { MxError, MxFormField, MxHint, MxLabel } from '@muxima-ui/core/form-field';
@@ -72,6 +72,28 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               <mx-otp [length]="5" size="lg" [numeric]="false" aria-label="Código de convite" />
             </div>
           </doc-example>
+          <doc-example title="PIN de 4 algarismos">
+            <mx-form-field>
+              <label mxLabel>PIN do cartão</label>
+              <mx-otp [length]="4" />
+              <mx-hint>Nunca partilhes o PIN.</mx-hint>
+            </mx-form-field>
+          </doc-example>
+          <doc-example title="Reenviar código" note="O botão fica desactivado durante a contagem, que é anunciada a cada 10 s.">
+            <div class="stack">
+              <mx-form-field>
+                <label mxLabel>Código enviado por SMS</label>
+                <mx-otp [length]="6" />
+              </mx-form-field>
+              <div class="row-inline">
+                <button mxButton type="button" variant="link" size="sm" [disabled]="seconds() > 0" (click)="resend()">Reenviar código</button>
+                @if (seconds() > 0) {
+                  <span class="small-label">daqui a {{ seconds() }} s</span>
+                }
+              </div>
+              <span class="mx-visually-hidden" aria-live="polite">{{ seconds() % 10 === 0 && seconds() > 0 ? 'Podes reenviar daqui a ' + seconds() + ' segundos' : '' }}</span>
+            </div>
+          </doc-example>
         </div>
       </section>
 
@@ -101,6 +123,13 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   `,
 })
 export class OtpPage {
+  protected readonly seconds = signal(30);
+  private readonly tick = setInterval(() => this.seconds.update((s) => Math.max(0, s - 1)), 1000);
+  private readonly stop = inject(DestroyRef).onDestroy(() => clearInterval(this.tick));
+  protected resend(): void {
+    this.seconds.set(30);
+  }
+
   protected readonly codigo = new FormControl('');
   protected readonly validado = new FormControl('', [Validators.required, Validators.minLength(6)]);
   protected readonly estado = signal('6 algarismos. Podes colar o código.');

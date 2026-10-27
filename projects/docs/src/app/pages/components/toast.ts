@@ -60,6 +60,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
             </div>
           }
         </div>
+        <doc-code-toggle [code]="galleryCode" label="Estados" />
       </section>
 
       <section>
@@ -151,6 +152,26 @@ export class ToastPage {
     { name: 'Default', variant: null, title: 'Alterações guardadas', description: 'Há 2 segundos.', note: 'Neutro, sem ícone.', loading: false },
     { name: 'A carregar', variant: null, title: 'A enviar 30 facturas', description: 'Não feches a página.', note: 'loading: true; não desaparece.', loading: true },
   ];
+
+  protected readonly galleryCode = {
+    html: `<!-- O Toast não se escreve no template: abre-se pelo serviço MxToast. -->`,
+    ts: `import { Component, inject } from '@angular/core';
+import { MxToast } from '@muxima-ui/core/toast';
+
+@Component({ selector: 'app-exemplo', template: '' })
+export class Exemplo {
+  private readonly toast = inject(MxToast);
+
+  mostrarTodos(): void {
+    this.toast.error('Falha no envio', { description: 'O servidor não respondeu.' });
+    this.toast.warning('Faltam 3 dias', { description: 'FT 2026/0139 vence a 30/10.' });
+    this.toast.success('Factura enviada', { description: 'Para Kianda Logística.' });
+    this.toast.info('Nova versão', { description: 'Actualiza para ver as novidades.' });
+    this.toast.show('Alterações guardadas', { description: 'Há 2 segundos.' });
+    this.toast.show('A enviar 30 facturas', { description: 'Não feches a página.', loading: true });
+  }
+}`,
+  };
 
   protected setPosition(p: MxToastPosition): void {
     this.position.set(p);

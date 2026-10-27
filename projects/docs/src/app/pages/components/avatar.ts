@@ -1,10 +1,11 @@
+import { MxBadge } from '@muxima-ui/core/badge';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MxAvatar } from '@muxima-ui/core/avatar';
 import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
 @Component({
   selector: 'doc-avatar-page',
-  imports: [DOC_UI, MxAvatar],
+  imports: [DOC_UI, MxAvatar, MxBadge],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
@@ -57,6 +58,23 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               <span class="avatar-more" role="img" aria-label="Mais 4 pessoas">+4</span>
             </div>
           </doc-example>
+          <doc-example title="Com estado" note="status junta o estado ao nome lido: Ana Kiala, disponível.">
+            <mx-avatar name="Ana Kiala" src="exemplos/pessoa-1.svg" status="online" size="lg" />
+            <mx-avatar name="Joana Mbala" src="exemplos/pessoa-2.svg" status="away" size="lg" />
+            <mx-avatar name="Pedro Neto" status="busy" size="lg" />
+            <mx-avatar name="Rita Sousa" status="offline" size="lg" />
+          </doc-example>
+          <doc-example title="Lista de membros">
+            <ul class="member-list w-full">
+              @for (m of membros; track m.nome) {
+                <li>
+                  <mx-avatar [name]="m.nome" [src]="m.foto" [status]="m.status" decorative />
+                  <div><strong>{{ m.nome }}</strong><span class="muted">{{ m.funcao }}</span></div>
+                  <span mxBadge dot [variant]="m.status === 'online' ? 'success' : 'outline'">{{ m.status === 'online' ? 'Disponível' : 'Desligado' }}</span>
+                </li>
+              }
+            </ul>
+          </doc-example>
         </div>
       </section>
 
@@ -86,6 +104,12 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   `,
 })
 export class AvatarPage {
+  protected readonly membros = [
+    { nome: 'Ana Kiala', funcao: 'Administradora', foto: 'exemplos/pessoa-1.svg', status: 'online' as const },
+    { nome: 'Joana Mbala', funcao: 'Directora financeira', foto: 'exemplos/pessoa-2.svg', status: 'online' as const },
+    { nome: 'Pedro Neto', funcao: 'Contabilista', foto: null, status: 'offline' as const },
+  ];
+
   protected readonly previewCode = `<mx-avatar name="Ana Kiala" src="/fotos/ana.jpg" />
 <mx-avatar name="Banco Mutamba" />`;
 

@@ -1,4 +1,4 @@
-import { Directive, input } from '@angular/core';
+import { Directive, booleanAttribute, input } from '@angular/core';
 
 export type MxBadgeVariant = 'default' | 'secondary' | 'outline' | 'success' | 'warning' | 'danger';
 
@@ -18,10 +18,13 @@ export type MxBadgeVariant = 'default' | 'secondary' | 'outline' | 'success' | '
     class: 'mx-badge',
     '[attr.data-variant]': 'variant()',
     '[attr.data-size]': 'size() === "md" ? null : size()',
+    '[attr.data-dot]': 'dot() ? "" : null',
   },
 })
 export class MxBadge {
   readonly variant = input<MxBadgeVariant>('default');
   /** sm 18 px, md 20 px, lg 24 px. */
   readonly size = input<'sm' | 'md' | 'lg'>('md');
+  /** Ponto de cor antes do texto, para listas com muitos estados. */
+  readonly dot = input(false, { transform: booleanAttribute });
 }

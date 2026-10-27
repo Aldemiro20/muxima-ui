@@ -76,6 +76,41 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               <div><button mxButton type="button" size="sm" (click)="permissoes.markAsTouched()">Validar</button></div>
             </div>
           </doc-example>
+          <doc-example title="Pré-seleccionado, com ngModel" [note]="'Valor: ' + idiomas.join(', ')">
+            <mx-form-field class="w-full">
+              <label mxLabel>Idiomas da factura</label>
+              <mx-select multiple [(ngModel)]="idiomas">
+                <mx-option value="pt">Português</mx-option>
+                <mx-option value="en">Inglês</mx-option>
+                <mx-option value="fr">Francês</mx-option>
+                <mx-option value="umb">Umbundu</mx-option>
+                <mx-option value="kmb">Kimbundu</mx-option>
+              </mx-select>
+            </mx-form-field>
+          </doc-example>
+          <doc-example title="Com botões de seleccionar todas" note="Acções ao lado, para listas onde se escolhe quase tudo.">
+            <div class="stack w-full">
+              <mx-form-field>
+                <label mxLabel>Armazéns</label>
+                <mx-select multiple [(ngModel)]="armazens">
+                  @for (a of todosArmazens; track a) {
+                    <mx-option [value]="a">{{ a }}</mx-option>
+                  }
+                </mx-select>
+              </mx-form-field>
+              <div class="row-inline">
+                <button mxButton type="button" variant="link" size="sm" (click)="armazens = [...todosArmazens]">Seleccionar todos</button>
+                <button mxButton type="button" variant="link" size="sm" (click)="armazens = []">Limpar</button>
+              </div>
+            </div>
+          </doc-example>
+          <doc-example title="Tamanhos e desactivado">
+            <div class="stack w-full">
+              <mx-select multiple size="sm" aria-label="Pequeno" [value]="['a']"><mx-option value="a">Luanda</mx-option><mx-option value="b">Huíla</mx-option></mx-select>
+              <mx-select multiple size="lg" aria-label="Grande" [value]="['a', 'b']"><mx-option value="a">Luanda</mx-option><mx-option value="b">Huíla</mx-option></mx-select>
+              <mx-select multiple disabled aria-label="Desactivado" [value]="['a']"><mx-option value="a">Luanda</mx-option></mx-select>
+            </div>
+          </doc-example>
         </div>
       </section>
 
@@ -110,6 +145,10 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   `,
 })
 export class MultiSelectPage {
+  protected idiomas: string[] = ['pt', 'en'];
+  protected readonly todosArmazens = ['Talatona', 'Viana', 'Lobito', 'Lubango', 'Namibe'];
+  protected armazens: string[] = ['Talatona'];
+
   protected readonly lista = ['Luanda', 'Benguela', 'Huambo', 'Huíla', 'Namibe', 'Cabinda'];
   protected provincias: string[] = ['Luanda'];
   protected readonly permissoes = new FormControl<string[]>([], Validators.required);

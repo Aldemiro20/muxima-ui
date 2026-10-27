@@ -1,12 +1,12 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MxFormField, MxHint, MxLabel } from '@muxima-ui/core/form-field';
+import { MxFieldset, MxFormField, MxHint, MxLabel } from '@muxima-ui/core/form-field';
 import { MxSlider } from '@muxima-ui/core/slider';
 import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
 @Component({
   selector: 'doc-slider-page',
-  imports: [DOC_UI, FormsModule, MxSlider, MxFormField, MxLabel, MxHint],
+  imports: [DOC_UI, FormsModule, MxSlider, MxFormField, MxLabel, MxHint, MxFieldset],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
@@ -70,6 +70,33 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               <input type="range" mxSlider size="lg" value="70" aria-label="Grande" />
             </div>
           </doc-example>
+          <doc-example title="Com marcas" note="Um datalist nativo desenha as marcas nos passos.">
+            <mx-form-field class="w-full">
+              <label mxLabel>Desconto</label>
+              <input type="range" mxSlider min="0" max="20" step="5" list="marcas-desconto" [(ngModel)]="desconto" [attr.aria-valuetext]="desconto + '%'" />
+              <datalist id="marcas-desconto"><option value="0"></option><option value="5"></option><option value="10"></option><option value="15"></option><option value="20"></option></datalist>
+              <div class="tick-labels" aria-hidden="true"><span>0%</span><span>5%</span><span>10%</span><span>15%</span><span>20%</span></div>
+            </mx-form-field>
+          </doc-example>
+          <doc-example title="Intervalo com dois cursores" note="Dois sliders com nomes próprios; o mínimo nunca passa o máximo.">
+            <fieldset mxFieldset class="w-full">
+              <legend>Preço (mil Kz): {{ min() }} a {{ max() }}</legend>
+              <mx-form-field>
+                <label mxLabel>Mínimo</label>
+                <input type="range" mxSlider min="0" max="1000" step="50" [value]="min()" (input)="setMin($event)" />
+              </mx-form-field>
+              <mx-form-field>
+                <label mxLabel>Máximo</label>
+                <input type="range" mxSlider min="0" max="1000" step="50" [value]="max()" (input)="setMax($event)" />
+              </mx-form-field>
+            </fieldset>
+          </doc-example>
+          <doc-example title="Desactivado">
+            <mx-form-field class="w-full">
+              <label mxLabel>Volume de envios (plano Pro)</label>
+              <input type="range" mxSlider value="40" disabled />
+            </mx-form-field>
+          </doc-example>
         </div>
       </section>
 
@@ -103,6 +130,22 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   `,
 })
 export class SliderPage {
+  protected desconto = 10;
+  protected readonly min = signal(100);
+  protected readonly max = signal(600);
+  protected setMin(event: Event): void {
+    const el = event.target as HTMLInputElement;
+    const v = Math.min(el.valueAsNumber, this.max());
+    el.value = String(v);
+    this.min.set(v);
+  }
+  protected setMax(event: Event): void {
+    const el = event.target as HTMLInputElement;
+    const v = Math.max(el.valueAsNumber, this.min());
+    el.value = String(v);
+    this.max.set(v);
+  }
+
   protected orcamento = 120;
   protected prazo = 30;
 

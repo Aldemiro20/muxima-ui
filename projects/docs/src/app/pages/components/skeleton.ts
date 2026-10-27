@@ -68,6 +68,32 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               </article>
             </div>
           </doc-example>
+          <doc-example title="Lista" note="Linhas com avatar e texto, com a forma da lista real.">
+            <ul class="member-list w-full" aria-busy="true" aria-label="A carregar membros">
+              @for (i of [1, 2, 3]; track i) {
+                <li>
+                  <div mxSkeleton shape="circle" class="sq-32"></div>
+                  <div class="stack-sm grow"><div mxSkeleton shape="text" class="w-60"></div><div mxSkeleton shape="text" class="w-40"></div></div>
+                </li>
+              }
+            </ul>
+          </doc-example>
+          <doc-example title="Artigo">
+            <div class="stack-sm w-full" aria-busy="true">
+              <div mxSkeleton class="w-full h-120"></div>
+              <div mxSkeleton shape="text" class="w-70 h-20"></div>
+              <div mxSkeleton shape="text" class="w-full"></div>
+              <div mxSkeleton shape="text" class="w-full"></div>
+              <div mxSkeleton shape="text" class="w-60"></div>
+            </div>
+          </doc-example>
+          <doc-example title="Indicadores">
+            <div class="grid-3 w-full" aria-busy="true">
+              @for (i of [1, 2, 3]; track i) {
+                <div class="mx-card"><div class="mx-card-content stack-sm"><div mxSkeleton shape="text" class="w-60"></div><div mxSkeleton class="w-40 h-28"></div></div></div>
+              }
+            </div>
+          </doc-example>
         </div>
       </section>
 

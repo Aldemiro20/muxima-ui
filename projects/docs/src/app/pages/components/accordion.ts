@@ -1,10 +1,14 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MxSwitch } from '@muxima-ui/core/switch';
+import { MxChoice } from '@muxima-ui/core/form-field';
+import { MxButton } from '@muxima-ui/core/button';
+import { MxBadge } from '@muxima-ui/core/badge';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { MX_ACCORDION } from '@muxima-ui/core/accordion';
 import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
 @Component({
   selector: 'doc-accordion-page',
-  imports: [DOC_UI, MX_ACCORDION],
+  imports: [DOC_UI, MX_ACCORDION, MxBadge, MxButton, MxChoice, MxSwitch],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
@@ -54,6 +58,51 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               <details mxAccordionItem><summary mxAccordionTrigger>Utilizadores</summary><div mxAccordionContent>Convites e permissões.</div></details>
             </div>
           </doc-example>
+          <doc-example title="Definições num cartão">
+            <section class="mx-card w-full" aria-labelledby="acc-def">
+              <header class="mx-card-header"><h3 class="mx-card-title" id="acc-def">Definições da conta</h3></header>
+              <div class="mx-card-content">
+                <div mxAccordion multiple>
+                  <details mxAccordionItem>
+                    <summary mxAccordionTrigger>Notificações</summary>
+                    <div mxAccordionContent class="stack-sm">
+                      <label mxChoice><input type="checkbox" mxSwitch checked /> Resumo diário</label>
+                      <label mxChoice><input type="checkbox" mxSwitch /> Alertas por SMS</label>
+                    </div>
+                  </details>
+                  <details mxAccordionItem>
+                    <summary mxAccordionTrigger>Facturação</summary>
+                    <div mxAccordionContent>Série FT 2026, moeda AOA, prazo de 30 dias.</div>
+                  </details>
+                </div>
+              </div>
+            </section>
+          </doc-example>
+          <doc-example title="Com contagem no título">
+            <div mxAccordion class="w-full">
+              @for (g of grupos; track g.nome) {
+                <details mxAccordionItem>
+                  <summary mxAccordionTrigger>{{ g.nome }} <span mxBadge size="sm" variant="secondary">{{ g.itens.length }}</span></summary>
+                  <ul mxAccordionContent class="acc-list">
+                    @for (i of g.itens; track i) {
+                      <li>{{ i }}</li>
+                    }
+                  </ul>
+                </details>
+              }
+            </div>
+          </doc-example>
+          <doc-example title="Aberto e controlado" [note]="aberto() ? 'A secção está aberta.' : 'A secção está fechada.'">
+            <div class="stack w-full">
+              <div><button mxButton type="button" variant="outline" size="sm" (click)="aberto.set(!aberto())">{{ aberto() ? 'Fechar' : 'Abrir' }} pela aplicação</button></div>
+              <div mxAccordion>
+                <details mxAccordionItem [open]="aberto()" (toggle)="aberto.set($any($event.target).open)">
+                  <summary mxAccordionTrigger>Detalhes do envio</summary>
+                  <div mxAccordionContent>Transportadora Kianda, entrega prevista a 30 de Outubro.</div>
+                </details>
+              </div>
+            </div>
+          </doc-example>
         </div>
       </section>
 
@@ -82,6 +131,13 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   `,
 })
 export class AccordionPage {
+  protected readonly aberto = signal(false);
+  protected readonly grupos = [
+    { nome: 'Pendentes', itens: ['FT 2026/0143', 'FT 2026/0146'] },
+    { nome: 'Em atraso', itens: ['FT 2026/0144'] },
+    { nome: 'Pagas', itens: ['FT 2026/0142', 'FT 2026/0145', 'FT 2026/0141'] },
+  ];
+
   protected readonly faq = [
     { q: 'Como pago a subscrição?', a: 'Por referência, transferência bancária ou Multicaixa Express. A factura chega por email.' },
     { q: 'Posso usar a Muxima UI em projectos comerciais?', a: 'Sim. O núcleo é MIT; os templates Pro têm licença própria.' },
