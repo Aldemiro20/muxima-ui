@@ -68,15 +68,21 @@ export class ChangelogPage {
     },
     {
       version: '1.2.0',
-      status: 'Planeado',
-      date: 'A seguir à 1.1',
+      status: 'Em curso',
+      date: 'Pronta a publicar',
       title: 'Navegação e conteúdo',
-      items: ['Sidebar', 'Timeline', 'Notification center', 'Carousel', 'Color picker'],
+      items: [
+        'Sidebar que recolhe para ícones, com grupos, secções e contagens',
+        'Timeline com variantes, passos pendentes, horizontal e alternada',
+        'Notification center e botão de sino com a contagem',
+        'Carousel acessível, com rotação automática que se pode parar',
+        'Color picker com painel, opacidade, amostras e verificação de contraste',
+      ],
     },
     {
       version: '1.1.0',
-      status: 'Em curso',
-      date: 'Pronta a publicar',
+      status: 'Publicada',
+      date: '27 de outubro de 2026',
       title: 'Formulários',
       items: [
         'Date range picker, com atalhos e calendário em intervalo',

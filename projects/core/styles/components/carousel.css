@@ -1,0 +1,113 @@
+/* ---------- Carousel ---------- */
+
+.mx-carousel {
+  --mx-carousel-per-view: 1;
+  --mx-carousel-gap: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  font-family: var(--mx-font-sans);
+}
+.mx-carousel-viewport {
+  position: relative;
+  /* com rato e teclado mudam os botões; em ecrãs tácteis desliza-se */
+  overflow-x: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  border-radius: var(--mx-radius-surface);
+}
+@media (hover: none) {
+  .mx-carousel-viewport {
+    overflow-x: auto;
+  }
+}
+.mx-carousel-viewport::-webkit-scrollbar {
+  display: none;
+}
+.mx-carousel-track {
+  display: flex;
+  gap: var(--mx-carousel-gap);
+}
+.mx-carousel-slide {
+  flex: 0 0 calc((100% - (var(--mx-carousel-per-view) - 1) * var(--mx-carousel-gap)) / var(--mx-carousel-per-view));
+  min-width: 0;
+  scroll-snap-align: start;
+}
+.mx-carousel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.mx-carousel-button,
+.mx-carousel-play {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--mx-control-border);
+  border-radius: 50%;
+  background: var(--mx-surface);
+  color: var(--mx-ink);
+  cursor: pointer;
+  transition: background var(--mx-duration) var(--mx-ease);
+}
+.mx-carousel-button svg,
+.mx-carousel-play svg {
+  width: 16px;
+  height: 16px;
+}
+.mx-carousel-button:hover:not(:disabled),
+.mx-carousel-play:hover {
+  background: var(--mx-subtle);
+}
+.mx-carousel-button:disabled {
+  border-color: var(--mx-stone);
+  color: var(--mx-stone-strong);
+  cursor: not-allowed;
+}
+.mx-carousel-play {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+  box-shadow: var(--mx-shadow-overlay);
+}
+.mx-carousel-dots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px;
+}
+.mx-carousel-dot {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+.mx-carousel-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--mx-stone-strong);
+  transform: translate(-50%, -50%);
+  transition: width var(--mx-duration) var(--mx-ease), background var(--mx-duration) var(--mx-ease);
+}
+.mx-carousel-dot[aria-current='true']::after {
+  width: 18px;
+  background: var(--mx-accent);
+}

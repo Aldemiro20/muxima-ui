@@ -1,0 +1,180 @@
+/* ---------- Timeline ---------- */
+
+.mx-timeline {
+  --_dot: 12px;
+  --_gap: 20px;
+  --_line: var(--mx-stone);
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  color: var(--mx-ink);
+  font-family: var(--mx-font-sans);
+  list-style: none;
+}
+.mx-timeline[data-size='sm'] {
+  --_dot: 10px;
+  --_gap: 14px;
+}
+.mx-timeline-item {
+  --_tone: var(--mx-stone-strong);
+  --_marker: var(--_dot);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-height: 24px;
+  padding: 0 0 var(--_gap) calc(var(--_marker) + 16px);
+}
+.mx-timeline-item[data-has-icon] {
+  --_marker: 28px;
+}
+.mx-timeline-item:last-child {
+  padding-bottom: 0;
+}
+/* marcador */
+.mx-timeline-item::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 0;
+  box-sizing: border-box;
+  width: var(--_marker);
+  height: var(--_marker);
+  border: 2px solid var(--_tone);
+  border-radius: 50%;
+  background: var(--mx-surface);
+}
+.mx-timeline-item[data-has-icon]::before {
+  top: 0;
+  border-width: 1px;
+  background: color-mix(in oklab, var(--_tone) 12%, var(--mx-surface));
+}
+.mx-timeline-item:not([data-has-icon]):not([data-pending])::before {
+  background: var(--_tone);
+}
+/* linha até ao item seguinte */
+.mx-timeline-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: calc(var(--_marker) + 8px);
+  bottom: 4px;
+  left: calc(var(--_marker) / 2 - 1px);
+  width: 2px;
+  border-radius: 1px;
+  background: var(--_line);
+}
+.mx-timeline-item[data-has-icon]:not(:last-child)::after {
+  top: calc(var(--_marker) + 4px);
+}
+.mx-timeline-item[data-variant='accent'] {
+  --_tone: var(--mx-accent);
+}
+.mx-timeline-item[data-variant='success'] {
+  --_tone: var(--mx-success);
+}
+.mx-timeline-item[data-variant='warning'] {
+  --_tone: var(--mx-warning);
+}
+.mx-timeline-item[data-variant='danger'] {
+  --_tone: var(--mx-danger);
+}
+.mx-timeline-item[data-pending]::before {
+  border-style: dashed;
+  border-color: var(--mx-stone-strong);
+}
+.mx-timeline-item[data-pending] .mx-timeline-title {
+  color: var(--mx-muted);
+}
+.mx-timeline-icon {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 16px;
+  height: 16px;
+  color: var(--_tone);
+}
+.mx-timeline-time {
+  order: -1;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-xs);
+  font-variant-numeric: tabular-nums;
+}
+.mx-timeline-title {
+  margin: 0;
+  font-size: var(--mx-text-md);
+  font-weight: 600;
+  line-height: 1.35;
+}
+.mx-timeline[data-size='sm'] .mx-timeline-title {
+  font-size: var(--mx-text-sm);
+}
+.mx-timeline-description {
+  margin: 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+  line-height: 1.45;
+}
+
+/* horizontal */
+.mx-timeline[data-orientation='horizontal'] {
+  flex-direction: row;
+  overflow-x: auto;
+  border-radius: var(--mx-radius);
+}
+.mx-timeline[data-orientation='horizontal']:focus-visible {
+  outline: var(--mx-focus-width) solid var(--mx-accent);
+  outline-offset: var(--mx-focus-offset);
+}
+.mx-timeline[data-orientation='horizontal'] .mx-timeline-item {
+  flex: 1 0 140px;
+  padding: calc(var(--_marker) + 14px) var(--_gap) 4px 0;
+}
+.mx-timeline[data-orientation='horizontal'] .mx-timeline-item::before {
+  top: 0;
+}
+.mx-timeline[data-orientation='horizontal'] .mx-timeline-item:not(:last-child)::after {
+  top: calc(var(--_marker) / 2 - 1px);
+  bottom: auto;
+  left: calc(var(--_marker) + 6px);
+  right: 6px;
+  width: auto;
+  height: 2px;
+}
+
+/* alternado (ecrãs largos) */
+@media (min-width: 720px) {
+  .mx-timeline[data-align='alternate']:not([data-orientation='horizontal']) .mx-timeline-item {
+    width: 50%;
+    box-sizing: border-box;
+    margin-left: 50%;
+    padding-left: calc(var(--_marker) / 2 + 16px);
+  }
+  .mx-timeline[data-align='alternate']:not([data-orientation='horizontal']) .mx-timeline-item::before {
+    left: calc(var(--_marker) / -2);
+  }
+  .mx-timeline[data-align='alternate']:not([data-orientation='horizontal']) .mx-timeline-item::after {
+    left: -1px;
+  }
+  .mx-timeline[data-align='alternate']:not([data-orientation='horizontal']) .mx-timeline-item .mx-timeline-icon {
+    left: calc(var(--_marker) / -2 + 6px);
+  }
+  .mx-timeline[data-align='alternate']:not([data-orientation='horizontal']) .mx-timeline-item:nth-child(even) {
+    margin-left: 0;
+    padding-left: 0;
+    padding-right: calc(var(--_marker) / 2 + 16px);
+    text-align: end;
+  }
+  .mx-timeline[data-align='alternate']:not([data-orientation='horizontal']) .mx-timeline-item:nth-child(even)::before {
+    left: auto;
+    right: calc(var(--_marker) / -2);
+  }
+  .mx-timeline[data-align='alternate']:not([data-orientation='horizontal']) .mx-timeline-item:nth-child(even)::after {
+    left: auto;
+    right: -1px;
+  }
+  .mx-timeline[data-align='alternate']:not([data-orientation='horizontal']) .mx-timeline-item:nth-child(even) .mx-timeline-icon {
+    left: auto;
+    right: calc(var(--_marker) / -2 + 6px);
+  }
+}

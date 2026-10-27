@@ -84,7 +84,7 @@ export const CATALOG: CatalogItem[] = [
   c('File upload', 'Arrastar ou escolher ficheiros, com validação.', 'upload', 'Formulários', 'file-upload'),
   c('Rating', 'Avaliação com estrelas.', 'star', 'Formulários', 'rating'),
   c('Copy to clipboard', 'Copiar um valor com um clique.', 'copy', 'Formulários', 'copy-to-clipboard'),
-  soon('Color picker', 'Cor com teclado, formatos e amostras.', 'palette', 'Formulários', '1.2'),
+  c('Color picker', 'Cor com teclado, formatos e amostras.', 'palette', 'Formulários', 'color-picker'),
   soon('Image cropper', 'Recortar e rodar imagens antes de enviar.', 'crop', 'Formulários', '1.3'),
   soon('Rich text editor', 'Texto com formatação, listas e ligações.', 'editor', 'Formulários', '1.3'),
   // Dados
@@ -93,8 +93,8 @@ export const CATALOG: CatalogItem[] = [
   c('Badge', 'Estados e categorias em texto curto.', 'tag', 'Dados', 'badge'),
   c('Avatar', 'Fotografia ou iniciais.', 'user', 'Dados', 'avatar'),
   c('Separator', 'Linhas de separação.', 'minus', 'Dados', 'separator'),
-  soon('Timeline', 'Acontecimentos por ordem.', 'timeline', 'Dados', '1.2'),
-  soon('Carousel', 'Conteúdo que passa em diapositivos.', 'carousel', 'Dados', '1.2'),
+  c('Timeline', 'Acontecimentos por ordem.', 'timeline', 'Dados', 'timeline'),
+  c('Carousel', 'Conteúdo que passa em diapositivos.', 'carousel', 'Dados', 'carousel'),
   soon('Data grid', 'Colunas redimensionáveis e fixas, filtros e scroll virtual.', 'table', 'Dados', '1.3'),
   soon('Kanban', 'Cartões em colunas, com arrastar e largar.', 'kanban', 'Dados', '1.3'),
   // Navegação
@@ -104,7 +104,7 @@ export const CATALOG: CatalogItem[] = [
   c('Accordion', 'Secções que abrem e fecham.', 'accordion', 'Navegação', 'accordion'),
   c('Stepper', 'Progresso num fluxo com passos.', 'steps', 'Navegação', 'stepper'),
   c('Command Palette', 'Pesquisa e navegação por teclado.', 'search', 'Navegação', 'command-palette'),
-  soon('Sidebar', 'Navegação lateral que recolhe.', 'sidebar', 'Navegação', '1.2'),
+  c('Sidebar', 'Navegação lateral que recolhe.', 'sidebar', 'Navegação', 'sidebar'),
   // Sobreposição
   c('Dialog', 'Confirmações e fluxos modais.', 'grid', 'Sobreposição', 'dialog'),
   c('Drawer', 'Diálogo que entra pelo lado.', 'drawer', 'Sobreposição', 'drawer'),
@@ -116,7 +116,7 @@ export const CATALOG: CatalogItem[] = [
   c('Progress', 'Barras e indicador de espera.', 'progress', 'Feedback', 'progress'),
   c('Skeleton', 'Lugar do conteúdo enquanto carrega.', 'skeleton', 'Feedback', 'skeleton'),
   c('Toast', 'Avisos temporários (toast).', 'bell', 'Feedback', 'toast'),
-  soon('Notification center', 'Lista de notificações lidas e por ler.', 'bell', 'Feedback', '1.2'),
+  c('Notification center', 'Lista de notificações lidas e por ler.', 'bell', 'Feedback', 'notification-center'),
 ];
 
 /** Barra lateral: Começar, os componentes documentados por categoria, e os blocos Pro. */

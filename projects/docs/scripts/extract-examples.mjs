@@ -205,6 +205,12 @@ function libraryImports(html, ts) {
   };
 }
 
+/** <doc-icon> só existe na documentação: no código mostrado passa a um svg, mantendo as directivas mx. */
+function docIconToSvg(attrs) {
+  const keep = [...attrs.matchAll(/(?:^|\s)(\[?mx[\w]*\]?(?:="[^"]*")?)/g)].map((m) => m[1]);
+  return `<svg${keep.map((a) => ' ' + a).join('')} aria-hidden="true">…</svg>`;
+}
+
 // ---------- classes e membros ----------
 
 function findClasses(src) {
@@ -339,7 +345,7 @@ for (const page of pages) {
         (_, n, note) => `<!-- ${n}${note ? ': ' + note.replace(/&quot;/g, '"') : ''} -->\n`,
       )
       .replace(/<\/doc-state\s*>/g, '\n')
-      .replace(/<doc-icon [^>]*\/>/g, '<svg aria-hidden="true">…</svg>')
+      .replace(/<doc-icon ([^>]*)\/>/g, (_, attrs) => docIconToSvg(attrs))
       .replace(/&#64;/g, '@')
       .replace(/ class="([^"]*)"/g, (all, cls) => {
         // retira classes só da documentação (layout dos exemplos)
@@ -384,7 +390,7 @@ for (const page of pages) {
       pre.push({
         kind,
         text:
-          lines.length > 14
+          lines.length > 14 && !/^function /.test(text)
             ? `${lines[0].replace(/\s*=.*$/, '')} = /* dados de exemplo */ [];`
             : text,
       });
@@ -399,7 +405,7 @@ for (const page of pages) {
           // componentes auxiliares: ícones da documentação passam a svg, sem o import Icon
           const text = cls
             .replace(/^export /, '')
-            .replace(/<doc-icon [^>]*\/>/g, '<svg aria-hidden="true">…</svg>')
+            .replace(/<doc-icon ([^>]*)\/>/g, (_, attrs) => docIconToSvg(attrs))
             .replace(/,\s*Icon\b(?=[,\]])/g, '');
           pre.push({ kind: 2, text });
           for (const x of identifiers(cls)) next.add(x);

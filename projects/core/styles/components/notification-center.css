@@ -1,0 +1,220 @@
+/* ---------- Notification center ---------- */
+
+.mx-notification-center {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  color: var(--mx-ink);
+  font-family: var(--mx-font-sans);
+}
+.mx-notification-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mx-notification-title {
+  margin: 0;
+  font-size: var(--mx-text-md);
+  font-weight: 600;
+}
+.mx-notification-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  box-sizing: border-box;
+  border-radius: 999px;
+  background: var(--mx-accent);
+  color: var(--mx-on-accent);
+  font-size: var(--mx-text-xs);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.mx-notification-link {
+  margin-left: auto;
+  padding: 2px 4px;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  color: var(--mx-accent);
+  font: inherit;
+  font-size: var(--mx-text-sm);
+  font-weight: 500;
+  cursor: pointer;
+}
+.mx-notification-link:hover:not(:disabled) {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.mx-notification-link:disabled {
+  color: var(--mx-muted);
+  cursor: default;
+}
+.mx-notification-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.mx-notification-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.mx-notification {
+  --_tone: var(--mx-accent);
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 2px 0;
+  border-top: var(--mx-border);
+}
+.mx-notification:first-child {
+  border-top: 0;
+}
+.mx-notification[data-variant='success'] {
+  --_tone: var(--mx-success);
+}
+.mx-notification[data-variant='warning'] {
+  --_tone: var(--mx-warning);
+}
+.mx-notification[data-variant='danger'] {
+  --_tone: var(--mx-danger);
+}
+.mx-notification-dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  margin: 16px 2px 0 4px;
+  border-radius: 50%;
+  background: transparent;
+}
+.mx-notification[data-unread] .mx-notification-dot {
+  background: var(--_tone);
+}
+.mx-notification-main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: 10px 8px;
+  border: 0;
+  border-radius: var(--mx-radius);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+.mx-notification-main:hover {
+  background: var(--mx-subtle);
+}
+.mx-notification-text {
+  font-size: var(--mx-text-sm);
+  line-height: 1.4;
+}
+.mx-notification[data-unread] .mx-notification-text {
+  font-weight: 600;
+}
+.mx-notification-desc {
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+  line-height: 1.4;
+}
+.mx-notification-time {
+  color: var(--mx-muted);
+  font-size: var(--mx-text-xs);
+}
+.mx-notification-actions {
+  display: flex;
+  gap: 2px;
+  padding-top: 8px;
+  opacity: 0.85;
+}
+.mx-notification-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--mx-radius);
+  background: transparent;
+  color: var(--mx-muted);
+  cursor: pointer;
+}
+.mx-notification-action svg {
+  width: 14px;
+  height: 14px;
+}
+.mx-notification-action:hover {
+  background: var(--mx-subtle);
+  color: var(--mx-ink);
+}
+.mx-notification-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 28px 12px;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+  text-align: center;
+}
+.mx-notification-empty svg {
+  width: 28px;
+  height: 28px;
+}
+.mx-notification-empty p {
+  margin: 0;
+}
+
+/* Sino */
+.mx-notification-bell {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--mx-radius);
+  background: transparent;
+  color: var(--mx-ink);
+  cursor: pointer;
+}
+.mx-notification-bell:hover {
+  background: var(--mx-subtle);
+}
+.mx-notification-bell svg {
+  width: 20px;
+  height: 20px;
+}
+.mx-notification-bell-count {
+  position: absolute;
+  top: 2px;
+  right: 1px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  box-sizing: border-box;
+  border: 2px solid var(--mx-surface);
+  border-radius: 999px;
+  background: var(--mx-danger);
+  color: var(--mx-on-danger);
+  font-family: var(--mx-font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+}

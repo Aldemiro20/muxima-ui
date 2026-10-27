@@ -2,7 +2,23 @@
 
 Todas as alterações relevantes do pacote `@muxima-ui/core`. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-PT/1.1.0/) e as versões seguem o [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
-## [1.1.0] - por publicar
+## [1.2.0] - por publicar
+
+Navegação e conteúdo.
+
+### Novos
+
+- **Sidebar** (`@muxima-ui/core/sidebar`): barra lateral que recolhe para ícones, com grupos, secções que abrem, contagens, cabeçalho e rodapé; os nomes ficam para o leitor de ecrã e aparecem numa dica.
+- **Timeline** (`@muxima-ui/core/timeline`): lista ordenada com marcadores, variantes por estado, passos pendentes, ícones, horizontal e alternada.
+- **Notification center** (`@muxima-ui/core/notification-center`): lista com por ler, filtros por categoria, marcar lida, marcar todas, remover e conteúdo próprio; botão `mxNotificationBell` com a contagem no nome; anuncia as que chegam.
+- **Carousel** (`@muxima-ui/core/carousel`): padrão WAI-ARIA Carousel com scroll e snap, vários por vista, indicadores, ciclo, rotação automática com pausa e respeito por reduzir movimento.
+- **Color picker** (`@muxima-ui/core/color-picker`): campo e painel com área de saturação e brilho, matiz, opacidade, hex e rgb(), amostras, conta-gotas e nomes das cores em português; funções `mxContrast` e conversões.
+
+### Alterado
+
+- Documentação: o código de todos os exemplos é compilado no CI (`npm run docs:check-examples`).
+
+## [1.1.0] - 2026-10-27
 
 Primeiro lote de componentes novos: formulários.
 

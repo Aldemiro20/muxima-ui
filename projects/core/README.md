@@ -38,6 +38,11 @@ Cada componente tem o seu ponto de entrada, para só importares o que usas:
 | `@muxima-ui/core/file-upload` | `MxFileUpload`, `mxFormatBytes` |
 | `@muxima-ui/core/rating` | `MxRating` |
 | `@muxima-ui/core/clipboard` | `MxCopy`, `MxCopyButton` |
+| `@muxima-ui/core/color-picker` | `MxColorPicker`, `MxColorPanel`, `mxParseColor`, `mxColorName`, `mxContrast` |
+| `@muxima-ui/core/sidebar` | `MX_SIDEBAR` |
+| `@muxima-ui/core/timeline` | `MX_TIMELINE` |
+| `@muxima-ui/core/carousel` | `MxCarousel`, `MxCarouselSlide` |
+| `@muxima-ui/core/notification-center` | `MxNotificationCenter`, `MxNotificationBell`, `mxRelativeTime` |
 | `@muxima-ui/core/table` | `MX_TABLE`, `mxSortData` |
 | `@muxima-ui/core/card` | `MX_CARD` |
 | `@muxima-ui/core/badge` | `MxBadge` |

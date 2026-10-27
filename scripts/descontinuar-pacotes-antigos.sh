@@ -22,12 +22,13 @@ declare -A NOVO=(
   # 1.1
   [date-range-picker]=date-picker [slider-range]=slider [chip]=chips [file-upload]=file-upload
   [star-rating]=rating [copy-to-clipboard]=clipboard
+  # 1.2
+  [sidebar]=sidebar [timeline]=timeline [notification-center]=notification-center
+  [carousel]=carousel [color-picker]=color-picker
 )
 
 # pacote antigo -> onde vai estar (ainda não publicado: não se descontinua já)
 declare -A PENDENTE=(
-  [sidebar]="sidebar (1.2)" [timeline]="timeline (1.2)" [notification-center]="notification-center (1.2)"
-  [carousel]="carousel (1.2)" [color-picker]="color-picker (1.2)"
   [kanban]="kanban (1.3)" [image-cropper]="image-cropper (1.3)" [quill-editor]="editor (1.3)"
   [hero]="bloco" [feature-card]="bloco" [pricing-card]="bloco" [product-card]="bloco" [navbar]="bloco"
   [shopping-cart]="bloco" [settings-item]="bloco" [comments]="bloco" [credit-card]="bloco"
