@@ -2270,3 +2270,10 @@ a.text-link:hover,
 .notif-list p.muted {
   font-size: 12px;
 }
+.mx-table-footer.footer-center {
+  justify-content: center;
+}
+.footer-plain {
+  width: 100%;
+  margin-top: 10px;
+}

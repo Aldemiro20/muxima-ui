@@ -115,6 +115,115 @@ const FACTURAS: Factura[] = [
       </section>
 
       <section>
+        <h2>Paginação</h2>
+        <p>A tabela não pagina sozinha: corta as linhas com <code>slice</code> e junta o componente Pagination no rodapé. Escolhe a variante pelo espaço e pelo tipo de navegação.</p>
+        <div class="stack-lg">
+          <doc-example title="Numerada, com intervalo" note="variant default + showRange. A escolha habitual em listas de gestão.">
+            <div class="mx-table-container w-full">
+              <table mxTable density="compact">
+                  <thead><tr><th scope="col">Factura</th><th scope="col">Cliente</th><th scope="col">Estado</th><th scope="col" data-align="end">Valor (Kz)</th></tr></thead>
+                  <tbody>
+                    @for (f of pageOf(p1(), 5); track f.numero) {
+                      <tr><td>{{ f.numero }}</td><td>{{ f.cliente }}</td><td><span mxBadge [variant]="badge(f.estado)">{{ f.estado }}</span></td><td data-align="end">{{ fmt(f.valor) }}</td></tr>
+                    }
+                  </tbody>
+                </table>
+              <div class="mx-table-footer">
+                <mx-pagination [(page)]="p1" [total]="lista.length" [pageSize]="5" showRange aria-label="Páginas, numerada" />
+              </div>
+            </div>
+          </doc-example>
+
+          <doc-example title="Linhas por página" note="pageSizeOptions deixa escolher quantas linhas ver; ao mudar, o primeiro item visível mantém-se.">
+            <div class="mx-table-container w-full">
+              <table mxTable density="compact">
+                  <thead><tr><th scope="col">Factura</th><th scope="col">Cliente</th><th scope="col">Estado</th><th scope="col" data-align="end">Valor (Kz)</th></tr></thead>
+                  <tbody>
+                    @for (f of pageOf(p2(), size2()); track f.numero) {
+                      <tr><td>{{ f.numero }}</td><td>{{ f.cliente }}</td><td><span mxBadge [variant]="badge(f.estado)">{{ f.estado }}</span></td><td data-align="end">{{ fmt(f.valor) }}</td></tr>
+                    }
+                  </tbody>
+                </table>
+              <div class="mx-table-footer">
+                <mx-pagination [(page)]="p2" [(pageSize)]="size2" [pageSizeOptions]="[5, 10, 20]" showRange [total]="lista.length" aria-label="Páginas, com linhas por página" />
+              </div>
+            </div>
+          </doc-example>
+
+          <div class="grid-2">
+            <doc-example title="Simples" note="variant simple: Anterior, Página X de Y, Seguinte. Bom para telemóvel.">
+              <div class="mx-table-container w-full">
+                <table mxTable density="compact">
+                  <thead><tr><th scope="col">Factura</th><th scope="col">Cliente</th><th scope="col">Estado</th><th scope="col" data-align="end">Valor (Kz)</th></tr></thead>
+                  <tbody>
+                    @for (f of pageOf(p3(), 4); track f.numero) {
+                      <tr><td>{{ f.numero }}</td><td>{{ f.cliente }}</td><td><span mxBadge [variant]="badge(f.estado)">{{ f.estado }}</span></td><td data-align="end">{{ fmt(f.valor) }}</td></tr>
+                    }
+                  </tbody>
+                </table>
+                <div class="mx-table-footer footer-center">
+                  <mx-pagination variant="simple" [(page)]="p3" [total]="lista.length" [pageSize]="4" aria-label="Páginas, simples" />
+                </div>
+              </div>
+            </doc-example>
+
+            <doc-example title="Compacta, na barra" note="variant compact: só ícones, ao lado da pesquisa ou do título.">
+              <div class="mx-table-container w-full">
+                <div class="mx-table-toolbar">
+                  <strong>Facturas</strong>
+                  <span class="grow"></span>
+                  <mx-pagination variant="compact" [(page)]="p4" [total]="lista.length" [pageSize]="4" aria-label="Páginas, compacta" />
+                </div>
+                <table mxTable density="compact">
+                  <thead><tr><th scope="col">Factura</th><th scope="col">Cliente</th><th scope="col">Estado</th><th scope="col" data-align="end">Valor (Kz)</th></tr></thead>
+                  <tbody>
+                    @for (f of pageOf(p4(), 4); track f.numero) {
+                      <tr><td>{{ f.numero }}</td><td>{{ f.cliente }}</td><td><span mxBadge [variant]="badge(f.estado)">{{ f.estado }}</span></td><td data-align="end">{{ fmt(f.valor) }}</td></tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            </doc-example>
+
+            <doc-example title="Mostrar mais" note="Sem páginas: acrescenta linhas ao fim. O foco fica no botão e a contagem é anunciada.">
+              <div class="mx-table-container w-full">
+                <table mxTable density="compact">
+                  <thead><tr><th scope="col">Factura</th><th scope="col">Cliente</th><th scope="col">Estado</th><th scope="col" data-align="end">Valor (Kz)</th></tr></thead>
+                  <tbody>
+                    @for (f of lista.slice(0, shown()); track f.numero) {
+                      <tr><td>{{ f.numero }}</td><td>{{ f.cliente }}</td><td><span mxBadge [variant]="badge(f.estado)">{{ f.estado }}</span></td><td data-align="end">{{ fmt(f.valor) }}</td></tr>
+                    }
+                  </tbody>
+                </table>
+                <div class="mx-table-footer">
+                  <span aria-live="polite">{{ shown() }} de {{ lista.length }} facturas</span>
+                  @if (shown() < lista.length) {
+                    <button mxButton type="button" size="sm" variant="outline" (click)="showMore()">Mostrar mais {{ nextBatch() }}</button>
+                  }
+                </div>
+              </div>
+            </doc-example>
+
+            <doc-example title="Cabeçalho fixo com paginação" note="stickyHeader + 10 linhas por página: o cabeçalho fica visível dentro da página.">
+              <div class="mx-table-container w-full" style="max-height: 260px" tabindex="0" role="region" aria-label="Facturas com cabeçalho fixo">
+                <table mxTable density="compact" stickyHeader>
+                  <thead><tr><th scope="col">Factura</th><th scope="col">Cliente</th><th scope="col" data-align="end">Valor (Kz)</th></tr></thead>
+                  <tbody>
+                    @for (f of pageOf(p6(), 10); track f.numero) {
+                      <tr><td>{{ f.numero }}</td><td>{{ f.cliente }}</td><td data-align="end">{{ fmt(f.valor) }}</td></tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+              <div class="footer-plain">
+                <mx-pagination [(page)]="p6" [total]="lista.length" [pageSize]="10" showRange aria-label="Páginas, cabeçalho fixo" />
+              </div>
+            </doc-example>
+          </div>
+        </div>
+      </section>
+
+      <section>
         <h2>Exemplos</h2>
         <p>Casos reais de aplicações de gestão. Todos usam o table nativo com mxTable e outros componentes da Muxima.</p>
         <div class="stack-lg">
@@ -437,6 +546,23 @@ export class TablePage {
     this.query.set('');
     this.estado.set('');
     this.page.set(1);
+  }
+
+  // Variantes de paginação
+  protected readonly lista = MUITAS;
+  protected readonly p1 = signal(1);
+  protected readonly p2 = signal(1);
+  protected readonly size2 = signal(5);
+  protected readonly p3 = signal(1);
+  protected readonly p4 = signal(1);
+  protected readonly p6 = signal(1);
+  protected readonly shown = signal(5);
+  protected readonly nextBatch = computed(() => Math.min(5, MUITAS.length - this.shown()));
+  protected pageOf(page: number, size: number) {
+    return MUITAS.slice((page - 1) * size, page * size);
+  }
+  protected showMore(): void {
+    this.shown.update((n) => Math.min(n + 5, MUITAS.length));
   }
 
   // Outros exemplos

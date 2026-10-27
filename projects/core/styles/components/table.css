@@ -174,3 +174,10 @@
   font-family: var(--mx-font-sans);
   font-size: var(--mx-text-sm);
 }
+.mx-table-footer > .mx-pagination {
+  margin-left: auto;
+}
+.mx-table-footer > .mx-pagination[data-extras] {
+  flex: 1;
+  margin-left: 0;
+}

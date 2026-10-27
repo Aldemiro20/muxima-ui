@@ -61,6 +61,15 @@ const CLIENTES = Array.from({ length: 47 }, (_, i) => ({ id: i + 1, nome: `Clien
               <mx-pagination [(page)]="tablePage" [total]="47" [pageSize]="5" aria-label="Páginas de clientes" />
             </div>
           </doc-example>
+          <doc-example title="Simples" note="variant=&quot;simple&quot;: Anterior, Página X de Y, Seguinte.">
+            <mx-pagination variant="simple" [(page)]="page3" [total]="120" [pageSize]="10" aria-label="Exemplo simples" />
+          </doc-example>
+          <doc-example title="Compacta" note="variant=&quot;compact&quot;: primeira, anterior, seguinte e última, só com ícones.">
+            <mx-pagination variant="compact" [(page)]="page3" [total]="120" [pageSize]="10" aria-label="Exemplo compacto" />
+          </doc-example>
+          <doc-example title="Linhas por página e intervalo" note="pageSizeOptions e showRange; [(pageSize)] devolve a escolha.">
+            <mx-pagination class="w-full" [(page)]="page4" [(pageSize)]="size4" [pageSizeOptions]="[10, 25, 50]" showRange [total]="236" aria-label="Exemplo com linhas por página" />
+          </doc-example>
           <doc-example title="Mais páginas à volta" note="siblings=2">
             <mx-pagination [(page)]="page2" [total]="500" [pageSize]="10" [siblings]="2" aria-label="Exemplo com mais páginas" />
           </doc-example>
@@ -96,6 +105,9 @@ const CLIENTES = Array.from({ length: 47 }, (_, i) => ({ id: i + 1, nome: `Clien
 export class PaginationPage {
   protected readonly page = signal(3);
   protected readonly page2 = signal(25);
+  protected readonly page3 = signal(4);
+  protected readonly page4 = signal(2);
+  protected readonly size4 = signal(25);
   protected readonly tablePage = signal(1);
   protected readonly from = computed(() => (this.tablePage() - 1) * 5 + 1);
   protected readonly to = computed(() => Math.min(this.tablePage() * 5, 47));
@@ -106,7 +118,10 @@ export class PaginationPage {
   protected readonly api: ApiRow[] = [
     { kind: 'Input', name: 'page', type: 'number (model)', default: '1', description: 'Página actual, a começar em 1.' },
     { kind: 'Input', name: 'total', type: 'number', description: 'Obrigatório. Número de itens.' },
-    { kind: 'Input', name: 'pageSize', type: 'number', default: '10' },
+    { kind: 'Input', name: 'pageSize', type: 'number (model)', default: '10', description: 'Aceita [(pageSize)].' },
+    { kind: 'Input', name: 'variant', type: "'default' | 'simple' | 'compact'", default: 'default', description: 'Números; Página X de Y; só ícones.' },
+    { kind: 'Input', name: 'pageSizeOptions', type: 'number[]', default: '[]', description: 'Mostra a escolha Linhas por página.' },
+    { kind: 'Input', name: 'showRange', type: 'boolean', default: 'false', description: 'Mostra 21–40 de 236.' },
     { kind: 'Input', name: 'siblings', type: 'number', default: '1', description: 'Páginas de cada lado da actual.' },
     { kind: 'Input', name: 'aria-label', type: 'string', default: 'Paginação' },
   ];
