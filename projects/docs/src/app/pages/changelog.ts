@@ -61,15 +61,20 @@ export class ChangelogPage {
   protected readonly releases: Release[] = [
     {
       version: '1.3.0',
-      status: 'Planeado',
-      date: 'A seguir à 1.2',
+      status: 'Em curso',
+      date: 'Pronta a publicar',
       title: 'Componentes avançados',
-      items: ['Data grid: colunas redimensionáveis e fixas, filtros, selecção e scroll virtual', 'Kanban com arrastar e largar', 'Image cropper', 'Rich text editor'],
+      items: [
+        'Data grid com navegação célula a célula, filtros, selecção, colunas fixas e scroll virtual',
+        'Kanban com arrastar e largar e mover com o teclado',
+        'Image cropper com zoom, rodar e exportação na resolução original',
+        'Rich text editor sobre o Tiptap, com barra acessível',
+      ],
     },
     {
       version: '1.2.0',
-      status: 'Em curso',
-      date: 'Pronta a publicar',
+      status: 'Publicada',
+      date: '27 de outubro de 2026',
       title: 'Navegação e conteúdo',
       items: [
         'Sidebar que recolhe para ícones, com grupos, secções e contagens',

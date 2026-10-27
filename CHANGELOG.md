@@ -2,7 +2,18 @@
 
 Todas as alterações relevantes do pacote `@muxima-ui/core`. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-PT/1.1.0/) e as versões seguem o [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
-## [1.2.0] - por publicar
+## [1.3.0] - por publicar
+
+Componentes avançados. Com esta versão, todos os componentes do plano 1.x estão publicados.
+
+### Novos
+
+- **Data grid** (`@muxima-ui/core/data-grid`): padrão WAI-ARIA Grid com navegação célula a célula, ordenação, filtros por coluna (texto, número com >, < e intervalos, lista), pesquisa, selecção simples e múltipla, colunas redimensionáveis (rato e Alt + setas), fixas e escondíveis, scroll virtual com aria-rowcount real, modelos de célula e modo servidor (`manual`).
+- **Kanban** (`@muxima-ui/core/kanban`): colunas com arrastar e largar e mover com o teclado (Espaço, setas, Esc), anúncios de cada passo, limite por coluna e rodapé por coluna.
+- **Image cropper** (`@muxima-ui/core/image-cropper`): área de recorte com rato e teclado, proporção, máscara redonda, zoom, rodar e exportação na resolução original (`toBlob`, `toDataURL`, `areaChange`).
+- **Rich text editor** (`@muxima-ui/core/editor`): sobre o Tiptap 3 (dependência opcional), barra role=toolbar com setas e Alt + F10, ligações, contagem com limite, só leitura e integração com formulários; o valor é HTML.
+
+## [1.2.0] - 2026-10-27
 
 Navegação e conteúdo.
 

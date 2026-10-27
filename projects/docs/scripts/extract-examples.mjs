@@ -283,15 +283,36 @@ function moduleDecls(src) {
   for (const m of src.matchAll(/^(?:export )?(const|interface|type|function) (\w+)[^\n]*/gm)) {
     let end;
     const lineEnd = src.indexOf('\n', m.index);
-    const brace = src.slice(m.index, lineEnd).search(/[{[(]\s*$/);
-    if (brace >= 0) {
-      const close = matchClose(src, m.index + brace);
-      end = src.indexOf('\n', close);
-      if (end < 0) end = src.length;
-    } else end = lineEnd;
+    if (m[1] === 'const' || m[1] === 'type') {
+      // até ao ";" fora de parênteses e strings (o valor pode continuar nas linhas seguintes)
+      end = statementEnd(src, m.index);
+    } else {
+      const brace = src.slice(m.index, lineEnd).search(/[{[(]\s*$/);
+      if (brace >= 0) {
+        const close = matchClose(src, m.index + brace);
+        end = src.indexOf('\n', close);
+        if (end < 0) end = src.length;
+      } else end = lineEnd;
+    }
     out.set(m[2], src.slice(m.index, end).replace(/^export /, ''));
   }
   return out;
+}
+
+/** Fim de uma declaração: o primeiro ";" ao nível 0. */
+function statementEnd(src, start) {
+  let depth = 0;
+  for (let i = start; i < src.length; i++) {
+    const c = src[i];
+    if (c === "'" || c === '"' || c === '`') {
+      i = skipString(src, i);
+      continue;
+    }
+    if ('{(['.includes(c)) depth++;
+    else if ('})]'.includes(c)) depth--;
+    else if (c === ';' && depth === 0) return i + 1;
+  }
+  return src.length;
 }
 
 // ---------- rotas -> ficheiros ----------
@@ -374,8 +395,24 @@ for (const page of pages) {
     const used = members.filter((m) => needed.has(m.name));
     // construtor só se mexer nos membros incluídos
     const ctor = members.find((m) => m.name === 'constructor');
-    if (ctor && [...identifiers(ctor.text)].some((id) => needed.has(id)) && !used.includes(ctor))
+    if (ctor && [...identifiers(ctor.text)].some((id) => needed.has(id)) && !used.includes(ctor)) {
       used.push(ctor);
+      // e o que o construtor usa (this.membro), com as suas dependências
+      let more = new Set([...ctor.text.matchAll(/this\.(\w+)/g)].map((m) => m[1]));
+      for (let pass = 0; pass < 4 && more.size; pass++) {
+        const next = new Set();
+        for (const mem of members) {
+          if (more.has(mem.name) && !needed.has(mem.name)) {
+            needed.add(mem.name);
+            used.push(mem);
+            for (const m of mem.text.matchAll(/this\.(\w+)/g)) next.add(m[1]);
+          }
+        }
+        more = next;
+      }
+      // mantém a ordem da classe
+      used.sort((a, b) => members.indexOf(a) - members.indexOf(b));
+    }
     const tsBody = used.map((m) => '  ' + dedent(m.text).split('\n').join('\n  ')).join('\n\n');
     const allIds = identifiers(tsBody + '\n' + html);
 

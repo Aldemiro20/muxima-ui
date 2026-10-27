@@ -24,6 +24,8 @@ export class App {
   private searchOpen = false;
 
   protected onKeydown(event: KeyboardEvent): void {
+    // um componente (ex.: o editor) pode usar Ctrl + K para si
+    if (event.defaultPrevented) return;
     if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
       event.preventDefault();
       this.openSearch();

@@ -25,11 +25,12 @@ declare -A NOVO=(
   # 1.2
   [sidebar]=sidebar [timeline]=timeline [notification-center]=notification-center
   [carousel]=carousel [color-picker]=color-picker
+  # 1.3
+  [kanban]=kanban [image-cropper]=image-cropper [quill-editor]=editor
 )
 
 # pacote antigo -> onde vai estar (ainda não publicado: não se descontinua já)
 declare -A PENDENTE=(
-  [kanban]="kanban (1.3)" [image-cropper]="image-cropper (1.3)" [quill-editor]="editor (1.3)"
   [hero]="bloco" [feature-card]="bloco" [pricing-card]="bloco" [product-card]="bloco" [navbar]="bloco"
   [shopping-cart]="bloco" [settings-item]="bloco" [comments]="bloco" [credit-card]="bloco"
 )

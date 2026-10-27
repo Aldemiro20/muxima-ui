@@ -43,6 +43,10 @@ Cada componente tem o seu ponto de entrada, para só importares o que usas:
 | `@muxima-ui/core/timeline` | `MX_TIMELINE` |
 | `@muxima-ui/core/carousel` | `MxCarousel`, `MxCarouselSlide` |
 | `@muxima-ui/core/notification-center` | `MxNotificationCenter`, `MxNotificationBell`, `mxRelativeTime` |
+| `@muxima-ui/core/data-grid` | `MX_DATA_GRID`, `MxGridColumn` |
+| `@muxima-ui/core/kanban` | `MX_KANBAN`, `MxKanbanColumn` |
+| `@muxima-ui/core/image-cropper` | `MxImageCropper` |
+| `@muxima-ui/core/editor` | `MxEditor` (precisa do Tiptap, ver abaixo) |
 | `@muxima-ui/core/table` | `MX_TABLE`, `mxSortData` |
 | `@muxima-ui/core/card` | `MX_CARD` |
 | `@muxima-ui/core/badge` | `MxBadge` |
@@ -63,5 +67,11 @@ Cada componente tem o seu ponto de entrada, para só importares o que usas:
 | `@muxima-ui/core/progress` | `MxProgress`, `MxSpinner` |
 | `@muxima-ui/core/skeleton` | `MxSkeleton` |
 | `@muxima-ui/core/toast` | `MxToast` |
+
+O editor de texto usa o Tiptap, que é opcional: só é preciso se importares `@muxima-ui/core/editor`.
+
+```bash
+npm install @tiptap/core @tiptap/pm @tiptap/starter-kit @tiptap/extensions
+```
 
 Licença MIT.

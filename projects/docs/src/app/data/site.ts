@@ -85,8 +85,8 @@ export const CATALOG: CatalogItem[] = [
   c('Rating', 'Avaliação com estrelas.', 'star', 'Formulários', 'rating'),
   c('Copy to clipboard', 'Copiar um valor com um clique.', 'copy', 'Formulários', 'copy-to-clipboard'),
   c('Color picker', 'Cor com teclado, formatos e amostras.', 'palette', 'Formulários', 'color-picker'),
-  soon('Image cropper', 'Recortar e rodar imagens antes de enviar.', 'crop', 'Formulários', '1.3'),
-  soon('Rich text editor', 'Texto com formatação, listas e ligações.', 'editor', 'Formulários', '1.3'),
+  c('Image cropper', 'Recortar e rodar imagens antes de enviar.', 'crop', 'Formulários', 'image-cropper'),
+  c('Rich text editor', 'Texto com formatação, listas e ligações.', 'editor', 'Formulários', 'rich-text-editor'),
   // Dados
   c('Table', 'Dados tabulares com ordenação.', 'table', 'Dados', 'table'),
   c('Card', 'Superfícies para agrupar conteúdo.', 'card', 'Dados', 'card'),
@@ -95,8 +95,8 @@ export const CATALOG: CatalogItem[] = [
   c('Separator', 'Linhas de separação.', 'minus', 'Dados', 'separator'),
   c('Timeline', 'Acontecimentos por ordem.', 'timeline', 'Dados', 'timeline'),
   c('Carousel', 'Conteúdo que passa em diapositivos.', 'carousel', 'Dados', 'carousel'),
-  soon('Data grid', 'Colunas redimensionáveis e fixas, filtros e scroll virtual.', 'table', 'Dados', '1.3'),
-  soon('Kanban', 'Cartões em colunas, com arrastar e largar.', 'kanban', 'Dados', '1.3'),
+  c('Data grid', 'Colunas redimensionáveis e fixas, filtros e scroll virtual.', 'table', 'Dados', 'data-grid'),
+  c('Kanban', 'Cartões em colunas, com arrastar e largar.', 'kanban', 'Dados', 'kanban'),
   // Navegação
   c('Tabs', 'Conteúdo dividido em secções.', 'tabs', 'Navegação', 'tabs'),
   c('Breadcrumb', 'Onde estou na hierarquia.', 'crumbs', 'Navegação', 'breadcrumb'),
