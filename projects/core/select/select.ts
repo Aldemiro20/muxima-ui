@@ -104,7 +104,7 @@ const POSITIONS: ConnectedPosition[] = [
   providers: [{ provide: MX_FORM_FIELD_CONTROL, useExisting: MxSelect }],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { class: 'mx-select', '[attr.data-size]': 'size() === "md" ? null : size()' },
+  host: { class: 'mx-select', '[attr.aria-label]': 'null', '[attr.data-size]': 'size() === "md" ? null : size()' },
   template: `
     <button
       #trigger

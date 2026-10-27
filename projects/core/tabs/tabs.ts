@@ -54,7 +54,7 @@ export class MxTab {
   imports: [NgTemplateOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  host: { class: 'mx-tabs' },
+  host: { class: 'mx-tabs', '[attr.aria-label]': 'null' },
   template: `
     <div class="mx-tab-list" role="tablist" [attr.aria-label]="ariaLabel() ?? null" (keydown)="onKeydown($event)">
       @for (tab of tabs(); track tab.tabId; let i = $index) {

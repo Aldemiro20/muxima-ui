@@ -1,0 +1,104 @@
+/* ---------- Toast ---------- */
+
+.mx-toaster {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 1100;
+  width: min(380px, calc(100vw - 32px));
+  pointer-events: none;
+}
+.mx-toaster-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.mx-toast {
+  --_tone: var(--mx-ink);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  box-sizing: border-box;
+  padding: 12px 12px 12px 16px;
+  border: var(--mx-border);
+  border-left: 3px solid var(--_tone);
+  border-radius: var(--mx-radius-surface);
+  background: var(--mx-surface);
+  box-shadow: var(--mx-shadow-overlay);
+  color: var(--mx-ink);
+  font-family: var(--mx-font-sans);
+  pointer-events: auto;
+  animation: mx-toast-in 200ms var(--mx-ease);
+}
+.mx-toast[data-variant='success'] {
+  --_tone: var(--mx-success);
+}
+.mx-toast[data-variant='warning'] {
+  --_tone: var(--mx-warning);
+}
+.mx-toast[data-variant='danger'] {
+  --_tone: var(--mx-danger);
+}
+.mx-toast-text {
+  flex: 1;
+  min-width: 0;
+}
+.mx-toast-title {
+  margin: 0;
+  font-size: var(--mx-text-md);
+  font-weight: 600;
+  line-height: 1.4;
+}
+.mx-toast-description {
+  margin: 2px 0 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+  line-height: 1.45;
+}
+.mx-toast-action {
+  flex-shrink: 0;
+  height: 28px;
+  padding: 0 10px;
+  border: 1px solid var(--mx-stone-strong);
+  border-radius: var(--mx-radius);
+  background: var(--mx-surface);
+  color: var(--mx-ink);
+  font: inherit;
+  font-size: var(--mx-text-sm);
+  font-weight: 500;
+  cursor: pointer;
+}
+.mx-toast-action:is(:hover, [data-mx-state='hover']) {
+  background: var(--mx-subtle);
+}
+.mx-toast-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--mx-radius);
+  background: transparent;
+  color: var(--mx-muted);
+  cursor: pointer;
+}
+.mx-toast-close svg {
+  width: 16px;
+  height: 16px;
+}
+.mx-toast-close:is(:hover, [data-mx-state='hover']) {
+  background: var(--mx-subtle);
+  color: var(--mx-ink);
+}
+@keyframes mx-toast-in {
+  from {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+}

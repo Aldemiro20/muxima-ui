@@ -1,0 +1,19 @@
+/* ---------- Tooltip ---------- */
+
+.mx-tooltip {
+  display: block;
+  max-width: 260px;
+  padding: 6px 10px;
+  border-radius: calc(var(--mx-radius) - 2px);
+  background: var(--mx-ink);
+  color: var(--mx-on-ink);
+  font-family: var(--mx-font-sans);
+  font-size: var(--mx-text-xs);
+  line-height: 1.4;
+  animation: mx-fade-in var(--mx-duration) var(--mx-ease);
+}
+@keyframes mx-fade-in {
+  from {
+    opacity: 0;
+  }
+}

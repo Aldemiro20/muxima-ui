@@ -1,0 +1,61 @@
+/* ---------- Pagination ---------- */
+
+.mx-pagination {
+  display: block;
+  font-family: var(--mx-font-sans);
+}
+.mx-pagination-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.mx-pagination-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  box-sizing: border-box;
+  min-width: var(--mx-control-height-sm);
+  height: var(--mx-control-height-sm);
+  padding: 0 8px;
+  border: 1px solid transparent;
+  border-radius: var(--mx-radius);
+  background: transparent;
+  color: var(--mx-ink);
+  font: inherit;
+  font-size: var(--mx-text-sm);
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+.mx-pagination-button svg {
+  width: 16px;
+  height: 16px;
+}
+.mx-pagination-button:is(:hover, [data-mx-state='hover']):not(:disabled) {
+  background: var(--mx-subtle);
+}
+.mx-pagination-button[aria-current='page'] {
+  border-color: var(--mx-stone-strong);
+  background: var(--mx-surface);
+  font-weight: 600;
+}
+.mx-pagination-button:disabled {
+  color: var(--mx-muted);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.mx-pagination-gap {
+  display: inline-flex;
+  justify-content: center;
+  min-width: 24px;
+  color: var(--mx-muted);
+}
+@media (max-width: 480px) {
+  .mx-pagination-edge-label {
+    display: none;
+  }
+}

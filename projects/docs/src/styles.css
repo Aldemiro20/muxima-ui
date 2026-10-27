@@ -2014,3 +2014,70 @@ a.text-link:hover,
   font-weight: 600;
   font-size: 14px;
 }
+.row-end {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.rot-90 {
+  transform: rotate(90deg);
+}
+.mini-menu {
+  min-width: 140px;
+  margin: 0;
+  box-shadow: none;
+  animation: none;
+}
+.mini-popover {
+  min-width: 0;
+  padding: 10px 12px;
+  font-size: 13px;
+  box-shadow: none;
+  animation: none;
+}
+.static-toast {
+  width: 100%;
+  max-width: 260px;
+  box-shadow: none;
+  animation: none;
+}
+.mini-drawer {
+  position: relative;
+  width: 140px;
+  height: 72px;
+  border: 1px solid var(--mx-stone);
+  border-radius: 8px;
+  background: color-mix(in oklab, var(--mx-ink) 12%, var(--mx-surface));
+  overflow: hidden;
+}
+.mini-drawer span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 46%;
+  background: var(--mx-surface);
+  border-left: 1px solid var(--mx-stone);
+}
+.detail-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+}
+.detail-list > div {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 12px;
+  font-size: 14px;
+}
+.detail-list dt {
+  color: var(--mx-muted);
+}
+.detail-list dd {
+  margin: 0;
+}
+.popover-title {
+  margin: 0 0 4px;
+  font-weight: 600;
+}

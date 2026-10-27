@@ -1,0 +1,18 @@
+/* ---------- Popover ---------- */
+
+.mx-popover {
+  box-sizing: border-box;
+  min-width: 220px;
+  max-width: min(360px, calc(100vw - 16px));
+  padding: 16px;
+  border: var(--mx-border);
+  border-radius: var(--mx-radius-surface);
+  background: var(--mx-surface);
+  box-shadow: var(--mx-shadow-overlay);
+  color: var(--mx-ink);
+  font-family: var(--mx-font-sans);
+  font-size: var(--mx-text-md);
+  line-height: 1.5;
+  outline: none;
+  animation: mx-fade-in var(--mx-duration) var(--mx-ease);
+}

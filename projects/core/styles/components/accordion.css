@@ -1,0 +1,54 @@
+/* ---------- Accordion ---------- */
+
+.mx-accordion {
+  display: block;
+  border-top: var(--mx-border);
+  font-family: var(--mx-font-sans);
+  color: var(--mx-ink);
+}
+.mx-accordion-item {
+  border-bottom: var(--mx-border);
+}
+.mx-accordion-trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 48px;
+  padding: 0 32px 0 4px;
+  font-size: var(--mx-text-md);
+  font-weight: 500;
+  line-height: 1.4;
+  cursor: pointer;
+  list-style: none;
+  border-radius: var(--mx-radius);
+}
+.mx-accordion-trigger::-webkit-details-marker {
+  display: none;
+}
+.mx-accordion-trigger::after {
+  content: '';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid var(--mx-muted);
+  border-bottom: 1.5px solid var(--mx-muted);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform var(--mx-duration) var(--mx-ease);
+}
+.mx-accordion-item[open] > .mx-accordion-trigger::after {
+  transform: translateY(-30%) rotate(-135deg);
+}
+.mx-accordion-trigger:is(:hover, [data-mx-state='hover']) {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.mx-accordion-content {
+  padding: 0 4px 16px;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-md);
+  line-height: 1.6;
+}

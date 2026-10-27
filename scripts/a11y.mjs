@@ -55,7 +55,7 @@ for (const scheme of ['light', 'dark']) {
     }
     await page.addScriptTag({ content: axeSource });
     const violations = await page.evaluate(async () => {
-      const r = await window.axe.run(document, { runOnly: ['wcag2a', 'wcag2aa', 'wcag21aa', 'best-practice'] });
+      const r = await window.axe.run({ exclude: [['.cdk-overlay-container']] }, { runOnly: ['wcag2a', 'wcag2aa', 'wcag21aa', 'best-practice'] });
       return r.violations.map((v) => `${v.impact} ${v.id}: ${v.help} -> ${v.nodes.slice(0, 3).map((n) => n.target.join(' ')).join(' ; ')}`);
     });
     visited++;

@@ -96,7 +96,13 @@
 .mx-radio:is(:focus-visible, [data-mx-state='focus']),
 .mx-switch:is(:focus-visible, [data-mx-state='focus']),
 a.mx-card:is(:focus-visible, [data-mx-state='focus']),
-button.mx-card:is(:focus-visible, [data-mx-state='focus']) {
+button.mx-card:is(:focus-visible, [data-mx-state='focus']),
+.mx-menu-item:focus-visible,
+.mx-toast-action:is(:focus-visible, [data-mx-state='focus']),
+.mx-toast-close:is(:focus-visible, [data-mx-state='focus']),
+.mx-accordion-trigger:is(:focus-visible, [data-mx-state='focus']),
+.mx-breadcrumb a:is(:focus-visible, [data-mx-state='focus']),
+.mx-pagination-button:is(:focus-visible, [data-mx-state='focus']) {
   outline: var(--mx-focus-width) solid var(--mx-accent);
   outline-offset: var(--mx-focus-offset);
 }

@@ -1,0 +1,104 @@
+/* ---------- Dropdown menu ---------- */
+
+.mx-menu {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-width: 180px;
+  max-width: 320px;
+  margin: 4px 0;
+  padding: 4px;
+  border: var(--mx-border);
+  border-radius: var(--mx-radius-surface);
+  background: var(--mx-surface);
+  box-shadow: var(--mx-shadow-overlay);
+  font-family: var(--mx-font-sans);
+  outline: none;
+  animation: mx-fade-in var(--mx-duration) var(--mx-ease);
+}
+.mx-menu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 32px;
+  margin: 0;
+  padding: 0 8px;
+  border: 0;
+  border-radius: calc(var(--mx-radius) - 2px);
+  background: transparent;
+  color: var(--mx-ink);
+  font: inherit;
+  font-size: var(--mx-text-md);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+}
+.mx-menu-item svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--mx-muted);
+}
+.mx-menu-item:is(:focus, :hover, [data-mx-state='hover'], [data-mx-state='focus']) {
+  background: var(--mx-subtle);
+}
+.mx-menu-item[data-variant='destructive'] {
+  color: var(--mx-danger);
+}
+.mx-menu-item[data-variant='destructive'] svg {
+  color: currentColor;
+}
+.mx-menu-item[data-variant='destructive']:is(:focus, :hover) {
+  background: var(--mx-danger-soft);
+}
+.mx-menu-item:is(:disabled, [aria-disabled='true'], [data-disabled]) {
+  color: var(--mx-muted);
+  background: transparent;
+  cursor: not-allowed;
+}
+.mx-menu-item[data-checkable] {
+  padding-left: 28px;
+}
+.mx-menu-item[data-checkable]:is([aria-checked='true'], [data-checked])::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  width: 8px;
+  height: 4px;
+  border-left: 2px solid var(--mx-accent);
+  border-bottom: 2px solid var(--mx-accent);
+  transform: translateY(-70%) rotate(-45deg);
+}
+.mx-menu-item[data-radio]:is([aria-checked='true'], [data-checked])::before {
+  width: 6px;
+  height: 6px;
+  left: 11px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--mx-accent);
+  transform: translateY(-50%);
+}
+.mx-menu-label {
+  padding: 6px 8px 4px;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-xs);
+  font-weight: 500;
+}
+.mx-menu .mx-separator {
+  margin: 4px -4px;
+  width: auto;
+}
+.mx-menu-shortcut {
+  margin-left: auto;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-xs);
+  letter-spacing: 0.04em;
+}
+.mx-menu-item:focus-visible {
+  outline-offset: -2px;
+}

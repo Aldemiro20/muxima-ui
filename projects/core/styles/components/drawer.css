@@ -1,0 +1,60 @@
+/* ---------- Drawer ---------- */
+
+.mx-drawer-panel .cdk-dialog-container {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  background: var(--mx-surface);
+  box-shadow: var(--mx-shadow-overlay);
+  color: var(--mx-ink);
+  font-family: var(--mx-font-sans);
+  overflow: auto;
+}
+.mx-drawer-right .cdk-dialog-container {
+  border-left: var(--mx-border);
+  animation: mx-drawer-right 200ms var(--mx-ease);
+}
+.mx-drawer-left .cdk-dialog-container {
+  border-right: var(--mx-border);
+  animation: mx-drawer-left 200ms var(--mx-ease);
+}
+.mx-drawer-bottom .cdk-dialog-container {
+  border-top: var(--mx-border);
+  border-radius: var(--mx-radius-surface) var(--mx-radius-surface) 0 0;
+  animation: mx-drawer-bottom 200ms var(--mx-ease);
+}
+.mx-drawer-panel .mx-dialog-content {
+  flex: 1;
+  overflow: auto;
+}
+.mx-drawer-panel .mx-dialog-footer {
+  padding-top: 16px;
+  border-top: var(--mx-border);
+}
+@keyframes mx-drawer-right {
+  from {
+    transform: translateX(24px);
+    opacity: 0;
+  }
+}
+@keyframes mx-drawer-left {
+  from {
+    transform: translateX(-24px);
+    opacity: 0;
+  }
+}
+@keyframes mx-drawer-bottom {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+}
+/* O componente aberto ocupa a altura toda, para o rodapé ficar em baixo */
+.mx-drawer-panel .cdk-dialog-container > * {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}

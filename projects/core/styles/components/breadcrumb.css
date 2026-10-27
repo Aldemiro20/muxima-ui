@@ -1,0 +1,41 @@
+/* ---------- Breadcrumb ---------- */
+
+.mx-breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--mx-font-sans);
+  font-size: var(--mx-text-sm);
+  color: var(--mx-muted);
+}
+.mx-breadcrumb li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.mx-breadcrumb li + li::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: var(--mx-stone-strong);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6 3.5L10.5 8 6 12.5' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6 3.5L10.5 8 6 12.5' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.mx-breadcrumb a {
+  color: var(--mx-muted);
+  text-decoration: none;
+  border-radius: 2px;
+}
+.mx-breadcrumb a:is(:hover, [data-mx-state='hover']) {
+  color: var(--mx-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.mx-breadcrumb [aria-current='page'] {
+  color: var(--mx-ink);
+  font-weight: 500;
+}
