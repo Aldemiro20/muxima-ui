@@ -1,12 +1,23 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MxButton } from '@muxima-ui/core/button';
 import { MxCopy, MxCopyButton } from '@muxima-ui/core/clipboard';
 import { MxFormField, MxHint, MxInput, MxInputGroup, MxLabel } from '@muxima-ui/core/form-field';
 import { ApiRow, DOC_UI } from '../../ui/doc-ui';
+import { MxToast } from '@muxima-ui/core/toast';
 
 @Component({
   selector: 'doc-clipboard-page',
-  imports: [DOC_UI, MxCopy, MxCopyButton, MxButton, MxFormField, MxLabel, MxHint, MxInput, MxInputGroup],
+  imports: [
+    DOC_UI,
+    MxCopy,
+    MxCopyButton,
+    MxButton,
+    MxFormField,
+    MxLabel,
+    MxHint,
+    MxInput,
+    MxInputGroup,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
@@ -38,31 +49,57 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
       <section>
         <h2>Estados</h2>
         <doc-states>
-          <doc-state name="Normal"><button mxCopyButton value="x" label="Copiar"></button></doc-state>
-          <doc-state name="Hover"><button mxCopyButton value="x" label="Copiar" data-mx-state="hover"></button></doc-state>
-          <doc-state name="Foco"><button mxCopyButton value="x" label="Copiar" data-mx-state="focus"></button></doc-state>
-          <doc-state name="Copiado" note="Durante 2 s depois do clique: experimenta."><button mxCopyButton value="x" label="Copiar">Copiar</button></doc-state>
+          <doc-state name="Normal"
+            ><button mxCopyButton value="x" label="Copiar"></button
+          ></doc-state>
+          <doc-state name="Hover"
+            ><button mxCopyButton value="x" label="Copiar" data-mx-state="hover"></button
+          ></doc-state>
+          <doc-state name="Foco"
+            ><button mxCopyButton value="x" label="Copiar" data-mx-state="focus"></button
+          ></doc-state>
+          <doc-state name="Copiado" note="Durante 2 s depois do clique: experimenta."
+            ><button mxCopyButton value="x" label="Copiar">Copiar</button></doc-state
+          >
         </doc-states>
       </section>
 
       <section>
         <h2>Exemplos</h2>
         <div class="grid-2">
-          <doc-example title="Em qualquer botão" note="mxCopy dá data-copied ao botão durante 2 s; #c=mxCopy lê o estado.">
-            <button mxButton variant="outline" [mxCopy]="referencia" #c="mxCopy">{{ c.copied() ? 'Copiada' : 'Copiar referência' }}</button>
+          <doc-example
+            title="Em qualquer botão"
+            note="mxCopy dá data-copied ao botão durante 2 s; #c=mxCopy lê o estado."
+          >
+            <button mxButton variant="outline" [mxCopy]="referencia" #c="mxCopy">
+              {{ c.copied() ? 'Copiada' : 'Copiar referência' }}
+            </button>
           </doc-example>
           <doc-example title="Chave da API" note="Botão com ícone e texto.">
             <div class="copy-row">
               <code class="copy-code">{{ chave }}</code>
-              <button mxCopyButton [value]="chave" label="Copiar chave da API" size="sm">Copiar</button>
+              <button mxCopyButton [value]="chave" label="Copiar chave da API" size="sm">
+                Copiar
+              </button>
             </div>
           </doc-example>
-          <doc-example title="Dados de pagamento" note="Uma linha por valor; o nome de cada botão diz o que copia.">
+          <doc-example
+            title="Dados de pagamento"
+            note="Uma linha por valor; o nome de cada botão diz o que copia."
+          >
             <dl class="copy-list">
               @for (d of pagamento; track d.nome) {
                 <div>
                   <dt>{{ d.nome }}</dt>
-                  <dd><span>{{ d.valor }}</span><button mxCopyButton size="sm" [value]="d.valor" [label]="'Copiar ' + d.nome"></button></dd>
+                  <dd>
+                    <span>{{ d.valor }}</span
+                    ><button
+                      mxCopyButton
+                      size="sm"
+                      [value]="d.valor"
+                      [label]="'Copiar ' + d.nome"
+                    ></button>
+                  </dd>
                 </div>
               }
             </dl>
@@ -76,6 +113,69 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               </div>
             </mx-form-field>
           </doc-example>
+          <doc-example
+            title="Código de convite"
+            note="(mxCopied) mostra um toast; se o navegador recusar, o código continua à vista."
+          >
+            <div class="invite">
+              <span class="invite-code">{{ convite }}</span>
+              <button mxButton type="button" [mxCopy]="convite" (mxCopied)="copiado($event)">
+                Copiar código
+              </button>
+            </div>
+          </doc-example>
+          <doc-example
+            title="Bloco de código"
+            note="O botão fica no canto, fora do texto seleccionável."
+          >
+            <div class="code-copy w-full">
+              <pre tabindex="0"><code>{{ comando }}</code></pre>
+              <button mxCopyButton size="sm" [value]="comando" label="Copiar comando"></button>
+            </div>
+          </doc-example>
+          <doc-example
+            title="Copiar tabela para o Excel"
+            note="Copia com tabulações: cola-se directamente numa folha de cálculo."
+          >
+            <div class="stack w-full">
+              <div class="mx-table-container">
+                <table class="mx-table" data-density="compact">
+                  <caption class="mx-visually-hidden">
+                    Resumo do mês
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Estado</th>
+                      <th scope="col" data-align="end">Facturas</th>
+                      <th scope="col" data-align="end">Valor</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (l of resumoMes; track l[0]) {
+                      <tr>
+                        <td>{{ l[0] }}</td>
+                        <td data-align="end">{{ l[1] }}</td>
+                        <td data-align="end">{{ l[2] }}</td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+              <div>
+                <button
+                  mxButton
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  [mxCopy]="resumoTsv"
+                  mxCopyMessage="Tabela copiada"
+                  #t="mxCopy"
+                >
+                  {{ t.copied() ? 'Tabela copiada' : 'Copiar tabela' }}
+                </button>
+              </div>
+            </div>
+          </doc-example>
         </div>
       </section>
 
@@ -86,7 +186,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
           [aria]="[
             'Copiado é anunciado ao leitor de ecrã, sem mexer no foco.',
             'O botão de ícone tem nome (label) e muda para Copiado durante 2 s.',
-            'Se o navegador recusar, é anunciado Não foi possível copiar; o valor continua visível para seleccionar.'
+            'Se o navegador recusar, é anunciado Não foi possível copiar; o valor continua visível para seleccionar.',
           ]"
         />
       </section>
@@ -114,6 +214,26 @@ export class ClipboardPage {
     { nome: 'Montante', valor: '120 000,00 Kz' },
   ];
 
+  private readonly toast = inject(MxToast);
+  protected readonly convite = 'KIANDA-7Q4M';
+  protected copiado(ok: boolean): void {
+    if (ok)
+      this.toast.success('Código copiado', { description: 'Envia-o a quem queres convidar.' });
+    else
+      this.toast.error('Não foi possível copiar', {
+        description: 'Selecciona o código e copia à mão.',
+      });
+  }
+  protected readonly comando = 'npm install @muxima-ui/core @angular/cdk';
+  protected readonly resumoMes = [
+    ['Pagas', '32', '58 400 000,00 Kz'],
+    ['Pendentes', '16', '45 400 000,00 Kz'],
+    ['Em atraso', '8', '20 100 000,00 Kz'],
+  ];
+  protected readonly resumoTsv = [['Estado', 'Facturas', 'Valor'], ...this.resumoMes]
+    .map((l) => l.join('\t'))
+    .join('\n');
+
   protected readonly previewCode = `<div mxInputGroup>
   <input mxInput readonly [value]="iban" />
   <button mxCopyButton [value]="iban" label="Copiar IBAN"></button>
@@ -122,10 +242,36 @@ export class ClipboardPage {
 <button mxButton variant="outline" [mxCopy]="referencia">Copiar referência</button>`;
 
   protected readonly api: ApiRow[] = [
-    { kind: 'Directiva', name: '[mxCopy]', type: 'string', description: 'Texto a copiar quando o elemento é clicado.' },
-    { kind: 'Input', name: 'mxCopyMessage', type: 'string', default: 'Copiado', description: 'Mensagem anunciada.' },
-    { kind: 'Output', name: 'mxCopied', type: 'boolean', description: 'true se copiou, false se o navegador recusou.' },
-    { kind: 'Propriedade', name: 'copied()', type: 'signal<boolean>', description: 'true durante 2 s (exportAs mxCopy).' },
-    { kind: 'Componente', name: 'button[mxCopyButton]', type: 'value, label, copiedLabel, size', description: 'Botão de ícone pronto.' },
+    {
+      kind: 'Directiva',
+      name: '[mxCopy]',
+      type: 'string',
+      description: 'Texto a copiar quando o elemento é clicado.',
+    },
+    {
+      kind: 'Input',
+      name: 'mxCopyMessage',
+      type: 'string',
+      default: 'Copiado',
+      description: 'Mensagem anunciada.',
+    },
+    {
+      kind: 'Output',
+      name: 'mxCopied',
+      type: 'boolean',
+      description: 'true se copiou, false se o navegador recusou.',
+    },
+    {
+      kind: 'Propriedade',
+      name: 'copied()',
+      type: 'signal<boolean>',
+      description: 'true durante 2 s (exportAs mxCopy).',
+    },
+    {
+      kind: 'Componente',
+      name: 'button[mxCopyButton]',
+      type: 'value, label, copiedLabel, size',
+      description: 'Botão de ícone pronto.',
+    },
   ];
 }

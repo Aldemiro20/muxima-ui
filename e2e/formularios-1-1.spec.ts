@@ -51,7 +51,7 @@ test.describe('Componentes da 1.1 com teclado', () => {
 
   test('Range slider: cada cursor com nome e setas', async ({ page }) => {
     await openComponent(page, 'slider');
-    const low = page.getByRole('slider', { name: 'Preço mínimo' });
+    const low = page.locator('doc-example', { hasText: 'Preço com valores visíveis' }).getByRole('slider', { name: 'Preço mínimo' });
     await low.focus();
     await page.keyboard.press('ArrowRight');
     await expect(low).toHaveAttribute('aria-valuetext', /160\s000 Kz/);

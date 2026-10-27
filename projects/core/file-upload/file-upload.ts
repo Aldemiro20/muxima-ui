@@ -221,7 +221,7 @@ export class MxFileUpload implements ControlValueAccessor, MxFormFieldControl {
   }
 
   /** Acrescenta ficheiros, com as mesmas validações do arrastar e do seletor. */
-  addFiles(list: Iterable<File>): void {
+  addFiles(list: Iterable<File> | ArrayLike<File>): void {
     const incoming = Array.from(list);
     const accepted: File[] = [];
     const rejected: MxFileRejection[] = [];

@@ -70,7 +70,8 @@ function templateExpressions(html) {
   const parts = [];
   for (const m of html.matchAll(/\{\{([\s\S]*?)\}\}/g)) parts.push(m[1]);
   for (const m of html.matchAll(/\s[\[(][^\s=]*[\])]="([^"]*)"/g)) parts.push(m[1]);
-  for (const m of html.matchAll(/@(?:if|for|switch|else if)\s*\(([^\n]*)\)\s*\{/g)) parts.push(m[1]);
+  for (const m of html.matchAll(/@(?:if|for|switch|else if)\s*\(([^\n]*)\)\s*\{/g))
+    parts.push(m[1]);
   for (const m of html.matchAll(/\s#(\w+)/g)) parts.push(m[1]);
   return parts.join('\n');
 }
@@ -88,7 +89,9 @@ for (const entry of readdirSync(coreDir, { withFileTypes: true })) {
     while ((m = re.exec(src))) {
       const sel = m[1];
       const tags = [...sel.matchAll(/(?:^|,\s*)([a-z][\w-]*-[\w-]+)(?=\[|,|$)/g)].map((x) => x[1]);
-      const attrs = [...sel.matchAll(/\[(\w+)(?:=[^\]]*)?\]/g)].map((x) => x[1]).filter((a) => a.startsWith('mx'));
+      const attrs = [...sel.matchAll(/\[(\w+)(?:=[^\]]*)?\]/g)]
+        .map((x) => x[1])
+        .filter((a) => a.startsWith('mx'));
       library.push({ cls: m[2], entry: entry.name, tags, attrs });
     }
   }
@@ -101,15 +104,22 @@ for (const entry of readdirSync(coreDir, { withFileTypes: true })) {
   for (const file of readdirSync(dir)) {
     if (!file.endsWith('.ts') || file.endsWith('.spec.ts')) continue;
     const src = readFileSync(join(dir, file), 'utf8');
-    for (const m of src.matchAll(/export (?:const|class|function|type|interface) (\w+)/g)) exported.push({ name: m[1], entry: entry.name });
+    for (const m of src.matchAll(/export (const|class|function|type|interface) (\w+)/g))
+      exported.push({ name: m[2], entry: entry.name, kind: m[1] });
     for (const m of src.matchAll(/export \{([^}]+)\}/g))
       for (const part of m[1].split(',')) {
-        const name = part.trim().split(/\s+as\s+/).pop();
+        const name = part
+          .trim()
+          .split(/\s+as\s+/)
+          .pop();
         if (name) exported.push({ name, entry: entry.name });
       }
   }
 }
 const entryOf = (name) => exported.find((e) => e.name === name)?.entry;
+/** Tipos e interfaces não entram no array imports do componente. */
+const isTypeOnly = (name) =>
+  exported.some((e) => e.name === name && (e.kind === 'type' || e.kind === 'interface'));
 
 function libraryImports(html, ts) {
   const used = new Set();
@@ -119,7 +129,17 @@ function libraryImports(html, ts) {
     if (lib.tags.some((t) => tags.has(t)) || lib.attrs.some((a) => attrs.has(a))) used.add(lib.cls);
   }
   // grupos exportados em vez de directivas soltas
-  const groups = { MX_DIALOG: 'dialog', MX_TABLE: 'table', MX_CARD: 'card', MX_MENU: 'menu', MX_ALERT: 'alert', MX_ACCORDION: 'accordion', MX_POPOVER: 'popover', MX_STEPPER: 'stepper', MX_COMMAND: 'command' };
+  const groups = {
+    MX_DIALOG: 'dialog',
+    MX_TABLE: 'table',
+    MX_CARD: 'card',
+    MX_MENU: 'menu',
+    MX_ALERT: 'alert',
+    MX_ACCORDION: 'accordion',
+    MX_POPOVER: 'popover',
+    MX_STEPPER: 'stepper',
+    MX_COMMAND: 'command',
+  };
   const byEntry = new Map();
   for (const cls of used) {
     const entry = library.find((l) => l.cls === cls).entry;
@@ -138,21 +158,51 @@ function libraryImports(html, ts) {
   }
   const lines = [...byEntry.entries()]
     .sort(([a], [b]) => a.localeCompare(b))
-    .map(([entry, names]) => `import { ${[...names].sort().join(', ')} } from '@muxima-ui/core/${entry}';`);
+    .map(
+      ([entry, names]) =>
+        `import { ${[...names].sort().join(', ')} } from '@muxima-ui/core/${entry}';`,
+    );
   const ng = [];
   if (/\bngModel\b/.test(html)) ng.push('FormsModule');
   if (/formControl|formGroup|formControlName/.test(html)) ng.push('ReactiveFormsModule');
-  const ngTs = [...new Set(['FormControl', 'FormGroup', 'Validators'].filter((x) => new RegExp(`\\b${x}\\b`).test(ts)))];
+  const ngTs = [
+    ...new Set(
+      ['AbstractControl', 'FormControl', 'FormGroup', 'ValidationErrors', 'Validators'].filter(
+        (x) => new RegExp(`\\b${x}\\b`).test(ts),
+      ),
+    ),
+  ];
   const angular = [];
-  if (ng.length || ngTs.length) angular.push(`import { ${[...ng, ...ngTs].join(', ')} } from '@angular/forms';`);
-  if (/routerLink/.test(html)) angular.push(`import { RouterLink } from '@angular/router';`);
-  const core = ['Component', ...['signal', 'computed', 'inject', 'effect'].filter((x) => new RegExp(`\\b${x}\\(`).test(ts))];
+  if (ng.length || ngTs.length)
+    angular.push(`import { ${[...ng, ...ngTs].join(', ')} } from '@angular/forms';`);
+  if (/routerLink/.test(html))
+    angular.push(
+      `import { ${/routerLinkActive/.test(html) ? 'RouterLink, RouterLinkActive' : 'RouterLink'} } from '@angular/router';`,
+    );
+  const core = [
+    'Component',
+    ...['DestroyRef', 'Injector'].filter((x) => new RegExp(`\\b${x}\\b`).test(ts)),
+    ...['signal', 'computed', 'inject', 'effect', 'linkedSignal'].filter((x) =>
+      new RegExp(`\\b${x}\\s*[<(]`).test(ts),
+    ),
+  ];
   const importsArray = [
-    ...[...byEntry.values()].flatMap((s) => [...s]).filter((n) => !/^(MxDialog|MxDrawer|MxToast|MxCommandPalette|MxSortState|MxBadgeVariant|MxCardVariant|MxToastPosition|MxDrawerSide|MxStepState|MxCommandItem|MX_DIALOG_DATA|MxDialogRef|mx[A-Z]\w*)$/.test(n) || n === 'MX_DIALOG'),
+    ...[...byEntry.values()]
+      .flatMap((s) => [...s])
+      .filter(
+        (n) =>
+          !/^(MxDialog|MxDrawer|MxToast|MxCommandPalette|MxSortState|MxBadgeVariant|MxCardVariant|MxToastPosition|MxDrawerSide|MxStepState|MxCommandItem|MX_DIALOG_DATA|MxDialogRef|mx[A-Z]\w*)$/.test(
+            n,
+          ) || n === 'MX_DIALOG',
+      )
+      .filter((n) => !isTypeOnly(n)),
     ...ng,
     ...(/routerLink/.test(html) ? ['RouterLink'] : []),
   ];
-  return { lines: [`import { ${core.join(', ')} } from '@angular/core';`, ...angular, ...lines], importsArray };
+  return {
+    lines: [`import { ${core.join(', ')} } from '@angular/core';`, ...angular, ...lines],
+    importsArray,
+  };
 }
 
 // ---------- classes e membros ----------
@@ -173,7 +223,12 @@ function findClasses(src) {
     }
     // comentário JSDoc antes
     const doc = src.slice(0, declStart).match(/\/\*\*(?:(?!\*\/)[\s\S])*\*\/\s*$/);
-    out.set(m[1], { name: m[1], start: doc ? declStart - doc[0].length : declStart, end: close + 1, body: src.slice(open + 1, close) });
+    out.set(m[1], {
+      name: m[1],
+      start: doc ? declStart - doc[0].length : declStart,
+      end: close + 1,
+      body: src.slice(open + 1, close),
+    });
   }
   return out;
 }
@@ -209,7 +264,9 @@ function splitMembers(body) {
   return members
     .map((text) => {
       const clean = text.replace(/^\s*(\/\/[^\n]*\n|\/\*\*[\s\S]*?\*\/\s*)+/, '');
-      const m = clean.match(/^\s*(?:(?:protected|private|public|readonly|async|static)\s+)*([A-Za-z_$][\w$]*)/);
+      const m = clean.match(
+        /^\s*(?:(?:protected|private|public|readonly|async|static)\s+)*([A-Za-z_$][\w$]*)/,
+      );
       return { name: m ? m[1] : '', text };
     })
     .filter((m) => m.name);
@@ -217,7 +274,7 @@ function splitMembers(body) {
 
 function moduleDecls(src) {
   const out = new Map();
-  for (const m of src.matchAll(/^(?:export )?(const|interface|type) (\w+)[^\n]*/gm)) {
+  for (const m of src.matchAll(/^(?:export )?(const|interface|type|function) (\w+)[^\n]*/gm)) {
     let end;
     const lineEnd = src.indexOf('\n', m.index);
     const brace = src.slice(m.index, lineEnd).search(/[{[(]\s*$/);
@@ -234,7 +291,11 @@ function moduleDecls(src) {
 // ---------- rotas -> ficheiros ----------
 
 const routes = readFileSync(join(appDir, 'app.routes.ts'), 'utf8');
-const pages = [...routes.matchAll(/path: '([^']+)'[^}]*?import\('\.\/(pages\/[^']+)'\)\.then\(\(m\) => m\.(\w+)\)/g)].map((m) => ({
+const pages = [
+  ...routes.matchAll(
+    /path: '([^']+)'[^}]*?import\('\.\/(pages\/[^']+)'\)\.then\(\(m\) => m\.(\w+)\)/g,
+  ),
+].map((m) => ({
   route: m[1],
   file: join(appDir, m[2] + '.ts'),
   cls: m[3],
@@ -246,10 +307,14 @@ for (const page of pages) {
   const classes = findClasses(src);
   const pageClass = classes.get(page.cls);
   if (!pageClass) continue;
-  const members = splitMembers(pageClass.body).filter((m) => !['previewCode', 'api'].includes(m.name));
+  const members = splitMembers(pageClass.body).filter(
+    (m) => !['previewCode', 'api'].includes(m.name),
+  );
   const decls = moduleDecls(src);
   // componentes auxiliares noutros ficheiros locais (ex.: drawer-examples.ts)
-  const localFiles = [...src.matchAll(/from '\.\/([\w-]+)'/g)].map((m) => join(dirname(page.file), m[1] + '.ts')).filter(existsSync);
+  const localFiles = [...src.matchAll(/from '\.\/([\w-]+)'/g)]
+    .map((m) => join(dirname(page.file), m[1] + '.ts'))
+    .filter(existsSync);
   const extraClasses = new Map();
   const extraDecls = new Map();
   for (const f of localFiles) {
@@ -269,8 +334,11 @@ for (const page of pages) {
 
   for (const block of blocks) {
     let html = dedent(block.html)
-      .replace(/<doc-state name="([^"]*)"(?: note="([^"]*)")?>/g, (_, n, note) => `<!-- ${n}${note ? ': ' + note.replace(/&quot;/g, '"') : ''} -->\n`)
-      .replace(/<\/doc-state>/g, '\n')
+      .replace(
+        /<doc-state\s+name="([^"]*)"(?:\s+note="([^"]*)")?\s*>/g,
+        (_, n, note) => `<!-- ${n}${note ? ': ' + note.replace(/&quot;/g, '"') : ''} -->\n`,
+      )
+      .replace(/<\/doc-state\s*>/g, '\n')
       .replace(/<doc-icon [^>]*\/>/g, '<svg aria-hidden="true">…</svg>')
       .replace(/&#64;/g, '@')
       .replace(/ class="([^"]*)"/g, (all, cls) => {
@@ -300,7 +368,8 @@ for (const page of pages) {
     const used = members.filter((m) => needed.has(m.name));
     // construtor só se mexer nos membros incluídos
     const ctor = members.find((m) => m.name === 'constructor');
-    if (ctor && [...identifiers(ctor.text)].some((id) => needed.has(id)) && !used.includes(ctor)) used.push(ctor);
+    if (ctor && [...identifiers(ctor.text)].some((id) => needed.has(id)) && !used.includes(ctor))
+      used.push(ctor);
     const tsBody = used.map((m) => '  ' + dedent(m.text).split('\n').join('\n  ')).join('\n\n');
     const allIds = identifiers(tsBody + '\n' + html);
 
@@ -312,7 +381,13 @@ for (const page of pages) {
       seen.add(name);
       const lines = text.split('\n');
       const kind = /^(interface|type)/.test(text) ? 0 : 1;
-      pre.push({ kind, text: lines.length > 14 ? `${lines[0].replace(/\s*=.*$/, '')} = /* dados de exemplo */ [];` : text });
+      pre.push({
+        kind,
+        text:
+          lines.length > 14
+            ? `${lines[0].replace(/\s*=.*$/, '')} = /* dados de exemplo */ [];`
+            : text,
+      });
     };
     let auxIds = allIds;
     for (let pass = 0; pass < 3; pass++) {
@@ -321,7 +396,12 @@ for (const page of pages) {
         const cls = extraClasses.get(id);
         if (cls && !seen.has(id)) {
           seen.add(id);
-          pre.push({ kind: 2, text: cls.replace(/^export /, '') });
+          // componentes auxiliares: ícones da documentação passam a svg, sem o import Icon
+          const text = cls
+            .replace(/^export /, '')
+            .replace(/<doc-icon [^>]*\/>/g, '<svg aria-hidden="true">…</svg>')
+            .replace(/,\s*Icon\b(?=[,\]])/g, '');
+          pre.push({ kind: 2, text });
           for (const x of identifiers(cls)) next.add(x);
         }
         const d = decls.get(id) ?? extraDecls.get(id);
@@ -338,7 +418,8 @@ for (const page of pages) {
     const allText = [html, tsBody, ...preText].join('\n');
     const { lines } = libraryImports(html + '\n' + preText.join('\n'), allText);
     const { importsArray } = libraryImports(html, tsBody);
-    if (/ChangeDetectionStrategy/.test(preText.join('\n'))) lines[0] = lines[0].replace('{ Component', '{ ChangeDetectionStrategy, Component');
+    if (/ChangeDetectionStrategy/.test(preText.join('\n')))
+      lines[0] = lines[0].replace('{ Component', '{ ChangeDetectionStrategy, Component');
     const ts = [
       ...lines,
       '',

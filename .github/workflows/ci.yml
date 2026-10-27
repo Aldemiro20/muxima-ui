@@ -22,6 +22,8 @@ jobs:
         run: npm run build:core
       - name: Build do site
         run: npm run build:docs
+      - name: Código dos exemplos compila
+        run: node scripts/check-examples.mjs
       - name: Acessibilidade em todas as páginas (claro e escuro)
         run: |
           npx playwright install --with-deps chromium

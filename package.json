@@ -11,7 +11,8 @@
     "watch": "ng build core --watch --configuration development",
     "test:a11y": "node scripts/a11y.mjs",
     "docs:examples": "node projects/docs/scripts/extract-examples.mjs",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "docs:check-examples": "npm run docs:examples && node scripts/check-examples.mjs"
   },
   "private": true,
   "dependencies": {

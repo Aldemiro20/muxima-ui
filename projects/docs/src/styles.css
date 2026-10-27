@@ -2738,3 +2738,140 @@ a.text-link:hover,
   margin: 0;
   font-variant-numeric: tabular-nums;
 }
+
+/* ---------- Exemplos extra da 1.1 ---------- */
+
+.product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--mx-text-sm);
+}
+.product-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 6px;
+  border-bottom: var(--mx-border);
+}
+.thumb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.thumb-grid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: var(--mx-border);
+  border-radius: var(--mx-radius);
+}
+.rating-dist {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+.rating-dist-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.rating-dist-head > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.rating-big {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.rating-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--mx-text-sm);
+}
+.rating-bars li {
+  display: grid;
+  grid-template-columns: 36px 1fr 28px;
+  align-items: center;
+  gap: 8px;
+}
+.rating-bars li > span:last-child {
+  text-align: end;
+}
+.rating-row {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.review-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 12px;
+  border-bottom: var(--mx-border);
+}
+.review-list p {
+  margin: 0;
+  font-size: var(--mx-text-sm);
+}
+.review-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.invite {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.invite-code {
+  padding: 8px 14px;
+  border: 1.5px dashed var(--mx-stone-strong);
+  border-radius: var(--mx-radius);
+  font-family: var(--mx-font-mono);
+  font-size: 18px;
+  letter-spacing: 0.08em;
+}
+.code-copy {
+  position: relative;
+}
+.code-copy pre {
+  margin: 0;
+  padding: 12px 48px 12px 14px;
+  overflow-x: auto;
+  border: var(--mx-border);
+  border-radius: var(--mx-radius);
+  background: var(--mx-subtle);
+  font-family: var(--mx-font-mono);
+  font-size: var(--mx-text-sm);
+}
+.code-copy .mx-copy-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
