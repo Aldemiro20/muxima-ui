@@ -26,6 +26,9 @@
   --mx-ink: #1c1b1a;
   --mx-accent: #0f5257;
   --mx-danger: #b42318;
+  --mx-success: #17663f;
+  --mx-warning: #93460a;
+  --mx-thumb: #ffffff;
   --mx-on-accent: #ffffff;
   --mx-on-danger: #ffffff;
   --mx-backdrop: rgb(28 27 26 / 0.4);
@@ -44,6 +47,9 @@
   --mx-ink: #f2f1ef;
   --mx-accent: #6ab3b0;
   --mx-danger: #f97066;
+  --mx-success: #5cc794;
+  --mx-warning: #f0b057;
+  --mx-thumb: #f2f1ef;
   --mx-on-accent: #0e1a1a;
   --mx-on-danger: #1c0a08;
   --mx-backdrop: rgb(0 0 0 / 0.6);
@@ -62,6 +68,9 @@
     --mx-ink: #f2f1ef;
     --mx-accent: #6ab3b0;
     --mx-danger: #f97066;
+    --mx-success: #5cc794;
+    --mx-warning: #f0b057;
+    --mx-thumb: #f2f1ef;
     --mx-on-accent: #0e1a1a;
     --mx-on-danger: #1c0a08;
     --mx-backdrop: rgb(0 0 0 / 0.6);

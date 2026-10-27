@@ -1,0 +1,190 @@
+/* ---------- Checkbox, Radio, Switch: partes comuns ---------- */
+
+.mx-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--mx-ink);
+  font-family: var(--mx-font-sans);
+  font-size: var(--mx-text-md);
+  line-height: 1.4;
+  cursor: pointer;
+}
+.mx-choice:has(:disabled) {
+  color: var(--mx-muted);
+  cursor: not-allowed;
+}
+
+.mx-fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: var(--mx-font-sans);
+}
+.mx-fieldset[data-orientation='horizontal'] {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+.mx-fieldset > legend {
+  padding: 0;
+  margin-bottom: 10px;
+  color: var(--mx-ink);
+  font-size: var(--mx-text-sm);
+  font-weight: 500;
+}
+
+.mx-checkbox,
+.mx-radio,
+.mx-switch {
+  appearance: none;
+  -webkit-appearance: none;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  margin: 0;
+  border: 1px solid var(--mx-stone-strong);
+  background: var(--mx-surface);
+  cursor: pointer;
+  vertical-align: middle;
+  transition:
+    background-color var(--mx-duration) var(--mx-ease),
+    border-color var(--mx-duration) var(--mx-ease);
+}
+
+/* ---------- Checkbox e Radio ---------- */
+
+.mx-checkbox,
+.mx-radio {
+  --_s: 16px;
+  display: inline-grid;
+  place-content: center;
+  width: var(--_s);
+  height: var(--_s);
+}
+.mx-checkbox[data-size='sm'],
+.mx-radio[data-size='sm'] {
+  --_s: 14px;
+}
+.mx-checkbox[data-size='lg'],
+.mx-radio[data-size='lg'] {
+  --_s: 20px;
+}
+.mx-checkbox {
+  border-radius: calc(var(--mx-radius) - 2px);
+}
+.mx-radio {
+  border-radius: 50%;
+}
+.mx-checkbox::before,
+.mx-radio::before {
+  content: '';
+  background: var(--mx-on-accent);
+  transform: scale(0);
+  transition: transform var(--mx-duration) var(--mx-ease);
+}
+.mx-checkbox::before {
+  width: calc(var(--_s) - 4px);
+  height: calc(var(--_s) - 4px);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.mx-checkbox:indeterminate::before {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8h8' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8h8' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+.mx-radio::before {
+  width: calc(var(--_s) / 2.4);
+  height: calc(var(--_s) / 2.4);
+  border-radius: 50%;
+}
+.mx-checkbox:is(:checked, :indeterminate),
+.mx-radio:checked {
+  background: var(--mx-accent);
+  border-color: var(--mx-accent);
+}
+.mx-checkbox:is(:checked, :indeterminate)::before,
+.mx-radio:checked::before {
+  transform: scale(1);
+}
+
+/* ---------- Switch ---------- */
+
+.mx-switch {
+  --_w: 36px;
+  --_h: 20px;
+  position: relative;
+  width: var(--_w);
+  height: var(--_h);
+  border-radius: 999px;
+  background: var(--mx-stone-strong);
+  border-color: transparent;
+}
+.mx-switch[data-size='sm'] {
+  --_w: 28px;
+  --_h: 16px;
+}
+.mx-switch[data-size='lg'] {
+  --_w: 44px;
+  --_h: 24px;
+}
+.mx-switch::before {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: calc(var(--_h) - 4px);
+  height: calc(var(--_h) - 4px);
+  border-radius: 50%;
+  background: var(--mx-thumb);
+  box-shadow: 0 1px 2px color-mix(in oklab, var(--mx-ink) 25%, transparent);
+  transition: transform var(--mx-duration) var(--mx-ease);
+}
+.mx-switch:checked {
+  background: var(--mx-accent);
+}
+.mx-switch:checked::before {
+  transform: translateX(calc(var(--_w) - var(--_h)));
+}
+
+/* ---------- Estados comuns ---------- */
+
+.mx-checkbox:not(:checked, :indeterminate, :disabled):is(:hover, [data-mx-state='hover']),
+.mx-radio:not(:checked, :disabled):is(:hover, [data-mx-state='hover']) {
+  border-color: var(--mx-muted);
+}
+.mx-switch:not(:checked, :disabled):is(:hover, [data-mx-state='hover']) {
+  background: var(--mx-muted);
+}
+:is(.mx-checkbox, .mx-radio, .mx-switch):checked:not(:disabled):is(:hover, [data-mx-state='hover']),
+.mx-checkbox:indeterminate:not(:disabled):is(:hover, [data-mx-state='hover']) {
+  background: color-mix(in oklab, var(--mx-accent) 85%, var(--mx-ink));
+}
+:is(.mx-checkbox, .mx-radio, .mx-switch)[aria-invalid='true'] {
+  border-color: var(--mx-danger);
+}
+.mx-switch[aria-invalid='true'] {
+  box-shadow: 0 0 0 1px var(--mx-danger);
+}
+:is(.mx-checkbox, .mx-radio, .mx-switch)[aria-invalid='true']:is(:focus-visible, [data-mx-state='focus']) {
+  outline-color: var(--mx-danger);
+}
+:is(.mx-checkbox, .mx-radio):disabled {
+  background: var(--mx-subtle);
+  border-color: var(--mx-stone);
+  cursor: not-allowed;
+}
+:is(.mx-checkbox, .mx-radio):disabled:is(:checked, :indeterminate) {
+  background: var(--mx-stone-strong);
+  border-color: var(--mx-stone-strong);
+}
+.mx-switch:disabled {
+  background: var(--mx-stone);
+  cursor: not-allowed;
+}
+.mx-switch:disabled:checked {
+  background: color-mix(in oklab, var(--mx-accent) 40%, var(--mx-surface));
+}

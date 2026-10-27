@@ -104,7 +104,7 @@ const POSITIONS: ConnectedPosition[] = [
   providers: [{ provide: MX_FORM_FIELD_CONTROL, useExisting: MxSelect }],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { class: 'mx-select' },
+  host: { class: 'mx-select', '[attr.data-size]': 'size() === "md" ? null : size()' },
   template: `
     <button
       #trigger
@@ -152,6 +152,9 @@ const POSITIONS: ConnectedPosition[] = [
         [attr.aria-label]="field?.labelId() ? null : (ariaLabel() ?? placeholder())"
       >
         <ng-content />
+        @if (optionCount() === 0) {
+          <div class="mx-select-empty" role="option" aria-disabled="true" aria-selected="false">{{ emptyText() }}</div>
+        }
       </div>
     </ng-template>
   `,
@@ -162,6 +165,12 @@ export class MxSelect<T = unknown> implements ControlValueAccessor, MxFormFieldC
   readonly placeholder = input('Seleccionar');
   readonly disabled = input(false, { transform: booleanAttribute });
   readonly required = input(false, { transform: booleanAttribute });
+  /** Força o estado de erro (sem formulário). Com Reactive Forms o erro vem do controlo. */
+  readonly invalid = input(false, { transform: booleanAttribute });
+  /** Altura: sm 32 px, md 36 px, lg 40 px. */
+  readonly size = input<'sm' | 'md' | 'lg'>('md');
+  /** Texto mostrado quando não há opções. */
+  readonly emptyText = input('Sem opções');
   readonly id = input<string | undefined>(undefined);
   /** Nome acessível quando não existe um `label[mxLabel]` no campo. */
   readonly ariaLabel = input<string | undefined>(undefined, { alias: 'aria-label' });
@@ -189,6 +198,11 @@ export class MxSelect<T = unknown> implements ControlValueAccessor, MxFormFieldC
   private readonly formDisabled = signal(false);
   private readonly optionsVersion = signal(0);
   protected readonly isDisabled = computed(() => this.disabled() || this.formDisabled());
+
+  protected readonly optionCount = computed(() => {
+    this.optionsVersion();
+    return this.options?.length ?? 0;
+  });
 
   protected readonly selectedLabel = computed(() => {
     this.optionsVersion();
@@ -313,6 +327,7 @@ export class MxSelect<T = unknown> implements ControlValueAccessor, MxFormFieldC
 
   // ---- MxFormFieldControl ----
   errorState(): boolean {
+    if (this.invalid()) return true;
     const c = this.ngControl;
     return !!c && !!c.invalid && !!(c.touched || c.dirty);
   }

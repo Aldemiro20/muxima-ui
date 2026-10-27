@@ -1,0 +1,17 @@
+/* ---------- Separator ---------- */
+
+.mx-separator {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 1px;
+  margin: 0;
+  border: 0;
+  background: var(--mx-stone);
+}
+.mx-separator[data-orientation='vertical'] {
+  width: 1px;
+  height: auto;
+  min-height: 1em;
+  align-self: stretch;
+}

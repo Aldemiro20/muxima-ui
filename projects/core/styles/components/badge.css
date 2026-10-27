@@ -1,0 +1,58 @@
+/* ---------- Badge ---------- */
+
+.mx-badge {
+  --_tone: var(--mx-ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  box-sizing: border-box;
+  height: 20px;
+  padding: 0 8px;
+  border: 1px solid transparent;
+  border-radius: calc(var(--mx-radius) - 2px);
+  background: var(--mx-ink);
+  color: var(--mx-on-ink);
+  font-family: var(--mx-font-sans);
+  font-size: var(--mx-text-xs);
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.mx-badge[data-size='sm'] {
+  height: 18px;
+  padding: 0 6px;
+}
+.mx-badge[data-size='lg'] {
+  height: 24px;
+  padding: 0 10px;
+  font-size: var(--mx-text-sm);
+}
+.mx-badge svg {
+  width: 12px;
+  height: 12px;
+}
+.mx-badge[data-variant='secondary'] {
+  background: var(--mx-subtle);
+  color: var(--mx-ink);
+  border-color: var(--mx-stone);
+}
+.mx-badge[data-variant='outline'] {
+  background: transparent;
+  color: var(--mx-ink);
+  border-color: var(--mx-stone-strong);
+}
+.mx-badge[data-variant='success'] {
+  --_tone: var(--mx-success);
+}
+.mx-badge[data-variant='warning'] {
+  --_tone: var(--mx-warning);
+}
+.mx-badge[data-variant='danger'] {
+  --_tone: var(--mx-danger);
+}
+.mx-badge:is([data-variant='success'], [data-variant='warning'], [data-variant='danger']) {
+  background: color-mix(in oklab, var(--_tone) 10%, var(--mx-surface));
+  border-color: color-mix(in oklab, var(--_tone) 30%, var(--mx-surface));
+  color: var(--_tone);
+}

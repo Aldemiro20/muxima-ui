@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MxInput } from '@muxima-ui/core/form-field';
-import { CATALOG, CatalogCategory } from '../data/site';
+import { CATALOG, CATEGORIES, CatalogCategory } from '../data/site';
 import { DOC_UI } from '../ui/doc-ui';
 import { Icon } from '../ui/icon';
 
@@ -71,7 +71,7 @@ const norm = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCa
   `,
 })
 export class ComponentesPage {
-  protected readonly categories: ('Todos' | CatalogCategory)[] = ['Todos', 'Formulários', 'Dados', 'Navegação', 'Sobreposição'];
+  protected readonly categories: ('Todos' | CatalogCategory)[] = ['Todos', ...CATEGORIES];
   protected readonly category = signal<'Todos' | CatalogCategory>('Todos');
   protected readonly query = signal('');
   protected readonly items = computed(() => {

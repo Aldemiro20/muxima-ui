@@ -18,14 +18,14 @@ const FACTURAS: Factura[] = [
 ];
 
 @Component({
-  selector: 'doc-tabelas',
+  selector: 'doc-table-page',
   imports: [DOC_UI, MX_TABLE],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Tabelas' }]"
-        title="Tabelas"
+        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Table' }]"
+        title="Table"
         lead="Dados tabulares sobre o table nativo, com números alinhados, ordenação acessível e duas densidades."
       />
 
@@ -64,9 +64,9 @@ const FACTURAS: Factura[] = [
       </section>
 
       <section>
-        <h2>Anatomia</h2>
+        <h2>Estrutura</h2>
         <p>Cabeçalho em fundo subtil, linhas de 44 px e números tabulares alinhados à direita.</p>
-        <doc-anatomy
+        <doc-structure
           [labels]="{
             topLeft: 'Cabeçalho ordenável',
             topRight: 'aria-sort',
@@ -76,7 +76,20 @@ const FACTURAS: Factura[] = [
           }"
         >
           <div class="mini-table" aria-hidden="true"><span></span><span></span><span></span></div>
-        </doc-anatomy>
+        </doc-structure>
+      </section>
+
+      <section>
+        <h2>Estados</h2>
+        <p>Os estados da tabela vivem nas linhas e no cabeçalho. Usa a célula mx-table-empty quando não houver dados.</p>
+        <doc-states>
+          <doc-state name="Normal"><div class="mx-table-container"><table mxTable density="compact"><thead><tr><th scope="col">Cliente</th></tr></thead><tbody><tr><td>Huíla Agro</td></tr></tbody></table></div></doc-state>
+          <doc-state name="Hover" note="Fundo suave na linha."><div class="mx-table-container"><table mxTable density="compact"><thead><tr><th scope="col">Cliente</th></tr></thead><tbody><tr data-mx-state="hover"><td>Huíla Agro</td></tr></tbody></table></div></doc-state>
+          <doc-state name="Seleccionada" note="aria-selected=&quot;true&quot;"><div class="mx-table-container"><table mxTable density="compact"><thead><tr><th scope="col">Cliente</th></tr></thead><tbody><tr aria-selected="true"><td>Huíla Agro</td></tr></tbody></table></div></doc-state>
+          <doc-state name="Ordenada" note="aria-sort e ícone Kwanza."><div class="mx-table-container"><table mxTable density="compact"><thead><tr> <th scope="col" aria-sort="ascending"><span class="mx-sort-button">Cliente <svg class="mx-sort-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 12V4M5 7l3-3 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></th></tr></thead><tbody><tr><td>Huíla Agro</td></tr></tbody></table></div></doc-state>
+          <doc-state name="A carregar" note="aria-busy=&quot;true&quot; no table."><div class="mx-table-container"><table mxTable density="compact" aria-busy="true"><thead><tr><th scope="col">Cliente</th></tr></thead><tbody><tr><td>Huíla Agro</td></tr></tbody></table></div></doc-state>
+          <doc-state name="Vazio" note="Célula mx-table-empty."><div class="mx-table-container"><table mxTable density="compact"><thead><tr><th scope="col">Cliente</th></tr></thead><tbody><tr><td class="mx-table-empty">Sem resultados</td></tr></tbody></table></div></doc-state>
+        </doc-states>
       </section>
 
       <section>
@@ -132,12 +145,12 @@ const FACTURAS: Factura[] = [
 
       <section>
         <h2>Componentes relacionados</h2>
-        <doc-related [items]="[{ name: 'Data Table (Pro)' }, { name: 'Pagination' }, { name: 'Selecção', path: '/componentes/seleccao' }]" />
+        <doc-related [items]="[{ name: 'Data Table (Pro)' }, { name: 'Pagination' }, { name: 'Select', path: '/componentes/select' }]" />
       </section>
     </article>
   `,
 })
-export class TabelasPage {
+export class TablePage {
   protected readonly sort = signal<MxSortState>({ active: 'numero', direction: 'asc' });
   protected readonly rows = computed(() => mxSortData(FACTURAS, this.sort()));
   private readonly nf = new Intl.NumberFormat('pt-AO', { minimumFractionDigits: 2, maximumFractionDigits: 2 });

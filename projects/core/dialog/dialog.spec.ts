@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MxButton } from '@muxima-ui/core/button';
 import { MX_DIALOG, MxDialog } from './dialog';
+import { expectNoA11yViolations } from '../testing/axe';
 
 @Component({
   imports: [MX_DIALOG, MxButton],
@@ -57,5 +58,11 @@ describe('MxDialog', () => {
     );
     await flush();
     expect(closed).toBe(true);
+  });
+  it('não tem violações de acessibilidade com o diálogo aberto', async () => {
+    TestBed.inject(MxDialog).open(Confirmar, { role: 'alertdialog' });
+    await flush();
+    TestBed.tick();
+    await expectNoA11yViolations(document.querySelector('.cdk-overlay-container')!);
   });
 });

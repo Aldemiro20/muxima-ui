@@ -1,0 +1,89 @@
+/* ---------- Form field, label, input ---------- */
+
+.mx-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--mx-font-sans);
+}
+.mx-label {
+  font-family: var(--mx-font-sans);
+  font-size: var(--mx-text-sm);
+  font-weight: 500;
+  color: var(--mx-ink);
+  line-height: 1.3;
+}
+.mx-label[data-required]::after {
+  content: ' *';
+  color: var(--mx-danger);
+}
+.mx-hint,
+.mx-error {
+  font-size: var(--mx-text-xs);
+  line-height: 1.4;
+  margin: 0;
+}
+.mx-hint {
+  color: var(--mx-muted);
+}
+.mx-error {
+  color: var(--mx-danger);
+}
+
+.mx-input {
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--mx-control-height);
+  padding: 0 12px;
+  margin: 0;
+  border: 1px solid var(--mx-stone-strong);
+  border-radius: var(--mx-radius);
+  background: var(--mx-surface);
+  color: var(--mx-ink);
+  font-family: var(--mx-font-sans);
+  font-size: var(--mx-text-md);
+  line-height: 1.4;
+  transition: border-color var(--mx-duration) var(--mx-ease);
+}
+textarea.mx-input[data-autosize] {
+  field-sizing: content;
+  max-height: 320px;
+}
+textarea.mx-input {
+  height: auto;
+  min-height: 88px;
+  padding: 8px 12px;
+  resize: vertical;
+}
+.mx-input::placeholder {
+  color: var(--mx-muted);
+  opacity: 1;
+}
+.mx-input:is(:hover, [data-mx-state='hover']):not(:disabled) {
+  border-color: var(--mx-muted);
+}
+.mx-input:is(:focus-visible, [data-mx-state='focus']) {
+  border-color: var(--mx-accent);
+}
+.mx-input[data-size='sm'] {
+  height: var(--mx-control-height-sm);
+  font-size: var(--mx-text-sm);
+}
+.mx-input[data-size='lg'] {
+  height: var(--mx-control-height-lg);
+  font-size: var(--mx-text-lg);
+}
+.mx-input[aria-invalid='true'] {
+  border-color: var(--mx-danger);
+}
+.mx-input[aria-invalid='true']:is(:focus-visible, [data-mx-state='focus']) {
+  outline-color: var(--mx-danger);
+}
+.mx-input:disabled {
+  background: var(--mx-subtle);
+  color: var(--mx-muted);
+  cursor: not-allowed;
+}
+.mx-input[readonly] {
+  background: var(--mx-subtle);
+}

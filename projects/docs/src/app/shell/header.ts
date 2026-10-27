@@ -41,7 +41,7 @@ import { ThemeService } from './theme.service';
           <button
             mxButton
             variant="ghost"
-            size="icon"
+            icon
             type="button"
             (click)="theme.toggle()"
             [attr.aria-label]="theme.mode() === 'dark' ? 'Mudar para modo claro' : 'Mudar para modo escuro'"
@@ -54,7 +54,7 @@ import { ThemeService } from './theme.service';
           <button
             mxButton
             variant="ghost"
-            size="icon"
+            icon
             type="button"
             class="menu-button"
             aria-controls="top-nav"

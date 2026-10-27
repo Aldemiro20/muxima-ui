@@ -3,14 +3,14 @@ import { MxTab, MxTabs } from '@muxima-ui/core/tabs';
 import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
 @Component({
-  selector: 'doc-separadores',
+  selector: 'doc-tabs-page',
   imports: [DOC_UI, MxTabs, MxTab],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Separadores' }]"
-        title="Separadores"
+        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Tabs' }]"
+        title="Tabs"
         lead="Dividem conteúdo relacionado em secções ao mesmo nível. O separador activo é marcado pela linha Kwanza."
       />
 
@@ -31,9 +31,9 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
       </section>
 
       <section>
-        <h2>Anatomia</h2>
+        <h2>Estrutura</h2>
         <p>Uma lista de separadores e um painel por separador, ligados entre si.</p>
-        <doc-anatomy
+        <doc-structure
           [labels]="{
             topLeft: 'Separador (role=tab)',
             topRight: 'Linha de estado 2 px',
@@ -43,7 +43,19 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
           }"
         >
           <div class="mini-tabs" aria-hidden="true"><span class="on">Perfil</span><span>Segurança</span></div>
-        </doc-anatomy>
+        </doc-structure>
+      </section>
+
+      <section>
+        <h2>Estados</h2>
+        <p>Cada separador tem estes estados. O seleccionado ganha a linha Kwanza de 2 px.</p>
+        <doc-states>
+          <doc-state name="Normal"><div class="mx-tab-list"><span class="mx-tab">Resumo</span></div></doc-state>
+          <doc-state name="Hover"><div class="mx-tab-list"><span class="mx-tab" data-mx-state="hover">Resumo</span></div></doc-state>
+          <doc-state name="Foco" note="Anel dentro do separador."><div class="mx-tab-list"><span class="mx-tab" data-mx-state="focus">Resumo</span></div></doc-state>
+          <doc-state name="Seleccionado" note="aria-selected"><div class="mx-tab-list"><span class="mx-tab" data-selected>Resumo</span></div></doc-state>
+          <doc-state name="Desactivado" note="Saltado pelas setas."><div class="mx-tab-list"><span class="mx-tab" data-disabled>Resumo</span></div></doc-state>
+        </doc-states>
       </section>
 
       <section>
@@ -90,12 +102,12 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
       <section>
         <h2>Componentes relacionados</h2>
-        <doc-related [items]="[{ name: 'Stepper' }, { name: 'Accordion' }, { name: 'Diálogos', path: '/componentes/dialogos' }]" />
+        <doc-related [items]="[{ name: 'Stepper' }, { name: 'Accordion' }, { name: 'Dialog', path: '/componentes/dialog' }]" />
       </section>
     </article>
   `,
 })
-export class SeparadoresPage {
+export class TabsPage {
   protected readonly index = signal(0);
 
   protected readonly previewCode = `<mx-tabs aria-label="Definições da conta">

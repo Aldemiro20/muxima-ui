@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MxTab, MxTabs } from '@muxima-ui/core/tabs';
 import { MxTable } from '@muxima-ui/core/table';
 import { Icon } from './icon';
+import { CATALOG } from '../data/site';
 
 export interface Crumb {
   label: string;
@@ -102,7 +103,7 @@ export class Preview {
   readonly align = input<'center' | 'start'>('center');
 }
 
-export interface AnatomyLabels {
+export interface StructureLabels {
   topLeft: string;
   topRight: string;
   bottomLeft: string;
@@ -110,30 +111,30 @@ export interface AnatomyLabels {
   bottom: string;
 }
 
-/** Desenho de anatomia: o componente ao centro e as suas medidas à volta. */
+/** Desenho da estrutura: o componente ao centro e as suas medidas à volta. */
 @Component({
-  selector: 'doc-anatomy',
+  selector: 'doc-structure',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <figure class="anatomy">
-      <svg class="anatomy-lines" viewBox="0 0 640 180" preserveAspectRatio="none" aria-hidden="true">
+    <figure class="structure">
+      <svg class="structure-lines" viewBox="0 0 640 180" preserveAspectRatio="none" aria-hidden="true">
         <path d="M150 34 H200 L232 62" />
         <path d="M490 34 H440 L408 62" />
         <path d="M150 128 H190 L232 112" />
         <path d="M490 128 H450 L408 112" />
-        <rect x="226" y="56" width="188" height="62" rx="9" class="anatomy-ring" />
+        <rect x="226" y="56" width="188" height="62" rx="9" class="structure-ring" />
       </svg>
-      <span class="anatomy-label tl">{{ labels().topLeft }}</span>
-      <span class="anatomy-label tr">{{ labels().topRight }}</span>
-      <span class="anatomy-label bl">{{ labels().bottomLeft }}</span>
-      <span class="anatomy-label br">{{ labels().bottomRight }}</span>
-      <div class="anatomy-sample"><ng-content /></div>
-      <figcaption class="anatomy-caption">{{ labels().bottom }}</figcaption>
+      <span class="structure-label tl">{{ labels().topLeft }}</span>
+      <span class="structure-label tr">{{ labels().topRight }}</span>
+      <span class="structure-label bl">{{ labels().bottomLeft }}</span>
+      <span class="structure-label br">{{ labels().bottomRight }}</span>
+      <div class="structure-sample"><ng-content /></div>
+      <figcaption class="structure-caption">{{ labels().bottom }}</figcaption>
     </figure>
   `,
 })
-export class Anatomy {
-  readonly labels = input.required<AnatomyLabels>();
+export class Structure {
+  readonly labels = input.required<StructureLabels>();
 }
 
 export interface ApiRow {
@@ -192,11 +193,11 @@ export interface RelatedItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="related">
-      @for (r of items(); track r.name) {
+      @for (r of resolved(); track r.name) {
         <div class="card related-card">
           <strong>{{ r.name }}</strong>
           @if (r.path) {
-            <a [routerLink]="r.path" class="text-link">Ver componente →</a>
+            <a [routerLink]="r.path" class="text-link" [attr.aria-label]="'Ver ' + r.name">Ver componente →</a>
           } @else {
             <span class="muted">Em preparação</span>
           }
@@ -207,6 +208,10 @@ export interface RelatedItem {
 })
 export class Related {
   readonly items = input.required<RelatedItem[]>();
+  /** Liga automaticamente aos componentes já documentados no catálogo. */
+  protected readonly resolved = computed(() =>
+    this.items().map((r) => ({ name: r.name, path: r.path ?? CATALOG.find((c) => c.name === r.name)?.path })),
+  );
 }
 
 /** Caixa de nota com a linha de estado à esquerda. */
@@ -272,4 +277,33 @@ export class A11y {
   readonly aria = input.required<string[]>();
 }
 
-export const DOC_UI = [PageHeader, CodeBlock, Preview, Anatomy, ApiTable, Related, Callout, Example, A11y] as const;
+/**
+ * Grelha de estados de um componente. Cada célula mostra um estado com o seu nome.
+ * Hover, foco e activo são forçados com data-mx-state, para se verem sem interacção.
+ */
+@Component({
+  selector: 'doc-states',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { class: 'states-grid', role: 'list' },
+  template: `<ng-content />`,
+})
+export class States {}
+
+@Component({
+  selector: 'doc-state',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { class: 'state-cell', role: 'listitem' },
+  template: `
+    <div class="state-sample" inert><ng-content /></div>
+    <p class="state-name">{{ name() }}</p>
+    @if (note()) {
+      <p class="state-note">{{ note() }}</p>
+    }
+  `,
+})
+export class State {
+  readonly name = input.required<string>();
+  readonly note = input('');
+}
+
+export const DOC_UI = [PageHeader, CodeBlock, Preview, Structure, ApiTable, Related, Callout, Example, A11y, States, State] as const;

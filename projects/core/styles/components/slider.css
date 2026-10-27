@@ -1,0 +1,80 @@
+/* ---------- Slider ---------- */
+
+.mx-slider {
+  --_track: 6px;
+  --_thumb: 16px;
+  --_fill-color: var(--mx-accent);
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  width: 100%;
+  height: 20px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.mx-slider[data-size='sm'] {
+  --_track: 4px;
+  --_thumb: 14px;
+}
+.mx-slider[data-size='lg'] {
+  --_track: 8px;
+  --_thumb: 20px;
+}
+.mx-slider::-webkit-slider-runnable-track {
+  height: var(--_track);
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--_fill-color) var(--mx-slider-fill, 0%), var(--mx-stone) var(--mx-slider-fill, 0%));
+}
+.mx-slider::-moz-range-track {
+  height: var(--_track);
+  border-radius: 999px;
+  background: var(--mx-stone);
+}
+.mx-slider::-moz-range-progress {
+  height: var(--_track);
+  border-radius: 999px;
+  background: var(--_fill-color);
+}
+.mx-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: var(--_thumb);
+  height: var(--_thumb);
+  margin-top: calc((var(--_track) - var(--_thumb)) / 2);
+  border: 2px solid var(--_fill-color);
+  border-radius: 50%;
+  background: var(--mx-surface);
+  transition: transform var(--mx-duration) var(--mx-ease);
+}
+.mx-slider::-moz-range-thumb {
+  box-sizing: border-box;
+  width: var(--_thumb);
+  height: var(--_thumb);
+  border: 2px solid var(--_fill-color);
+  border-radius: 50%;
+  background: var(--mx-surface);
+}
+.mx-slider:is(:hover, [data-mx-state='hover']):not(:disabled)::-webkit-slider-thumb {
+  transform: scale(1.1);
+}
+.mx-slider:is(:active, [data-mx-state='active']):not(:disabled)::-webkit-slider-thumb {
+  transform: scale(1.2);
+}
+.mx-slider:is(:focus-visible, [data-mx-state='focus']) {
+  outline: none;
+}
+.mx-slider:is(:focus-visible, [data-mx-state='focus'])::-webkit-slider-thumb {
+  outline: var(--mx-focus-width) solid var(--mx-accent);
+  outline-offset: var(--mx-focus-offset);
+}
+.mx-slider:is(:focus-visible, [data-mx-state='focus'])::-moz-range-thumb {
+  outline: var(--mx-focus-width) solid var(--mx-accent);
+  outline-offset: var(--mx-focus-offset);
+}
+.mx-slider[aria-invalid='true'] {
+  --_fill-color: var(--mx-danger);
+}
+.mx-slider:disabled {
+  --_fill-color: var(--mx-stone-strong);
+  cursor: not-allowed;
+}

@@ -1,0 +1,132 @@
+/* ---------- Button ---------- */
+
+.mx-button {
+  --_bg: var(--mx-ink);
+  --_fg: var(--mx-on-ink);
+  --_bg-hover: var(--mx-ink-hover);
+  --_bg-active: color-mix(in oklab, var(--_bg-hover) 88%, var(--mx-ink));
+  --_border: transparent;
+  --_h: var(--mx-control-height);
+  --_px: 16px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-sizing: border-box;
+  height: var(--_h);
+  padding: 0 var(--_px);
+  margin: 0;
+  border: 1px solid var(--_border);
+  border-radius: var(--mx-radius);
+  background: var(--_bg);
+  color: var(--_fg);
+  font-family: var(--mx-font-sans);
+  font-size: var(--mx-text-md);
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color var(--mx-duration) var(--mx-ease),
+    border-color var(--mx-duration) var(--mx-ease),
+    color var(--mx-duration) var(--mx-ease);
+}
+.mx-button:is(:hover, [data-mx-state='hover']) {
+  background: var(--_bg-hover);
+}
+.mx-button:is(:active, [data-mx-state='active']):not(:disabled):not([aria-disabled='true']) {
+  background: var(--_bg-active);
+  transform: translateY(0.5px);
+}
+.mx-button svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.mx-button[data-variant='secondary'] {
+  --_bg: var(--mx-subtle);
+  --_fg: var(--mx-ink);
+  --_bg-hover: var(--mx-stone);
+}
+.mx-button[data-variant='outline'] {
+  --_bg: var(--mx-surface);
+  --_fg: var(--mx-ink);
+  --_bg-hover: var(--mx-subtle);
+  --_border: var(--mx-stone-strong);
+}
+.mx-button[data-variant='ghost'] {
+  --_bg: transparent;
+  --_fg: var(--mx-ink);
+  --_bg-hover: var(--mx-subtle);
+}
+.mx-button[data-variant='destructive'] {
+  --_bg: var(--mx-danger);
+  --_fg: var(--mx-on-danger);
+  --_bg-hover: var(--mx-danger-hover);
+}
+.mx-button[data-variant='link'] {
+  --_bg: transparent;
+  --_fg: var(--mx-accent);
+  --_bg-hover: transparent;
+  --_bg-active: transparent;
+  --_px: 4px;
+  text-underline-offset: 4px;
+}
+.mx-button[data-variant='link']:is(:hover, [data-mx-state='hover']) {
+  text-decoration: underline;
+}
+
+.mx-button[data-size='sm'] {
+  --_h: var(--mx-control-height-sm);
+  --_px: 12px;
+  font-size: var(--mx-text-sm);
+}
+.mx-button[data-size='lg'] {
+  --_h: var(--mx-control-height-lg);
+  --_px: 20px;
+  font-size: var(--mx-text-lg);
+}
+.mx-button[data-icon] {
+  --_px: 0;
+  width: var(--_h);
+}
+
+.mx-button:disabled,
+.mx-button[aria-disabled='true'] {
+  cursor: not-allowed;
+}
+.mx-button:disabled:not([aria-busy='true']),
+.mx-button[aria-disabled='true']:not([aria-busy='true']) {
+  --_bg: var(--mx-subtle);
+  --_bg-hover: var(--mx-subtle);
+  --_fg: var(--mx-muted);
+  --_border: transparent;
+}
+.mx-button[data-variant='link']:disabled,
+.mx-button[data-variant='ghost']:disabled {
+  --_bg: transparent;
+  --_bg-hover: transparent;
+}
+.mx-button[aria-busy='true'] {
+  cursor: progress;
+}
+
+.mx-spinner {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  animation: mx-spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes mx-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

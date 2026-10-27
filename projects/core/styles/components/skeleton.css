@@ -1,0 +1,22 @@
+/* ---------- Skeleton ---------- */
+
+.mx-skeleton {
+  display: block;
+  min-height: 12px;
+  border-radius: var(--mx-radius);
+  background: var(--mx-subtle);
+  animation: mx-skeleton-pulse 1.6s ease-in-out infinite;
+}
+.mx-skeleton[data-shape='text'] {
+  height: 0.8em;
+  min-height: 0;
+  border-radius: calc(var(--mx-radius) - 2px);
+}
+.mx-skeleton[data-shape='circle'] {
+  border-radius: 50%;
+}
+@keyframes mx-skeleton-pulse {
+  50% {
+    background: var(--mx-stone);
+  }
+}

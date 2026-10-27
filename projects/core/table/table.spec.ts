@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MX_TABLE, MxSortState, mxSortData } from './table';
+import { expectNoA11yViolations } from '../testing/axe';
 
 @Component({
   imports: [MX_TABLE],
@@ -38,5 +39,10 @@ describe('MxTable', () => {
     const rows = [{ nome: 'Úige', v: 10 }, { nome: 'Benguela', v: 2 }, { nome: 'cabinda', v: 30 }];
     expect(mxSortData(rows, { active: 'nome', direction: 'asc' }).map((r) => r.nome)).toEqual(['Benguela', 'cabinda', 'Úige']);
     expect(mxSortData(rows, { active: 'v', direction: 'desc' }).map((r) => r.v)).toEqual([30, 10, 2]);
+  });
+  it('não tem violações de acessibilidade', async () => {
+    const fixture = TestBed.createComponent(Host);
+    fixture.detectChanges();
+    await expectNoA11yViolations(fixture.nativeElement);
   });
 });

@@ -3,6 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MxFormField, MxLabel } from '@muxima-ui/core/form-field';
 import { MxOption, MxSelect } from './select';
+import { expectNoA11yViolations } from '../testing/axe';
 
 @Component({
   imports: [ReactiveFormsModule, MxFormField, MxLabel, MxSelect, MxOption],
@@ -83,5 +84,13 @@ describe('MxSelect', () => {
     fixture.componentInstance.provincia.disable();
     fixture.detectChanges();
     expect(trigger.disabled).toBe(true);
+  });
+  it('não tem violações de acessibilidade, fechado e aberto', async () => {
+    const { fixture, trigger } = await setup();
+    await expectNoA11yViolations(fixture.nativeElement);
+    trigger.click();
+    fixture.detectChanges();
+    await fixture.whenStable();
+    await expectNoA11yViolations(document.body);
   });
 });

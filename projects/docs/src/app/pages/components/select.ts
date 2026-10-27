@@ -11,14 +11,14 @@ interface Plano {
 }
 
 @Component({
-  selector: 'doc-seleccao',
+  selector: 'doc-select-page',
   imports: [DOC_UI, FormsModule, ReactiveFormsModule, MxFormField, MxLabel, MxHint, MxError, MxSelect, MxOption, MxButton],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Selecção' }]"
-        title="Selecção"
+        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Select' }]"
+        title="Select"
         lead="Escolha de uma opção numa lista. Abre com o teclado, pesquisa pela primeira letra e funciona com ngModel e Reactive Forms."
       />
 
@@ -43,9 +43,9 @@ interface Plano {
       </section>
 
       <section>
-        <h2>Anatomia</h2>
+        <h2>Estrutura</h2>
         <p>Um botão com papel de combobox abre a lista numa camada flutuante, sem sair do campo.</p>
-        <doc-anatomy
+        <doc-structure
           [labels]="{
             topLeft: 'Valor actual',
             topRight: 'Foco de 2 px',
@@ -55,7 +55,20 @@ interface Plano {
           }"
         >
           <mx-select class="w-180" placeholder="Luanda" aria-label="Exemplo de selecção" />
-        </doc-anatomy>
+        </doc-structure>
+      </section>
+
+      <section>
+        <h2>Estados</h2>
+        <p>Sem opções, o painel mostra o texto de emptyText.</p>
+        <doc-states>
+          <doc-state name="Vazio" note="Mostra o placeholder."><mx-select placeholder="Escolhe o sector" aria-label="Vazio" /></doc-state>
+          <doc-state name="Normal"><mx-select aria-label="Normal" [value]="'aoa'"><mx-option value="aoa">Kwanza (AOA)</mx-option></mx-select></doc-state>
+          <doc-state name="Hover"><mx-select aria-label="Hover" data-mx-state="hover" [value]="'aoa'"><mx-option value="aoa">Kwanza (AOA)</mx-option></mx-select></doc-state>
+          <doc-state name="Foco"><mx-select aria-label="Foco" data-mx-state="focus" [value]="'aoa'"><mx-option value="aoa">Kwanza (AOA)</mx-option></mx-select></doc-state>
+          <doc-state name="Desactivado" note="disabled"><mx-select aria-label="Desactivado" disabled [value]="'aoa'"><mx-option value="aoa">Kwanza (AOA)</mx-option></mx-select></doc-state>
+          <doc-state name="Erro" note="invalid ou controlo inválido."><mx-form-field><label mxLabel>Sector</label><mx-select invalid placeholder="Escolhe o sector" /><mx-error>Escolhe um sector.</mx-error></mx-form-field></doc-state>
+        </doc-states>
       </section>
 
       <section>
@@ -132,12 +145,12 @@ interface Plano {
 
       <section>
         <h2>Componentes relacionados</h2>
-        <doc-related [items]="[{ name: 'Campos de entrada', path: '/componentes/campos-de-entrada' }, { name: 'Combobox' }, { name: 'Multi-select' }]" />
+        <doc-related [items]="[{ name: 'Input', path: '/componentes/input' }, { name: 'Combobox' }, { name: 'Multi-select' }]" />
       </section>
     </article>
   `,
 })
-export class SeleccaoPage {
+export class SelectPage {
   protected readonly provincias = ['Bengo', 'Benguela', 'Bié', 'Cabinda', 'Cuanza Norte', 'Cuanza Sul', 'Huambo', 'Huíla', 'Luanda', 'Malanje', 'Namibe', 'Uíge', 'Zaire'];
   protected provincia: string | null = 'Luanda';
   protected moeda = 'AOA';

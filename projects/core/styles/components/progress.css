@@ -1,0 +1,68 @@
+/* ---------- Progress ---------- */
+
+.mx-progress {
+  --_h: 8px;
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  width: 100%;
+  height: var(--_h);
+  border: 0;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--mx-stone);
+  color: var(--mx-accent);
+}
+.mx-progress[data-size='sm'] {
+  --_h: 4px;
+}
+.mx-progress[data-size='lg'] {
+  --_h: 12px;
+}
+.mx-progress::-webkit-progress-bar {
+  background: var(--mx-stone);
+}
+.mx-progress::-webkit-progress-value {
+  background: var(--mx-accent);
+  border-radius: 999px;
+  transition: width 240ms var(--mx-ease);
+}
+.mx-progress::-moz-progress-bar {
+  background: var(--mx-accent);
+  border-radius: 999px;
+}
+.mx-progress:indeterminate {
+  background: linear-gradient(90deg, var(--mx-stone) 0 30%, var(--mx-accent) 30% 55%, var(--mx-stone) 55%) 0 0 / 300% 100%;
+  animation: mx-progress-slide 1.4s linear infinite;
+}
+.mx-progress:indeterminate::-webkit-progress-bar {
+  background: transparent;
+}
+.mx-progress:indeterminate::-moz-progress-bar {
+  background: transparent;
+}
+@keyframes mx-progress-slide {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -50% 0;
+  }
+}
+
+/* Spinner autónomo (directiva mxSpinner); dentro do botão mantém 14 px */
+.mx-spinner[role='status'] {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  color: var(--mx-accent);
+}
+.mx-spinner[role='status'][data-size='sm'] {
+  width: 14px;
+  height: 14px;
+}
+.mx-spinner[role='status'][data-size='lg'] {
+  width: 28px;
+  height: 28px;
+  border-width: 3px;
+}

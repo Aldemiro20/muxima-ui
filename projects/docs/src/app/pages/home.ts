@@ -77,21 +77,21 @@ import { Logo } from '../ui/logo';
           <a routerLink="/componentes" class="text-link">Ver catálogo completo <doc-icon name="arrowRight" [size]="14" /></a>
         </div>
         <div class="grid-3">
-          <a class="card card-link" routerLink="/componentes/campos-de-entrada">
+          <a class="card card-link" routerLink="/componentes/input">
             <span class="icon-tile"><doc-icon name="file" /></span>
-            <h3>Campos de entrada</h3>
+            <h3>Input</h3>
             <p>Label, ajuda e erro ligados automaticamente.</p>
             <span class="text-link">Explorar componente →</span>
           </a>
-          <a class="card card-link" routerLink="/componentes/dialogos">
+          <a class="card card-link" routerLink="/componentes/dialog">
             <span class="icon-tile"><doc-icon name="grid" /></span>
-            <h3>Diálogos</h3>
+            <h3>Dialog</h3>
             <p>Foco preso, Escape e foco devolvido a quem abriu.</p>
             <span class="text-link">Explorar componente →</span>
           </a>
-          <a class="card card-link" routerLink="/componentes/tabelas">
+          <a class="card card-link" routerLink="/componentes/table">
             <span class="icon-tile"><doc-icon name="table" /></span>
-            <h3>Tabelas</h3>
+            <h3>Table</h3>
             <p>Ordenação acessível e números alinhados.</p>
             <span class="text-link">Explorar componente →</span>
           </a>

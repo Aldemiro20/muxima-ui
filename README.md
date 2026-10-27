@@ -10,9 +10,14 @@ Componentes acessíveis, temas por variáveis CSS e modo escuro incluído.
 | `projects/core` | Pacote `@muxima-ui/core` (botão, campos, selecção, diálogo, separadores, tabela, tokens e estilos) |
 | `projects/docs` | Site de documentação (início, introdução, instalação, temas, modo escuro, componentes, templates, preços, consultoria, changelog) |
 
+## Padrão de qualidade
+
+Cada componente segue as oito regras descritas em `/docs/padrao-de-qualidade` no site: Angular 21+, HTML nativo primeiro, WAI-ARIA e teclado, formulários, estados completos, só tokens, API pequena (`variant`, `size`, `disabled`; no máximo 6 variantes e 3 tamanhos) e testes com axe.
+
 ## Requisitos
 
 - Node.js 20.19 ou superior (22 recomendado)
+- Para `test:a11y`, o Chromium do Playwright: `npx playwright install chromium`
 - npm 11 (o npm 10.9 falha a instalar este workspace com o erro `edgesOut`; usa `npx npm@11 install` se for preciso)
 
 ## Comandos
@@ -20,9 +25,10 @@ Componentes acessíveis, temas por variáveis CSS e modo escuro incluído.
 ```bash
 npm install          # instalar dependências
 npm start            # site de documentação em http://localhost:4200
-npm test             # testes da biblioteca (Vitest)
+npm test             # testes da biblioteca (Vitest), com axe em cada componente
 npm run build:core   # gerar o pacote em dist/core
 npm run build:docs   # gerar o site em dist/docs
+npm run test:a11y    # axe em todas as páginas do site, claro e escuro (depois de build:docs)
 ```
 
 ## Usar a biblioteca numa aplicação

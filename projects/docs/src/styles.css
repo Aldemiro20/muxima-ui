@@ -650,9 +650,9 @@ a.text-link:hover,
   padding: 28px;
 }
 
-/* ---------- Anatomia ---------- */
+/* ---------- Estrutura ---------- */
 
-.anatomy {
+.structure {
   position: relative;
   max-width: 680px;
   height: 200px;
@@ -661,7 +661,7 @@ a.text-link:hover,
   border-radius: var(--mx-radius-surface);
   background: var(--mx-surface);
 }
-.anatomy-lines {
+.structure-lines {
   position: absolute;
   inset: 10px 20px 10px;
   width: calc(100% - 40px);
@@ -671,36 +671,36 @@ a.text-link:hover,
   stroke-width: 1;
   vector-effect: non-scaling-stroke;
 }
-.anatomy-lines path {
+.structure-lines path {
   vector-effect: non-scaling-stroke;
 }
-.anatomy-ring {
+.structure-ring {
   stroke: var(--mx-accent);
   stroke-dasharray: 3 3;
   vector-effect: non-scaling-stroke;
 }
-.anatomy-label {
+.structure-label {
   position: absolute;
   color: var(--mx-muted);
   font-size: 12px;
 }
-.anatomy-label.tl {
+.structure-label.tl {
   left: 24px;
   top: 32px;
 }
-.anatomy-label.tr {
+.structure-label.tr {
   right: 24px;
   top: 32px;
 }
-.anatomy-label.bl {
+.structure-label.bl {
   left: 24px;
   top: 128px;
 }
-.anatomy-label.br {
+.structure-label.br {
   right: 24px;
   top: 128px;
 }
-.anatomy-sample {
+.structure-sample {
   position: absolute;
   left: 50%;
   top: 76px;
@@ -709,7 +709,7 @@ a.text-link:hover,
   display: flex;
   justify-content: center;
 }
-.anatomy-caption {
+.structure-caption {
   position: absolute;
   left: 0;
   right: 0;
@@ -783,10 +783,56 @@ a.text-link:hover,
   border-bottom: 0;
 }
 
+/* ---------- Estados ---------- */
+
+.states-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  border: 1px solid var(--mx-stone);
+  border-radius: var(--mx-radius-surface);
+  background: var(--mx-surface);
+  overflow: hidden;
+}
+.state-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 16px 14px;
+  margin: 0 -1px -1px 0;
+  border-right: 1px solid var(--mx-stone);
+  border-bottom: 1px solid var(--mx-stone);
+}
+.state-sample {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 56px;
+  margin-bottom: 6px;
+}
+.state-sample > .mx-form-field,
+.state-sample > .mx-select,
+.state-sample > .mx-input {
+  width: 100%;
+}
+.state-name {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--mx-ink);
+}
+.state-note {
+  margin: 0;
+  font-size: 12px;
+  color: var(--mx-muted);
+  line-height: 1.4;
+}
+
 /* ---------- Exemplos e acessibilidade ---------- */
 
-.example-card h3,
-.a11y-card h3 {
+.example-card > h3,
+.a11y-card > h3 {
   margin: 0 0 16px;
   font-size: 15px;
   font-weight: 600;
@@ -1826,7 +1872,7 @@ a.text-link:hover,
   .timeline > li::after {
     display: none;
   }
-  .anatomy-label {
+  .structure-label {
     font-size: 11px;
   }
   .keys > div {
@@ -1836,4 +1882,135 @@ a.text-link:hover,
   .w-280 {
     width: 100%;
   }
+}
+
+/* ---------- Ajudas do ciclo 2 ---------- */
+
+.indent {
+  margin-left: 24px;
+}
+.stack-sm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.grow {
+  flex: 1;
+}
+.w-60 {
+  width: 60%;
+}
+.w-90 {
+  width: 90%;
+}
+.h-48 {
+  height: 48px;
+}
+.sq-40 {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+.mini-card {
+  width: 100%;
+}
+.row-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.row-inline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 24px;
+  font-size: 14px;
+}
+.big-number {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.small-label {
+  font-size: 13px;
+  color: var(--mx-muted);
+}
+.alert-actions {
+  margin-top: 8px !important;
+}
+.sep-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 360px;
+}
+.sep-demo p {
+  margin: 0;
+}
+.person {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.person > div {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+.avatar-group {
+  display: flex;
+}
+.avatar-group > * {
+  margin-left: -8px;
+  box-shadow: 0 0 0 2px var(--mx-surface);
+}
+.avatar-group > :first-child {
+  margin-left: 0;
+}
+.avatar-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--mx-stone);
+  color: var(--mx-ink);
+  font-size: 12px;
+  font-weight: 500;
+}
+.rules {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.rule {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 16px;
+}
+.rule h3 {
+  margin: 0 0 4px;
+  font-size: 16px;
+}
+.rule p {
+  margin: 0 0 8px;
+}
+.rule-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--mx-accent-soft);
+  color: var(--mx-accent);
+  font-weight: 600;
+  font-size: 14px;
 }

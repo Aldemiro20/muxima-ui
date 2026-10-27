@@ -1,0 +1,103 @@
+/* ---------- Table ---------- */
+
+.mx-table-container {
+  width: 100%;
+  overflow-x: auto;
+  border: var(--mx-border);
+  border-radius: var(--mx-radius-surface);
+  background: var(--mx-surface);
+}
+.mx-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--mx-font-sans);
+  font-size: var(--mx-text-md);
+  color: var(--mx-ink);
+  font-variant-numeric: tabular-nums;
+}
+.mx-table caption {
+  padding: 12px 16px;
+  text-align: left;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+  caption-side: bottom;
+}
+.mx-table th,
+.mx-table td {
+  height: 44px;
+  padding: 0 16px;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: var(--mx-border);
+}
+.mx-table thead th {
+  height: 40px;
+  background: var(--mx-subtle);
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.mx-table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+.mx-table tbody tr:is(:hover, [data-mx-state='hover']) {
+  background: color-mix(in oklab, var(--mx-subtle) 60%, transparent);
+}
+.mx-table tbody tr[aria-selected='true'] {
+  background: var(--mx-accent-soft);
+  box-shadow: inset 2px 0 0 var(--mx-accent);
+}
+.mx-table [data-align='end'] {
+  text-align: right;
+}
+.mx-table[data-density='compact'] th,
+.mx-table[data-density='compact'] td {
+  height: 36px;
+}
+
+.mx-sort-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 -6px;
+  padding: 4px 6px;
+  border: 0;
+  border-radius: calc(var(--mx-radius) - 2px);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.mx-sort-button:is(:hover, [data-mx-state='hover']) {
+  color: var(--mx-ink);
+}
+.mx-sort-icon {
+  width: 14px;
+  height: 14px;
+  opacity: 0.5;
+}
+[aria-sort='ascending'] .mx-sort-button,
+[aria-sort='descending'] .mx-sort-button {
+  color: var(--mx-ink);
+}
+[aria-sort='ascending'] .mx-sort-icon,
+[aria-sort='descending'] .mx-sort-icon {
+  opacity: 1;
+  color: var(--mx-accent);
+}
+
+/* Estado vazio: <tr><td class="mx-table-empty" colspan="...">Sem resultados</td></tr> */
+.mx-table td.mx-table-empty {
+  height: 120px;
+  text-align: center;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+}
+.mx-table tbody tr:has(> .mx-table-empty):is(:hover, [data-mx-state='hover']) {
+  background: transparent;
+}
+/* A carregar: aria-busy="true" no <table> */
+.mx-table[aria-busy='true'] tbody {
+  opacity: 0.5;
+}

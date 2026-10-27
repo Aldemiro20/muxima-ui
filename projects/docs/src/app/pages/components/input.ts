@@ -5,14 +5,14 @@ import { MxError, MxFormField, MxHint, MxInput, MxLabel } from '@muxima-ui/core/
 import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
 @Component({
-  selector: 'doc-campos',
+  selector: 'doc-input-page',
   imports: [DOC_UI, ReactiveFormsModule, MxFormField, MxLabel, MxInput, MxHint, MxError, MxButton],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Campos de entrada' }]"
-        title="Campos de entrada"
+        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Input' }]"
+        title="Input"
         lead="Texto, email, números e áreas de texto, com label, ajuda e mensagem de erro ligados automaticamente. Funcionam com ngModel e Reactive Forms."
       />
 
@@ -34,9 +34,9 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
       </section>
 
       <section>
-        <h2>Anatomia</h2>
+        <h2>Estrutura</h2>
         <p>O campo junta quatro peças. O label, a ajuda e o erro ficam ligados ao input por id.</p>
-        <doc-anatomy
+        <doc-structure
           [labels]="{
             topLeft: 'Label (for)',
             topRight: 'Foco de 2 px',
@@ -46,7 +46,21 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
           }"
         >
           <input mxInput tabindex="-1" placeholder="Nome completo" aria-label="Exemplo" class="w-180" />
-        </doc-anatomy>
+        </doc-structure>
+      </section>
+
+      <section>
+        <h2>Estados</h2>
+        <p>O erro só aparece depois de o utilizador tocar no campo; aqui está forçado com invalid.</p>
+        <doc-states>
+          <doc-state name="Vazio" note="Mostra o placeholder."><input mxInput placeholder="Nome completo" aria-label="Vazio" /></doc-state>
+          <doc-state name="Normal"><input mxInput value="Ana Kiala" aria-label="Normal" /></doc-state>
+          <doc-state name="Hover" note="Borda mais escura."><input mxInput value="Ana Kiala" aria-label="Hover" data-mx-state="hover" /></doc-state>
+          <doc-state name="Foco" note="Borda e anel Kwanza."><input mxInput value="Ana Kiala" aria-label="Foco" data-mx-state="focus" /></doc-state>
+          <doc-state name="Desactivado" note="disabled"><input mxInput value="Ana Kiala" aria-label="Desactivado" disabled /></doc-state>
+          <doc-state name="Só leitura" note="readonly"><input mxInput value="AO-2026-0142" aria-label="Só leitura" readonly /></doc-state>
+          <doc-state name="Erro" note="aria-invalid e mensagem ligada."><mx-form-field><label mxLabel>Email</label><input mxInput value="ana@" invalid /><mx-error>Email inválido.</mx-error></mx-form-field></doc-state>
+        </doc-states>
       </section>
 
       <section>
@@ -121,12 +135,12 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
       <section>
         <h2>Componentes relacionados</h2>
-        <doc-related [items]="[{ name: 'Selecção', path: '/componentes/seleccao' }, { name: 'Botões', path: '/componentes/botoes' }, { name: 'Checkbox' }]" />
+        <doc-related [items]="[{ name: 'Select', path: '/componentes/select' }, { name: 'Button', path: '/componentes/button' }, { name: 'Checkbox' }]" />
       </section>
     </article>
   `,
 })
-export class CamposPage {
+export class InputPage {
   protected readonly email = new FormControl('', [Validators.email]);
   protected readonly form = new FormGroup({
     empresa: new FormControl('', Validators.required),

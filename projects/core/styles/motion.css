@@ -1,0 +1,15 @@
+/* Movimento reduzido: sem transições nem animações decorativas */
+@media (prefers-reduced-motion: reduce) {
+  [class*='mx-'],
+  [class*='mx-']::before,
+  [class*='mx-']::after,
+  [class*='mx-']::-webkit-slider-thumb,
+  .mx-dialog-panel .cdk-dialog-container {
+    transition: none !important;
+    animation: none !important;
+  }
+  /* O spinner continua a girar, mais devagar: é a única indicação de espera */
+  .mx-spinner {
+    animation: mx-spin 1.6s linear infinite !important;
+  }
+}

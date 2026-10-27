@@ -60,7 +60,7 @@ export class IntroducaoPage {
     { title: 'Temas', text: 'Personaliza a cor de marca e o raio dos controlos.', icon: 'sliders', path: '/docs/temas' },
     { title: 'Componentes', text: 'Pré-visualizações, exemplos e referência da API.', icon: 'grid', path: '/componentes' },
     { title: 'Modo escuro', text: 'Inverte papel e tinta, mantendo os tokens.', icon: 'moon', path: '/docs/modo-escuro' },
-    { title: 'Acessibilidade', text: 'Teclado, foco e ARIA em todos os componentes.', icon: 'shield', path: '/componentes/botoes' },
+    { title: 'Acessibilidade', text: 'Teclado, foco e ARIA em todos os componentes.', icon: 'shield', path: '/componentes/button' },
     { title: 'Blocos e Templates', text: 'Interfaces completas construídas sobre o Core.', icon: 'layers', path: '/templates' },
   ];
 }

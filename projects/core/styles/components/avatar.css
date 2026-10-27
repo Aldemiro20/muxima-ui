@@ -1,0 +1,33 @@
+/* ---------- Avatar ---------- */
+
+.mx-avatar {
+  --_s: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--_s);
+  height: var(--_s);
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--mx-subtle);
+  box-shadow: inset 0 0 0 1px var(--mx-stone);
+  color: var(--mx-ink);
+  font-family: var(--mx-font-sans);
+  font-size: calc(var(--_s) * 0.38);
+  font-weight: 500;
+  line-height: 1;
+  vertical-align: middle;
+  user-select: none;
+}
+.mx-avatar[data-size='sm'] {
+  --_s: 24px;
+}
+.mx-avatar[data-size='lg'] {
+  --_s: 40px;
+}
+.mx-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

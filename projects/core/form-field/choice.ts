@@ -1,0 +1,34 @@
+import { Directive, input } from '@angular/core';
+
+/**
+ * Label que envolve uma caixa de verificação, um botão de opção ou um interruptor
+ * com o seu texto. Clicar no texto activa o controlo, sem ids.
+ *
+ * ```html
+ * <label mxChoice><input type="checkbox" mxCheckbox /> Aceito os termos</label>
+ * ```
+ */
+@Directive({
+  selector: 'label[mxChoice]',
+  host: { class: 'mx-choice' },
+})
+export class MxChoice {}
+
+/**
+ * Grupo de controlos com título, sobre o `<fieldset>` e `<legend>` nativos.
+ * O leitor de ecrã anuncia o título ao entrar no grupo.
+ *
+ * ```html
+ * <fieldset mxFieldset>
+ *   <legend>Forma de pagamento</legend>
+ *   <label mxChoice><input type="radio" mxRadio name="pag" value="ref" /> Referência</label>
+ * </fieldset>
+ * ```
+ */
+@Directive({
+  selector: 'fieldset[mxFieldset]',
+  host: { class: 'mx-fieldset', '[attr.data-orientation]': 'orientation()' },
+})
+export class MxFieldset {
+  readonly orientation = input<'vertical' | 'horizontal'>('vertical');
+}

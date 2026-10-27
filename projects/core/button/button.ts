@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 
 export type MxButtonVariant = 'default' | 'secondary' | 'outline' | 'ghost' | 'destructive' | 'link';
-export type MxButtonSize = 'sm' | 'md' | 'lg' | 'icon';
+export type MxButtonSize = 'sm' | 'md' | 'lg';
 
 /**
  * Botão da Muxima UI, aplicado sobre o elemento nativo.
@@ -37,6 +37,7 @@ export type MxButtonSize = 'sm' | 'md' | 'lg' | 'icon';
     class: 'mx-button',
     '[attr.data-variant]': 'variant()',
     '[attr.data-size]': 'size()',
+    '[attr.data-icon]': 'icon() ? "" : null',
     '[attr.aria-busy]': 'loading() ? "true" : null',
     '[attr.disabled]': 'isNativeButton && isDisabled() ? "" : null',
     '[attr.aria-disabled]': '!isNativeButton && isDisabled() ? "true" : null',
@@ -47,8 +48,10 @@ export type MxButtonSize = 'sm' | 'md' | 'lg' | 'icon';
 export class MxButton {
   /** Aparência do botão. */
   readonly variant = input<MxButtonVariant>('default');
-  /** Altura: sm 32 px, md 36 px, lg 40 px; `icon` é quadrado. */
+  /** Altura: sm 32 px, md 36 px, lg 40 px. */
   readonly size = input<MxButtonSize>('md');
+  /** Botão quadrado só com ícone. Exige `aria-label`. */
+  readonly icon = input(false, { transform: booleanAttribute });
   /** Mostra um indicador e bloqueia novos cliques enquanto uma acção decorre. */
   readonly loading = input(false, { transform: booleanAttribute });
   /** Desactiva o botão. Em `<a>`, usa aria-disabled e retira-o da ordem de tabulação. */

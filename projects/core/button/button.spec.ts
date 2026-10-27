@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MxButton } from './button';
+import { expectNoA11yViolations } from '../testing/axe';
 
 @Component({
   imports: [MxButton],
@@ -54,5 +55,9 @@ describe('MxButton', () => {
     const event = new MouseEvent('click', { cancelable: true, bubbles: true });
     link.dispatchEvent(event);
     expect(event.defaultPrevented).toBe(true);
+  });
+  it('não tem violações de acessibilidade', async () => {
+    const { fixture } = setup();
+    await expectNoA11yViolations(fixture.nativeElement);
   });
 });

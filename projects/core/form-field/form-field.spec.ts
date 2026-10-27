@@ -3,6 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MxError, MxFormField, MxHint, MxLabel } from './form-field';
 import { MxInput } from './input';
+import { expectNoA11yViolations } from '../testing/axe';
 
 @Component({
   imports: [ReactiveFormsModule, MxFormField, MxLabel, MxInput, MxHint, MxError],
@@ -64,5 +65,9 @@ describe('MxFormField + MxInput', () => {
     fixture.detectChanges();
     expect(input.getAttribute('aria-invalid')).toBeNull();
     expect(error.hasAttribute('hidden')).toBe(true);
+  });
+  it('não tem violações de acessibilidade', async () => {
+    const { fixture } = setup();
+    await expectNoA11yViolations(fixture.nativeElement);
   });
 });

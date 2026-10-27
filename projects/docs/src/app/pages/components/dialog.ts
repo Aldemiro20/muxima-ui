@@ -52,14 +52,14 @@ export class RenameDialog {
 }
 
 @Component({
-  selector: 'doc-dialogos',
+  selector: 'doc-dialog-page',
   imports: [DOC_UI, MxButton],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Diálogos' }]"
-        title="Diálogos"
+        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Dialog' }]"
+        title="Dialog"
         lead="Confirmações e pequenos fluxos que exigem a atenção do utilizador. O foco fica preso no diálogo e volta ao botão que o abriu."
       />
 
@@ -78,9 +78,9 @@ export class RenameDialog {
       </section>
 
       <section>
-        <h2>Anatomia</h2>
+        <h2>Estrutura</h2>
         <p>Cabeçalho com título e descrição, conteúdo e rodapé com as acções. A acção principal fica à direita.</p>
-        <doc-anatomy
+        <doc-structure
           [labels]="{
             topLeft: 'Título (aria-labelledby)',
             topRight: 'Raio de 10 px',
@@ -94,7 +94,18 @@ export class RenameDialog {
             <span>Esta acção não pode ser desfeita.</span>
             <span class="mini-actions"><i></i><i class="dark"></i></span>
           </div>
-        </doc-anatomy>
+        </doc-structure>
+      </section>
+
+      <section>
+        <h2>Estados</h2>
+        <p>Um diálogo está aberto ou fechado; os estados que importam são os dos botões e campos lá dentro, e o modo de alerta.</p>
+        <doc-states>
+          <doc-state name="Fechado" note="O foco volta ao botão que o abriu."><button mxButton type="button" variant="outline">Abrir diálogo</button></doc-state>
+          <doc-state name="Aberto" note="Foco preso no painel; Esc fecha."><div class="mini-dialog"><strong>Título</strong><span>Descrição curta.</span><div class="mini-actions"><i></i><i class="dark"></i></div></div></doc-state>
+          <doc-state name="Acção em curso" note="Botão de confirmar com loading."><button mxButton type="button" loading>A eliminar</button></doc-state>
+          <doc-state name="Sem fecho" note="disableClose: só os botões fecham."><button mxButton type="button" variant="destructive">Eliminar</button></doc-state>
+        </doc-states>
       </section>
 
       <section>
@@ -133,12 +144,12 @@ export class RenameDialog {
 
       <section>
         <h2>Componentes relacionados</h2>
-        <doc-related [items]="[{ name: 'Botões', path: '/componentes/botoes' }, { name: 'Drawer' }, { name: 'Popover' }]" />
+        <doc-related [items]="[{ name: 'Button', path: '/componentes/button' }, { name: 'Drawer' }, { name: 'Popover' }]" />
       </section>
     </article>
   `,
 })
-export class DialogosPage {
+export class DialogPage {
   private readonly dialog = inject(MxDialog);
   protected readonly result = signal('');
   protected readonly projectName = signal('Portal do cliente');

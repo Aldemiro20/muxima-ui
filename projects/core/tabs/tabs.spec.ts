@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MxTab, MxTabs } from './tabs';
+import { expectNoA11yViolations } from '../testing/axe';
 
 @Component({
   imports: [MxTabs, MxTab],
@@ -59,5 +60,9 @@ describe('MxTabs', () => {
     tabs()[2].dispatchEvent(new KeyboardEvent('keydown', { key: 'Home', bubbles: true }));
     fixture.detectChanges();
     expect(fixture.componentInstance.index()).toBe(0);
+  });
+  it('não tem violações de acessibilidade', async () => {
+    const { fixture } = setup();
+    await expectNoA11yViolations(fixture.nativeElement);
   });
 });

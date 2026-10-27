@@ -1,0 +1,64 @@
+/* ---------- Tabs ---------- */
+
+.mx-tabs {
+  display: block;
+  font-family: var(--mx-font-sans);
+}
+.mx-tab-list {
+  display: flex;
+  gap: 4px;
+  border-bottom: var(--mx-border);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.mx-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: var(--mx-control-height);
+  padding: 0 12px;
+  margin: 0;
+  border: 0;
+  border-radius: var(--mx-radius) var(--mx-radius) 0 0;
+  background: transparent;
+  color: var(--mx-muted);
+  font: inherit;
+  font-size: var(--mx-text-md);
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--mx-duration) var(--mx-ease);
+}
+.mx-tab:is(:hover, [data-mx-state='hover']) {
+  color: var(--mx-ink);
+}
+.mx-tab:is([aria-selected='true'], [data-selected]) {
+  color: var(--mx-ink);
+}
+/* Linha de estado: o selecionado ganha 2 px Kwanza */
+.mx-tab:is([aria-selected='true'], [data-selected])::after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: -1px;
+  height: 2px;
+  background: var(--mx-accent);
+}
+.mx-tab:is(:disabled, [data-disabled]) {
+  color: var(--mx-stone-strong);
+  cursor: not-allowed;
+}
+.mx-tab:is(:focus-visible, [data-mx-state='focus']) {
+  outline-offset: -2px;
+}
+.mx-tab-panel {
+  display: block;
+  padding-top: 16px;
+}
+.mx-tab-panel:is(:focus-visible, [data-mx-state='focus']) {
+  outline: var(--mx-focus-width) solid var(--mx-accent);
+  outline-offset: var(--mx-focus-offset);
+  border-radius: var(--mx-radius);
+}

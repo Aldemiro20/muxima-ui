@@ -7,14 +7,14 @@ import { DOC_UI, ApiRow } from '../../ui/doc-ui';
 import { Icon } from '../../ui/icon';
 
 @Component({
-  selector: 'doc-botoes',
+  selector: 'doc-button-page',
   imports: [DOC_UI, MxButton, MxInput, FormsModule, RouterLink, Icon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Botões' }]"
-        title="Botões"
+        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Button' }]"
+        title="Button"
         lead="Permitem executar acções, confirmar decisões e navegar. Estão disponíveis em três tamanhos e seis variantes, sempre com o mesmo anel de foco."
       />
 
@@ -36,9 +36,9 @@ import { Icon } from '../../ui/icon';
       </section>
 
       <section>
-        <h2>Anatomia</h2>
+        <h2>Estrutura</h2>
         <p>Todos os botões partilham um sistema visual previsível: raio, altura, contorno e espaçamento.</p>
-        <doc-anatomy
+        <doc-structure
           [labels]="{
             topLeft: 'Borda de 1 px',
             topRight: 'Foco de 2 px',
@@ -48,7 +48,20 @@ import { Icon } from '../../ui/icon';
           }"
         >
           <button mxButton type="button" tabindex="-1">Guardar alterações</button>
-        </doc-anatomy>
+        </doc-structure>
+      </section>
+
+      <section>
+        <h2>Estados</h2>
+        <p>Hover, foco e activo aparecem aqui fixos para comparação. Na aplicação surgem com o rato e o teclado.</p>
+        <doc-states>
+          <doc-state name="Normal"><button mxButton type="button">Guardar</button></doc-state>
+          <doc-state name="Hover" note="Fundo mais escuro."><button mxButton type="button" data-mx-state="hover">Guardar</button></doc-state>
+          <doc-state name="Foco" note="Anel de 2 px, só com teclado."><button mxButton type="button" data-mx-state="focus">Guardar</button></doc-state>
+          <doc-state name="Activo" note="Enquanto é premido."><button mxButton type="button" data-mx-state="active">Guardar</button></doc-state>
+          <doc-state name="Desactivado" note="disabled"><button mxButton type="button" disabled>Guardar</button></doc-state>
+          <doc-state name="A carregar" note="loading: aria-busy e cliques bloqueados."><button mxButton type="button" loading>A guardar</button></doc-state>
+        </doc-states>
       </section>
 
       <section>
@@ -71,7 +84,7 @@ import { Icon } from '../../ui/icon';
           <doc-example title="Com ícone">
             <button mxButton type="button"><doc-icon name="check" /> Confirmar</button>
             <button mxButton type="button" variant="outline"><doc-icon name="arrowRight" /> Continuar</button>
-            <button mxButton type="button" variant="outline" size="icon" aria-label="Copiar"><doc-icon name="copy" /></button>
+            <button mxButton type="button" variant="outline" icon aria-label="Copiar"><doc-icon name="copy" /></button>
           </doc-example>
           <doc-example title="A carregar e desactivado" note="Clica em Guardar para ver o estado de carregamento.">
             <button mxButton type="button" [loading]="saving()" (click)="save()">
@@ -117,12 +130,12 @@ import { Icon } from '../../ui/icon';
 
       <section>
         <h2>Componentes relacionados</h2>
-        <doc-related [items]="[{ name: 'Diálogos', path: '/componentes/dialogos' }, { name: 'Campos de entrada', path: '/componentes/campos-de-entrada' }, { name: 'Menu' }]" />
+        <doc-related [items]="[{ name: 'Dialog', path: '/componentes/dialog' }, { name: 'Input', path: '/componentes/input' }, { name: 'Dropdown menu' }]" />
       </section>
     </article>
   `,
 })
-export class BotoesPage {
+export class ButtonPage {
   protected readonly saving = signal(false);
   protected readonly sent = signal(false);
   protected name = '';
@@ -141,7 +154,8 @@ export class BotoesPage {
 
   protected readonly api: ApiRow[] = [
     { kind: 'Input', name: 'variant', type: "'default' | 'secondary' | 'outline' | 'ghost' | 'destructive' | 'link'", default: 'default', description: 'Aparência do botão.' },
-    { kind: 'Input', name: 'size', type: "'sm' | 'md' | 'lg' | 'icon'", default: 'md', description: '32, 36 ou 40 px; icon é quadrado.' },
+    { kind: 'Input', name: 'size', type: "'sm' | 'md' | 'lg'", default: 'md', description: '32, 36 ou 40 px de altura.' },
+    { kind: 'Input', name: 'icon', type: 'boolean', default: 'false', description: 'Botão quadrado só com ícone; exige aria-label.' },
     { kind: 'Input', name: 'loading', type: 'boolean', default: 'false', description: 'Mostra o indicador e bloqueia cliques.' },
     { kind: 'Input', name: 'disabled', type: 'boolean', default: 'false', description: 'Desactiva o botão ou a ligação.' },
     { kind: 'Token CSS', name: '--mx-radius', type: 'length', default: '6px' },
