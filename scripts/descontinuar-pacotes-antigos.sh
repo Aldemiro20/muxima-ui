@@ -1,37 +1,59 @@
 #!/usr/bin/env bash
 # Marca como descontinuados os pacotes @muxima-ui/* 1.0.x publicados antes da v2.
 # Sem argumentos só mostra os comandos; com --run executa-os (precisa de npm login).
+#
+# Só descontinua um pacote antigo quando o substituto já está publicado. Quando sair
+# uma versão nova com mais componentes, passa as linhas de PENDENTE para NOVO e
+# volta a correr o script (descontinuar o mesmo pacote duas vezes não faz mal).
 set -euo pipefail
 
 MSG_BASE="Este pacote foi substituído por @muxima-ui/core (Angular 21+)."
 REPO="https://github.com/Aldemiro20/muxima-ui"
 
-# pacote antigo -> ponto de entrada novo (vazio = sem equivalente directo)
+# pacote antigo -> ponto de entrada novo, já publicado
 declare -A NOVO=(
   [accordion]=accordion [alert]=alert [autocomplete]=combobox [avatar]=avatar [badge]=badge
   [breadcrumb]=breadcrumb [button]=button [card]=card [checkbox]=checkbox [command-palette]=command
-  [confirmation-dialog]=dialog [datepicker]=date-picker [date-range-picker]=date-picker [dialog]=dialog
-  [drawer]=drawer [dropdown]=menu [input]=form-field [modal]=dialog [multi-select]=select
-  [otp-input]=otp [pagination]=pagination [progress]=progress [loading]=progress [radio-button]=radio
-  [search-box]=combobox [select]=select [slider]=slider [slider-range]=slider [stepper]=stepper
-  [table]=table [tabs]=tabs [toast]=toast [notification-center]=toast [toggle]=switch [tooltip]=tooltip
-  [carousel]= [chip]= [color-picker]= [comments]= [copy-to-clipboard]= [credit-card]= [feature-card]=
-  [file-upload]= [hero]= [image-cropper]= [kanban]= [navbar]= [pricing-card]= [product-card]=
-  [quill-editor]= [settings-item]= [shopping-cart]= [sidebar]= [star-rating]= [timeline]= [video-player]=
+  [confirmation-dialog]=dialog [datepicker]=date-picker [dialog]=dialog [drawer]=drawer
+  [dropdown]=menu [input]=form-field [modal]=dialog [multi-select]=select [otp-input]=otp
+  [pagination]=pagination [progress]=progress [loading]=progress [radio-button]=radio
+  [search-box]=combobox [select]=select [slider]=slider [stepper]=stepper [table]=table
+  [tabs]=tabs [toast]=toast [toggle]=switch [tooltip]=tooltip
 )
 
+# pacote antigo -> onde vai estar (ainda não publicado: não se descontinua já)
+declare -A PENDENTE=(
+  [date-range-picker]="date-picker (1.1)" [slider-range]="slider (1.1)" [chip]="chips (1.1)"
+  [file-upload]="file-upload (1.1)" [star-rating]="rating (1.1)" [copy-to-clipboard]="clipboard (1.1)"
+  [sidebar]="sidebar (1.2)" [timeline]="timeline (1.2)" [notification-center]="notification-center (1.2)"
+  [carousel]="carousel (1.2)" [color-picker]="color-picker (1.2)"
+  [kanban]="kanban (1.3)" [image-cropper]="image-cropper (1.3)" [quill-editor]="editor (1.3)"
+  [hero]="bloco" [feature-card]="bloco" [pricing-card]="bloco" [product-card]="bloco" [navbar]="bloco"
+  [shopping-cart]="bloco" [settings-item]="bloco" [comments]="bloco" [credit-card]="bloco"
+)
+
+# sem substituto: descontinua-se já
+SEM_SUBSTITUTO=(video-player)
+
+run() {
+  if [[ "${RUN:-}" == "1" ]]; then
+    echo "→ $2"
+    "$@"
+  else
+    printf '%q ' "$@"; echo
+  fi
+}
+[[ "${1:-}" == "--run" ]] && RUN=1
+
 for antigo in $(printf '%s\n' "${!NOVO[@]}" | sort); do
-  novo="${NOVO[$antigo]}"
-  if [[ -n "$novo" ]]; then
-    msg="$MSG_BASE Usa @muxima-ui/core/$novo. Guia: $REPO"
-  else
-    msg="$MSG_BASE Este componente não passou para a v2. Guia: $REPO"
-  fi
-  cmd=(npm deprecate "@muxima-ui/$antigo@<=1.0.2" "$msg")
-  if [[ "${1:-}" == "--run" ]]; then
-    echo "→ @muxima-ui/$antigo"
-    "${cmd[@]}"
-  else
-    printf '%q ' "${cmd[@]}"; echo
-  fi
+  run npm deprecate "@muxima-ui/$antigo@<=1.0.2" "$MSG_BASE Usa @muxima-ui/core/${NOVO[$antigo]}. Guia: $REPO"
+done
+for antigo in "${SEM_SUBSTITUTO[@]}"; do
+  run npm deprecate "@muxima-ui/$antigo@<=1.0.2" "Este pacote foi descontinuado e não tem substituto em @muxima-ui/core. Usa o elemento <video> nativo. Guia: $REPO"
+done
+
+echo
+echo "# Ainda não descontinuados (substituto por publicar):"
+for antigo in $(printf '%s\n' "${!PENDENTE[@]}" | sort); do
+  echo "#   @muxima-ui/$antigo -> ${PENDENTE[$antigo]}"
 done

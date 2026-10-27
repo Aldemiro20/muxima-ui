@@ -4,7 +4,15 @@ A publicação é feita à mão por quem tem a conta npm da organização `@muxi
 
 ## Antes de publicar
 
-1. Branch actualizado e CI verde no GitHub.
+1. Enviar o branch `v2` para o GitHub e torná-lo o branch por omissão (Settings > General >
+   Default branch). A página do pacote no npm aponta para o repositório, por isso quem chegar
+   lá tem de ver o README novo e não o da versão antiga.
+
+   ```bash
+   git push -u origin v2
+   ```
+
+   Esperar que o CI fique verde.
 2. Localmente, com npm 11:
 
    ```bash
@@ -59,4 +67,14 @@ npm run build:core && cd dist/core && npm publish --tag next --access public
    ```
 
 3. Confirmar no npm: `npm view @muxima-ui/core` e `npm view @muxima-ui/button deprecated`.
-4. Publicar o site (quando o domínio estiver escolhido) a partir de `dist/docs/browser`.
+4. Publicar o site a partir de `dist/docs/browser`. Enquanto não houver domínio, um
+   subdomínio gratuito (Cloudflare Pages, Vercel ou Netlify) serve; ao comprar o domínio,
+   basta associá-lo ao mesmo projecto. Lembra-te de configurar o encaminhamento de todas as
+   rotas para `index.html` (o site é uma SPA).
+
+## Quando sair uma versão nova (1.1, 1.2...)
+
+1. Subir a versão em `projects/core/package.json` e `MUXIMA_VERSION`, actualizar o CHANGELOG.
+2. Passos de "Antes de publicar" e "Publicar".
+3. No script de descontinuação, passar os pacotes antigos que ganharam substituto de
+   `PENDENTE` para `NOVO` e correr `./scripts/descontinuar-pacotes-antigos.sh --run`.
