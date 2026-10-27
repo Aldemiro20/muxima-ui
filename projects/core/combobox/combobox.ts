@@ -60,6 +60,7 @@ const POSITIONS: ConnectedPosition[] = [
         [attr.aria-required]="isRequired() ? 'true' : null"
         [attr.aria-describedby]="field?.describedBy() ?? null"
         [attr.aria-label]="ariaLabel() ?? null"
+        [attr.aria-busy]="loading() ? 'true' : null"
         [placeholder]="placeholder()"
         [disabled]="isDisabled()"
         [value]="text()"
@@ -68,9 +69,13 @@ const POSITIONS: ConnectedPosition[] = [
         (click)="open()"
         (blur)="onBlur()"
       />
-      <svg class="mx-select-chevron mx-combobox-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-        <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
+      @if (loading()) {
+        <span class="mx-spinner mx-select-spinner mx-combobox-chevron" aria-hidden="true"></span>
+      } @else {
+        <svg class="mx-select-chevron mx-combobox-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      }
     </div>
 
     <ng-template
@@ -82,7 +87,10 @@ const POSITIONS: ConnectedPosition[] = [
       (overlayOutsideClick)="onOutside($event)"
       (detach)="close()"
     >
-      <ul class="mx-select-panel" role="listbox" [id]="listId" [attr.aria-labelledby]="field?.labelId() ?? null" [attr.aria-label]="field?.labelId() ? null : (ariaLabel() ?? placeholder())">
+      <ul class="mx-select-panel" role="listbox" [attr.aria-busy]="loading() ? 'true' : null" [id]="listId" [attr.aria-labelledby]="field?.labelId() ?? null" [attr.aria-label]="field?.labelId() ? null : (ariaLabel() ?? placeholder())">
+        @if (loading()) {
+          <li class="mx-select-empty mx-select-loading" role="option" aria-disabled="true" aria-selected="false"><span class="mx-spinner mx-select-spinner" aria-hidden="true"></span>{{ loadingText() }}</li>
+        }
         @for (o of filtered(); track $index; let i = $index) {
           <li
             class="mx-option"
@@ -97,7 +105,9 @@ const POSITIONS: ConnectedPosition[] = [
             {{ label(o) }}
           </li>
         } @empty {
-          <li class="mx-select-empty" role="option" aria-disabled="true" aria-selected="false">{{ emptyText() }}</li>
+          @if (!loading()) {
+            <li class="mx-select-empty" role="option" aria-disabled="true" aria-selected="false">{{ emptyText() }}</li>
+          }
         }
       </ul>
     </ng-template>
@@ -112,6 +122,9 @@ export class MxCombobox<T = unknown> implements ControlValueAccessor, MxFormFiel
   readonly compareWith = input<(a: T | null, b: T | null) => boolean>((a, b) => Object.is(a, b));
   readonly placeholder = input('Pesquisar');
   readonly emptyText = input('Sem resultados');
+  /** Resultados a chegar (pesquisa no servidor): mostra um indicador no campo e na lista. */
+  readonly loading = input(false, { transform: booleanAttribute });
+  readonly loadingText = input('A pesquisar...');
   readonly disabled = input(false, { transform: booleanAttribute });
   readonly required = input(false, { transform: booleanAttribute });
   readonly invalid = input(false, { transform: booleanAttribute });

@@ -56,6 +56,7 @@ const PROVINCIAS = ['Bengo', 'Benguela', 'Bié', 'Cabinda', 'Cuando', 'Cuanza No
           <doc-state name="Com valor"><mx-combobox [options]="provincias" [value]="'Luanda'" aria-label="Com valor" /></doc-state>
           <doc-state name="Hover"><mx-combobox [options]="provincias" [value]="'Luanda'" aria-label="Hover" data-mx-state="hover" /></doc-state>
           <doc-state name="Foco"><mx-combobox [options]="provincias" [value]="'Luanda'" aria-label="Foco" data-mx-state="focus" /></doc-state>
+          <doc-state name="A pesquisar" note="loading"><mx-combobox [options]="provincias" [value]="'Hu'" aria-label="A pesquisar" loading /></doc-state>
           <doc-state name="Desactivado"><mx-combobox [options]="provincias" [value]="'Luanda'" aria-label="Desactivado" disabled /></doc-state>
           <doc-state name="Erro"><mx-combobox [options]="provincias" aria-label="Erro" invalid /></doc-state>
           <doc-state name="Sem resultados" note="emptyText na lista."><div class="mx-select-panel static-panel"><div class="mx-select-empty">Sem resultados</div></div></doc-state>
@@ -76,10 +77,10 @@ const PROVINCIAS = ['Bengo', 'Benguela', 'Bié', 'Cabinda', 'Cuando', 'Cuanza No
               <div><button mxButton type="button" size="sm" (click)="cliente.markAsTouched()">Validar</button></div>
             </div>
           </doc-example>
-          <doc-example title="Pesquisa no servidor" note="(search) emite o texto; mostra A pesquisar... enquanto espera.">
+          <doc-example title="Pesquisa no servidor" note="(search) emite o texto e loading mostra que os resultados estão a chegar.">
             <mx-form-field class="w-full">
               <label mxLabel>Produto</label>
-              <mx-combobox [options]="remote()" placeholder="Escreve pelo menos 2 letras" [emptyText]="searching() ? 'A pesquisar...' : 'Sem resultados'" (search)="query($event)" [(ngModel)]="produto" />
+              <mx-combobox [options]="remote()" placeholder="Escreve pelo menos 2 letras" [loading]="searching()" (search)="query($event)" [(ngModel)]="produto" />
               <mx-hint>{{ produto ? 'Escolhido: ' + produto : 'Os resultados chegam 400 ms depois.' }}</mx-hint>
             </mx-form-field>
           </doc-example>
@@ -183,6 +184,8 @@ export class ComboboxPage {
     { kind: 'Input', name: 'compareWith', type: '(a, b) => boolean', default: 'Object.is' },
     { kind: 'Input', name: 'placeholder', type: 'string', default: 'Pesquisar' },
     { kind: 'Input', name: 'emptyText', type: 'string', default: 'Sem resultados' },
+    { kind: 'Input', name: 'loading', type: 'boolean', default: 'false', description: 'Indicador no campo e na lista, com aria-busy.' },
+    { kind: 'Input', name: 'loadingText', type: 'string', default: 'A pesquisar...' },
     { kind: 'Input', name: 'size', type: "'sm' | 'md' | 'lg'", default: 'md' },
     { kind: 'Input', name: 'disabled, required, invalid', type: 'boolean', default: 'false' },
     { kind: 'Output', name: 'search', type: 'string', description: 'Texto escrito, para pesquisar no servidor.' },

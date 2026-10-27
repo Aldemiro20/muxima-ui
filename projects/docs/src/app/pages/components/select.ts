@@ -66,6 +66,7 @@ interface Plano {
           <doc-state name="Normal"><mx-select aria-label="Normal" [value]="'aoa'"><mx-option value="aoa">Kwanza (AOA)</mx-option></mx-select></doc-state>
           <doc-state name="Hover"><mx-select aria-label="Hover" data-mx-state="hover" [value]="'aoa'"><mx-option value="aoa">Kwanza (AOA)</mx-option></mx-select></doc-state>
           <doc-state name="Foco"><mx-select aria-label="Foco" data-mx-state="focus" [value]="'aoa'"><mx-option value="aoa">Kwanza (AOA)</mx-option></mx-select></doc-state>
+          <doc-state name="A carregar" note="loading"><mx-select aria-label="A carregar" loading placeholder="Armazém" /></doc-state>
           <doc-state name="Desactivado" note="disabled"><mx-select aria-label="Desactivado" disabled [value]="'aoa'"><mx-option value="aoa">Kwanza (AOA)</mx-option></mx-select></doc-state>
           <doc-state name="Erro" note="invalid ou controlo inválido."><mx-form-field><label mxLabel>Sector</label><mx-select invalid placeholder="Escolhe o sector" /><mx-error>Escolhe um sector.</mx-error></mx-form-field></doc-state>
         </doc-states>
@@ -162,6 +163,20 @@ interface Plano {
               </mx-form-field>
             </div>
           </doc-example>
+          <doc-example title="Opções do servidor" note="loading mostra o indicador no botão e no painel até as opções chegarem.">
+            <div class="stack w-full">
+              <mx-form-field>
+                <label mxLabel>Armazém</label>
+                <mx-select placeholder="Escolhe um armazém" [loading]="loadingArm()" (opened)="loadArm()" [(value)]="armazem">
+                  @for (a of armazens(); track a) {
+                    <mx-option [value]="a">{{ a }}</mx-option>
+                  }
+                </mx-select>
+                <mx-hint>As opções chegam 1 segundo depois de abrir.</mx-hint>
+              </mx-form-field>
+              <div><button mxButton type="button" variant="ghost" size="sm" (click)="resetArm()">Recomeçar</button></div>
+            </div>
+          </doc-example>
         </div>
       </section>
 
@@ -198,6 +213,22 @@ interface Plano {
   `,
 })
 export class SelectPage {
+  protected readonly armazens = signal<string[]>([]);
+  protected readonly loadingArm = signal(false);
+  protected readonly armazem = signal<unknown>(null);
+  protected loadArm(): void {
+    if (this.armazens().length || this.loadingArm()) return;
+    this.loadingArm.set(true);
+    setTimeout(() => {
+      this.armazens.set(['Talatona', 'Viana', 'Lobito', 'Lubango']);
+      this.loadingArm.set(false);
+    }, 1000);
+  }
+  protected resetArm(): void {
+    this.armazens.set([]);
+    this.armazem.set(null);
+  }
+
   protected readonly fEstado = signal<unknown>('todos');
   protected readonly fPeriodo = signal<unknown>('mes');
   protected readonly resumo = computed(() => `${this.fEstado()}, ${this.fPeriodo()}`);
@@ -238,6 +269,8 @@ export class SelectPage {
 
   protected readonly api: ApiRow[] = [
     { kind: 'Input', name: 'value', type: 'T | null', default: 'null', description: 'Aceita [(value)], ngModel e formControl.' },
+    { kind: 'Input', name: 'loading', type: 'boolean', default: 'false', description: 'Indicador no botão e no painel, com aria-busy.' },
+    { kind: 'Input', name: 'loadingText', type: 'string', default: 'A carregar...' },
     { kind: 'Input', name: 'placeholder', type: 'string', default: "'Seleccionar'" },
     { kind: 'Input', name: 'disabled', type: 'boolean', default: 'false' },
     { kind: 'Input', name: 'required', type: 'boolean', default: 'false' },

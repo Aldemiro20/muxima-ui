@@ -30,3 +30,8 @@ ul.mx-select-panel {
   margin: 4px 0;
   list-style: none;
 }
+.mx-spinner.mx-combobox-chevron {
+  right: 11px;
+  margin-top: -7px;
+  transform: none;
+}

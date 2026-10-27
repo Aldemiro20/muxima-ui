@@ -43,3 +43,27 @@ describe('MxSelect multiple', () => {
     expect(fixture.componentInstance.provincias.value).toEqual(['benguela', 'huila']);
   });
 });
+
+@Component({
+  imports: [MxSelect, MxOption],
+  template: `<mx-select aria-label="Armazém" [loading]="loading">@for (a of armazens; track a) {<mx-option [value]="a">{{ a }}</mx-option>}</mx-select>`,
+})
+class LoadingHost {
+  loading = true;
+  armazens: string[] = [];
+}
+
+describe('MxSelect loading', () => {
+  it('mostra o indicador no botão e no painel enquanto carrega', async () => {
+    const fixture = TestBed.createComponent(LoadingHost);
+    fixture.detectChanges();
+    const trigger = fixture.nativeElement.querySelector('.mx-select-trigger') as HTMLButtonElement;
+    expect(trigger.getAttribute('aria-busy')).toBe('true');
+    trigger.click();
+    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(document.querySelector('[role="listbox"]')!.getAttribute('aria-busy')).toBe('true');
+    expect(document.querySelector('.mx-select-loading')!.textContent).toContain('A carregar');
+    await expectNoA11yViolations(document.body);
+  });
+});

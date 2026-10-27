@@ -45,3 +45,7 @@ Thumbs.db
 
 # Cache do Nx antigo
 /.nx
+
+# Playwright
+/test-results
+/playwright-report

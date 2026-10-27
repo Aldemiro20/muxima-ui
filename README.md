@@ -68,6 +68,13 @@ Modo escuro: segue o sistema por omissão; força com `<html data-theme="dark">`
 
 Angular 21 e 22 (`peerDependencies: >=21.0.0 <23.0.0`). Versões anteriores não são suportadas.
 
+## Testes e publicação
+
+- `npm run test:e2e`: testes end-to-end com Playwright (teclado, foco e acessibilidade com menus, diálogos e calendário abertos). Precisa de `npm run build:docs` antes.
+- `docs/verificacao-leitores-de-ecra.md`: lista de verificação manual com NVDA, VoiceOver e TalkBack.
+- `docs/publicar.md`: como publicar no npm e descontinuar os pacotes antigos.
+- `CHANGELOG.md`: alterações por versão.
+
 ## Licença
 
 MIT. Autor: Aldemiro Valentim.

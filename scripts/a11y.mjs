@@ -8,31 +8,14 @@
  * escuro, e falha se o axe encontrar violações WCAG 2.1 AA ou de boas práticas.
  * Na primeira vez, instala o navegador com: npx playwright install chromium
  */
-import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
-import { extname, join, normalize } from 'node:path';
 import { createRequire } from 'node:module';
-import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
+import { serveDocs } from './serve-docs.mjs';
 
 const require = createRequire(import.meta.url);
-const root = fileURLToPath(new URL('../dist/docs/browser', import.meta.url));
 const axeSource = await readFile(require.resolve('axe-core/axe.min.js'), 'utf8');
-const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.woff': 'font/woff', '.png': 'image/png', '.ico': 'image/x-icon', '.json': 'application/json' };
-
-const server = createServer(async (req, res) => {
-  const path = normalize(decodeURIComponent(new URL(req.url, 'http://x').pathname)).replace(/^(\.\.[/\\])+/, '');
-  let file = join(root, path);
-  let body;
-  try {
-    body = await readFile(file);
-  } catch {
-    file = join(root, 'index.html');
-    body = await readFile(file);
-  }
-  res.writeHead(200, { 'content-type': types[extname(file)] ?? 'application/octet-stream' });
-  res.end(body);
-}).listen(0);
+const server = await serveDocs(0);
 const base = `http://localhost:${server.address().port}`;
 
 const browser = await chromium.launch();

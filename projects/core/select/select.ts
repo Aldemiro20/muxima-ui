@@ -122,6 +122,7 @@ const POSITIONS: ConnectedPosition[] = [
       [attr.aria-required]="isRequired() ? 'true' : null"
       [attr.aria-describedby]="field?.describedBy() ?? null"
       [attr.aria-label]="ariaLabel() ?? null"
+      [attr.aria-busy]="loading() ? 'true' : null"
       [disabled]="isDisabled()"
       (click)="toggle()"
       (keydown)="onKeydown($event)"
@@ -130,9 +131,13 @@ const POSITIONS: ConnectedPosition[] = [
       <span class="mx-select-value" [class.mx-select-placeholder]="!selectedLabel()">
         {{ selectedLabel() || placeholder() }}
       </span>
-      <svg class="mx-select-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-        <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
+      @if (loading()) {
+        <span class="mx-spinner mx-select-spinner" aria-hidden="true"></span>
+      } @else {
+        <svg class="mx-select-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      }
     </button>
 
     <ng-template
@@ -148,12 +153,15 @@ const POSITIONS: ConnectedPosition[] = [
         class="mx-select-panel"
         role="listbox"
         [attr.aria-multiselectable]="multiple() ? 'true' : null"
+        [attr.aria-busy]="loading() ? 'true' : null"
         [id]="panelId"
         [attr.aria-labelledby]="field?.labelId() ?? null"
         [attr.aria-label]="field?.labelId() ? null : (ariaLabel() ?? placeholder())"
       >
         <ng-content />
-        @if (optionCount() === 0) {
+        @if (loading()) {
+          <div class="mx-select-empty mx-select-loading" role="option" aria-disabled="true" aria-selected="false"><span class="mx-spinner mx-select-spinner" aria-hidden="true"></span>{{ loadingText() }}</div>
+        } @else if (optionCount() === 0) {
           <div class="mx-select-empty" role="option" aria-disabled="true" aria-selected="false">{{ emptyText() }}</div>
         }
       </div>
@@ -174,6 +182,9 @@ export class MxSelect<T = unknown> implements ControlValueAccessor, MxFormFieldC
   readonly size = input<'sm' | 'md' | 'lg'>('md');
   /** Texto mostrado quando não há opções. */
   readonly emptyText = input('Sem opções');
+  /** Opções a carregar (ex.: de um servidor): mostra um indicador no botão e no painel. */
+  readonly loading = input(false, { transform: booleanAttribute });
+  readonly loadingText = input('A carregar...');
   readonly id = input<string | undefined>(undefined);
   /** Nome acessível quando não existe um `label[mxLabel]` no campo. */
   readonly ariaLabel = input<string | undefined>(undefined, { alias: 'aria-label' });

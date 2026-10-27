@@ -13,6 +13,12 @@ Estilos (em `angular.json`):
 "styles": ["@muxima-ui/core/styles.css"]
 ```
 
+Fontes (opcional; sem elas usa as fontes do sistema):
+
+```bash
+npm install @fontsource/instrument-sans @fontsource/ibm-plex-mono
+```
+
 Cada componente tem o seu ponto de entrada, para só importares o que usas:
 
 | Ponto de entrada | Exporta |
