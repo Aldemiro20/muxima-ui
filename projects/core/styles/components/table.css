@@ -101,3 +101,76 @@
 .mx-table[aria-busy='true'] tbody {
   opacity: 0.5;
 }
+
+/* ---------- Variantes ---------- */
+.mx-table[data-variant='striped'] tbody tr:nth-child(even):not([aria-selected='true']) {
+  background: color-mix(in oklab, var(--mx-subtle) 70%, transparent);
+}
+.mx-table[data-variant='bordered'] :is(th, td) + :is(th, td) {
+  border-left: var(--mx-border);
+}
+
+/* Cabeçalho fixo: o contentor precisa de uma altura máxima (ex.: style="max-height: 320px") */
+.mx-table-container:has(> .mx-table[data-sticky-header]) {
+  overflow: auto;
+}
+.mx-table[data-sticky-header] thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  box-shadow: inset 0 -1px 0 var(--mx-stone);
+}
+
+/* Colunas auxiliares */
+.mx-table .mx-table-check {
+  width: 1%;
+  padding-right: 4px;
+}
+.mx-table .mx-table-actions {
+  width: 1%;
+  white-space: nowrap;
+  text-align: right;
+}
+.mx-table tbody tr:has(.mx-table-check input:checked) {
+  background: var(--mx-accent-soft);
+}
+
+/* Totais */
+.mx-table tfoot :is(th, td) {
+  height: 44px;
+  border-top: var(--mx-border);
+  border-bottom: 0;
+  background: var(--mx-subtle);
+  font-weight: 600;
+}
+.mx-table thead th[data-align='end'],
+.mx-table tfoot [data-align='end'] {
+  text-align: right;
+}
+
+/* Barra por cima da tabela (pesquisa, filtros, acções em lote) */
+.mx-table-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: var(--mx-border);
+  font-family: var(--mx-font-sans);
+  font-size: var(--mx-text-sm);
+}
+.mx-table-toolbar[data-selection] {
+  background: var(--mx-accent-soft);
+}
+.mx-table-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px;
+  border-top: var(--mx-border);
+  color: var(--mx-muted);
+  font-family: var(--mx-font-sans);
+  font-size: var(--mx-text-sm);
+}

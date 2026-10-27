@@ -40,12 +40,12 @@ export class MxDrawer {
     const position = createGlobalPositionStrategy(this.injector);
     if (side === 'left') position.left('0').top('0');
     else if (side === 'right') position.right('0').top('0');
-    else position.bottom('0').left('0');
+    else position.bottom('0').centerHorizontally();
 
     const config: DialogConfig<D, DialogRef<R, C>> = {
       data: options.data,
       positionStrategy: position,
-      width: side === 'bottom' ? '100vw' : size,
+      width: side === 'bottom' ? 'min(100vw, 640px)' : size,
       maxWidth: '100vw',
       height: side === 'bottom' ? size : '100dvh',
       maxHeight: '100dvh',

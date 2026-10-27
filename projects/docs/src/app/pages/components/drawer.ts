@@ -3,7 +3,10 @@ import { MxBadge } from '@muxima-ui/core/badge';
 import { MxButton } from '@muxima-ui/core/button';
 import { MX_DIALOG, MX_DIALOG_DATA } from '@muxima-ui/core/dialog';
 import { MxDrawer, MxDrawerSide } from '@muxima-ui/core/drawer';
+import { MxToast } from '@muxima-ui/core/toast';
 import { ApiRow, DOC_UI } from '../../ui/doc-ui';
+import { Icon } from '../../ui/icon';
+import { AccoesFolha, DetalheCliente, EditarCliente, Filtros, MenuMovel, Notificacoes } from './drawer-examples';
 
 @Component({
   selector: 'doc-detalhe-factura',
@@ -34,7 +37,7 @@ class DetalheFactura {
 
 @Component({
   selector: 'doc-drawer-page',
-  imports: [DOC_UI, MxButton],
+  imports: [DOC_UI, MxButton, Icon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
@@ -76,15 +79,35 @@ import { MX_DIALOG } from '@muxima-ui/core/dialog'; // título, conteúdo e roda
 
       <section>
         <h2>Exemplos</h2>
+        <p>Casos reais. Cada botão abre um drawer diferente; experimenta também com o teclado.</p>
         <div class="grid-2">
-          <doc-example title="Lados" note="Em ecrãs pequenos, bottom é mais fácil de alcançar com o polegar.">
-            <button mxButton type="button" variant="outline" (click)="open('left')">Esquerda</button>
-            <button mxButton type="button" variant="outline" (click)="open('right')">Direita</button>
-            <button mxButton type="button" variant="outline" (click)="open('bottom')">Em baixo</button>
+          <doc-example title="Editar com confirmação" note="Abre com disableClose: com alterações por guardar, Escape, clique fora e Cancelar pedem confirmação.">
+            <button mxButton type="button" (click)="editar()">Editar cliente</button>
           </doc-example>
-          <doc-example title="Tamanhos">
-            <button mxButton type="button" variant="outline" (click)="open('right', 'sm')">Pequeno</button>
-            <button mxButton type="button" variant="outline" (click)="open('right', 'lg')">Grande</button>
+          <doc-example title="Filtros" note="Entra pela esquerda; Aplicar devolve o resultado a quem abriu.">
+            <button mxButton type="button" variant="outline" (click)="filtros()"><doc-icon name="sliders" /> Filtros</button>
+          </doc-example>
+          <doc-example title="Navegação em telemóvel" note="Menu da aplicação em ecrãs estreitos; fecha ao escolher uma página.">
+            <button mxButton type="button" variant="outline" icon aria-label="Abrir menu" (click)="menu()"><doc-icon name="menu" /></button>
+          </doc-example>
+          <doc-example title="Detalhe com separadores" note="size lg: espaço para uma tabela dentro do painel.">
+            <button mxButton type="button" variant="outline" (click)="detalhe()">Ver Banco Mutamba</button>
+          </doc-example>
+          <doc-example title="Folha de acções" note="side bottom: acções à mão do polegar em telemóvel.">
+            <button mxButton type="button" variant="outline" (click)="folha()">Acções da factura</button>
+          </doc-example>
+          <doc-example title="Notificações" note="size sm, à direita: lista curta com estado lido e por ler.">
+            <button mxButton type="button" variant="outline" (click)="notificacoes()"><doc-icon name="bell" /> Notificações</button>
+          </doc-example>
+          <doc-example title="Lados">
+            <button mxButton type="button" variant="outline" size="sm" (click)="open('left')">Esquerda</button>
+            <button mxButton type="button" variant="outline" size="sm" (click)="open('right')">Direita</button>
+            <button mxButton type="button" variant="outline" size="sm" (click)="open('bottom')">Em baixo</button>
+          </doc-example>
+          <doc-example title="Tamanhos" note="sm 320 px, md 420 px, lg 560 px.">
+            <button mxButton type="button" variant="outline" size="sm" (click)="open('right', 'sm')">Pequeno</button>
+            <button mxButton type="button" variant="outline" size="sm" (click)="open('right', 'md')">Médio</button>
+            <button mxButton type="button" variant="outline" size="sm" (click)="open('right', 'lg')">Grande</button>
           </doc-example>
         </div>
       </section>
@@ -117,8 +140,38 @@ import { MX_DIALOG } from '@muxima-ui/core/dialog'; // título, conteúdo e roda
 export class DrawerPage {
   private readonly drawer = inject(MxDrawer);
 
+  private readonly toast = inject(MxToast);
+
   protected open(side: MxDrawerSide, size: 'sm' | 'md' | 'lg' = 'md'): void {
     this.drawer.open(DetalheFactura, { side, size, data: { side } });
+  }
+
+  protected editar(): void {
+    this.drawer.open<string>(EditarCliente, { disableClose: true }).closed.subscribe((nome) => {
+      if (nome) this.toast.success('Cliente guardado', { description: nome });
+    });
+  }
+  protected filtros(): void {
+    this.drawer.open<number>(Filtros, { side: 'left', size: 'sm' }).closed.subscribe((n) => {
+      if (n != null) this.toast.info(`${n} filtros aplicados`);
+    });
+  }
+  protected menu(): void {
+    this.drawer.open(MenuMovel, { side: 'left', size: 'sm' });
+  }
+  protected detalhe(): void {
+    this.drawer.open<boolean>(DetalheCliente, { size: 'lg' }).closed.subscribe((nova) => {
+      if (nova) this.toast.show('Nova factura para Banco Mutamba');
+    });
+  }
+  protected folha(): void {
+    this.drawer.open<string>(AccoesFolha, { side: 'bottom', size: 'sm' }).closed.subscribe((a) => {
+      if (a === 'Anular factura') this.toast.error('Factura FT 2026/0142 anulada');
+      else if (a) this.toast.success(a);
+    });
+  }
+  protected notificacoes(): void {
+    this.drawer.open(Notificacoes, { size: 'sm' });
   }
 
   protected readonly previewCode = `const drawer = inject(MxDrawer);
@@ -126,7 +179,7 @@ drawer.open(DetalheFactura, { side: 'right', size: 'md', data: factura });`;
 
   protected readonly api: ApiRow[] = [
     { kind: 'Serviço', name: 'MxDrawer.open(conteúdo, opções)', type: 'DialogRef<R>' },
-    { kind: 'Input', name: 'opções.side', type: "'left' | 'right' | 'bottom'", default: 'right' },
+    { kind: 'Input', name: 'opções.side', type: "'left' | 'right' | 'bottom'", default: 'right', description: 'bottom: até 640 px de largura, centrado.' },
     { kind: 'Input', name: 'opções.size', type: "'sm' | 'md' | 'lg'", default: 'md', description: '320, 420 ou 560 px.' },
     { kind: 'Input', name: 'opções.data', type: 'D', description: 'Lido com inject(MX_DIALOG_DATA).' },
     { kind: 'Input', name: 'opções.disableClose', type: 'boolean', default: 'false' },

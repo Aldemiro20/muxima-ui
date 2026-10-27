@@ -3,6 +3,7 @@ import {
   Component,
   Directive,
   ViewEncapsulation,
+  booleanAttribute,
   computed,
   inject,
   input,
@@ -41,12 +42,18 @@ export interface MxSortState {
   host: {
     class: 'mx-table',
     '[attr.data-density]': 'density() === "comfortable" ? null : density()',
+    '[attr.data-variant]': 'variant() === "default" ? null : variant()',
+    '[attr.data-sticky-header]': 'stickyHeader() ? "" : null',
   },
 })
 export class MxTable {
   /** Estado da ordenação. Aceita two-way binding: `[(sort)]`. */
   readonly sort = model<MxSortState>({ active: null, direction: 'asc' });
   readonly density = input<'comfortable' | 'compact'>('comfortable');
+  /** default; striped: linhas alternadas; bordered: linhas entre colunas. */
+  readonly variant = input<'default' | 'striped' | 'bordered'>('default');
+  /** Mantém o cabeçalho visível ao fazer scroll (dá uma altura máxima ao contentor). */
+  readonly stickyHeader = input(false, { transform: booleanAttribute });
 
   /** Alterna: ascendente, descendente, sem ordenação. */
   toggleSort(key: string): void {

@@ -442,13 +442,13 @@ kbd {
   border-radius: var(--mx-radius-surface);
   background: var(--mx-surface);
 }
-.card h3 {
+.card > h3 {
   margin-top: 16px;
   font-size: 17px;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
-.card p {
+.card > p {
   margin-top: 8px;
   color: var(--mx-muted);
   font-size: 14px;
@@ -2046,4 +2046,227 @@ a.text-link:hover,
   display: flex;
   align-items: center;
   color: var(--mx-ink);
+}
+.toast-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px 16px;
+  padding: 20px;
+  border: 1px solid var(--mx-stone);
+  border-radius: var(--mx-radius-surface);
+  background: var(--mx-surface);
+}
+.toast-gallery-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.toast-gallery-item .static-toast {
+  max-width: none;
+  margin-bottom: 6px;
+}
+.w-240 {
+  width: 240px;
+  max-width: 100%;
+}
+.ml-auto {
+  margin-left: auto;
+}
+.min-w-640 {
+  min-width: 640px;
+}
+.person-sm {
+  gap: 8px;
+}
+.person-sm > span {
+  font-size: 14px;
+}
+.nowrap :is(td, th) {
+  white-space: nowrap;
+}
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+.kpi {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+}
+.kpi p {
+  margin: 0;
+  width: 100%;
+}
+.kpi .kpi-label {
+  color: var(--mx-muted);
+  font-size: 13px;
+}
+.kpi .kpi-value {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.kpi .kpi-note {
+  color: var(--mx-muted);
+  font-size: 12px;
+}
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.profile-name {
+  margin: 0 0 2px;
+  font-size: 16px;
+}
+.profile p {
+  margin: 0;
+  font-size: 13px;
+}
+.card-footer-split {
+  justify-content: space-between;
+}
+.activity {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  list-style: none;
+}
+.activity li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.activity p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.price {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+.price .muted {
+  font-size: 13px;
+  font-weight: 400;
+}
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 28px 20px;
+  text-align: center;
+}
+.empty-state .mx-card-description {
+  max-width: 320px;
+  margin-bottom: 6px;
+}
+
+.mx-card-header.row-between {
+  flex-direction: row;
+  align-items: center;
+}
+.template-body > p {
+  margin-top: 8px;
+  color: var(--mx-muted);
+  font-size: 14px;
+}
+.template-title h3 {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.drawer-form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+.drawer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.drawer-nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: var(--mx-radius);
+  color: var(--mx-ink);
+  font-size: 15px;
+  text-decoration: none;
+}
+.drawer-nav a:hover {
+  background: var(--mx-subtle);
+}
+.drawer-nav a.active {
+  background: var(--mx-accent-soft);
+  color: var(--mx-accent);
+  font-weight: 600;
+}
+.drawer-sep {
+  margin: 16px 0 !important;
+}
+.sheet-actions {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.sheet-actions button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 48px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: var(--mx-radius);
+  background: transparent;
+  color: var(--mx-ink);
+  font: inherit;
+  font-size: 15px;
+  text-align: left;
+  cursor: pointer;
+}
+.sheet-actions button:hover {
+  background: var(--mx-subtle);
+}
+.sheet-actions button.danger {
+  color: var(--mx-danger);
+}
+.notif-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.notif-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--mx-stone);
+}
+.notif-list li.unread {
+  box-shadow: inset 2px 0 0 var(--mx-accent);
+}
+.notif-list p {
+  margin: 0;
+  font-size: 14px;
+}
+.notif-list p.muted {
+  font-size: 12px;
 }

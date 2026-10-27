@@ -59,3 +59,7 @@
   gap: 8px;
   padding: 0 24px 20px;
 }
+
+.mx-dialog-header + .mx-dialog-footer {
+  padding-top: 20px;
+}

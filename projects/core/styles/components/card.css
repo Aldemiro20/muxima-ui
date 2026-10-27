@@ -60,3 +60,58 @@ button.mx-card:is(:hover, [data-mx-state='hover']) {
 .mx-card-header + .mx-card-footer {
   padding-top: 16px;
 }
+
+/* ---------- Variantes ---------- */
+.mx-card[data-variant='subtle'] {
+  border-color: transparent;
+  background: var(--mx-subtle);
+}
+.mx-card[data-variant='elevated'] {
+  border-color: transparent;
+  box-shadow: var(--mx-shadow-overlay);
+}
+.mx-card[data-variant='accent'] {
+  border-color: var(--mx-accent);
+  box-shadow: inset 0 3px 0 var(--mx-accent);
+}
+
+/* ---------- Imagem ---------- */
+.mx-card {
+  overflow: hidden;
+}
+.mx-card-media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--mx-subtle);
+}
+.mx-card-media + .mx-card-header {
+  padding-top: 16px;
+}
+
+/* ---------- Horizontal ---------- */
+.mx-card[data-orientation='horizontal'] {
+  display: grid;
+  grid-template-columns: minmax(120px, 36%) 1fr;
+  grid-auto-rows: min-content;
+}
+.mx-card[data-orientation='horizontal'] > .mx-card-media {
+  grid-row: 1 / span 4;
+  height: 100%;
+  aspect-ratio: auto;
+}
+.mx-card[data-orientation='horizontal'] > :not(.mx-card-media) {
+  grid-column: 2;
+}
+.mx-card[data-orientation='horizontal'] > .mx-card-media + .mx-card-header {
+  padding-top: 20px;
+}
+@media (max-width: 480px) {
+  .mx-card[data-orientation='horizontal'] {
+    display: flex;
+  }
+  .mx-card[data-orientation='horizontal'] > .mx-card-media {
+    aspect-ratio: 16 / 9;
+  }
+}

@@ -1,4 +1,6 @@
-import { Directive } from '@angular/core';
+import { Directive, input } from '@angular/core';
+
+export type MxCardVariant = 'default' | 'subtle' | 'elevated' | 'accent';
 
 /**
  * Superfície para agrupar conteúdo relacionado. Aplica-se ao elemento que fizer
@@ -15,8 +17,24 @@ import { Directive } from '@angular/core';
  * </article>
  * ```
  */
-@Directive({ selector: '[mxCard]', host: { class: 'mx-card' } })
-export class MxCard {}
+@Directive({
+  selector: '[mxCard]',
+  host: {
+    class: 'mx-card',
+    '[attr.data-variant]': 'variant() === "default" ? null : variant()',
+    '[attr.data-orientation]': 'orientation() === "vertical" ? null : orientation()',
+  },
+})
+export class MxCard {
+  /** default: borda; subtle: fundo suave sem borda; elevated: sombra; accent: destaque com a cor de marca. */
+  readonly variant = input<MxCardVariant>('default');
+  /** horizontal: imagem à esquerda e conteúdo à direita (volta a vertical em ecrãs estreitos). */
+  readonly orientation = input<'vertical' | 'horizontal'>('vertical');
+}
+
+/** Imagem ou área visual que encosta às margens do cartão. Usa-se em `img`, `picture` ou `div`. */
+@Directive({ selector: '[mxCardMedia]', host: { class: 'mx-card-media' } })
+export class MxCardMedia {}
 
 @Directive({ selector: '[mxCardHeader]', host: { class: 'mx-card-header' } })
 export class MxCardHeader {}
@@ -34,4 +52,4 @@ export class MxCardContent {}
 @Directive({ selector: '[mxCardFooter]', host: { class: 'mx-card-footer' } })
 export class MxCardFooter {}
 
-export const MX_CARD = [MxCard, MxCardHeader, MxCardTitle, MxCardDescription, MxCardContent, MxCardFooter] as const;
+export const MX_CARD = [MxCard, MxCardMedia, MxCardHeader, MxCardTitle, MxCardDescription, MxCardContent, MxCardFooter] as const;
