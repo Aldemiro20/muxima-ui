@@ -21,6 +21,12 @@ export function mxStartOfDay(d: Date): Date {
 export function mxSameDay(a: Date | null | undefined, b: Date | null | undefined): boolean {
   return !!a && !!b && a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
 }
+/** Intervalo de datas. Enquanto se escolhe, `end` fica null. */
+export interface MxDateRange {
+  start: Date | null;
+  end: Date | null;
+}
+
 function addDays(d: Date, n: number): Date {
   return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
 }
@@ -35,7 +41,11 @@ function addMonths(d: Date, n: number): Date {
  *
  * ```html
  * <mx-calendar [(value)]="data" [min]="hoje" />
+ * <mx-calendar mode="range" [(range)]="periodo" />
  * ```
+ *
+ * Em `mode="range"` o primeiro clique marca o início e o segundo o fim (se for anterior,
+ * os dois trocam). Entre os dois cliques o intervalo é pré-visualizado com o rato ou o teclado.
  *
  * Teclas: setas (dia e semana), Home/End (início e fim da semana), Page Up/Down (mês),
  * Shift + Page Up/Down (ano), Enter ou Espaço para escolher.
@@ -68,7 +78,13 @@ function addMonths(d: Date, n: number): Date {
         @for (week of weeks(); track $index) {
           <tr>
             @for (day of week; track day.date.getTime()) {
-              <td [attr.aria-selected]="day.selected" role="gridcell">
+              <td
+                role="gridcell"
+                [attr.aria-selected]="day.selected"
+                [attr.data-range-start]="day.rangeStart ? '' : null"
+                [attr.data-range-end]="day.rangeEnd ? '' : null"
+                [attr.data-in-range]="day.inRange ? '' : null"
+              >
                 <button
                   type="button"
                   class="mx-calendar-day"
@@ -80,6 +96,7 @@ function addMonths(d: Date, n: number): Date {
                   [tabIndex]="day.focus ? 0 : -1"
                   [attr.aria-disabled]="day.disabled ? 'true' : null"
                   (click)="select(day.date)"
+                  (mouseenter)="hover(day.date)"
                 >
                   {{ day.date.getDate() }}
                 </button>
@@ -89,6 +106,9 @@ function addMonths(d: Date, n: number): Date {
         }
       </tbody>
     </table>
+    @if (mode() === 'range') {
+      <p class="mx-visually-hidden" aria-live="polite">{{ rangeHint() }}</p>
+    }
   `,
 })
 export class MxCalendar {
@@ -101,6 +121,11 @@ export class MxCalendar {
   /** Primeiro dia da semana: 1 = segunda-feira. */
   readonly firstDayOfWeek = input(1);
   readonly selected = output<Date>();
+  /** `single` escolhe um dia; `range` escolhe um intervalo em [(range)]. */
+  readonly mode = input<'single' | 'range'>('single');
+  readonly range = model<MxDateRange | null>(null);
+  /** Emite quando o intervalo fica completo (início e fim). */
+  readonly rangeSelected = output<{ start: Date; end: Date }>();
 
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
   private readonly injector = inject(Injector);
@@ -108,6 +133,25 @@ export class MxCalendar {
   /** Dia com foco na grelha. */
   readonly focusDate = signal(mxStartOfDay(new Date()));
   private initialised = false;
+  /** Dia sob o rato ou o foco enquanto falta o fim do intervalo. */
+  private readonly preview = signal<Date | null>(null);
+  private readonly awaitingEnd = computed(() => this.mode() === 'range' && !!this.range()?.start && !this.range()?.end);
+
+  protected readonly rangeHint = computed(() => {
+    const r = this.range();
+    if (!r?.start) return '';
+    const f = new Intl.DateTimeFormat(this.locale(), { day: 'numeric', month: 'long', year: 'numeric' });
+    return r.end ? `Intervalo de ${f.format(r.start)} a ${f.format(r.end)}.` : `Início ${f.format(r.start)}. Escolhe a data de fim.`;
+  });
+
+  /** Início e fim efectivos (com pré-visualização), ordenados. */
+  private readonly bounds = computed<[Date, Date] | null>(() => {
+    if (this.mode() !== 'range') return null;
+    const r = this.range();
+    if (!r?.start) return null;
+    const end = r.end ?? (this.awaitingEnd() ? this.preview() : null) ?? r.start;
+    return r.start <= end ? [r.start, end] : [end, r.start];
+  });
 
   protected readonly weekdays = computed(() => {
     const short = new Intl.DateTimeFormat(this.locale(), { weekday: 'narrow' });
@@ -126,18 +170,29 @@ export class MxCalendar {
     const start = addDays(first, -offset);
     const today = mxStartOfDay(new Date());
     const fmt = new Intl.DateTimeFormat(this.locale(), { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    const bounds = this.bounds();
+    const isRange = this.mode() === 'range';
     const weeks = [];
     for (let w = 0; w < 6; w++) {
       const row = [];
       for (let i = 0; i < 7; i++) {
         const date = addDays(start, w * 7 + i);
+        const rangeStart = !!bounds && mxSameDay(date, bounds[0]);
+        const rangeEnd = !!bounds && mxSameDay(date, bounds[1]);
+        const inRange = !!bounds && date > bounds[0] && date < bounds[1];
+        const isStart = isRange && mxSameDay(date, this.range()?.start);
+        const isEnd = isRange && mxSameDay(date, this.range()?.end);
+        const label = fmt.format(date) + (isStart && isEnd ? ', início e fim do intervalo' : isStart ? ', início do intervalo' : isEnd ? ', fim do intervalo' : '');
         row.push({
           date,
           key: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
-          label: fmt.format(date),
+          label,
           outside: date.getMonth() !== focus.getMonth(),
           today: mxSameDay(date, today),
-          selected: mxSameDay(date, this.value()),
+          rangeStart,
+          rangeEnd,
+          inRange,
+          selected: isRange ? rangeStart || rangeEnd || inRange : mxSameDay(date, this.value()),
           focus: mxSameDay(date, focus),
           disabled: this.isDisabled(date),
         });
@@ -150,7 +205,7 @@ export class MxCalendar {
   constructor() {
     afterNextRender(() => {
       if (!this.initialised) {
-        const v = this.value();
+        const v = this.mode() === 'range' ? this.range()?.start : this.value();
         if (v) this.focusDate.set(mxStartOfDay(v));
         this.initialised = true;
       }
@@ -159,7 +214,7 @@ export class MxCalendar {
 
   /** Põe o foco no dia activo (seleccionado ou hoje). */
   focus(): void {
-    const v = this.value();
+    const v = this.mode() === 'range' ? this.range()?.start : this.value();
     if (v) this.focusDate.set(mxStartOfDay(v));
     this.focusActiveDay();
   }
@@ -174,8 +229,25 @@ export class MxCalendar {
     this.focusDate.set(addMonths(this.focusDate(), delta));
   }
 
+  protected hover(date: Date): void {
+    if (this.awaitingEnd()) this.preview.set(date);
+  }
+
   protected select(date: Date): void {
     if (this.isDisabled(date)) return;
+    if (this.mode() === 'range') {
+      const r = this.range();
+      if (r?.start && !r.end) {
+        const [start, end] = date < r.start ? [date, r.start] : [r.start, date];
+        this.range.set({ start, end });
+        this.rangeSelected.emit({ start, end });
+      } else {
+        this.range.set({ start: date, end: null });
+      }
+      this.preview.set(null);
+      this.focusDate.set(date);
+      return;
+    }
     this.value.set(date);
     this.focusDate.set(date);
     this.selected.emit(date);
@@ -194,10 +266,17 @@ export class MxCalendar {
       PageUp: () => addMonths(f, event.shiftKey ? -12 : -1),
       PageDown: () => addMonths(f, event.shiftKey ? 12 : 1),
     };
+    if (event.key === 'Enter' || event.key === ' ') {
+      // escolhe o dia activo, mesmo que o foco ainda não tenha chegado ao botão
+      event.preventDefault();
+      this.select(this.focusDate());
+      return;
+    }
     const move = moves[event.key];
     if (move) {
       event.preventDefault();
       this.focusDate.set(this.clamp(move()));
+      this.hover(this.focusDate());
       this.focusActiveDay();
     }
   }

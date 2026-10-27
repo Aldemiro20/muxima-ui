@@ -1,0 +1,39 @@
+/* ---------- Time picker ---------- */
+
+.mx-time-picker {
+  display: block;
+  width: 100%;
+  font-family: var(--mx-font-sans);
+}
+.mx-time-picker-field {
+  position: relative;
+}
+.mx-time-picker-input.mx-input {
+  padding-right: 36px;
+  font-variant-numeric: tabular-nums;
+}
+.mx-time-picker-icon {
+  position: absolute;
+  right: 11px;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  color: var(--mx-muted);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.mx-time-picker-panel {
+  max-height: 240px;
+  font-variant-numeric: tabular-nums;
+}
+ul.mx-time-picker-panel {
+  list-style: none;
+}
+.mx-time-picker[data-mx-state='hover'] .mx-input:not(:disabled) {
+  border-color: var(--mx-muted);
+}
+.mx-time-picker[data-mx-state='focus'] .mx-input {
+  border-color: var(--mx-accent);
+  outline: var(--mx-focus-width) solid var(--mx-accent);
+  outline-offset: var(--mx-focus-offset);
+}

@@ -142,3 +142,138 @@ td[aria-selected='true'] > .mx-calendar-day {
   cursor: not-allowed;
   background: transparent;
 }
+
+/* ---------- Intervalo de datas ---------- */
+
+.mx-date-range-picker {
+  display: block;
+  width: 100%;
+  font-family: var(--mx-font-sans);
+}
+.mx-date-range-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--mx-control-height);
+  padding: 0 40px 0 4px;
+  border: 1px solid var(--mx-control-border);
+  border-radius: var(--mx-radius);
+  background: var(--mx-surface);
+  transition: border-color var(--mx-duration) var(--mx-ease);
+}
+.mx-date-range-field:hover:not([data-disabled]) {
+  border-color: var(--mx-muted);
+}
+.mx-date-range-field:focus-within {
+  border-color: var(--mx-accent);
+}
+.mx-date-range-field[data-invalid] {
+  border-color: var(--mx-danger);
+}
+.mx-date-range-field[data-disabled] {
+  background: var(--mx-subtle);
+}
+.mx-date-range-field[data-size='sm'] {
+  height: var(--mx-control-height-sm);
+}
+.mx-date-range-field[data-size='lg'] {
+  height: var(--mx-control-height-lg);
+}
+.mx-date-range-input {
+  flex: 1;
+  min-width: 0;
+  height: calc(100% - 8px);
+  padding: 0 8px;
+  border: 0;
+  border-radius: calc(var(--mx-radius) - 2px);
+  background: transparent;
+  color: var(--mx-ink);
+  font-family: inherit;
+  font-size: var(--mx-text-md);
+  font-variant-numeric: tabular-nums;
+}
+.mx-date-range-field[data-size='sm'] .mx-date-range-input {
+  font-size: var(--mx-text-sm);
+}
+.mx-date-range-input::placeholder {
+  color: var(--mx-muted);
+  opacity: 1;
+}
+.mx-date-range-input:disabled {
+  color: var(--mx-muted);
+  cursor: not-allowed;
+}
+.mx-date-range-sep {
+  color: var(--mx-muted);
+}
+.mx-date-range-panel {
+  display: flex;
+  gap: 12px;
+}
+.mx-date-range-presets {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 132px;
+  margin: 0;
+  padding: 0 12px 0 0;
+  border-right: var(--mx-border);
+  list-style: none;
+}
+.mx-date-range-preset {
+  width: 100%;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: var(--mx-radius);
+  background: transparent;
+  color: var(--mx-ink);
+  font: inherit;
+  font-size: var(--mx-text-sm);
+  text-align: start;
+  cursor: pointer;
+}
+.mx-date-range-preset:hover {
+  background: var(--mx-subtle);
+}
+@media (max-width: 560px) {
+  .mx-date-range-panel {
+    flex-direction: column;
+  }
+  .mx-date-range-presets {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0 0 8px;
+    border-right: 0;
+    border-bottom: var(--mx-border);
+  }
+  .mx-date-range-preset {
+    width: auto;
+  }
+}
+
+/* Intervalo no calendário */
+.mx-calendar {
+  --_range-bg: color-mix(in oklab, var(--mx-accent) 16%, var(--mx-surface));
+}
+td[data-in-range] > .mx-calendar-day {
+  border-radius: 0;
+  background: var(--_range-bg);
+  color: var(--mx-ink);
+  font-weight: 400;
+}
+td[data-in-range] {
+  background: var(--_range-bg);
+}
+td[data-range-start]:not([data-range-end]) {
+  background: linear-gradient(to right, transparent 50%, var(--_range-bg) 50%);
+}
+td[data-range-end]:not([data-range-start]) {
+  background: linear-gradient(to left, transparent 50%, var(--_range-bg) 50%);
+}
+td:is([data-range-start], [data-range-end]) > .mx-calendar-day {
+  background: var(--mx-accent);
+  color: var(--mx-on-accent);
+  font-weight: 600;
+}

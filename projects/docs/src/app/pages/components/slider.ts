@@ -1,19 +1,19 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { MxFieldset, MxFormField, MxHint, MxLabel } from '@muxima-ui/core/form-field';
-import { MxSlider } from '@muxima-ui/core/slider';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MxFormField, MxHint, MxLabel } from '@muxima-ui/core/form-field';
+import { MxRangeSlider, MxSlider } from '@muxima-ui/core/slider';
 import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
 @Component({
   selector: 'doc-slider-page',
-  imports: [DOC_UI, FormsModule, MxSlider, MxFormField, MxLabel, MxHint, MxFieldset],
+  imports: [DOC_UI, FormsModule, ReactiveFormsModule, MxSlider, MxRangeSlider, MxFormField, MxLabel, MxHint],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
       <doc-page-header
         [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Slider' }]"
         title="Slider"
-        lead="Um valor numérico dentro de um intervalo. É o input range nativo: setas, Page Up, Page Down, Home e End funcionam sem código extra."
+        lead="Um valor numérico dentro de um intervalo, ou um intervalo com dois cursores. É o input range nativo: setas, Page Up, Page Down, Home e End funcionam sem código extra."
       />
 
       <section>
@@ -29,7 +29,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
       <section>
         <h2>Instalação</h2>
-        <doc-code code="import { MxSlider } from '@muxima-ui/core/slider';" />
+        <doc-code code="import { MxRangeSlider, MxSlider } from '@muxima-ui/core/slider';" />
       </section>
 
       <section>
@@ -78,24 +78,47 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               <div class="tick-labels" aria-hidden="true"><span>0%</span><span>5%</span><span>10%</span><span>15%</span><span>20%</span></div>
             </mx-form-field>
           </doc-example>
-          <doc-example title="Intervalo com dois cursores" note="Dois sliders com nomes próprios; o mínimo nunca passa o máximo.">
-            <fieldset mxFieldset class="w-full">
-              <legend>Preço (mil Kz): {{ min() }} a {{ max() }}</legend>
-              <mx-form-field>
-                <label mxLabel>Mínimo</label>
-                <input type="range" mxSlider min="0" max="1000" step="50" [value]="min()" (input)="setMin($event)" />
-              </mx-form-field>
-              <mx-form-field>
-                <label mxLabel>Máximo</label>
-                <input type="range" mxSlider min="0" max="1000" step="50" [value]="max()" (input)="setMax($event)" />
-              </mx-form-field>
-            </fieldset>
-          </doc-example>
           <doc-example title="Desactivado">
             <mx-form-field class="w-full">
               <label mxLabel>Volume de envios (plano Pro)</label>
               <input type="range" mxSlider value="40" disabled />
             </mx-form-field>
+          </doc-example>
+        </div>
+      </section>
+
+      <section>
+        <h2>Range slider</h2>
+        <p>Dois cursores para escolher um intervalo (mínimo e máximo). São dois input range nativos dentro de <code>mx-range-slider</code>: cada cursor tem o seu teclado e é anunciado como "Preço, mínimo, 20 000 Kz". Os cursores não se cruzam.</p>
+        <div class="grid-2">
+          <doc-example title="Preço com valores visíveis" note="format dá o texto de cada valor, ao ecrã e ao leitor de ecrã.">
+            <mx-form-field class="w-full">
+              <label mxLabel>Preço</label>
+              <mx-range-slider [(value)]="preco" [min]="0" [max]="1000000" [step]="10000" [format]="kz" showValues />
+            </mx-form-field>
+          </doc-example>
+          <doc-example title="Distância mínima" [note]="'minGap mantém pelo menos 2 horas: ' + horario()?.[0] + 'h às ' + horario()?.[1] + 'h.'">
+            <mx-form-field class="w-full">
+              <label mxLabel>Horário de entregas</label>
+              <mx-range-slider [(value)]="horario" [min]="6" [max]="22" [minGap]="2" [format]="horas" showValues />
+            </mx-form-field>
+          </doc-example>
+          <doc-example title="Num formulário" [note]="'Valor do formulário: ' + JSON.stringify(idades.value)">
+            <form class="stack w-full" [formGroup]="filtro">
+              <mx-form-field>
+                <label mxLabel>Idade</label>
+                <mx-range-slider formControlName="idade" [min]="18" [max]="70" showValues />
+                <mx-hint>Filtra os colaboradores por idade.</mx-hint>
+              </mx-form-field>
+            </form>
+          </doc-example>
+          <doc-example title="Tamanhos e desactivado">
+            <div class="stack w-full">
+              <mx-range-slider size="sm" aria-label="Pequeno" [value]="[20, 60]" />
+              <mx-range-slider aria-label="Médio" [value]="[30, 70]" />
+              <mx-range-slider size="lg" aria-label="Grande" [value]="[40, 80]" />
+              <mx-range-slider aria-label="Desactivado" [value]="[25, 75]" disabled />
+            </div>
           </doc-example>
         </div>
       </section>
@@ -111,7 +134,8 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
           [aria]="[
             'input range nativo: o leitor de ecrã anuncia o valor e o intervalo.',
             'Usa aria-valuetext quando o número sozinho não diz a unidade.',
-            'Mostra o valor também em texto, junto ao campo.'
+            'Mostra o valor também em texto, junto ao campo.',
+            'No range slider, cada cursor junta o rótulo do campo a mínimo ou máximo, e aria-valuetext usa o format.'
           ]"
         />
       </section>
@@ -131,20 +155,13 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 })
 export class SliderPage {
   protected desconto = 10;
-  protected readonly min = signal(100);
-  protected readonly max = signal(600);
-  protected setMin(event: Event): void {
-    const el = event.target as HTMLInputElement;
-    const v = Math.min(el.valueAsNumber, this.max());
-    el.value = String(v);
-    this.min.set(v);
-  }
-  protected setMax(event: Event): void {
-    const el = event.target as HTMLInputElement;
-    const v = Math.max(el.valueAsNumber, this.min());
-    el.value = String(v);
-    this.max.set(v);
-  }
+  protected readonly preco = signal<[number, number] | null>([150000, 600000]);
+  protected readonly kz = (v: number) => new Intl.NumberFormat('pt-AO').format(v) + ' Kz';
+  protected readonly horario = signal<[number, number] | null>([8, 17]);
+  protected readonly horas = (v: number) => `${v}h`;
+  protected readonly filtro = new FormGroup({ idade: new FormControl<[number, number] | null>([25, 45]) });
+  protected readonly idades = this.filtro.controls.idade;
+  protected readonly JSON = JSON;
 
   protected orcamento = 120;
   protected prazo = 30;
@@ -160,6 +177,12 @@ export class SliderPage {
     { kind: 'Input', name: 'size', type: "'sm' | 'md' | 'lg'", default: 'md', description: 'Barra de 4, 6 ou 8 px.' },
     { kind: 'Input', name: 'invalid', type: 'boolean', default: 'false', description: 'Força o estado de erro.' },
     { kind: 'Input', name: 'id', type: 'string', default: 'gerado', description: 'id do input.' },
+    { kind: 'Componente', name: 'mx-range-slider', type: 'value: [number, number] | null (model)', description: 'Dois cursores. Também com ngModel e Reactive Forms.' },
+    { kind: 'Input', name: 'min, max, step', type: 'number', default: '0, 100, 1', description: 'Do range slider.' },
+    { kind: 'Input', name: 'minGap', type: 'number', default: '0', description: 'Distância mínima entre os cursores.' },
+    { kind: 'Input', name: 'format', type: '(v: number) => string', description: 'Texto de cada valor (aria-valuetext e etiquetas).' },
+    { kind: 'Input', name: 'showValues', type: 'boolean', default: 'false', description: 'Mostra os dois valores por baixo.' },
+    { kind: 'Input', name: 'lowLabel, highLabel', type: 'string', default: 'mínimo, máximo', description: 'Nome de cada cursor.' },
     { kind: 'Token CSS', name: '--mx-accent', type: 'color', default: '#0F5257', description: 'Cor do preenchimento.' },
   ];
 }

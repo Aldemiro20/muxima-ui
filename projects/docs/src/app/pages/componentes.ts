@@ -57,7 +57,7 @@ const norm = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCa
               <p>{{ item.description }}</p>
               <div class="card-foot">
                 <span class="tag" [class.pro]="item.tier === 'Pro'">{{ item.tier }}</span>
-                <span class="muted small">Em preparação</span>
+                <span class="muted small">Chega na {{ item.soon }}</span>
               </div>
             </div>
           }

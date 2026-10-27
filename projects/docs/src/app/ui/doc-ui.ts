@@ -139,7 +139,7 @@ export class Structure {
 }
 
 export interface ApiRow {
-  kind: 'Input' | 'Output' | 'Token CSS' | 'Método' | 'Directiva' | 'Serviço';
+  kind: 'Input' | 'Output' | 'Token CSS' | 'Método' | 'Directiva' | 'Serviço' | 'Componente' | 'Função' | 'Propriedade';
   name: string;
   type: string;
   default?: string;

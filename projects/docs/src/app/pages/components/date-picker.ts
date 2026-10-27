@@ -135,7 +135,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
       <section>
         <h2>Componentes relacionados</h2>
-        <doc-related [items]="[{ name: 'Time picker' }, { name: 'Input' }, { name: 'Popover' }]" />
+        <doc-related [items]="[{ name: 'Date range picker' }, { name: 'Time picker' }, { name: 'Popover' }]" />
       </section>
     </article>
   `,

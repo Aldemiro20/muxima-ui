@@ -1,0 +1,52 @@
+/* ---------- Copy to clipboard ---------- */
+
+.mx-copy-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-sizing: border-box;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 8px;
+  border: 1px solid var(--mx-stone);
+  border-radius: var(--mx-radius);
+  background: var(--mx-surface);
+  color: var(--mx-muted);
+  font-family: var(--mx-font-sans);
+  font-size: var(--mx-text-sm);
+  cursor: pointer;
+  transition: background var(--mx-duration) var(--mx-ease), color var(--mx-duration) var(--mx-ease);
+}
+.mx-copy-button[data-size='sm'] {
+  min-width: 26px;
+  height: 26px;
+  padding: 0 5px;
+}
+.mx-copy-button svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.mx-copy-button[data-size='sm'] svg {
+  width: 14px;
+  height: 14px;
+}
+.mx-copy-button:is(:hover, [data-mx-state='hover']) {
+  background: var(--mx-subtle);
+  color: var(--mx-ink);
+}
+.mx-copy-button[data-copied] {
+  border-color: color-mix(in oklab, var(--mx-success) 40%, var(--mx-surface));
+  color: var(--mx-success);
+}
+.mx-input-group > .mx-copy-button {
+  height: auto;
+  border-radius: 0;
+  border-color: var(--mx-control-border);
+  margin-left: -1px;
+}
+.mx-input-group > .mx-copy-button:last-child {
+  border-top-right-radius: var(--mx-radius);
+  border-bottom-right-radius: var(--mx-radius);
+}

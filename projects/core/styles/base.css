@@ -106,7 +106,15 @@ button.mx-card:is(:focus-visible, [data-mx-state='focus']),
 button.mx-input-addon:is(:focus-visible, [data-mx-state='focus']),
 .mx-date-picker-toggle:is(:focus-visible, [data-mx-state='focus']),
 .mx-calendar-nav:is(:focus-visible, [data-mx-state='focus']),
-.mx-calendar-day:is(:focus-visible, [data-mx-state='focus']) {
+.mx-calendar-day:is(:focus-visible, [data-mx-state='focus']),
+.mx-date-range-input:focus-visible,
+.mx-chip-remove:focus-visible,
+.mx-copy-button:is(:focus-visible, [data-mx-state='focus']),
+.mx-file-upload-button:focus-visible,
+.mx-file-upload-remove:focus-visible,
+.mx-chip-toggle:is(:focus-visible, [data-mx-state='focus']),
+.mx-tag-input-field:focus-visible,
+.mx-date-range-preset:focus-visible {
   outline: var(--mx-focus-width) solid var(--mx-accent);
   outline-offset: var(--mx-focus-offset);
 }

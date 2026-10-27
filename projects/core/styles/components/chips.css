@@ -1,0 +1,170 @@
+/* ---------- Chips ---------- */
+
+.mx-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  box-sizing: border-box;
+  height: 28px;
+  max-width: 100%;
+  padding: 0 10px;
+  border: 1px solid var(--mx-stone);
+  border-radius: 999px;
+  background: var(--mx-subtle);
+  color: var(--mx-ink);
+  font-family: var(--mx-font-sans);
+  font-size: var(--mx-text-sm);
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.mx-chip[data-size='sm'] {
+  height: 24px;
+  padding: 0 8px;
+  font-size: var(--mx-text-xs);
+}
+.mx-chip[data-variant='outline'] {
+  background: transparent;
+  border-color: var(--mx-stone-strong);
+}
+.mx-chip[data-variant='accent'] {
+  background: var(--mx-accent-soft);
+  border-color: color-mix(in oklab, var(--mx-accent) 30%, var(--mx-surface));
+  color: var(--mx-accent);
+}
+.mx-chip[data-disabled] {
+  color: var(--mx-muted);
+}
+.mx-chip-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mx-chip:has(.mx-chip-remove) {
+  padding-right: 3px;
+}
+.mx-chip-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--mx-muted);
+  cursor: pointer;
+}
+.mx-chip[data-size='sm'] .mx-chip-remove {
+  width: 18px;
+  height: 18px;
+}
+.mx-chip-remove svg {
+  width: 12px;
+  height: 12px;
+}
+.mx-chip-remove:hover:not(:disabled) {
+  background: var(--mx-stone);
+  color: var(--mx-ink);
+}
+.mx-chip-remove:disabled {
+  cursor: not-allowed;
+}
+
+/* Chip que liga e desliga */
+.mx-chip-toggle {
+  background: var(--mx-surface);
+  cursor: pointer;
+  transition: background var(--mx-duration) var(--mx-ease), border-color var(--mx-duration) var(--mx-ease);
+}
+.mx-chip-toggle:is(:hover, [data-mx-state='hover']):not(:disabled) {
+  background: var(--mx-subtle);
+}
+.mx-chip-toggle[aria-pressed='true'] {
+  border-color: var(--mx-accent);
+  background: var(--mx-accent-soft);
+  color: var(--mx-accent);
+}
+.mx-chip-toggle[aria-pressed='true']::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  margin-left: -2px;
+  background: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.mx-chip-toggle:disabled {
+  color: var(--mx-muted);
+  cursor: not-allowed;
+}
+
+/* Campo de etiquetas */
+.mx-tag-input {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--mx-control-height);
+  padding: 4px 6px;
+  border: 1px solid var(--mx-control-border);
+  border-radius: var(--mx-radius);
+  background: var(--mx-surface);
+  font-family: var(--mx-font-sans);
+  cursor: text;
+  transition: border-color var(--mx-duration) var(--mx-ease);
+}
+.mx-tag-input:hover:not([data-disabled]) {
+  border-color: var(--mx-muted);
+}
+.mx-tag-input:focus-within {
+  border-color: var(--mx-accent);
+}
+.mx-tag-input[data-invalid] {
+  border-color: var(--mx-danger);
+}
+.mx-tag-input[data-disabled] {
+  background: var(--mx-subtle);
+  cursor: not-allowed;
+}
+.mx-tag-input[data-size='lg'] {
+  min-height: var(--mx-control-height-lg);
+}
+.mx-tag-input[data-size='sm'] {
+  min-height: var(--mx-control-height-sm);
+}
+.mx-tag-input-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.mx-tag-input-list > li {
+  display: inline-flex;
+  max-width: 100%;
+}
+.mx-tag-input-field {
+  flex: 1;
+  min-width: 120px;
+  height: 26px;
+  padding: 0 6px;
+  border: 0;
+  border-radius: calc(var(--mx-radius) - 2px);
+  background: transparent;
+  color: var(--mx-ink);
+  font: inherit;
+  font-size: var(--mx-text-md);
+}
+.mx-tag-input-field::placeholder {
+  color: var(--mx-muted);
+  opacity: 1;
+}
+.mx-tag-input-field:disabled {
+  cursor: not-allowed;
+}

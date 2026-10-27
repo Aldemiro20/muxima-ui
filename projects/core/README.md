@@ -30,9 +30,14 @@ Cada componente tem o seu ponto de entrada, para só importares o que usas:
 | `@muxima-ui/core/checkbox` | `MxCheckbox` |
 | `@muxima-ui/core/radio` | `MxRadio` |
 | `@muxima-ui/core/switch` | `MxSwitch` |
-| `@muxima-ui/core/slider` | `MxSlider` |
-| `@muxima-ui/core/date-picker` | `MxDatePicker`, `MxCalendar`, `mxParseDate`, `mxFormatDate` |
+| `@muxima-ui/core/slider` | `MxSlider`, `MxRangeSlider` (dois cursores) |
+| `@muxima-ui/core/date-picker` | `MxDatePicker`, `MxDateRangePicker`, `MxCalendar`, `mxDefaultRangePresets`, `mxDateRangeComplete`, `mxParseDate`, `mxFormatDate` |
+| `@muxima-ui/core/time-picker` | `MxTimePicker`, `mxParseTime` |
 | `@muxima-ui/core/otp` | `MxOtp` |
+| `@muxima-ui/core/chips` | `MxChip`, `MxChipToggle`, `MxTagInput` |
+| `@muxima-ui/core/file-upload` | `MxFileUpload`, `mxFormatBytes` |
+| `@muxima-ui/core/rating` | `MxRating` |
+| `@muxima-ui/core/clipboard` | `MxCopy`, `MxCopyButton` |
 | `@muxima-ui/core/table` | `MX_TABLE`, `mxSortData` |
 | `@muxima-ui/core/card` | `MX_CARD` |
 | `@muxima-ui/core/badge` | `MxBadge` |
@@ -53,7 +58,5 @@ Cada componente tem o seu ponto de entrada, para só importares o que usas:
 | `@muxima-ui/core/progress` | `MxProgress`, `MxSpinner` |
 | `@muxima-ui/core/skeleton` | `MxSkeleton` |
 | `@muxima-ui/core/toast` | `MxToast` |
-
-Time picker usa `input[type=time][mxInput]`, sem componente próprio.
 
 Licença MIT.

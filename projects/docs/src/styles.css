@@ -2674,3 +2674,67 @@ a.text-link:hover,
 .flip {
   transform: rotate(180deg);
 }
+
+/* ---------- Ajudas da 1.1 ---------- */
+
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.rating-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.rating-summary .muted {
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+}
+.copy-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+.copy-code {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  padding: 6px 10px;
+  border: var(--mx-border);
+  border-radius: var(--mx-radius);
+  background: var(--mx-subtle);
+  font-family: var(--mx-font-mono);
+  font-size: var(--mx-text-sm);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.copy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin: 0;
+}
+.copy-list > div {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: center;
+  gap: 8px;
+}
+.copy-list dt {
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+}
+.copy-list dd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}

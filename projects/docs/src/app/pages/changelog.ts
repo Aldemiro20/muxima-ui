@@ -24,14 +24,14 @@ interface Release {
         <p class="page-lead">Histórico público das alterações, novas funcionalidades, correcções e melhorias de acessibilidade.</p>
       </header>
 
-      <doc-callout>A versão 1.0.0 será a primeira versão pública. Até lá, as versões 0.x podem mudar sem aviso.</doc-callout>
+      <doc-callout>A 1.0.0 foi a primeira versão pública. As versões 1.x só acrescentam: actualizar não obriga a mudar o teu código.</doc-callout>
 
       <ol class="timeline">
         @for (r of releases; track r.version) {
           <li>
             <div class="tl-meta">
               <strong>v{{ r.version }}</strong>
-              <span class="tag" [class.accent]="r.status === 'Em curso'">{{ r.status }}</span>
+              <span class="tag" [class.accent]="r.status === 'Em curso' || r.status === 'Publicada'">{{ r.status }}</span>
               <span class="muted small">{{ r.date }}</span>
             </div>
             <div class="card tl-card">
@@ -60,9 +60,37 @@ export class ChangelogPage {
   protected readonly links = LINKS;
   protected readonly releases: Release[] = [
     {
-      version: '1.0.0',
+      version: '1.3.0',
+      status: 'Planeado',
+      date: 'A seguir à 1.2',
+      title: 'Componentes avançados',
+      items: ['Data grid: colunas redimensionáveis e fixas, filtros, selecção e scroll virtual', 'Kanban com arrastar e largar', 'Image cropper', 'Rich text editor'],
+    },
+    {
+      version: '1.2.0',
+      status: 'Planeado',
+      date: 'A seguir à 1.1',
+      title: 'Navegação e conteúdo',
+      items: ['Sidebar', 'Timeline', 'Notification center', 'Carousel', 'Color picker'],
+    },
+    {
+      version: '1.1.0',
       status: 'Em curso',
       date: 'Pronta a publicar',
+      title: 'Formulários',
+      items: [
+        'Date range picker, com atalhos e calendário em intervalo',
+        'Time picker com lista de horas e escrita livre (9, 930, 9h30)',
+        'Range slider com dois cursores',
+        'Chips, filtros e campo de etiquetas',
+        'File upload com validação, progresso e erros por ficheiro',
+        'Rating e Copy to clipboard',
+      ],
+    },
+    {
+      version: '1.0.0',
+      status: 'Publicada',
+      date: '27 de outubro de 2026',
       title: 'Primeira versão pública',
       items: [
         '33 componentes: formulários, dados, navegação, sobreposições e feedback',
@@ -72,17 +100,6 @@ export class ChangelogPage {
         'Testes de comportamento e teclado com axe em cada componente, axe em todas as páginas e testes end-to-end',
         'Documentação com estados, código de cada exemplo e pesquisa Ctrl+K',
         'Substitui os pacotes @muxima-ui/* 1.0.x, que passam a descontinuados',
-      ],
-    },
-    {
-      version: '1.1.0',
-      status: 'Planeado',
-      date: 'Depois do lançamento',
-      title: 'Próximos passos',
-      items: [
-        'Correcções da verificação com leitores de ecrã (NVDA, VoiceOver, TalkBack)',
-        'Primeiro template Pro: Dashboard Empresarial',
-        'Comando npx muxima add para copiar templates para o teu projecto',
       ],
     },
   ];
