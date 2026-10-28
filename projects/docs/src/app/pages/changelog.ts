@@ -60,9 +60,16 @@ export class ChangelogPage {
   protected readonly links = LINKS;
   protected readonly releases: Release[] = [
     {
-      version: '1.4.0',
+      version: '1.4.1',
       status: 'Em curso',
       date: 'Pronta a publicar',
+      title: 'Correcção',
+      items: ['Data grid: os campos da barra encolhem em ecrãs estreitos'],
+    },
+    {
+      version: '1.4.0',
+      status: 'Publicada',
+      date: '28 de outubro de 2026',
       title: 'Visita guiada e blocos',
       items: [
         'Tour guide: visita guiada com destaque, teclado, foco devolvido e passos que preparam o ecrã',

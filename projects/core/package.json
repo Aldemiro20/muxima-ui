@@ -1,6 +1,6 @@
 {
   "name": "@muxima-ui/core",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Componentes Angular acessíveis e sóbrios para aplicações empresariais.",
   "keywords": ["angular", "components", "ui", "design-system", "accessibility", "muxima"],
   "license": "MIT",

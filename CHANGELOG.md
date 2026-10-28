@@ -2,7 +2,13 @@
 
 Todas as alterações relevantes do pacote `@muxima-ui/core`. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-PT/1.1.0/) e as versões seguem o [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
-## [1.4.0] - por publicar
+## [1.4.1] - por publicar
+
+### Corrigido
+
+- Data grid: os campos na barra (`mxGridToolbar`) encolhem em ecrãs estreitos em vez de saírem da grelha.
+
+## [1.4.0] - 2026-10-28
 
 Visita guiada e blocos.
 
