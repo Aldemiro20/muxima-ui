@@ -14,6 +14,7 @@ import {
   output,
   signal,
 } from '@angular/core';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 import { NgTemplateOutlet } from '@angular/common';
 import { DialogRef } from '@angular/cdk/dialog';
 import { MxDialog, MX_DIALOG_DATA } from '@muxima-ui/core/dialog';
@@ -70,14 +71,14 @@ export class MxCommandItemTemplate {
         aria-expanded="true"
         [attr.aria-controls]="listId"
         [attr.aria-activedescendant]="flat().length ? optionId(active()) : null"
-        [attr.aria-label]="ariaLabel()"
-        [placeholder]="placeholder()"
+        [attr.aria-label]="labelText()"
+        [placeholder]="placeholder() ?? i18n().command.placeholder"
         [value]="query()"
         (input)="onInput($event)"
         (keydown)="onKeydown($event)"
       />
     </div>
-    <div class="mx-command-list" role="listbox" [id]="listId" [attr.aria-label]="ariaLabel()">
+    <div class="mx-command-list" role="listbox" [id]="listId" [attr.aria-label]="labelText()">
       @for (g of groups(); track g.name) {
         <div role="group" class="mx-command-group" [attr.aria-labelledby]="g.name ? groupId(g.name) : null">
           @if (g.name) {
@@ -106,17 +107,19 @@ export class MxCommandItemTemplate {
           }
         </div>
       } @empty {
-        <div class="mx-command-empty" role="option" aria-disabled="true" aria-selected="false">{{ emptyText() }} "{{ query() }}"</div>
+        <div class="mx-command-empty" role="option" aria-disabled="true" aria-selected="false">{{ emptyText() ?? i18n().command.empty }} "{{ query() }}"</div>
       }
     </div>
-    <span class="mx-visually-hidden" aria-live="polite">{{ flat().length }} resultados</span>
+    <span class="mx-visually-hidden" aria-live="polite">{{ i18n().command.results(flat().length) }}</span>
   `,
 })
 export class MxCommand<D = unknown> {
   readonly items = input.required<readonly MxCommandItem<D>[]>();
-  readonly placeholder = input('Pesquisar...');
-  readonly emptyText = input('Nada encontrado para');
-  readonly ariaLabel = input('Pesquisar', { alias: 'aria-label' });
+  readonly placeholder = input<string>();
+  readonly emptyText = input<string>();
+  readonly ariaLabel = input<string | undefined>(undefined, { alias: 'aria-label' });
+  protected readonly i18n = injectMxMessages();
+  protected readonly labelText = computed(() => this.ariaLabel() ?? this.i18n().command.label);
   readonly selected = output<MxCommandItem<D>>();
 
   protected readonly itemTemplate = contentChild(MxCommandItemTemplate);
@@ -221,12 +224,14 @@ export class MxCommandPaletteDialog {
 @Injectable({ providedIn: 'root' })
 export class MxCommandPalette {
   private readonly dialog = inject(MxDialog);
+  private readonly i18n = injectMxMessages();
 
   open<D>(items: MxCommandItem<D>[], options: { placeholder?: string; label?: string } = {}): DialogRef<MxCommandItem<D>> {
+    const t = this.i18n().command;
     const ref = this.dialog.open<MxCommandItem<D>>(MxCommandPaletteDialog, {
-      data: { items, placeholder: options.placeholder ?? 'Pesquisar...', label: options.label ?? 'Pesquisar' },
+      data: { items, placeholder: options.placeholder ?? t.placeholder, label: options.label ?? t.label },
       size: 'md',
-      ariaLabel: options.label ?? 'Pesquisar',
+      ariaLabel: options.label ?? t.label,
     });
     ref.addPanelClass('mx-command-panel');
     return ref as unknown as DialogRef<MxCommandItem<D>>;

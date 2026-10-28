@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Directive, ViewEncapsulation, input } from '@angular/core';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 
 export type MxStepState = 'complete' | 'current' | 'upcoming';
 
@@ -39,7 +40,7 @@ export class MxStepper {
     <span class="mx-step-label">
       <ng-content />
       @if (state() === 'complete') {
-        <span class="mx-visually-hidden"> ({{ completeText() }})</span>
+        <span class="mx-visually-hidden"> ({{ completeText() ?? i18n().stepper.complete }})</span>
       }
     </span>
   `,
@@ -47,7 +48,8 @@ export class MxStepper {
 export class MxStep {
   readonly state = input<MxStepState>('upcoming');
   /** Texto lido nas etapas concluídas. */
-  readonly completeText = input('concluído');
+  readonly completeText = input<string>();
+  protected readonly i18n = injectMxMessages();
 }
 
 export const MX_STEPPER = [MxStepper, MxStep] as const;

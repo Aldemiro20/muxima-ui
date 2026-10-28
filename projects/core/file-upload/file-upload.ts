@@ -15,6 +15,7 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
 import { MX_FORM_FIELD_CONTROL, MxFormField, MxFormFieldControl, mxUniqueId } from '@muxima-ui/core/form-field';
@@ -90,7 +91,7 @@ export function mxFileMatches(file: File, accept: string): boolean {
         <path d="M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
       </svg>
       <p class="mx-file-upload-text">
-        <span aria-hidden="true">{{ dropText() }}</span>
+        <span aria-hidden="true">{{ (dropText() ?? msg().drop) }}</span>
         <button
           type="button"
           class="mx-file-upload-button"
@@ -100,7 +101,7 @@ export function mxFileMatches(file: File, accept: string): boolean {
           [attr.aria-labelledby]="field?.labelId() ? field!.labelId() + ' ' + controlId() : null"
           (click)="browse()"
         >
-          {{ buttonText() }}
+          {{ (buttonText() ?? msg().browse) }}
         </button>
       </p>
       @if (description()) {
@@ -128,7 +129,7 @@ export function mxFileMatches(file: File, accept: string): boolean {
     }
 
     @if (files().length) {
-      <ul class="mx-file-upload-list" [attr.aria-label]="listLabel()">
+      <ul class="mx-file-upload-list" [attr.aria-label]="(listLabel() ?? msg().list)">
         @for (f of files(); track f; let i = $index) {
           <li class="mx-file-upload-item" [attr.data-error]="errors()[f.name] ? '' : null">
             <svg class="mx-file-upload-file-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -142,14 +143,14 @@ export function mxFileMatches(file: File, accept: string): boolean {
                 @if (errors()[f.name]; as e) {
                   · <span class="mx-file-upload-error">{{ e }}</span>
                 } @else if (progress()[f.name] !== undefined) {
-                  · {{ progress()[f.name] >= 100 ? doneText() : progress()[f.name] + '%' }}
+                  · {{ progress()[f.name] >= 100 ? (doneText() ?? msg().done) : progress()[f.name] + '%' }}
                 }
               </span>
               @if (progress()[f.name] !== undefined && progress()[f.name] < 100 && !errors()[f.name]) {
-                <progress class="mx-file-upload-progress" max="100" [value]="progress()[f.name]" [attr.aria-label]="'A enviar ' + f.name"></progress>
+                <progress class="mx-file-upload-progress" max="100" [value]="progress()[f.name]" [attr.aria-label]="msg().uploading(f.name)"></progress>
               }
             </div>
-            <button type="button" class="mx-file-upload-remove" [disabled]="isDisabled()" [attr.aria-label]="removeText() + ' ' + f.name" (click)="remove(i)">
+            <button type="button" class="mx-file-upload-remove" [disabled]="isDisabled()" [attr.aria-label]="(removeText() ?? msg().remove) + ' ' + f.name" (click)="remove(i)">
               <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" /></svg>
             </button>
           </li>
@@ -170,14 +171,17 @@ export class MxFileUpload implements ControlValueAccessor, MxFormFieldControl {
   readonly progress = input<Record<string, number>>({});
   /** Erro de envio por nome de ficheiro. */
   readonly errors = input<Record<string, string>>({});
-  readonly dropText = input('Arrasta os ficheiros para aqui ou');
-  readonly buttonText = input('escolhe no computador');
+  readonly dropText = input<string>();
+  private readonly i18n = injectMxMessages();
+  protected readonly msg = computed(() => this.i18n().fileUpload);
+  readonly buttonText = input<string>();
   /** Linha de ajuda dentro da área (ex.: "PDF até 5 MB"). */
   readonly description = input('');
-  readonly listLabel = input('Ficheiros escolhidos');
-  readonly removeText = input('Remover');
-  readonly doneText = input('Enviado');
-  readonly locale = input('pt-AO');
+  readonly listLabel = input<string>();
+  readonly removeText = input<string>();
+  readonly doneText = input<string>();
+  /** Locale dos tamanhos ("1,2 MB"); por omissão o do idioma activo. */
+  readonly locale = input<string>();
   readonly disabled = input(false, { transform: booleanAttribute });
   readonly required = input(false, { transform: booleanAttribute });
   readonly invalid = input(false, { transform: booleanAttribute });
@@ -212,7 +216,7 @@ export class MxFileUpload implements ControlValueAccessor, MxFormFieldControl {
   }
 
   protected size(bytes: number): string {
-    return mxFormatBytes(bytes, this.locale());
+    return mxFormatBytes(bytes, this.locale() ?? this.i18n().intlLocale);
   }
 
   /** Abre o seletor de ficheiros do sistema. */
@@ -226,13 +230,14 @@ export class MxFileUpload implements ControlValueAccessor, MxFormFieldControl {
     const accepted: File[] = [];
     const rejected: MxFileRejection[] = [];
     const current = this.multiple() ? this.files() : [];
+    const t = this.msg();
     for (const file of incoming) {
       if (!mxFileMatches(file, this.accept())) {
-        rejected.push({ file, reason: 'type', message: `${file.name}: tipo de ficheiro não aceite.` });
+        rejected.push({ file, reason: 'type', message: t.rejectedType(file.name) });
       } else if (file.size > this.maxSize()) {
-        rejected.push({ file, reason: 'size', message: `${file.name}: tem ${this.size(file.size)}, o máximo é ${this.size(this.maxSize())}.` });
+        rejected.push({ file, reason: 'size', message: t.rejectedSize(file.name, this.size(file.size), this.size(this.maxSize())) });
       } else if (current.length + accepted.length >= (this.multiple() ? this.maxFiles() : 1)) {
-        rejected.push({ file, reason: 'count', message: `${file.name}: só podes juntar ${this.multiple() ? this.maxFiles() : 1} ficheiro${this.maxFiles() === 1 || !this.multiple() ? '' : 's'}.` });
+        rejected.push({ file, reason: 'count', message: t.rejectedCount(file.name, this.multiple() ? this.maxFiles() : 1) });
       } else {
         accepted.push(file);
       }
@@ -241,7 +246,7 @@ export class MxFileUpload implements ControlValueAccessor, MxFormFieldControl {
     if (rejected.length) this.rejected.emit(rejected);
     if (accepted.length) this.update([...current, ...accepted]);
     const parts = [];
-    if (accepted.length) parts.push(accepted.length === 1 ? `${accepted[0].name} juntado.` : `${accepted.length} ficheiros juntados.`);
+    if (accepted.length) parts.push(accepted.length === 1 ? t.addedOne(accepted[0].name) : t.addedMany(accepted.length));
     parts.push(...rejected.map((r) => r.message));
     if (parts.length) this.announcer.announce(parts.join(' '), rejected.length ? 'assertive' : 'polite');
     this.onTouched();
@@ -250,7 +255,7 @@ export class MxFileUpload implements ControlValueAccessor, MxFormFieldControl {
   remove(index: number): void {
     const file = this.files()[index];
     this.update(this.files().filter((_, i) => i !== index));
-    this.announcer.announce(`${file.name} removido.`);
+    this.announcer.announce(this.msg().removed(file.name));
     afterNextRender(() => {
       const removes = this.host.querySelectorAll<HTMLElement>('.mx-file-upload-remove');
       (removes[Math.min(index, removes.length - 1)] ?? this.host.querySelector<HTMLElement>('.mx-file-upload-button'))?.focus();

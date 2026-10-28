@@ -149,7 +149,7 @@ export interface ApiRow {
 /** Referência da API: inputs, outputs, valores por omissão e tokens. */
 @Component({
   selector: 'doc-api-table',
-  imports: [MxTable],
+  imports: [MxTable, RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="mx-table-container">
@@ -176,10 +176,28 @@ export interface ApiRow {
         </tbody>
       </table>
     </div>
+    @if (hasTextDefaults()) {
+      <p class="api-note">
+        Os textos por omissão estão em português e mudam com o idioma activo. Ver
+        <a routerLink="/docs/idiomas" class="text-link">Idiomas</a>.
+      </p>
+    }
   `,
 })
 export class ApiTable {
   readonly rows = input.required<ApiRow[]>();
+  /** Há textos (não códigos) na coluna "Por omissão"? */
+  protected readonly hasTextDefaults = computed(() =>
+    this.rows().some(
+      (r) =>
+        r.kind === 'Input' &&
+        /string/.test(r.type) &&
+        !!r.default &&
+        /[A-Za-zÀ-ú]{3,}/.test(r.default) &&
+        !/^'?(md|sm|lg|default|start|end|auto|none|top|bottom|null|undefined|true|false|horizontal|vertical|single|multiple|polite)'?$/.test(r.default) &&
+        !/px|%|^#|^\[|=>/.test(r.default),
+    ),
+  );
 }
 
 export interface RelatedItem {

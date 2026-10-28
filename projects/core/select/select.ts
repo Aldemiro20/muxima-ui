@@ -17,6 +17,7 @@ import {
   output,
   signal,
 } from '@angular/core';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
 import {
   MX_FORM_FIELD_CONTROL,
@@ -129,7 +130,7 @@ const POSITIONS: ConnectedPosition[] = [
       (blur)="onTriggerBlur()"
     >
       <span class="mx-select-value" [class.mx-select-placeholder]="!selectedLabel()">
-        {{ selectedLabel() || placeholder() }}
+        {{ selectedLabel() || placeholderText() }}
       </span>
       @if (loading()) {
         <span class="mx-spinner mx-select-spinner" aria-hidden="true"></span>
@@ -156,13 +157,13 @@ const POSITIONS: ConnectedPosition[] = [
         [attr.aria-busy]="loading() ? 'true' : null"
         [id]="panelId"
         [attr.aria-labelledby]="field?.labelId() ?? null"
-        [attr.aria-label]="field?.labelId() ? null : (ariaLabel() ?? placeholder())"
+        [attr.aria-label]="field?.labelId() ? null : (ariaLabel() ?? placeholderText())"
       >
         <ng-content />
         @if (loading()) {
-          <div class="mx-select-empty mx-select-loading" role="option" aria-disabled="true" aria-selected="false"><span class="mx-spinner mx-select-spinner" aria-hidden="true"></span>{{ loadingText() }}</div>
+          <div class="mx-select-empty mx-select-loading" role="option" aria-disabled="true" aria-selected="false"><span class="mx-spinner mx-select-spinner" aria-hidden="true"></span>{{ loadingText() ?? i18n().select.loading }}</div>
         } @else if (optionCount() === 0) {
-          <div class="mx-select-empty" role="option" aria-disabled="true" aria-selected="false">{{ emptyText() }}</div>
+          <div class="mx-select-empty" role="option" aria-disabled="true" aria-selected="false">{{ emptyText() ?? i18n().select.empty }}</div>
         }
       </div>
     </ng-template>
@@ -173,7 +174,9 @@ export class MxSelect<T = unknown> implements ControlValueAccessor, MxFormFieldC
   readonly value = model<T | T[] | null>(null);
   /** Escolha múltipla: o valor passa a ser uma lista e o painel não fecha ao escolher. */
   readonly multiple = input(false, { transform: booleanAttribute });
-  readonly placeholder = input('Seleccionar');
+  readonly placeholder = input<string>();
+  protected readonly i18n = injectMxMessages();
+  protected readonly placeholderText = computed(() => this.placeholder() ?? this.i18n().select.placeholder);
   readonly disabled = input(false, { transform: booleanAttribute });
   readonly required = input(false, { transform: booleanAttribute });
   /** Força o estado de erro (sem formulário). Com Reactive Forms o erro vem do controlo. */
@@ -181,10 +184,10 @@ export class MxSelect<T = unknown> implements ControlValueAccessor, MxFormFieldC
   /** Altura: sm 32 px, md 36 px, lg 40 px. */
   readonly size = input<'sm' | 'md' | 'lg'>('md');
   /** Texto mostrado quando não há opções. */
-  readonly emptyText = input('Sem opções');
+  readonly emptyText = input<string>();
   /** Opções a carregar (ex.: de um servidor): mostra um indicador no botão e no painel. */
   readonly loading = input(false, { transform: booleanAttribute });
-  readonly loadingText = input('A carregar...');
+  readonly loadingText = input<string>();
   readonly id = input<string | undefined>(undefined);
   /** Nome acessível quando não existe um `label[mxLabel]` no campo. */
   readonly ariaLabel = input<string | undefined>(undefined, { alias: 'aria-label' });

@@ -163,11 +163,11 @@ export class DatePickerPage {
     { kind: 'Input', name: 'value', type: 'Date | null (model)', description: 'Também com ngModel e Reactive Forms.' },
     { kind: 'Input', name: 'min, max', type: 'Date | null', description: 'Limites do intervalo.' },
     { kind: 'Input', name: 'dateDisabled', type: '(d: Date) => boolean', description: 'Dias que não se podem escolher.' },
-    { kind: 'Input', name: 'locale', type: 'string', default: 'pt-AO', description: 'Nomes de meses e dias.' },
+    { kind: 'Input', name: 'locale', type: 'string', default: 'do idioma', description: 'Nomes de meses e dias.' },
     { kind: 'Input', name: 'placeholder', type: 'string', default: 'dd/mm/aaaa' },
     { kind: 'Input', name: 'size', type: "'sm' | 'md' | 'lg'", default: 'md' },
     { kind: 'Input', name: 'disabled, required, invalid', type: 'boolean', default: 'false' },
     { kind: 'Directiva', name: 'mx-calendar', type: 'value, min, max, dateDisabled, locale, firstDayOfWeek', description: 'O calendário, para usar sozinho.' },
-    { kind: 'Método', name: 'mxParseDate(texto), mxFormatDate(data)', type: 'funções', description: 'Conversão dd/mm/aaaa.' },
+    { kind: 'Método', name: 'mxParseDate(texto, ordem), mxFormatDate(data, ordem)', type: 'funções', description: "Conversão de datas escritas. A ordem é 'dmy' (por omissão), 'mdy' ou 'ymd'." },
   ];
 }

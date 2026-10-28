@@ -12,6 +12,7 @@ import {
   output,
   signal,
 } from '@angular/core';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 import { mxUniqueId } from '@muxima-ui/core/form-field';
 
 /** Data sem horas, para comparar dias. */
@@ -58,11 +59,11 @@ function addMonths(d: Date, n: number): Date {
   host: { class: 'mx-calendar' },
   template: `
     <div class="mx-calendar-header">
-      <button type="button" class="mx-calendar-nav" (click)="moveMonth(-1)" [attr.aria-label]="'Mês anterior, ' + monthLabel(-1)">
+      <button type="button" class="mx-calendar-nav" (click)="moveMonth(-1)" [attr.aria-label]="msg().previousMonth(monthLabel(-1))">
         <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 4L6 8l4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
       </button>
       <p class="mx-calendar-title" [id]="titleId" aria-live="polite">{{ monthLabel(0) }}</p>
-      <button type="button" class="mx-calendar-nav" (click)="moveMonth(1)" [attr.aria-label]="'Mês seguinte, ' + monthLabel(1)">
+      <button type="button" class="mx-calendar-nav" (click)="moveMonth(1)" [attr.aria-label]="msg().nextMonth(monthLabel(1))">
         <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
       </button>
     </div>
@@ -117,9 +118,14 @@ export class MxCalendar {
   readonly max = input<Date | null>(null);
   /** Dias que não se podem escolher (ex.: fins-de-semana). */
   readonly dateDisabled = input<(d: Date) => boolean>(() => false);
-  readonly locale = input('pt-AO');
-  /** Primeiro dia da semana: 1 = segunda-feira. */
-  readonly firstDayOfWeek = input(1);
+  /** Locale dos nomes dos meses e dos dias; por omissão o do idioma activo. */
+  readonly locale = input<string>();
+  /** Primeiro dia da semana: 0 = domingo, 1 = segunda-feira. Por omissão o do idioma activo. */
+  readonly firstDayOfWeek = input<number>();
+  private readonly i18n = injectMxMessages();
+  protected readonly msg = computed(() => this.i18n().calendar);
+  private readonly loc = computed(() => this.locale() ?? this.i18n().intlLocale);
+  private readonly firstDay = computed(() => this.firstDayOfWeek() ?? this.i18n().firstDayOfWeek);
   readonly selected = output<Date>();
   /** `single` escolhe um dia; `range` escolhe um intervalo em [(range)]. */
   readonly mode = input<'single' | 'range'>('single');
@@ -140,8 +146,8 @@ export class MxCalendar {
   protected readonly rangeHint = computed(() => {
     const r = this.range();
     if (!r?.start) return '';
-    const f = new Intl.DateTimeFormat(this.locale(), { day: 'numeric', month: 'long', year: 'numeric' });
-    return r.end ? `Intervalo de ${f.format(r.start)} a ${f.format(r.end)}.` : `Início ${f.format(r.start)}. Escolhe a data de fim.`;
+    const f = new Intl.DateTimeFormat(this.loc(), { day: 'numeric', month: 'long', year: 'numeric' });
+    return r.end ? this.msg().rangeHint(f.format(r.start), f.format(r.end)) : this.msg().rangeStartHint(f.format(r.start));
   });
 
   /** Início e fim efectivos (com pré-visualização), ordenados. */
@@ -154,11 +160,11 @@ export class MxCalendar {
   });
 
   protected readonly weekdays = computed(() => {
-    const short = new Intl.DateTimeFormat(this.locale(), { weekday: 'narrow' });
-    const long = new Intl.DateTimeFormat(this.locale(), { weekday: 'long' });
+    const short = new Intl.DateTimeFormat(this.loc(), { weekday: 'narrow' });
+    const long = new Intl.DateTimeFormat(this.loc(), { weekday: 'long' });
     // 2024-01-01 foi segunda-feira
     return Array.from({ length: 7 }, (_, i) => {
-      const d = new Date(2024, 0, 1 + ((this.firstDayOfWeek() - 1 + i + 7) % 7));
+      const d = new Date(2024, 0, 1 + ((this.firstDay() - 1 + i + 7) % 7));
       return { short: short.format(d).toUpperCase(), long: long.format(d) };
     });
   });
@@ -166,10 +172,10 @@ export class MxCalendar {
   protected readonly weeks = computed(() => {
     const focus = this.focusDate();
     const first = new Date(focus.getFullYear(), focus.getMonth(), 1);
-    const offset = (first.getDay() - this.firstDayOfWeek() + 7) % 7;
+    const offset = (first.getDay() - this.firstDay() + 7) % 7;
     const start = addDays(first, -offset);
     const today = mxStartOfDay(new Date());
-    const fmt = new Intl.DateTimeFormat(this.locale(), { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    const fmt = new Intl.DateTimeFormat(this.loc(), { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
     const bounds = this.bounds();
     const isRange = this.mode() === 'range';
     const weeks = [];
@@ -182,7 +188,8 @@ export class MxCalendar {
         const inRange = !!bounds && date > bounds[0] && date < bounds[1];
         const isStart = isRange && mxSameDay(date, this.range()?.start);
         const isEnd = isRange && mxSameDay(date, this.range()?.end);
-        const label = fmt.format(date) + (isStart && isEnd ? ', início e fim do intervalo' : isStart ? ', início do intervalo' : isEnd ? ', fim do intervalo' : '');
+        const t = this.msg();
+        const label = fmt.format(date) + (isStart && isEnd ? `, ${t.rangeStartEnd}` : isStart ? `, ${t.rangeStart}` : isEnd ? `, ${t.rangeEnd}` : '');
         row.push({
           date,
           key: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
@@ -221,7 +228,7 @@ export class MxCalendar {
 
   protected monthLabel(delta: number): string {
     const d = addMonths(this.focusDate(), delta);
-    const s = new Intl.DateTimeFormat(this.locale(), { month: 'long', year: 'numeric' }).format(d);
+    const s = new Intl.DateTimeFormat(this.loc(), { month: 'long', year: 'numeric' }).format(d);
     return s.charAt(0).toUpperCase() + s.slice(1);
   }
 
@@ -255,7 +262,7 @@ export class MxCalendar {
 
   protected onKeydown(event: KeyboardEvent): void {
     const f = this.focusDate();
-    const dow = (f.getDay() - this.firstDayOfWeek() + 7) % 7;
+    const dow = (f.getDay() - this.firstDay() + 7) % 7;
     const moves: Record<string, () => Date> = {
       ArrowLeft: () => addDays(f, -1),
       ArrowRight: () => addDays(f, 1),

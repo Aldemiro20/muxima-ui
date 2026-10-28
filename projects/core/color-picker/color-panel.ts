@@ -13,6 +13,7 @@ import {
   untracked,
   viewChild,
 } from '@angular/core';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 import { mxUniqueId } from '@muxima-ui/core/form-field';
 import { MxHsva, mxColorName, mxHexToHsva, mxHsvaToHex, mxParseColor } from './color';
 
@@ -55,7 +56,7 @@ interface EyeDropperLike {
           class="mx-color-area-thumb"
           role="slider"
           [attr.tabindex]="disabled() ? -1 : 0"
-          [attr.aria-label]="areaLabel()"
+          [attr.aria-label]="(areaLabel() ?? msg().area)"
           aria-valuemin="0"
           aria-valuemax="100"
           [attr.aria-valuenow]="pct(hsva().s)"
@@ -77,8 +78,8 @@ interface EyeDropperLike {
             max="359"
             [value]="round(hsva().h)"
             [disabled]="disabled()"
-            [attr.aria-label]="hueLabel()"
-            [attr.aria-valuetext]="round(hsva().h) + ' graus, ' + hueName()"
+            [attr.aria-label]="(hueLabel() ?? msg().hue)"
+            [attr.aria-valuetext]="msg().hueValue(round(hsva().h), hueName())"
             (input)="setHue($event)"
           />
           @if (alpha()) {
@@ -89,7 +90,7 @@ interface EyeDropperLike {
               max="100"
               [value]="pct(hsva().a)"
               [disabled]="disabled()"
-              [attr.aria-label]="alphaLabel()"
+              [attr.aria-label]="(alphaLabel() ?? msg().alpha)"
               [attr.aria-valuetext]="pct(hsva().a) + '%'"
               (input)="setAlpha($event)"
             />
@@ -100,7 +101,7 @@ interface EyeDropperLike {
             type="button"
             class="mx-color-tool"
             [disabled]="disabled()"
-            aria-label="Escolher uma cor do ecrã"
+            [attr.aria-label]="msg().eyeDropper"
             (click)="pickFromScreen()"
           >
             <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -118,7 +119,7 @@ interface EyeDropperLike {
 
     @if (showInput() && !swatchesOnly()) {
       <div class="mx-color-input-row">
-        <label class="mx-color-input-label" [for]="inputId">Hex</label>
+        <label class="mx-color-input-label" [for]="inputId">{{ msg().hex }}</label>
         <input
           class="mx-input mx-color-hex"
           data-size="sm"
@@ -135,7 +136,7 @@ interface EyeDropperLike {
     }
 
     @if (swatchList().length) {
-      <div class="mx-color-swatches" role="group" [attr.aria-label]="swatchesLabel()">
+      <div class="mx-color-swatches" role="group" [attr.aria-label]="(swatchesLabel() ?? msg().swatches)">
         @for (s of swatchList(); track s.color) {
           <button
             type="button"
@@ -160,10 +161,12 @@ export class MxColorPanel {
   /** Só as amostras: uma paleta fechada, sem área nem matiz. */
   readonly swatchesOnly = input(false, { transform: booleanAttribute });
   readonly disabled = input(false, { transform: booleanAttribute });
-  readonly areaLabel = input('Saturação e brilho');
-  readonly hueLabel = input('Matiz');
-  readonly alphaLabel = input('Opacidade');
-  readonly swatchesLabel = input('Cores sugeridas');
+  readonly areaLabel = input<string>();
+  private readonly i18n = injectMxMessages();
+  protected readonly msg = computed(() => this.i18n().colorPicker);
+  readonly hueLabel = input<string>();
+  readonly alphaLabel = input<string>();
+  readonly swatchesLabel = input<string>();
   /** Emite ao largar o rato, escolher amostra ou terminar de escrever (para guardar). */
   readonly committed = output<string>();
 
@@ -178,17 +181,17 @@ export class MxColorPanel {
   protected readonly draft = signal<string | null>(null);
   protected readonly draftInvalid = computed(() => !!this.draft() && !mxParseColor(this.draft()!));
   protected readonly hueName = computed(() =>
-    mxColorName(mxHsvaToHex({ h: this.hsva().h, s: 1, v: 1, a: 1 })),
+    mxColorName(mxHsvaToHex({ h: this.hsva().h, s: 1, v: 1, a: 1 }), this.msg().names),
   );
   protected readonly areaText = computed(() => {
     const c = this.hsva();
-    return `Saturação ${this.pct(c.s)}%, brilho ${this.pct(c.v)}%, ${mxColorName(this.hex())}`;
+    return this.msg().areaValue(this.pct(c.s), this.pct(c.v), mxColorName(this.hex(), this.msg().names));
   });
   protected readonly swatchList = computed(() =>
     this.swatches().map((s) => {
       const color = mxParseColor(typeof s === 'string' ? s : s.color) ?? '#000000';
       const label =
-        typeof s === 'string' ? `${mxColorName(color)}, ${color}` : `${s.label}, ${color}`;
+        typeof s === 'string' ? `${mxColorName(color, this.msg().names)}, ${color}` : `${s.label}, ${color}`;
       return { color, label };
     }),
   );

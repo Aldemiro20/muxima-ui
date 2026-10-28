@@ -10,6 +10,7 @@ import {
   numberAttribute,
   signal,
 } from '@angular/core';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
 import { MX_FORM_FIELD_CONTROL, MxFormField, MxFormFieldControl, mxUniqueId } from '@muxima-ui/core/form-field';
 
@@ -56,7 +57,7 @@ const STAR = 'M12 3.2l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 17l-5.4 2.9 1.1-6.1-4.5-4
         class="mx-rating-stars"
         role="radiogroup"
         [attr.aria-labelledby]="field?.labelId() ?? null"
-        [attr.aria-label]="field?.labelId() ? null : (ariaLabel() ?? 'Avaliação')"
+        [attr.aria-label]="field?.labelId() ? null : (ariaLabel() ?? i18n().rating.label)"
         [attr.aria-describedby]="field?.describedBy() ?? null"
         [attr.aria-required]="isRequired() ? 'true' : null"
         [attr.aria-invalid]="errorState() ? 'true' : null"
@@ -76,7 +77,7 @@ const STAR = 'M12 3.2l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 17l-5.4 2.9 1.1-6.1-4.5-4
               (click)="onClick(s)"
               (blur)="onTouched()"
             />
-            <span class="mx-visually-hidden">{{ starLabel()(s) }}</span>
+            <span class="mx-visually-hidden">{{ (starLabel() ?? i18n().rating.star)(s) }}</span>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path [attr.d]="star" /></svg>
           </label>
         }
@@ -96,8 +97,11 @@ export class MxRating implements ControlValueAccessor, MxFormFieldControl {
   readonly clearable = input(false, { transform: booleanAttribute });
   /** Mostra o número ao lado ("4,5"). */
   readonly showValue = input(false, { transform: booleanAttribute });
-  readonly starLabel = input<(n: number) => string>((n) => (n === 1 ? '1 estrela' : `${n} estrelas`));
-  readonly locale = input('pt-AO');
+  /** Nome de cada estrela; por omissão "1 estrela", "2 estrelas" no idioma activo. */
+  readonly starLabel = input<(n: number) => string>();
+  /** Locale dos números; por omissão o do idioma activo. */
+  readonly locale = input<string>();
+  protected readonly i18n = injectMxMessages();
   readonly size = input<'sm' | 'md' | 'lg'>('md');
   readonly disabled = input(false, { transform: booleanAttribute });
   readonly required = input(false, { transform: booleanAttribute });
@@ -117,9 +121,9 @@ export class MxRating implements ControlValueAccessor, MxFormFieldControl {
   protected readonly stars = computed(() => Array.from({ length: this.max() }, (_, i) => i + 1));
   protected readonly shown = computed(() => this.hover() || this.value() || 0);
   protected readonly valueText = computed(() =>
-    new Intl.NumberFormat(this.locale(), { maximumFractionDigits: 1 }).format(this.value() ?? 0),
+    new Intl.NumberFormat(this.locale() ?? this.i18n().intlLocale, { maximumFractionDigits: 1 }).format(this.value() ?? 0),
   );
-  protected readonly readonlyLabel = computed(() => `${this.valueText()} de ${this.max()} estrelas`);
+  protected readonly readonlyLabel = computed(() => this.i18n().rating.summary(this.valueText(), this.max()));
 
   private onChange: (value: number | null) => void = () => {};
   protected onTouched: () => void = () => {};

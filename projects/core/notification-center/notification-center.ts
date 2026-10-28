@@ -18,6 +18,7 @@ import {
 import { NgTemplateOutlet } from '@angular/common';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { mxUniqueId } from '@muxima-ui/core/form-field';
+import { MX_MESSAGES_PT, injectMxMessages } from '@muxima-ui/core/i18n';
 
 export interface MxNotification<D = unknown> {
   id: string | number;
@@ -33,10 +34,15 @@ export interface MxNotification<D = unknown> {
 }
 
 /** "agora", "há 5 min", "ontem", "há 3 dias" e, depois de uma semana, a data. */
-export function mxRelativeTime(date: Date, now = new Date(), locale = 'pt-AO'): string {
+export function mxRelativeTime(
+  date: Date,
+  now = new Date(),
+  locale = 'pt-AO',
+  nowText = MX_MESSAGES_PT.notifications.now,
+): string {
   const diff = (date.getTime() - now.getTime()) / 1000;
   const abs = Math.abs(diff);
-  if (abs < 45) return 'agora';
+  if (abs < 45) return nowText;
   const rtf = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' });
   if (abs < 3600) return rtf.format(Math.round(diff / 60), 'minute');
   if (abs < 86400) return rtf.format(Math.round(diff / 3600), 'hour');
@@ -77,11 +83,11 @@ export class MxNotificationContent {
         [attr.aria-level]="headingLevel()"
         [id]="titleId"
       >
-        {{ title() }}
+        {{ title() ?? msg().title }}
       </p>
       @if (unread()) {
         <span class="mx-notification-count"
-          >{{ unread() }}<span class="mx-visually-hidden"> por ler</span></span
+          >{{ unread() }}<span class="mx-visually-hidden"> {{ msg().unreadCount(unread()) }}</span></span
         >
       }
       <button
@@ -90,12 +96,12 @@ export class MxNotificationContent {
         [disabled]="!unread()"
         (click)="markAllRead.emit()"
       >
-        {{ markAllText() }}
+        {{ markAllText() ?? msg().markAll }}
       </button>
     </div>
 
     @if (showFilter()) {
-      <div class="mx-notification-filters" role="group" [attr.aria-label]="filterLabel()">
+      <div class="mx-notification-filters" role="group" [attr.aria-label]="filterLabel() ?? msg().filter">
         <button
           type="button"
           class="mx-chip mx-chip-toggle"
@@ -103,7 +109,7 @@ export class MxNotificationContent {
           [attr.aria-pressed]="filter() === 'all'"
           (click)="filter.set('all')"
         >
-          Todas
+          {{ msg().all }}
         </button>
         <button
           type="button"
@@ -112,7 +118,7 @@ export class MxNotificationContent {
           [attr.aria-pressed]="filter() === 'unread'"
           (click)="filter.set('unread')"
         >
-          Por ler ({{ unread() }})
+          {{ msg().unread }} ({{ unread() }})
         </button>
         @for (c of categories(); track c) {
           <button
@@ -139,7 +145,7 @@ export class MxNotificationContent {
             <span class="mx-notification-dot" aria-hidden="true"></span>
             <button type="button" class="mx-notification-main" (click)="open(n)">
               @if (!n.read) {
-                <span class="mx-visually-hidden">Por ler: </span>
+                <span class="mx-visually-hidden">{{ msg().unreadPrefix }}</span>
               }
               @if (contentTpl(); as tpl) {
                 <ng-container *ngTemplateOutlet="tpl.template; context: { $implicit: n }" />
@@ -158,7 +164,7 @@ export class MxNotificationContent {
                 <button
                   type="button"
                   class="mx-notification-action"
-                  [attr.aria-label]="'Marcar como lida: ' + n.title"
+                  [attr.aria-label]="msg().markRead(n.title)"
                   (click)="markRead.emit(n)"
                 >
                   <svg viewBox="0 0 16 16" aria-hidden="true">
@@ -177,7 +183,7 @@ export class MxNotificationContent {
                 <button
                   type="button"
                   class="mx-notification-action"
-                  [attr.aria-label]="'Remover: ' + n.title"
+                  [attr.aria-label]="msg().remove(n.title)"
                   (click)="dismissItem(n)"
                 >
                   <svg viewBox="0 0 16 16" aria-hidden="true">
@@ -205,7 +211,7 @@ export class MxNotificationContent {
             stroke-linejoin="round"
           />
         </svg>
-        <p>{{ filter() === 'unread' ? emptyUnreadText() : emptyText() }}</p>
+        <p>{{ filter() === 'unread' ? (emptyUnreadText() ?? msg().emptyUnread) : (emptyText() ?? msg().empty) }}</p>
       </div>
     }
     <ng-content select="[mxNotificationFooter]" />
@@ -213,13 +219,13 @@ export class MxNotificationContent {
 })
 export class MxNotificationCenter<D = unknown> {
   readonly items = input.required<readonly MxNotification<D>[]>();
-  readonly title = input('Notificações');
+  readonly title = input<string>();
   /** Nível do título para o leitor de ecrã (h2 por omissão). */
   readonly headingLevel = input(2);
-  readonly markAllText = input('Marcar todas como lidas');
-  readonly emptyText = input('Sem notificações.');
-  readonly emptyUnreadText = input('Está tudo lido.');
-  readonly filterLabel = input('Mostrar');
+  readonly markAllText = input<string>();
+  readonly emptyText = input<string>();
+  readonly emptyUnreadText = input<string>();
+  readonly filterLabel = input<string>();
   /** Mostra os filtros Todas, Por ler e as categorias. */
   readonly showFilter = input(true, { transform: booleanAttribute });
   /** Mostra o botão de remover em cada notificação. */
@@ -228,7 +234,10 @@ export class MxNotificationCenter<D = unknown> {
   readonly markReadOnOpen = input(true, { transform: booleanAttribute });
   /** Anuncia ao leitor de ecrã quando chegam notificações por ler. */
   readonly announce = input(true, { transform: booleanAttribute });
-  readonly locale = input('pt-AO');
+  /** Locale das datas; por omissão o do idioma activo. */
+  readonly locale = input<string>();
+  private readonly i18n = injectMxMessages();
+  protected readonly msg = computed(() => this.i18n().notifications);
 
   readonly opened = output<MxNotification<D>>();
   readonly markRead = output<MxNotification<D>>();
@@ -270,8 +279,8 @@ export class MxNotificationCenter<D = unknown> {
         if (fresh.length)
           this.announcer.announce(
             fresh.length === 1
-              ? `Nova notificação: ${fresh[0].title}`
-              : `${fresh.length} notificações novas`,
+              ? untracked(() => this.msg().newOne(fresh[0].title))
+              : untracked(() => this.msg().newMany(fresh.length)),
           );
       }
       previous = ids;
@@ -279,7 +288,7 @@ export class MxNotificationCenter<D = unknown> {
   }
 
   protected relative(d: Date): string {
-    return mxRelativeTime(d, this.now(), this.locale());
+    return mxRelativeTime(d, this.now(), this.locale() ?? this.i18n().intlLocale, this.msg().now);
   }
 
   protected open(n: MxNotification<D>): void {
@@ -289,7 +298,7 @@ export class MxNotificationCenter<D = unknown> {
 
   protected dismissItem(n: MxNotification<D>): void {
     this.dismiss.emit(n);
-    this.announcer.announce(`${n.title} removida.`);
+    this.announcer.announce(this.msg().removed(n.title));
   }
 }
 
@@ -309,7 +318,7 @@ export class MxNotificationCenter<D = unknown> {
   host: {
     class: 'mx-notification-bell',
     type: 'button',
-    '[attr.aria-label]': 'count() ? label() + ", " + count() + " por ler" : label()',
+    '[attr.aria-label]': 'count() ? i18n().notifications.bellCount(label() ?? i18n().notifications.title, count()) : (label() ?? i18n().notifications.title)',
   },
   template: `
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -336,5 +345,6 @@ export class MxNotificationCenter<D = unknown> {
 export class MxNotificationBell {
   readonly count = input(0);
   readonly max = input(99);
-  readonly label = input('Notificações');
+  readonly label = input<string>();
+  protected readonly i18n = injectMxMessages();
 }

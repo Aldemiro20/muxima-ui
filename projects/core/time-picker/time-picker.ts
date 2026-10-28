@@ -11,6 +11,7 @@ import {
   numberAttribute,
   signal,
 } from '@angular/core';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 import { CdkConnectedOverlay, CdkOverlayOrigin, ConnectedPosition } from '@angular/cdk/overlay';
 import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
 import { MX_FORM_FIELD_CONTROL, MxFormField, MxFormFieldControl, mxUniqueId } from '@muxima-ui/core/form-field';
@@ -86,7 +87,7 @@ function minutesToTime(min: number): string {
         autocomplete="off"
         aria-autocomplete="none"
         [id]="controlId()"
-        [placeholder]="placeholder()"
+        [placeholder]="placeholder() ?? i18n().timePicker.placeholder"
         [value]="text()"
         [disabled]="isDisabled()"
         [attr.data-size]="size() === 'md' ? null : size()"
@@ -118,7 +119,7 @@ function minutesToTime(min: number): string {
       (attach)="scrollToActive()"
       (detach)="close()"
     >
-      <ul class="mx-select-panel mx-time-picker-panel" role="listbox" [id]="listId" [attr.aria-labelledby]="field?.labelId() ?? null" [attr.aria-label]="field?.labelId() ? null : (ariaLabel() ?? 'Horas')">
+      <ul class="mx-select-panel mx-time-picker-panel" role="listbox" [id]="listId" [attr.aria-labelledby]="field?.labelId() ?? null" [attr.aria-label]="field?.labelId() ? null : (ariaLabel() ?? i18n().timePicker.label)">
         @for (s of slots(); track s; let i = $index) {
           <li
             class="mx-option"
@@ -144,7 +145,8 @@ export class MxTimePicker implements ControlValueAccessor, MxFormFieldControl {
   /** Primeira e última hora permitidas, "HH:mm". */
   readonly min = input<string | null>(null);
   readonly max = input<string | null>(null);
-  readonly placeholder = input('hh:mm');
+  readonly placeholder = input<string>();
+  protected readonly i18n = injectMxMessages();
   readonly disabled = input(false, { transform: booleanAttribute });
   readonly required = input(false, { transform: booleanAttribute });
   readonly invalid = input(false, { transform: booleanAttribute });

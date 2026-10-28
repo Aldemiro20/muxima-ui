@@ -1,3 +1,5 @@
+import { MX_MESSAGES_PT, MxColorNames } from '@muxima-ui/core/i18n';
+
 /** Cor em HSV (h 0–360, s e v 0–1) com opacidade a 0–1. */
 export interface MxHsva {
   h: number;
@@ -86,35 +88,34 @@ export function mxContrast(a: string, b: string): number {
   return (l1 + 0.05) / (l2 + 0.05);
 }
 
-const HUES: [number, string][] = [
-  [15, 'vermelho'],
-  [40, 'laranja'],
-  [65, 'amarelo'],
-  [80, 'verde-lima'],
-  [160, 'verde'],
-  [195, 'azul-petróleo'],
-  [250, 'azul'],
-  [285, 'roxo'],
+type Hue = 'red' | 'orange' | 'yellow' | 'lime' | 'green' | 'teal' | 'blue' | 'purple' | 'magenta';
+
+const HUES: [number, Hue][] = [
+  [15, 'red'],
+  [40, 'orange'],
+  [65, 'yellow'],
+  [80, 'lime'],
+  [160, 'green'],
+  [195, 'teal'],
+  [250, 'blue'],
+  [285, 'purple'],
   [330, 'magenta'],
-  [360, 'vermelho'],
+  [360, 'red'],
 ];
 
-/** Nome aproximado da cor em português, para o leitor de ecrã: "azul escuro", "cinzento claro". */
-export function mxColorName(hex: string): string {
+/**
+ * Nome aproximado da cor, para o leitor de ecrã: "azul escuro", "cinzento claro".
+ * Por omissão em português; passa `names` para outro idioma (ex.: `MX_MESSAGES_EN.colorPicker.names`).
+ */
+export function mxColorName(hex: string, names: MxColorNames = MX_MESSAGES_PT.colorPicker.names): string {
   const { h, s, v } = mxHexToHsva(hex);
-  if (v < 0.12) return 'preto';
+  if (v < 0.12) return names.black;
   if (s < 0.12)
-    return v > 0.92
-      ? 'branco'
-      : v > 0.6
-        ? 'cinzento claro'
-        : v > 0.3
-          ? 'cinzento'
-          : 'cinzento escuro';
-  let name = HUES.find(([max]) => h < max)![1];
-  if (name === 'laranja' && v < 0.6) name = 'castanho';
+    return v > 0.92 ? names.white : v > 0.6 ? names.lightGray : v > 0.3 ? names.gray : names.darkGray;
+  let hue: Hue | 'brown' = HUES.find(([max]) => h < max)![1];
+  if (hue === 'orange' && v < 0.6) hue = 'brown';
   // luminosidade HSL: escuro abaixo de 38%, claro acima de 70%
   const l = v * (1 - s / 2);
-  const tone = l < 0.38 ? ' escuro' : l > 0.7 ? ' claro' : '';
-  return name + tone;
+  const name = names[hue];
+  return l < 0.38 ? names.tone(name, 'dark') : l > 0.7 ? names.tone(name, 'light') : name;
 }

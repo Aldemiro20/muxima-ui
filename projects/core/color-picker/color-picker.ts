@@ -11,6 +11,7 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 import { CdkConnectedOverlay, CdkOverlayOrigin, ConnectedPosition } from '@angular/cdk/overlay';
 import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
 import {
@@ -93,7 +94,7 @@ const POSITIONS: ConnectedPosition[] = [
         class="mx-color-picker-panel"
         role="dialog"
         aria-modal="false"
-        [attr.aria-label]="dialogLabel()"
+        [attr.aria-label]="(dialogLabel() ?? msg().choose)"
         #panel
       >
         <mx-color-panel
@@ -112,7 +113,9 @@ export class MxColorPicker implements ControlValueAccessor, MxFormFieldControl {
   readonly alpha = input(false, { transform: booleanAttribute });
   readonly swatches = input<MxColorSwatch[]>([]);
   readonly placeholder = input('#RRGGBB');
-  readonly dialogLabel = input('Escolher cor');
+  readonly dialogLabel = input<string>();
+  private readonly i18n = injectMxMessages();
+  protected readonly msg = computed(() => this.i18n().colorPicker);
   readonly disabled = input(false, { transform: booleanAttribute });
   readonly required = input(false, { transform: booleanAttribute });
   readonly invalid = input(false, { transform: booleanAttribute });
@@ -136,7 +139,8 @@ export class MxColorPicker implements ControlValueAccessor, MxFormFieldControl {
   readonly badFormat = computed(() => !!this.draft() && !mxParseColor(this.draft()!));
   protected readonly toggleLabel = computed(() => {
     const v = this.value();
-    return v ? `Mudar cor, ${mxColorName(v)}, ${v}` : 'Escolher cor';
+    const t = this.msg();
+    return v ? t.change(mxColorName(v, t.names), v) : t.choose;
   });
 
   private onChange: (value: string | null) => void = () => {};

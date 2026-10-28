@@ -19,6 +19,7 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 import { NgTemplateOutlet } from '@angular/common';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MxCheckbox } from '@muxima-ui/core/checkbox';
@@ -138,7 +139,7 @@ function numberMatch(value: unknown, expr: string): boolean {
                 stroke-linejoin="round"
               />
             </svg>
-            {{ columnsText() }}
+            {{ (columnsText() ?? msg().columns) }}
           </button>
           <ng-template #colunas>
             <div mxMenu>
@@ -168,7 +169,7 @@ function numberMatch(value: unknown, expr: string): boolean {
       <table
         class="mx-grid-table"
         role="grid"
-        [attr.aria-label]="ariaLabel()"
+        [attr.aria-label]="(ariaLabel() ?? msg().label)"
         [attr.aria-rowcount]="rowCount()"
         [attr.aria-colcount]="colCount()"
         [attr.aria-multiselectable]="selection() === 'multiple' ? 'true' : null"
@@ -201,12 +202,12 @@ function numberMatch(value: unknown, expr: string): boolean {
                     mxCheckbox
                     [checked]="allSelected()"
                     [indeterminate]="someSelected()"
-                    [attr.aria-label]="selectAllText()"
+                    [attr.aria-label]="(selectAllText() ?? msg().selectAll)"
                     (change)="toggleAll()"
                     tabindex="-1"
                   />
                 } @else {
-                  <span class="mx-visually-hidden">{{ selectText() }}</span>
+                  <span class="mx-visually-hidden">{{ (selectText() ?? msg().selection) }}</span>
                 }
               </th>
             }
@@ -296,11 +297,11 @@ function numberMatch(value: unknown, expr: string): boolean {
                       <select
                         class="mx-grid-filter"
                         tabindex="-1"
-                        [attr.aria-label]="filterText() + ' ' + c.header"
+                        [attr.aria-label]="(filterText() ?? msg().filter) + ' ' + c.header"
                         [value]="filters()[c.key] || ''"
                         (change)="setFilter(c.key, $any($event.target).value)"
                       >
-                        <option value="">{{ allText() }}</option>
+                        <option value="">{{ (allText() ?? msg().all) }}</option>
                         @for (o of optionsOf(c); track o) {
                           <option [value]="o" [selected]="filters()[c.key] === o">{{ o }}</option>
                         }
@@ -311,7 +312,7 @@ function numberMatch(value: unknown, expr: string): boolean {
                         class="mx-grid-filter"
                         tabindex="-1"
                         type="search"
-                        [attr.aria-label]="filterText() + ' ' + c.header"
+                        [attr.aria-label]="(filterText() ?? msg().filter) + ' ' + c.header"
                         [value]="filters()[c.key] || ''"
                         (input)="setFilter(c.key, $any($event.target).value)"
                       />
@@ -324,10 +325,7 @@ function numberMatch(value: unknown, expr: string): boolean {
                         inputmode="decimal"
                         placeholder=">, <, 10-20"
                         [attr.aria-label]="
-                          filterText() +
-                          ' ' +
-                          c.header +
-                          ', aceita maior que, menor que e intervalos'
+                          msg().numberFilter(filterText() ?? msg().filter, c.header)
                         "
                         [value]="filters()[c.key] || ''"
                         (input)="setFilter(c.key, $any($event.target).value)"
@@ -366,7 +364,7 @@ function numberMatch(value: unknown, expr: string): boolean {
                       mxCheckbox
                       tabindex="-1"
                       [checked]="isSelected(row)"
-                      [attr.aria-label]="selectRowText() + ' ' + rowLabel(row)"
+                      [attr.aria-label]="(selectRowText() ?? msg().selectRow) + ' ' + rowLabel(row)"
                       (change)="toggleRow(row)"
                     />
                   } @else {
@@ -376,7 +374,7 @@ function numberMatch(value: unknown, expr: string): boolean {
                       tabindex="-1"
                       [name]="radioName"
                       [checked]="isSelected(row)"
-                      [attr.aria-label]="selectRowText() + ' ' + rowLabel(row)"
+                      [attr.aria-label]="(selectRowText() ?? msg().selectRow) + ' ' + rowLabel(row)"
                       (change)="toggleRow(row)"
                     />
                   }
@@ -412,7 +410,7 @@ function numberMatch(value: unknown, expr: string): boolean {
                 [attr.colspan]="colCount()"
                 [attr.data-cell]="headerRows() + ':0'"
               >
-                {{ loading() ? loadingText() : emptyText() }}
+                {{ loading() ? (loadingText() ?? msg().loading) : (emptyText() ?? msg().empty) }}
               </td>
             </tr>
           }
@@ -432,7 +430,7 @@ function numberMatch(value: unknown, expr: string): boolean {
       <span class="mx-grid-status" aria-live="polite">{{ statusText() }}</span>
       <ng-content select="[mxGridFooter]" />
     </div>
-    <span class="mx-visually-hidden" [id]="resizeHintId">{{ resizeHint() }}</span>
+    <span class="mx-visually-hidden" [id]="resizeHintId">{{ (resizeHint() ?? msg().resizeHint) }}</span>
   `,
 })
 export class MxDataGrid<T = any> {
@@ -460,19 +458,21 @@ export class MxDataGrid<T = any> {
   readonly density = input<'comfortable' | 'compact'>('comfortable');
   readonly loading = input(false, { transform: booleanAttribute });
   readonly columnMenu = input(true, { transform: booleanAttribute });
-  readonly ariaLabel = input('Tabela de dados', { alias: 'aria-label' });
+  readonly ariaLabel = input<string | undefined>(undefined, { alias: 'aria-label' });
+  private readonly i18n = injectMxMessages();
+  protected readonly msg = computed(() => this.i18n().dataGrid);
   /** Coluna cujo texto identifica a linha nos nomes ("Seleccionar FT 2026/0201"). */
   readonly labelKey = input<string | null>(null);
 
-  readonly emptyText = input('Sem resultados.');
-  readonly loadingText = input('A carregar...');
-  readonly columnsText = input('Colunas');
-  readonly filterText = input('Filtrar');
-  readonly allText = input('Todos');
-  readonly selectAllText = input('Seleccionar todas as linhas');
-  readonly selectRowText = input('Seleccionar');
-  readonly selectText = input('Selecção');
-  readonly resizeHint = input('Alt e setas esquerda e direita mudam a largura da coluna.');
+  readonly emptyText = input<string>();
+  readonly loadingText = input<string>();
+  readonly columnsText = input<string>();
+  readonly filterText = input<string>();
+  readonly allText = input<string>();
+  readonly selectAllText = input<string>();
+  readonly selectRowText = input<string>();
+  readonly selectText = input<string>();
+  readonly resizeHint = input<string>();
 
   /** Enter ou duplo clique numa linha. */
   readonly rowActivate = output<T>();
@@ -544,7 +544,7 @@ export class MxDataGrid<T = any> {
     const s = this.sort();
     const sc = s.key ? cols.find((c) => c.key === s.key) : null;
     if (sc) {
-      const collator = new Intl.Collator('pt', { numeric: true, sensitivity: 'base' });
+      const collator = new Intl.Collator(this.i18n().intlLocale, { numeric: true, sensitivity: 'base' });
       const dir = s.direction === 'asc' ? 1 : -1;
       out = [...out].sort((a, b) => {
         const x = this.valueOf(sc, a);
@@ -590,14 +590,15 @@ export class MxDataGrid<T = any> {
   );
 
   protected readonly statusText = computed(() => {
-    const fmt = new Intl.NumberFormat('pt-AO');
+    const t = this.msg();
+    const fmt = new Intl.NumberFormat(this.i18n().intlLocale);
     const total = this.totalRows() ?? this.rows().length;
-    const parts = [`${fmt.format(total)} ${total === 1 ? 'linha' : 'linhas'}`];
+    const parts = [t.rows(fmt.format(total), total)];
     if (!this.manual() && this.rows().length !== this.data().length)
-      parts[0] += ` de ${fmt.format(this.data().length)}`;
+      parts[0] += t.of(fmt.format(this.data().length));
     const sel = this.selected().length;
     if (this.selection() !== 'none' && sel)
-      parts.push(`${fmt.format(sel)} ${sel === 1 ? 'seleccionada' : 'seleccionadas'}`);
+      parts.push(t.selected(fmt.format(sel), sel));
     return parts.join(', ');
   });
 
@@ -639,8 +640,8 @@ export class MxDataGrid<T = any> {
   protected text(c: MxGridColumn<T>, row: T): string {
     const v = this.valueOf(c, row);
     if (c.format) return c.format(v, row);
-    if (v instanceof Date) return v.toLocaleDateString('pt-AO');
-    if (typeof v === 'number') return v.toLocaleString('pt-AO');
+    if (v instanceof Date) return v.toLocaleDateString(this.i18n().intlLocale);
+    if (typeof v === 'number') return v.toLocaleString(this.i18n().intlLocale);
     return v == null ? '' : String(v);
   }
   protected rowLabel(row: T): string {
@@ -675,7 +676,7 @@ export class MxDataGrid<T = any> {
     if (c.filterOptions) return c.filterOptions;
     return [...new Set(this.data().map((r) => String(this.valueOf(c, r) ?? '')))]
       .filter(Boolean)
-      .sort((a, b) => a.localeCompare(b, 'pt'));
+      .sort((a, b) => a.localeCompare(b, this.i18n().intlLocale));
   }
   protected isHidden(c: MxGridColumn<T>): boolean {
     const hidden = this.hiddenKeys();
@@ -703,8 +704,8 @@ export class MxDataGrid<T = any> {
     this.sort.set(next);
     this.announcer.announce(
       next.key
-        ? `Ordenado por ${c.header}, ${next.direction === 'asc' ? 'ascendente' : 'descendente'}`
-        : 'Sem ordenação',
+        ? this.msg().sorted(c.header, next.direction)
+        : this.msg().unsorted,
     );
   }
   setFilter(key: string, value: string): void {
@@ -855,7 +856,7 @@ export class MxDataGrid<T = any> {
     ) {
       event.preventDefault();
       this.setWidth(col.key, this.widthOf(col) + (event.key === 'ArrowRight' ? 16 : -16));
-      this.announcer.announce(`${col.header}, ${this.widthOf(col)} píxeis`);
+      this.announcer.announce(this.msg().width(col.header, this.widthOf(col)));
       return;
     }
     if (inSelect) return;

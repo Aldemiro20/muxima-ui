@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, Directive, ViewEncapsulation, inject, input, output, signal } from '@angular/core';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Clipboard } from '@angular/cdk/clipboard';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 
 /**
  * Copia texto para a área de transferência quando o elemento é clicado.
@@ -21,7 +22,8 @@ import { Clipboard } from '@angular/cdk/clipboard';
 export class MxCopy {
   readonly text = input.required<string>({ alias: 'mxCopy' });
   /** Mensagem anunciada ao copiar. */
-  readonly copiedMessage = input('Copiado', { alias: 'mxCopyMessage' });
+  readonly copiedMessage = input<string | undefined>(undefined, { alias: 'mxCopyMessage' });
+  private readonly i18n = injectMxMessages();
   readonly copiedChange = output<boolean>({ alias: 'mxCopied' });
 
   private readonly clipboard = inject(Clipboard);
@@ -37,7 +39,8 @@ export class MxCopy {
   copy(): boolean {
     const ok = this.clipboard.copy(this.text());
     this.copiedChange.emit(ok);
-    this.announcer.announce(ok ? this.copiedMessage() : 'Não foi possível copiar', ok ? 'polite' : 'assertive');
+    const t = this.i18n().clipboard;
+    this.announcer.announce(ok ? (this.copiedMessage() ?? t.copied) : t.failed, ok ? 'polite' : 'assertive');
     if (ok) {
       this.copied.set(true);
       clearTimeout(this.timer);
@@ -63,7 +66,7 @@ export class MxCopy {
   host: {
     class: 'mx-copy-button',
     type: 'button',
-    '[attr.aria-label]': 'copy.copied() ? copiedLabel() : label()',
+    '[attr.aria-label]': 'copy.copied() ? (copiedLabel() ?? i18n().clipboard.copied) : (label() ?? i18n().clipboard.copy)',
     '[attr.data-size]': 'size() === "md" ? null : size()',
   },
   template: `
@@ -80,7 +83,8 @@ export class MxCopy {
 })
 export class MxCopyButton {
   protected readonly copy = inject(MxCopy, { self: true });
-  readonly label = input('Copiar');
-  readonly copiedLabel = input('Copiado');
+  protected readonly i18n = injectMxMessages();
+  readonly label = input<string>();
+  readonly copiedLabel = input<string>();
   readonly size = input<'sm' | 'md'>('md');
 }

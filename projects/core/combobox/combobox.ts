@@ -11,6 +11,7 @@ import {
   output,
   signal,
 } from '@angular/core';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 import { CdkConnectedOverlay, CdkOverlayOrigin, ConnectedPosition } from '@angular/cdk/overlay';
 import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
 import { MX_FORM_FIELD_CONTROL, MxFormField, MxFormFieldControl, mxNormalize, mxUniqueId } from '@muxima-ui/core/form-field';
@@ -61,7 +62,7 @@ const POSITIONS: ConnectedPosition[] = [
         [attr.aria-describedby]="field?.describedBy() ?? null"
         [attr.aria-label]="ariaLabel() ?? null"
         [attr.aria-busy]="loading() ? 'true' : null"
-        [placeholder]="placeholder()"
+        [placeholder]="placeholderText()"
         [disabled]="isDisabled()"
         [value]="text()"
         (input)="onInput($event)"
@@ -87,9 +88,9 @@ const POSITIONS: ConnectedPosition[] = [
       (overlayOutsideClick)="onOutside($event)"
       (detach)="close()"
     >
-      <ul class="mx-select-panel" role="listbox" [attr.aria-busy]="loading() ? 'true' : null" [id]="listId" [attr.aria-labelledby]="field?.labelId() ?? null" [attr.aria-label]="field?.labelId() ? null : (ariaLabel() ?? placeholder())">
+      <ul class="mx-select-panel" role="listbox" [attr.aria-busy]="loading() ? 'true' : null" [id]="listId" [attr.aria-labelledby]="field?.labelId() ?? null" [attr.aria-label]="field?.labelId() ? null : (ariaLabel() ?? placeholderText())">
         @if (loading()) {
-          <li class="mx-select-empty mx-select-loading" role="option" aria-disabled="true" aria-selected="false"><span class="mx-spinner mx-select-spinner" aria-hidden="true"></span>{{ loadingText() }}</li>
+          <li class="mx-select-empty mx-select-loading" role="option" aria-disabled="true" aria-selected="false"><span class="mx-spinner mx-select-spinner" aria-hidden="true"></span>{{ loadingText() ?? i18n().combobox.loading }}</li>
         }
         @for (o of filtered(); track $index; let i = $index) {
           <li
@@ -106,7 +107,7 @@ const POSITIONS: ConnectedPosition[] = [
           </li>
         } @empty {
           @if (!loading()) {
-            <li class="mx-select-empty" role="option" aria-disabled="true" aria-selected="false">{{ emptyText() }}</li>
+            <li class="mx-select-empty" role="option" aria-disabled="true" aria-selected="false">{{ emptyText() ?? i18n().combobox.empty }}</li>
           }
         }
       </ul>
@@ -120,11 +121,13 @@ export class MxCombobox<T = unknown> implements ControlValueAccessor, MxFormFiel
   /** Texto de cada opção. Por omissão, String(opção). */
   readonly displayWith = input<(option: T) => string>((o) => String(o ?? ''));
   readonly compareWith = input<(a: T | null, b: T | null) => boolean>((a, b) => Object.is(a, b));
-  readonly placeholder = input('Pesquisar');
-  readonly emptyText = input('Sem resultados');
+  readonly placeholder = input<string>();
+  protected readonly i18n = injectMxMessages();
+  protected readonly placeholderText = computed(() => this.placeholder() ?? this.i18n().combobox.placeholder);
+  readonly emptyText = input<string>();
   /** Resultados a chegar (pesquisa no servidor): mostra um indicador no campo e na lista. */
   readonly loading = input(false, { transform: booleanAttribute });
-  readonly loadingText = input('A pesquisar...');
+  readonly loadingText = input<string>();
   readonly disabled = input(false, { transform: booleanAttribute });
   readonly required = input(false, { transform: booleanAttribute });
   readonly invalid = input(false, { transform: booleanAttribute });

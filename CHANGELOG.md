@@ -2,7 +2,24 @@
 
 Todas as alterações relevantes do pacote `@muxima-ui/core`. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-PT/1.1.0/) e as versões seguem o [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
-## [1.4.1] - por publicar
+## [1.5.0] - por publicar
+
+Idiomas: português e inglês.
+
+### Novos
+
+- **Idiomas** (`@muxima-ui/core/i18n`): todos os textos dos componentes (botões, avisos ao leitor de ecrã, nomes das cores, atalhos de datas) vêm do idioma activo. A biblioteca traz português (`MX_MESSAGES_PT`) e inglês (`MX_MESSAGES_EN`).
+  - `provideMuximaI18n({ locale: 'en' })` escolhe o idioma ao arrancar; `messages` corrige textos ou acrescenta idiomas (um idioma novo parte do inglês).
+  - O serviço `MxI18n` guarda o idioma num signal: `setLocale('en')` muda logo todos os componentes no ecrã.
+  - Cada idioma define também o locale de `Intl` (`pt-AO`, `en-US`), a ordem das datas escritas (`dd/mm/aaaa` ou `mm/dd/yyyy`) e o primeiro dia da semana.
+  - `injectMxMessages()` dá os textos aos teus próprios componentes.
+- `mxParseDate` e `mxFormatDate` aceitam a ordem (`'dmy'`, `'mdy'`, `'ymd'`); `mxColorName` aceita os nomes das cores noutro idioma; `mxSortData` aceita o locale; `mxDefaultRangePresets` aceita os nomes dos atalhos.
+
+### Alterado
+
+- Os inputs de texto dos componentes (por exemplo `removeLabel`, `placeholder`, `emptyText`) passam a ter `undefined` por omissão e, sem valor, usam o idioma activo. Quem passa um texto continua a vê-lo; quem não passa vê o mesmo texto em português de antes. Os inputs `locale` funcionam da mesma forma.
+- `MX_TOUR_LABELS` fica obsoleto; os textos da visita guiada vêm do idioma activo.
+- Na 2.0, o inglês passa a ser o idioma por omissão. Para manter o português, indica já `provideMuximaI18n({ locale: 'pt' })`.
 
 ### Corrigido
 

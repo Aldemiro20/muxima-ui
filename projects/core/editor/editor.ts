@@ -17,6 +17,7 @@ import {
   untracked,
   viewChild,
 } from '@angular/core';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Editor } from '@tiptap/core';
@@ -232,7 +233,7 @@ const TOOLS: Record<Exclude<MxEditorTool, '|'>, ToolDef> = {
         class="mx-editor-toolbar"
         role="toolbar"
         #toolbar
-        [attr.aria-label]="toolbarLabel()"
+        [attr.aria-label]="toolbarLabel() ?? msg().toolbar"
         [attr.aria-controls]="controlId()"
         (keydown)="onToolbarKey($event)"
       >
@@ -245,7 +246,7 @@ const TOOLS: Record<Exclude<MxEditorTool, '|'>, ToolDef> = {
               class="mx-editor-tool"
               [tabIndex]="$index === focusIndex() ? 0 : -1"
               [attr.data-tool]="t"
-              [attr.aria-label]="tools[t].label"
+              [attr.aria-label]="toolLabel(t)"
               [attr.aria-keyshortcuts]="tools[t].shortcut ?? null"
               [attr.aria-pressed]="tools[t].toggle ? isActive(t) : null"
               [disabled]="isDisabled() || !isEnabled(t)"
@@ -258,27 +259,27 @@ const TOOLS: Record<Exclude<MxEditorTool, '|'>, ToolDef> = {
         }
       </div>
       @if (linkOpen()) {
-        <div class="mx-editor-linkbar" role="group" [attr.aria-label]="linkLabel()">
+        <div class="mx-editor-linkbar" role="group" [attr.aria-label]="linkLabel() ?? msg().link">
           <input
             #linkInput
             class="mx-input"
             data-size="sm"
             type="url"
             placeholder="https://"
-            [attr.aria-label]="linkLabel()"
+            [attr.aria-label]="linkLabel() ?? msg().link"
             [value]="linkUrl()"
             (input)="linkUrl.set($any($event.target).value)"
             (keydown.enter)="$event.preventDefault(); applyLink()"
             (keydown.escape)="$event.preventDefault(); closeLink()"
           />
-          <button type="button" class="mx-editor-text-button" (click)="applyLink()">Aplicar</button>
+          <button type="button" class="mx-editor-text-button" (click)="applyLink()">{{ msg().apply }}</button>
           @if (linkActive()) {
             <button type="button" class="mx-editor-text-button" (click)="removeLink()">
-              Remover
+              {{ msg().remove }}
             </button>
           }
           <button type="button" class="mx-editor-text-button" (click)="closeLink()">
-            Cancelar
+            {{ msg().cancel }}
           </button>
         </div>
       }
@@ -296,7 +297,7 @@ const TOOLS: Record<Exclude<MxEditorTool, '|'>, ToolDef> = {
           [attr.data-over]="count() > maxLength()! ? '' : null"
           [attr.aria-live]="count() >= maxLength()! * 0.9 ? 'polite' : null"
         >
-          {{ count() }} / {{ maxLength() }}<span class="mx-visually-hidden"> caracteres</span>
+          {{ count() }} / {{ maxLength() }}<span class="mx-visually-hidden"> {{ msg().characters }}</span>
         </span>
       </div>
     }
@@ -319,8 +320,13 @@ export class MxEditor implements ControlValueAccessor, MxFormFieldControl {
   readonly invalid = input(false, { transform: booleanAttribute });
   readonly id = input<string | undefined>(undefined);
   readonly ariaLabel = input<string | undefined>(undefined, { alias: 'aria-label' });
-  readonly toolbarLabel = input('Formatação');
-  readonly linkLabel = input('Endereço da ligação');
+  readonly toolbarLabel = input<string>();
+  readonly linkLabel = input<string>();
+  private readonly i18n = injectMxMessages();
+  protected readonly msg = computed(() => this.i18n().editor);
+  protected toolLabel(t: MxEditorTool): string {
+    return t === '|' ? '' : this.msg().tools[t];
+  }
 
   protected readonly field = inject(MxFormField, { optional: true });
   private readonly ngControl = inject(NgControl, { self: true, optional: true });

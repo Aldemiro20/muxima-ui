@@ -1,4 +1,5 @@
 import { Directive, input } from '@angular/core';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 
 /**
  * Migalhas: mostram onde a página está na hierarquia.
@@ -17,8 +18,9 @@ import { Directive, input } from '@angular/core';
  */
 @Directive({
   selector: 'nav[mxBreadcrumb]',
-  host: { class: 'mx-breadcrumb', '[attr.aria-label]': 'ariaLabel()' },
+  host: { class: 'mx-breadcrumb', '[attr.aria-label]': 'ariaLabel() ?? i18n().breadcrumb.label' },
 })
 export class MxBreadcrumb {
-  readonly ariaLabel = input('Localização', { alias: 'aria-label' });
+  readonly ariaLabel = input<string | undefined>(undefined, { alias: 'aria-label' });
+  protected readonly i18n = injectMxMessages();
 }

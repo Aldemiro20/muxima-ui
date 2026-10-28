@@ -18,6 +18,7 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 
 /** Um diapositivo. O carrossel dá-lhe o nome "2 de 5" e tira do teclado os que não se vêem. */
 @Component({
@@ -27,7 +28,7 @@ import {
   host: {
     class: 'mx-carousel-slide',
     role: 'group',
-    'aria-roledescription': 'diapositivo',
+    '[attr.aria-roledescription]': 'carousel.i18n().carousel.slide',
     '[attr.aria-label]': 'label() || carousel.slideLabel(index())',
     '[attr.inert]': 'carousel.isVisible(index()) ? null : ""',
     '[attr.aria-hidden]': 'carousel.isVisible(index()) ? null : "true"',
@@ -63,7 +64,7 @@ export class MxCarouselSlide {
   host: {
     class: 'mx-carousel',
     role: 'region',
-    'aria-roledescription': 'carrossel',
+    '[attr.aria-roledescription]': 'i18n().carousel.carousel',
     '[attr.data-indicators]': 'indicators() ? "" : null',
     '[style.--mx-carousel-per-view]': 'perView()',
     '[style.--mx-carousel-gap.px]': 'gap()',
@@ -78,7 +79,7 @@ export class MxCarouselSlide {
         type="button"
         class="mx-carousel-play"
         [attr.aria-label]="
-          playing() ? 'Parar a rotação automática' : 'Iniciar a rotação automática'
+          playing() ? i18n().carousel.pause : i18n().carousel.play
         "
         (click)="togglePlay()"
       >
@@ -111,7 +112,7 @@ export class MxCarouselSlide {
             type="button"
             class="mx-carousel-button mx-carousel-prev"
             [disabled]="!loop() && index() === 0"
-            [attr.aria-label]="prevLabel()"
+            [attr.aria-label]="prevLabel() ?? i18n().carousel.previous"
             (click)="prev()"
           >
             <svg viewBox="0 0 16 16" aria-hidden="true">
@@ -127,12 +128,12 @@ export class MxCarouselSlide {
           </button>
         }
         @if (indicators()) {
-          <div class="mx-carousel-dots" role="group" aria-label="Escolher diapositivo">
+          <div class="mx-carousel-dots" role="group" [attr.aria-label]="i18n().carousel.choose">
             @for (p of pages(); track p) {
               <button
                 type="button"
                 class="mx-carousel-dot"
-                [attr.aria-label]="'Diapositivo ' + (p + 1)"
+                [attr.aria-label]="i18n().carousel.goTo(p + 1)"
                 [attr.aria-current]="p === index() ? 'true' : null"
                 (click)="go(p)"
               ></button>
@@ -144,7 +145,7 @@ export class MxCarouselSlide {
             type="button"
             class="mx-carousel-button mx-carousel-next"
             [disabled]="!loop() && index() >= lastIndex()"
-            [attr.aria-label]="nextLabel()"
+            [attr.aria-label]="nextLabel() ?? i18n().carousel.next"
             (click)="next()"
           >
             <svg viewBox="0 0 16 16" aria-hidden="true">
@@ -177,8 +178,9 @@ export class MxCarousel {
   readonly indicators = input(true, { transform: booleanAttribute });
   /** Botões anterior e seguinte. Sem eles, dá à pessoa outra forma de mudar ([(index)]). */
   readonly controls = input(true, { transform: booleanAttribute });
-  readonly prevLabel = input('Diapositivo anterior');
-  readonly nextLabel = input('Diapositivo seguinte');
+  readonly prevLabel = input<string>();
+  readonly nextLabel = input<string>();
+  readonly i18n = injectMxMessages();
 
   readonly slides = contentChildren(MxCarouselSlide);
   private readonly viewport = viewChild.required<ElementRef<HTMLElement>>('viewport');
@@ -229,7 +231,7 @@ export class MxCarousel {
   }
 
   slideLabel(i: number): string {
-    return `${i + 1} de ${this.slides().length}`;
+    return this.i18n().carousel.position(i + 1, this.slides().length);
   }
   isVisible(i: number): boolean {
     const start = this.index();

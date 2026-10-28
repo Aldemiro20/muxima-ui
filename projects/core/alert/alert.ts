@@ -1,4 +1,5 @@
 import { Directive, booleanAttribute, input } from '@angular/core';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 
 export type MxAlertVariant = 'info' | 'success' | 'warning' | 'danger';
 
@@ -35,10 +36,11 @@ export class MxAlertTitle {}
 /** Botão de fechar do alerta. Esconder o alerta fica a cargo da aplicação (ex.: com @if). */
 @Directive({
   selector: 'button[mxAlertClose]',
-  host: { class: 'mx-alert-close', type: 'button', '[attr.aria-label]': 'label()' },
+  host: { class: 'mx-alert-close', type: 'button', '[attr.aria-label]': 'label() ?? i18n().alert.close' },
 })
 export class MxAlertClose {
-  readonly label = input('Fechar aviso', { alias: 'aria-label' });
+  readonly label = input<string | undefined>(undefined, { alias: 'aria-label' });
+  protected readonly i18n = injectMxMessages();
 }
 
 export const MX_ALERT = [MxAlert, MxAlertTitle, MxAlertClose] as const;

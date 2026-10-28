@@ -64,6 +64,10 @@ Todas as cores vêm de variáveis `--mx-*`. Para adaptar à tua marca:
 
 Modo escuro: segue o sistema por omissão; força com `<html data-theme="dark">` ou `data-theme="light"`.
 
+## Idiomas
+
+Português (por omissão na 1.x) e inglês. Escolhe com `provideMuximaI18n({ locale: 'en' })` e muda com `inject(MxI18n).setLocale('pt')`. Ver a página Idiomas da documentação.
+
 ## Compatibilidade
 
 Angular 21 e 22 (`peerDependencies: >=21.0.0 <23.0.0`). Versões anteriores não são suportadas.

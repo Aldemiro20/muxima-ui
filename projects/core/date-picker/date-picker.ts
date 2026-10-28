@@ -11,6 +11,7 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 import { CdkConnectedOverlay, CdkOverlayOrigin, ConnectedPosition } from '@angular/cdk/overlay';
 import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
 import { MX_FORM_FIELD_CONTROL, MxFormField, MxFormFieldControl, mxUniqueId } from '@muxima-ui/core/form-field';
@@ -22,18 +23,29 @@ const POSITIONS: ConnectedPosition[] = [
 ];
 
 /** Converte "dd/mm/aaaa" numa data. Aceita também "-" e "." como separadores. */
-export function mxParseDate(text: string): Date | null {
-  const m = text.trim().match(/^(\d{1,2})[/.-](\d{1,2})[/.-](\d{4})$/);
+/** Ordem do dia (d), mês (m) e ano (y) numa data escrita. */
+export type MxDateOrder = 'dmy' | 'mdy' | 'ymd';
+
+export function mxParseDate(text: string, order: MxDateOrder = 'dmy'): Date | null {
+  const t = text.trim();
+  const m =
+    order === 'ymd'
+      ? t.match(/^(\d{4})[/.-](\d{1,2})[/.-](\d{1,2})$/)
+      : t.match(/^(\d{1,2})[/.-](\d{1,2})[/.-](\d{4})$/);
   if (!m) return null;
-  const [d, mo, y] = [Number(m[1]), Number(m[2]) - 1, Number(m[3])];
+  const n = [Number(m[1]), Number(m[2]), Number(m[3])];
+  const [d, mo, y] =
+    order === 'ymd' ? [n[2], n[1] - 1, n[0]] : order === 'mdy' ? [n[1], n[0] - 1, n[2]] : [n[0], n[1] - 1, n[2]];
   const date = new Date(y, mo, d);
   return date.getFullYear() === y && date.getMonth() === mo && date.getDate() === d ? date : null;
 }
 
-export function mxFormatDate(d: Date | null): string {
+export function mxFormatDate(d: Date | null, order: MxDateOrder = 'dmy'): string {
   if (!d) return '';
   const pad = (n: number) => String(n).padStart(2, '0');
-  return `${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${d.getFullYear()}`;
+  const [day, month, year] = [pad(d.getDate()), pad(d.getMonth() + 1), d.getFullYear()];
+  if (order === 'ymd') return `${year}-${month}-${day}`;
+  return order === 'mdy' ? `${month}/${day}/${year}` : `${day}/${month}/${year}`;
 }
 
 /**
@@ -66,7 +78,7 @@ export function mxFormatDate(d: Date | null): string {
         inputmode="numeric"
         autocomplete="off"
         [id]="controlId()"
-        [placeholder]="placeholder()"
+        [placeholder]="placeholder() ?? msg().placeholder"
         [value]="text()"
         [disabled]="isDisabled()"
         [attr.data-size]="size() === 'md' ? null : size()"
@@ -84,7 +96,7 @@ export function mxFormatDate(d: Date | null): string {
         class="mx-date-picker-toggle"
         aria-haspopup="dialog"
         [attr.aria-expanded]="isOpen()"
-        [attr.aria-label]="value() ? 'Mudar data, ' + longLabel() : 'Escolher data'"
+        [attr.aria-label]="value() ? msg().change(longLabel()) : msg().choose"
         [disabled]="isDisabled()"
         (click)="toggle()"
       >
@@ -105,14 +117,14 @@ export function mxFormatDate(d: Date | null): string {
       (attach)="onAttach()"
       (detach)="close(false)"
     >
-      <div class="mx-date-picker-panel" role="dialog" aria-modal="false" [attr.aria-label]="'Escolher data'">
+      <div class="mx-date-picker-panel" role="dialog" aria-modal="false" [attr.aria-label]="msg().choose">
         <mx-calendar
           #calendar
           [value]="value()"
           [min]="min()"
           [max]="max()"
           [dateDisabled]="dateDisabled()"
-          [locale]="locale()"
+          [locale]="loc()"
           (selected)="choose($event)"
         />
       </div>
@@ -124,8 +136,13 @@ export class MxDatePicker implements ControlValueAccessor, MxFormFieldControl {
   readonly min = input<Date | null>(null);
   readonly max = input<Date | null>(null);
   readonly dateDisabled = input<(d: Date) => boolean>(() => false);
-  readonly locale = input('pt-AO');
-  readonly placeholder = input('dd/mm/aaaa');
+  /** Locale dos nomes dos meses e dos dias; por omissão o do idioma activo. */
+  readonly locale = input<string>();
+  /** Por omissão "dd/mm/aaaa" em português e "mm/dd/yyyy" em inglês. */
+  readonly placeholder = input<string>();
+  private readonly i18n = injectMxMessages();
+  protected readonly msg = computed(() => this.i18n().datePicker);
+  protected readonly loc = computed(() => this.locale() ?? this.i18n().intlLocale);
   readonly disabled = input(false, { transform: booleanAttribute });
   readonly required = input(false, { transform: booleanAttribute });
   readonly invalid = input(false, { transform: booleanAttribute });
@@ -147,12 +164,12 @@ export class MxDatePicker implements ControlValueAccessor, MxFormFieldControl {
   private readonly draft = signal<string | null>(null);
   private readonly formDisabled = signal(false);
   protected readonly isDisabled = computed(() => this.disabled() || this.formDisabled());
-  protected readonly text = computed(() => this.draft() ?? mxFormatDate(this.value()));
+  protected readonly text = computed(() => this.draft() ?? mxFormatDate(this.value(), this.i18n().dateOrder));
   protected readonly longLabel = computed(() =>
-    this.value() ? new Intl.DateTimeFormat(this.locale(), { dateStyle: 'full' }).format(this.value()!) : '',
+    this.value() ? new Intl.DateTimeFormat(this.loc(), { dateStyle: 'full' }).format(this.value()!) : '',
   );
   /** true quando há texto que não é uma data válida. */
-  readonly badFormat = computed(() => !!this.draft() && !mxParseDate(this.draft()!));
+  readonly badFormat = computed(() => !!this.draft() && !mxParseDate(this.draft()!, this.i18n().dateOrder));
 
   private onChange: (value: Date | null) => void = () => {};
   private onTouched: () => void = () => {};
@@ -197,7 +214,7 @@ export class MxDatePicker implements ControlValueAccessor, MxFormFieldControl {
 
   protected onInput(event: Event): void {
     const text = (event.target as HTMLInputElement).value;
-    const parsed = mxParseDate(text);
+    const parsed = mxParseDate(text, this.i18n().dateOrder);
     if (parsed) {
       this.draft.set(null);
       this.setValue(parsed);

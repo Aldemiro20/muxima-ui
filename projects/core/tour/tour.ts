@@ -20,6 +20,7 @@ import {
   untracked,
   viewChild,
 } from '@angular/core';
+import { MX_MESSAGES_PT, MxI18n } from '@muxima-ui/core/i18n';
 import { NgTemplateOutlet } from '@angular/common';
 import { CdkTrapFocus } from '@angular/cdk/a11y';
 import {
@@ -71,14 +72,11 @@ export interface MxTourLabels {
   progress: (current: number, total: number) => string;
 }
 
-export const MX_TOUR_LABELS: MxTourLabels = {
-  next: 'Seguinte',
-  previous: 'Anterior',
-  done: 'Concluir',
-  skip: 'Saltar',
-  close: 'Fechar a visita guiada',
-  progress: (current, total) => `Passo ${current} de ${total}`,
-};
+/**
+ * Textos em português.
+ * @deprecated Os textos por omissão vêm agora do idioma activo (`MxI18n`); usa `MX_MESSAGES_PT.tour`.
+ */
+export const MX_TOUR_LABELS: MxTourLabels = MX_MESSAGES_PT.tour;
 
 export interface MxTourOptions {
   /** Passo inicial (base 0). */
@@ -114,8 +112,9 @@ export class MxTourRef {
     readonly steps: readonly MxTourStep[],
     options: MxTourOptions,
     private readonly onClose: (r: MxTourResult) => void,
+    defaults: MxTourLabels = MX_TOUR_LABELS,
   ) {
-    this.labels = { ...MX_TOUR_LABELS, ...options.labels };
+    this.labels = { ...defaults, ...options.labels };
     this.dismissible = options.dismissible ?? true;
     this.showDots = options.showDots ?? true;
     this.index.set(Math.min(Math.max(options.startAt ?? 0, 0), Math.max(steps.length - 1, 0)));
@@ -450,6 +449,7 @@ export class MxTourPanel {
 @Injectable({ providedIn: 'root' })
 export class MxTour {
   private readonly injector = inject(Injector);
+  private readonly i18n = inject(MxI18n);
   private readonly anchors = new Map<string, Element>();
   private overlayRef?: OverlayRef;
   /** A visita em curso, ou null. */
@@ -460,12 +460,17 @@ export class MxTour {
   start(steps: readonly MxTourStep[], options: MxTourOptions = {}): MxTourRef {
     this.active()?.close(false);
     const before = document.activeElement as HTMLElement | null;
-    const ref = new MxTourRef(steps, options, () => {
-      this.overlayRef?.dispose();
-      this.overlayRef = undefined;
-      this.active.set(null);
-      if (before && before.isConnected) before.focus({ preventScroll: true });
-    });
+    const ref = new MxTourRef(
+      steps,
+      options,
+      () => {
+        this.overlayRef?.dispose();
+        this.overlayRef = undefined;
+        this.active.set(null);
+        if (before && before.isConnected) before.focus({ preventScroll: true });
+      },
+      this.i18n.messages().tour,
+    );
     if (!steps.length) {
       ref.close(true);
       return ref;

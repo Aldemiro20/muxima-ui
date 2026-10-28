@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation, booleanAttribute, computed, input, model } from '@angular/core';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 import { mxUniqueId } from '@muxima-ui/core/form-field';
 
 type Slot = { type: 'page'; page: number } | { type: 'gap'; key: string };
@@ -36,7 +37,7 @@ export type MxPaginationVariant = 'default' | 'simple' | 'compact';
       <div class="mx-pagination-info">
         @if (pageSizeOptions().length) {
           <label class="mx-pagination-size" [for]="sizeId">
-            <span>Linhas por página</span>
+            <span>{{ msg().rowsPerPage }}</span>
             <span class="mx-pagination-select-wrap">
               <select class="mx-pagination-select" [id]="sizeId" (change)="changeSize($event)">
                 @for (o of pageSizeOptions(); track o) {
@@ -51,20 +52,20 @@ export type MxPaginationVariant = 'default' | 'simple' | 'compact';
         }
       </div>
     }
-    <nav [attr.aria-label]="ariaLabel()">
+    <nav [attr.aria-label]="ariaLabel() ?? msg().label">
       <ul class="mx-pagination-list">
         @if (variant() === 'compact') {
           <li>
-            <button type="button" class="mx-pagination-button" [disabled]="current() <= 1" (click)="go(1)" aria-label="Primeira página">
+            <button type="button" class="mx-pagination-button" [disabled]="current() <= 1" (click)="go(1)" [attr.aria-label]="msg().first">
               <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M11 4L7 8l4 4M5 4v8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
             </button>
           </li>
         }
         <li>
-          <button type="button" class="mx-pagination-button mx-pagination-edge" [disabled]="current() <= 1" (click)="go(current() - 1)" aria-label="Página anterior">
+          <button type="button" class="mx-pagination-button mx-pagination-edge" [disabled]="current() <= 1" (click)="go(current() - 1)" [attr.aria-label]="msg().previous">
             <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 4L6 8l4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
             @if (variant() !== 'compact') {
-              <span class="mx-pagination-edge-label" aria-hidden="true">Anterior</span>
+              <span class="mx-pagination-edge-label" aria-hidden="true">{{ msg().previousShort }}</span>
             }
           </button>
         </li>
@@ -76,7 +77,7 @@ export type MxPaginationVariant = 'default' | 'simple' | 'compact';
                   type="button"
                   class="mx-pagination-button"
                   [attr.aria-current]="s.page === current() ? 'page' : null"
-                  [attr.aria-label]="'Página ' + s.page"
+                  [attr.aria-label]="msg().page(s.page)"
                   (click)="go(s.page)"
                 >
                   {{ s.page }}
@@ -89,24 +90,24 @@ export type MxPaginationVariant = 'default' | 'simple' | 'compact';
         } @else {
           <li class="mx-pagination-status" aria-current="page">
             @if (variant() === 'simple') {
-              Página {{ current() }} de {{ pageCount() }}
+              {{ msg().pageOf(current(), pageCount()) }}
             } @else {
               <span aria-hidden="true">{{ current() }} / {{ pageCount() }}</span>
-              <span class="mx-visually-hidden">Página {{ current() }} de {{ pageCount() }}</span>
+              <span class="mx-visually-hidden">{{ msg().pageOf(current(), pageCount()) }}</span>
             }
           </li>
         }
         <li>
-          <button type="button" class="mx-pagination-button mx-pagination-edge" [disabled]="current() >= pageCount()" (click)="go(current() + 1)" aria-label="Página seguinte">
+          <button type="button" class="mx-pagination-button mx-pagination-edge" [disabled]="current() >= pageCount()" (click)="go(current() + 1)" [attr.aria-label]="msg().next">
             @if (variant() !== 'compact') {
-              <span class="mx-pagination-edge-label" aria-hidden="true">Seguinte</span>
+              <span class="mx-pagination-edge-label" aria-hidden="true">{{ msg().nextShort }}</span>
             }
             <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
           </button>
         </li>
         @if (variant() === 'compact') {
           <li>
-            <button type="button" class="mx-pagination-button" [disabled]="current() >= pageCount()" (click)="go(pageCount())" aria-label="Última página">
+            <button type="button" class="mx-pagination-button" [disabled]="current() >= pageCount()" (click)="go(pageCount())" [attr.aria-label]="msg().last">
               <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 4l4 4-4 4M11 4v8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
             </button>
           </li>
@@ -129,7 +130,9 @@ export class MxPagination {
   readonly variant = input<MxPaginationVariant>('default');
   /** Páginas mostradas de cada lado da actual (variante default). */
   readonly siblings = input(1);
-  readonly ariaLabel = input('Paginação', { alias: 'aria-label' });
+  readonly ariaLabel = input<string | undefined>(undefined, { alias: 'aria-label' });
+  private readonly i18n = injectMxMessages();
+  protected readonly msg = computed(() => this.i18n().pagination);
 
   protected readonly sizeId = mxUniqueId('mx-pagination-size');
   readonly pageCount = computed(() => Math.max(1, Math.ceil(this.total() / this.pageSize())));
@@ -137,11 +140,11 @@ export class MxPagination {
 
   protected readonly rangeText = computed(() => {
     const total = this.total();
-    if (!total) return '0 resultados';
+    if (!total) return this.msg().noResults;
     const from = (this.current() - 1) * this.pageSize() + 1;
     const to = Math.min(this.current() * this.pageSize(), total);
-    const fmt = new Intl.NumberFormat('pt-AO');
-    return `${fmt.format(from)}–${fmt.format(to)} de ${fmt.format(total)}`;
+    const fmt = new Intl.NumberFormat(this.i18n().intlLocale);
+    return this.msg().range(fmt.format(from), fmt.format(to), fmt.format(total));
   });
 
   protected readonly slots = computed<Slot[]>(() => {

@@ -14,6 +14,7 @@ export const routes: Routes = [
       { path: 'docs/instalacao', title: 'Instalação · Muxima UI', loadComponent: () => import('./pages/instalacao').then((m) => m.InstalacaoPage) },
       { path: 'docs/temas', title: 'Temas · Muxima UI', loadComponent: () => import('./pages/temas').then((m) => m.TemasPage) },
       { path: 'docs/modo-escuro', title: 'Modo escuro · Muxima UI', loadComponent: () => import('./pages/modo-escuro').then((m) => m.ModoEscuroPage) },
+      { path: 'docs/idiomas', title: 'Idiomas · Muxima UI', loadComponent: () => import('./pages/idiomas').then((m) => m.IdiomasPage) },
       { path: 'docs/padrao-de-qualidade', title: 'Padrão de qualidade · Muxima UI', loadComponent: () => import('./pages/padrao').then((m) => m.PadraoPage) },
       { path: 'componentes', title: 'Componentes · Muxima UI', loadComponent: () => import('./pages/componentes').then((m) => m.ComponentesPage) },
       { path: 'componentes/button', title: 'Button · Muxima UI', loadComponent: () => import('./pages/components/button').then((m) => m.ButtonPage) },

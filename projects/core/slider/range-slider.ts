@@ -10,6 +10,7 @@ import {
   numberAttribute,
   signal,
 } from '@angular/core';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
 import { MX_FORM_FIELD_CONTROL, MxFormField, MxFormFieldControl, mxUniqueId } from '@muxima-ui/core/form-field';
 
@@ -74,8 +75,8 @@ import { MX_FORM_FIELD_CONTROL, MxFormField, MxFormFieldControl, mxUniqueId } fr
       (input)="onInput(1, $event)"
       (blur)="onTouched()"
     />
-    <span class="mx-visually-hidden" [id]="lowId">{{ lowLabel() }}</span>
-    <span class="mx-visually-hidden" [id]="highId">{{ highLabel() }}</span>
+    <span class="mx-visually-hidden" [id]="lowId">{{ lowLabel() ?? i18n().rangeSlider.low }}</span>
+    <span class="mx-visually-hidden" [id]="highId">{{ highLabel() ?? i18n().rangeSlider.high }}</span>
     @if (!field?.labelId()) {
       <span class="mx-visually-hidden" [id]="nameId">{{ ariaLabel() }}</span>
     }
@@ -98,8 +99,9 @@ export class MxRangeSlider implements ControlValueAccessor, MxFormFieldControl {
   readonly format = input<(v: number) => string>((v) => String(v));
   /** Mostra os dois valores por baixo da barra. */
   readonly showValues = input(false, { transform: booleanAttribute });
-  readonly lowLabel = input('mínimo');
-  readonly highLabel = input('máximo');
+  readonly lowLabel = input<string>();
+  readonly highLabel = input<string>();
+  protected readonly i18n = injectMxMessages();
   readonly size = input<'sm' | 'md' | 'lg'>('md');
   readonly disabled = input(false, { transform: booleanAttribute });
   readonly required = input(false, { transform: booleanAttribute });

@@ -105,14 +105,19 @@ export class MxSortHeader {
 }
 
 /**
- * Ordena uma lista segundo o estado de `MxTable`. Texto é comparado em português
- * (acentos e maiúsculas), números numericamente.
+ * Ordena uma lista segundo o estado de `MxTable`. Texto é comparado segundo `locale`
+ * (português por omissão; acentos e maiúsculas contam como a mesma letra), números numericamente.
  */
-export function mxSortData<T>(rows: readonly T[], sort: MxSortState, accessor?: (row: T, key: string) => unknown): T[] {
+export function mxSortData<T>(
+  rows: readonly T[],
+  sort: MxSortState,
+  accessor?: (row: T, key: string) => unknown,
+  locale = 'pt',
+): T[] {
   if (!sort.active) return [...rows];
   const key = sort.active;
   const get = accessor ?? ((row: T, k: string) => (row as Record<string, unknown>)[k]);
-  const collator = new Intl.Collator('pt', { numeric: true, sensitivity: 'base' });
+  const collator = new Intl.Collator(locale, { numeric: true, sensitivity: 'base' });
   const dir = sort.direction === 'asc' ? 1 : -1;
   return [...rows].sort((a, b) => {
     const x = get(a, key);

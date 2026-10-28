@@ -132,6 +132,7 @@ export const SIDEBAR: NavGroup[] = [
       { label: 'Instalação', path: '/docs/instalacao', icon: 'terminal' },
       { label: 'Temas', path: '/docs/temas', icon: 'sliders' },
       { label: 'Modo escuro', path: '/docs/modo-escuro', icon: 'moon' },
+      { label: 'Idiomas', path: '/docs/idiomas', icon: 'globe' },
       { label: 'Padrão de qualidade', path: '/docs/padrao-de-qualidade', icon: 'quality' },
     ],
   },

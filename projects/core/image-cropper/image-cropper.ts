@@ -16,6 +16,7 @@ import {
   untracked,
   viewChild,
 } from '@angular/core';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { mxUniqueId } from '@muxima-ui/core/form-field';
 import { MxCropHandle, MxRect, mxCenteredRect, mxClampRect, mxResizeRect } from './crop-math';
@@ -56,7 +57,7 @@ const HANDLES: MxCropHandle[] = ['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'];
           #img
           class="mx-cropper-image"
           [src]="url()"
-          [alt]="alt()"
+          [alt]="(alt() ?? msg().alt)"
           draggable="false"
           [style.width.px]="natural().w"
           [style.height.px]="natural().h"
@@ -71,7 +72,7 @@ const HANDLES: MxCropHandle[] = ['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'];
           class="mx-cropper-box"
           role="group"
           tabindex="0"
-          aria-roledescription="área de recorte"
+          [attr.aria-roledescription]="msg().area"
           [attr.aria-label]="boxLabel()"
           [attr.aria-describedby]="helpId"
           [style.left.px]="box().x"
@@ -93,11 +94,11 @@ const HANDLES: MxCropHandle[] = ['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'];
         </div>
       }
     </div>
-    <p class="mx-visually-hidden" [id]="helpId">{{ helpText() }}</p>
+    <p class="mx-visually-hidden" [id]="helpId">{{ (helpText() ?? msg().help) }}</p>
     @if (controls()) {
       <div class="mx-cropper-controls">
         <label class="mx-cropper-zoom">
-          <span>{{ zoomText() }}</span>
+          <span>{{ (zoomText() ?? msg().zoom) }}</span>
           <input
             type="range"
             class="mx-slider"
@@ -114,7 +115,7 @@ const HANDLES: MxCropHandle[] = ['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'];
           type="button"
           class="mx-cropper-button"
           [disabled]="!ready()"
-          [attr.aria-label]="rotateLeftText()"
+          [attr.aria-label]="(rotateLeftText() ?? msg().rotateLeft)"
           (click)="rotate(-90)"
         >
           <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -131,7 +132,7 @@ const HANDLES: MxCropHandle[] = ['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'];
           type="button"
           class="mx-cropper-button"
           [disabled]="!ready()"
-          [attr.aria-label]="rotateRightText()"
+          [attr.aria-label]="(rotateRightText() ?? msg().rotateRight)"
           (click)="rotate(90)"
         >
           <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -150,7 +151,7 @@ const HANDLES: MxCropHandle[] = ['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'];
           [disabled]="!ready()"
           (click)="reset()"
         >
-          {{ resetText() }}
+          {{ (resetText() ?? msg().reset) }}
         </button>
       </div>
     }
@@ -159,7 +160,9 @@ const HANDLES: MxCropHandle[] = ['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'];
 })
 export class MxImageCropper {
   readonly src = input<string | File | Blob | null>(null);
-  readonly alt = input('Imagem a recortar');
+  readonly alt = input<string>();
+  private readonly i18n = injectMxMessages();
+  protected readonly msg = computed(() => this.i18n().imageCropper);
   /** Largura / altura da área (1 = quadrado, 16/9...). null = livre. */
   readonly aspectRatio = input<number | null>(null);
   /** Máscara redonda (fotografias de perfil). toBlob devolve PNG com cantos transparentes. */
@@ -170,13 +173,11 @@ export class MxImageCropper {
   readonly minSize = input(40, { transform: numberAttribute });
   readonly zoom = model(1);
   readonly rotation = model(0);
-  readonly helpText = input(
-    'Setas movem a área. Alt e setas mudam o tamanho. Shift dá passos maiores.',
-  );
-  readonly zoomText = input('Zoom');
-  readonly rotateLeftText = input('Rodar para a esquerda');
-  readonly rotateRightText = input('Rodar para a direita');
-  readonly resetText = input('Repor');
+  readonly helpText = input<string>();
+  readonly zoomText = input<string>();
+  readonly rotateLeftText = input<string>();
+  readonly rotateRightText = input<string>();
+  readonly resetText = input<string>();
   /** Área recortada em píxeis da imagem original. */
   readonly areaChange = output<MxCropArea>();
 
@@ -241,7 +242,7 @@ export class MxImageCropper {
 
   protected readonly boxLabel = computed(() => {
     const a = this.area();
-    return `${a.width} por ${a.height} píxeis`;
+    return this.msg().size(a.width, a.height);
   });
 
   constructor() {
@@ -315,7 +316,7 @@ export class MxImageCropper {
   rotate(deg: number): void {
     this.rotation.update((r) => (r + deg + 360) % 360);
     this.box.set(mxCenteredRect(this.bounds(), this.aspectRatio()));
-    this.say(`Rodada ${this.rotation()} graus`);
+    this.say(this.msg().rotated(this.rotation()));
   }
 
   private say(text: string): void {
@@ -352,7 +353,7 @@ export class MxImageCropper {
       this.box.set(mxClampRect({ ...b, x: b.x + m[0], y: b.y + m[1] }, this.bounds()));
     }
     const a = this.area();
-    this.say(`${a.width} por ${a.height} píxeis, a ${a.x} da esquerda e ${a.y} do topo`);
+    this.say(this.msg().position(a.width, a.height, a.x, a.y));
   }
 
   private drag(e: PointerEvent, apply: (dx: number, dy: number, start: MxRect) => MxRect): void {

@@ -12,6 +12,7 @@ import {
   input,
   model,
 } from '@angular/core';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 import { mxUniqueId } from '@muxima-ui/core/form-field';
 
 /**
@@ -49,7 +50,7 @@ import { mxUniqueId } from '@muxima-ui/core/form-field';
   },
   template: `
     <ng-content select="[mxSidebarHeader]" />
-    <nav class="mx-sidebar-nav" [attr.aria-label]="ariaLabel()">
+    <nav class="mx-sidebar-nav" [attr.aria-label]="ariaLabel() ?? i18n().sidebar.label">
       <ng-content />
     </nav>
     <ng-content select="[mxSidebarFooter]" />
@@ -57,7 +58,8 @@ import { mxUniqueId } from '@muxima-ui/core/form-field';
 })
 export class MxSidebar {
   readonly collapsed = model(false);
-  readonly ariaLabel = input('Principal', { alias: 'aria-label' });
+  readonly ariaLabel = input<string | undefined>(undefined, { alias: 'aria-label' });
+  protected readonly i18n = injectMxMessages();
   /** `default` com fundo de superfície; `subtle` com o fundo do papel. */
   readonly variant = input<'default' | 'subtle'>('default');
   readonly id = input(mxUniqueId('mx-sidebar'));
@@ -234,14 +236,15 @@ export class MxSidebarSection {
     type: 'button',
     '[attr.aria-expanded]': '!sidebar().collapsed()',
     '[attr.aria-controls]': 'sidebar().id()',
-    '[attr.aria-label]': 'sidebar().collapsed() ? expandLabel() : collapseLabel()',
+    '[attr.aria-label]': 'sidebar().collapsed() ? (expandLabel() ?? i18n().sidebar.expand) : (collapseLabel() ?? i18n().sidebar.collapse)',
     '(click)': 'sidebar().toggle()',
   },
 })
 export class MxSidebarToggle {
   readonly sidebar = input.required<MxSidebar>();
-  readonly collapseLabel = input('Recolher menu');
-  readonly expandLabel = input('Expandir menu');
+  readonly collapseLabel = input<string>();
+  readonly expandLabel = input<string>();
+  protected readonly i18n = injectMxMessages();
 }
 
 export const MX_SIDEBAR = [

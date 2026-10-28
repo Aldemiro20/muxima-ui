@@ -60,11 +60,17 @@ export class ChangelogPage {
   protected readonly links = LINKS;
   protected readonly releases: Release[] = [
     {
-      version: '1.4.1',
+      version: '1.5.0',
       status: 'Em curso',
       date: 'Pronta a publicar',
-      title: 'Correcção',
-      items: ['Data grid: os campos da barra encolhem em ecrãs estreitos'],
+      title: 'Português e inglês',
+      items: [
+        'Idiomas: todos os textos dos componentes em português e inglês, com provideMuximaI18n',
+        'Mudar de idioma sem recarregar, com MxI18n.setLocale',
+        'Datas, números e primeiro dia da semana de acordo com o idioma',
+        'Corrigir qualquer texto ou acrescentar outro idioma',
+        'Data grid: os campos da barra encolhem em ecrãs estreitos',
+      ],
     },
     {
       version: '1.4.0',

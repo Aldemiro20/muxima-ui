@@ -15,6 +15,7 @@ import {
   output,
   signal,
 } from '@angular/core';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 import { NgTemplateOutlet } from '@angular/common';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import {
@@ -73,8 +74,8 @@ export class MxKanbanColumnFooter {
   encapsulation: ViewEncapsulation.None,
   host: { class: 'mx-kanban', '[attr.aria-label]': 'null' },
   template: `
-    <p class="mx-visually-hidden" [id]="helpId">{{ helpText() }}</p>
-    <div class="mx-kanban-board" cdkDropListGroup role="group" [attr.aria-label]="ariaLabel()">
+    <p class="mx-visually-hidden" [id]="helpId">{{ (helpText() ?? msg().help) }}</p>
+    <div class="mx-kanban-board" cdkDropListGroup role="group" [attr.aria-label]="(ariaLabel() ?? msg().label)">
       @for (col of columns(); track col.id; let ci = $index) {
         <div
           class="mx-kanban-column"
@@ -94,7 +95,7 @@ export class MxKanbanColumnFooter {
             <span class="mx-kanban-count">
               {{ col.items.length }}{{ col.limit ? ' / ' + col.limit : '' }}
               <span class="mx-visually-hidden">{{
-                (col.items.length === 1 ? 'cartão' : 'cartões') + (col.limit ? ', máximo ' + col.limit : '')
+                msg().cards(col.items.length, col.limit ?? null)
               }}</span>
             </span>
           </div>
@@ -116,7 +117,7 @@ export class MxKanbanColumnFooter {
                 [attr.data-kanban]="ci + ':' + ii"
                 [attr.data-grabbed]="isGrabbed(ci, ii) ? '' : null"
                 [attr.aria-describedby]="helpId"
-                [attr.aria-label]="isGrabbed(ci, ii) ? labelOf(item) + ', agarrado' : null"
+                [attr.aria-label]="isGrabbed(ci, ii) ? msg().grabbed(labelOf(item)) : null"
                 (keydown)="onKeydown($event, ci, ii)"
                 (blur)="onBlur(ci, ii)"
               >
@@ -130,7 +131,7 @@ export class MxKanbanColumnFooter {
                 <div class="mx-kanban-placeholder" *cdkDragPlaceholder></div>
               </li>
             } @empty {
-              <li class="mx-kanban-empty">{{ emptyText() }}</li>
+              <li class="mx-kanban-empty">{{ (emptyText() ?? msg().empty) }}</li>
             }
           </ul>
           @if (footerTpl(); as f) {
@@ -151,12 +152,12 @@ export class MxKanban<T = any> {
   readonly itemLabel = input<(item: T) => string>((i) =>
     String((i as any)?.title ?? (i as any)?.titulo ?? (i as any)?.id ?? ''),
   );
-  readonly ariaLabel = input('Quadro', { alias: 'aria-label' });
+  readonly ariaLabel = input<string | undefined>(undefined, { alias: 'aria-label' });
+  private readonly i18n = injectMxMessages();
+  protected readonly msg = computed(() => this.i18n().kanban);
   readonly headingLevel = input(3);
-  readonly emptyText = input('Sem cartões');
-  readonly helpText = input(
-    'Espaço para agarrar. Setas para mover. Espaço para largar, Esc para cancelar.',
-  );
+  readonly emptyText = input<string>();
+  readonly helpText = input<string>();
   readonly moved = output<MxKanbanMove<T>>();
 
   protected readonly cardTpl = contentChild(MxKanbanCard);
@@ -240,7 +241,7 @@ export class MxKanban<T = any> {
 
   private where(col: number, index: number): string {
     const c = this.columns()[col];
-    return `${c.title}, posição ${index + 1} de ${c.items.length}`;
+    return this.msg().position(c.title, index + 1, c.items.length);
   }
 
   protected onKeydown(event: KeyboardEvent, ci: number, ii: number): void {
@@ -254,7 +255,7 @@ export class MxKanban<T = any> {
         event.preventDefault();
         this.grabbed.set({ col: ci, index: ii, fromCol: ci, fromIndex: ii, snapshot: cols });
         this.announcer.announce(
-          `${this.labelOf(cols[ci].items[ii])} agarrado. ${this.where(ci, ii)}.`,
+          this.msg().pickedUp(this.labelOf(cols[ci].items[ii]), this.where(ci, ii)),
           'assertive',
         );
         return;
@@ -288,7 +289,7 @@ export class MxKanban<T = any> {
       if (g.col !== g.fromCol || g.index !== g.fromIndex)
         this.emitMove(item, g.fromCol, g.fromIndex, g.col, g.index);
       this.announcer.announce(
-        `${this.labelOf(item)} largado. ${this.where(g.col, g.index)}.`,
+        this.msg().dropped(this.labelOf(item), this.where(g.col, g.index)),
         'assertive',
       );
       this.focusCard(g.col, g.index);
@@ -299,7 +300,7 @@ export class MxKanban<T = any> {
       this.columns.set(g.snapshot);
       this.grabbed.set(null);
       this.announcer.announce(
-        `Movimento cancelado. ${this.labelOf(item)} voltou a ${this.where(g.fromCol, g.fromIndex)}.`,
+        this.msg().cancelled(this.labelOf(item), this.where(g.fromCol, g.fromIndex)),
         'assertive',
       );
       this.focusCard(g.fromCol, g.fromIndex);
@@ -315,7 +316,7 @@ export class MxKanban<T = any> {
         if (target.limit && target.items.length >= target.limit) {
           event.preventDefault();
           this.announcer.announce(
-            `${target.title} está cheia, máximo ${target.limit}.`,
+            this.msg().full(target.title, target.limit),
             'assertive',
           );
           return;

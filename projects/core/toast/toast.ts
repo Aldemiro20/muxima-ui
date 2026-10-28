@@ -9,6 +9,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 export type MxToastVariant = 'default' | 'info' | 'success' | 'warning' | 'danger';
@@ -43,7 +44,7 @@ export interface MxToastItem {
   encapsulation: ViewEncapsulation.None,
   host: { class: 'mx-toaster', '[attr.data-position]': 'position()' },
   template: `
-    <section aria-label="Notificações" class="mx-toaster-region">
+    <section [attr.aria-label]="i18n().toast.region" class="mx-toaster-region">
       <ol class="mx-toaster-list">
         @for (t of toasts(); track t.id) {
           <li
@@ -69,7 +70,7 @@ export interface MxToastItem {
             @if (t.action) {
               <button type="button" class="mx-toast-action" (click)="act(t)">{{ t.action.label }}</button>
             }
-            <button type="button" class="mx-toast-close" aria-label="Fechar notificação" (click)="dismiss(t.id)">
+            <button type="button" class="mx-toast-close" [attr.aria-label]="i18n().toast.close" (click)="dismiss(t.id)">
               <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" /></svg>
             </button>
           </li>
@@ -79,6 +80,7 @@ export interface MxToastItem {
   `,
 })
 export class MxToaster {
+  protected readonly i18n = injectMxMessages();
   readonly toasts = signal<MxToastItem[]>([]);
   readonly position = signal<MxToastPosition>('bottom-right');
   private readonly timers = new Map<number, { handle?: ReturnType<typeof setTimeout>; remaining: number; started: number }>();
@@ -159,6 +161,7 @@ export class MxToast {
   private readonly appRef = inject(ApplicationRef);
   private readonly envInjector = inject(EnvironmentInjector);
   private readonly announcer = inject(LiveAnnouncer);
+  private readonly i18n = injectMxMessages();
   private toaster?: MxToaster;
   private nextId = 1;
   private positionValue: MxToastPosition = 'bottom-right';
@@ -242,7 +245,7 @@ export class MxToast {
   }
 
   private announce(item: MxToastItem): void {
-    const text = [item.title, item.description, item.action ? `Acção disponível: ${item.action.label}` : '']
+    const text = [item.title, item.description, item.action ? this.i18n().toast.action(item.action.label) : '']
       .filter(Boolean)
       .join('. ');
     this.announcer.announce(text, item.variant === 'danger' ? 'assertive' : 'polite');

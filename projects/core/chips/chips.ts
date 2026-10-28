@@ -18,6 +18,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { injectMxMessages } from '@muxima-ui/core/i18n';
 import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
 import { MX_FORM_FIELD_CONTROL, MxFormField, MxFormFieldControl, mxUniqueId } from '@muxima-ui/core/form-field';
 
@@ -46,7 +47,7 @@ import { MX_FORM_FIELD_CONTROL, MxFormField, MxFormFieldControl, mxUniqueId } fr
   template: `
     <span class="mx-chip-label" #label><ng-content /></span>
     @if (removable()) {
-      <button type="button" class="mx-chip-remove" [disabled]="disabled()" [attr.aria-label]="removeLabel() + ' ' + text()" (click)="removed.emit()">
+      <button type="button" class="mx-chip-remove" [disabled]="disabled()" [attr.aria-label]="(removeLabel() ?? msg().remove) + ' ' + text()" (click)="removed.emit()">
         <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" /></svg>
       </button>
     }
@@ -58,8 +59,10 @@ export class MxChip {
   readonly variant = input<'default' | 'outline' | 'accent'>('default');
   readonly size = input<'sm' | 'md'>('md');
   /** Verbo do botão de remover, seguido do texto do chip. */
-  readonly removeLabel = input('Remover');
+  readonly removeLabel = input<string>();
   readonly removed = output<void>();
+  protected readonly msg = computed(() => this.i18n().chips);
+  private readonly i18n = injectMxMessages();
 
   private readonly label = viewChild.required<ElementRef<HTMLElement>>('label');
   protected readonly text = signal('');
@@ -129,7 +132,7 @@ export class MxChipToggle {
   },
   template: `
     @if (tags().length) {
-      <ul class="mx-tag-input-list" [attr.aria-label]="listLabel()">
+      <ul class="mx-tag-input-list" [attr.aria-label]="listLabel() ?? msg().list">
         @for (t of tags(); track t; let i = $index) {
           <li>
             <mx-chip size="sm" [removable]="!isDisabled()" (removed)="remove(i)" (keydown)="onChipKey($event, i)">{{ t }}</mx-chip>
@@ -155,7 +158,7 @@ export class MxChipToggle {
       (blur)="onBlur()"
       (paste)="onPaste($event)"
     />
-    <span class="mx-visually-hidden" [id]="helpId">{{ helpText() }}</span>
+    <span class="mx-visually-hidden" [id]="helpId">{{ helpText() ?? msg().help }}</span>
   `,
 })
 export class MxTagInput implements ControlValueAccessor, MxFormFieldControl {
@@ -168,8 +171,8 @@ export class MxTagInput implements ControlValueAccessor, MxFormFieldControl {
   /** Valida cada etiqueta antes de a acrescentar (ex.: email). Devolve a mensagem de erro ou null. */
   readonly validate = input<(tag: string) => string | null>(() => null);
   /** Nome da lista para o leitor de ecrã. */
-  readonly listLabel = input('Etiquetas');
-  readonly helpText = input('Enter para acrescentar. Backspace no campo vazio vai para a última etiqueta.');
+  readonly listLabel = input<string>();
+  readonly helpText = input<string>();
   readonly size = input<'sm' | 'md' | 'lg'>('md');
   readonly disabled = input(false, { transform: booleanAttribute });
   readonly required = input(false, { transform: booleanAttribute });
@@ -182,6 +185,8 @@ export class MxTagInput implements ControlValueAccessor, MxFormFieldControl {
   protected readonly field = inject(MxFormField, { optional: true });
   private readonly ngControl = inject(NgControl, { self: true, optional: true });
   private readonly announcer = inject(LiveAnnouncer);
+  private readonly i18n = injectMxMessages();
+  protected readonly msg = computed(() => this.i18n().chips);
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
   private readonly input = viewChild.required<ElementRef<HTMLInputElement>>('input');
   private readonly injector = inject(Injector);
@@ -211,19 +216,19 @@ export class MxTagInput implements ControlValueAccessor, MxFormFieldControl {
       this.announcer.announce(reason, 'assertive');
       return false;
     };
-    if (this.tags().length >= this.maxTags()) return reject(`Máximo de ${this.maxTags()} etiquetas.`);
-    if (!this.allowDuplicates() && this.tags().some((t) => t.toLocaleLowerCase() === tag.toLocaleLowerCase())) return reject(`${tag} já está na lista.`);
+    if (this.tags().length >= this.maxTags()) return reject(this.msg().max(this.maxTags()));
+    if (!this.allowDuplicates() && this.tags().some((t) => t.toLocaleLowerCase() === tag.toLocaleLowerCase())) return reject(this.msg().duplicate(tag));
     const error = this.validate()(tag);
     if (error) return reject(error);
     this.update([...this.tags(), tag]);
-    this.announcer.announce(`${tag} acrescentado.`);
+    this.announcer.announce(this.msg().added(tag));
     return true;
   }
 
   remove(index: number): void {
     const tag = this.tags()[index];
     this.update(this.tags().filter((_, i) => i !== index));
-    this.announcer.announce(`${tag} removido.`);
+    this.announcer.announce(this.msg().removed(tag));
     // o foco passa para a etiqueta seguinte, ou para o campo
     afterNextRender(() => {
       const chips = this.host.querySelectorAll<HTMLElement>('.mx-chip-remove');

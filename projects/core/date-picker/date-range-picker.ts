@@ -16,6 +16,7 @@ import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
 import { MX_FORM_FIELD_CONTROL, MxFormField, MxFormFieldControl, mxUniqueId } from '@muxima-ui/core/form-field';
 import { MxCalendar, MxDateRange, mxStartOfDay } from './calendar';
 import { mxFormatDate, mxParseDate } from './date-picker';
+import { MX_MESSAGES_PT, MxMessages, injectMxMessages } from '@muxima-ui/core/i18n';
 
 const POSITIONS: ConnectedPosition[] = [
   { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top', offsetY: 4 },
@@ -29,22 +30,28 @@ export interface MxDateRangePreset {
   range: () => { start: Date; end: Date };
 }
 
-/** Atalhos comuns: últimos 7 e 30 dias, este mês e o mês passado. */
-export function mxDefaultRangePresets(): MxDateRangePreset[] {
+/**
+ * Atalhos comuns: últimos 7 e 30 dias, este mês e o mês passado.
+ * Os nomes vêm de `labels` (por omissão em português); para o idioma activo,
+ * usa `mxDefaultRangePresets(inject(MxI18n).messages().dateRangePicker)`.
+ */
+export function mxDefaultRangePresets(
+  labels: MxMessages['dateRangePicker'] = MX_MESSAGES_PT.dateRangePicker,
+): MxDateRangePreset[] {
   const today = () => mxStartOfDay(new Date());
   const shift = (d: Date, days: number) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + days);
   return [
-    { label: 'Últimos 7 dias', range: () => ({ start: shift(today(), -6), end: today() }) },
-    { label: 'Últimos 30 dias', range: () => ({ start: shift(today(), -29), end: today() }) },
+    { label: labels.last7Days, range: () => ({ start: shift(today(), -6), end: today() }) },
+    { label: labels.last30Days, range: () => ({ start: shift(today(), -29), end: today() }) },
     {
-      label: 'Este mês',
+      label: labels.thisMonth,
       range: () => {
         const t = today();
         return { start: new Date(t.getFullYear(), t.getMonth(), 1), end: new Date(t.getFullYear(), t.getMonth() + 1, 0) };
       },
     },
     {
-      label: 'Mês passado',
+      label: labels.lastMonth,
       range: () => {
         const t = today();
         return { start: new Date(t.getFullYear(), t.getMonth() - 1, 1), end: new Date(t.getFullYear(), t.getMonth(), 0) };
@@ -90,7 +97,7 @@ export function mxDefaultRangePresets(): MxDateRangePreset[] {
         inputmode="numeric"
         autocomplete="off"
         [id]="controlId()"
-        [placeholder]="placeholder()"
+        [placeholder]="placeholderText()"
         [value]="startText()"
         [disabled]="isDisabled()"
         [attr.aria-labelledby]="labelledBy(startLabelId)"
@@ -107,7 +114,7 @@ export function mxDefaultRangePresets(): MxDateRangePreset[] {
         type="text"
         inputmode="numeric"
         autocomplete="off"
-        [placeholder]="placeholder()"
+        [placeholder]="placeholderText()"
         [value]="endText()"
         [disabled]="isDisabled()"
         [attr.aria-labelledby]="labelledBy(endLabelId)"
@@ -118,8 +125,8 @@ export function mxDefaultRangePresets(): MxDateRangePreset[] {
         (blur)="onTouched()"
         (keydown.alt.arrowdown)="$event.preventDefault(); open()"
       />
-      <span class="mx-visually-hidden" [id]="startLabelId">{{ startLabel() }}</span>
-      <span class="mx-visually-hidden" [id]="endLabelId">{{ endLabel() }}</span>
+      <span class="mx-visually-hidden" [id]="startLabelId">{{ startLabel() ?? msg().start }}</span>
+      <span class="mx-visually-hidden" [id]="endLabelId">{{ endLabel() ?? msg().end }}</span>
       @if (!field?.labelId()) {
         <span class="mx-visually-hidden" [id]="nameId">{{ nameText() }}</span>
       }
@@ -150,9 +157,9 @@ export function mxDefaultRangePresets(): MxDateRangePreset[] {
       (attach)="onAttach()"
       (detach)="close(false)"
     >
-      <div class="mx-date-picker-panel mx-date-range-panel" role="dialog" aria-modal="false" aria-label="Escolher intervalo">
+      <div class="mx-date-picker-panel mx-date-range-panel" role="dialog" aria-modal="false" [attr.aria-label]="msg().choose">
         @if (presets().length) {
-          <ul class="mx-date-range-presets" aria-label="Atalhos">
+          <ul class="mx-date-range-presets" [attr.aria-label]="msg().presets">
             @for (p of presets(); track p.label) {
               <li><button type="button" class="mx-date-range-preset" (click)="applyPreset(p)">{{ p.label }}</button></li>
             }
@@ -165,7 +172,7 @@ export function mxDefaultRangePresets(): MxDateRangePreset[] {
           [min]="min()"
           [max]="max()"
           [dateDisabled]="dateDisabled()"
-          [locale]="locale()"
+          [locale]="loc()"
           (rangeSelected)="choose($event)"
         />
       </div>
@@ -178,10 +185,16 @@ export class MxDateRangePicker implements ControlValueAccessor, MxFormFieldContr
   readonly max = input<Date | null>(null);
   readonly dateDisabled = input<(d: Date) => boolean>(() => false);
   readonly presets = input<MxDateRangePreset[]>([]);
-  readonly locale = input('pt-AO');
-  readonly placeholder = input('dd/mm/aaaa');
-  readonly startLabel = input('início');
-  readonly endLabel = input('fim');
+  /** Locale dos nomes dos meses e dos dias; por omissão o do idioma activo. */
+  readonly locale = input<string>();
+  /** Por omissão "dd/mm/aaaa" em português e "mm/dd/yyyy" em inglês. */
+  readonly placeholder = input<string>();
+  readonly startLabel = input<string>();
+  readonly endLabel = input<string>();
+  private readonly i18n = injectMxMessages();
+  protected readonly msg = computed(() => this.i18n().dateRangePicker);
+  protected readonly loc = computed(() => this.locale() ?? this.i18n().intlLocale);
+  protected readonly placeholderText = computed(() => this.placeholder() ?? this.i18n().datePicker.placeholder);
   readonly disabled = input(false, { transform: booleanAttribute });
   readonly required = input(false, { transform: booleanAttribute });
   readonly invalid = input(false, { transform: booleanAttribute });
@@ -210,21 +223,21 @@ export class MxDateRangePicker implements ControlValueAccessor, MxFormFieldContr
   private readonly formDisabled = signal(false);
   protected readonly isDisabled = computed(() => this.disabled() || this.formDisabled());
 
-  protected readonly startText = computed(() => this.draftText().start ?? mxFormatDate(this.value()?.start ?? null));
-  protected readonly endText = computed(() => this.draftText().end ?? mxFormatDate(this.value()?.end ?? null));
+  protected readonly startText = computed(() => this.draftText().start ?? mxFormatDate(this.value()?.start ?? null, this.i18n().dateOrder));
+  protected readonly endText = computed(() => this.draftText().end ?? mxFormatDate(this.value()?.end ?? null, this.i18n().dateOrder));
 
   /** true quando há texto que não é data, ou o fim é anterior ao início. */
   readonly badFormat = computed(() => {
     const d = this.draftText();
     const v = this.value();
-    return (!!d.start && !mxParseDate(d.start)) || (!!d.end && !mxParseDate(d.end)) || (!!v?.start && !!v?.end && v.end < v.start);
+    return (!!d.start && !mxParseDate(d.start, this.i18n().dateOrder)) || (!!d.end && !mxParseDate(d.end, this.i18n().dateOrder)) || (!!v?.start && !!v?.end && v.end < v.start);
   });
 
   protected readonly toggleLabel = computed(() => {
     const v = this.value();
-    if (!v?.start || !v?.end) return 'Escolher intervalo';
-    const f = new Intl.DateTimeFormat(this.locale(), { day: 'numeric', month: 'long', year: 'numeric' });
-    return `Mudar intervalo, ${f.format(v.start)} a ${f.format(v.end)}`;
+    if (!v?.start || !v?.end) return this.msg().choose;
+    const f = new Intl.DateTimeFormat(this.loc(), { day: 'numeric', month: 'long', year: 'numeric' });
+    return this.msg().change(f.format(v.start), f.format(v.end));
   });
 
   private onChange: (value: MxDateRange | null) => void = () => {};
@@ -283,7 +296,7 @@ export class MxDateRangePicker implements ControlValueAccessor, MxFormFieldContr
 
   protected onInput(part: 'start' | 'end', event: Event): void {
     const text = (event.target as HTMLInputElement).value;
-    const parsed = mxParseDate(text);
+    const parsed = mxParseDate(text, this.i18n().dateOrder);
     this.draftText.update((d) => ({ ...d, [part]: parsed || !text ? null : text }));
     const current = this.value() ?? { start: null, end: null };
     const next = { ...current, [part]: parsed };
