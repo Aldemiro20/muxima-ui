@@ -1,0 +1,81 @@
+<form class="definicoes" aria-labelledby="notif-titulo" (submit)="guardar($event)">
+  <header class="cabeca">
+    <h2 id="notif-titulo">Notificações</h2>
+    <p>Escolhe o que queres saber e por onde.</p>
+  </header>
+
+  <div class="tabela-scroll" role="region" aria-label="Notificações por canal" tabindex="0">
+    <table class="tabela">
+      <caption class="mx-visually-hidden">
+        Notificações por acontecimento e canal
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Acontecimento</th>
+          @for (c of canais; track c.id) {
+            <th scope="col" class="canal">
+              <label class="canal-label">
+                <input
+                  type="checkbox"
+                  mxCheckbox
+                  size="sm"
+                  [checked]="coluna(c.id) === 'todas'"
+                  [indeterminate]="coluna(c.id) === 'algumas'"
+                  [attr.aria-label]="'Todas por ' + c.nome"
+                  (change)="alternarColuna(c.id)"
+                />
+                <span aria-hidden="true">{{ c.nome }}</span>
+              </label>
+            </th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (e of eventos; track e.id) {
+          <tr>
+            <th scope="row" class="evento">
+              <span class="evento-nome">{{ e.nome }}</span>
+              <span class="evento-desc">{{ e.descricao }}</span>
+            </th>
+            @for (c of canais; track c.id) {
+              <td class="canal">
+                <input
+                  type="checkbox"
+                  mxCheckbox
+                  [checked]="ligada(e.id, c.id)"
+                  [attr.aria-label]="e.nome + ' por ' + c.nome"
+                  (change)="alternar(e.id, c.id, $any($event.target).checked)"
+                />
+              </td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="silencio">
+    <div>
+      <label class="silencio-titulo" for="notif-silencio">Não incomodar à noite</label>
+      <p class="silencio-desc" id="notif-silencio-desc">
+        Entre as 22h e as 7h só chegam os avisos de pagamento em atraso.
+      </p>
+    </div>
+    <input
+      type="checkbox"
+      mxSwitch
+      id="notif-silencio"
+      aria-describedby="notif-silencio-desc"
+      [checked]="silencio()"
+      (change)="silencio.set($any($event.target).checked); aviso.set('')"
+    />
+  </div>
+
+  <footer class="rodape">
+    <p class="estado" role="status">{{ aviso() }}</p>
+    <button mxButton variant="ghost" type="button" [disabled]="!mudou()" (click)="repor()">
+      Desfazer
+    </button>
+    <button mxButton type="submit" [disabled]="!mudou()">Guardar</button>
+  </footer>
+</form>

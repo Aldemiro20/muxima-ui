@@ -3277,3 +3277,63 @@ a.text-link:hover,
 .doc-page > .stack-xl {
   margin-top: 36px;
 }
+/* ---------- Tour guide ---------- */
+.tour-demo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+.tour-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+}
+.tour-search {
+  flex: 1 1 220px;
+}
+.tour-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  width: 100%;
+  padding: 14px;
+  border: var(--mx-border);
+  border-radius: var(--mx-radius-surface);
+  background: var(--mx-surface);
+}
+.tour-stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.tour-stats strong {
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+}
+/* o cartão desenhado no lugar, só para a secção Estrutura */
+.mx-tour-card.tour-static {
+  position: static;
+  animation: none;
+}
+.tour-fake-btn {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: var(--mx-radius);
+  font-size: var(--mx-text-sm);
+  font-weight: 500;
+}
+.tour-fake-btn.primary {
+  background: var(--mx-ink);
+  color: var(--mx-paper);
+}
+.tour-keys {
+  display: grid;
+  gap: 6px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}

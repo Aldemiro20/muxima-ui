@@ -1,0 +1,80 @@
+<div class="loja">
+  <header class="topo">
+    <strong class="marca">Mercado Kianda</strong>
+    <button mxButton variant="outline" type="button" class="botao-carrinho" (click)="abrir()">
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M1.5 2h2l1.6 8h7.4l1.5-5.5H4.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="6" cy="13" r="1" fill="currentColor" />
+        <circle cx="12" cy="13" r="1" fill="currentColor" />
+      </svg>
+      Carrinho
+      <span mxBadge size="sm" [variant]="artigos() ? 'default' : 'secondary'">
+        {{ artigos() }}<span class="mx-visually-hidden"> {{ artigos() === 1 ? 'artigo' : 'artigos' }}</span>
+      </span>
+    </button>
+  </header>
+
+  <ul class="produtos">
+    @for (p of produtos; track p.id) {
+      <li class="produto">
+        <div class="produto-img" [style.--cor]="p.cor" aria-hidden="true">{{ p.nome.charAt(0) }}</div>
+        <div class="produto-texto">
+          <p class="produto-nome">{{ p.nome }}</p>
+          <p class="produto-preco">{{ preco(p.preco) }}</p>
+        </div>
+        <button mxButton size="sm" type="button" (click)="adicionar(p)">
+          Adicionar<span class="mx-visually-hidden"> {{ p.nome }}</span>
+        </button>
+      </li>
+    }
+  </ul>
+  <p class="mx-visually-hidden" role="status">{{ aviso() }}</p>
+</div>
+
+<ng-template #painelCarrinho let-ref="dialogRef">
+  <div mxDialogHeader class="painel-topo">
+    <h2 mxDialogTitle>Carrinho ({{ artigos() }})</h2>
+    <button mxButton variant="ghost" size="sm" mxDialogClose aria-label="Fechar o carrinho">
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" width="16" height="16">
+        <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      </svg>
+    </button>
+  </div>
+  <div mxDialogContent class="painel-conteudo">
+    @if (linhas().length) {
+      <ul class="linhas">
+        @for (l of linhas(); track l.produto.id) {
+          <li class="linha">
+            <div class="produto-img pequena" [style.--cor]="l.produto.cor" aria-hidden="true">{{ l.produto.nome.charAt(0) }}</div>
+            <div class="linha-texto">
+              <p class="produto-nome">{{ l.produto.nome }}</p>
+              <div class="quantidade" role="group" [attr.aria-label]="'Quantidade de ' + l.produto.nome">
+                <button type="button" class="qtd-botao" [attr.aria-label]="'Menos um ' + l.produto.nome" (click)="mudar(l.produto.id, -1)">−</button>
+                <span class="qtd-valor" aria-live="polite">{{ l.qtd }}</span>
+                <button type="button" class="qtd-botao" [attr.aria-label]="'Mais um ' + l.produto.nome" (click)="mudar(l.produto.id, 1)">+</button>
+              </div>
+            </div>
+            <div class="linha-fim">
+              <p class="produto-preco">{{ preco(l.qtd * l.produto.preco) }}</p>
+              <button type="button" class="remover" (click)="remover(l.produto)">
+                Remover<span class="mx-visually-hidden"> {{ l.produto.nome }}</span>
+              </button>
+            </div>
+          </li>
+        }
+      </ul>
+    } @else {
+      <p class="vazio">O carrinho está vazio.</p>
+    }
+  </div>
+  <div mxDialogFooter class="painel-fim">
+    <p class="subtotal"><span>Subtotal</span><strong>{{ preco(subtotal()) }}</strong></p>
+    <p class="nota">IVA incluído. Entrega calculada no passo seguinte.</p>
+    <button mxButton type="button" class="largo" [disabled]="!linhas().length" (click)="ref.close()">
+      Finalizar compra
+    </button>
+    <button mxButton variant="ghost" type="button" class="largo" (click)="ref.close()">
+      Continuar a comprar
+    </button>
+  </div>
+</ng-template>

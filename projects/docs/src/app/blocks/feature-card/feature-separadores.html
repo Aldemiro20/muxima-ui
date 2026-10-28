@@ -1,0 +1,42 @@
+<section class="features" aria-labelledby="feature-separadores-titulo">
+  <header class="cabeca">
+    <h2 id="feature-separadores-titulo" class="titulo">Tudo o que a tua empresa precisa</h2>
+    <p class="sub">Três áreas que trabalham juntas, sem copiar dados de um lado para o outro.</p>
+  </header>
+
+  <mx-tabs aria-label="Áreas do produto" class="separadores">
+    @for (a of areas; track a.nome) {
+      <mx-tab [label]="a.nome">
+        <div class="painel">
+          <div class="texto">
+            <h3 class="painel-titulo">{{ a.titulo }}</h3>
+            <p class="painel-texto">{{ a.texto }}</p>
+            <ul class="pontos">
+              @for (p of a.pontos; track p) {
+                <li>
+                  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  {{ p }}
+                </li>
+              }
+            </ul>
+            <a mxButton variant="outline" href="#" (click)="$event.preventDefault()">
+              Saber mais<span class="mx-visually-hidden"> sobre {{ a.nome }}</span>
+            </a>
+          </div>
+          <div class="mockup" aria-hidden="true">
+            <div class="mockup-barra"><span></span><span></span><span></span></div>
+            <p class="mockup-titulo">{{ a.nome }}</p>
+            @for (l of a.linhas; track l.rotulo) {
+              <div class="mockup-linha">
+                <span>{{ l.rotulo }}</span>
+                <strong>{{ l.valor }}</strong>
+              </div>
+            }
+          </div>
+        </div>
+      </mx-tab>
+    }
+  </mx-tabs>
+</section>

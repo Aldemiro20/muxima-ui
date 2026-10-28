@@ -1,0 +1,99 @@
+<section class="checkout" aria-labelledby="checkout-titulo">
+  <h2 id="checkout-titulo" class="titulo">Finalizar compra</h2>
+
+  <ol mxStepper aria-label="Passos da compra" class="passos">
+    @for (p of passos; track p; let i = $index) {
+      <li mxStep [state]="passo() === 3 ? 'complete' : estado(i)">{{ p }}</li>
+    }
+  </ol>
+
+  <div class="corpo">
+    <form class="formulario" novalidate (submit)="continuar($event)">
+      @switch (passo()) {
+        @case (0) {
+          <h3 #tituloPasso tabindex="-1" class="passo-titulo">Os teus dados</h3>
+          <div [formGroup]="dados" class="campos">
+            <mx-form-field>
+              <label mxLabel>Nome</label>
+              <input mxInput autocomplete="name" formControlName="nome" />
+              <mx-error>Escreve o teu nome.</mx-error>
+            </mx-form-field>
+            <mx-form-field>
+              <label mxLabel>E-mail</label>
+              <input mxInput type="email" autocomplete="email" formControlName="email" />
+              <mx-hint>Enviamos a factura para aqui.</mx-hint>
+              <mx-error>Escreve um e-mail válido, por exemplo ana&#64;exemplo.ao.</mx-error>
+            </mx-form-field>
+          </div>
+        }
+        @case (1) {
+          <h3 #tituloPasso tabindex="-1" class="passo-titulo">Entrega</h3>
+          <fieldset mxFieldset class="campos">
+            <legend class="mx-visually-hidden">Como queres receber</legend>
+            <label mxChoice card>
+              <input type="radio" mxRadio name="checkout-entrega" value="casa" [checked]="entrega() === 'casa'" (change)="entrega.set('casa')" />
+              <span class="opcao">
+                <span>Entrega em casa <span mxChoiceDescription>Luanda, em 24 horas</span></span>
+                <span class="num">{{ preco(2500) }}</span>
+              </span>
+            </label>
+            <label mxChoice card>
+              <input type="radio" mxRadio name="checkout-entrega" value="loja" [checked]="entrega() === 'loja'" (change)="entrega.set('loja')" />
+              <span class="opcao">
+                <span>Levantar na loja <span mxChoiceDescription>Talatona, a partir de amanhã</span></span>
+                <span class="num">Grátis</span>
+              </span>
+            </label>
+          </fieldset>
+          @if (entrega() === 'casa') {
+            <mx-form-field>
+              <label mxLabel>Morada</label>
+              <input mxInput autocomplete="street-address" [formControl]="morada" />
+              <mx-hint>Rua, número, bairro e um ponto de referência.</mx-hint>
+              <mx-error>Escreve a morada de entrega.</mx-error>
+            </mx-form-field>
+          }
+        }
+        @case (2) {
+          <h3 #tituloPasso tabindex="-1" class="passo-titulo">Pagamento por telemóvel</h3>
+          <mx-form-field>
+            <label mxLabel>Número de telemóvel</label>
+            <input mxInput type="tel" inputmode="tel" autocomplete="tel-national" placeholder="923 456 789" [formControl]="telefone" />
+            <mx-hint>Confirmas o pagamento na aplicação do teu banco.</mx-hint>
+            <mx-error>Escreve um número com 9 dígitos, a começar por 9.</mx-error>
+          </mx-form-field>
+        }
+        @case (3) {
+          <div class="feito">
+            <h3 #tituloPasso tabindex="-1" class="passo-titulo">Encomenda confirmada</h3>
+            <p>
+              Obrigado, {{ dados.value.nome }}. Enviámos a factura para {{ dados.value.email }}.
+              {{ entrega() === 'casa' ? 'A entrega chega em 24 horas.' : 'Podes levantar a partir de amanhã.' }}
+            </p>
+            <button mxButton variant="outline" type="button" (click)="recomecar()">Nova compra</button>
+          </div>
+        }
+      }
+
+      @if (passo() < 3) {
+        <div class="botoes">
+          @if (passo() > 0) {
+            <button mxButton variant="ghost" type="button" (click)="voltar()">Voltar</button>
+          }
+          <button mxButton type="submit" [loading]="aEnviar()">
+            {{ passo() === 2 ? 'Pagar ' + preco(total()) : 'Continuar' }}
+          </button>
+        </div>
+      }
+    </form>
+
+    <aside class="resumo" aria-label="Resumo">
+      <dl>
+        <div><dt>Artigos</dt><dd>{{ preco(artigos) }}</dd></div>
+        <div><dt>Entrega</dt><dd>{{ custoEntrega() ? preco(custoEntrega()) : 'Grátis' }}</dd></div>
+        <div class="total"><dt>Total</dt><dd>{{ preco(total()) }}</dd></div>
+      </dl>
+      <p class="nota">IVA incluído.</p>
+    </aside>
+  </div>
+</section>

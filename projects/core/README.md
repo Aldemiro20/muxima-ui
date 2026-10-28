@@ -63,6 +63,7 @@ Cada componente tem o seu ponto de entrada, para só importares o que usas:
 | `@muxima-ui/core/menu` | `MX_MENU` |
 | `@muxima-ui/core/popover` | `MX_POPOVER` |
 | `@muxima-ui/core/tooltip` | `MxTooltip` |
+| `@muxima-ui/core/tour` | `MxTour`, `MxTourAnchor` (visita guiada) |
 | `@muxima-ui/core/alert` | `MX_ALERT` |
 | `@muxima-ui/core/progress` | `MxProgress`, `MxSpinner` |
 | `@muxima-ui/core/skeleton` | `MxSkeleton` |

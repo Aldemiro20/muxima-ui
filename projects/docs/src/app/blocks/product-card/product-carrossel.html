@@ -1,0 +1,33 @@
+<section class="fila" aria-labelledby="product-carrossel-titulo">
+  <header class="cabeca">
+    <h2 id="product-carrossel-titulo" class="titulo">Mais vendidos esta semana</h2>
+    <a class="ver-todos" href="#" (click)="$event.preventDefault()">Ver todos</a>
+  </header>
+
+  <mx-carousel aria-label="Mais vendidos" [perView]="porVista()" [gap]="16">
+    @for (p of produtos; track p.id) {
+      <mx-carousel-slide [label]="p.nome">
+        <article class="produto">
+          <!-- troca por: <img [src]="p.imagem" [alt]="p.nome" /> -->
+          <div class="produto-img" [style.--cor]="p.cor" aria-hidden="true">
+            <span>{{ p.nome.charAt(0) }}</span>
+          </div>
+          <div class="produto-corpo">
+            <h3 class="produto-nome">{{ p.nome }}</h3>
+            <p class="produto-preco">{{ preco(p.preco) }}</p>
+            @if (adicionados().has(p.id)) {
+              <button mxButton variant="outline" size="sm" type="button" disabled>
+                No carrinho<span class="mx-visually-hidden">: {{ p.nome }}</span>
+              </button>
+            } @else {
+              <button mxButton size="sm" type="button" (click)="adicionar(p)">
+                Adicionar<span class="mx-visually-hidden"> {{ p.nome }} ao carrinho</span>
+              </button>
+            }
+          </div>
+        </article>
+      </mx-carousel-slide>
+    }
+  </mx-carousel>
+  <p class="mx-visually-hidden" role="status">{{ aviso() }}</p>
+</section>

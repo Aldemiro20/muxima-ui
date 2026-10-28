@@ -13,7 +13,7 @@ import { Icon } from '../ui/icon';
       <doc-page-header
         [crumbs]="[{ label: 'Documentação', path: '/docs/introducao' }, { label: 'Blocos' }]"
         title="Blocos"
-        lead="Secções de página feitas com os componentes da Muxima UI: hero, preços, cartões de produto, carrinho, definições, comentários e pagamento. Vês cada um em ecrã inteiro, tablet e telemóvel, e copias o código para o teu projecto."
+        lead="Secções de página feitas com os componentes da Muxima UI: hero, preços, cartões de produto, carrinho, definições, comentários, pagamento e onboarding. Vês cada um em ecrã inteiro, tablet e telemóvel, e copias o código para o teu projecto."
       />
 
       <h2 class="mx-visually-hidden">Lista de blocos</h2>

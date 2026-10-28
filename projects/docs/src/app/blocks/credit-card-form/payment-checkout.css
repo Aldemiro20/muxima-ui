@@ -1,0 +1,130 @@
+:host {
+  display: block;
+  container-type: inline-size;
+  font-family: var(--mx-font-sans);
+  color: var(--mx-ink);
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.checkout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+.titulo {
+  margin: 0;
+  font-size: 1.375rem;
+  font-weight: 600;
+}
+
+.corpo {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  align-items: start;
+  gap: 24px;
+}
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  border: var(--mx-border);
+  border-radius: var(--mx-radius-surface);
+  background: var(--mx-surface);
+}
+.passo-titulo {
+  margin: 0;
+  font-size: var(--mx-text-lg);
+  font-weight: 600;
+  outline: none;
+}
+.campos {
+  display: grid;
+  gap: 12px;
+}
+.opcao {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+.opcao [mxChoiceDescription],
+.opcao .mx-choice-description {
+  display: block;
+}
+.num {
+  font-variant-numeric: tabular-nums;
+}
+.botoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-top: 4px;
+}
+.feito {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.feito p {
+  margin: 0;
+  color: var(--mx-muted);
+}
+
+.resumo {
+  padding: 18px;
+  border: var(--mx-border);
+  border-radius: var(--mx-radius-surface);
+  background: var(--mx-surface);
+}
+.resumo dl {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+.resumo dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: var(--mx-text-md);
+}
+.resumo dt {
+  color: var(--mx-muted);
+}
+.resumo dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+.resumo .total {
+  padding-top: 10px;
+  border-top: var(--mx-border);
+  font-size: var(--mx-text-lg);
+  font-weight: 600;
+}
+.resumo .total dt {
+  color: var(--mx-ink);
+}
+.nota {
+  margin: 10px 0 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+}
+
+@container (max-width: 680px) {
+  .corpo {
+    grid-template-columns: 1fr;
+  }
+  .resumo {
+    order: -1;
+  }
+}

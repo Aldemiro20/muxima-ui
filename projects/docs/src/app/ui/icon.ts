@@ -68,6 +68,7 @@ const ICONS: Record<string, string> = {
   palette: '<path d="M12 3.5a8.5 8.5 0 1 0 0 17c1.2 0 1.8-.8 1.8-1.7 0-1.3-1.3-1.6-1.3-2.8 0-1 .8-1.6 1.8-1.6h2.2a4 4 0 0 0 4-4c0-3.8-3.8-6.9-8.5-6.9z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7.5" r="1"/><circle cx="14.5" cy="7.5" r="1"/>',
   kanban: '<rect x="3" y="4" width="5" height="16" rx="1.5"/><rect x="9.5" y="4" width="5" height="10" rx="1.5"/><rect x="16" y="4" width="5" height="13" rx="1.5"/>',
   crop: '<path d="M6 2.5V18h15.5M2.5 6H18v15.5"/>',
+  tour: '<rect x="3" y="3" width="13" height="10" rx="2" stroke-dasharray="2.5 2"/><path d="M12.5 11.5l8 3-3.4 1.3-1.3 3.7z"/>',
   editor: '<path d="M4 6h16M4 10h10M4 14h16M4 18h8"/><path d="M18 15.5l2.5 2.5-4 4H14v-2.5z"/>',
 };
 

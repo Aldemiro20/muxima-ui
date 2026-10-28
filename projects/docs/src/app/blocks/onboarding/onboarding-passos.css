@@ -1,0 +1,150 @@
+:host {
+  display: block;
+  font-family: var(--mx-font-sans);
+  color: var(--mx-ink);
+  line-height: 1.5;
+  container-type: inline-size;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.passos {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 620px;
+  margin: 32px auto;
+  padding: 24px;
+  border: var(--mx-border);
+  border-radius: var(--mx-radius-surface);
+  background: var(--mx-surface);
+}
+
+.cabeca {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.titulo {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+.sub {
+  margin: 2px 0 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-md);
+}
+.cabeca-accoes {
+  display: flex;
+  gap: 6px;
+}
+
+.progresso {
+  display: grid;
+  gap: 6px;
+}
+.progresso-label {
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.lista {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.item {
+  display: grid;
+  grid-template-columns: 24px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: var(--mx-border);
+}
+.item:first-child {
+  border-top: 0;
+}
+.marca {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid var(--mx-stone-strong);
+  border-radius: 50%;
+}
+.marca svg {
+  width: 14px;
+  height: 14px;
+}
+.item[data-feito] .marca {
+  border-color: var(--mx-accent);
+  background: var(--mx-accent);
+  color: var(--mx-on-accent);
+}
+.item[data-proximo] .marca {
+  border-color: var(--mx-accent);
+}
+.item-titulo {
+  margin: 0;
+  font-weight: 500;
+}
+.item[data-feito] .item-titulo {
+  color: var(--mx-muted);
+  text-decoration: line-through;
+}
+.item-descricao {
+  margin: 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+}
+
+.fim {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--mx-radius);
+  background: var(--mx-subtle);
+}
+.fim-titulo {
+  margin: 0;
+  font-weight: 500;
+}
+
+.escondida {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 32px auto;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-md);
+}
+
+@container (max-width: 480px) {
+  .passos {
+    margin: 0;
+    padding: 18px 16px;
+    border-width: 0;
+    border-radius: 0;
+  }
+  .item {
+    grid-template-columns: 24px 1fr;
+  }
+  .item > button {
+    grid-column: 2;
+    justify-self: start;
+  }
+}

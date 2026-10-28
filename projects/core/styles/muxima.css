@@ -53,6 +53,7 @@
 @import './components/time-picker.css';
 @import './components/color-picker.css';
 @import './components/editor.css';
+@import './components/tour.css';
 @import './components/otp.css';
 @import './components/file-upload.css';
 @import './components/image-cropper.css';

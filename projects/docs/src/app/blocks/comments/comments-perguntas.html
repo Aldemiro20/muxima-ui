@@ -1,0 +1,80 @@
+<section class="qa" aria-labelledby="qa-titulo">
+  <header class="cabeca">
+    <h2 id="qa-titulo" class="titulo">Perguntas sobre o produto</h2>
+    <p class="sub">Café do Uíge, 500 g · {{ perguntas().length }} perguntas</p>
+  </header>
+
+  <div class="procurar">
+    <label for="qa-procurar" class="mx-visually-hidden">Procurar nas perguntas</label>
+    <input
+      mxInput
+      id="qa-procurar"
+      type="search"
+      placeholder="Procurar nas perguntas"
+      [value]="filtro()"
+      (input)="filtro.set($any($event.target).value)"
+    />
+  </div>
+
+  <p class="mx-visually-hidden" aria-live="polite">
+    @if (filtro()) {
+      {{ visiveis().length }} {{ visiveis().length === 1 ? 'pergunta encontrada' : 'perguntas encontradas' }}
+    }
+  </p>
+
+  <ul class="lista">
+    @for (p of visiveis(); track p.id) {
+      <li class="pergunta">
+        <p class="pergunta-texto"><span class="letra" aria-hidden="true">P</span>{{ p.texto }}</p>
+        <p class="meta">{{ p.autor }}, {{ p.quando }}</p>
+        @if (p.resposta) {
+          <div class="resposta">
+            <p class="resposta-texto"><span class="letra" aria-hidden="true">R</span>{{ p.resposta.texto }}</p>
+            <p class="meta">
+              <span mxBadge size="sm" variant="secondary">Vendedor</span> {{ p.resposta.quando }}
+            </p>
+          </div>
+        } @else {
+          <p class="sem-resposta">Ainda sem resposta.</p>
+        }
+        <button
+          type="button"
+          class="util"
+          [attr.aria-pressed]="p.util"
+          (click)="alternarUtil(p)"
+        >
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M5 7l2.5-5c1 0 1.5.8 1.5 1.8V6h3.6c.8 0 1.4.8 1.2 1.6l-1.1 5c-.1.6-.7 1-1.3 1H5zM5 7H2.5v6.5H5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" />
+          </svg>
+          Útil ({{ p.uteis }})<span class="mx-visually-hidden">: {{ p.texto }}</span>
+        </button>
+      </li>
+    } @empty {
+      <li class="vazio">Nenhuma pergunta com "{{ filtro() }}". Faz tu a pergunta.</li>
+    }
+  </ul>
+
+  <form class="nova" (submit)="perguntar($event)" novalidate>
+    <mx-form-field>
+      <label mxLabel>Fazer uma pergunta</label>
+      <textarea
+        mxInput
+        rows="2"
+        autosize
+        maxlength="300"
+        [invalid]="!!erro()"
+        [value]="nova()"
+        (input)="nova.set($any($event.target).value); erro.set('')"
+      ></textarea>
+      @if (erro()) {
+        <mx-error>{{ erro() }}</mx-error>
+      } @else {
+        <mx-hint>O vendedor costuma responder em menos de um dia.</mx-hint>
+      }
+    </mx-form-field>
+    <div class="nova-botoes">
+      <button mxButton type="submit">Enviar pergunta</button>
+    </div>
+  </form>
+  <p class="mx-visually-hidden" role="status">{{ aviso() }}</p>
+</section>

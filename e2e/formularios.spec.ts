@@ -10,7 +10,10 @@ test.describe('Formulários com teclado', () => {
     await expect(trigger).toHaveAttribute('aria-expanded', 'true');
     const listbox = page.getByRole('listbox');
     await expect(listbox).toBeVisible();
+    const firstId = await trigger.getAttribute('aria-activedescendant');
     await page.keyboard.press('ArrowDown');
+    // espera que a opção activa mude antes de a ler
+    await expect(trigger).not.toHaveAttribute('aria-activedescendant', firstId ?? '');
     const activeId = await trigger.getAttribute('aria-activedescendant');
     const activeText = await page.locator(`[id="${activeId}"]`).textContent();
     await page.keyboard.press('Enter');
@@ -79,6 +82,9 @@ test.describe('Formulários com teclado', () => {
     await openComponent(page, 'date-picker');
     const toggle = page.locator('doc-preview .mx-date-picker-toggle');
     await toggle.click();
+    // o calendário abre e recebe o foco antes de se carregar em Escape
+    await expect(page.locator('.mx-date-picker-panel')).toBeVisible();
+    await expect.poll(() => page.evaluate(() => !!document.activeElement?.closest('.mx-date-picker-panel'))).toBe(true);
     await page.keyboard.press('Escape');
     await expect(page.locator('.mx-date-picker-panel')).toHaveCount(0);
     await expect(toggle).toBeFocused();

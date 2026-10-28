@@ -1,0 +1,174 @@
+:host {
+  display: block;
+  font-family: var(--mx-font-sans);
+  color: var(--mx-ink);
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.loja {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px;
+}
+.topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: var(--mx-border);
+}
+.marca {
+  font-size: var(--mx-text-lg);
+}
+.botao-carrinho svg {
+  width: 16px;
+  height: 16px;
+}
+
+.produtos {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.produto {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: var(--mx-border);
+}
+.produto-img {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--mx-radius);
+  background: var(--cor);
+  color: rgb(255 255 255 / 0.85);
+  font-weight: 600;
+}
+.produto-img.pequena {
+  width: 44px;
+  height: 44px;
+}
+.produto-nome {
+  margin: 0;
+  font-size: var(--mx-text-md);
+  font-weight: 500;
+}
+.produto-preco {
+  margin: 0;
+  font-size: var(--mx-text-md);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- painel (abre no Drawer; os estilos do componente aplicam-se ao modelo) ---------- */
+.painel-topo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.painel-conteudo {
+  flex: 1;
+}
+.linhas {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.linha {
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  align-items: start;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: var(--mx-border);
+}
+.linha-texto {
+  display: grid;
+  gap: 6px;
+}
+.linha-fim {
+  display: grid;
+  justify-items: end;
+  gap: 4px;
+}
+.quantidade {
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  border: var(--mx-border);
+  border-radius: var(--mx-radius);
+}
+.qtd-botao {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: transparent;
+  color: var(--mx-ink);
+  font: inherit;
+  cursor: pointer;
+}
+.qtd-botao:hover {
+  background: var(--mx-subtle);
+}
+.qtd-botao:focus-visible,
+.remover:focus-visible {
+  outline: var(--mx-focus-width) solid var(--mx-accent);
+  outline-offset: 1px;
+}
+.qtd-valor {
+  min-width: 24px;
+  font-size: var(--mx-text-sm);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.remover {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--mx-danger);
+  font: inherit;
+  font-size: var(--mx-text-sm);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+.vazio {
+  margin: 24px 0;
+  color: var(--mx-muted);
+  text-align: center;
+}
+.painel-fim {
+  display: grid;
+  gap: 8px;
+}
+.subtotal {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  font-size: var(--mx-text-lg);
+}
+.subtotal strong {
+  font-variant-numeric: tabular-nums;
+}
+.nota {
+  margin: 0 0 4px;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+}
+.largo {
+  width: 100%;
+}

@@ -35,6 +35,7 @@ export const routes: Routes = [
       { path: 'componentes/skeleton', title: 'Skeleton · Muxima UI', loadComponent: () => import('./pages/components/skeleton').then((m) => m.SkeletonPage) },
       { path: 'componentes/progress', title: 'Progress · Muxima UI', loadComponent: () => import('./pages/components/progress').then((m) => m.ProgressPage) },
       { path: 'componentes/tooltip', title: 'Tooltip · Muxima UI', loadComponent: () => import('./pages/components/tooltip').then((m) => m.TooltipPage) },
+      { path: 'componentes/tour-guide', title: 'Tour guide · Muxima UI', loadComponent: () => import('./pages/components/tour').then((m) => m.TourPage) },
       { path: 'componentes/popover', title: 'Popover · Muxima UI', loadComponent: () => import('./pages/components/popover').then((m) => m.PopoverPage) },
       { path: 'componentes/dropdown-menu', title: 'Dropdown menu · Muxima UI', loadComponent: () => import('./pages/components/dropdown-menu').then((m) => m.DropdownMenuPage) },
       { path: 'componentes/drawer', title: 'Drawer · Muxima UI', loadComponent: () => import('./pages/components/drawer').then((m) => m.DrawerPage) },

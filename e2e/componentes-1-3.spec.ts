@@ -12,9 +12,15 @@ test.describe('Componentes da 1.3', () => {
     await page.keyboard.press('ArrowDown');
     await expect(grid.locator('[data-cell="3:2"]')).toBeFocused();
     // sobe ao cabeçalho e ordena por cliente
+    // cada tecla espera que o foco tenha mudado de célula (fica no controlo dentro dela)
+    const celula = () =>
+      page.evaluate(() => document.activeElement?.closest('[data-cell]')?.getAttribute('data-cell'));
     await page.keyboard.press('Control+Home');
+    await expect.poll(celula).toBe('0:0');
     await page.keyboard.press('ArrowRight');
+    await expect.poll(celula).toBe('0:1');
     await page.keyboard.press('ArrowRight');
+    await expect.poll(celula).toBe('0:2');
     await page.keyboard.press('Enter');
     await expect(grid.locator('th[aria-sort="ascending"]')).toContainText('Cliente');
     await grid.getByRole('textbox', { name: /Filtrar Valor/ }).fill('>4000000');

@@ -1,0 +1,99 @@
+@if (!escondida()) {
+  <section class="passos" aria-labelledby="ob-passos-titulo">
+    <header class="cabeca">
+      <div>
+        <h2 id="ob-passos-titulo" class="titulo">Primeiros passos</h2>
+        <p class="sub">Prepara a conta para emitir a primeira factura.</p>
+      </div>
+      <div class="cabeca-accoes">
+        <button mxButton variant="ghost" size="sm" type="button" (click)="explicar()">
+          Como funciona
+        </button>
+        <button
+          mxButton
+          variant="outline"
+          size="sm"
+          type="button"
+          mxTourAnchor="ob-passos-esconder"
+          (click)="escondida.set(true)"
+        >
+          Esconder
+        </button>
+      </div>
+    </header>
+
+    <div class="progresso" mxTourAnchor="ob-passos-progresso">
+      <label for="ob-passos-barra" class="progresso-label">
+        {{ feitos() }} de {{ passos().length }} feitos
+      </label>
+      <progress id="ob-passos-barra" mxProgress [value]="percentagem()" max="100">
+        {{ percentagem() }}%
+      </progress>
+    </div>
+
+    <ol class="lista">
+      @for (p of passos(); track p.id) {
+        <li
+          class="item"
+          [attr.data-feito]="p.feito ? '' : null"
+          [attr.data-proximo]="proximo()?.id === p.id ? '' : null"
+        >
+          <span class="marca" aria-hidden="true">
+            @if (p.feito) {
+              <svg viewBox="0 0 16 16" fill="none">
+                <path
+                  d="M3.5 8.5l3 3 6-7"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            }
+          </span>
+          <div class="item-texto">
+            <p class="item-titulo">
+              {{ p.titulo }}
+              @if (p.feito) {
+                <span class="mx-visually-hidden">(feito)</span>
+              }
+            </p>
+            <p class="item-descricao">{{ p.descricao }}</p>
+          </div>
+          @if (!p.feito) {
+            @if (proximo()?.id === p.id) {
+              <button
+                mxButton
+                size="sm"
+                type="button"
+                mxTourAnchor="ob-passos-proximo"
+                (click)="concluir(p)"
+              >
+                {{ p.accao }}
+              </button>
+            } @else {
+              <button mxButton variant="outline" size="sm" type="button" (click)="concluir(p)">
+                {{ p.accao }}<span class="mx-visually-hidden">: {{ p.titulo }}</span>
+              </button>
+            }
+          }
+        </li>
+      }
+    </ol>
+
+    @if (!proximo()) {
+      <div class="fim">
+        <p class="fim-titulo">Está tudo pronto.</p>
+        <button mxButton variant="outline" size="sm" type="button" (click)="escondida.set(true)">
+          Fechar a lista
+        </button>
+      </div>
+    }
+  </section>
+} @else {
+  <p class="escondida">
+    Lista de primeiros passos escondida.
+    <button mxButton variant="link" type="button" (click)="recomecar()">Mostrar outra vez</button>
+  </p>
+}
+<p class="mx-visually-hidden" role="status">{{ aviso() }}</p>

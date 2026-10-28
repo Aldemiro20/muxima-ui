@@ -1,0 +1,126 @@
+:host {
+  display: block;
+  container-type: inline-size;
+  font-family: var(--mx-font-sans);
+  color: var(--mx-ink);
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 64px 24px;
+}
+.cabeca {
+  max-width: 560px;
+}
+.titulo {
+  margin: 0;
+  font-size: clamp(24px, 4cqi, 32px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.sub {
+  margin: 8px 0 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-lg);
+}
+
+.painel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 32px;
+  padding-top: 24px;
+}
+.texto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+.painel-titulo {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+.painel-texto {
+  margin: 0;
+  color: var(--mx-muted);
+}
+.pontos {
+  display: grid;
+  gap: 8px;
+  margin: 4px 0 8px;
+  padding: 0;
+  list-style: none;
+}
+.pontos li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.pontos svg {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin-top: 4px;
+  color: var(--mx-accent);
+}
+
+.mockup {
+  padding: 16px;
+  border: var(--mx-border);
+  border-radius: var(--mx-radius-surface);
+  background: var(--mx-surface);
+  box-shadow: var(--mx-shadow-overlay);
+}
+.mockup-barra {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 14px;
+}
+.mockup-barra span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--mx-stone);
+}
+.mockup-titulo {
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+.mockup-linha {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: var(--mx-border);
+  font-size: var(--mx-text-md);
+}
+.mockup-linha span {
+  color: var(--mx-muted);
+}
+.mockup-linha strong {
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+@container (max-width: 720px) {
+  .features {
+    padding: 40px 16px;
+  }
+  .painel {
+    grid-template-columns: 1fr;
+  }
+}

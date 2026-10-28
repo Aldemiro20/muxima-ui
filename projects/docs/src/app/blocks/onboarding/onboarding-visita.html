@@ -1,0 +1,79 @@
+<div class="app">
+  <nav class="lateral" aria-label="Principal" mxTourAnchor="ob-menu">
+    <p class="marca">Kianda</p>
+    <ul>
+      @for (m of menu; track m) {
+        <li>
+          <button
+            type="button"
+            class="lateral-item"
+            [attr.aria-current]="activo() === m ? 'page' : null"
+            (click)="activo.set(m)"
+          >
+            {{ m }}
+          </button>
+        </li>
+      }
+    </ul>
+  </nav>
+
+  <div class="principal">
+    <header class="topo">
+      <h1 class="topo-title">{{ activo() }}</h1>
+      <form class="pesquisa" role="search" (submit)="$event.preventDefault()">
+        <input
+          mxInput
+          size="sm"
+          type="search"
+          placeholder="Pesquisar"
+          aria-label="Pesquisar clientes e facturas"
+          mxTourAnchor="ob-pesquisa"
+        />
+      </form>
+      <button mxButton size="sm" type="button" mxTourAnchor="ob-nova">Nova factura</button>
+      <button
+        mxButton
+        size="sm"
+        variant="outline"
+        type="button"
+        mxTourAnchor="ob-ajuda"
+        (click)="comecar()"
+      >
+        Ajuda
+      </button>
+    </header>
+
+    @if (convite()) {
+      <section class="convite" aria-labelledby="ob-visita-convite">
+        <div>
+          <h2 id="ob-visita-convite" class="convite-title">
+            Novo por aqui? <span mxBadge variant="secondary">1 minuto</span>
+          </h2>
+          <p class="convite-text">Faz a visita guiada e fica a saber onde está cada coisa.</p>
+        </div>
+        <div class="convite-actions">
+          <button mxButton variant="ghost" size="sm" type="button" (click)="dispensar()">
+            Agora não
+          </button>
+          <button mxButton size="sm" type="button" (click)="comecar()">Começar a visita</button>
+        </div>
+      </section>
+    }
+    <p class="estado" role="status">{{ estado() }}</p>
+
+    <section class="resumo" aria-label="Resumo do mês" mxTourAnchor="ob-resumo">
+      <div class="cartao">
+        <p class="cartao-label">Por receber</p>
+        <p class="cartao-valor">4 820 000 Kz</p>
+      </div>
+      <div class="cartao">
+        <p class="cartao-label">Em atraso</p>
+        <p class="cartao-valor">3 facturas</p>
+      </div>
+      <div class="cartao">
+        <p class="cartao-label">Recebido em Outubro</p>
+        <p class="cartao-valor">12 350 000 Kz</p>
+      </div>
+    </section>
+  </div>
+</div>

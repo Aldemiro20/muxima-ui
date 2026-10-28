@@ -9,6 +9,10 @@ const axeSource = readFileSync(join(process.cwd(), 'node_modules/axe-core/axe.mi
  * abrem fora das regiões da página, como em qualquer biblioteca baseada no CDK.
  */
 export async function expectAccessible(page: Page): Promise<void> {
+  // a meio de uma animação (ex.: um diálogo a aparecer) o contraste ainda não é o final
+  await page.waitForFunction(() =>
+    document.getAnimations().every((a) => a.playState !== 'running' || a.effect?.getTiming().iterations === Infinity),
+  );
   await page.addScriptTag({ content: axeSource });
   const violations = await page.evaluate(async () => {
     const w = window as unknown as { axe: { run: (ctx: Document, opts: object) => Promise<{ violations: { id: string; nodes: { target: string[] }[] }[] }> } };

@@ -1,0 +1,155 @@
+/* ---------- Tour (visita guiada) ---------- */
+
+.mx-tour-pane {
+  pointer-events: auto;
+}
+.mx-tour-layer {
+  position: fixed;
+  inset: 0;
+  display: block;
+  font-family: var(--mx-font-sans);
+}
+.mx-tour-dim {
+  position: fixed;
+  inset: 0;
+  background: var(--mx-backdrop);
+  animation: mx-fade-in var(--mx-duration) var(--mx-ease);
+}
+/* o recorte: uma sombra enorme escurece tudo à volta do elemento */
+.mx-tour-spotlight {
+  position: fixed;
+  border-radius: var(--mx-radius);
+  box-shadow:
+    0 0 0 2px var(--mx-accent),
+    0 0 0 200vmax var(--mx-backdrop);
+  pointer-events: none;
+  transition:
+    top 200ms var(--mx-ease),
+    left 200ms var(--mx-ease),
+    width 200ms var(--mx-ease),
+    height 200ms var(--mx-ease);
+}
+.mx-tour-card {
+  position: fixed;
+  box-sizing: border-box;
+  width: min(340px, calc(100vw - 24px));
+  padding: 16px 16px 14px;
+  border: var(--mx-border);
+  border-radius: var(--mx-radius-surface);
+  background: var(--mx-surface);
+  box-shadow: var(--mx-shadow-overlay);
+  color: var(--mx-ink);
+  font-size: var(--mx-text-md);
+  line-height: 1.5;
+  outline: none;
+  animation: mx-fade-in var(--mx-duration) var(--mx-ease);
+}
+.mx-tour-card:focus,
+.mx-tour-card:focus-visible {
+  outline: none;
+}
+.mx-tour-card[data-placement='center'] {
+  top: 50%;
+  left: 50%;
+  width: min(400px, calc(100vw - 24px));
+  transform: translate(-50%, -50%);
+}
+.mx-tour-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 24px;
+}
+.mx-tour-progress {
+  margin: 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-xs);
+  font-variant-numeric: tabular-nums;
+}
+.mx-tour-close {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin: -4px -6px -4px 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--mx-radius);
+  background: transparent;
+  color: var(--mx-muted);
+  cursor: pointer;
+}
+.mx-tour-close:hover {
+  background: var(--mx-subtle);
+  color: var(--mx-ink);
+}
+.mx-tour-close svg {
+  width: 16px;
+  height: 16px;
+}
+.mx-tour-title {
+  margin: 6px 0 4px;
+  font-size: var(--mx-text-lg);
+  font-weight: 600;
+  line-height: 1.35;
+}
+.mx-tour-body {
+  color: var(--mx-muted);
+}
+.mx-tour-body > :first-child {
+  margin-top: 0;
+}
+.mx-tour-body > :last-child {
+  margin-bottom: 0;
+}
+.mx-tour-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 14px;
+}
+.mx-tour-dots {
+  display: inline-flex;
+  gap: 5px;
+}
+.mx-tour-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mx-stone);
+}
+.mx-tour-dot[data-active] {
+  width: 16px;
+  border-radius: 3px;
+  background: var(--mx-accent);
+}
+.mx-tour-actions {
+  display: inline-flex;
+  gap: 6px;
+  margin-left: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mx-tour-spotlight {
+    transition: none;
+  }
+  .mx-tour-card,
+  .mx-tour-dim {
+    animation: none;
+  }
+}
+/* sem sombras em alto contraste: o destaque passa a ser um contorno */
+@media (forced-colors: active) {
+  .mx-tour-spotlight {
+    outline: 3px solid Highlight;
+  }
+  .mx-tour-card {
+    border: 1px solid CanvasText;
+  }
+  .mx-tour-dot[data-active] {
+    background: Highlight;
+  }
+}

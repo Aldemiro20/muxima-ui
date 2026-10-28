@@ -10,7 +10,7 @@ async function openBlock(page: Page, id: string): Promise<void> {
 test.describe('Blocos', () => {
   test('Lista dos blocos e página de uma categoria', async ({ page }) => {
     await page.goto('/blocos');
-    await expect(page.locator('.catalog-card')).toHaveCount(9);
+    await expect(page.locator('.catalog-card')).toHaveCount(10);
     await page.getByRole('link', { name: /Pricing card/ }).first().click();
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Pricing card');
     await expect(page.locator('doc-block-viewer')).toHaveCount(3);

@@ -1,0 +1,96 @@
+:host {
+  display: block;
+  font-family: var(--mx-font-sans);
+  color: var(--mx-ink);
+  line-height: 1.5;
+  container-type: inline-size;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.app {
+  display: flex;
+  min-height: 480px;
+  background: var(--mx-paper);
+}
+.lateral {
+  flex: none;
+  height: auto;
+}
+.marca {
+  white-space: nowrap;
+}
+/* recolhida, só fica o botão: o nome não cabe */
+.lateral[data-collapsed] .marca {
+  display: none;
+}
+.pessoa {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.3;
+}
+.pessoa-nome {
+  font-size: var(--mx-text-sm);
+  font-weight: 500;
+}
+.pessoa-email {
+  overflow: hidden;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-xs);
+  text-overflow: ellipsis;
+}
+
+.conteudo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+.topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-bottom: var(--mx-border);
+  background: var(--mx-surface);
+}
+.topo-titulo {
+  margin: 0 auto 0 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+.pesquisa {
+  width: 220px;
+}
+
+.area {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding: 20px;
+}
+.lugar {
+  min-height: 120px;
+  border: 1px dashed var(--mx-stone-strong);
+  border-radius: var(--mx-radius-surface);
+}
+.lugar-largo {
+  grid-column: 1 / -1;
+  min-height: 180px;
+}
+
+@container (max-width: 640px) {
+  .pesquisa {
+    order: 3;
+    width: 100%;
+  }
+  .area {
+    grid-template-columns: 1fr;
+  }
+}

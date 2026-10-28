@@ -60,6 +60,17 @@ export class ChangelogPage {
   protected readonly links = LINKS;
   protected readonly releases: Release[] = [
     {
+      version: '1.4.0',
+      status: 'Em curso',
+      date: 'Pronta a publicar',
+      title: 'Visita guiada e blocos',
+      items: [
+        'Tour guide: visita guiada com destaque, teclado, foco devolvido e passos que preparam o ecrã',
+        '32 blocos para copiar em 10 categorias, do hero ao checkout e ao onboarding',
+        'Cada bloco em ecrã inteiro, tablet e telemóvel, com o código .ts, .html e .css',
+      ],
+    },
+    {
       version: '1.3.0',
       status: 'Publicada',
       date: '28 de outubro de 2026',

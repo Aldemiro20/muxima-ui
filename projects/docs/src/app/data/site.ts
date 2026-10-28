@@ -114,6 +114,7 @@ export const CATALOG: CatalogItem[] = [
   c('Dropdown menu', 'Lista de acções num botão.', 'menu', 'Sobreposição', 'dropdown-menu'),
   c('Popover', 'Conteúdo flutuante junto a um elemento.', 'popover', 'Sobreposição', 'popover'),
   c('Tooltip', 'Texto curto ao passar ou focar.', 'tooltip', 'Sobreposição', 'tooltip'),
+  c('Tour guide', 'Visita guiada que destaca partes do ecrã.', 'tour', 'Sobreposição', 'tour-guide'),
   // Feedback
   c('Alert', 'Mensagens destacadas na página.', 'alert', 'Feedback', 'alert'),
   c('Progress', 'Barras e indicador de espera.', 'progress', 'Feedback', 'progress'),

@@ -2,6 +2,18 @@
 
 Todas as alterações relevantes do pacote `@muxima-ui/core`. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-PT/1.1.0/) e as versões seguem o [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.4.0] - por publicar
+
+Visita guiada e blocos.
+
+### Novos
+
+- **Tour guide** (`@muxima-ui/core/tour`): visita guiada que destaca um elemento de cada vez, com o serviço `MxTour` e a directiva `mxTourAnchor`. O cartão é um diálogo modal (foco preso, setas para mudar de passo, Escape para fechar, foco devolvido no fim); passos sem alvo ficam ao centro; `beforeShow` prepara o ecrã antes de cada passo (ex.: abrir um separador); `startAt` para continuar onde parou; `afterClosed` diz se chegou ao fim; textos em `labels`; `dismissible: false` para visitas obrigatórias. Respeita reduzir movimento e alto contraste.
+
+### Documentação
+
+- Blocos para copiar (não entram no pacote): 32 secções em 10 categorias (Hero, Feature card, Pricing card, Product card, Navbar, Shopping cart, Settings item, Comments, Credit card form e Onboarding), cada uma num iframe com ecrã inteiro, tablet e telemóvel, e o código .ts, .html e .css.
+
 ## [1.3.0] - 2026-10-28
 
 Componentes avançados. Com esta versão, todos os componentes do plano 1.x estão publicados.

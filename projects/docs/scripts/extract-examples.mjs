@@ -181,9 +181,9 @@ function libraryImports(html, ts) {
     );
   const core = [
     'Component',
-    ...['DestroyRef', 'Injector'].filter((x) => new RegExp(`\\b${x}\\b`).test(ts)),
-    ...['signal', 'computed', 'inject', 'effect', 'linkedSignal'].filter((x) =>
-      new RegExp(`\\b${x}\\s*[<(]`).test(ts),
+    ...['DestroyRef', 'Injector', 'ElementRef', 'TemplateRef'].filter((x) => new RegExp(`\\b${x}\\b`).test(ts)),
+    ...['signal', 'computed', 'inject', 'effect', 'linkedSignal', 'viewChild'].filter((x) =>
+      new RegExp(`\\b${x}(\\.required)?\\s*[<(]`).test(ts),
     ),
   ];
   const importsArray = [
@@ -191,7 +191,7 @@ function libraryImports(html, ts) {
       .flatMap((s) => [...s])
       .filter(
         (n) =>
-          !/^(MxDialog|MxDrawer|MxToast|MxCommandPalette|MxSortState|MxBadgeVariant|MxCardVariant|MxToastPosition|MxDrawerSide|MxStepState|MxCommandItem|MX_DIALOG_DATA|MxDialogRef|mx[A-Z]\w*)$/.test(
+          !/^(MxDialog|MxDrawer|MxToast|MxCommandPalette|MxSortState|MxBadgeVariant|MxCardVariant|MxToastPosition|MxDrawerSide|MxStepState|MxCommandItem|MX_DIALOG_DATA|MxDialogRef|MxTour|MxTourRef|MxTourStep|MxTourStepContext|MxTourOptions|MxTourResult|MxTourLabels|MX_TOUR_LABELS|mx[A-Z]\w*)$/.test(
             n,
           ) || n === 'MX_DIALOG',
       )

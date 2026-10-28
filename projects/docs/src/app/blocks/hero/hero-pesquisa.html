@@ -1,0 +1,66 @@
+<section class="hero" aria-labelledby="hero-pesquisa-titulo">
+  <p class="eyebrow">Centro de ajuda</p>
+  <h1 id="hero-pesquisa-titulo" class="title">Como podemos ajudar?</h1>
+  <p class="lead">Respostas sobre facturas, IVA e a tua conta, em português e sem esperas.</p>
+
+  <form class="pesquisa" role="search" (submit)="pesquisar($event)">
+    <label for="hero-pesquisa-campo" class="mx-visually-hidden">Pesquisar na ajuda</label>
+    <svg class="pesquisa-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5" />
+      <path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+    </svg>
+    <input
+      mxInput
+      id="hero-pesquisa-campo"
+      type="search"
+      class="pesquisa-campo"
+      placeholder="Ex.: nota de crédito"
+      autocomplete="off"
+      [value]="texto()"
+      (input)="texto.set($any($event.target).value)"
+    />
+    <button mxButton type="submit">Pesquisar</button>
+  </form>
+
+  <div class="temas">
+    <span class="temas-label" id="hero-pesquisa-temas">Populares:</span>
+    <ul class="temas-lista" aria-labelledby="hero-pesquisa-temas">
+      @for (t of temas; track t) {
+        <li>
+          <button
+            type="button"
+            class="mx-chip mx-chip-toggle"
+            data-size="sm"
+            [attr.aria-pressed]="pesquisado() === t"
+            (click)="escolherTema(t)"
+          >
+            {{ t }}
+          </button>
+        </li>
+      }
+    </ul>
+  </div>
+
+  <div class="resultados" aria-live="polite">
+    @if (pesquisado()) {
+      @if (resultados().length) {
+        <h2 class="resultados-titulo">
+          {{ resultados().length }} {{ resultados().length === 1 ? 'artigo' : 'artigos' }} sobre
+          "{{ pesquisado() }}"
+        </h2>
+        <ul class="resultados-lista">
+          @for (a of resultados(); track a.titulo) {
+            <li>
+              <a href="#" (click)="$event.preventDefault()">{{ a.titulo }}</a>
+              <span class="resultados-tema">{{ a.tema }}</span>
+            </li>
+          }
+        </ul>
+      } @else {
+        <p class="resultados-vazio">
+          Nada sobre "{{ pesquisado() }}". Experimenta outra palavra ou escreve-nos.
+        </p>
+      }
+    }
+  </div>
+</section>
