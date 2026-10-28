@@ -1,0 +1,36 @@
+<section class="unico" aria-labelledby="pricing-unico-titulo">
+  <div class="unico-card">
+    <div class="unico-main">
+      <h2 id="pricing-unico-titulo" class="unico-title">Um plano, tudo incluído</h2>
+      <p class="unico-lead">
+        Sem módulos à parte nem limites de utilizadores. Pagas uma vez por ano e usas tudo.
+      </p>
+
+      <div class="unico-divider">
+        <span>O que inclui</span>
+        <hr mxSeparator />
+      </div>
+
+      <ul class="unico-list">
+        @for (i of inclui; track i) {
+          <li>
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            {{ i }}
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="unico-preco">
+      <p class="unico-preco-label">Pagamento anual</p>
+      <p class="unico-valor">
+        <span>249 000</span>
+        <span class="unico-moeda">Kz/ano</span>
+      </p>
+      <a mxButton size="lg" class="unico-cta" href="#comprar">Comprar agora</a>
+      <p class="unico-garantia">30 dias para experimentar. Se não gostares, devolvemos o valor.</p>
+    </div>
+  </div>
+</section>

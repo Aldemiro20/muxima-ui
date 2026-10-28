@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MX_COMMAND, MxCommandItem } from '@muxima-ui/core/command';
 import { MxDialogRef } from '@muxima-ui/core/dialog';
+import { BLOCKS } from '../blocks/registry';
 import { CATALOG, SIDEBAR, TOP_NAV } from '../data/site';
 import { Icon } from '../ui/icon';
 
@@ -19,6 +20,12 @@ const ITEMS: MxCommandItem<Target>[] = [
     keywords: [c.description, c.category],
     data: { path: c.path!, icon: c.icon },
   })),
+  ...BLOCKS.map((b) => ({
+    label: b.name,
+    group: 'Blocos',
+    keywords: [b.description, 'bloco', ...b.variants.map((v) => v.title)],
+    data: { path: `/blocos/${b.slug}`, icon: b.icon },
+  })),
 ];
 
 /** Pesquisa do site (Ctrl+K), feita com o mx-command da própria biblioteca. */
@@ -27,7 +34,7 @@ const ITEMS: MxCommandItem<Target>[] = [
   imports: [MX_COMMAND, Icon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <mx-command [items]="items" placeholder="Pesquisar componentes e páginas..." aria-label="Pesquisar na documentação" (selected)="go($event)">
+    <mx-command [items]="items" placeholder="Pesquisar componentes, blocos e páginas..." aria-label="Pesquisar na documentação" (selected)="go($event)">
       <ng-template mxCommandItem let-item>
         <doc-icon [name]="item.data.icon" />
         <span>{{ item.label }}</span>

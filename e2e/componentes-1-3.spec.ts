@@ -94,6 +94,9 @@ test.describe('Componentes da 1.3', () => {
     await page.keyboard.press('Control+End');
     await page.keyboard.type(' Bom dia');
     await page.keyboard.press('Shift+Home');
+    // o ProseMirror lê a selecção no evento selectionchange, que chega depois da tecla
+    await expect.poll(() => page.evaluate(() => getSelection()?.toString() ?? '')).toContain('Bom dia');
+    await page.waitForTimeout(50);
     await page.keyboard.press('Control+i');
     await expect(ex.locator('pre')).toContainText('<em>');
     await page.keyboard.press('Alt+F10');

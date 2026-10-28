@@ -150,7 +150,7 @@ kbd {
 .site-header-inner {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 32px;
   max-width: var(--doc-max);
   height: 100%;
   margin: 0 auto;
@@ -158,8 +158,10 @@ kbd {
 }
 .brand {
   display: inline-flex;
+  flex: none;
   align-items: center;
   gap: 10px;
+  white-space: nowrap;
   text-decoration: none;
 }
 .brand-name {
@@ -170,7 +172,7 @@ kbd {
 .top-nav {
   display: flex;
   align-self: stretch;
-  gap: 28px;
+  gap: 24px;
 }
 .top-nav a {
   position: relative;
@@ -222,7 +224,15 @@ kbd {
 }
 .search-trigger span {
   flex: 1;
+  min-width: 0;
+  overflow: hidden;
   text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.search-trigger kbd {
+  flex: none;
+  white-space: nowrap;
 }
 .menu-button {
   display: none;
@@ -1674,19 +1684,37 @@ a.text-link:hover,
 
 /* ---------- Responsivo ---------- */
 
-@media (max-width: 1280px) {
+/* com o item Blocos, o cabeçalho precisa de mais espaço antes de recolher */
+@media (max-width: 1480px) {
   .search-trigger {
-    width: 200px;
+    width: 196px;
   }
   .top-nav {
-    gap: 20px;
+    gap: 18px;
+  }
+}
+@media (max-width: 1400px) {
+  :root {
+    --doc-gutter: 32px;
+  }
+  .site-header-inner {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .search-trigger {
+    width: 196px;
+  }
+  .top-nav {
+    gap: 18px;
   }
   .hero-title {
     font-size: 52px;
   }
 }
 
-@media (max-width: 1140px) {
+@media (max-width: 1279px) {
   :root {
     --doc-gutter: 32px;
   }
@@ -3147,4 +3175,105 @@ a.text-link:hover,
   border: var(--mx-border);
   border-radius: var(--mx-radius);
   background: var(--mx-subtle);
+}
+
+/* ---------- Blocos ---------- */
+.stack-xl {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+.block-viewer {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.block-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px 24px;
+}
+.block-head-text p {
+  max-width: 62ch;
+  margin-top: 4px;
+  color: var(--mx-muted);
+}
+.block-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+}
+.block-tools .chip {
+  height: 32px;
+  padding: 0 12px;
+  font-size: 13px;
+}
+.block-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.block-stage {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+  overflow-x: auto;
+  border-radius: var(--mx-radius-surface);
+  background:
+    radial-gradient(circle at 1px 1px, var(--mx-stone) 1px, transparent 0) 0 0 / 16px 16px,
+    var(--mx-subtle);
+}
+.block-frame {
+  display: block;
+  flex: none;
+  max-width: 100%;
+  border: 1px solid var(--mx-stone);
+  border-radius: var(--mx-radius-surface);
+  background: var(--mx-paper);
+  transition:
+    width 200ms var(--mx-ease),
+    height 120ms var(--mx-ease);
+}
+@media (prefers-reduced-motion: reduce) {
+  .block-frame {
+    transition: none;
+  }
+}
+.block-uses {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  font-size: 13px;
+}
+.block-others {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.steps-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 22px;
+}
+.block-page {
+  display: flow-root;
+}
+.block-missing {
+  padding: 24px;
+}
+.block-head h2 {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.doc-page > .stack-xl {
+  margin-top: 36px;
 }

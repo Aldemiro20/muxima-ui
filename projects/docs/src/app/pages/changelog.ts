@@ -61,8 +61,8 @@ export class ChangelogPage {
   protected readonly releases: Release[] = [
     {
       version: '1.3.0',
-      status: 'Em curso',
-      date: 'Pronta a publicar',
+      status: 'Publicada',
+      date: '28 de outubro de 2026',
       title: 'Componentes avançados',
       items: [
         'Data grid com navegação célula a célula, filtros, selecção, colunas fixas e scroll virtual',

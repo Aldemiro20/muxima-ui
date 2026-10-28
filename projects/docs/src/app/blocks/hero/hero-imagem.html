@@ -1,0 +1,44 @@
+<section class="hero" aria-labelledby="hero-imagem-titulo">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Para pequenas e médias empresas</p>
+    <h1 id="hero-imagem-titulo" class="hero-title">Vende mais, preocupa-te menos com a papelada</h1>
+    <p class="hero-lead">
+      A Kianda Gestão trata da facturação, do stock e dos impostos, para teres tempo para os teus
+      clientes.
+    </p>
+
+    <ul class="hero-list">
+      @for (v of vantagens; track v) {
+        <li>
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          {{ v }}
+        </li>
+      }
+    </ul>
+
+    <div class="hero-actions">
+      <a mxButton size="lg" href="#registar">Criar conta grátis</a>
+      <a mxButton size="lg" variant="ghost" href="#precos">Ver preços →</a>
+    </div>
+  </div>
+
+  <figure class="hero-media" role="img" aria-label="Painel da aplicação com as vendas da semana a subir">
+    <div class="mock" aria-hidden="true">
+      <div class="mock-bar"><i></i><i></i><i></i></div>
+      <div class="mock-body">
+        <div class="mock-kpis">
+          <div><span>Vendas</span><b>4,2 M Kz</b></div>
+          <div><span>Facturas</span><b>128</b></div>
+          <div><span>Por cobrar</span><b>6</b></div>
+        </div>
+        <div class="mock-chart">
+          @for (b of barras; track $index) {
+            <span [style.height.%]="b"></span>
+          }
+        </div>
+      </div>
+    </div>
+  </figure>
+</section>

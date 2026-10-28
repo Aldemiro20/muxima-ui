@@ -1,0 +1,58 @@
+<section class="carrinho" aria-labelledby="cart-pagina-titulo">
+  <h2 id="cart-pagina-titulo" class="carrinho-title" tabindex="-1" #titulo>
+    Carrinho <span class="carrinho-n">({{ artigos() }} {{ artigos() === 1 ? 'artigo' : 'artigos' }})</span>
+  </h2>
+
+  @if (linhas().length) {
+    <div class="carrinho-grid">
+      <ul class="linhas">
+        @for (l of linhas(); track l.id) {
+          <li class="linha">
+            <div class="linha-img" [style.--cor]="l.cor" aria-hidden="true"></div>
+            <div class="linha-info">
+              <h3 class="linha-nome">{{ l.nome }}</h3>
+              <p class="linha-detalhe">{{ l.detalhe }} · {{ kz(l.preco) }} cada</p>
+              <button type="button" class="linha-remover" (click)="remover(l)">
+                Remover<span class="mx-visually-hidden"> {{ l.nome }}</span>
+              </button>
+            </div>
+            <div class="linha-qtd" role="group" [attr.aria-label]="'Quantidade de ' + l.nome">
+              <button type="button" aria-label="Menos um" [disabled]="l.quantidade <= 1" (click)="mudar(l, -1)">−</button>
+              <span class="linha-qtd-n">{{ l.quantidade }}</span>
+              <button type="button" aria-label="Mais um" [disabled]="l.quantidade >= 20" (click)="mudar(l, 1)">+</button>
+            </div>
+            <p class="linha-total">{{ kz(l.preco * l.quantidade) }}</p>
+          </li>
+        }
+      </ul>
+
+      <section class="resumo" aria-labelledby="cart-pagina-resumo">
+        <h3 id="cart-pagina-resumo" class="resumo-title">Resumo</h3>
+        <dl class="resumo-linhas">
+          <div><dt>Artigos</dt><dd>{{ kz(total()) }}</dd></div>
+          <div>
+            <dt>Entrega</dt>
+            <dd>{{ entrega() ? kz(entrega()) : 'Grátis' }}</dd>
+          </div>
+          <div class="resumo-iva"><dt>Inclui IVA (14%)</dt><dd>{{ kz(iva()) }}</dd></div>
+        </dl>
+        <hr mxSeparator />
+        <dl class="resumo-linhas">
+          <div class="resumo-total"><dt>Total</dt><dd>{{ kz(aPagar()) }}</dd></div>
+        </dl>
+        @if (entrega()) {
+          <p class="resumo-nota">Entrega grátis a partir de 50 000 Kz.</p>
+        }
+        <a mxButton size="lg" class="resumo-cta" href="#pagamento">Finalizar compra</a>
+        <a class="resumo-link" href="#loja">Continuar a comprar</a>
+      </section>
+    </div>
+  } @else {
+    <div class="vazio">
+      <p>O carrinho está vazio.</p>
+      <a mxButton variant="outline" href="#loja">Ver produtos</a>
+    </div>
+  }
+
+  <p class="mx-visually-hidden" aria-live="polite">{{ aviso() }}</p>
+</section>

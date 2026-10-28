@@ -1,0 +1,23 @@
+<section class="features" aria-labelledby="feature-grelha-titulo">
+  <div class="features-head">
+    <p class="features-eyebrow">Funcionalidades</p>
+    <h2 id="feature-grelha-titulo" class="features-title">Tudo o que a tua empresa usa todos os dias</h2>
+    <p class="features-lead">Começa pela facturação e junta o resto quando precisares.</p>
+  </div>
+
+  <ul class="features-grid">
+    @for (f of funcionalidades; track f.titulo) {
+      <li mxCard class="feature">
+        <div mxCardHeader>
+          <span class="feature-icon">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path [attr.d]="f.icone" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+          <h3 mxCardTitle>{{ f.titulo }}</h3>
+          <p mxCardDescription>{{ f.texto }}</p>
+        </div>
+      </li>
+    }
+  </ul>
+</section>

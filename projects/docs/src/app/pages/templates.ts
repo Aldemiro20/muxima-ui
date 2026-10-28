@@ -26,7 +26,7 @@ const TEMPLATES: Template[] = [
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Blocos e Templates' }, { label: 'Templates' }]"
+        [crumbs]="[{ label: 'Templates' }]"
         title="Templates"
         lead="Interfaces empresariais completas, construídas com os componentes da Muxima UI, para acelerar a criação de aplicações reais."
       />

@@ -1,0 +1,151 @@
+:host {
+  display: block;
+  font-family: var(--mx-font-sans);
+  color: var(--mx-ink);
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.resumo {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 420px;
+  margin: 32px auto;
+  padding: 24px;
+  border: 1px solid var(--mx-stone);
+  border-radius: var(--mx-radius-surface);
+  background: var(--mx-surface);
+}
+@media (max-width: 460px) {
+  .resumo {
+    margin: 0;
+    border-width: 0 0 1px;
+    border-radius: 0;
+  }
+}
+
+.resumo-title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.artigos {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0 0 16px;
+  border-bottom: 1px solid var(--mx-stone);
+  list-style: none;
+  font-size: var(--mx-text-md);
+}
+.artigos li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.artigos-qtd {
+  color: var(--mx-muted);
+}
+
+.entregas {
+  margin: 0;
+}
+.entrega {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.codigo {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+.codigo-campo {
+  flex: 1;
+}
+.codigo-erro {
+  margin: -10px 0 0;
+  color: var(--mx-danger);
+  font-size: var(--mx-text-sm);
+}
+.codigo-ok {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: var(--mx-radius);
+  background: var(--mx-accent-soft);
+  font-size: var(--mx-text-md);
+}
+.codigo-tirar {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--mx-ink);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.codigo-tirar:focus-visible {
+  outline: var(--mx-focus-width) solid var(--mx-accent);
+  outline-offset: var(--mx-focus-offset);
+  border-radius: 2px;
+}
+
+.totais {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--mx-stone);
+  font-size: var(--mx-text-md);
+}
+.totais div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.totais dt {
+  color: var(--mx-muted);
+}
+.totais dd {
+  margin: 0;
+}
+.totais .totais-desconto dd {
+  color: var(--mx-success);
+}
+.totais .totais-total {
+  margin-top: 4px;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+.totais .totais-total dt {
+  color: var(--mx-ink);
+}
+
+.pagar {
+  width: 100%;
+}
+.nota {
+  margin: -8px 0 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-xs);
+  text-align: center;
+}

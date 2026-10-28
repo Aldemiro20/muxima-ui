@@ -1,0 +1,73 @@
+<section class="avaliacoes" aria-labelledby="comments-avaliacoes-titulo">
+  <h2 id="comments-avaliacoes-titulo" class="avaliacoes-title">Avaliações</h2>
+  <p class="aviso-ficticio">Exemplos fictícios. Mostra só avaliações reais dos teus clientes.</p>
+
+  <div class="avaliacoes-grid">
+    <div class="resumo">
+      <p class="resumo-media">
+        <span class="resumo-valor">{{ mediaTexto() }}</span>
+        <span class="mx-visually-hidden">de 5</span>
+      </p>
+      <mx-rating [value]="media()" readonly />
+      <p class="resumo-total">{{ avaliacoes().length }} avaliações</p>
+
+      <ul class="barras" aria-label="Distribuição das estrelas">
+        @for (d of distribuicao(); track d.n) {
+          <li class="barra">
+            <span class="barra-n">{{ d.n }} <span aria-hidden="true">★</span></span>
+            <progress
+              mxProgress
+              size="sm"
+              [value]="d.total"
+              [max]="avaliacoes().length"
+              [attr.aria-label]="d.n + (d.n === 1 ? ' estrela' : ' estrelas') + ': ' + d.total + ' avaliações'"
+            ></progress>
+            <span class="barra-total" aria-hidden="true">{{ d.total }}</span>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="lista-wrap">
+      <div class="filtros" role="group" aria-label="Filtrar por estrelas">
+        @for (d of distribuicao(); track d.n) {
+          <button
+            mxChipToggle
+            size="sm"
+            [selected]="filtro() === d.n"
+            (selectedChange)="filtro.set($event ? d.n : 0)"
+          >
+            {{ d.n }} {{ d.n === 1 ? 'estrela' : 'estrelas' }}
+          </button>
+        }
+      </div>
+      <p class="mx-visually-hidden" aria-live="polite">
+        {{ filtro() ? visiveis().length + ' avaliações com ' + filtro() + ' estrelas' : '' }}
+      </p>
+
+      <ul class="lista">
+        @for (a of visiveis(); track a.id) {
+          <li>
+            <article class="avaliacao" [attr.aria-labelledby]="'avaliacao-' + a.id">
+              <div class="avaliacao-head">
+                <mx-avatar [name]="a.autor" size="sm" decorative />
+                <div>
+                  <p class="avaliacao-autor" [id]="'avaliacao-' + a.id">{{ a.autor }}</p>
+                  <time class="avaliacao-data" [attr.datetime]="a.data">{{ a.quando }}</time>
+                </div>
+              </div>
+              <mx-rating [value]="a.estrelas" readonly size="sm" />
+              <p class="avaliacao-texto">{{ a.texto }}</p>
+              <button type="button" class="util" [attr.aria-pressed]="a.util" (click)="marcarUtil(a)">
+                Útil<span class="mx-visually-hidden"> (avaliação de {{ a.autor }})</span>
+                <span class="util-n">{{ a.uteis }}</span>
+              </button>
+            </article>
+          </li>
+        } @empty {
+          <li class="vazio">Ainda não há avaliações com {{ filtro() }} {{ filtro() === 1 ? 'estrela' : 'estrelas' }}.</li>
+        }
+      </ul>
+    </div>
+  </div>
+</section>

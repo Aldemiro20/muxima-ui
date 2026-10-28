@@ -1,0 +1,36 @@
+<section class="destaque" aria-labelledby="feature-destaque-titulo">
+  <div class="destaque-text">
+    <span mxBadge variant="secondary">Cobranças</span>
+    <h2 id="feature-destaque-titulo" class="destaque-title">Recebe a horas, sem telefonar a ninguém</h2>
+    <p class="destaque-lead">
+      As facturas em atraso são o problema de quase todas as empresas. A Kianda Gestão lembra os
+      teus clientes por ti e diz-te quando o dinheiro entrou.
+    </p>
+
+    <dl class="destaque-list">
+      @for (v of vantagens; track v.titulo) {
+        <div>
+          <dt>{{ v.titulo }}</dt>
+          <dd>{{ v.texto }}</dd>
+        </div>
+      }
+    </dl>
+
+    <div>
+      <a mxButton variant="outline" href="#cobrancas">Saber mais sobre cobranças</a>
+    </div>
+  </div>
+
+  <figure class="destaque-media" role="img" aria-label="Lista de facturas: duas pagas e uma com lembrete enviado">
+    <div class="invoice" aria-hidden="true">
+      <p class="invoice-title">Facturas de Outubro</p>
+      @for (l of linhas; track l.cliente) {
+        <div class="invoice-row">
+          <span class="invoice-client">{{ l.cliente }}</span>
+          <span class="invoice-value">{{ l.valor }}</span>
+          <span class="invoice-state" [attr.data-paga]="l.estado === 'Paga' ? '' : null">{{ l.estado }}</span>
+        </div>
+      }
+    </div>
+  </figure>
+</section>

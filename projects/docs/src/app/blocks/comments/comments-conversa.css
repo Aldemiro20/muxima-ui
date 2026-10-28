@@ -1,0 +1,147 @@
+:host {
+  display: block;
+  font-family: var(--mx-font-sans);
+  color: var(--mx-ink);
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.conversa {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+.conversa-title {
+  margin: 0 0 20px;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.conversa-title span {
+  color: var(--mx-muted);
+  font-weight: 400;
+}
+
+.lista,
+.respostas {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.lista > li + li {
+  margin-top: 4px;
+  padding-top: 16px;
+  border-top: 1px solid var(--mx-stone);
+}
+.respostas {
+  margin-top: 14px;
+  padding-left: 14px;
+  border-left: 2px solid var(--mx-stone);
+}
+.respostas > li + li {
+  margin-top: 14px;
+}
+
+.comentario {
+  display: flex;
+  gap: 12px;
+  padding-bottom: 12px;
+}
+.comentario-avatar {
+  flex: none;
+}
+.comentario-corpo {
+  flex: 1;
+  min-width: 0;
+}
+.comentario-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0;
+  font-size: var(--mx-text-md);
+}
+.comentario-meta time {
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+}
+.comentario-texto {
+  margin: 4px 0 0;
+  font-size: var(--mx-text-md);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.comentario-accoes {
+  display: flex;
+  gap: 4px;
+  margin: 6px 0 0 -8px;
+}
+.accao {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: var(--mx-radius);
+  background: none;
+  color: var(--mx-muted);
+  font: inherit;
+  font-size: var(--mx-text-sm);
+  cursor: pointer;
+}
+.accao:hover {
+  background: var(--mx-subtle);
+  color: var(--mx-ink);
+}
+.accao:focus-visible {
+  outline: var(--mx-focus-width) solid var(--mx-accent);
+  outline-offset: var(--mx-focus-offset);
+}
+.accao svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+}
+.accao[aria-pressed='true'] {
+  color: var(--mx-danger);
+}
+.accao[aria-pressed='true'] svg {
+  fill: currentColor;
+}
+.accao-n {
+  font-variant-numeric: tabular-nums;
+}
+
+.resposta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+.resposta-botoes,
+.novo-botoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.novo {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--mx-stone);
+}
+.novo-campo {
+  flex: 1;
+}
+.novo-botoes {
+  margin-top: 4px;
+}

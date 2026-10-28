@@ -1,0 +1,15 @@
+<section class="passos" aria-labelledby="feature-passos-titulo">
+  <h2 id="feature-passos-titulo" class="passos-title">Começa hoje, em três passos</h2>
+
+  <ol class="passos-list">
+    @for (p of passos; track p.titulo; let i = $index) {
+      <li class="passo">
+        <span class="passo-num" aria-hidden="true">{{ i + 1 }}</span>
+        <h3 class="passo-title">{{ p.titulo }}</h3>
+        <p class="passo-text">{{ p.texto }}</p>
+      </li>
+    }
+  </ol>
+
+  <a mxButton size="lg" href="#registar">Criar conta grátis</a>
+</section>

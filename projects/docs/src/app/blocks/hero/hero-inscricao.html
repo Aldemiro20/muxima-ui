@@ -1,0 +1,36 @@
+<section class="hero" aria-labelledby="hero-inscricao-titulo">
+  <p class="hero-eyebrow">Brevemente em Luanda e Benguela</p>
+  <h1 id="hero-inscricao-titulo" class="hero-title">Pagamentos ao balcão, sem filas nem trocos</h1>
+  <p class="hero-lead">
+    Deixa o teu e-mail e és dos primeiros a experimentar. Enviamos só uma mensagem, no dia do
+    lançamento.
+  </p>
+
+  <form class="hero-form" (ngSubmit)="inscrever()" novalidate>
+    <mx-form-field class="hero-field">
+      <label mxLabel>E-mail</label>
+      <input
+        mxInput
+        size="lg"
+        type="email"
+        autocomplete="email"
+        placeholder="nome@empresa.ao"
+        [formControl]="email"
+      />
+      <mx-error>
+        @if (email.hasError('required')) {
+          Escreve o teu e-mail.
+        } @else {
+          Este e-mail não parece certo: confirma o @ e o domínio.
+        }
+      </mx-error>
+    </mx-form-field>
+    <button mxButton size="lg" type="submit" [loading]="enviando()">Quero ser avisado</button>
+  </form>
+
+  <p class="hero-status" role="status">
+    @if (inscrito()) {
+      Obrigado! Vamos avisar {{ inscrito() }} no dia do lançamento.
+    }
+  </p>
+</section>

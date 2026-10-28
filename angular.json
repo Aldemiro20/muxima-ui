@@ -57,7 +57,7 @@
               "node_modules/@fontsource/ibm-plex-mono/400.css",
               "node_modules/@fontsource/ibm-plex-mono/500.css",
               "projects/core/styles/muxima.css",
-              "projects/docs/src/styles.css"
+              { "input": "projects/docs/src/styles.css", "bundleName": "docs", "inject": false }
             ]
           },
           "configurations": {

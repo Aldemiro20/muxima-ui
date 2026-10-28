@@ -1,0 +1,84 @@
+<section class="detalhe" aria-labelledby="product-detalhe-titulo">
+  <div class="galeria">
+    <!-- troca a div por <img [src]="..." [alt]="imagens[imagem()].alt" /> -->
+    <div class="galeria-principal" role="img" [attr.aria-label]="imagens[imagem()].alt" [style.--cor]="imagens[imagem()].cor"></div>
+    <div class="galeria-miniaturas" role="group" aria-label="Imagens do produto">
+      @for (img of imagens; track img.alt; let i = $index) {
+        <button
+          type="button"
+          class="miniatura"
+          [style.--cor]="img.cor"
+          [attr.aria-pressed]="imagem() === i"
+          [attr.aria-label]="img.alt"
+          (click)="imagem.set(i)"
+        ></button>
+      }
+    </div>
+  </div>
+
+  <div class="info">
+    <p class="info-marca">Atelier Kianda</p>
+    <h2 id="product-detalhe-titulo" class="info-nome">Camisa de pano, corte direito</h2>
+
+    <div class="info-aval">
+      <mx-rating [value]="4.5" readonly size="sm" />
+      <a href="#avaliacoes" class="info-link">38 avaliações</a>
+    </div>
+
+    <p class="info-preco">{{ preco }}</p>
+    <p class="info-desc">
+      Algodão com padrão estampado à mão, botões de madeira e costuras reforçadas. Lava-se à mão
+      ou na máquina, a 30 °C.
+    </p>
+
+    <fieldset class="tamanhos" [attr.aria-describedby]="erro() ? 'product-detalhe-erro' : null">
+      <legend>Tamanho</legend>
+      <div class="tamanhos-opcoes">
+        @for (t of tamanhos; track t.valor) {
+          <label class="tamanho" [attr.data-esgotado]="t.disponivel ? null : ''">
+            <input
+              type="radio"
+              name="product-detalhe-tamanho"
+              [value]="t.valor"
+              [disabled]="!t.disponivel"
+              [checked]="tamanho() === t.valor"
+              (change)="tamanho.set(t.valor); erro.set('')"
+            />
+            {{ t.valor }}
+            @if (!t.disponivel) {
+              <span class="mx-visually-hidden">(esgotado)</span>
+            }
+          </label>
+        }
+      </div>
+      @if (erro()) {
+        <p class="tamanhos-erro" id="product-detalhe-erro" role="alert">{{ erro() }}</p>
+      }
+    </fieldset>
+
+    <div class="comprar">
+      <div class="quantidade" role="group" aria-label="Quantidade">
+        <button type="button" aria-label="Menos um" [disabled]="quantidade() <= 1" (click)="mudarQuantidade(-1)">−</button>
+        <input
+          type="number"
+          inputmode="numeric"
+          min="1"
+          max="10"
+          aria-label="Quantidade"
+          [value]="quantidade()"
+          (change)="escreverQuantidade($any($event.target).value)"
+        />
+        <button type="button" aria-label="Mais um" [disabled]="quantidade() >= 10" (click)="mudarQuantidade(1)">+</button>
+      </div>
+      <button mxButton size="lg" class="comprar-cta" type="button" (click)="adicionar()">
+        Adicionar ao carrinho · {{ total() }}
+      </button>
+    </div>
+    <p class="comprar-aviso" role="status">{{ aviso() }}</p>
+
+    <ul class="info-extra">
+      <li>Entrega em Luanda em 24 horas</li>
+      <li>Devolução grátis até 14 dias</li>
+    </ul>
+  </div>
+</section>

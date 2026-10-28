@@ -1,0 +1,126 @@
+:host {
+  display: block;
+  container-type: inline-size;
+  font-family: var(--mx-font-sans);
+  color: var(--mx-ink);
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.perfil {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+.perfil-head {
+  margin-bottom: 20px;
+}
+.perfil-head h2 {
+  margin: 0;
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.perfil-head p {
+  margin: 4px 0 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-md);
+}
+
+.perfil-form {
+  border: 1px solid var(--mx-stone);
+  border-radius: var(--mx-radius-surface);
+  background: var(--mx-surface);
+}
+
+.foto {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border-bottom: 1px solid var(--mx-stone);
+}
+.foto-avatar {
+  --mx-avatar-size: 64px;
+  width: 64px;
+  height: 64px;
+  font-size: 1.25rem;
+}
+.foto-title {
+  margin: 0;
+  font-size: var(--mx-text-md);
+  font-weight: 500;
+}
+.foto-hint {
+  margin: 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+}
+.foto-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+/* o label parece um botão e abre o seletor de ficheiros */
+.foto-escolher {
+  display: inline-flex;
+  align-items: center;
+  height: var(--mx-control-height-sm);
+  padding: 0 12px;
+  border: 1px solid var(--mx-control-border);
+  border-radius: var(--mx-radius);
+  background: var(--mx-surface);
+  font-size: var(--mx-text-sm);
+  font-weight: 500;
+  cursor: pointer;
+}
+.foto-escolher:hover {
+  background: var(--mx-subtle);
+}
+.foto-escolher:has(input:focus-visible) {
+  outline: var(--mx-focus-width) solid var(--mx-accent);
+  outline-offset: var(--mx-focus-offset);
+}
+
+.campos {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 20px;
+}
+@container (min-width: 600px) {
+  .campos {
+    grid-template-columns: 1fr 1fr;
+  }
+  .campo-largo {
+    grid-column: 1 / -1;
+  }
+}
+
+.perfil-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 20px;
+  border-top: 1px solid var(--mx-stone);
+  background: var(--mx-subtle);
+  border-radius: 0 0 var(--mx-radius-surface) var(--mx-radius-surface);
+}
+.perfil-estado {
+  margin: 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+}
+.perfil-botoes {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}

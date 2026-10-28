@@ -1,0 +1,128 @@
+:host {
+  display: block;
+  container-type: inline-size;
+  font-family: var(--mx-font-sans);
+  color: var(--mx-ink);
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.seguranca {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+.seguranca-head {
+  margin-bottom: 4px;
+}
+.seguranca-head h2 {
+  margin: 0;
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.seguranca-head p {
+  margin: 4px 0 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-md);
+}
+
+.cartao {
+  border: 1px solid var(--mx-stone);
+  border-radius: var(--mx-radius-surface);
+  background: var(--mx-surface);
+}
+.cartao-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--mx-stone);
+}
+.cartao-head h3 {
+  margin: 0;
+  font-size: var(--mx-text-md);
+  font-weight: 600;
+}
+
+.linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 18px;
+}
+@container (max-width: 480px) {
+  .perigo .linha {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+.linha-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.linha-title {
+  margin: 0;
+  font-size: var(--mx-text-md);
+  font-weight: 600;
+}
+.linha-desc {
+  margin: 2px 0 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+}
+
+.sessoes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.sessao {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+}
+.sessao + .sessao {
+  border-top: 1px solid var(--mx-stone);
+}
+.sessao-icon {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  color: var(--mx-muted);
+}
+.sessao-text {
+  flex: 1;
+  min-width: 0;
+}
+.sessao-nome {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: var(--mx-text-md);
+  font-weight: 500;
+}
+.sessao-meta {
+  margin: 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+}
+
+.perigo {
+  border-color: color-mix(in oklab, var(--mx-danger) 40%, var(--mx-stone));
+}

@@ -2,7 +2,7 @@
 
 Todas as alterações relevantes do pacote `@muxima-ui/core`. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-PT/1.1.0/) e as versões seguem o [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
-## [1.3.0] - por publicar
+## [1.3.0] - 2026-10-28
 
 Componentes avançados. Com esta versão, todos os componentes do plano 1.x estão publicados.
 

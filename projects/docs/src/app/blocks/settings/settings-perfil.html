@@ -1,0 +1,59 @@
+<section class="perfil" aria-labelledby="settings-perfil-titulo">
+  <header class="perfil-head">
+    <h2 id="settings-perfil-titulo">Perfil</h2>
+    <p>Como os colegas e os clientes te vêem.</p>
+  </header>
+
+  <form class="perfil-form" [formGroup]="form" (ngSubmit)="guardar()" novalidate>
+    <div class="foto">
+      <mx-avatar class="foto-avatar" [name]="form.controls.nome.value || 'Sem nome'" [src]="foto()" size="lg" decorative />
+      <div class="foto-text">
+        <p class="foto-title">Fotografia</p>
+        <p class="foto-hint">JPG ou PNG, quadrada, até 2 MB.</p>
+        <div class="foto-actions">
+          <label class="foto-escolher">
+            <input type="file" accept="image/png, image/jpeg" class="mx-visually-hidden" (change)="escolherFoto($event)" />
+            Mudar fotografia
+          </label>
+          @if (foto()) {
+            <button mxButton variant="ghost" size="sm" type="button" (click)="removerFoto()">Remover</button>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="campos">
+      <mx-form-field>
+        <label mxLabel>Nome</label>
+        <input mxInput formControlName="nome" autocomplete="name" />
+        <mx-error>Escreve o teu nome.</mx-error>
+      </mx-form-field>
+
+      <mx-form-field>
+        <label mxLabel>E-mail</label>
+        <input mxInput type="email" formControlName="email" autocomplete="email" />
+        <mx-error>Escreve um e-mail válido, por exemplo nome&#64;empresa.ao.</mx-error>
+      </mx-form-field>
+
+      <mx-form-field class="campo-largo">
+        <label mxLabel>Cargo</label>
+        <input mxInput formControlName="cargo" autocomplete="organization-title" />
+      </mx-form-field>
+
+      <mx-form-field class="campo-largo">
+        <label mxLabel>Sobre ti</label>
+        <textarea mxInput formControlName="bio" rows="3" autosize></textarea>
+        <mx-hint>{{ form.controls.bio.value.length }} de 160 caracteres.</mx-hint>
+        <mx-error>Usa no máximo 160 caracteres.</mx-error>
+      </mx-form-field>
+    </div>
+
+    <div class="perfil-footer">
+      <p class="perfil-estado" role="status">{{ estado() }}</p>
+      <div class="perfil-botoes">
+        <button mxButton variant="outline" type="button" (click)="cancelar()">Cancelar</button>
+        <button mxButton type="submit" [loading]="aGuardar()">Guardar alterações</button>
+      </div>
+    </div>
+  </form>
+</section>

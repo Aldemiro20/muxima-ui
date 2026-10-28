@@ -1,3 +1,5 @@
+import { BLOCKS } from '../blocks/registry';
+
 /** Ligações externas usadas no site. Actualiza aqui quando o domínio e o contacto estiverem definidos. */
 export const LINKS = {
   repo: 'https://github.com/Aldemiro20/muxima-ui',
@@ -23,6 +25,7 @@ export interface NavGroup {
 export const TOP_NAV = [
   { label: 'Início', path: '/', exact: true },
   { label: 'Componentes', path: '/componentes', exact: false },
+  { label: 'Blocos', path: '/blocos', exact: false },
   { label: 'Documentação', path: '/docs', exact: false },
   { label: 'Templates', path: '/templates', exact: false },
   { label: 'Preços', path: '/precos', exact: false },
@@ -119,7 +122,7 @@ export const CATALOG: CatalogItem[] = [
   c('Notification center', 'Lista de notificações lidas e por ler.', 'bell', 'Feedback', 'notification-center'),
 ];
 
-/** Barra lateral: Começar, os componentes documentados por categoria, e os blocos Pro. */
+/** Barra lateral: Começar, os componentes por categoria, os blocos e os templates Pro. */
 export const SIDEBAR: NavGroup[] = [
   {
     title: 'Começar',
@@ -140,7 +143,14 @@ export const SIDEBAR: NavGroup[] = [
     })),
   })).filter((g) => g.items.length > 0),
   {
-    title: 'Blocos e Templates',
+    title: 'Blocos',
+    items: [
+      { label: 'Todos os blocos', path: '/blocos', icon: 'layers' },
+      ...BLOCKS.map((b) => ({ label: b.name, path: `/blocos/${b.slug}`, icon: b.icon })),
+    ],
+  },
+  {
+    title: 'Templates',
     items: [
       { label: 'Dashboards', path: '/templates', icon: 'grid', pro: true, query: { categoria: 'Dashboards' } },
       { label: 'Autenticação', path: '/templates', icon: 'shield', pro: true, query: { categoria: 'Autenticação' } },

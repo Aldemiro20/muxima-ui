@@ -1,0 +1,89 @@
+:host {
+  display: block;
+  container-type: inline-size;
+  font-family: var(--mx-font-sans);
+  color: var(--mx-ink);
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.passos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 64px 20px;
+  text-align: center;
+}
+.passos-title {
+  margin: 0;
+  font-size: clamp(1.625rem, 4cqi, 2.25rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.passos-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: passo;
+}
+@container (min-width: 720px) {
+  .passos-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  /* linha que liga os números */
+  .passo:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: calc(50% + 32px);
+    width: calc(100% - 64px + 32px);
+    border-top: 1px dashed var(--mx-stone-strong);
+  }
+}
+
+.passo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.passo-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 6px;
+  border-radius: 50%;
+  background: var(--mx-ink);
+  color: var(--mx-on-ink);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.passo-title {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+.passo-text {
+  max-width: 32ch;
+  margin: 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-md);
+  line-height: 1.6;
+}

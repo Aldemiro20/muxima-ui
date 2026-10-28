@@ -1,0 +1,177 @@
+:host {
+  display: block;
+  container-type: inline-size;
+  font-family: var(--mx-font-sans);
+  color: var(--mx-ink);
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.app-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 60px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--mx-stone);
+  background: var(--mx-surface);
+}
+
+.app-logo {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  color: var(--mx-ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+.app-logo svg {
+  width: 28px;
+  height: 28px;
+}
+.app-logo:focus-visible {
+  outline: var(--mx-focus-width) solid var(--mx-accent);
+  outline-offset: var(--mx-focus-offset);
+  border-radius: var(--mx-radius);
+}
+
+.app-search {
+  position: relative;
+  flex: 1;
+  max-width: 420px;
+  margin: 0 auto;
+}
+.app-search svg {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  width: 16px;
+  height: 16px;
+  color: var(--mx-muted);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.app-search input {
+  width: 100%;
+  padding-left: 34px;
+}
+
+.app-actions {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 6px;
+}
+
+.app-icon-button,
+.app-account {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 36px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: var(--mx-radius);
+  background: transparent;
+  color: var(--mx-ink);
+  cursor: pointer;
+}
+.app-icon-button {
+  width: 36px;
+  padding: 0;
+}
+.app-icon-button:hover,
+.app-account:hover {
+  background: var(--mx-subtle);
+}
+.app-icon-button:focus-visible,
+.app-account:focus-visible {
+  outline: var(--mx-focus-width) solid var(--mx-accent);
+  outline-offset: var(--mx-focus-offset);
+}
+.app-icon-button svg {
+  width: 18px;
+  height: 18px;
+}
+.app-dot {
+  position: absolute;
+  top: 3px;
+  right: 2px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border: 2px solid var(--mx-surface);
+  border-radius: 999px;
+  background: var(--mx-danger);
+  color: var(--mx-on-danger);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 12px;
+}
+.app-chevron {
+  width: 14px;
+  height: 14px;
+  color: var(--mx-muted);
+}
+
+.app-menu-head {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 10px;
+  font-size: var(--mx-text-sm);
+}
+.app-menu-head span {
+  color: var(--mx-muted);
+}
+
+/* em ecrãs estreitos só fica o símbolo do logótipo */
+@container (max-width: 520px) {
+  .app-logo-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+  .app-bar {
+    gap: 8px;
+    padding: 0 10px;
+  }
+}
+
+/* ---- conteúdo de exemplo ---- */
+.app-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 28px 20px 40px;
+}
+.app-content-title {
+  margin: 0;
+  font-size: 1.375rem;
+  font-weight: 600;
+}
+.app-content-text {
+  margin: 0;
+  color: var(--mx-muted);
+}
+.app-content-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+.app-content-cards span {
+  height: 96px;
+  border: 1px dashed var(--mx-stone-strong);
+  border-radius: var(--mx-radius-surface);
+}

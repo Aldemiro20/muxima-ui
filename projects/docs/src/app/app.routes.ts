@@ -3,6 +3,8 @@ import { DocsLayout } from './shell/docs-layout';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', title: 'Muxima UI — Componentes Angular com coração angolano', loadComponent: () => import('./pages/home').then((m) => m.HomePage) },
+  // um bloco sozinho, sem o cabeçalho do site (pré-visualização no iframe)
+  { path: 'blocos/ver/:id', title: 'Bloco · Muxima UI', loadComponent: () => import('./pages/bloco-ver').then((m) => m.BlocoVerPage) },
   {
     path: '',
     component: DocsLayout,
@@ -61,6 +63,8 @@ export const routes: Routes = [
       { path: 'componentes/image-cropper', title: 'Image cropper · Muxima UI', loadComponent: () => import('./pages/components/image-cropper').then((m) => m.ImageCropperPage) },
       { path: 'componentes/rich-text-editor', title: 'Rich text editor · Muxima UI', loadComponent: () => import('./pages/components/editor').then((m) => m.EditorPage) },
       { path: 'componentes/command-palette', title: 'Command Palette · Muxima UI', loadComponent: () => import('./pages/components/command-palette').then((m) => m.CommandPalettePage) },
+      { path: 'blocos', title: 'Blocos · Muxima UI', loadComponent: () => import('./pages/blocos').then((m) => m.BlocosPage) },
+      { path: 'blocos/:categoria', title: 'Blocos · Muxima UI', loadComponent: () => import('./pages/bloco-categoria').then((m) => m.BlocoCategoriaPage) },
       { path: 'templates', title: 'Templates · Muxima UI', loadComponent: () => import('./pages/templates').then((m) => m.TemplatesPage) },
     ],
   },

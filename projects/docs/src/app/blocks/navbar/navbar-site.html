@@ -1,0 +1,58 @@
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#inicio">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="2" y="2" width="20" height="20" rx="6" fill="currentColor" />
+        <path d="M8 16V8l4 4 4-4v8" fill="none" stroke="var(--mx-on-ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <span>Kianda</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Principal">
+      <ul>
+        @for (l of ligacoes; track l.href) {
+          <li>
+            <a [href]="l.href" [attr.aria-current]="l.actual ? 'page' : null">{{ l.texto }}</a>
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <a mxButton variant="ghost" href="#entrar">Entrar</a>
+      <a mxButton href="#registar">Começar grátis</a>
+    </div>
+
+    <button
+      #botaoMenu
+      type="button"
+      class="nav-toggle"
+      aria-controls="navbar-site-menu"
+      [attr.aria-expanded]="aberto()"
+      (click)="aberto.set(!aberto())"
+    >
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        @if (aberto()) {
+          <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+        } @else {
+          <path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+        }
+      </svg>
+      Menu
+    </button>
+  </div>
+
+  <nav id="navbar-site-menu" class="nav-menu" aria-label="Principal (menu)" [hidden]="!aberto()">
+    <ul>
+      @for (l of ligacoes; track l.href) {
+        <li>
+          <a [href]="l.href" [attr.aria-current]="l.actual ? 'page' : null" (click)="fechar()">{{ l.texto }}</a>
+        </li>
+      }
+    </ul>
+    <div class="nav-menu-actions">
+      <a mxButton variant="outline" href="#entrar">Entrar</a>
+      <a mxButton href="#registar">Começar grátis</a>
+    </div>
+  </nav>
+</header>

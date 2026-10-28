@@ -1,0 +1,88 @@
+:host {
+  display: block;
+  container-type: inline-size;
+  font-family: var(--mx-font-sans);
+  color: var(--mx-ink);
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.definicoes {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+.definicoes-head h2 {
+  margin: 0;
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.definicoes-head p {
+  margin: 4px 0 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-md);
+}
+
+.grupo-title {
+  margin: 0 0 8px;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+  font-weight: 600;
+}
+
+.linhas {
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--mx-stone);
+  border-radius: var(--mx-radius-surface);
+  background: var(--mx-surface);
+  list-style: none;
+}
+.linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 18px;
+}
+.linha + .linha {
+  border-top: 1px solid var(--mx-stone);
+}
+.linha-text {
+  min-width: 0;
+}
+.linha-title {
+  display: block;
+  margin: 0;
+  font-size: var(--mx-text-md);
+  font-weight: 500;
+}
+.linha-desc {
+  margin: 2px 0 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+}
+.linha-select {
+  flex: none;
+  width: 210px;
+}
+
+/* em ecrãs estreitos a lista fica por baixo do texto */
+@container (max-width: 480px) {
+  .linha:has(.linha-select) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .linha-select {
+    width: 100%;
+  }
+}

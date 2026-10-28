@@ -1,0 +1,87 @@
+<section class="pagamento" aria-labelledby="payment-cartao-titulo">
+  <div class="pagamento-head">
+    <h2 id="payment-cartao-titulo">Pagamento com cartão</h2>
+    <p>
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <rect x="3" y="7" width="10" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.3" />
+        <path d="M5.5 7V5a2.5 2.5 0 015 0v2" fill="none" stroke="currentColor" stroke-width="1.3" />
+      </svg>
+      Ligação segura. Não guardamos os dados do cartão.
+    </p>
+  </div>
+
+  <div class="pagamento-grid">
+    <div class="cartao" aria-hidden="true" [attr.data-rede]="rede()">
+      <div class="cartao-topo">
+        <span class="cartao-chip"></span>
+        <span class="cartao-rede">{{ rede() ?? '' }}</span>
+      </div>
+      <p class="cartao-numero">{{ numeroCartao() }}</p>
+      <div class="cartao-base">
+        <span>{{ nomeCartao() }}</span>
+        <span>{{ validadeCartao() }}</span>
+      </div>
+    </div>
+
+    <form class="campos" [formGroup]="form" (ngSubmit)="pagar()" novalidate>
+      <mx-form-field class="campo-largo">
+        <label mxLabel>Número do cartão</label>
+        <input
+          #numero
+          mxInput
+          inputmode="numeric"
+          autocomplete="cc-number"
+          placeholder="0000 0000 0000 0000"
+          formControlName="numero"
+          (input)="formatarNumero(numero)"
+        />
+        <mx-hint>{{ rede() ? 'Cartão ' + rede() : 'Visa ou Mastercard' }}</mx-hint>
+        <mx-error>
+          @if (form.controls.numero.hasError('required')) {
+            Escreve o número do cartão.
+          } @else {
+            O número não está certo. Confirma os dígitos.
+          }
+        </mx-error>
+      </mx-form-field>
+
+      <mx-form-field class="campo-largo">
+        <label mxLabel>Nome no cartão</label>
+        <input mxInput autocomplete="cc-name" formControlName="nome" />
+        <mx-error>Escreve o nome como aparece no cartão.</mx-error>
+      </mx-form-field>
+
+      <mx-form-field>
+        <label mxLabel>Validade</label>
+        <input
+          #validade
+          mxInput
+          inputmode="numeric"
+          autocomplete="cc-exp"
+          placeholder="MM/AA"
+          formControlName="validade"
+          (input)="formatarValidade(validade)"
+        />
+        <mx-error>
+          @if (form.controls.validade.hasError('required')) {
+            Escreve a validade.
+          } @else if (form.controls.validade.hasError('expirado')) {
+            Este cartão já expirou.
+          } @else {
+            Usa o formato MM/AA, por exemplo 04/28.
+          }
+        </mx-error>
+      </mx-form-field>
+
+      <mx-form-field>
+        <label mxLabel>Código de segurança</label>
+        <input mxInput inputmode="numeric" autocomplete="cc-csc" maxlength="4" formControlName="cvc" />
+        <mx-hint>3 dígitos no verso do cartão.</mx-hint>
+        <mx-error>Escreve os 3 ou 4 dígitos do verso.</mx-error>
+      </mx-form-field>
+
+      <button mxButton size="lg" type="submit" class="campo-largo" [loading]="aPagar()">Pagar {{ valor }}</button>
+      <p class="estado campo-largo" role="status">{{ estado() }}</p>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,68 @@
+<section class="resumo" aria-labelledby="cart-resumo-titulo">
+  <h2 id="cart-resumo-titulo" class="resumo-title">Resumo do pedido</h2>
+
+  <ul class="artigos">
+    @for (a of artigos; track a.nome) {
+      <li>
+        <span>{{ a.nome }} <span class="artigos-qtd">× {{ a.quantidade }}</span></span>
+        <span class="num">{{ kz(a.preco * a.quantidade) }}</span>
+      </li>
+    }
+  </ul>
+
+  <fieldset mxFieldset class="entregas">
+    <legend>Entrega</legend>
+    @for (e of entregas; track e.id) {
+      <label mxChoice card>
+        <input type="radio" mxRadio name="cart-resumo-entrega" [value]="e.id" [checked]="entrega() === e.id" (change)="entrega.set(e.id)" />
+        <span class="entrega">
+          <span>
+            {{ e.nome }}
+            <span mxChoiceDescription>{{ e.descricao }}</span>
+          </span>
+          <span class="num">{{ e.preco ? kz(e.preco) : 'Grátis' }}</span>
+        </span>
+      </label>
+    }
+  </fieldset>
+
+  @if (codigoAplicado()) {
+    <p class="codigo-ok">
+      <span>Código <strong>{{ codigoAplicado() }}</strong>: −{{ desconto() * 100 }}%</span>
+      <button type="button" class="codigo-tirar" (click)="tirarCodigo()">
+        Tirar<span class="mx-visually-hidden"> o código {{ codigoAplicado() }}</span>
+      </button>
+    </p>
+  } @else {
+    <form class="codigo" (submit)="aplicar($event)" novalidate>
+      <mx-form-field class="codigo-campo">
+        <label mxLabel>Código de desconto</label>
+        <input
+          mxInput
+          autocomplete="off"
+          placeholder="Ex.: KIANDA10"
+          [value]="codigo()"
+          [invalid]="!!erroCodigo()"
+          [aria-describedby]="erroCodigo() ? 'cart-resumo-erro' : undefined"
+          (input)="codigo.set($any($event.target).value); erroCodigo.set('')"
+        />
+      </mx-form-field>
+      <button mxButton variant="outline" type="submit">Aplicar</button>
+    </form>
+    @if (erroCodigo()) {
+      <p class="codigo-erro" id="cart-resumo-erro" role="alert">{{ erroCodigo() }}</p>
+    }
+  }
+
+  <dl class="totais">
+    <div><dt>Subtotal</dt><dd class="num">{{ kz(subtotal) }}</dd></div>
+    @if (valorDesconto()) {
+      <div class="totais-desconto"><dt>Desconto</dt><dd class="num">−{{ kz(valorDesconto()) }}</dd></div>
+    }
+    <div><dt>Entrega</dt><dd class="num">{{ valorEntrega() ? kz(valorEntrega()) : 'Grátis' }}</dd></div>
+    <div class="totais-total"><dt>Total</dt><dd class="num" aria-live="polite">{{ kz(total()) }}</dd></div>
+  </dl>
+
+  <a mxButton size="lg" class="pagar" href="#pagamento">Pagar {{ kz(total()) }}</a>
+  <p class="nota">IVA incluído. Recebes a factura por e-mail.</p>
+</section>

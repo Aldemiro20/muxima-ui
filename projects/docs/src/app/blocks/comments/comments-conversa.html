@@ -1,0 +1,95 @@
+<section class="conversa" aria-labelledby="comments-conversa-titulo">
+  <h2 id="comments-conversa-titulo" class="conversa-title">Comentários <span>({{ comentarios().length }})</span></h2>
+
+  <ng-template #item let-c>
+    <article class="comentario" [attr.aria-labelledby]="'comentario-' + c.id">
+      <mx-avatar class="comentario-avatar" [name]="c.autor" size="sm" decorative />
+      <div class="comentario-corpo">
+        <p class="comentario-meta" [id]="'comentario-' + c.id">
+          <strong>{{ c.autor }}</strong>
+          <time [attr.datetime]="c.data">{{ c.quando }}</time>
+        </p>
+        <p class="comentario-texto">{{ c.texto }}</p>
+        <div class="comentario-accoes">
+          <button
+            type="button"
+            class="accao"
+            [attr.aria-pressed]="c.gosto"
+            (click)="alternarGosto(c)"
+          >
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M8 13.5S2 10 2 5.8A3 3 0 018 4.4a3 3 0 016 1.4C14 10 8 13.5 8 13.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" />
+            </svg>
+            Gosto<span class="mx-visually-hidden"> do comentário de {{ c.autor }}</span>
+            @if (c.gostos) {
+              <span class="accao-n">{{ c.gostos }}</span>
+            }
+          </button>
+          <button
+            type="button"
+            class="accao"
+            [attr.aria-expanded]="respondendo() === c.id"
+            (click)="respondendo.set(respondendo() === c.id ? null : c.id); resposta.set('')"
+          >
+            Responder<span class="mx-visually-hidden"> a {{ c.autor }}</span>
+          </button>
+        </div>
+
+        @if (respondendo() === c.id) {
+          <form class="resposta" (submit)="responder($event, c)">
+            <label class="mx-visually-hidden" [for]="'resposta-' + c.id">Resposta a {{ c.autor }}</label>
+            <textarea
+              mxInput
+              rows="2"
+              autosize
+              [id]="'resposta-' + c.id"
+              [attr.maxlength]="limite"
+              [value]="resposta()"
+              (input)="resposta.set($any($event.target).value)"
+              (keydown.escape)="respondendo.set(null)"
+            ></textarea>
+            <div class="resposta-botoes">
+              <button mxButton size="sm" variant="ghost" type="button" (click)="respondendo.set(null)">Cancelar</button>
+              <button mxButton size="sm" type="submit" [disabled]="!resposta().trim()">Responder</button>
+            </div>
+          </form>
+        }
+
+        @if (c.respostas.length) {
+          <ul class="respostas" [attr.aria-label]="'Respostas a ' + c.autor">
+            @for (r of c.respostas; track r.id) {
+              <li><ng-container *ngTemplateOutlet="item; context: { $implicit: r }" /></li>
+            }
+          </ul>
+        }
+      </div>
+    </article>
+  </ng-template>
+
+  <ul class="lista">
+    @for (c of comentarios(); track c.id) {
+      <li><ng-container *ngTemplateOutlet="item; context: { $implicit: c }" /></li>
+    }
+  </ul>
+
+  <form class="novo" (submit)="comentar($event)">
+    <mx-avatar class="comentario-avatar" [name]="eu" size="sm" decorative />
+    <mx-form-field class="novo-campo">
+      <label mxLabel>Escreve um comentário</label>
+      <textarea
+        mxInput
+        rows="3"
+        autosize
+        [attr.maxlength]="limite"
+        [value]="novo()"
+        (input)="novo.set($any($event.target).value)"
+      ></textarea>
+      <mx-hint>{{ novo().length }} de {{ limite }} caracteres.</mx-hint>
+      <div class="novo-botoes">
+        <button mxButton type="submit" [disabled]="!novo().trim()">Publicar</button>
+      </div>
+    </mx-form-field>
+  </form>
+
+  <p class="mx-visually-hidden" aria-live="polite">{{ aviso() }}</p>
+</section>

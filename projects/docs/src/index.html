@@ -21,6 +21,14 @@
     </script>
   </head>
   <body>
+    <script>
+      // Estilos do site, depois dos da biblioteca (que o Angular põe no fim do <head>).
+      // As páginas de pré-visualização de blocos (/blocos/ver/...) ficam só com o
+      // muxima.css, como numa aplicação real.
+      if (location.pathname.indexOf('/blocos/ver/') !== 0) {
+        document.write('<link rel="stylesheet" href="docs.css" />');
+      }
+    </script>
     <doc-root></doc-root>
   </body>
 </html>

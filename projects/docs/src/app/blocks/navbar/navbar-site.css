@@ -1,0 +1,134 @@
+:host {
+  display: block;
+  container-type: inline-size;
+  font-family: var(--mx-font-sans);
+  color: var(--mx-ink);
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.nav {
+  border-bottom: 1px solid var(--mx-stone);
+  background: var(--mx-surface);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  max-width: 1120px;
+  height: 64px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--mx-ink);
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.nav-logo svg {
+  width: 28px;
+  height: 28px;
+}
+
+.nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.nav-links ul {
+  display: flex;
+  gap: 4px;
+}
+.nav a:not(.mx-button):focus-visible,
+.nav-toggle:focus-visible {
+  outline: var(--mx-focus-width) solid var(--mx-accent);
+  outline-offset: var(--mx-focus-offset);
+}
+.nav-links a {
+  display: inline-flex;
+  padding: 6px 12px;
+  border-radius: var(--mx-radius);
+  color: var(--mx-muted);
+  font-size: var(--mx-text-md);
+  font-weight: 500;
+  text-decoration: none;
+}
+.nav-links a:hover {
+  background: var(--mx-subtle);
+  color: var(--mx-ink);
+}
+.nav-links a[aria-current='page'] {
+  color: var(--mx-ink);
+}
+
+.nav-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.nav-toggle {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  height: var(--mx-control-height);
+  margin-left: auto;
+  padding: 0 12px;
+  border: 1px solid var(--mx-control-border);
+  border-radius: var(--mx-radius);
+  background: var(--mx-surface);
+  color: var(--mx-ink);
+  font: inherit;
+  font-size: var(--mx-text-md);
+  cursor: pointer;
+}
+.nav-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+
+.nav-menu {
+  display: none;
+}
+
+/* ---- ecrãs estreitos: botão Menu ---- */
+@container (max-width: 760px) {
+  .nav-links,
+  .nav-actions {
+    display: none;
+  }
+  .nav-toggle {
+    display: inline-flex;
+  }
+  .nav-menu:not([hidden]) {
+    display: block;
+    padding: 8px 20px 20px;
+    border-top: 1px solid var(--mx-stone);
+  }
+  .nav-menu a:not(.mx-button) {
+    display: block;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--mx-stone);
+    color: var(--mx-ink);
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .nav-menu a[aria-current='page'] {
+    color: var(--mx-accent);
+  }
+  .nav-menu-actions {
+    display: grid;
+    gap: 8px;
+    margin-top: 16px;
+  }
+}
