@@ -8,7 +8,7 @@
   "homepage": "https://github.com/Aldemiro20/muxima-ui",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Aldemiro20/muxima-ui.git"
+    "url": "git+https://github.com/Aldemiro20/muxima-ui.git"
   },
   "bugs": {
     "url": "https://github.com/Aldemiro20/muxima-ui/issues"
