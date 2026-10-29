@@ -54,14 +54,14 @@ import { ApiRow, DOC_UI } from '../../../ui/doc-ui';
             <div class="avatar-group" role="group" aria-label="Project team">
               <mx-avatar name="Ana Kiala" src="exemplos/pessoa-1.svg" />
               <mx-avatar name="Joana Mbala" src="exemplos/pessoa-2.svg" />
-              <mx-avatar name="Pedro Neto" />
+              <mx-avatar name="Aldemiro Valentim" />
               <span class="avatar-more" role="img" aria-label="4 more people">+4</span>
             </div>
           </doc-example>
           <doc-example title="With status" note="status adds the status to the name that is read: Ana Kiala, available.">
             <mx-avatar name="Ana Kiala" src="exemplos/pessoa-1.svg" status="online" size="lg" />
             <mx-avatar name="Joana Mbala" src="exemplos/pessoa-2.svg" status="away" size="lg" />
-            <mx-avatar name="Pedro Neto" status="busy" size="lg" />
+            <mx-avatar name="Aldemiro Valentim" status="busy" size="lg" />
             <mx-avatar name="Rita Sousa" status="offline" size="lg" />
           </doc-example>
           <doc-example title="Member list">
@@ -107,7 +107,7 @@ export class AvatarPage {
   protected readonly members = [
     { nome: 'Ana Kiala', funcao: 'Administrator', foto: 'exemplos/pessoa-1.svg', status: 'online' as const },
     { nome: 'Joana Mbala', funcao: 'Chief financial officer', foto: 'exemplos/pessoa-2.svg', status: 'online' as const },
-    { nome: 'Pedro Neto', funcao: 'Accountant', foto: null, status: 'offline' as const },
+    { nome: 'Aldemiro Valentim', funcao: 'Accountant', foto: null, status: 'offline' as const },
   ];
 
   protected readonly previewCode = `<mx-avatar name="Ana Kiala" src="/photos/ana.jpg" />

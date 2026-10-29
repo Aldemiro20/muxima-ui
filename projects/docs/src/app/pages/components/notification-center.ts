@@ -331,7 +331,7 @@ export class NotificationCenterPage {
       id: 1,
       title: 'mencionou-te em FT 2026/0201',
       time: minutos(12),
-      data: { autor: 'Pedro Neto' },
+      data: { autor: 'Aldemiro Valentim' },
     },
     {
       id: 2,

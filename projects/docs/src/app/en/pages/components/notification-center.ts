@@ -330,7 +330,7 @@ export class NotificationCenterPage {
       id: 1,
       title: 'mentioned you in FT 2026/0201',
       time: minutes(12),
-      data: { author: 'Pedro Neto' },
+      data: { author: 'Aldemiro Valentim' },
     },
     {
       id: 2,

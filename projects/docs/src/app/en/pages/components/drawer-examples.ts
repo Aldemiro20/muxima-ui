@@ -226,7 +226,7 @@ export class MobileMenu {
           <dl class="detail-list">
             <div><dt>Balance</dt><dd>$4,870.50</dd></div>
             <div><dt>Invoices</dt><dd>38 issued, 2 pending</dd></div>
-            <div><dt>Account manager</dt><dd>Pedro Neto</dd></div>
+            <div><dt>Account manager</dt><dd>Aldemiro Valentim</dd></div>
             <div><dt>Status</dt><dd><span mxBadge variant="warning">Payment pending</span></dd></div>
           </dl>
         </mx-tab>

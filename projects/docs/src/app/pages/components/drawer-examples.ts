@@ -226,7 +226,7 @@ export class MenuMovel {
           <dl class="detail-list">
             <div><dt>Saldo</dt><dd>4 870,50 US$</dd></div>
             <div><dt>Facturas</dt><dd>38 emitidas, 2 pendentes</dd></div>
-            <div><dt>Gestor</dt><dd>Pedro Neto</dd></div>
+            <div><dt>Gestor</dt><dd>Aldemiro Valentim</dd></div>
             <div><dt>Estado</dt><dd><span mxBadge variant="warning">Pagamento pendente</span></dd></div>
           </dl>
         </mx-tab>

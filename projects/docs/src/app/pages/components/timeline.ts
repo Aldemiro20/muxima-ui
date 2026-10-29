@@ -214,7 +214,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               </li>
               <li mxTimelineItem>
                 <time mxTimelineTime datetime="2026-10-20T14:10">20 out, 14:10</time>
-                <p mxTimelineTitle>Comentário de Pedro Neto</p>
+                <p mxTimelineTitle>Comentário de Aldemiro Valentim</p>
                 <blockquote class="timeline-quote">
                   O cliente pediu mais 10 dias para pagar.
                 </blockquote>
@@ -323,7 +323,7 @@ export class TimelinePage {
         { hora: '23:00', texto: '3 facturas passaram a estar em atraso', tipo: 'danger' as const },
         {
           hora: '16:25',
-          texto: 'Pedro Neto adicionou o cliente Uíge Café',
+          texto: 'Aldemiro Valentim adicionou o cliente Uíge Café',
           tipo: 'default' as const,
         },
       ],

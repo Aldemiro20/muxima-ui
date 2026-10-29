@@ -456,7 +456,7 @@ const FACTURAS: Factura[] = [
                   <thead><tr><th scope="col">Nome</th><th scope="col">Empresa</th><th scope="col">Email</th><th scope="col">Telefone</th><th scope="col">Província</th></tr></thead>
                   <tbody>
                     <tr><td>Ana Kiala</td><td>Kianda Logística</td><td>ana&#64;kianda.co.ao</td><td>+244 923 000 111</td><td>Luanda</td></tr>
-                    <tr><td>Pedro Neto</td><td>Huíla Agro</td><td>pedro&#64;huila-agro.ao</td><td>+244 924 000 222</td><td>Huíla</td></tr>
+                    <tr><td>Aldemiro Valentim</td><td>Huíla Agro</td><td>aldemiro&#64;huila-agro.ao</td><td>+244 924 000 222</td><td>Huíla</td></tr>
                   </tbody>
                 </table>
               </div>

@@ -29,7 +29,7 @@ function initialBoard(): MxKanbanColumn<Task>[] {
         {
           id: 2,
           title: 'Review the Lobito Portos contract',
-          person: 'Pedro Neto',
+          person: 'Aldemiro Valentim',
           priority: 'Medium',
           due: 'Nov 4',
         },
@@ -53,7 +53,7 @@ function initialBoard(): MxKanbanColumn<Task>[] {
           priority: 'High',
           due: 'Oct 31',
         },
-        { id: 5, title: 'Collect 3 overdue invoices', person: 'Pedro Neto', priority: 'High' },
+        { id: 5, title: 'Collect 3 overdue invoices', person: 'Aldemiro Valentim', priority: 'High' },
       ],
     },
     {
@@ -66,7 +66,7 @@ function initialBoard(): MxKanbanColumn<Task>[] {
     {
       id: 'done',
       title: 'Done',
-      items: [{ id: 7, title: 'Import customers from CSV', person: 'Pedro Neto' }],
+      items: [{ id: 7, title: 'Import customers from CSV', person: 'Aldemiro Valentim' }],
     },
   ];
 }

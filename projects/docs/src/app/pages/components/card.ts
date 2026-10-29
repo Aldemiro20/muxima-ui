@@ -274,7 +274,7 @@ export class CardPage {
   ];
   protected readonly activity = [
     { who: 'Ana Kiala', text: 'emitiu a factura FT 2026/0146', when: 'Há 5 minutos' },
-    { who: 'Pedro Neto', text: 'registou o pagamento de Huíla Agro', when: 'Há 1 hora' },
+    { who: 'Aldemiro Valentim', text: 'registou o pagamento de Huíla Agro', when: 'Há 1 hora' },
     { who: 'Rita Sousa', text: 'adicionou o cliente Namibe Pescas', when: 'Ontem, 17:40' },
   ];
 

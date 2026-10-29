@@ -32,7 +32,7 @@ export class CommentsThread {
   protected readonly comments = signal<Comment[]>([
     {
       id: 1,
-      author: 'Pedro Neto',
+      author: 'Aldemiro Valentim',
       data: '2026-10-27T09:12',
       when: '3 hours ago',
       text: 'Can we send the proposal to Lobito Portos yet? We just need to confirm the delivery time.',

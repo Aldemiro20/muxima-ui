@@ -274,7 +274,7 @@ export class CardPage {
   ];
   protected readonly activity = [
     { who: 'Ana Kiala', text: 'issued invoice FT 2026/0146', when: '5 minutes ago' },
-    { who: 'Pedro Neto', text: 'recorded the payment from Huíla Agro', when: '1 hour ago' },
+    { who: 'Aldemiro Valentim', text: 'recorded the payment from Huíla Agro', when: '1 hour ago' },
     { who: 'Rita Sousa', text: 'added the customer Namibe Pescas', when: 'Yesterday, 17:40' },
   ];
 

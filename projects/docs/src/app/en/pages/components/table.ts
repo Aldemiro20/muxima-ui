@@ -456,7 +456,7 @@ const INVOICES: Invoice[] = [
                   <thead><tr><th scope="col">Name</th><th scope="col">Company</th><th scope="col">Email</th><th scope="col">Phone</th><th scope="col">Province</th></tr></thead>
                   <tbody>
                     <tr><td>Ana Kiala</td><td>Kianda Logistics</td><td>ana&#64;kianda.co.ao</td><td>+244 923 000 111</td><td>Luanda</td></tr>
-                    <tr><td>Pedro Neto</td><td>Huíla Agro</td><td>pedro&#64;huila-agro.ao</td><td>+244 924 000 222</td><td>Huíla</td></tr>
+                    <tr><td>Aldemiro Valentim</td><td>Huíla Agro</td><td>aldemiro&#64;huila-agro.ao</td><td>+244 924 000 222</td><td>Huíla</td></tr>
                   </tbody>
                 </table>
               </div>

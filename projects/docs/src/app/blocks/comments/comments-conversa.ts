@@ -32,7 +32,7 @@ export class CommentsConversa {
   protected readonly comentarios = signal<Comentario[]>([
     {
       id: 1,
-      autor: 'Pedro Neto',
+      autor: 'Aldemiro Valentim',
       data: '2026-10-27T09:12',
       quando: 'Há 3 horas',
       texto: 'Já podemos enviar a proposta à Lobito Portos? Falta só confirmar o prazo de entrega.',

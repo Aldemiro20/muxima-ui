@@ -29,7 +29,7 @@ function quadroInicial(): MxKanbanColumn<Tarefa>[] {
         {
           id: 2,
           titulo: 'Rever contrato com Lobito Portos',
-          pessoa: 'Pedro Neto',
+          pessoa: 'Aldemiro Valentim',
           prioridade: 'Média',
           prazo: '4 nov',
         },
@@ -53,7 +53,7 @@ function quadroInicial(): MxKanbanColumn<Tarefa>[] {
           prioridade: 'Alta',
           prazo: '31 out',
         },
-        { id: 5, titulo: 'Cobrar 3 facturas em atraso', pessoa: 'Pedro Neto', prioridade: 'Alta' },
+        { id: 5, titulo: 'Cobrar 3 facturas em atraso', pessoa: 'Aldemiro Valentim', prioridade: 'Alta' },
       ],
     },
     {
@@ -66,7 +66,7 @@ function quadroInicial(): MxKanbanColumn<Tarefa>[] {
     {
       id: 'feito',
       title: 'Feito',
-      items: [{ id: 7, titulo: 'Importar clientes do CSV', pessoa: 'Pedro Neto' }],
+      items: [{ id: 7, titulo: 'Importar clientes do CSV', pessoa: 'Aldemiro Valentim' }],
     },
   ];
 }
