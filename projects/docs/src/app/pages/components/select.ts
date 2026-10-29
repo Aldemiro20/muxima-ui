@@ -63,11 +63,11 @@ interface Plano {
         <p>Sem opções, o painel mostra o texto de emptyText.</p>
         <doc-states>
           <doc-state name="Vazio" note="Mostra o placeholder."><mx-select placeholder="Escolhe o sector" aria-label="Vazio" /></doc-state>
-          <doc-state name="Normal"><mx-select aria-label="Normal" [value]="'aoa'"><mx-option value="aoa">Kwanza (AOA)</mx-option></mx-select></doc-state>
-          <doc-state name="Hover"><mx-select aria-label="Hover" data-mx-state="hover" [value]="'aoa'"><mx-option value="aoa">Kwanza (AOA)</mx-option></mx-select></doc-state>
-          <doc-state name="Foco"><mx-select aria-label="Foco" data-mx-state="focus" [value]="'aoa'"><mx-option value="aoa">Kwanza (AOA)</mx-option></mx-select></doc-state>
+          <doc-state name="Normal"><mx-select aria-label="Normal" [value]="'usd'"><mx-option value="usd">Dólar (USD)</mx-option></mx-select></doc-state>
+          <doc-state name="Hover"><mx-select aria-label="Hover" data-mx-state="hover" [value]="'usd'"><mx-option value="usd">Dólar (USD)</mx-option></mx-select></doc-state>
+          <doc-state name="Foco"><mx-select aria-label="Foco" data-mx-state="focus" [value]="'usd'"><mx-option value="usd">Dólar (USD)</mx-option></mx-select></doc-state>
           <doc-state name="A carregar" note="loading"><mx-select aria-label="A carregar" loading placeholder="Armazém" /></doc-state>
-          <doc-state name="Desactivado" note="disabled"><mx-select aria-label="Desactivado" disabled [value]="'aoa'"><mx-option value="aoa">Kwanza (AOA)</mx-option></mx-select></doc-state>
+          <doc-state name="Desactivado" note="disabled"><mx-select aria-label="Desactivado" disabled [value]="'usd'"><mx-option value="usd">Dólar (USD)</mx-option></mx-select></doc-state>
           <doc-state name="Erro" note="invalid ou controlo inválido."><mx-form-field><label mxLabel>Sector</label><mx-select invalid placeholder="Escolhe o sector" /><mx-error>Escolhe um sector.</mx-error></mx-form-field></doc-state>
         </doc-states>
       </section>
@@ -118,9 +118,9 @@ interface Plano {
           </doc-example>
           <doc-example title="Tamanhos" note="32, 36 e 40 px, como o Input.">
             <div class="stack w-full">
-              <mx-select size="sm" aria-label="Pequeno" [value]="'aoa'"><mx-option value="aoa">Kwanza (AOA)</mx-option></mx-select>
-              <mx-select aria-label="Médio" [value]="'aoa'"><mx-option value="aoa">Kwanza (AOA)</mx-option></mx-select>
-              <mx-select size="lg" aria-label="Grande" [value]="'aoa'"><mx-option value="aoa">Kwanza (AOA)</mx-option></mx-select>
+              <mx-select size="sm" aria-label="Pequeno" [value]="'usd'"><mx-option value="usd">Dólar (USD)</mx-option></mx-select>
+              <mx-select aria-label="Médio" [value]="'usd'"><mx-option value="usd">Dólar (USD)</mx-option></mx-select>
+              <mx-select size="lg" aria-label="Grande" [value]="'usd'"><mx-option value="usd">Dólar (USD)</mx-option></mx-select>
             </div>
           </doc-example>
           <doc-example title="Filtros numa barra" [note]="'A mostrar: ' + resumo()">
@@ -248,7 +248,7 @@ export class SelectPage {
 
   protected readonly provincias = ['Bengo', 'Benguela', 'Bié', 'Cabinda', 'Cuanza Norte', 'Cuanza Sul', 'Huambo', 'Huíla', 'Luanda', 'Malanje', 'Namibe', 'Uíge', 'Zaire'];
   protected provincia: string | null = 'Luanda';
-  protected moeda = 'AOA';
+  protected moeda = 'USD';
   protected readonly planos: Plano[] = [
     { id: 'free', nome: 'Open Source' },
     { id: 'pro', nome: 'Pro' },

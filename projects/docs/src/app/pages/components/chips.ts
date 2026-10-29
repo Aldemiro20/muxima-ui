@@ -299,7 +299,7 @@ export class ChipsPage {
   private readonly filtrosIniciais = [
     { campo: 'Estado', valor: 'Pendente' },
     { campo: 'Província', valor: 'Luanda' },
-    { campo: 'Valor', valor: 'acima de 100 000 Kz' },
+    { campo: 'Valor', valor: 'acima de 100 US$' },
   ];
   protected readonly activos = signal(this.filtrosIniciais);
   protected tirarFiltro(campo: string): void {

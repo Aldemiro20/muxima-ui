@@ -211,7 +211,7 @@ export class ClipboardPage {
   protected readonly pagamento = [
     { nome: 'Entidade', valor: '00123' },
     { nome: 'Referência', valor: '231 456 789' },
-    { nome: 'Montante', valor: '120 000,00 Kz' },
+    { nome: 'Montante', valor: '120,00 US$' },
   ];
 
   private readonly toast = inject(MxToast);
@@ -226,9 +226,9 @@ export class ClipboardPage {
   }
   protected readonly comando = 'npm install @muxima-ui/core @angular/cdk';
   protected readonly resumoMes = [
-    ['Pagas', '32', '58 400 000,00 Kz'],
-    ['Pendentes', '16', '45 400 000,00 Kz'],
-    ['Em atraso', '8', '20 100 000,00 Kz'],
+    ['Pagas', '32', '58 400,00 US$'],
+    ['Pendentes', '16', '45 400,00 US$'],
+    ['Em atraso', '8', '20 100,00 US$'],
   ];
   protected readonly resumoTsv = [['Estado', 'Facturas', 'Valor'], ...this.resumoMes]
     .map((l) => l.join('\t'))

@@ -26,9 +26,9 @@ export class FeatureSeparadores {
       texto: 'Numeração, IVA e retenções calculados por ti, prontos para a AGT.',
       pontos: ['Factura, factura-recibo e nota de crédito', 'Envio por e-mail e WhatsApp', 'Lembretes de cobrança automáticos'],
       linhas: [
-        { rotulo: 'FT 2026/00241', valor: '250 000 Kz' },
-        { rotulo: 'FR 2026/00118', valor: '84 500 Kz' },
-        { rotulo: 'NC 2026/00012', valor: '−12 000 Kz' },
+        { rotulo: 'FT 2026/00241', valor: '250 US$' },
+        { rotulo: 'FR 2026/00118', valor: '84,50 US$' },
+        { rotulo: 'NC 2026/00012', valor: '−12 US$' },
       ],
     },
     {
@@ -48,9 +48,9 @@ export class FeatureSeparadores {
       texto: 'Vendas, IVA a entregar e cobranças, por período, cliente ou produto.',
       pontos: ['Mapa de IVA pronto a entregar', 'Exportação para Excel e SAF-T', 'Comparação com o mês anterior'],
       linhas: [
-        { rotulo: 'Vendas de Outubro', valor: '18 420 000 Kz' },
-        { rotulo: 'IVA a entregar', valor: '2 261 000 Kz' },
-        { rotulo: 'Por cobrar', valor: '4 820 000 Kz' },
+        { rotulo: 'Vendas de Outubro', valor: '18,4 mil US$' },
+        { rotulo: 'IVA a entregar', valor: '2 261 US$' },
+        { rotulo: 'Por cobrar', valor: '4 820 US$' },
       ],
     },
   ];

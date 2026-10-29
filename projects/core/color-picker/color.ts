@@ -1,4 +1,4 @@
-import { MX_MESSAGES_PT, MxColorNames } from '@muxima-ui/core/i18n';
+import { MX_MESSAGES_EN, MxColorNames } from '@muxima-ui/core/i18n';
 
 /** Cor em HSV (h 0–360, s e v 0–1) com opacidade a 0–1. */
 export interface MxHsva {
@@ -105,9 +105,9 @@ const HUES: [number, Hue][] = [
 
 /**
  * Nome aproximado da cor, para o leitor de ecrã: "azul escuro", "cinzento claro".
- * Por omissão em português; passa `names` para outro idioma (ex.: `MX_MESSAGES_EN.colorPicker.names`).
+ * Por omissão em inglês; passa `names` para outro idioma (ex.: `MX_MESSAGES_PT.colorPicker.names`).
  */
-export function mxColorName(hex: string, names: MxColorNames = MX_MESSAGES_PT.colorPicker.names): string {
+export function mxColorName(hex: string, names: MxColorNames = MX_MESSAGES_EN.colorPicker.names): string {
   const { h, s, v } = mxHexToHsva(hex);
   if (v < 0.12) return names.black;
   if (s < 0.12)

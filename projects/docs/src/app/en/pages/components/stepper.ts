@@ -70,7 +70,7 @@ import { ApiRow, DOC_UI } from '../../../ui/doc-ui';
                 <h4 tabindex="-1" #stepTitle>{{ fSteps[f()] }}</h4>
                 @switch (f()) {
                   @case (0) { <mx-form-field><label mxLabel>Customer</label><input mxInput value="Kianda Logistics" /></mx-form-field> }
-                  @case (1) { <mx-form-field><label mxLabel>Amount (Kz)</label><input mxInput inputmode="decimal" value="1 250 000" /></mx-form-field> }
+                  @case (1) { <mx-form-field><label mxLabel>Amount (USD)</label><input mxInput inputmode="decimal" value="1,250" /></mx-form-field> }
                   @case (2) { <p class="muted">Confirm the details and issue the invoice.</p> }
                 }
               </div>

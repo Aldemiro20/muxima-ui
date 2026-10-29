@@ -33,7 +33,7 @@ import { ApiRow, DOC_UI } from '../../../ui/doc-ui';
               <h3 mxCardTitle>October invoicing</h3>
               <p mxCardDescription>142 invoices issued, 9 pending.</p>
             </header>
-            <div mxCardContent><strong class="big-number">18,4 M Kz</strong></div>
+            <div mxCardContent><strong class="big-number">$18.4K</strong></div>
             <footer mxCardFooter>
               <button mxButton type="button" size="sm">See details</button>
               <button mxButton type="button" size="sm" variant="ghost">Export</button>
@@ -206,7 +206,7 @@ import { ApiRow, DOC_UI } from '../../../ui/doc-ui';
                     <div class="row-between"><h3 mxCardTitle id="plano-equipa">Team</h3><span mxBadge>Most popular</span></div>
                     <p mxCardDescription>Up to 10 people.</p>
                   </header>
-                  <div mxCardContent><p class="price">25 000 Kz<span class="muted"> /mês</span></p></div>
+                  <div mxCardContent><p class="price">$25<span class="muted"> /month</span></p></div>
                   <footer mxCardFooter><button mxButton type="button" size="sm" class="w-full">Choose</button></footer>
                 </section>
               </div>
@@ -268,7 +268,7 @@ export class CardPage {
     { value: 'accent', label: 'Accent', text: 'Kwanza border and line. For the recommended option.' },
   ];
   protected readonly kpis = [
-    { label: 'Monthly revenue', value: '18,4 M Kz', delta: '12%', up: true },
+    { label: 'Monthly revenue', value: '$18.4K', delta: '12%', up: true },
     { label: 'Pending invoices', value: '9', delta: '3', up: false },
     { label: 'Active customers', value: '1 284', delta: '4%', up: true },
   ];
@@ -283,7 +283,7 @@ export class CardPage {
     <h3 mxCardTitle>October invoicing</h3>
     <p mxCardDescription>142 invoices issued, 9 pending.</p>
   </header>
-  <div mxCardContent>18.4 M Kz</div>
+  <div mxCardContent>$18.4K</div>
   <footer mxCardFooter>
     <button mxButton type="button" size="sm">See details</button>
   </footer>

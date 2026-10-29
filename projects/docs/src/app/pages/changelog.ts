@@ -24,7 +24,7 @@ interface Release {
         <p class="page-lead">Histórico público das alterações, novas funcionalidades, correcções e melhorias de acessibilidade.</p>
       </header>
 
-      <doc-callout>A 1.0.0 foi a primeira versão pública. As versões 1.x só acrescentam: actualizar não obriga a mudar o teu código.</doc-callout>
+      <doc-callout>Dentro de cada versão principal (1.x, 2.x), as actualizações só acrescentam e não obrigam a mudar o teu código. A 2.0.0 muda o idioma por omissão para inglês: para manter o português, indica <code>provideMuximaI18n({{ '{' }} locale: 'pt' {{ '}' }})</code>.</doc-callout>
 
       <ol class="timeline">
         @for (r of releases; track r.version) {
@@ -60,9 +60,21 @@ export class ChangelogPage {
   protected readonly links = LINKS;
   protected readonly releases: Release[] = [
     {
-      version: '1.5.0',
+      version: '2.0.0',
       status: 'Em curso',
       date: 'Pronta a publicar',
+      title: 'Inglês por omissão',
+      items: [
+        'O inglês passa a ser o idioma por omissão; para português, provideMuximaI18n({ locale: \'pt\' })',
+        'Funções auxiliares (datas, tamanhos, cores, tempos relativos, ordenação) em inglês por omissão',
+        'Sai o MX_TOUR_LABELS, obsoleto desde a 1.5',
+        'Documentação em inglês e português, com valores em dólares',
+      ],
+    },
+    {
+      version: '1.5.0',
+      status: 'Publicada',
+      date: '28 de outubro de 2026',
       title: 'Português e inglês',
       items: [
         'Idiomas: todos os textos dos componentes em português e inglês, com provideMuximaI18n',

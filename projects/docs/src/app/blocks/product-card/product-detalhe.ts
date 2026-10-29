@@ -30,10 +30,10 @@ export class ProductDetalhe {
   protected readonly erro = signal('');
   protected readonly aviso = signal('');
 
-  private readonly precoUnitario = 18500;
-  private readonly kz = new Intl.NumberFormat('pt-AO');
-  protected readonly preco = this.kz.format(this.precoUnitario) + ' Kz';
-  protected readonly total = computed(() => this.kz.format(this.precoUnitario * this.quantidade()) + ' Kz');
+  private readonly precoUnitario = 18.5;
+  private readonly usd = new Intl.NumberFormat('pt-AO', { style: 'currency', currency: 'USD' });
+  protected readonly preco = this.usd.format(this.precoUnitario);
+  protected readonly total = computed(() => this.usd.format(this.precoUnitario * this.quantidade()));
 
   protected mudarQuantidade(delta: number): void {
     this.quantidade.update((q) => Math.min(10, Math.max(1, q + delta)));

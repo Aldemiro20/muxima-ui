@@ -48,7 +48,7 @@ import { Logo } from '../ui/logo';
             </div>
             <div class="hp-stats">
               <div><span>Utilizadores</span><strong>12,4 mil</strong><em>↗ 12%</em></div>
-              <div><span>Receita</span><strong>48,7 M Kz</strong><em>↗ 8%</em></div>
+              <div><span>Receita</span><strong>48,7 mil US$</strong><em>↗ 8%</em></div>
               <div><span>Projectos</span><strong>128</strong><em>↗ 6%</em></div>
             </div>
             <div class="hp-chart">

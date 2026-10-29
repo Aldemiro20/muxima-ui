@@ -32,7 +32,7 @@ type Method = 'phone' | 'reference' | 'card';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaymentMethod {
-  protected readonly amount = '33 200,00 Kz';
+  protected readonly amount = '$33.20';
   protected readonly metodos: { id: Method; name: string; descricao: string }[] = [
     { id: 'phone', name: 'Mobile payment', descricao: 'You confirm in your bank\'s app.' },
     { id: 'reference', name: 'Reference', descricao: 'Pay at an ATM or via online banking, within 48 hours.' },

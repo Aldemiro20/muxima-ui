@@ -92,7 +92,7 @@ import { MxChoice, MxFieldset } from '@muxima-ui/core/form-field';" />
             <fieldset mxFieldset>
               <legend>Envio</legend>
               <label mxChoice><input type="radio" mxRadio name="envio" checked /><span>Normal<span mxChoiceDescription>3 a 5 dias úteis · grátis</span></span></label>
-              <label mxChoice><input type="radio" mxRadio name="envio" /><span>Expresso<span mxChoiceDescription>24 horas em Luanda · 5 000 Kz</span></span></label>
+              <label mxChoice><input type="radio" mxRadio name="envio" /><span>Expresso<span mxChoiceDescription>24 horas em Luanda · 5 US$</span></span></label>
               <label mxChoice><input type="radio" mxRadio name="envio" /><span>Levantar na loja<span mxChoiceDescription>Talatona, a partir de amanhã</span></span></label>
             </fieldset>
           </doc-example>
@@ -151,7 +151,7 @@ export class RadioPage {
   protected plano = 'equipa';
   protected readonly planos = [
     { id: 'basico', nome: 'Básico', desc: 'Grátis, 1 utilizador' },
-    { id: 'equipa', nome: 'Equipa', desc: '25 000 Kz/mês, até 10 utilizadores' },
+    { id: 'equipa', nome: 'Equipa', desc: '25 US$/mês, até 10 utilizadores' },
     { id: 'empresa', nome: 'Empresa', desc: 'Sob consulta, utilizadores ilimitados' },
   ];
 

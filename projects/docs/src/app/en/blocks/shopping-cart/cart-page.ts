@@ -6,7 +6,7 @@ interface Line {
   id: number;
   name: string;
   detail: string;
-  /** Unit price with VAT, in Kz. */
+  /** Unit price with VAT, in dollars. */
   price: number;
   quantity: number;
   color: string;
@@ -25,22 +25,22 @@ const IVA = 0.14;
 })
 export class CartPage {
   protected readonly lines = signal<Line[]>([
-    { id: 1, name: 'Cotton shirt', detail: 'Size M', price: 18500, quantity: 1, color: '#1f5e63' },
-    { id: 2, name: 'Uíge coffee, 500 g', detail: 'Ground', price: 4500, quantity: 2, color: '#7a4a2a' },
-    { id: 3, name: 'Clay mug', detail: 'Natural', price: 3200, quantity: 1, color: '#b8693d' },
+    { id: 1, name: 'Cotton shirt', detail: 'Size M', price: 18.5, quantity: 1, color: '#1f5e63' },
+    { id: 2, name: 'Uíge coffee, 500 g', detail: 'Ground', price: 4.5, quantity: 2, color: '#7a4a2a' },
+    { id: 3, name: 'Clay mug', detail: 'Natural', price: 3.2, quantity: 1, color: '#b8693d' },
   ]);
   protected readonly notice = signal('');
   private readonly title = viewChild.required<ElementRef<HTMLElement>>('title');
 
   protected readonly items = computed(() => this.lines().reduce((a, l) => a + l.quantity, 0));
   protected readonly total = computed(() => this.lines().reduce((a, l) => a + l.price * l.quantity, 0));
-  protected readonly delivery = computed(() => (this.total() >= 50000 || !this.total() ? 0 : 2500));
+  protected readonly delivery = computed(() => (this.total() >= 50 || !this.total() ? 0 : 2.5));
   protected readonly vat = computed(() => this.total() - this.total() / (1 + IVA));
   protected readonly toPay = computed(() => this.total() + this.delivery());
 
-  private readonly fmt = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  private readonly fmt = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
   protected kz(v: number): string {
-    return this.fmt.format(v) + ' Kz';
+    return this.fmt.format(v);
   }
 
   protected change(l: Line, delta: number): void {

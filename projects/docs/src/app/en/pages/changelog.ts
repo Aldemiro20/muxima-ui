@@ -24,7 +24,7 @@ interface Release {
         <p class="page-lead">Public history of changes, new features, fixes and accessibility improvements.</p>
       </header>
 
-      <doc-callout>1.0.0 was the first public version. 1.x versions only add things: updating never forces you to change your code.</doc-callout>
+      <doc-callout>Within each major version (1.x, 2.x), updates only add things and never force you to change your code. 2.0.0 makes English the default language: to keep Portuguese, set <code>provideMuximaI18n({{ '{' }} locale: 'pt' {{ '}' }})</code>.</doc-callout>
 
       <ol class="timeline">
         @for (r of releases; track r.version) {
@@ -60,9 +60,21 @@ export class ChangelogPage {
   protected readonly links = LINKS;
   protected readonly releases: Release[] = [
     {
-      version: '1.5.0',
+      version: '2.0.0',
       status: 'In progress',
       date: 'Ready to publish',
+      title: 'English by default',
+      items: [
+        'English is now the default language; for Portuguese, provideMuximaI18n({ locale: \'pt\' })',
+        'Helper functions (dates, file sizes, colors, relative time, sorting) default to English',
+        'MX_TOUR_LABELS, deprecated since 1.5, is removed',
+        'Documentation in English and Portuguese, with amounts in dollars',
+      ],
+    },
+    {
+      version: '1.5.0',
+      status: 'Released',
+      date: 'October 28, 2026',
       title: 'English and Portuguese',
       items: [
         'Languages: every component text in English and Portuguese, with provideMuximaI18n',

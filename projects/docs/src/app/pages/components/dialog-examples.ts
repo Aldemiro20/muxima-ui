@@ -87,7 +87,7 @@ export class DialogPlano {
   protected plano = 'equipa';
   protected readonly planos = [
     { id: 'basico', nome: 'Básico', desc: 'Grátis, 1 utilizador' },
-    { id: 'equipa', nome: 'Equipa', desc: '25 000 Kz/mês, até 10 utilizadores' },
+    { id: 'equipa', nome: 'Equipa', desc: '25 US$/mês, até 10 utilizadores' },
     { id: 'empresa', nome: 'Empresa', desc: 'Sob consulta' },
   ];
 }

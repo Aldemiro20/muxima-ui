@@ -32,7 +32,7 @@ type Metodo = 'telemovel' | 'referencia' | 'cartao';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaymentMetodo {
-  protected readonly valor = '33 200,00 Kz';
+  protected readonly valor = '33,20 US$';
   protected readonly metodos: { id: Metodo; nome: string; descricao: string }[] = [
     { id: 'telemovel', nome: 'Pagamento por telemóvel', descricao: 'Confirmas na aplicação do teu banco.' },
     { id: 'referencia', nome: 'Referência', descricao: 'Pagas num ATM ou no homebanking, até 48 horas.' },

@@ -307,11 +307,11 @@ export class DateRangePickerPage {
   }
 
   protected readonly invoices = [
-    { number: 'FT 2026/0201', issued: new Date(2026, 9, 26), amount: '250 000,00 Kz' },
-    { number: 'FT 2026/0198', issued: new Date(2026, 9, 21), amount: '5 079 000,00 Kz' },
-    { number: 'FT 2026/0193', issued: new Date(2026, 9, 6), amount: '4 651 500,00 Kz' },
-    { number: 'FT 2026/0187', issued: new Date(2026, 8, 24), amount: '1 230 000,00 Kz' },
-    { number: 'FT 2026/0180', issued: new Date(2026, 8, 9), amount: '845 000,00 Kz' },
+    { number: 'FT 2026/0201', issued: new Date(2026, 9, 26), amount: '$250.00' },
+    { number: 'FT 2026/0198', issued: new Date(2026, 9, 21), amount: '$5,079.00' },
+    { number: 'FT 2026/0193', issued: new Date(2026, 9, 6), amount: '$4,651.50' },
+    { number: 'FT 2026/0187', issued: new Date(2026, 8, 24), amount: '$1,230.00' },
+    { number: 'FT 2026/0180', issued: new Date(2026, 8, 9), amount: '$845.00' },
   ];
   protected readonly filterPeriod = signal<MxDateRange | null>({
     start: new Date(2026, 9, 1),

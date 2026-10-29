@@ -24,9 +24,9 @@ export class CartMini {
   private readonly panel = viewChild.required<TemplateRef<unknown>>('cartPanel');
 
   protected readonly products: Product[] = [
-    { id: 1, name: 'Uíge coffee, 500 g', price: 4500, color: '#7a4a2a' },
-    { id: 2, name: 'Clay mug', price: 3200, color: '#b8693d' },
-    { id: 3, name: 'Malanje honey, 250 g', price: 3900, color: '#a8781f' },
+    { id: 1, name: 'Uíge coffee, 500 g', price: 4.5, color: '#7a4a2a' },
+    { id: 2, name: 'Clay mug', price: 3.2, color: '#b8693d' },
+    { id: 3, name: 'Malanje honey, 250 g', price: 3.9, color: '#a8781f' },
   ];
   /** product id → quantity. */
   protected readonly cart = signal<ReadonlyMap<number, number>>(new Map([[1, 2]]));
@@ -37,9 +37,9 @@ export class CartMini {
   protected readonly subtotal = computed(() => this.lines().reduce((a, l) => a + l.qtd * l.product.price, 0));
   protected readonly notice = signal('');
 
-  private readonly kz = new Intl.NumberFormat('en-US');
+  private readonly usd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
   protected price(v: number): string {
-    return this.kz.format(v) + ' Kz';
+    return this.usd.format(v);
   }
 
   protected open(): void {

@@ -28,13 +28,13 @@ interface Produto {
 })
 export class ProductCarrossel {
   protected readonly produtos: Produto[] = [
-    { id: 1, nome: 'Café do Uíge, 500 g', preco: 4500, cor: '#7a4a2a' },
-    { id: 2, nome: 'Caneca de barro', preco: 3200, cor: '#b8693d' },
-    { id: 3, nome: 'Caderno com capa de pano', preco: 2240, cor: '#1f5e63' },
-    { id: 4, nome: 'Saco de pano estampado', preco: 5500, cor: '#8c2f39' },
-    { id: 5, nome: 'Mel de Malanje, 250 g', preco: 3900, cor: '#a8781f' },
-    { id: 6, nome: 'Cesto de palha', preco: 7800, cor: '#6b6a3a' },
-    { id: 7, nome: 'Vela de cera de abelha', preco: 2600, cor: '#5a4b7a' },
+    { id: 1, nome: 'Café do Uíge, 500 g', preco: 4.5, cor: '#7a4a2a' },
+    { id: 2, nome: 'Caneca de barro', preco: 3.2, cor: '#b8693d' },
+    { id: 3, nome: 'Caderno com capa de pano', preco: 2.24, cor: '#1f5e63' },
+    { id: 4, nome: 'Saco de pano estampado', preco: 5.5, cor: '#8c2f39' },
+    { id: 5, nome: 'Mel de Malanje, 250 g', preco: 3.9, cor: '#a8781f' },
+    { id: 6, nome: 'Cesto de palha', preco: 7.8, cor: '#6b6a3a' },
+    { id: 7, nome: 'Vela de cera de abelha', preco: 2.6, cor: '#5a4b7a' },
   ];
 
   /** Quantos cabem à vista, conforme a largura do bloco. */
@@ -42,9 +42,9 @@ export class ProductCarrossel {
   protected readonly adicionados = signal<ReadonlySet<number>>(new Set());
   protected readonly aviso = signal('');
 
-  private readonly kz = new Intl.NumberFormat('pt-AO');
+  private readonly usd = new Intl.NumberFormat('pt-AO', { style: 'currency', currency: 'USD' });
   protected preco(v: number): string {
-    return this.kz.format(v) + ' Kz';
+    return this.usd.format(v);
   }
 
   constructor() {

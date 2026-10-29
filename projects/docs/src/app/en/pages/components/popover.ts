@@ -101,7 +101,7 @@ import { ApiRow, DOC_UI } from '../../../ui/doc-ui';
             </mx-form-field>
             <mx-popover #help aria-labelledby="ajuda-iva" width="280px">
               <p class="popover-title" id="ajuda-iva">VAT regime</p>
-              <p class="muted">Companies with annual revenue above 350 million Kz are in the general regime. The others can opt for the simplified regime.</p>
+              <p class="muted">Companies with annual revenue above $350,000 are in the general regime. The others can opt for the simplified regime.</p>
             </mx-popover>
           </doc-example>
           <doc-example title="Share link">

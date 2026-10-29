@@ -5,7 +5,7 @@ import { MxButton } from '@muxima-ui/core/button';
 interface Plano {
   nome: string;
   descricao: string;
-  /** Preço mensal em Kz. */
+  /** Preço mensal em dólares. */
   mensal: number;
   inclui: string[];
   recomendado?: boolean;
@@ -26,33 +26,33 @@ export class PricingPlanos {
     {
       nome: 'Básico',
       descricao: 'Para quem está a começar.',
-      mensal: 9900,
+      mensal: 9.9,
       inclui: ['1 utilizador', 'Facturas e recibos ilimitados', 'Até 200 clientes', 'Suporte por e-mail'],
     },
     {
       nome: 'Profissional',
       descricao: 'Para equipas que vendem todos os dias.',
-      mensal: 24900,
+      mensal: 24.9,
       recomendado: true,
       inclui: ['5 utilizadores', 'Tudo o que tem o Básico', 'Stock em 2 armazéns', 'Lembretes de cobrança', 'Relatório de IVA'],
     },
     {
       nome: 'Empresa',
       descricao: 'Para várias lojas e departamentos.',
-      mensal: 59900,
+      mensal: 59.9,
       inclui: ['Utilizadores ilimitados', 'Tudo o que tem o Profissional', 'Armazéns ilimitados', 'Permissões por departamento', 'Gestor de conta dedicado'],
     },
   ];
 
-  private readonly kz = new Intl.NumberFormat('pt-AO');
+  private readonly usd = new Intl.NumberFormat('pt-AO', { style: 'currency', currency: 'USD' });
 
   /** Preço por mês a mostrar: no anual, 10 meses a dividir por 12. */
   protected precoMes(p: Plano): string {
-    const v = this.periodo() === 'anual' ? Math.round((p.mensal * 10) / 12 / 100) * 100 : p.mensal;
-    return this.kz.format(v) + ' Kz';
+    const v = this.periodo() === 'anual' ? Math.round(((p.mensal * 10) / 12) * 100) / 100 : p.mensal;
+    return this.usd.format(v);
   }
   protected precoAno(p: Plano): string {
-    return this.kz.format(p.mensal * 10) + ' Kz';
+    return this.usd.format(p.mensal * 10);
   }
 
   protected readonly aviso = computed(() =>

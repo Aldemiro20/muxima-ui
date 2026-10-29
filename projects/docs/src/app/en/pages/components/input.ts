@@ -112,10 +112,10 @@ import { ApiRow, DOC_UI } from '../../../ui/doc-ui';
           <doc-example title="Prefix and suffix" note="mxInputGroup and mxInputAddon. The unit is also in the label.">
             <div class="stack w-full">
               <mx-form-field>
-                <label mxLabel>Amount in kwanzas</label>
+                <label mxLabel>Amount in dollars</label>
                 <div mxInputGroup>
-                  <span mxInputAddon>Kz</span>
-                  <input mxInput inputmode="decimal" value="1 250 000" />
+                  <span mxInputAddon>US$</span>
+                  <input mxInput inputmode="decimal" value="1,250" />
                   <span mxInputAddon>,00</span>
                 </div>
               </mx-form-field>

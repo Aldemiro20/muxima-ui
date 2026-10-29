@@ -372,7 +372,7 @@ export class EditorPage {
   protected readonly assinatura =
     '<p>Com os melhores cumprimentos,<br>Ana Kiala<br>Kianda Gestão</p>';
   protected readonly dadosPagamento =
-    '<ul><li>Entidade: 00123</li><li>Referência: 231 456 789</li><li>Montante: 250 000,00 Kz</li></ul>';
+    '<ul><li>Entidade: 00123</li><li>Referência: 231 456 789</li><li>Montante: 250,00 US$</li></ul>';
   protected readonly termos =
     '<h3>Condições</h3><p>O pagamento vence <strong>30 dias</strong> após a emissão.</p><ul><li>Juros de mora de 1% ao mês.</li><li>Reclamações em 8 dias.</li></ul>';
   protected readonly artigo =

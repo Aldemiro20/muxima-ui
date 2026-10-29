@@ -82,7 +82,7 @@ import { ApiRow, DOC_UI } from '../../../ui/doc-ui';
               <header class="mx-card-header"><h3 class="mx-card-title" id="tabs-card-t">Customer: Banco Mutamba</h3></header>
               <div class="mx-card-content">
                 <mx-tabs aria-label="Customer detail">
-                  <mx-tab label="Summary"><p class="tab-copy">Balance of 4,870,500.00 Kz, 2 pending invoices.</p></mx-tab>
+                  <mx-tab label="Summary"><p class="tab-copy">Balance of $4,870.50, 2 pending invoices.</p></mx-tab>
                   <mx-tab label="Contacts"><p class="tab-copy">Dr. Luísa Gomes · luisa&#64;mutamba.ao</p></mx-tab>
                   <mx-tab label="Notes"><p class="tab-copy">Pays by transfer at the end of the month.</p></mx-tab>
                 </mx-tabs>

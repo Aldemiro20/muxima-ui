@@ -268,11 +268,11 @@ export class CarouselPage {
     },
   ];
   protected readonly produtos = [
-    { nome: 'Cadeira ergonómica', categoria: 'Escritório', preco: '85 000 Kz' },
-    { nome: 'Secretária 140 cm', categoria: 'Escritório', preco: '210 000 Kz' },
-    { nome: 'Candeeiro LED', categoria: 'Iluminação', preco: '18 500 Kz' },
-    { nome: 'Estante modular', categoria: 'Arrumação', preco: '145 000 Kz' },
-    { nome: 'Quadro branco', categoria: 'Reuniões', preco: '32 000 Kz' },
+    { nome: 'Cadeira ergonómica', categoria: 'Escritório', preco: '85 US$' },
+    { nome: 'Secretária 140 cm', categoria: 'Escritório', preco: '210 US$' },
+    { nome: 'Candeeiro LED', categoria: 'Iluminação', preco: '18,50 US$' },
+    { nome: 'Estante modular', categoria: 'Arrumação', preco: '145 US$' },
+    { nome: 'Quadro branco', categoria: 'Reuniões', preco: '32 US$' },
   ];
   protected readonly dicas = [
     'Usa Ctrl + K para pesquisar em qualquer página.',

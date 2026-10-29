@@ -70,15 +70,15 @@ Cada componente tem o seu ponto de entrada, para só importares o que usas:
 | `@muxima-ui/core/toast` | `MxToast` |
 | `@muxima-ui/core/i18n` | `provideMuximaI18n`, `MxI18n`, `MX_MESSAGES_PT`, `MX_MESSAGES_EN`, `injectMxMessages` |
 
-Idiomas: os textos dos componentes vêm em português (por omissão na 1.x) e em inglês. Para escolher:
+Idiomas: os textos dos componentes vêm em inglês (por omissão desde a 2.0) e em português. Para português:
 
 ```ts
 import { provideMuximaI18n } from '@muxima-ui/core/i18n';
 
-providers: [provideMuximaI18n({ locale: 'en' })]
+providers: [provideMuximaI18n({ locale: 'pt' })]
 ```
 
-`inject(MxI18n).setLocale('pt')` muda o idioma sem recarregar. A partir da 2.0 o inglês passa a ser o idioma por omissão.
+`inject(MxI18n).setLocale('en')` muda o idioma sem recarregar. Quem vem da 1.x e quer manter o português indica `locale: 'pt'`.
 
 O editor de texto usa o Tiptap, que é opcional: só é preciso se importares `@muxima-ui/core/editor`.
 

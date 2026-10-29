@@ -25,7 +25,7 @@ export class SettingsPreferences {
     { id: 'sound', title: 'Notification sounds', description: 'Only while the app is open.', on: true },
   ]);
   protected readonly language = signal('en');
-  protected readonly currency = signal('AOA');
+  protected readonly currency = signal('USD');
   protected readonly notice = signal('');
 
   protected toggle(i: Toggle, on: boolean): void {

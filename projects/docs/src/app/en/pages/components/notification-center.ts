@@ -19,7 +19,7 @@ function sample(): MxNotification[] {
     {
       id: 1,
       title: 'FT 2026/0196 paid',
-      description: 'Huíla Agro paid 1,230,000.00 Kz.',
+      description: 'Huíla Agro paid $1,230.00.',
       time: minutes(4),
       category: 'Invoices',
       variant: 'success',
@@ -27,7 +27,7 @@ function sample(): MxNotification[] {
     {
       id: 2,
       title: '3 overdue invoices',
-      description: 'Total of 20.1 M Kz.',
+      description: 'Total of $20.1K.',
       time: minutes(55),
       category: 'Invoices',
       variant: 'danger',

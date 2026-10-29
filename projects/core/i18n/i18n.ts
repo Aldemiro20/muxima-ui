@@ -16,7 +16,7 @@ import { MX_MESSAGES_PT } from './messages-pt';
 export type MxBuiltInLocale = 'pt' | 'en';
 
 export interface MxI18nConfig {
-  /** Idioma inicial: "pt" (por omissão na 1.x) ou "en". Aceita também "pt-BR", "en-GB", etc. */
+  /** Idioma inicial: "en" (por omissão) ou "pt". Aceita também "pt-BR", "en-GB", etc. */
   locale?: string;
   /**
    * Textos por idioma. Para "pt" e "en" basta indicar o que muda; um idioma novo
@@ -64,7 +64,7 @@ export function mxBuiltInMessages(locale: string): MxMessages {
 export class MxI18n {
   private readonly config = inject(MX_I18N_CONFIG, { optional: true }) ?? {};
   private readonly custom = signal<Record<string, MxDeepPartial<MxMessages>>>(this.config.messages ?? {});
-  private readonly current = signal(this.config.locale ?? 'pt');
+  private readonly current = signal(this.config.locale ?? 'en');
 
   /** Idioma activo, tal como foi indicado ("pt", "en", "en-GB"...). */
   readonly locale = this.current.asReadonly();

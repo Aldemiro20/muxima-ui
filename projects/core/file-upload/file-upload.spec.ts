@@ -25,7 +25,8 @@ const file = (name: string, size: number, type: string) => new File([new Uint8Ar
 describe('MxFileUpload', () => {
   it('formata tamanhos e reconhece tipos', () => {
     expect(mxFormatBytes(340_000)).toBe('340 kB');
-    expect(mxFormatBytes(1_250_000)).toBe('1,3 MB');
+    expect(mxFormatBytes(1_250_000)).toBe('1.3 MB');
+    expect(mxFormatBytes(1_250_000, 'pt-AO')).toBe('1,3 MB');
     expect(mxFileMatches(file('a.PDF', 1, 'application/pdf'), '.pdf')).toBe(true);
     expect(mxFileMatches(file('a.png', 1, 'image/png'), 'image/*')).toBe(true);
     expect(mxFileMatches(file('a.docx', 1, 'application/msword'), '.pdf,image/*')).toBe(false);

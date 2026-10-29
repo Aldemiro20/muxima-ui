@@ -27,7 +27,8 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "tsConfig": "projects/core/tsconfig.spec.json"
+            "tsConfig": "projects/core/tsconfig.spec.json",
+            "setupFiles": ["projects/core/test-setup.ts"]
           }
         }
       }

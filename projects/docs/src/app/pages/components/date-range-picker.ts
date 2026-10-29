@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { MX_MESSAGES_PT } from '@muxima-ui/core/i18n';
 import {
   AbstractControl,
   FormControl,
@@ -273,7 +274,7 @@ function maxDias(max: number) {
 })
 export class DateRangePickerPage {
   protected readonly hoje = new Date();
-  protected readonly atalhos = mxDefaultRangePresets();
+  protected readonly atalhos = mxDefaultRangePresets(MX_MESSAGES_PT.dateRangePicker);
   protected readonly periodo = signal<MxDateRange | null>(null);
   protected readonly exemplo: MxDateRange = {
     start: new Date(2026, 9, 1),
@@ -306,11 +307,11 @@ export class DateRangePickerPage {
   }
 
   protected readonly facturas = [
-    { numero: 'FT 2026/0201', emitida: new Date(2026, 9, 26), valor: '250 000,00 Kz' },
-    { numero: 'FT 2026/0198', emitida: new Date(2026, 9, 21), valor: '5 079 000,00 Kz' },
-    { numero: 'FT 2026/0193', emitida: new Date(2026, 9, 6), valor: '4 651 500,00 Kz' },
-    { numero: 'FT 2026/0187', emitida: new Date(2026, 8, 24), valor: '1 230 000,00 Kz' },
-    { numero: 'FT 2026/0180', emitida: new Date(2026, 8, 9), valor: '845 000,00 Kz' },
+    { numero: 'FT 2026/0201', emitida: new Date(2026, 9, 26), valor: '250,00 US$' },
+    { numero: 'FT 2026/0198', emitida: new Date(2026, 9, 21), valor: '5 079,00 US$' },
+    { numero: 'FT 2026/0193', emitida: new Date(2026, 9, 6), valor: '4 651,50 US$' },
+    { numero: 'FT 2026/0187', emitida: new Date(2026, 8, 24), valor: '1 230,00 US$' },
+    { numero: 'FT 2026/0180', emitida: new Date(2026, 8, 9), valor: '845,00 US$' },
   ];
   protected readonly filtroPeriodo = signal<MxDateRange | null>({
     start: new Date(2026, 9, 1),
@@ -339,7 +340,7 @@ export class DateRangePickerPage {
   <mx-date-range-picker formControlName="periodo" [presets]="atalhos" />
 </mx-form-field>
 
-// atalhos = mxDefaultRangePresets();`;
+// atalhos = mxDefaultRangePresets(MX_MESSAGES_PT.dateRangePicker);`;
 
   protected readonly api: ApiRow[] = [
     {
@@ -373,9 +374,9 @@ export class DateRangePickerPage {
     { kind: 'Input', name: 'disabled, required, invalid', type: 'boolean', default: 'false' },
     {
       kind: 'Função',
-      name: 'mxDefaultRangePresets()',
+      name: 'mxDefaultRangePresets(nomes?)',
       type: 'MxDateRangePreset[]',
-      description: 'Últimos 7 e 30 dias, este mês e o mês passado.',
+      description: 'Últimos 7 e 30 dias, este mês e o mês passado. Nomes em inglês por omissão; em português com MX_MESSAGES_PT.dateRangePicker.',
     },
     {
       kind: 'Função',

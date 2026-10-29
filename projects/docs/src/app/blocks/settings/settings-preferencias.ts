@@ -25,7 +25,7 @@ export class SettingsPreferencias {
     { id: 'som', titulo: 'Som nas notificações', descricao: 'Só enquanto a aplicação está aberta.', ligado: true },
   ]);
   protected readonly idioma = signal('pt-AO');
-  protected readonly moeda = signal('AOA');
+  protected readonly moeda = signal('USD');
   protected readonly aviso = signal('');
 
   protected alternar(i: Interruptor, ligado: boolean): void {

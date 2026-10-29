@@ -5,13 +5,13 @@ import { Directive } from '@angular/core';
  *
  * ```html
  * <div mxInputGroup>
- *   <span mxInputAddon>Kz</span>
+ *   <span mxInputAddon>US$</span>
  *   <input mxInput inputmode="decimal" aria-label="Valor" />
  *   <span mxInputAddon>,00</span>
  * </div>
  * ```
  *
- * O prefixo e o sufixo são só visuais: inclui a unidade no label (ex.: "Valor em Kz").
+ * O prefixo e o sufixo são só visuais: inclui a unidade no label (ex.: "Valor em US$").
  */
 @Directive({ selector: '[mxInputGroup]', host: { class: 'mx-input-group' } })
 export class MxInputGroup {}

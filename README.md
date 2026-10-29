@@ -66,7 +66,7 @@ Modo escuro: segue o sistema por omissão; força com `<html data-theme="dark">`
 
 ## Idiomas
 
-Português (por omissão na 1.x) e inglês. Escolhe com `provideMuximaI18n({ locale: 'en' })` e muda com `inject(MxI18n).setLocale('pt')`. Ver a página Idiomas da documentação.
+Inglês (por omissão desde a 2.0) e português. Para português, `provideMuximaI18n({ locale: 'pt' })`; muda durante a utilização com `inject(MxI18n).setLocale('en')`. Ver a página Idiomas da documentação.
 
 ## Compatibilidade
 

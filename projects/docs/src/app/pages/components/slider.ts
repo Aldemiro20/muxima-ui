@@ -39,9 +39,9 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               max="500"
               step="10"
               [(ngModel)]="orcamento"
-              [attr.aria-valuetext]="orcamento + ' mil kwanzas'"
+              [attr.aria-valuetext]="orcamento + ' dólares'"
             />
-            <mx-hint>{{ orcamento }} mil Kz</mx-hint>
+            <mx-hint>{{ orcamento }} US$</mx-hint>
           </mx-form-field>
         </doc-preview>
       </section>
@@ -166,7 +166,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
         <p>
           Dois cursores para escolher um intervalo (mínimo e máximo). São dois input range nativos
           dentro de <code>mx-range-slider</code>: cada cursor tem o seu teclado e é anunciado como
-          "Preço, mínimo, 20 000 Kz". Os cursores não se cruzam.
+          "Preço, mínimo, 20 US$". Os cursores não se cruzam.
         </p>
         <div class="grid-2">
           <doc-example
@@ -178,9 +178,9 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               <mx-range-slider
                 [(value)]="preco"
                 [min]="0"
-                [max]="1000000"
-                [step]="10000"
-                [format]="kz"
+                [max]="1000"
+                [step]="10"
+                [format]="usd"
                 showValues
               />
             </mx-form-field>
@@ -237,9 +237,9 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
                 <mx-range-slider
                   [(value)]="faixa"
                   [min]="0"
-                  [max]="500000"
-                  [step]="5000"
-                  [format]="kz"
+                  [max]="500"
+                  [step]="5"
+                  [format]="usd"
                   showValues
                 />
               </mx-form-field>
@@ -247,7 +247,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
                 @for (p of produtosNoIntervalo(); track p.nome) {
                   <li>
                     <span>{{ p.nome }}</span
-                    ><span class="muted">{{ kz(p.preco) }}</span>
+                    ><span class="muted">{{ usd(p.preco) }}</span>
                   </li>
                 } @empty {
                   <li class="muted">Nenhum produto nesta faixa de preço.</li>
@@ -329,8 +329,8 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 })
 export class SliderPage {
   protected desconto = 10;
-  protected readonly preco = signal<[number, number] | null>([150000, 600000]);
-  protected readonly kz = (v: number) => new Intl.NumberFormat('pt-AO').format(v) + ' Kz';
+  protected readonly preco = signal<[number, number] | null>([150, 600]);
+  protected readonly usd = (v: number) => new Intl.NumberFormat('pt-AO', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(v);
   protected readonly horario = signal<[number, number] | null>([8, 17]);
   protected readonly horas = (v: number) => `${v}h`;
   protected readonly filtro = new FormGroup({
@@ -342,13 +342,13 @@ export class SliderPage {
   protected orcamento = 120;
   protected prazo = 30;
 
-  protected readonly faixa = signal<[number, number] | null>([50000, 250000]);
+  protected readonly faixa = signal<[number, number] | null>([50, 250]);
   protected readonly produtos = [
-    { nome: 'Cadeira de escritório', preco: 85000 },
-    { nome: 'Secretária', preco: 210000 },
-    { nome: 'Candeeiro de mesa', preco: 18500 },
-    { nome: 'Estante', preco: 145000 },
-    { nome: 'Sofá de 3 lugares', preco: 420000 },
+    { nome: 'Cadeira de escritório', preco: 85 },
+    { nome: 'Secretária', preco: 210 },
+    { nome: 'Candeeiro de mesa', preco: 19 },
+    { nome: 'Estante', preco: 145 },
+    { nome: 'Sofá de 3 lugares', preco: 420 },
   ];
   protected readonly produtosNoIntervalo = computed(() => {
     const [min, max] = this.faixa() ?? [0, Infinity];
@@ -364,8 +364,8 @@ export class SliderPage {
   protected readonly previewCode = `<mx-form-field>
   <label mxLabel>Orçamento mensal</label>
   <input type="range" mxSlider min="0" max="500" step="10"
-         [(ngModel)]="orcamento" [attr.aria-valuetext]="orcamento + ' mil kwanzas'" />
-  <mx-hint>{{ orcamento }} mil Kz</mx-hint>
+         [(ngModel)]="orcamento" [attr.aria-valuetext]="orcamento + ' dólares'" />
+  <mx-hint>{{ orcamento }} US$</mx-hint>
 </mx-form-field>`;
 
   protected readonly api: ApiRow[] = [

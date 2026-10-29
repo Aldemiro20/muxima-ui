@@ -113,9 +113,9 @@ test.describe('Blocos novos', () => {
     await page.getByRole('button', { name: /Carrinho 3 artigos/ }).click();
     const painel = page.getByRole('dialog', { name: 'Carrinho (3)' });
     await expect(painel).toBeVisible();
-    await expect(painel).toContainText('12 200 Kz');
+    await expect(painel).toContainText(/12,20\sUS\$/);
     await painel.getByRole('button', { name: 'Mais um Caneca de barro' }).click();
-    await expect(page.getByRole('dialog', { name: 'Carrinho (4)' })).toContainText('15 400 Kz');
+    await expect(page.getByRole('dialog', { name: 'Carrinho (4)' })).toContainText(/15,40\sUS\$/);
     await expectAccessible(page);
     await page.keyboard.press('Escape');
     await expect(page.getByRole('button', { name: /Carrinho 4 artigos/ })).toBeFocused();
@@ -131,10 +131,10 @@ test.describe('Blocos novos', () => {
     await expect(page.getByRole('heading', { name: 'Entrega' })).toBeFocused();
     await expect(page.locator('[aria-current="step"]')).toContainText('Entrega');
     await page.getByText('Levantar na loja').click();
-    await expect(page.locator('.resumo')).toContainText('30 700 Kz');
+    await expect(page.locator('.resumo')).toContainText(/30,70\sUS\$/);
     await page.getByRole('button', { name: 'Continuar' }).click();
     await page.getByLabel('Número de telemóvel').fill('923456789');
-    await page.getByRole('button', { name: 'Pagar 30 700 Kz' }).click();
+    await page.getByRole('button', { name: /^Pagar 30,70\sUS\$$/ }).click();
     await expect(page.getByRole('heading', { name: 'Encomenda confirmada' })).toBeFocused();
     await expectAccessible(page);
   });

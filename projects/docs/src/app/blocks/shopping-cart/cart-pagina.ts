@@ -6,7 +6,7 @@ interface Linha {
   id: number;
   nome: string;
   detalhe: string;
-  /** Preço unitário com IVA, em Kz. */
+  /** Preço unitário com IVA, em dólares. */
   preco: number;
   quantidade: number;
   cor: string;
@@ -25,22 +25,22 @@ const IVA = 0.14;
 })
 export class CartPagina {
   protected readonly linhas = signal<Linha[]>([
-    { id: 1, nome: 'Camisa de pano', detalhe: 'Tamanho M', preco: 18500, quantidade: 1, cor: '#1f5e63' },
-    { id: 2, nome: 'Café do Uíge, 500 g', detalhe: 'Moído', preco: 4500, quantidade: 2, cor: '#7a4a2a' },
-    { id: 3, nome: 'Caneca de barro', detalhe: 'Natural', preco: 3200, quantidade: 1, cor: '#b8693d' },
+    { id: 1, nome: 'Camisa de pano', detalhe: 'Tamanho M', preco: 18.5, quantidade: 1, cor: '#1f5e63' },
+    { id: 2, nome: 'Café do Uíge, 500 g', detalhe: 'Moído', preco: 4.5, quantidade: 2, cor: '#7a4a2a' },
+    { id: 3, nome: 'Caneca de barro', detalhe: 'Natural', preco: 3.2, quantidade: 1, cor: '#b8693d' },
   ]);
   protected readonly aviso = signal('');
   private readonly titulo = viewChild.required<ElementRef<HTMLElement>>('titulo');
 
   protected readonly artigos = computed(() => this.linhas().reduce((a, l) => a + l.quantidade, 0));
   protected readonly total = computed(() => this.linhas().reduce((a, l) => a + l.preco * l.quantidade, 0));
-  protected readonly entrega = computed(() => (this.total() >= 50000 || !this.total() ? 0 : 2500));
+  protected readonly entrega = computed(() => (this.total() >= 50 || !this.total() ? 0 : 2.5));
   protected readonly iva = computed(() => this.total() - this.total() / (1 + IVA));
   protected readonly aPagar = computed(() => this.total() + this.entrega());
 
-  private readonly fmt = new Intl.NumberFormat('pt-AO', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  private readonly fmt = new Intl.NumberFormat('pt-AO', { style: 'currency', currency: 'USD' });
   protected kz(v: number): string {
-    return this.fmt.format(v) + ' Kz';
+    return this.fmt.format(v);
   }
 
   protected mudar(l: Linha, delta: number): void {

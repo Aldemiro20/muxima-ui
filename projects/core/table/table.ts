@@ -106,13 +106,13 @@ export class MxSortHeader {
 
 /**
  * Ordena uma lista segundo o estado de `MxTable`. Texto é comparado segundo `locale`
- * (português por omissão; acentos e maiúsculas contam como a mesma letra), números numericamente.
+ * (inglês por omissão; acentos e maiúsculas contam como a mesma letra), números numericamente.
  */
 export function mxSortData<T>(
   rows: readonly T[],
   sort: MxSortState,
   accessor?: (row: T, key: string) => unknown,
-  locale = 'pt',
+  locale = 'en',
 ): T[] {
   if (!sort.active) return [...rows];
   const key = sort.active;

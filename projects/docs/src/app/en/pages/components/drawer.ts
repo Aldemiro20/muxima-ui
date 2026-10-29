@@ -21,7 +21,7 @@ import { ActionSheet, CustomerDetail, EditCustomer, FiltersPanel, MobileMenu, No
       <dl class="detail-list">
         <div><dt>Status</dt><dd><span mxBadge variant="success">Paid</span></dd></div>
         <div><dt>Issued</dt><dd>October 3, 2026</dd></div>
-        <div><dt>Amount</dt><dd>1,250,000 Kz</dd></div>
+        <div><dt>Amount</dt><dd>$1,250</dd></div>
         <div><dt>Side</dt><dd>{{ data.side }}</dd></div>
       </dl>
     </mx-dialog-content>

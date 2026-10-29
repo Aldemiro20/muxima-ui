@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { MX_MESSAGES_PT } from '@muxima-ui/core/i18n';
 import { MxAvatar } from '@muxima-ui/core/avatar';
 import { MxButton } from '@muxima-ui/core/button';
 import { MX_CARD } from '@muxima-ui/core/card';
@@ -19,7 +20,7 @@ function exemplo(): MxNotification[] {
     {
       id: 1,
       title: 'FT 2026/0196 paga',
-      description: 'Huíla Agro pagou 1 230 000,00 Kz.',
+      description: 'Huíla Agro pagou 1 230,00 US$.',
       time: minutos(4),
       category: 'Facturas',
       variant: 'success',
@@ -27,7 +28,7 @@ function exemplo(): MxNotification[] {
     {
       id: 2,
       title: '3 facturas em atraso',
-      description: 'Total de 20,1 M Kz.',
+      description: 'Total de 20,1 mil US$.',
       time: minutos(55),
       category: 'Facturas',
       variant: 'danger',
@@ -232,7 +233,7 @@ function exemplo(): MxNotification[] {
           </doc-example>
           <doc-example
             title="Tempo relativo"
-            note="mxRelativeTime(data) devolve agora, há 5 minutos, ontem ou a data."
+            note="mxRelativeTime(data, agora, 'pt-AO', MX_MESSAGES_PT.notifications.now) devolve agora, há 5 minutos, ontem ou a data. Sem locale, escreve em inglês."
           >
             <ul class="product-list">
               @for (t of tempos; track t.rotulo) {
@@ -386,7 +387,7 @@ export class NotificationCenterPage {
     { rotulo: 'Há 10 dias', data: minutos(60 * 24 * 10) },
   ];
   protected relativo(d: Date): string {
-    return mxRelativeTime(d);
+    return mxRelativeTime(d, new Date(), 'pt-AO', MX_MESSAGES_PT.notifications.now);
   }
 
   protected readonly previewCode = `<button mxNotificationBell [count]="porLer()" [mxPopoverTrigger]="painel"></button>

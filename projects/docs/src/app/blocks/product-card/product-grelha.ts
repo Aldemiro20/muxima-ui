@@ -25,10 +25,10 @@ interface Produto {
 })
 export class ProductGrelha {
   protected readonly produtos: Produto[] = [
-    { id: 1, nome: 'Café do Uíge, 500 g', categoria: 'Mercearia', preco: 4500, avaliacao: 4.5, avaliacoes: 124, cor: '#7a4a2a' },
-    { id: 2, nome: 'Caneca de barro', categoria: 'Casa', preco: 3200, avaliacao: 4, avaliacoes: 38, cor: '#b8693d' },
-    { id: 3, nome: 'Caderno com capa de pano', categoria: 'Papelaria', preco: 2240, precoAntes: 2800, avaliacao: 5, avaliacoes: 12, cor: '#1f5e63' },
-    { id: 4, nome: 'Saco de pano estampado', categoria: 'Acessórios', preco: 5500, avaliacao: 3.5, avaliacoes: 7, cor: '#8c2f39' },
+    { id: 1, nome: 'Café do Uíge, 500 g', categoria: 'Mercearia', preco: 4.5, avaliacao: 4.5, avaliacoes: 124, cor: '#7a4a2a' },
+    { id: 2, nome: 'Caneca de barro', categoria: 'Casa', preco: 3.2, avaliacao: 4, avaliacoes: 38, cor: '#b8693d' },
+    { id: 3, nome: 'Caderno com capa de pano', categoria: 'Papelaria', preco: 2.24, precoAntes: 2.8, avaliacao: 5, avaliacoes: 12, cor: '#1f5e63' },
+    { id: 4, nome: 'Saco de pano estampado', categoria: 'Acessórios', preco: 5.5, avaliacao: 3.5, avaliacoes: 7, cor: '#8c2f39' },
   ];
 
   protected readonly favoritos = signal<ReadonlySet<number>>(new Set());
@@ -36,9 +36,9 @@ export class ProductGrelha {
   protected readonly totalArtigos = computed(() => [...this.carrinho().values()].reduce((a, n) => a + n, 0));
   protected readonly aviso = signal('');
 
-  private readonly kz = new Intl.NumberFormat('pt-AO');
+  private readonly usd = new Intl.NumberFormat('pt-AO', { style: 'currency', currency: 'USD' });
   protected preco(v: number): string {
-    return this.kz.format(v) + ' Kz';
+    return this.usd.format(v);
   }
   protected desconto(p: Produto): number {
     return p.precoAntes ? Math.round((1 - p.preco / p.precoAntes) * 100) : 0;

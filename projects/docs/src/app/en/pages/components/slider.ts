@@ -39,9 +39,9 @@ import { ApiRow, DOC_UI } from '../../../ui/doc-ui';
               max="500"
               step="10"
               [(ngModel)]="budget"
-              [attr.aria-valuetext]="budget + ' thousand kwanzas'"
+              [attr.aria-valuetext]="budget + ' dollars'"
             />
-            <mx-hint>{{ budget }} thousand Kz</mx-hint>
+            <mx-hint>{{ budget }} USD</mx-hint>
           </mx-form-field>
         </doc-preview>
       </section>
@@ -166,7 +166,7 @@ import { ApiRow, DOC_UI } from '../../../ui/doc-ui';
         <p>
           Two thumbs to choose a range (minimum and maximum). They're two native range inputs
           inside <code>mx-range-slider</code>: each thumb has its own keyboard and is announced as
-          "Price, minimum, 20,000 Kz". The thumbs don't cross.
+          "Price, minimum, $20". The thumbs don't cross.
         </p>
         <div class="grid-2">
           <doc-example
@@ -178,9 +178,9 @@ import { ApiRow, DOC_UI } from '../../../ui/doc-ui';
               <mx-range-slider
                 [(value)]="price"
                 [min]="0"
-                [max]="1000000"
-                [step]="10000"
-                [format]="kz"
+                [max]="1000"
+                [step]="10"
+                [format]="usd"
                 showValues
               />
             </mx-form-field>
@@ -237,9 +237,9 @@ import { ApiRow, DOC_UI } from '../../../ui/doc-ui';
                 <mx-range-slider
                   [(value)]="band"
                   [min]="0"
-                  [max]="500000"
-                  [step]="5000"
-                  [format]="kz"
+                  [max]="500"
+                  [step]="5"
+                  [format]="usd"
                   showValues
                 />
               </mx-form-field>
@@ -247,7 +247,7 @@ import { ApiRow, DOC_UI } from '../../../ui/doc-ui';
                 @for (p of productsInRange(); track p.name) {
                   <li>
                     <span>{{ p.name }}</span
-                    ><span class="muted">{{ kz(p.price) }}</span>
+                    ><span class="muted">{{ usd(p.price) }}</span>
                   </li>
                 } @empty {
                   <li class="muted">No products in this price range.</li>
@@ -329,8 +329,8 @@ import { ApiRow, DOC_UI } from '../../../ui/doc-ui';
 })
 export class SliderPage {
   protected discount = 10;
-  protected readonly price = signal<[number, number] | null>([150000, 600000]);
-  protected readonly kz = (v: number) => new Intl.NumberFormat('en-US').format(v) + ' Kz';
+  protected readonly price = signal<[number, number] | null>([150, 600]);
+  protected readonly usd = (v: number) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(v);
   protected readonly hours = signal<[number, number] | null>([8, 17]);
   protected readonly hoursText = (v: number) => `${v}h`;
   protected readonly filter = new FormGroup({
@@ -342,13 +342,13 @@ export class SliderPage {
   protected budget = 120;
   protected terms = 30;
 
-  protected readonly band = signal<[number, number] | null>([50000, 250000]);
+  protected readonly band = signal<[number, number] | null>([50, 250]);
   protected readonly products = [
-    { name: 'Office chair', price: 85000 },
-    { name: 'Desk', price: 210000 },
-    { name: 'Desk lamp', price: 18500 },
-    { name: 'Bookcase', price: 145000 },
-    { name: '3-seat sofa', price: 420000 },
+    { name: 'Office chair', price: 85 },
+    { name: 'Desk', price: 210 },
+    { name: 'Desk lamp', price: 19 },
+    { name: 'Bookcase', price: 145 },
+    { name: '3-seat sofa', price: 420 },
   ];
   protected readonly productsInRange = computed(() => {
     const [min, max] = this.band() ?? [0, Infinity];
@@ -364,8 +364,8 @@ export class SliderPage {
   protected readonly previewCode = `<mx-form-field>
   <label mxLabel>Monthly budget</label>
   <input type="range" mxSlider min="0" max="500" step="10"
-         [(ngModel)]="budget" [attr.aria-valuetext]="budget + ' thousand kwanzas'" />
-  <mx-hint>{{ budget }} thousand Kz</mx-hint>
+         [(ngModel)]="budget" [attr.aria-valuetext]="budget + ' dollars'" />
+  <mx-hint>{{ budget }} USD</mx-hint>
 </mx-form-field>`;
 
   protected readonly api: ApiRow[] = [

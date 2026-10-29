@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { expectNoA11yViolations } from '../testing/axe';
+import { MX_MESSAGES_PT } from '@muxima-ui/core/i18n';
 import {
   MxNotification,
   MxNotificationBell,
@@ -59,9 +60,13 @@ class Host {
 
 describe('MxNotificationCenter', () => {
   it('formata tempos relativos', () => {
-    expect(mxRelativeTime(antes(0.2), agora)).toBe('agora');
-    expect(mxRelativeTime(antes(5), agora)).toBe('há 5 minutos');
-    expect(mxRelativeTime(antes(60 * 24), agora)).toBe('ontem');
+    const pt = (d: Date) => mxRelativeTime(d, agora, 'pt-AO', MX_MESSAGES_PT.notifications.now);
+    expect(pt(antes(0.2))).toBe('agora');
+    expect(pt(antes(5))).toBe('há 5 minutos');
+    expect(pt(antes(60 * 24))).toBe('ontem');
+    // por omissão, em inglês
+    expect(mxRelativeTime(antes(0.2), agora)).toBe('now');
+    expect(mxRelativeTime(antes(5), agora)).toBe('5 minutes ago');
   });
 
   it('mostra por ler, filtra, marca e anuncia novas', async () => {

@@ -137,8 +137,8 @@ export class EditarCliente {
       <hr mxSeparator />
       <mx-form-field>
         <label mxLabel>Valor mínimo</label>
-        <input type="range" mxSlider min="0" max="5000" step="250" [(ngModel)]="minimo" [attr.aria-valuetext]="minimo + ' mil kwanzas'" />
-        <mx-hint>{{ minimo }} mil Kz</mx-hint>
+        <input type="range" mxSlider min="0" max="5000" step="250" [(ngModel)]="minimo" [attr.aria-valuetext]="minimo + ' dólares'" />
+        <mx-hint>{{ minimo }} US$</mx-hint>
       </mx-form-field>
     </mx-dialog-content>
     <mx-dialog-footer>
@@ -224,7 +224,7 @@ export class MenuMovel {
       <mx-tabs aria-label="Detalhe do cliente">
         <mx-tab label="Resumo">
           <dl class="detail-list">
-            <div><dt>Saldo</dt><dd>4 870 500,00 Kz</dd></div>
+            <div><dt>Saldo</dt><dd>4 870,50 US$</dd></div>
             <div><dt>Facturas</dt><dd>38 emitidas, 2 pendentes</dd></div>
             <div><dt>Gestor</dt><dd>Pedro Neto</dd></div>
             <div><dt>Estado</dt><dd><span mxBadge variant="warning">Pagamento pendente</span></dd></div>
@@ -233,7 +233,7 @@ export class MenuMovel {
         <mx-tab label="Facturas">
           <div class="mx-table-container">
             <table mxTable density="compact">
-              <thead><tr><th scope="col">Factura</th><th scope="col">Estado</th><th scope="col" data-align="end">Valor (Kz)</th></tr></thead>
+              <thead><tr><th scope="col">Factura</th><th scope="col">Estado</th><th scope="col" data-align="end">Valor (US$)</th></tr></thead>
               <tbody>
                 <tr><td>FT 2026/0143</td><td><span mxBadge variant="warning">Pendente</span></td><td data-align="end">4 870 500,00</td></tr>
                 <tr><td>FT 2026/0118</td><td><span mxBadge variant="success">Paga</span></td><td data-align="end">2 100 000,00</td></tr>

@@ -16,7 +16,7 @@ import { MxRangeSlider } from './range-slider';
 })
 class Host {
   preco = new FormControl<[number, number] | null>([20, 80]);
-  kz = (v: number) => `${v} Kz`;
+  kz = (v: number) => `${v} US$`;
 }
 
 describe('MxRangeSlider', () => {
@@ -28,7 +28,7 @@ describe('MxRangeSlider', () => {
     const name = (i: HTMLInputElement) => i.getAttribute('aria-labelledby')!.split(' ').map((id) => document.getElementById(id)!.textContent!.trim()).join(' ');
     expect(name(low)).toBe('Preço mínimo');
     expect(name(high)).toBe('Preço máximo');
-    expect(low.getAttribute('aria-valuetext')).toBe('20 Kz');
+    expect(low.getAttribute('aria-valuetext')).toBe('20 US$');
 
     low.value = '95';
     low.dispatchEvent(new Event('input'));
@@ -38,8 +38,8 @@ describe('MxRangeSlider', () => {
 
     fixture.componentInstance.preco.setValue([10, 30]);
     fixture.detectChanges();
-    expect(high.getAttribute('aria-valuetext')).toBe('30 Kz');
-    expect(el.querySelector('.mx-range-slider-values')!.textContent).toContain('10 Kz');
+    expect(high.getAttribute('aria-valuetext')).toBe('30 US$');
+    expect(el.querySelector('.mx-range-slider-values')!.textContent).toContain('10 US$');
     await expectNoA11yViolations(el);
   });
 });

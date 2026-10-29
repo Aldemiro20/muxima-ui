@@ -44,6 +44,12 @@ import { ApiRow, DOC_UI } from '../ui/doc-ui';
 })
 export class IdiomasDemo {
   protected readonly i18n = inject(MxI18n);
+
+  constructor() {
+    // a demonstração começa em português, como a página
+    this.i18n.setLocale('pt');
+  }
+
   protected readonly tags = signal(['Luanda', 'Huambo']);
   protected readonly nota = signal<number | null>(4);
   protected readonly pagina = signal(2);
@@ -74,9 +80,8 @@ export class IdiomasDemo {
         <p>Indica o idioma ao arrancar a aplicação:</p>
         <doc-code [code]="provide" />
         <doc-callout>
-          Na versão 1.x o português continua a ser o idioma por omissão, para nada mudar em quem já usa a
-          biblioteca. A partir da 2.0 passa a ser o inglês. Se a tua aplicação é em português, indica
-          <code>locale: 'pt'</code> já agora, e a mudança de versão não te afecta.
+          Desde a 2.0 o idioma por omissão é o inglês (na 1.x era o português). Se a tua aplicação é em
+          português, indica <code>locale: 'pt'</code>, como acima.
         </doc-callout>
       </section>
 
@@ -153,7 +158,7 @@ export class IdiomasPage {
 import { provideMuximaI18n } from '@muxima-ui/core/i18n';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideMuximaI18n({ locale: 'en' })],
+  providers: [provideMuximaI18n({ locale: 'pt' })],
 };`;
 
   protected readonly runtime = `import { DOCUMENT, inject } from '@angular/core';

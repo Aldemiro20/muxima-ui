@@ -372,7 +372,7 @@ export class EditorPage {
   protected readonly signature =
     '<p>Best regards,<br>Ana Kiala<br>Kianda Management</p>';
   protected readonly paymentDetails =
-    '<ul><li>Entity: 00123</li><li>Reference: 231 456 789</li><li>Amount: 250,000.00 Kz</li></ul>';
+    '<ul><li>Entity: 00123</li><li>Reference: 231 456 789</li><li>Amount: $250.00</li></ul>';
   protected readonly terms =
     '<h3>Terms</h3><p>Payment is due <strong>30 days</strong> after issue.</p><ul><li>Late interest of 1% per month.</li><li>Complaints within 8 days.</li></ul>';
   protected readonly article =

@@ -56,7 +56,7 @@ function validExpiry(c: AbstractControl): ValidationErrors | null {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaymentCard {
-  protected readonly amount = '33 200,00 Kz';
+  protected readonly amount = '$33.20';
   protected readonly form = new FormGroup({
     number: new FormControl('', { nonNullable: true, validators: [Validators.required, validNumber] }),
     name: new FormControl('', { nonNullable: true, validators: [Validators.required] }),

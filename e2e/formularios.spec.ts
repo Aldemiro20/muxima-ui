@@ -120,7 +120,7 @@ test.describe('Formulários com teclado', () => {
     await slider.focus();
     await page.keyboard.press('ArrowRight');
     expect(Number(await slider.inputValue())).toBeGreaterThan(before);
-    await expect(slider).toHaveAttribute('aria-valuetext', /mil kwanzas/);
+    await expect(slider).toHaveAttribute('aria-valuetext', /dólares/);
   });
 
   test('OTP: escrever e colar preenche as caixas', async ({ page }) => {

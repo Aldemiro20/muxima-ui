@@ -56,7 +56,7 @@ function validadeValida(c: AbstractControl): ValidationErrors | null {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaymentCartao {
-  protected readonly valor = '33 200,00 Kz';
+  protected readonly valor = '33,20 US$';
   protected readonly form = new FormGroup({
     numero: new FormControl('', { nonNullable: true, validators: [Validators.required, numeroValido] }),
     nome: new FormControl('', { nonNullable: true, validators: [Validators.required] }),

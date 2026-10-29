@@ -28,13 +28,13 @@ interface Product {
 })
 export class ProductCarousel {
   protected readonly products: Product[] = [
-    { id: 1, name: 'Uíge coffee, 500 g', price: 4500, color: '#7a4a2a' },
-    { id: 2, name: 'Clay mug', price: 3200, color: '#b8693d' },
-    { id: 3, name: 'Cloth-bound notebook', price: 2240, color: '#1f5e63' },
-    { id: 4, name: 'Printed cloth bag', price: 5500, color: '#8c2f39' },
-    { id: 5, name: 'Malanje honey, 250 g', price: 3900, color: '#a8781f' },
-    { id: 6, name: 'Straw basket', price: 7800, color: '#6b6a3a' },
-    { id: 7, name: 'Beeswax candle', price: 2600, color: '#5a4b7a' },
+    { id: 1, name: 'Uíge coffee, 500 g', price: 4.5, color: '#7a4a2a' },
+    { id: 2, name: 'Clay mug', price: 3.2, color: '#b8693d' },
+    { id: 3, name: 'Cloth-bound notebook', price: 2.24, color: '#1f5e63' },
+    { id: 4, name: 'Printed cloth bag', price: 5.5, color: '#8c2f39' },
+    { id: 5, name: 'Malanje honey, 250 g', price: 3.9, color: '#a8781f' },
+    { id: 6, name: 'Straw basket', price: 7.8, color: '#6b6a3a' },
+    { id: 7, name: 'Beeswax candle', price: 2.6, color: '#5a4b7a' },
   ];
 
   /** How many fit in view, depending on the block width. */
@@ -42,9 +42,9 @@ export class ProductCarousel {
   protected readonly added = signal<ReadonlySet<number>>(new Set());
   protected readonly notice = signal('');
 
-  private readonly kz = new Intl.NumberFormat('en-US');
+  private readonly usd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
   protected price(v: number): string {
-    return this.kz.format(v) + ' Kz';
+    return this.usd.format(v);
   }
 
   constructor() {

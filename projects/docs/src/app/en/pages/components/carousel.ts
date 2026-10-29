@@ -268,11 +268,11 @@ export class CarouselPage {
     },
   ];
   protected readonly products = [
-    { name: 'Ergonomic chair', category: 'Office', price: '85 000 Kz' },
-    { name: '140 cm desk', category: 'Office', price: '210 000 Kz' },
-    { name: 'LED lamp', category: 'Lighting', price: '18 500 Kz' },
-    { name: 'Modular shelving', category: 'Storage', price: '145 000 Kz' },
-    { name: 'Whiteboard', category: 'Meetings', price: '32 000 Kz' },
+    { name: 'Ergonomic chair', category: 'Office', price: '$85' },
+    { name: '140 cm desk', category: 'Office', price: '$210' },
+    { name: 'LED lamp', category: 'Lighting', price: '$18.50' },
+    { name: 'Modular shelving', category: 'Storage', price: '$145' },
+    { name: 'Whiteboard', category: 'Meetings', price: '$32' },
   ];
   protected readonly tips = [
     'Use Ctrl + K to search on any page.',

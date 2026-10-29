@@ -61,9 +61,12 @@ describe('MxCalendar', () => {
 
 describe('MxDatePicker', () => {
   it('converte texto dd/mm/aaaa e rejeita datas impossíveis', () => {
-    expect(mxParseDate('05/11/2026')).toEqual(new Date(2026, 10, 5));
-    expect(mxParseDate('31/02/2026')).toBeNull();
-    expect(mxFormatDate(new Date(2026, 0, 7))).toBe('07/01/2026');
+    expect(mxParseDate('05/11/2026', 'dmy')).toEqual(new Date(2026, 10, 5));
+    expect(mxParseDate('31/02/2026', 'dmy')).toBeNull();
+    expect(mxFormatDate(new Date(2026, 0, 7), 'dmy')).toBe('07/01/2026');
+    // por omissão, mm/dd/aaaa
+    expect(mxParseDate('11/05/2026')).toEqual(new Date(2026, 10, 5));
+    expect(mxFormatDate(new Date(2026, 0, 7))).toBe('01/07/2026');
   });
 
   it('escreve a data no formulário e marca erro de formato', () => {

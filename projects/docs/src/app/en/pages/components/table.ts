@@ -28,7 +28,7 @@ const MANY: (Invoice & { date: string })[] = Array.from({ length: 23 }, (_, i) =
   number: `FT 2026/${String(120 + i).padStart(4, '0')}`,
   customer: CUSTOMERS[(i * 3) % CUSTOMERS.length],
   status: STATUSES[i % STATUSES.length],
-  amount: 150000 + ((i * 7919) % 50) * 98500,
+  amount: 150 + ((i * 7919) % 50) * 98.5,
   date: `10/${String((i % 28) + 1).padStart(2, '0')}/2026`,
 }));
 
@@ -63,7 +63,7 @@ const INVOICES: Invoice[] = [
                   <th mxSortHeader="number" scope="col">Invoice</th>
                   <th mxSortHeader="customer" scope="col">Customer</th>
                   <th mxSortHeader="status" scope="col">Status</th>
-                  <th mxSortHeader="amount" scope="col" data-align="end">Amount (Kz)</th>
+                  <th mxSortHeader="amount" scope="col" data-align="end">Amount (USD)</th>
                 </tr>
               </thead>
               <tbody>
@@ -128,7 +128,7 @@ const INVOICES: Invoice[] = [
           <doc-example title="Numbered, with range" note="variant default + showRange. The usual choice for business lists.">
             <div class="mx-table-container w-full">
               <table mxTable density="compact">
-                  <thead><tr><th scope="col">Invoice</th><th scope="col">Customer</th><th scope="col">Status</th><th scope="col" data-align="end">Amount (Kz)</th></tr></thead>
+                  <thead><tr><th scope="col">Invoice</th><th scope="col">Customer</th><th scope="col">Status</th><th scope="col" data-align="end">Amount (USD)</th></tr></thead>
                   <tbody>
                     @for (f of pageOf(p1(), 5); track f.number) {
                       <tr><td>{{ f.number }}</td><td>{{ f.customer }}</td><td><span mxBadge [variant]="badge(f.status)">{{ f.status }}</span></td><td data-align="end">{{ fmt(f.amount) }}</td></tr>
@@ -144,7 +144,7 @@ const INVOICES: Invoice[] = [
           <doc-example title="Rows per page" note="pageSizeOptions lets you choose how many rows to see; when it changes, the first visible item stays.">
             <div class="mx-table-container w-full">
               <table mxTable density="compact">
-                  <thead><tr><th scope="col">Invoice</th><th scope="col">Customer</th><th scope="col">Status</th><th scope="col" data-align="end">Amount (Kz)</th></tr></thead>
+                  <thead><tr><th scope="col">Invoice</th><th scope="col">Customer</th><th scope="col">Status</th><th scope="col" data-align="end">Amount (USD)</th></tr></thead>
                   <tbody>
                     @for (f of pageOf(p2(), size2()); track f.number) {
                       <tr><td>{{ f.number }}</td><td>{{ f.customer }}</td><td><span mxBadge [variant]="badge(f.status)">{{ f.status }}</span></td><td data-align="end">{{ fmt(f.amount) }}</td></tr>
@@ -161,7 +161,7 @@ const INVOICES: Invoice[] = [
             <doc-example title="Simple" note="variant simple: Previous, Page X of Y, Next. Good for phones.">
               <div class="mx-table-container w-full">
                 <table mxTable density="compact">
-                  <thead><tr><th scope="col">Invoice</th><th scope="col">Customer</th><th scope="col">Status</th><th scope="col" data-align="end">Amount (Kz)</th></tr></thead>
+                  <thead><tr><th scope="col">Invoice</th><th scope="col">Customer</th><th scope="col">Status</th><th scope="col" data-align="end">Amount (USD)</th></tr></thead>
                   <tbody>
                     @for (f of pageOf(p3(), 4); track f.number) {
                       <tr><td>{{ f.number }}</td><td>{{ f.customer }}</td><td><span mxBadge [variant]="badge(f.status)">{{ f.status }}</span></td><td data-align="end">{{ fmt(f.amount) }}</td></tr>
@@ -182,7 +182,7 @@ const INVOICES: Invoice[] = [
                   <mx-pagination variant="compact" [(page)]="p4" [total]="list.length" [pageSize]="4" aria-label="Pages, compact" />
                 </div>
                 <table mxTable density="compact">
-                  <thead><tr><th scope="col">Invoice</th><th scope="col">Customer</th><th scope="col">Status</th><th scope="col" data-align="end">Amount (Kz)</th></tr></thead>
+                  <thead><tr><th scope="col">Invoice</th><th scope="col">Customer</th><th scope="col">Status</th><th scope="col" data-align="end">Amount (USD)</th></tr></thead>
                   <tbody>
                     @for (f of pageOf(p4(), 4); track f.number) {
                       <tr><td>{{ f.number }}</td><td>{{ f.customer }}</td><td><span mxBadge [variant]="badge(f.status)">{{ f.status }}</span></td><td data-align="end">{{ fmt(f.amount) }}</td></tr>
@@ -195,7 +195,7 @@ const INVOICES: Invoice[] = [
             <doc-example title="Show more" note="No pages: adds rows at the end. Focus stays on the button and the count is announced.">
               <div class="mx-table-container w-full">
                 <table mxTable density="compact">
-                  <thead><tr><th scope="col">Invoice</th><th scope="col">Customer</th><th scope="col">Status</th><th scope="col" data-align="end">Amount (Kz)</th></tr></thead>
+                  <thead><tr><th scope="col">Invoice</th><th scope="col">Customer</th><th scope="col">Status</th><th scope="col" data-align="end">Amount (USD)</th></tr></thead>
                   <tbody>
                     @for (f of list.slice(0, shown()); track f.number) {
                       <tr><td>{{ f.number }}</td><td>{{ f.customer }}</td><td><span mxBadge [variant]="badge(f.status)">{{ f.status }}</span></td><td data-align="end">{{ fmt(f.amount) }}</td></tr>
@@ -214,7 +214,7 @@ const INVOICES: Invoice[] = [
             <doc-example title="Sticky header with pagination" note="stickyHeader + 10 rows per page: the header stays visible within the page.">
               <div class="mx-table-container w-full" style="max-height: 260px" tabindex="0" role="region" aria-label="Invoices with a sticky header">
                 <table mxTable density="compact" stickyHeader>
-                  <thead><tr><th scope="col">Invoice</th><th scope="col">Customer</th><th scope="col" data-align="end">Amount (Kz)</th></tr></thead>
+                  <thead><tr><th scope="col">Invoice</th><th scope="col">Customer</th><th scope="col" data-align="end">Amount (USD)</th></tr></thead>
                   <tbody>
                     @for (f of pageOf(p6(), 10); track f.number) {
                       <tr><td>{{ f.number }}</td><td>{{ f.customer }}</td><td data-align="end">{{ fmt(f.amount) }}</td></tr>
@@ -256,7 +256,7 @@ const INVOICES: Invoice[] = [
                     <th scope="col">Invoice</th>
                     <th scope="col">Customer</th>
                     <th scope="col">Status</th>
-                    <th scope="col" data-align="end">Amount (Kz)</th>
+                    <th scope="col" data-align="end">Amount (USD)</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -297,7 +297,7 @@ const INVOICES: Invoice[] = [
                     <th mxSortHeader="customer" scope="col">Customer</th>
                     <th mxSortHeader="date" scope="col">Issued</th>
                     <th scope="col">Status</th>
-                    <th mxSortHeader="amount" scope="col" data-align="end">Amount (Kz)</th>
+                    <th mxSortHeader="amount" scope="col" data-align="end">Amount (USD)</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -363,7 +363,7 @@ const INVOICES: Invoice[] = [
             <doc-example title="Totals" note="tfoot for the sum; tabular numbers aligned right.">
               <div class="mx-table-container w-full">
                 <table mxTable density="compact">
-                  <thead><tr><th scope="col">Province</th><th scope="col" data-align="end">Customers</th><th scope="col" data-align="end">Revenue (Kz)</th></tr></thead>
+                  <thead><tr><th scope="col">Province</th><th scope="col" data-align="end">Customers</th><th scope="col" data-align="end">Revenue (USD)</th></tr></thead>
                   <tbody>
                     @for (r of provinces; track r.name) {
                       <tr><td>{{ r.name }}</td><td data-align="end">{{ r.customers }}</td><td data-align="end">{{ fmt(r.revenue) }}</td></tr>
@@ -381,15 +381,15 @@ const INVOICES: Invoice[] = [
                 <div><button mxButton type="button" variant="outline" size="sm" (click)="reload()" [loading]="loading()">Reload</button></div>
                 <div class="mx-table-container">
                   <table mxTable density="compact" [attr.aria-busy]="loading() || null">
-                    <thead><tr><th scope="col">Customer</th><th scope="col" data-align="end">Balance (Kz)</th></tr></thead>
+                    <thead><tr><th scope="col">Customer</th><th scope="col" data-align="end">Balance (USD)</th></tr></thead>
                     <tbody>
                       @if (loading()) {
                         @for (i of [1, 2, 3]; track i) {
                           <tr><td><div mxSkeleton shape="text" class="w-60"></div></td><td data-align="end"><div mxSkeleton shape="text" class="w-60 ml-auto"></div></td></tr>
                         }
                       } @else {
-                        <tr><td>Kianda Logistics</td><td data-align="end">{{ fmt(250000) }}</td></tr>
-                        <tr><td>Banco Mutamba</td><td data-align="end">{{ fmt(1870500) }}</td></tr>
+                        <tr><td>Kianda Logistics</td><td data-align="end">{{ fmt(250) }}</td></tr>
+                        <tr><td>Banco Mutamba</td><td data-align="end">{{ fmt(1870.5) }}</td></tr>
                         <tr><td>Huíla Agro</td><td data-align="end">{{ fmt(0) }}</td></tr>
                       }
                     </tbody>
@@ -401,7 +401,7 @@ const INVOICES: Invoice[] = [
             <doc-example title="Sticky header" note="stickyHeader and a max height on the container: the header stays visible while scrolling.">
               <div class="mx-table-container w-full" style="max-height: 236px" tabindex="0" role="region" aria-label="Transactions, with scroll">
                 <table mxTable density="compact" stickyHeader>
-                  <thead><tr><th scope="col">Date</th><th scope="col">Transaction</th><th scope="col" data-align="end">Amount (Kz)</th></tr></thead>
+                  <thead><tr><th scope="col">Date</th><th scope="col">Transaction</th><th scope="col" data-align="end">Amount (USD)</th></tr></thead>
                   <tbody>
                     @for (m of transactions; track m.id) {
                       <tr><td>{{ m.date }}</td><td>{{ m.desc }}</td><td data-align="end">{{ fmt(m.amount) }}</td></tr>
@@ -579,9 +579,9 @@ export class TablePage {
     { name: 'Rita Sousa', funcao: 'Read-only' },
   ];
   protected readonly provinces = [
-    { name: 'Luanda', customers: 1284, revenue: 48700000 },
-    { name: 'Benguela', customers: 312, revenue: 9800000 },
-    { name: 'Huíla', customers: 198, revenue: 6100000 },
+    { name: 'Luanda', customers: 1284, revenue: 48700 },
+    { name: 'Benguela', customers: 312, revenue: 9800 },
+    { name: 'Huíla', customers: 198, revenue: 6100 },
   ];
   protected readonly totalCustomers = this.provinces.reduce((a, r) => a + r.customers, 0);
   protected readonly totalRevenue = this.provinces.reduce((a, r) => a + r.revenue, 0);
@@ -596,7 +596,7 @@ export class TablePage {
     id: i,
     date: `10/${String(27 - i).padStart(2, '0')}/2026`,
     desc: ['Payment received', 'Transfer', 'Bank fee', 'Invoice settled'][i % 4],
-    amount: [250000, -120000, -1500, 980000][i % 4],
+    amount: [250, -120, -1.5, 980][i % 4],
   }));
   protected readonly loading = signal(false);
   protected reload(): void {
@@ -616,7 +616,7 @@ export class TablePage {
       <tr>
         <th mxSortHeader="number" scope="col">Invoice</th>
         <th mxSortHeader="customer" scope="col">Customer</th>
-        <th mxSortHeader="amount" scope="col" data-align="end">Amount (Kz)</th>
+        <th mxSortHeader="amount" scope="col" data-align="end">Amount (USD)</th>
       </tr>
     </thead>
     <tbody>
@@ -640,6 +640,6 @@ rows = computed(() => mxSortData(invoices, this.sort()));`;
     { kind: 'Directiva', name: 'th[mxSortHeader]', type: 'string', description: 'Column key; adds the button and aria-sort.' },
     { kind: 'Token CSS', name: '.mx-table-toolbar, .mx-table-footer', type: 'classes', description: 'A search or bulk-actions bar, and a footer with count and pagination.' },
     { kind: 'Token CSS', name: '.mx-table-check, .mx-table-actions, .mx-table-empty', type: 'classes', description: 'Selection column, actions column and empty-state cell.' },
-    { kind: 'Método', name: 'mxSortData(rows, sort, accessor?, locale?)', type: 'T[]', description: 'Sorts text (Portuguese collation by default; pass a locale) and numbers.' },
+    { kind: 'Método', name: 'mxSortData(rows, sort, accessor?, locale?)', type: 'T[]', description: 'Sorts text by locale (English by default) and numbers.' },
   ];
 }

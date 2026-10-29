@@ -26,9 +26,9 @@ export class FeatureTabs {
       text: 'Numbering, VAT and withholdings calculated for you, ready for the tax authority.',
       points: ['Invoice, invoice-receipt and credit note', 'Sending by email and WhatsApp', 'Automatic payment reminders'],
       rows: [
-        { rotulo: 'FT 2026/00241', value: '250 000 Kz' },
-        { rotulo: 'FR 2026/00118', value: '84 500 Kz' },
-        { rotulo: 'NC 2026/00012', value: '−12 000 Kz' },
+        { rotulo: 'FT 2026/00241', value: '$250' },
+        { rotulo: 'FR 2026/00118', value: '$84.50' },
+        { rotulo: 'NC 2026/00012', value: '−$12' },
       ],
     },
     {
@@ -48,9 +48,9 @@ export class FeatureTabs {
       text: 'Sales, VAT due and collections, by period, customer or product.',
       points: ['VAT return ready to file', 'Export to Excel and SAF-T', 'Comparison with the previous month'],
       rows: [
-        { rotulo: 'October sales', value: '18 420 000 Kz' },
-        { rotulo: 'VAT due', value: '2 261 000 Kz' },
-        { rotulo: 'To collect', value: '4 820 000 Kz' },
+        { rotulo: 'October sales', value: '$18.4K' },
+        { rotulo: 'VAT due', value: '$2,261' },
+        { rotulo: 'To collect', value: '$4,820' },
       ],
     },
   ];

@@ -7,7 +7,7 @@ import { MX_FORM_FIELD_CONTROL, MxNativeControl } from '@muxima-ui/core/form-fie
  *
  * ```html
  * <mx-form-field>
- *   <label mxLabel>Orçamento (mil Kz)</label>
+ *   <label mxLabel>Orçamento (US$)</label>
  *   <input type="range" mxSlider min="0" max="500" step="10" formControlName="orcamento" />
  * </mx-form-field>
  * ```

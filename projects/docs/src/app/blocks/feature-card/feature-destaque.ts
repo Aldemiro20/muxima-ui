@@ -17,8 +17,8 @@ export class FeatureDestaque {
     { titulo: 'Saldo de cada cliente', texto: 'Vês quem deve, quanto e há quanto tempo, numa só lista.' },
   ];
   protected readonly linhas = [
-    { cliente: 'Huíla Agro', valor: '350 000 Kz', estado: 'Paga' },
-    { cliente: 'Lobito Portos', valor: '1 240 000 Kz', estado: 'Lembrete enviado' },
-    { cliente: 'Uíge Café', valor: '87 500 Kz', estado: 'Paga' },
+    { cliente: 'Huíla Agro', valor: '350 US$', estado: 'Paga' },
+    { cliente: 'Lobito Portos', valor: '1 240 US$', estado: 'Lembrete enviado' },
+    { cliente: 'Uíge Café', valor: '87,50 US$', estado: 'Paga' },
   ];
 }

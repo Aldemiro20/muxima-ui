@@ -2,15 +2,34 @@
 
 Todas as alterações relevantes do pacote `@muxima-ui/core`. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-PT/1.1.0/) e as versões seguem o [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
-## [Por publicar]
+## [2.0.0] - por publicar
+
+O inglês passa a ser o idioma por omissão.
+
+### Mudanças que quebram compatibilidade
+
+- Sem `provideMuximaI18n`, os componentes mostram os textos em inglês (na 1.x era o português). Para manter o português, acrescenta em `app.config.ts`:
+  ```ts
+  providers: [provideMuximaI18n({ locale: 'pt' })]
+  ```
+- As funções auxiliares usam o inglês por omissão. Para o comportamento da 1.x, passa o idioma:
+  - `mxParseDate(texto, 'dmy')` e `mxFormatDate(data, 'dmy')` (antes `dd/mm/aaaa` por omissão; agora `mm/dd/aaaa`);
+  - `mxFormatBytes(bytes, 'pt-AO')`;
+  - `mxRelativeTime(data, agora, 'pt-AO', MX_MESSAGES_PT.notifications.now)`;
+  - `mxColorName(hex, MX_MESSAGES_PT.colorPicker.names)`;
+  - `mxDefaultRangePresets(MX_MESSAGES_PT.dateRangePicker)`;
+  - `mxSortData(linhas, sort, accessor, 'pt')`.
+- Sai o `MX_TOUR_LABELS` (obsoleto desde a 1.5). Usa `MX_MESSAGES_PT.tour` ou deixa os textos virem do idioma activo.
 
 ### Documentação
 
+- Instalação e Idiomas explicam como escolher o português.
 - O site da documentação fica em inglês e português. O inglês está na raiz (`/components/button`, `/docs/introduction`, `/blocks`); o português passa para `/pt` (`/pt/componentes/button`). Os endereços antigos em português redireccionam para `/pt`.
 - Botão de idioma no topo: abre a mesma página no outro idioma, incluindo os blocos.
 - Os exemplos e os 32 blocos têm versão inglesa, com o código também em inglês (nomes de variáveis, classes e textos), e os componentes mostram os textos do idioma da página.
+- Os valores dos exemplos e dos blocos passam a estar em dólares (USD), nos dois idiomas.
 
-## [1.5.0] - por publicar
+## [1.5.0] - 2026-10-28
 
 Idiomas: português e inglês.
 

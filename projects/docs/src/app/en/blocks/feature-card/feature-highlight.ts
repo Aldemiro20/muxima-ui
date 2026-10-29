@@ -17,8 +17,8 @@ export class FeatureHighlight {
     { title: 'Each customer\'s balance', text: 'See who owes, how much and for how long, in a single list.' },
   ];
   protected readonly rows = [
-    { customer: 'Huíla Agro', amount: '350 000 Kz', status: 'Paid' },
-    { customer: 'Lobito Portos', amount: '1 240 000 Kz', status: 'Reminder sent' },
-    { customer: 'Uíge Café', amount: '87 500 Kz', status: 'Paid' },
+    { customer: 'Huíla Agro', amount: '$350', status: 'Paid' },
+    { customer: 'Lobito Portos', amount: '$1,240', status: 'Reminder sent' },
+    { customer: 'Uíge Café', amount: '$87.50', status: 'Paid' },
   ];
 }

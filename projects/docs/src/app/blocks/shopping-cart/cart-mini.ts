@@ -24,9 +24,9 @@ export class CartMini {
   private readonly painel = viewChild.required<TemplateRef<unknown>>('painelCarrinho');
 
   protected readonly produtos: Produto[] = [
-    { id: 1, nome: 'Café do Uíge, 500 g', preco: 4500, cor: '#7a4a2a' },
-    { id: 2, nome: 'Caneca de barro', preco: 3200, cor: '#b8693d' },
-    { id: 3, nome: 'Mel de Malanje, 250 g', preco: 3900, cor: '#a8781f' },
+    { id: 1, nome: 'Café do Uíge, 500 g', preco: 4.5, cor: '#7a4a2a' },
+    { id: 2, nome: 'Caneca de barro', preco: 3.2, cor: '#b8693d' },
+    { id: 3, nome: 'Mel de Malanje, 250 g', preco: 3.9, cor: '#a8781f' },
   ];
   /** id do produto → quantidade. */
   protected readonly carrinho = signal<ReadonlyMap<number, number>>(new Map([[1, 2]]));
@@ -37,9 +37,9 @@ export class CartMini {
   protected readonly subtotal = computed(() => this.linhas().reduce((a, l) => a + l.qtd * l.produto.preco, 0));
   protected readonly aviso = signal('');
 
-  private readonly kz = new Intl.NumberFormat('pt-AO');
+  private readonly usd = new Intl.NumberFormat('pt-AO', { style: 'currency', currency: 'USD' });
   protected preco(v: number): string {
-    return this.kz.format(v) + ' Kz';
+    return this.usd.format(v);
   }
 
   protected abrir(): void {

@@ -33,7 +33,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               <h3 mxCardTitle>Facturação de Outubro</h3>
               <p mxCardDescription>142 facturas emitidas, 9 pendentes.</p>
             </header>
-            <div mxCardContent><strong class="big-number">18,4 M Kz</strong></div>
+            <div mxCardContent><strong class="big-number">18,4 mil US$</strong></div>
             <footer mxCardFooter>
               <button mxButton type="button" size="sm">Ver detalhe</button>
               <button mxButton type="button" size="sm" variant="ghost">Exportar</button>
@@ -206,7 +206,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
                     <div class="row-between"><h3 mxCardTitle id="plano-equipa">Equipa</h3><span mxBadge>Mais escolhido</span></div>
                     <p mxCardDescription>Até 10 pessoas.</p>
                   </header>
-                  <div mxCardContent><p class="price">25 000 Kz<span class="muted"> /mês</span></p></div>
+                  <div mxCardContent><p class="price">25 US$<span class="muted"> /mês</span></p></div>
                   <footer mxCardFooter><button mxButton type="button" size="sm" class="w-full">Escolher</button></footer>
                 </section>
               </div>
@@ -268,7 +268,7 @@ export class CardPage {
     { value: 'accent', label: 'Accent', text: 'Borda e linha Kwanza. Para o recomendado.' },
   ];
   protected readonly kpis = [
-    { label: 'Receita do mês', value: '18,4 M Kz', delta: '12%', up: true },
+    { label: 'Receita do mês', value: '18,4 mil US$', delta: '12%', up: true },
     { label: 'Facturas pendentes', value: '9', delta: '3', up: false },
     { label: 'Clientes activos', value: '1 284', delta: '4%', up: true },
   ];
@@ -283,7 +283,7 @@ export class CardPage {
     <h3 mxCardTitle>Facturação de Outubro</h3>
     <p mxCardDescription>142 facturas emitidas, 9 pendentes.</p>
   </header>
-  <div mxCardContent>18,4 M Kz</div>
+  <div mxCardContent>18,4 mil US$</div>
   <footer mxCardFooter>
     <button mxButton type="button" size="sm">Ver detalhe</button>
   </footer>

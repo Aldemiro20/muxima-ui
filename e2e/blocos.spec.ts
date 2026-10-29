@@ -46,18 +46,18 @@ test.describe('Blocos', () => {
   test('Pricing: mensal e anual mudam o preço', async ({ page }) => {
     await openBlock(page, 'pricing-planos');
     const basico = page.locator('.plano').first();
-    await expect(basico.locator('.plano-valor')).toHaveText('8 300 Kz');
+    await expect(basico.locator('.plano-valor')).toHaveText(/^8,25\sUS\$$/);
     await page.getByText('Mensal').click();
-    await expect(basico.locator('.plano-valor')).toHaveText('9 900 Kz');
+    await expect(basico.locator('.plano-valor')).toHaveText(/^9,90\sUS\$$/);
     await expectAccessible(page);
   });
 
   test('Carrinho: quantidades, totais e remover com o foco no título', async ({ page }) => {
     await openBlock(page, 'cart-pagina');
     const total = page.locator('.resumo-total dd');
-    await expect(total).toHaveText('33 200,00 Kz');
+    await expect(total).toHaveText(/^33,20\sUS\$$/);
     await page.getByRole('group', { name: 'Quantidade de Caneca de barro' }).getByRole('button', { name: 'Mais um' }).click();
-    await expect(total).toHaveText('36 400,00 Kz');
+    await expect(total).toHaveText(/^36,40\sUS\$$/);
     await page.getByRole('button', { name: 'Remover Camisa de pano' }).click();
     await expect(page.getByRole('heading', { level: 2, name: /Carrinho/ })).toBeFocused();
     await expect(page.locator('.linha')).toHaveCount(2);

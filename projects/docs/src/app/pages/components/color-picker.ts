@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { MX_MESSAGES_PT } from '@muxima-ui/core/i18n';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MxBadge } from '@muxima-ui/core/badge';
 import { MxButton } from '@muxima-ui/core/button';
@@ -161,7 +162,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
                 </mx-form-field>
               </div>
               <p class="color-contrast-demo" [style.color]="texto()" [style.background]="fundo()">
-                Factura FT 2026/0201 · 250 000,00 Kz
+                Factura FT 2026/0201 · 250,00 US$
               </p>
             </div>
           </doc-example>
@@ -285,7 +286,7 @@ export class ColorPickerPage {
   protected readonly acento = signal<string | null>('#93460A');
 
   protected nome(hex: string): string {
-    return mxColorName(hex);
+    return mxColorName(hex, MX_MESSAGES_PT.colorPicker.names);
   }
   /** Preto ou branco, o que tiver mais contraste com a cor. */
   protected textoSobre(hex: string): string {
@@ -335,9 +336,9 @@ export class ColorPickerPage {
     },
     {
       kind: 'Função',
-      name: 'mxColorName(hex)',
+      name: 'mxColorName(hex, nomes?)',
       type: 'string',
-      description: 'Nome aproximado em português.',
+      description: 'Nome aproximado da cor; em inglês por omissão, em português com MX_MESSAGES_PT.colorPicker.names.',
     },
     {
       kind: 'Função',

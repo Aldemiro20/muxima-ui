@@ -101,7 +101,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
             </mx-form-field>
             <mx-popover #ajuda aria-labelledby="ajuda-iva" width="280px">
               <p class="popover-title" id="ajuda-iva">Regime de IVA</p>
-              <p class="muted">Empresas com facturação anual acima de 350 milhões de Kz estão no regime geral. As restantes podem optar pelo regime simplificado.</p>
+              <p class="muted">Empresas com facturação anual acima de 350 mil dólares estão no regime geral. As restantes podem optar pelo regime simplificado.</p>
             </mx-popover>
           </doc-example>
           <doc-example title="Partilhar ligação">

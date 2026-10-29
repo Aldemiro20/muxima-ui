@@ -25,9 +25,9 @@ interface Group {
 })
 export class PricingComparison {
   protected readonly plans = [
-    { name: 'Basic', price: '9 900 Kz' },
-    { name: 'Professional', price: '24 900 Kz' },
-    { name: 'Business', price: '59 900 Kz' },
+    { name: 'Basic', price: '$9.90' },
+    { name: 'Professional', price: '$24.90' },
+    { name: 'Business', price: '$59.90' },
   ];
 
   protected readonly groups: Group[] = [

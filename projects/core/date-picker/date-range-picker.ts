@@ -16,7 +16,7 @@ import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
 import { MX_FORM_FIELD_CONTROL, MxFormField, MxFormFieldControl, mxUniqueId } from '@muxima-ui/core/form-field';
 import { MxCalendar, MxDateRange, mxStartOfDay } from './calendar';
 import { mxFormatDate, mxParseDate } from './date-picker';
-import { MX_MESSAGES_PT, MxMessages, injectMxMessages } from '@muxima-ui/core/i18n';
+import { MX_MESSAGES_EN, MxMessages, injectMxMessages } from '@muxima-ui/core/i18n';
 
 const POSITIONS: ConnectedPosition[] = [
   { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top', offsetY: 4 },
@@ -32,11 +32,11 @@ export interface MxDateRangePreset {
 
 /**
  * Atalhos comuns: últimos 7 e 30 dias, este mês e o mês passado.
- * Os nomes vêm de `labels` (por omissão em português); para o idioma activo,
+ * Os nomes vêm de `labels` (por omissão em inglês); para o idioma activo,
  * usa `mxDefaultRangePresets(inject(MxI18n).messages().dateRangePicker)`.
  */
 export function mxDefaultRangePresets(
-  labels: MxMessages['dateRangePicker'] = MX_MESSAGES_PT.dateRangePicker,
+  labels: MxMessages['dateRangePicker'] = MX_MESSAGES_EN.dateRangePicker,
 ): MxDateRangePreset[] {
   const today = () => mxStartOfDay(new Date());
   const shift = (d: Date, days: number) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + days);

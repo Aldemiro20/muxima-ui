@@ -46,13 +46,12 @@ function makeInvoices(n: number): Invoice[] {
     province: provinces[(i * 7) % 8],
     status: statuses[(i * 3 + Math.floor(i / 5)) % 4],
     issued: new Date(2026, 9, 27 - (i % 300)),
-    amount: 50000 + ((i * 7919) % 400) * 12500,
+    amount: 50 + ((i * 7919) % 400) * 12.5,
   }));
 }
 
-const kz = (v: number) =>
-  new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(v) +
-  ' Kz';
+const usd = (v: number) =>
+  new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(v);
 const statusColor = (e: string) =>
   e === 'Paid' ? 'success' : e === 'Pending' ? 'warning' : 'danger';
 
@@ -450,7 +449,7 @@ const statusColor = (e: string) =>
                 }}</span></ng-template
               >
               <span mxGridFooter class="grid-total"
-                >Total <strong>{{ kz(sum(totals.rows())) }}</strong></span
+                >Total <strong>{{ usd(sum(totals.rows())) }}</strong></span
               >
             </mx-data-grid>
           </doc-example>
@@ -559,14 +558,14 @@ export class DataGridPage {
       width: 170,
       align: 'end',
       filter: 'number',
-      format: (v: number) => kz(v),
+      format: (v: number) => usd(v),
     },
   ];
   protected readonly shortColumns: MxGridColumn<Invoice>[] = [
     { key: 'number', header: 'Number', width: 150 },
     { key: 'customer', header: 'Customer', width: 200 },
     { key: 'status', header: 'Status', width: 130 },
-    { key: 'amount', header: 'Amount', width: 170, align: 'end', format: (v: number) => kz(v) },
+    { key: 'amount', header: 'Amount', width: 170, align: 'end', format: (v: number) => usd(v) },
   ];
   protected readonly wideColumns: MxGridColumn<Invoice>[] = [
     { key: 'number', header: 'Number', width: 150, pinned: 'start' },
@@ -580,14 +579,14 @@ export class DataGridPage {
       width: 140,
       value: (f) => new Date(f.issued.getTime() + 30 * 864e5),
     },
-    { key: 'amount', header: 'Amount', width: 180, align: 'end', format: (v: number) => kz(v) },
+    { key: 'amount', header: 'Amount', width: 180, align: 'end', format: (v: number) => usd(v) },
     {
       key: 'iva',
       header: 'IVA (14%)',
       width: 160,
       align: 'end',
       value: (f) => f.amount * 0.14,
-      format: (v: number) => kz(v),
+      format: (v: number) => usd(v),
     },
     {
       key: 'accoes',
@@ -601,7 +600,7 @@ export class DataGridPage {
     },
   ];
 
-  protected readonly kz = kz;
+  protected readonly usd = usd;
   protected json(v: unknown): string {
     return JSON.stringify(v);
   }
@@ -616,12 +615,12 @@ export class DataGridPage {
       width: 170,
       align: 'end',
       filter: 'number',
-      format: (v: number) => kz(v),
+      format: (v: number) => usd(v),
     },
   ];
   protected readonly initialFilters = signal<Record<string, string>>({
     status: 'Overdue',
-    amount: '>3000000',
+    amount: '>3000',
   });
 
   protected readonly batch = signal(makeInvoices(12));
@@ -641,7 +640,7 @@ export class DataGridPage {
     { key: 'number', header: 'Number', width: 150 },
     { key: 'customer', header: 'Customer', width: 200, filter: 'text' },
     { key: 'status', header: 'Status', width: 140, filter: 'select' },
-    { key: 'amount', header: 'Amount', width: 170, align: 'end', format: (v: number) => kz(v) },
+    { key: 'amount', header: 'Amount', width: 170, align: 'end', format: (v: number) => usd(v) },
   ];
   protected sum(rows: readonly Invoice[]): number {
     return rows.reduce((t, f) => t + f.amount, 0);
@@ -653,7 +652,7 @@ export class DataGridPage {
     { key: 'customer', header: 'Customer', width: 200 },
     { key: 'province', header: 'Province', width: 140, hidden: true },
     { key: 'status', header: 'Status', width: 140 },
-    { key: 'amount', header: 'Amount', width: 170, align: 'end', format: (v: number) => kz(v) },
+    { key: 'amount', header: 'Amount', width: 170, align: 'end', format: (v: number) => usd(v) },
     {
       key: 'iva',
       header: 'IVA (14%)',
@@ -661,7 +660,7 @@ export class DataGridPage {
       align: 'end',
       hidden: true,
       value: (f) => f.amount * 0.14,
-      format: (v: number) => kz(v),
+      format: (v: number) => usd(v),
     },
   ];
 
@@ -687,7 +686,7 @@ export class DataGridPage {
       filter: 'select',
       filterOptions: ['Paid', 'Pending', 'Overdue'],
     },
-    { key: 'amount', header: 'Amount', width: 170, align: 'end', format: (v: number) => kz(v) },
+    { key: 'amount', header: 'Amount', width: 170, align: 'end', format: (v: number) => usd(v) },
   ];
   protected readonly serverSort = signal<MxGridSort>({ key: null, direction: 'asc' });
   protected readonly serverFilters = signal<Record<string, string>>({});
@@ -747,7 +746,7 @@ columns: MxGridColumn<Invoice>[] = [
   { key: 'number', header: 'Number', filter: 'text', pinned: 'start' },
   { key: 'customer', header: 'Customer', filter: 'text' },
   { key: 'status', header: 'Status', filter: 'select' },
-  { key: 'amount', header: 'Amount', align: 'end', filter: 'number', format: kz },
+  { key: 'amount', header: 'Amount', align: 'end', filter: 'number', format: usd },
 ];`;
 
   protected readonly api: ApiRow[] = [

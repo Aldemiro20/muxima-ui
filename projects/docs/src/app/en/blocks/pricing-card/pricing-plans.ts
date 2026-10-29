@@ -5,7 +5,7 @@ import { MxButton } from '@muxima-ui/core/button';
 interface Plan {
   name: string;
   descricao: string;
-  /** Monthly price in Kz. */
+  /** Monthly price in dollars. */
   monthly: number;
   includes: string[];
   recommended?: boolean;
@@ -26,33 +26,33 @@ export class PricingPlans {
     {
       name: 'Basic',
       descricao: 'For those just getting started.',
-      monthly: 9900,
+      monthly: 9.9,
       includes: ['1 user', 'Unlimited invoices and receipts', 'Up to 200 customers', 'Email support'],
     },
     {
       name: 'Professional',
       descricao: 'For teams that sell every day.',
-      monthly: 24900,
+      monthly: 24.9,
       recommended: true,
       includes: ['5 users', 'Everything in Basic', 'Stock in 2 warehouses', 'Payment reminders', 'VAT report'],
     },
     {
       name: 'Business',
       descricao: 'For several stores and departments.',
-      monthly: 59900,
+      monthly: 59.9,
       includes: ['Unlimited users', 'Everything in Professional', 'Unlimited warehouses', 'Per-department permissions', 'Dedicated account manager'],
     },
   ];
 
-  private readonly kz = new Intl.NumberFormat('en-US');
+  private readonly usd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
 
   /** Monthly price to show: on yearly, 10 months divided by 12. */
   protected monthPrice(p: Plan): string {
-    const v = this.period() === 'yearly' ? Math.round((p.monthly * 10) / 12 / 100) * 100 : p.monthly;
-    return this.kz.format(v) + ' Kz';
+    const v = this.period() === 'yearly' ? Math.round(((p.monthly * 10) / 12) * 100) / 100 : p.monthly;
+    return this.usd.format(v);
   }
   protected yearPrice(p: Plan): string {
-    return this.kz.format(p.monthly * 10) + ' Kz';
+    return this.usd.format(p.monthly * 10);
   }
 
   protected readonly notice = computed(() =>

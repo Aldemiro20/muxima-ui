@@ -46,13 +46,12 @@ function gerarFacturas(n: number): Factura[] {
     provincia: provincias[(i * 7) % 8],
     estado: estados[(i * 3 + Math.floor(i / 5)) % 4],
     emitida: new Date(2026, 9, 27 - (i % 300)),
-    valor: 50000 + ((i * 7919) % 400) * 12500,
+    valor: 50 + ((i * 7919) % 400) * 12.5,
   }));
 }
 
-const kz = (v: number) =>
-  new Intl.NumberFormat('pt-AO', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(v) +
-  ' Kz';
+const usd = (v: number) =>
+  new Intl.NumberFormat('pt-AO', { style: 'currency', currency: 'USD' }).format(v);
 const corEstado = (e: string) =>
   e === 'Paga' ? 'success' : e === 'Pendente' ? 'warning' : 'danger';
 
@@ -450,7 +449,7 @@ const corEstado = (e: string) =>
                 }}</span></ng-template
               >
               <span mxGridFooter class="grid-total"
-                >Total <strong>{{ kz(soma(totais.rows())) }}</strong></span
+                >Total <strong>{{ usd(soma(totais.rows())) }}</strong></span
               >
             </mx-data-grid>
           </doc-example>
@@ -559,14 +558,14 @@ export class DataGridPage {
       width: 170,
       align: 'end',
       filter: 'number',
-      format: (v: number) => kz(v),
+      format: (v: number) => usd(v),
     },
   ];
   protected readonly colunasCurtas: MxGridColumn<Factura>[] = [
     { key: 'numero', header: 'Número', width: 150 },
     { key: 'cliente', header: 'Cliente', width: 200 },
     { key: 'estado', header: 'Estado', width: 130 },
-    { key: 'valor', header: 'Valor', width: 170, align: 'end', format: (v: number) => kz(v) },
+    { key: 'valor', header: 'Valor', width: 170, align: 'end', format: (v: number) => usd(v) },
   ];
   protected readonly colunasLargas: MxGridColumn<Factura>[] = [
     { key: 'numero', header: 'Número', width: 150, pinned: 'start' },
@@ -580,14 +579,14 @@ export class DataGridPage {
       width: 140,
       value: (f) => new Date(f.emitida.getTime() + 30 * 864e5),
     },
-    { key: 'valor', header: 'Valor', width: 180, align: 'end', format: (v: number) => kz(v) },
+    { key: 'valor', header: 'Valor', width: 180, align: 'end', format: (v: number) => usd(v) },
     {
       key: 'iva',
       header: 'IVA (14%)',
       width: 160,
       align: 'end',
       value: (f) => f.valor * 0.14,
-      format: (v: number) => kz(v),
+      format: (v: number) => usd(v),
     },
     {
       key: 'accoes',
@@ -601,7 +600,7 @@ export class DataGridPage {
     },
   ];
 
-  protected readonly kz = kz;
+  protected readonly usd = usd;
   protected json(v: unknown): string {
     return JSON.stringify(v);
   }
@@ -616,12 +615,12 @@ export class DataGridPage {
       width: 170,
       align: 'end',
       filter: 'number',
-      format: (v: number) => kz(v),
+      format: (v: number) => usd(v),
     },
   ];
   protected readonly filtrosIniciais = signal<Record<string, string>>({
     estado: 'Em atraso',
-    valor: '>3000000',
+    valor: '>3000',
   });
 
   protected readonly lote = signal(gerarFacturas(12));
@@ -641,7 +640,7 @@ export class DataGridPage {
     { key: 'numero', header: 'Número', width: 150 },
     { key: 'cliente', header: 'Cliente', width: 200, filter: 'text' },
     { key: 'estado', header: 'Estado', width: 140, filter: 'select' },
-    { key: 'valor', header: 'Valor', width: 170, align: 'end', format: (v: number) => kz(v) },
+    { key: 'valor', header: 'Valor', width: 170, align: 'end', format: (v: number) => usd(v) },
   ];
   protected soma(linhas: readonly Factura[]): number {
     return linhas.reduce((t, f) => t + f.valor, 0);
@@ -653,7 +652,7 @@ export class DataGridPage {
     { key: 'cliente', header: 'Cliente', width: 200 },
     { key: 'provincia', header: 'Província', width: 140, hidden: true },
     { key: 'estado', header: 'Estado', width: 140 },
-    { key: 'valor', header: 'Valor', width: 170, align: 'end', format: (v: number) => kz(v) },
+    { key: 'valor', header: 'Valor', width: 170, align: 'end', format: (v: number) => usd(v) },
     {
       key: 'iva',
       header: 'IVA (14%)',
@@ -661,7 +660,7 @@ export class DataGridPage {
       align: 'end',
       hidden: true,
       value: (f) => f.valor * 0.14,
-      format: (v: number) => kz(v),
+      format: (v: number) => usd(v),
     },
   ];
 
@@ -687,7 +686,7 @@ export class DataGridPage {
       filter: 'select',
       filterOptions: ['Paga', 'Pendente', 'Em atraso'],
     },
-    { key: 'valor', header: 'Valor', width: 170, align: 'end', format: (v: number) => kz(v) },
+    { key: 'valor', header: 'Valor', width: 170, align: 'end', format: (v: number) => usd(v) },
   ];
   protected readonly ordemServidor = signal<MxGridSort>({ key: null, direction: 'asc' });
   protected readonly filtrosServidor = signal<Record<string, string>>({});
@@ -747,7 +746,7 @@ colunas: MxGridColumn<Factura>[] = [
   { key: 'numero', header: 'Número', filter: 'text', pinned: 'start' },
   { key: 'cliente', header: 'Cliente', filter: 'text' },
   { key: 'estado', header: 'Estado', filter: 'select' },
-  { key: 'valor', header: 'Valor', align: 'end', filter: 'number', format: kz },
+  { key: 'valor', header: 'Valor', align: 'end', filter: 'number', format: usd },
 ];`;
 
   protected readonly api: ApiRow[] = [

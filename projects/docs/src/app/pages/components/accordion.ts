@@ -72,7 +72,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
                   </details>
                   <details mxAccordionItem>
                     <summary mxAccordionTrigger>Facturação</summary>
-                    <div mxAccordionContent>Série FT 2026, moeda AOA, prazo de 30 dias.</div>
+                    <div mxAccordionContent>Série FT 2026, moeda USD, prazo de 30 dias.</div>
                   </details>
                 </div>
               </div>

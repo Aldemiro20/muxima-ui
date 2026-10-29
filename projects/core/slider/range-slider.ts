@@ -16,7 +16,7 @@ import { MX_FORM_FIELD_CONTROL, MxFormField, MxFormFieldControl, mxUniqueId } fr
 
 /**
  * Intervalo com dois cursores (mínimo e máximo), feito com dois `<input type="range">`
- * nativos: cada cursor tem o seu teclado e é anunciado como "Preço, mínimo, 20 000 Kz".
+ * nativos: cada cursor tem o seu teclado e é anunciado como "Preço, mínimo, 20 US$".
  *
  * ```html
  * <mx-form-field>

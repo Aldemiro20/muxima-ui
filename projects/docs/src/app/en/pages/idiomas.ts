@@ -74,15 +74,15 @@ export class IdiomasDemo {
         <p>Set the language when the app starts:</p>
         <doc-code [code]="provide" />
         <doc-callout>
-          In version 1.x Portuguese is still the default language, so nothing changes for existing users. From 2.0 on the default is English. If your app is in English, set
-          <code>locale: 'en'</code> now, and the version change won't affect you.
+          Since 2.0 the default language is English (on 1.x it was Portuguese). Without
+          <code>provideMuximaI18n</code>, components show English texts; the example above switches them to Portuguese.
         </doc-callout>
       </section>
 
       <section>
         <h2>Change it at runtime</h2>
         <p>
-          O <code>MxI18n</code> keeps the language in a signal. When you call <code>setLocale</code>, every
+          The <code>MxI18n</code> keeps the language in a signal. When you call <code>setLocale</code>, every
           component on screen updates right away, without a reload. Also update the <code>lang</code> attribute,
           so screen readers pronounce the text correctly.
         </p>
@@ -152,7 +152,7 @@ export class IdiomasPage {
 import { provideMuximaI18n } from '@muxima-ui/core/i18n';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideMuximaI18n({ locale: 'en' })],
+  providers: [provideMuximaI18n({ locale: 'pt' })],
 };`;
 
   protected readonly runtime = `import { DOCUMENT, inject } from '@angular/core';

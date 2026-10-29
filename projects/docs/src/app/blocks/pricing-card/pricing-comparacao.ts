@@ -25,9 +25,9 @@ interface Grupo {
 })
 export class PricingComparacao {
   protected readonly planos = [
-    { nome: 'Básico', preco: '9 900 Kz' },
-    { nome: 'Profissional', preco: '24 900 Kz' },
-    { nome: 'Empresa', preco: '59 900 Kz' },
+    { nome: 'Básico', preco: '9,90 US$' },
+    { nome: 'Profissional', preco: '24,90 US$' },
+    { nome: 'Empresa', preco: '59,90 US$' },
   ];
 
   protected readonly grupos: Grupo[] = [

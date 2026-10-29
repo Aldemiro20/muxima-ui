@@ -30,10 +30,10 @@ export class ProductDetail {
   protected readonly error = signal('');
   protected readonly notice = signal('');
 
-  private readonly unitPrice = 18500;
-  private readonly kz = new Intl.NumberFormat('en-US');
-  protected readonly price = this.kz.format(this.unitPrice) + ' Kz';
-  protected readonly total = computed(() => this.kz.format(this.unitPrice * this.quantity()) + ' Kz');
+  private readonly unitPrice = 18.5;
+  private readonly usd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+  protected readonly price = this.usd.format(this.unitPrice);
+  protected readonly total = computed(() => this.usd.format(this.unitPrice * this.quantity()));
 
   protected changeQuantity(delta: number): void {
     this.quantity.update((q) => Math.min(10, Math.max(1, q + delta)));

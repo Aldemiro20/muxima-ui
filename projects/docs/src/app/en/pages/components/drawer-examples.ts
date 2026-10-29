@@ -137,8 +137,8 @@ export class EditCustomer {
       <hr mxSeparator />
       <mx-form-field>
         <label mxLabel>Minimum amount</label>
-        <input type="range" mxSlider min="0" max="5000" step="250" [(ngModel)]="minimum" [attr.aria-valuetext]="minimum + ' thousand kwanzas'" />
-        <mx-hint>{{ minimum }} thousand Kz</mx-hint>
+        <input type="range" mxSlider min="0" max="5000" step="250" [(ngModel)]="minimum" [attr.aria-valuetext]="minimum + ' dollars'" />
+        <mx-hint>{{ minimum }} USD</mx-hint>
       </mx-form-field>
     </mx-dialog-content>
     <mx-dialog-footer>
@@ -224,7 +224,7 @@ export class MobileMenu {
       <mx-tabs aria-label="Customer detail">
         <mx-tab label="Summary">
           <dl class="detail-list">
-            <div><dt>Balance</dt><dd>4 870 500,00 Kz</dd></div>
+            <div><dt>Balance</dt><dd>$4,870.50</dd></div>
             <div><dt>Invoices</dt><dd>38 issued, 2 pending</dd></div>
             <div><dt>Account manager</dt><dd>Pedro Neto</dd></div>
             <div><dt>Status</dt><dd><span mxBadge variant="warning">Payment pending</span></dd></div>
@@ -233,7 +233,7 @@ export class MobileMenu {
         <mx-tab label="Invoices">
           <div class="mx-table-container">
             <table mxTable density="compact">
-              <thead><tr><th scope="col">Invoice</th><th scope="col">Status</th><th scope="col" data-align="end">Amount (Kz)</th></tr></thead>
+              <thead><tr><th scope="col">Invoice</th><th scope="col">Status</th><th scope="col" data-align="end">Amount (USD)</th></tr></thead>
               <tbody>
                 <tr><td>FT 2026/0143</td><td><span mxBadge variant="warning">Pending</span></td><td data-align="end">4 870 500,00</td></tr>
                 <tr><td>FT 2026/0118</td><td><span mxBadge variant="success">Paid</span></td><td data-align="end">2 100 000,00</td></tr>

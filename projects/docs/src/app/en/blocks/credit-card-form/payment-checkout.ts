@@ -55,14 +55,14 @@ export class PaymentCheckout {
     validators: [Validators.required, Validators.pattern(/^9\d{2}\s?\d{3}\s?\d{3}$/)],
   });
 
-  protected readonly items = 30700;
-  protected readonly deliveryCost = computed(() => (this.delivery() === 'home' ? 2500 : 0));
+  protected readonly items = 30.7;
+  protected readonly deliveryCost = computed(() => (this.delivery() === 'home' ? 2.5 : 0));
   protected readonly total = computed(() => this.items + this.deliveryCost());
   protected readonly sending = signal(false);
 
-  private readonly kz = new Intl.NumberFormat('en-US');
+  private readonly usd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
   protected price(v: number): string {
-    return this.kz.format(v) + ' Kz';
+    return this.usd.format(v);
   }
 
   protected status(i: number): 'complete' | 'current' | 'upcoming' {

@@ -26,8 +26,8 @@ export interface MxFileRejection {
   message: string;
 }
 
-/** "1,2 MB", "340 kB". */
-export function mxFormatBytes(bytes: number, locale = 'pt-AO'): string {
+/** "1.2 MB", "340 kB" (com locale "pt-AO": "1,2 MB"). */
+export function mxFormatBytes(bytes: number, locale = 'en-US'): string {
   const units = ['B', 'kB', 'MB', 'GB'];
   let v = bytes;
   let u = 0;

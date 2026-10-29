@@ -21,7 +21,7 @@ import { AccoesFolha, DetalheCliente, EditarCliente, Filtros, MenuMovel, Notific
       <dl class="detail-list">
         <div><dt>Estado</dt><dd><span mxBadge variant="success">Paga</span></dd></div>
         <div><dt>Emitida</dt><dd>3 de Outubro de 2026</dd></div>
-        <div><dt>Valor</dt><dd>1 250 000 Kz</dd></div>
+        <div><dt>Valor</dt><dd>1 250 US$</dd></div>
         <div><dt>Lado</dt><dd>{{ data.side }}</dd></div>
       </dl>
     </mx-dialog-content>

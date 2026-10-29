@@ -87,7 +87,7 @@ export class PlanDialog {
   protected plan = 'team';
   protected readonly plans = [
     { id: 'basic', name: 'Basic', desc: 'Free, 1 user' },
-    { id: 'team', name: 'Team', desc: '25,000 Kz/month, up to 10 users' },
+    { id: 'team', name: 'Team', desc: '$25/month, up to 10 users' },
     { id: 'business', name: 'Business', desc: 'Contact us' },
   ];
 }

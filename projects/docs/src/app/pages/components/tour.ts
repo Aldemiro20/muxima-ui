@@ -38,7 +38,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               <button mxButton size="sm" type="button" mxTourAnchor="demo-nova">Nova factura</button>
             </div>
             <div class="tour-stats" mxTourAnchor="demo-resumo">
-              <div><span class="muted small">Por receber</span><strong>4 820 000 Kz</strong></div>
+              <div><span class="muted small">Por receber</span><strong>4 820 US$</strong></div>
               <div><span class="muted small">Em atraso</span><strong>3 facturas</strong></div>
             </div>
             <button mxButton variant="ghost" size="sm" type="button" (click)="visitaPrincipal()">
@@ -463,12 +463,6 @@ visita() {
       name: 'MxTourRef.index, afterClosed',
       type: 'Signal<number>, Promise<MxTourResult>',
       description: 'MxTourResult = { completed, index }.',
-    },
-    {
-      kind: 'Função',
-      name: 'MX_TOUR_LABELS',
-      type: 'MxTourLabels',
-      description: 'Textos por omissão, em português.',
     },
   ];
 }

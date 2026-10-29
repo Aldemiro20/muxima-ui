@@ -18,7 +18,7 @@ import {
 import { NgTemplateOutlet } from '@angular/common';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { mxUniqueId } from '@muxima-ui/core/form-field';
-import { MX_MESSAGES_PT, injectMxMessages } from '@muxima-ui/core/i18n';
+import { MX_MESSAGES_EN, injectMxMessages } from '@muxima-ui/core/i18n';
 
 export interface MxNotification<D = unknown> {
   id: string | number;
@@ -33,12 +33,12 @@ export interface MxNotification<D = unknown> {
   data?: D;
 }
 
-/** "agora", "há 5 min", "ontem", "há 3 dias" e, depois de uma semana, a data. */
+/** "now", "5 min ago", "yesterday", "3 days ago" e, depois de uma semana, a data (em inglês por omissão). */
 export function mxRelativeTime(
   date: Date,
   now = new Date(),
-  locale = 'pt-AO',
-  nowText = MX_MESSAGES_PT.notifications.now,
+  locale = 'en-US',
+  nowText = MX_MESSAGES_EN.notifications.now,
 ): string {
   const diff = (date.getTime() - now.getTime()) / 1000;
   const abs = Math.abs(diff);

@@ -162,7 +162,7 @@ import { ApiRow, DOC_UI } from '../../../ui/doc-ui';
                 </mx-form-field>
               </div>
               <p class="color-contrast-demo" [style.color]="text()" [style.background]="background()">
-                Invoice FT 2026/0201 · 250,000.00 Kz
+                Invoice FT 2026/0201 · $250.00
               </p>
             </div>
           </doc-example>

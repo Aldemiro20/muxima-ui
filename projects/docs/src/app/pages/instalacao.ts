@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { DOC_UI } from '../ui/doc-ui';
 
 @Component({
   selector: 'doc-instalacao',
-  imports: [DOC_UI],
+  imports: [DOC_UI, RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="doc-page">
@@ -31,6 +32,16 @@ import { DOC_UI } from '../ui/doc-ui';
       <section>
         <h2>3. Usar um componente</h2>
         <doc-code [code]="usage" />
+      </section>
+
+      <section>
+        <h2>4. Escolher o idioma</h2>
+        <p>
+          Os textos dos componentes estão em inglês por omissão. Para português, acrescenta em
+          <code>app.config.ts</code>:
+        </p>
+        <doc-code code="providers: [provideMuximaI18n({ locale: 'pt' })]" />
+        <p class="muted">Importa <code>provideMuximaI18n</code> de <code>&#64;muxima-ui/core/i18n</code>. Mais em <a routerLink="/pt/docs/idiomas">Idiomas</a>.</p>
       </section>
 
       <section>

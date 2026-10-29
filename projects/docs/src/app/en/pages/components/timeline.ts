@@ -144,7 +144,7 @@ import { ApiRow, DOC_UI } from '../../../ui/doc-ui';
                 </svg>
                 <time mxTimelineTime datetime="2026-10-27">Today</time>
                 <p mxTimelineTitle>Payment received</p>
-                <p mxTimelineDescription>250,000.00 Kz for FT 2026/0201.</p>
+                <p mxTimelineDescription>$250.00 for FT 2026/0201.</p>
               </li>
               <li mxTimelineItem icon variant="accent">
                 <svg mxTimelineIcon viewBox="0 0 16 16" fill="none">

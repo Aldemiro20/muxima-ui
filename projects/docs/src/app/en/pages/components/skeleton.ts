@@ -63,7 +63,7 @@ import { ApiRow, DOC_UI } from '../../../ui/doc-ui';
                     <h3 mxCardTitle>Month summary</h3>
                     <p mxCardDescription>142 invoices, 9 pending.</p>
                   </header>
-                  <div mxCardContent><strong class="big-number">18,4 M Kz</strong></div>
+                  <div mxCardContent><strong class="big-number">$18.4K</strong></div>
                 }
               </article>
             </div>

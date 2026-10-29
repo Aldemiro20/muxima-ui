@@ -200,7 +200,7 @@ function initialBoard(): MxKanbanColumn<Task>[] {
               <ng-template mxKanbanCard let-n>
                 <div class="kanban-card">
                   <p class="kanban-card-title">{{ n.customer }}</p>
-                  <p class="kanban-card-value">{{ kz(n.value) }}</p>
+                  <p class="kanban-card-value">{{ usd(n.value) }}</p>
                 </div>
               </ng-template>
             </mx-kanban>
@@ -403,7 +403,7 @@ export class KanbanPage {
     );
   }
 
-  protected readonly kz = (v: number) => new Intl.NumberFormat('en-US').format(v) + ' Kz';
+  protected readonly usd = (v: number) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(v);
   protected readonly dealName = (n: { customer: string }) => n.customer;
   protected readonly pipeline = signal<
     MxKanbanColumn<{ id: number; customer: string; value: number }>[]
@@ -412,24 +412,24 @@ export class KanbanPage {
       id: 'contact',
       title: 'Contact',
       items: [
-        { id: 1, customer: 'Namibe Pescas', value: 1200000 },
-        { id: 2, customer: 'Uíge Café', value: 450000 },
+        { id: 1, customer: 'Namibe Pescas', value: 1200 },
+        { id: 2, customer: 'Uíge Café', value: 450 },
       ],
     },
     {
       id: 'proposal',
       title: 'Proposal',
-      items: [{ id: 3, customer: 'Lobito Portos', value: 8900000 }],
+      items: [{ id: 3, customer: 'Lobito Portos', value: 8900 }],
     },
     {
       id: 'negociacao',
       title: 'Negotiation',
-      items: [{ id: 4, customer: 'Energia do Cuanza', value: 15400000 }],
+      items: [{ id: 4, customer: 'Energia do Cuanza', value: 15400 }],
     },
     { id: 'won', title: 'Won', items: [] },
   ]);
   protected readonly pipelineTotal = computed(() =>
-    this.kz(
+    this.usd(
       this.pipeline()
         .filter((c) => c.id !== 'won')
         .flatMap((c) => c.items)

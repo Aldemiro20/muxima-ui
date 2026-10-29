@@ -20,7 +20,7 @@ import {
   untracked,
   viewChild,
 } from '@angular/core';
-import { MX_MESSAGES_PT, MxI18n } from '@muxima-ui/core/i18n';
+import { MX_MESSAGES_EN, MxI18n } from '@muxima-ui/core/i18n';
 import { NgTemplateOutlet } from '@angular/common';
 import { CdkTrapFocus } from '@angular/cdk/a11y';
 import {
@@ -72,12 +72,6 @@ export interface MxTourLabels {
   progress: (current: number, total: number) => string;
 }
 
-/**
- * Textos em português.
- * @deprecated Os textos por omissão vêm agora do idioma activo (`MxI18n`); usa `MX_MESSAGES_PT.tour`.
- */
-export const MX_TOUR_LABELS: MxTourLabels = MX_MESSAGES_PT.tour;
-
 export interface MxTourOptions {
   /** Passo inicial (base 0). */
   startAt?: number;
@@ -112,7 +106,7 @@ export class MxTourRef {
     readonly steps: readonly MxTourStep[],
     options: MxTourOptions,
     private readonly onClose: (r: MxTourResult) => void,
-    defaults: MxTourLabels = MX_TOUR_LABELS,
+    defaults: MxTourLabels = MX_MESSAGES_EN.tour,
   ) {
     this.labels = { ...defaults, ...options.labels };
     this.dismissible = options.dismissible ?? true;

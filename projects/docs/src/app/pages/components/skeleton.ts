@@ -63,7 +63,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
                     <h3 mxCardTitle>Resumo do mês</h3>
                     <p mxCardDescription>142 facturas, 9 pendentes.</p>
                   </header>
-                  <div mxCardContent><strong class="big-number">18,4 M Kz</strong></div>
+                  <div mxCardContent><strong class="big-number">18,4 mil US$</strong></div>
                 }
               </article>
             </div>

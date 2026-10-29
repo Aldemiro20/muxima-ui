@@ -23,12 +23,12 @@ const CODIGOS: Record<string, number> = { KIANDA10: 0.1 };
 })
 export class CartSummary {
   protected readonly items = [
-    { name: 'Cotton shirt', quantity: 1, price: 18500 },
-    { name: 'Uíge coffee, 500 g', quantity: 2, price: 4500 },
+    { name: 'Cotton shirt', quantity: 1, price: 18.5 },
+    { name: 'Uíge coffee, 500 g', quantity: 2, price: 4.5 },
   ];
   protected readonly deliveries: Delivery[] = [
     { id: 'shop', name: 'Pick up in store', descricao: 'Talatona, from tomorrow', price: 0 },
-    { id: 'home', name: 'Home delivery', descricao: 'Luanda, within 24 hours', price: 2500 },
+    { id: 'home', name: 'Home delivery', descricao: 'Luanda, within 24 hours', price: 2.5 },
   ];
   protected readonly delivery = signal('home');
 
@@ -42,9 +42,9 @@ export class CartSummary {
   protected readonly discountAmount = computed(() => Math.round(this.subtotal * this.discount()));
   protected readonly total = computed(() => this.subtotal - this.discountAmount() + this.deliveryAmount());
 
-  private readonly fmt = new Intl.NumberFormat('en-US');
+  private readonly fmt = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
   protected kz(v: number): string {
-    return this.fmt.format(v) + ' Kz';
+    return this.fmt.format(v);
   }
 
   protected apply(event: Event): void {

@@ -299,7 +299,7 @@ export class ChipsPage {
   private readonly initialFilters = [
     { field: 'Status', value: 'Pending' },
     { field: 'Province', value: 'Luanda' },
-    { field: 'Amount', value: 'above 100,000 Kz' },
+    { field: 'Amount', value: 'above $100' },
   ];
   protected readonly active = signal(this.initialFilters);
   protected removeFilter(field: string): void {

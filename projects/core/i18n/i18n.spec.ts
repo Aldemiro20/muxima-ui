@@ -31,7 +31,19 @@ describe('MxI18n', () => {
   const edges = (el: HTMLElement) =>
     Array.from(el.querySelectorAll('.mx-pagination-edge-label')).map((s) => s.textContent!.trim());
 
-  it('português por omissão', () => {
+  it('inglês por omissão, sem configurar nada', () => {
+    // test-setup.ts põe "pt" em todos os testes; aqui começa-se sem configuração
+    TestBed.resetTestingModule();
+    const fixture = TestBed.createComponent(Host);
+    fixture.detectChanges();
+    const el: HTMLElement = fixture.nativeElement;
+    expect(TestBed.inject(MxI18n).locale()).toBe('en');
+    expect(edges(el)).toEqual(['Previous', 'Next']);
+    expect(el.querySelector('.mx-pagination-range')!.textContent!.trim()).toBe('1–10 of 200');
+    expect(el.querySelector<HTMLInputElement>('mx-date-picker input')!.placeholder).toBe('mm/dd/yyyy');
+  });
+
+  it('português com provideMuximaI18n({ locale: "pt" })', () => {
     const fixture = TestBed.createComponent(Host);
     fixture.detectChanges();
     expect(edges(fixture.nativeElement)).toEqual(['Anterior', 'Seguinte']);
@@ -101,8 +113,8 @@ describe('MxI18n', () => {
 
   it('datas escritas pela ordem de cada idioma', () => {
     const d = new Date(2026, 9, 28);
-    expect(mxFormatDate(d)).toBe('28/10/2026');
-    expect(mxFormatDate(d, 'mdy')).toBe('10/28/2026');
+    expect(mxFormatDate(d)).toBe('10/28/2026');
+    expect(mxFormatDate(d, 'dmy')).toBe('28/10/2026');
     expect(mxFormatDate(d, 'ymd')).toBe('2026-10-28');
     expect(mxParseDate('10/28/2026', 'mdy')).toEqual(d);
     expect(mxParseDate('28/10/2026', 'mdy')).toBeNull();
@@ -110,7 +122,7 @@ describe('MxI18n', () => {
   });
 
   it('nomes das cores nos dois idiomas', () => {
-    expect(mxColorName('#1E3A8A')).toBe('azul escuro');
-    expect(mxColorName('#1E3A8A', MX_MESSAGES_EN.colorPicker.names)).toBe('dark blue');
+    expect(mxColorName('#1E3A8A')).toBe('dark blue');
+    expect(mxColorName('#1E3A8A', MX_MESSAGES_PT.colorPicker.names)).toBe('azul escuro');
   });
 });

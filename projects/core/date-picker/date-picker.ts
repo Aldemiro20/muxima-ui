@@ -22,11 +22,14 @@ const POSITIONS: ConnectedPosition[] = [
   { originX: 'start', originY: 'top', overlayX: 'start', overlayY: 'bottom', offsetY: -4 },
 ];
 
-/** Converte "dd/mm/aaaa" numa data. Aceita também "-" e "." como separadores. */
 /** Ordem do dia (d), mês (m) e ano (y) numa data escrita. */
 export type MxDateOrder = 'dmy' | 'mdy' | 'ymd';
 
-export function mxParseDate(text: string, order: MxDateOrder = 'dmy'): Date | null {
+/**
+ * Converte uma data escrita (por omissão "mm/dd/aaaa"; "dmy" para "dd/mm/aaaa").
+ * Aceita também "-" e "." como separadores.
+ */
+export function mxParseDate(text: string, order: MxDateOrder = 'mdy'): Date | null {
   const t = text.trim();
   const m =
     order === 'ymd'
@@ -40,7 +43,8 @@ export function mxParseDate(text: string, order: MxDateOrder = 'dmy'): Date | nu
   return date.getFullYear() === y && date.getMonth() === mo && date.getDate() === d ? date : null;
 }
 
-export function mxFormatDate(d: Date | null, order: MxDateOrder = 'dmy'): string {
+/** Escreve a data na ordem indicada (por omissão "mm/dd/aaaa"). */
+export function mxFormatDate(d: Date | null, order: MxDateOrder = 'mdy'): string {
   if (!d) return '';
   const pad = (n: number) => String(n).padStart(2, '0');
   const [day, month, year] = [pad(d.getDate()), pad(d.getMonth() + 1), d.getFullYear()];

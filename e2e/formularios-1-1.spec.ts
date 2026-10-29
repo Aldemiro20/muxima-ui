@@ -54,10 +54,10 @@ test.describe('Componentes da 1.1 com teclado', () => {
     const low = page.locator('doc-example', { hasText: 'Preço com valores visíveis' }).getByRole('slider', { name: 'Preço mínimo' });
     await low.focus();
     await page.keyboard.press('ArrowRight');
-    await expect(low).toHaveAttribute('aria-valuetext', /160\s000 Kz/);
+    await expect(low).toHaveAttribute('aria-valuetext', /160\sUS\$/);
     await page.keyboard.press('End');
     // não passa o máximo
-    await expect(low).toHaveAttribute('aria-valuetext', /600\s000 Kz/);
+    await expect(low).toHaveAttribute('aria-valuetext', /600\sUS\$/);
   });
 
   test('Tag input: Enter acrescenta, Backspace vai para a etiqueta e remove', async ({ page }) => {

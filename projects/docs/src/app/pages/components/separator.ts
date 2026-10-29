@@ -53,10 +53,10 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
         <div class="grid-2">
           <doc-example title="Entre secções de um painel">
             <div class="sep-panel w-full">
-              <div><strong>Subtotal</strong><span>1 250 000,00 Kz</span></div>
-              <div><strong>IVA (14%)</strong><span>175 000,00 Kz</span></div>
+              <div><strong>Subtotal</strong><span>1 250,00 US$</span></div>
+              <div><strong>IVA (14%)</strong><span>175,00 US$</span></div>
               <hr mxSeparator />
-              <div><strong>Total</strong><strong>1 425 000,00 Kz</strong></div>
+              <div><strong>Total</strong><strong>1 425,00 US$</strong></div>
             </div>
           </doc-example>
           <doc-example title="Vertical numa barra" note="decorative entre botões: o leitor de ecrã não anuncia a linha.">
