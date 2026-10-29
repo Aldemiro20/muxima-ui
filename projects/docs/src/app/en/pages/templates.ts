@@ -12,7 +12,7 @@ interface Template {
 
 const TEMPLATES: Template[] = [
   { name: 'Business Dashboard', description: 'Invoicing, collections and reports, in English and Portuguese.', tag: 'Dashboard', category: 'Dashboards' },
-  { name: 'Online Store', description: 'Catalog, cart, four-step checkout and customer account, in English and Portuguese.', tag: 'Store', category: 'Commerce' },
+  { name: 'Online Store', description: 'Store with catalog, cart and checkout, and admin for orders, products, coupons and shipping, in English and Portuguese.', tag: 'Store', category: 'Commerce' },
   { name: 'Customer Management', description: 'CRM for sales teams.', tag: 'CRM', category: 'Management' },
   { name: 'Human Resources', description: 'Employees, teams and processes.', tag: 'RH', category: 'Management' },
   { name: 'Financial Management', description: 'Invoices, payments and budgets.', tag: 'Finance', category: 'Dashboards' },
