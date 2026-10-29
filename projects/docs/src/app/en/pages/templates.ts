@@ -11,7 +11,7 @@ interface Template {
 }
 
 const TEMPLATES: Template[] = [
-  { name: 'Business Dashboard', description: 'Metrics, reports and indicators.', tag: 'Dashboard', category: 'Dashboards' },
+  { name: 'Business Dashboard', description: 'Invoicing, collections and reports, in English and Portuguese.', tag: 'Dashboard', category: 'Dashboards' },
   { name: 'Customer Management', description: 'CRM for sales teams.', tag: 'CRM', category: 'Management' },
   { name: 'Human Resources', description: 'Employees, teams and processes.', tag: 'RH', category: 'Management' },
   { name: 'Financial Management', description: 'Invoices, payments and budgets.', tag: 'Finance', category: 'Dashboards' },

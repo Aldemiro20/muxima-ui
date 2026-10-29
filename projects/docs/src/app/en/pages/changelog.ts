@@ -61,8 +61,8 @@ export class ChangelogPage {
   protected readonly releases: Release[] = [
     {
       version: '2.0.0',
-      status: 'In progress',
-      date: 'Ready to publish',
+      status: 'Released',
+      date: 'October 29, 2026',
       title: 'English by default',
       items: [
         'English is now the default language; for Portuguese, provideMuximaI18n({ locale: \'pt\' })',

@@ -1,59 +1,61 @@
 # Muxima UI
 
-Biblioteca de componentes para Angular 21 ou superior, com documentação em português.
-Componentes acessíveis, temas por variáveis CSS e modo escuro incluído.
+**English** · [Português](README.pt.md)
 
-## Estrutura
+A component library for Angular 21 or later, documented in English and Portuguese.
+Accessible components, themes through CSS variables and dark mode included.
 
-| Pasta | Conteúdo |
+## Structure
+
+| Folder | Contents |
 | --- | --- |
-| `projects/core` | Pacote `@muxima-ui/core`: 33 componentes, tokens e estilos (lista em `projects/core/README.md`) |
-| `projects/docs` | Site de documentação: uma página por componente, temas, modo escuro, padrão de qualidade, templates, preços, consultoria e changelog |
+| `projects/core` | The `@muxima-ui/core` package: components, tokens and styles (list in `projects/core/README.md`) |
+| `projects/docs` | Documentation site in English (at the root) and Portuguese (under `/pt`): a page per component, blocks, theming, dark mode, languages, quality standard, templates, pricing, consulting and changelog |
 
-## Padrão de qualidade
+## Quality standard
 
-Cada componente segue as oito regras descritas em `/docs/padrao-de-qualidade` no site: Angular 21+, HTML nativo primeiro, WAI-ARIA e teclado, formulários, estados completos, só tokens, API pequena (`variant`, `size`, `disabled`; no máximo 6 variantes e 3 tamanhos) e testes com axe.
+Every component follows the eight rules described at `/docs/quality-standard` on the site: Angular 21+, native HTML first, WAI-ARIA and keyboard, forms, complete states, tokens only, a small API (`variant`, `size`, `disabled`; at most 6 variants and 3 sizes) and tests with axe.
 
-## Requisitos
+## Requirements
 
-- Node.js 20.19 ou superior (22 recomendado)
-- Para `test:a11y`, o Chromium do Playwright: `npx playwright install chromium`
-- npm 11 (o npm 10.9 falha a instalar este workspace com o erro `edgesOut`; usa `npx npm@11 install` se for preciso)
+- Node.js 20.19 or later (22 recommended)
+- For `test:a11y`, Playwright's Chromium: `npx playwright install chromium`
+- npm 11 (npm 10.9 fails to install this workspace with an `edgesOut` error; use `npx npm@11 install` if needed)
 
-## Comandos
+## Commands
 
 ```bash
-npm install          # instalar dependências
-npm start            # site de documentação em http://localhost:4200 (gera antes o código dos exemplos)
-npm test             # testes da biblioteca (Vitest), com axe em cada componente
-npm run build:core   # gerar o pacote em dist/core
-npm run build:docs   # gerar o site em dist/docs
-npm run docs:examples # só regenerar o código mostrado em cada exemplo
-npm run test:a11y    # axe em todas as páginas do site, claro e escuro (depois de build:docs)
+npm install          # install dependencies
+npm start            # documentation site at http://localhost:4200 (generates the example code first)
+npm test             # library tests (Vitest), with axe on every component
+npm run build:core   # build the package into dist/core
+npm run build:docs   # build the site into dist/docs
+npm run docs:examples # only regenerate the code shown in each example
+npm run test:a11y    # axe on every page of the site, light and dark (after build:docs)
 ```
 
-## Usar a biblioteca numa aplicação
+## Using the library in an app
 
 ```bash
 npm install @muxima-ui/core @angular/cdk
 ```
 
-Em `angular.json`, acrescenta os estilos:
+In `angular.json`, add the styles:
 
 ```json
 "styles": ["@muxima-ui/core/styles.css", "src/styles.css"]
 ```
 
-Depois importa só o que precisas:
+Then import only what you need:
 
 ```ts
 import { MxButton } from '@muxima-ui/core/button';
 import { MxFormField, MxLabel, MxInput } from '@muxima-ui/core/form-field';
 ```
 
-## Tema
+## Theming
 
-Todas as cores vêm de variáveis `--mx-*`. Para adaptar à tua marca:
+Every color comes from `--mx-*` variables. To match your brand:
 
 ```css
 :root {
@@ -62,23 +64,23 @@ Todas as cores vêm de variáveis `--mx-*`. Para adaptar à tua marca:
 }
 ```
 
-Modo escuro: segue o sistema por omissão; força com `<html data-theme="dark">` ou `data-theme="light"`.
+Dark mode follows the system by default; force it with `<html data-theme="dark">` or `data-theme="light"`.
 
-## Idiomas
+## Languages
 
-Inglês (por omissão desde a 2.0) e português. Para português, `provideMuximaI18n({ locale: 'pt' })`; muda durante a utilização com `inject(MxI18n).setLocale('en')`. Ver a página Idiomas da documentação.
+English (the default since 2.0) and Portuguese. For Portuguese, `provideMuximaI18n({ locale: 'pt' })`; switch at runtime with `inject(MxI18n).setLocale('en')`. See the Languages page in the docs.
 
-## Compatibilidade
+## Compatibility
 
-Angular 21 e 22 (`peerDependencies: >=21.0.0 <23.0.0`). Versões anteriores não são suportadas.
+Angular 21 and 22 (`peerDependencies: >=21.0.0 <23.0.0`). Earlier versions are not supported.
 
-## Testes e publicação
+## Tests and publishing
 
-- `npm run test:e2e`: testes end-to-end com Playwright (teclado, foco e acessibilidade com menus, diálogos e calendário abertos). Precisa de `npm run build:docs` antes.
-- `docs/verificacao-leitores-de-ecra.md`: lista de verificação manual com NVDA, VoiceOver e TalkBack.
-- `docs/publicar.md`: como publicar no npm e descontinuar os pacotes antigos.
-- `CHANGELOG.md`: alterações por versão.
+- `npm run test:e2e`: end-to-end tests with Playwright (keyboard, focus and accessibility with menus, dialogs and the calendar open). Needs `npm run build:docs` first.
+- `docs/verificacao-leitores-de-ecra.md`: manual checklist with NVDA, VoiceOver and TalkBack (in Portuguese).
+- `docs/publicar.md`: how to publish to npm and deprecate old packages (in Portuguese).
+- `CHANGELOG.md`: changes per version (in Portuguese).
 
-## Licença
+## License
 
-MIT. Autor: Aldemiro Valentim.
+MIT. Author: Aldemiro Valentim.

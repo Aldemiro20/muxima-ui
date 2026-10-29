@@ -2,7 +2,13 @@
 
 Todas as alterações relevantes do pacote `@muxima-ui/core`. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-PT/1.1.0/) e as versões seguem o [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
-## [2.0.0] - por publicar
+## [2.0.1] - por publicar
+
+### Documentação
+
+- O README do pacote no npm passa a estar em inglês, com a versão portuguesa no repositório (`README.pt.md`). O mesmo para o README do repositório.
+
+## [2.0.0] - 2026-10-29
 
 O inglês passa a ser o idioma por omissão.
 

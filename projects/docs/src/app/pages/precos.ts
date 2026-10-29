@@ -24,7 +24,7 @@ import { Icon } from '../ui/icon';
           <ul class="checks">
             <li><doc-icon name="check" /> Todos os componentes Core</li>
             <li><doc-icon name="check" /> Licença MIT</li>
-            <li><doc-icon name="check" /> Documentação em português</li>
+            <li><doc-icon name="check" /> Documentação em português e inglês</li>
             <li><doc-icon name="check" /> Utilização comercial</li>
             <li><doc-icon name="check" /> Comunidade aberta</li>
           </ul>

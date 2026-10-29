@@ -61,8 +61,8 @@ export class ChangelogPage {
   protected readonly releases: Release[] = [
     {
       version: '2.0.0',
-      status: 'Em curso',
-      date: 'Pronta a publicar',
+      status: 'Publicada',
+      date: '29 de outubro de 2026',
       title: 'Inglês por omissão',
       items: [
         'O inglês passa a ser o idioma por omissão; para português, provideMuximaI18n({ locale: \'pt\' })',

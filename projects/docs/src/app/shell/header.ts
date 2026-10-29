@@ -55,7 +55,7 @@ import { ThemeService } from './theme.service';
             [routerLink]="other().url"
             [attr.hreflang]="other().code"
             [attr.lang]="other().code"
-            [attr.aria-label]="t().language + ': ' + other().name"
+            [attr.aria-label]="t().language + ': ' + other().name + ' (' + other().short + ')'"
           >
             <doc-icon name="globe" [size]="16" />
             <span>{{ other().short }}</span>
