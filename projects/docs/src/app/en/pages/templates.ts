@@ -7,13 +7,15 @@ interface Template {
   name: string;
   description: string;
   tag: string;
+  /** Screenshot of the template (in public/templates). */
+  image?: string;
   category: Exclude<Cat, 'All'>;
 }
 
 const TEMPLATES: Template[] = [
-  { name: 'Business Dashboard', description: 'Invoicing, collections and reports, in English and Portuguese.', tag: 'Dashboard', category: 'Dashboards' },
-  { name: 'Online Store', description: 'Store with catalog, cart and checkout, and admin for orders, products, coupons and shipping, in English and Portuguese.', tag: 'Store', category: 'Commerce' },
-  { name: 'School Management', description: 'Students and guardians, attendance, grades and grade sheets, timetables and fees, in English and Portuguese.', tag: 'School', category: 'Management' },
+  { name: 'Business Dashboard', image: 'templates/business-dashboard-en.webp', description: 'Invoicing, collections and reports, in English and Portuguese.', tag: 'Dashboard', category: 'Dashboards' },
+  { name: 'Online Store', image: 'templates/online-store-en.webp', description: 'Store with catalog, cart and checkout, and admin for orders, products, coupons and shipping, in English and Portuguese.', tag: 'Store', category: 'Commerce' },
+  { name: 'School Management', image: 'templates/school-management-en.webp', description: 'Students and guardians, attendance, grades and grade sheets, timetables and fees, in English and Portuguese.', tag: 'School', category: 'Management' },
   { name: 'Customer Management', description: 'CRM for sales teams.', tag: 'CRM', category: 'Management' },
   { name: 'Human Resources', description: 'Employees, teams and processes.', tag: 'RH', category: 'Management' },
   { name: 'Financial Management', description: 'Invoices, payments and budgets.', tag: 'Finance', category: 'Dashboards' },
@@ -43,14 +45,18 @@ const TEMPLATES: Template[] = [
       <div class="grid-3">
         @for (t of items(); track t.name) {
           <div class="card template-card">
-            <div class="template-thumb" aria-hidden="true">
-              <div class="tt-side"><i class="on"></i><i></i><i></i></div>
-              <div class="tt-main">
-                <i class="tt-title"></i>
-                <div class="tt-stats"><b></b><b></b><b></b></div>
-                <svg viewBox="0 0 200 60" preserveAspectRatio="none"><path d="M0 54 L22 50 L44 44 L66 47 L88 34 L110 38 L132 26 L154 22 L176 14 L200 10" /></svg>
+            @if (t.image) {
+              <img class="template-shot" [src]="t.image" [alt]="'Screenshot of the ' + t.name + ' template'" width="1200" height="750" loading="lazy" decoding="async" />
+            } @else {
+              <div class="template-thumb" aria-hidden="true">
+                <div class="tt-side"><i class="on"></i><i></i><i></i></div>
+                <div class="tt-main">
+                  <i class="tt-title"></i>
+                  <div class="tt-stats"><b></b><b></b><b></b></div>
+                  <svg viewBox="0 0 200 60" preserveAspectRatio="none"><path d="M0 54 L22 50 L44 44 L66 47 L88 34 L110 38 L132 26 L154 22 L176 14 L200 10" /></svg>
+                </div>
               </div>
-            </div>
+            }
             <div class="template-body">
               <div class="template-title"><h3>{{ t.name }}</h3><span class="tag pro">Pro</span></div>
               <p>{{ t.description }}</p>

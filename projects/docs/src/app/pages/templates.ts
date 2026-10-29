@@ -7,13 +7,15 @@ interface Template {
   name: string;
   description: string;
   tag: string;
+  /** Screenshot of the template (in public/templates). */
+  image?: string;
   category: Exclude<Cat, 'Todos'>;
 }
 
 const TEMPLATES: Template[] = [
-  { name: 'Dashboard Empresarial', description: 'Facturação, cobranças e relatórios, em português e inglês.', tag: 'Dashboard', category: 'Dashboards' },
-  { name: 'Loja online', description: 'Loja com catálogo, carrinho e compra, e gestão de encomendas, produtos, cupões e envios, em português e inglês.', tag: 'Loja', category: 'Comércio' },
-  { name: 'Gestão escolar', description: 'Alunos e encarregados, presenças, notas e pautas, horários e propinas, em português e inglês.', tag: 'Escola', category: 'Gestão' },
+  { name: 'Dashboard Empresarial', image: 'templates/business-dashboard-pt.webp', description: 'Facturação, cobranças e relatórios, em português e inglês.', tag: 'Dashboard', category: 'Dashboards' },
+  { name: 'Loja online', image: 'templates/online-store-pt.webp', description: 'Loja com catálogo, carrinho e compra, e gestão de encomendas, produtos, cupões e envios, em português e inglês.', tag: 'Loja', category: 'Comércio' },
+  { name: 'Gestão escolar', image: 'templates/school-management-pt.webp', description: 'Alunos e encarregados, presenças, notas e pautas, horários e propinas, em português e inglês.', tag: 'Escola', category: 'Gestão' },
   { name: 'Gestão de Clientes', description: 'CRM para equipas comerciais.', tag: 'CRM', category: 'Gestão' },
   { name: 'Recursos Humanos', description: 'Colaboradores, equipas e processos.', tag: 'RH', category: 'Gestão' },
   { name: 'Gestão Financeira', description: 'Facturas, pagamentos e orçamentos.', tag: 'Finanças', category: 'Dashboards' },
@@ -43,14 +45,18 @@ const TEMPLATES: Template[] = [
       <div class="grid-3">
         @for (t of items(); track t.name) {
           <div class="card template-card">
-            <div class="template-thumb" aria-hidden="true">
-              <div class="tt-side"><i class="on"></i><i></i><i></i></div>
-              <div class="tt-main">
-                <i class="tt-title"></i>
-                <div class="tt-stats"><b></b><b></b><b></b></div>
-                <svg viewBox="0 0 200 60" preserveAspectRatio="none"><path d="M0 54 L22 50 L44 44 L66 47 L88 34 L110 38 L132 26 L154 22 L176 14 L200 10" /></svg>
+            @if (t.image) {
+              <img class="template-shot" [src]="t.image" [alt]="'Captura de ecrã do template ' + t.name" width="1200" height="750" loading="lazy" decoding="async" />
+            } @else {
+              <div class="template-thumb" aria-hidden="true">
+                <div class="tt-side"><i class="on"></i><i></i><i></i></div>
+                <div class="tt-main">
+                  <i class="tt-title"></i>
+                  <div class="tt-stats"><b></b><b></b><b></b></div>
+                  <svg viewBox="0 0 200 60" preserveAspectRatio="none"><path d="M0 54 L22 50 L44 44 L66 47 L88 34 L110 38 L132 26 L154 22 L176 14 L200 10" /></svg>
+                </div>
               </div>
-            </div>
+            }
             <div class="template-body">
               <div class="template-title"><h3>{{ t.name }}</h3><span class="tag pro">Pro</span></div>
               <p>{{ t.description }}</p>

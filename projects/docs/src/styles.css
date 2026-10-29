@@ -1673,6 +1673,18 @@ a.text-link:hover,
 .tt-main svg path {
   vector-effect: non-scaling-stroke;
 }
+.template-shot {
+  display: block;
+  width: calc(100% - 32px);
+  height: auto;
+  aspect-ratio: 16 / 10;
+  margin: 16px 16px 0;
+  border: 1px solid var(--mx-stone);
+  border-radius: 8px;
+  object-fit: cover;
+  object-position: top left;
+  background: var(--mx-subtle);
+}
 .template-body {
   display: flex;
   flex-direction: column;
