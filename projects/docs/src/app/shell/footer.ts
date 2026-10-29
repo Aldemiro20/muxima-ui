@@ -16,9 +16,11 @@ import { Logo } from '../ui/logo';
           <doc-logo [size]="22" />
           <strong>Muxima UI</strong>
           <span>{{ t().footerTagline }}</span>
+          <span class="footer-author">{{ t().footerAuthor }} <a [href]="links.author" target="_blank" rel="noopener author">Aldemiro Valentim</a></span>
         </div>
         <nav class="footer-links" [attr.aria-label]="t().footerNav">
           <a [routerLink]="lang.prefix() + '/changelog'">Changelog</a>
+          <a [href]="links.demos" target="_blank" rel="noopener">{{ t().templateDemos }}</a>
           <a [href]="links.repo" target="_blank" rel="noopener">GitHub</a>
           <a routerLink="/" hreflang="en" lang="en">English</a>
           <a routerLink="/pt" hreflang="pt" lang="pt">Português</a>

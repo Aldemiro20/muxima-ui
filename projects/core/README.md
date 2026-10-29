@@ -115,4 +115,4 @@ npm install @tiptap/core @tiptap/pm @tiptap/starter-kit @tiptap/extensions
 - [Changelog](https://github.com/Aldemiro20/muxima-ui/blob/HEAD/CHANGELOG.md)
 - [Issues](https://github.com/Aldemiro20/muxima-ui/issues)
 
-MIT license.
+MIT license. Created by [Aldemiro Valentim](https://github.com/Aldemiro20).

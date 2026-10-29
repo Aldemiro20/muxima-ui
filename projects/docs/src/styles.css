@@ -276,8 +276,18 @@ kbd {
 }
 .footer-brand {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
+}
+.footer-author::before {
+  content: '·';
+  margin-right: 8px;
+}
+.footer-author a {
+  color: var(--mx-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 .footer-brand strong {
   color: var(--mx-ink);
@@ -1684,6 +1694,21 @@ a.text-link:hover,
   object-fit: cover;
   object-position: top left;
   background: var(--mx-subtle);
+}
+.tag.available {
+  background: color-mix(in oklab, var(--mx-success) 10%, var(--mx-surface));
+  color: var(--mx-success);
+}
+.template-demo {
+  align-self: flex-start;
+  margin-top: 12px;
+  color: var(--mx-accent);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.template-demo:hover {
+  text-decoration: underline;
 }
 .template-body {
   display: flex;

@@ -7,6 +7,10 @@ export const LINKS = {
   npm: 'https://www.npmjs.com/package/@muxima-ui/core',
   /** Contacto comercial (consultoria, Enterprise). Substituir por um e-mail ou formulário próprio. */
   contact: 'https://github.com/Aldemiro20',
+  /** Autor da biblioteca e dos templates. */
+  author: 'https://github.com/Aldemiro20',
+  /** Demonstrações dos templates (Cloudflare Pages); trocar pelo domínio próprio quando existir. */
+  demos: 'https://muxima-ui-demos.pages.dev',
 };
 
 export interface NavItem {

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, effect, input, signal } from '@angular/core';
 import { DOC_UI } from '../../ui/doc-ui';
+import { LINKS } from '../data/site';
 
 type Cat = 'All' | 'Dashboards' | 'Commerce' | 'Management' | 'Authentication' | 'Tools';
 
@@ -9,13 +10,15 @@ interface Template {
   tag: string;
   /** Screenshot of the template (in public/templates). */
   image?: string;
+  /** Folder of the live demo (in LINKS.demos). */
+  demo?: string;
   category: Exclude<Cat, 'All'>;
 }
 
 const TEMPLATES: Template[] = [
-  { name: 'Business Dashboard', image: 'templates/business-dashboard-en.webp', description: 'Invoicing, collections and reports, in English and Portuguese.', tag: 'Dashboard', category: 'Dashboards' },
-  { name: 'Online Store', image: 'templates/online-store-en.webp', description: 'Store with catalog, cart and checkout, and admin for orders, products, coupons and shipping, in English and Portuguese.', tag: 'Store', category: 'Commerce' },
-  { name: 'School Management', image: 'templates/school-management-en.webp', description: 'Students and guardians, attendance, grades and grade sheets, timetables and fees, in English and Portuguese.', tag: 'School', category: 'Management' },
+  { name: 'Business Dashboard', image: 'templates/business-dashboard-en.webp', demo: 'business-dashboard/', description: 'Invoicing, collections and reports, in English and Portuguese.', tag: 'Dashboard', category: 'Dashboards' },
+  { name: 'Online Store', image: 'templates/online-store-en.webp', demo: 'online-store/', description: 'Store with catalog, cart and checkout, and admin for orders, products, coupons and shipping, in English and Portuguese.', tag: 'Store', category: 'Commerce' },
+  { name: 'School Management', image: 'templates/school-management-en.webp', demo: 'school-management/', description: 'Students and guardians, attendance, grades and grade sheets, timetables and fees, in English and Portuguese.', tag: 'School', category: 'Management' },
   { name: 'Customer Management', description: 'CRM for sales teams.', tag: 'CRM', category: 'Management' },
   { name: 'Human Resources', description: 'Employees, teams and processes.', tag: 'RH', category: 'Management' },
   { name: 'Financial Management', description: 'Invoices, payments and budgets.', tag: 'Finance', category: 'Dashboards' },
@@ -60,7 +63,17 @@ const TEMPLATES: Template[] = [
             <div class="template-body">
               <div class="template-title"><h3>{{ t.name }}</h3><span class="tag pro">Pro</span></div>
               <p>{{ t.description }}</p>
-              <div class="card-foot"><span class="tag">{{ t.tag }}</span><span class="muted small">Coming soon</span></div>
+              <div class="card-foot">
+                <span class="tag">{{ t.tag }}</span>
+                @if (t.demo) {
+                  <span class="tag available">Available</span>
+                } @else {
+                  <span class="muted small">Coming soon</span>
+                }
+              </div>
+              @if (t.demo) {
+                <a class="template-demo" [href]="links.demos + '/' + t.demo" target="_blank" rel="noopener" [attr.aria-label]="'View the ' + t.name + ' demo'">View demo <span aria-hidden="true">↗</span></a>
+              }
             </div>
           </div>
         }
@@ -71,6 +84,7 @@ const TEMPLATES: Template[] = [
   `,
 })
 export class TemplatesPage {
+  protected readonly links = LINKS;
   protected readonly cats: Cat[] = ['All', 'Dashboards', 'Commerce', 'Management', 'Authentication', 'Tools'];
   protected readonly cat = signal<Cat>('All');
   /** Read from the address (?category=Dashboards), for the sidebar links. */

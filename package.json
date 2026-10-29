@@ -7,6 +7,7 @@
     "build": "ng build core && npm run build:docs",
     "build:core": "ng build core",
     "build:docs": "npm run docs:examples && ng build docs",
+    "deploy:docs": "npm run build:docs && npx wrangler@4 pages deploy dist/docs/browser --project-name muxima-ui --branch main",
     "test": "ng test core --watch=false",
     "watch": "ng build core --watch --configuration development",
     "test:a11y": "node scripts/a11y.mjs",

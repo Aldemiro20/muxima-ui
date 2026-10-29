@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, effect, input, signal } from '@angular/core';
 import { DOC_UI } from '../ui/doc-ui';
+import { LINKS } from '../data/site';
 
 type Cat = 'Todos' | 'Dashboards' | 'Comércio' | 'Gestão' | 'Autenticação' | 'Ferramentas';
 
@@ -9,13 +10,15 @@ interface Template {
   tag: string;
   /** Screenshot of the template (in public/templates). */
   image?: string;
+  /** Folder of the live demo (in LINKS.demos). */
+  demo?: string;
   category: Exclude<Cat, 'Todos'>;
 }
 
 const TEMPLATES: Template[] = [
-  { name: 'Dashboard Empresarial', image: 'templates/business-dashboard-pt.webp', description: 'Facturação, cobranças e relatórios, em português e inglês.', tag: 'Dashboard', category: 'Dashboards' },
-  { name: 'Loja online', image: 'templates/online-store-pt.webp', description: 'Loja com catálogo, carrinho e compra, e gestão de encomendas, produtos, cupões e envios, em português e inglês.', tag: 'Loja', category: 'Comércio' },
-  { name: 'Gestão escolar', image: 'templates/school-management-pt.webp', description: 'Alunos e encarregados, presenças, notas e pautas, horários e propinas, em português e inglês.', tag: 'Escola', category: 'Gestão' },
+  { name: 'Dashboard Empresarial', image: 'templates/business-dashboard-pt.webp', demo: 'business-dashboard/', description: 'Facturação, cobranças e relatórios, em português e inglês.', tag: 'Dashboard', category: 'Dashboards' },
+  { name: 'Loja online', image: 'templates/online-store-pt.webp', demo: 'online-store/', description: 'Loja com catálogo, carrinho e compra, e gestão de encomendas, produtos, cupões e envios, em português e inglês.', tag: 'Loja', category: 'Comércio' },
+  { name: 'Gestão escolar', image: 'templates/school-management-pt.webp', demo: 'school-management/', description: 'Alunos e encarregados, presenças, notas e pautas, horários e propinas, em português e inglês.', tag: 'Escola', category: 'Gestão' },
   { name: 'Gestão de Clientes', description: 'CRM para equipas comerciais.', tag: 'CRM', category: 'Gestão' },
   { name: 'Recursos Humanos', description: 'Colaboradores, equipas e processos.', tag: 'RH', category: 'Gestão' },
   { name: 'Gestão Financeira', description: 'Facturas, pagamentos e orçamentos.', tag: 'Finanças', category: 'Dashboards' },
@@ -60,7 +63,17 @@ const TEMPLATES: Template[] = [
             <div class="template-body">
               <div class="template-title"><h3>{{ t.name }}</h3><span class="tag pro">Pro</span></div>
               <p>{{ t.description }}</p>
-              <div class="card-foot"><span class="tag">{{ t.tag }}</span><span class="muted small">Em preparação</span></div>
+              <div class="card-foot">
+                <span class="tag">{{ t.tag }}</span>
+                @if (t.demo) {
+                  <span class="tag available">Disponível</span>
+                } @else {
+                  <span class="muted small">Em preparação</span>
+                }
+              </div>
+              @if (t.demo) {
+                <a class="template-demo" [href]="links.demos + '/' + t.demo" target="_blank" rel="noopener" [attr.aria-label]="'Ver a demonstração de ' + t.name">Ver demonstração <span aria-hidden="true">↗</span></a>
+              }
             </div>
           </div>
         }
@@ -71,6 +84,7 @@ const TEMPLATES: Template[] = [
   `,
 })
 export class TemplatesPage {
+  protected readonly links = LINKS;
   protected readonly cats: Cat[] = ['Todos', 'Dashboards', 'Comércio', 'Gestão', 'Autenticação', 'Ferramentas'];
   protected readonly cat = signal<Cat>('Todos');
   /** Lido do endereço (?categoria=Dashboards), para as ligações da barra lateral. */
