@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, effect, input, signal } from '@angular/core';
 import { DOC_UI } from '../ui/doc-ui';
 
-type Cat = 'Todos' | 'Dashboards' | 'Gestão' | 'Autenticação' | 'Ferramentas';
+type Cat = 'Todos' | 'Dashboards' | 'Comércio' | 'Gestão' | 'Autenticação' | 'Ferramentas';
 
 interface Template {
   name: string;
@@ -12,6 +12,7 @@ interface Template {
 
 const TEMPLATES: Template[] = [
   { name: 'Dashboard Empresarial', description: 'Facturação, cobranças e relatórios, em português e inglês.', tag: 'Dashboard', category: 'Dashboards' },
+  { name: 'Loja online', description: 'Catálogo, carrinho, compra em quatro passos e conta do cliente, em português e inglês.', tag: 'Loja', category: 'Comércio' },
   { name: 'Gestão de Clientes', description: 'CRM para equipas comerciais.', tag: 'CRM', category: 'Gestão' },
   { name: 'Recursos Humanos', description: 'Colaboradores, equipas e processos.', tag: 'RH', category: 'Gestão' },
   { name: 'Gestão Financeira', description: 'Facturas, pagamentos e orçamentos.', tag: 'Finanças', category: 'Dashboards' },
@@ -63,7 +64,7 @@ const TEMPLATES: Template[] = [
   `,
 })
 export class TemplatesPage {
-  protected readonly cats: Cat[] = ['Todos', 'Dashboards', 'Gestão', 'Autenticação', 'Ferramentas'];
+  protected readonly cats: Cat[] = ['Todos', 'Dashboards', 'Comércio', 'Gestão', 'Autenticação', 'Ferramentas'];
   protected readonly cat = signal<Cat>('Todos');
   /** Lido do endereço (?categoria=Dashboards), para as ligações da barra lateral. */
   readonly categoria = input<string | undefined>();

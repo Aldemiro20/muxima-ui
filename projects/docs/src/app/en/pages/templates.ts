@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, effect, input, signal } from '@angular/core';
 import { DOC_UI } from '../../ui/doc-ui';
 
-type Cat = 'All' | 'Dashboards' | 'Management' | 'Authentication' | 'Tools';
+type Cat = 'All' | 'Dashboards' | 'Commerce' | 'Management' | 'Authentication' | 'Tools';
 
 interface Template {
   name: string;
@@ -12,6 +12,7 @@ interface Template {
 
 const TEMPLATES: Template[] = [
   { name: 'Business Dashboard', description: 'Invoicing, collections and reports, in English and Portuguese.', tag: 'Dashboard', category: 'Dashboards' },
+  { name: 'Online Store', description: 'Catalog, cart, four-step checkout and customer account, in English and Portuguese.', tag: 'Store', category: 'Commerce' },
   { name: 'Customer Management', description: 'CRM for sales teams.', tag: 'CRM', category: 'Management' },
   { name: 'Human Resources', description: 'Employees, teams and processes.', tag: 'RH', category: 'Management' },
   { name: 'Financial Management', description: 'Invoices, payments and budgets.', tag: 'Finance', category: 'Dashboards' },
@@ -63,7 +64,7 @@ const TEMPLATES: Template[] = [
   `,
 })
 export class TemplatesPage {
-  protected readonly cats: Cat[] = ['All', 'Dashboards', 'Management', 'Authentication', 'Tools'];
+  protected readonly cats: Cat[] = ['All', 'Dashboards', 'Commerce', 'Management', 'Authentication', 'Tools'];
   protected readonly cat = signal<Cat>('All');
   /** Read from the address (?category=Dashboards), for the sidebar links. */
   readonly category = input<string | undefined>();
