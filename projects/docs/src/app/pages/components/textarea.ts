@@ -11,7 +11,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Textarea' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Textarea' }]"
         title="Textarea"
         lead="Texto longo: descrições, observações, mensagens. Usa a mesma directiva do Input sobre o textarea nativo e pode crescer com o texto."
       />

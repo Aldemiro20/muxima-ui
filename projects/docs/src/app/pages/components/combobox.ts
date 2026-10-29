@@ -20,7 +20,7 @@ const PROVINCIAS = ['Bengo', 'Benguela', 'Bié', 'Cabinda', 'Cuando', 'Cuanza No
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Combobox' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Combobox' }]"
         title="Combobox"
         lead="Escrever para filtrar e escolher numa lista longa. Segue o padrão WAI-ARIA combobox com lista, e a pesquisa ignora acentos: huila encontra Huíla."
       />

@@ -24,7 +24,7 @@ import { MxProgress } from '@muxima-ui/core/progress';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Rating' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Rating' }]"
         title="Rating"
         lead="Avaliação com estrelas. Para escolher são botões de rádio nativos (as setas mudam a nota); só de leitura é uma imagem com o texto 4,5 de 5 estrelas, com meias estrelas."
       />

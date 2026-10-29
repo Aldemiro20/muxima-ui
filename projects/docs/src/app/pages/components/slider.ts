@@ -22,7 +22,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Slider' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Slider' }]"
         title="Slider"
         lead="Um valor numérico dentro de um intervalo, ou um intervalo com dois cursores. É o input range nativo: setas, Page Up, Page Down, Home e End funcionam sem código extra."
       />

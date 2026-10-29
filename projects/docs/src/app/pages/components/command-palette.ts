@@ -31,7 +31,7 @@ const COMANDOS: MxCommandItem<string>[] = [
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Command Palette' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Command Palette' }]"
         title="Command Palette"
         lead="Pesquisa de acções e páginas por teclado, como o Ctrl+K deste site. Usa-se dentro de um diálogo com MxCommandPalette ou directamente na página com mx-command."
       />

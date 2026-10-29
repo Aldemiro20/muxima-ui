@@ -4,7 +4,9 @@ import { EXAMPLE_CODE, ExampleCode } from '../data/examples.generated';
 import { MxTab, MxTabs } from '@muxima-ui/core/tabs';
 import { MxTable } from '@muxima-ui/core/table';
 import { Icon } from './icon';
-import { CATALOG } from '../data/site';
+import { siteData } from '../data/site-data';
+import { LangService } from '../shell/lang';
+import { injectUiText } from '../shell/ui-text';
 
 export interface Crumb {
   label: string;
@@ -17,7 +19,7 @@ export interface Crumb {
   imports: [RouterLink, Icon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <nav class="crumbs" aria-label="Localização">
+    <nav class="crumbs" [attr.aria-label]="t().crumbs">
       <ol>
         @for (c of crumbs(); track c.label; let last = $last) {
           <li>
@@ -41,6 +43,7 @@ export interface Crumb {
   `,
 })
 export class PageHeader {
+  protected readonly t = injectUiText();
   readonly crumbs = input<Crumb[]>([]);
   readonly eyebrow = input<string>('');
   readonly title = input.required<string>();
@@ -55,15 +58,16 @@ export class PageHeader {
   template: `
     <div class="code-block" [class.flush]="flush()">
       <pre tabindex="0"><code>{{ code() }}</code></pre>
-      <button type="button" class="copy-button" (click)="copy()" [attr.aria-label]="copied() ? 'Copiado' : 'Copiar código'">
+      <button type="button" class="copy-button" (click)="copy()" [attr.aria-label]="copied() ? t().copied : t().copyCode">
         <doc-icon [name]="copied() ? 'check' : 'copy'" [size]="14" />
-        <span aria-hidden="true">{{ copied() ? 'Copiado' : 'Copiar' }}</span>
+        <span aria-hidden="true">{{ copied() ? t().copied : t().copy }}</span>
       </button>
-      <span class="mx-visually-hidden" aria-live="polite">{{ copied() ? 'Código copiado' : '' }}</span>
+      <span class="mx-visually-hidden" aria-live="polite">{{ copied() ? t().codeCopied : '' }}</span>
     </div>
   `,
 })
 export class CodeBlock {
+  protected readonly t = injectUiText();
   readonly code = input.required<string>();
   /** Sem borda nem margem, para usar dentro de outro cartão. */
   readonly flush = input(false);
@@ -87,11 +91,11 @@ export class CodeBlock {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="preview">
-      <mx-tabs [aria-label]="label()">
-        <mx-tab label="Pré-visualização">
+      <mx-tabs [aria-label]="label() || t().example">
+        <mx-tab [label]="t().preview">
           <div class="preview-stage" [class.left]="align() === 'start'"><ng-content /></div>
         </mx-tab>
-        <mx-tab label="Código">
+        <mx-tab [label]="t().code">
           <doc-code [code]="code()" [flush]="true" />
         </mx-tab>
       </mx-tabs>
@@ -100,7 +104,8 @@ export class CodeBlock {
 })
 export class Preview {
   readonly code = input.required<string>();
-  readonly label = input('Exemplo');
+  readonly label = input('');
+  protected readonly t = injectUiText();
   readonly align = input<'center' | 'start'>('center');
 }
 
@@ -156,17 +161,17 @@ export interface ApiRow {
       <table mxTable density="compact">
         <thead>
           <tr>
-            <th scope="col">Categoria</th>
-            <th scope="col">Propriedade</th>
-            <th scope="col">Tipo / valor</th>
-            <th scope="col">Por omissão</th>
-            <th scope="col">Descrição</th>
+            <th scope="col">{{ t().apiCategory }}</th>
+            <th scope="col">{{ t().apiProperty }}</th>
+            <th scope="col">{{ t().apiType }}</th>
+            <th scope="col">{{ t().apiDefault }}</th>
+            <th scope="col">{{ t().apiDescription }}</th>
           </tr>
         </thead>
         <tbody>
           @for (r of rows(); track r.kind + r.name) {
             <tr>
-              <td>{{ r.kind }}</td>
+              <td>{{ t().apiKinds[r.kind] || r.kind }}</td>
               <td><code class="api-name">{{ r.name }}</code></td>
               <td><code class="api-type">{{ r.type }}</code></td>
               <td>{{ r.default ?? '—' }}</td>
@@ -178,14 +183,16 @@ export interface ApiRow {
     </div>
     @if (hasTextDefaults()) {
       <p class="api-note">
-        Os textos por omissão estão em português e mudam com o idioma activo. Ver
-        <a routerLink="/docs/idiomas" class="text-link">Idiomas</a>.
+        {{ t().apiNote }}
+        <a [routerLink]="lang.prefix() + (lang.lang() === 'pt' ? '/docs/idiomas' : '/docs/languages')" class="text-link">{{ t().apiNoteLink }}</a>.
       </p>
     }
   `,
 })
 export class ApiTable {
   readonly rows = input.required<ApiRow[]>();
+  protected readonly t = injectUiText();
+  protected readonly lang = inject(LangService);
   /** Há textos (não códigos) na coluna "Por omissão"? */
   protected readonly hasTextDefaults = computed(() =>
     this.rows().some(
@@ -216,9 +223,9 @@ export interface RelatedItem {
         <div class="card related-card">
           <strong>{{ r.name }}</strong>
           @if (r.path) {
-            <a [routerLink]="r.path" class="text-link" [attr.aria-label]="'Ver ' + r.name">Ver componente →</a>
+            <a [routerLink]="r.path" class="text-link" [attr.aria-label]="t().see(r.name)">{{ t().seeComponent }}</a>
           } @else {
-            <span class="muted">Em preparação</span>
+            <span class="muted">{{ t().comingSoon }}</span>
           }
         </div>
       }
@@ -227,10 +234,13 @@ export interface RelatedItem {
 })
 export class Related {
   readonly items = input.required<RelatedItem[]>();
+  protected readonly t = injectUiText();
+  private readonly lang = inject(LangService);
   /** Liga automaticamente aos componentes já documentados no catálogo. */
-  protected readonly resolved = computed(() =>
-    this.items().map((r) => ({ name: r.name, path: r.path ?? CATALOG.find((c) => c.name === r.name)?.path })),
-  );
+  protected readonly resolved = computed(() => {
+    const catalog = siteData(this.lang.lang()).CATALOG;
+    return this.items().map((r) => ({ name: r.name, path: r.path ?? catalog.find((c) => c.name === r.name)?.path }));
+  });
 }
 
 /** Caixa de nota com a linha de estado à esquerda. */
@@ -253,7 +263,7 @@ let nextCodeId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="example-code">
-      <mx-tabs [aria-label]="'Código de ' + label()">
+      <mx-tabs [aria-label]="t().codeOf(label())">
         <mx-tab label="HTML"><doc-code [code]="code().html" [flush]="true" /></mx-tab>
         <mx-tab label="TypeScript"><doc-code [code]="code().ts" [flush]="true" /></mx-tab>
       </mx-tabs>
@@ -263,6 +273,7 @@ let nextCodeId = 0;
 export class ExampleCodeView {
   readonly code = input.required<ExampleCode>();
   readonly label = input('');
+  protected readonly t = injectUiText();
 }
 
 /** Procura o código gerado para um exemplo desta página. */
@@ -280,7 +291,7 @@ function lookupCode(router: Router, title: string): ExampleCode | undefined {
     <div class="code-toggle">
       <button type="button" class="code-toggle-button" [attr.aria-expanded]="open()" [attr.aria-controls]="panelId" (click)="open.set(!open())">
         <doc-icon name="code" [size]="14" />
-        {{ open() ? 'Esconder código' : 'Ver código' }}
+        {{ open() ? t().hideCode : t().showCode }}
       </button>
     </div>
     <div [id]="panelId" [hidden]="!open()">
@@ -293,6 +304,7 @@ function lookupCode(router: Router, title: string): ExampleCode | undefined {
 export class CodeToggle {
   readonly code = input.required<ExampleCode>();
   readonly label = input('');
+  protected readonly t = injectUiText();
   protected readonly open = signal(false);
   protected readonly panelId = `code-${nextCodeId++}`;
 }
@@ -331,7 +343,7 @@ export class Example {
   template: `
     <div class="grid-2">
       <section class="card a11y-card">
-        <h3>Navegação por teclado</h3>
+        <h3>{{ t().keyboard }}</h3>
         <dl class="keys">
           @for (k of keys(); track k.key) {
             <div>
@@ -342,7 +354,7 @@ export class Example {
         </dl>
       </section>
       <section class="card a11y-card">
-        <h3>Semântica e ARIA</h3>
+        <h3>{{ t().semantics }}</h3>
         <ul class="plain-list">
           @for (n of aria(); track n) {
             <li>{{ n }}</li>
@@ -353,6 +365,7 @@ export class Example {
   `,
 })
 export class A11y {
+  protected readonly t = injectUiText();
   readonly keys = input.required<{ key: string; action: string }[]>();
   readonly aria = input.required<string[]>();
 }
@@ -369,12 +382,13 @@ export class A11y {
   template: `
     <div class="states-grid" role="list"><ng-content /></div>
     @if (code; as c) {
-      <doc-code-toggle [code]="c" label="Estados" />
+      <doc-code-toggle [code]="c" [label]="t().states" />
     }
   `,
 })
 export class States {
-  protected readonly code = lookupCode(inject(Router), 'Estados');
+  protected readonly t = injectUiText();
+  protected readonly code = lookupCode(inject(Router), this.t().states);
 }
 
 @Component({

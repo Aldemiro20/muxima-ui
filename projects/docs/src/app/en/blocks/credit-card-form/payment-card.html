@@ -1,0 +1,87 @@
+<section class="payment" aria-labelledby="payment-card-title">
+  <div class="payment-head">
+    <h2 id="payment-card-title">Card payment</h2>
+    <p>
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <rect x="3" y="7" width="10" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.3" />
+        <path d="M5.5 7V5a2.5 2.5 0 015 0v2" fill="none" stroke="currentColor" stroke-width="1.3" />
+      </svg>
+      Secure connection. We don't store card details.
+    </p>
+  </div>
+
+  <div class="payment-grid">
+    <div class="card" aria-hidden="true" [attr.data-network]="network()">
+      <div class="card-top">
+        <span class="card-chip"></span>
+        <span class="card-network">{{ network() ?? '' }}</span>
+      </div>
+      <p class="card-number">{{ cardNumber() }}</p>
+      <div class="card-base">
+        <span>{{ cardName() }}</span>
+        <span>{{ cardExpiry() }}</span>
+      </div>
+    </div>
+
+    <form class="fields" [formGroup]="form" (ngSubmit)="pay()" novalidate>
+      <mx-form-field class="field-wide">
+        <label mxLabel>Card number</label>
+        <input
+          #number
+          mxInput
+          inputmode="numeric"
+          autocomplete="cc-number"
+          placeholder="0000 0000 0000 0000"
+          formControlName="number"
+          (input)="formatNumber(number)"
+        />
+        <mx-hint>{{ network() ? 'Card ' + network() : 'Visa or Mastercard' }}</mx-hint>
+        <mx-error>
+          @if (form.controls.number.hasError('required')) {
+            Enter the card number.
+          } @else {
+            The number isn't right. Check the digits.
+          }
+        </mx-error>
+      </mx-form-field>
+
+      <mx-form-field class="field-wide">
+        <label mxLabel>Name on card</label>
+        <input mxInput autocomplete="cc-name" formControlName="name" />
+        <mx-error>Enter the name as it appears on the card.</mx-error>
+      </mx-form-field>
+
+      <mx-form-field>
+        <label mxLabel>Expiry</label>
+        <input
+          #expiry
+          mxInput
+          inputmode="numeric"
+          autocomplete="cc-exp"
+          placeholder="MM/YY"
+          formControlName="expiry"
+          (input)="formatExpiry(expiry)"
+        />
+        <mx-error>
+          @if (form.controls.expiry.hasError('required')) {
+            Enter the expiry date.
+          } @else if (form.controls.expiry.hasError('expired')) {
+            This card has expired.
+          } @else {
+            Use the MM/YY format, for example 04/28.
+          }
+        </mx-error>
+      </mx-form-field>
+
+      <mx-form-field>
+        <label mxLabel>Security code</label>
+        <input mxInput inputmode="numeric" autocomplete="cc-csc" maxlength="4" formControlName="cvc" />
+        <mx-hint>3 digits on the back of the card.</mx-hint>
+        <mx-error>Enter the 3 or 4 digits on the back.</mx-error>
+      </mx-form-field>
+
+      <button mxButton size="lg" type="submit" class="field-wide" [loading]="paying()">Pay {{ amount }}</button>
+      <p class="status field-wide" role="status">{{ status() }}</p>
+    </form>
+  </div>
+</section>

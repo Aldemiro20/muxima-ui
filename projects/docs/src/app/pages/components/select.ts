@@ -17,7 +17,7 @@ interface Plano {
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Select' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Select' }]"
         title="Select"
         lead="Escolha de uma opção numa lista. Abre com o teclado, pesquisa pela primeira letra e funciona com ngModel e Reactive Forms."
       />
@@ -207,7 +207,7 @@ interface Plano {
 
       <section>
         <h2>Componentes relacionados</h2>
-        <doc-related [items]="[{ name: 'Input', path: '/componentes/input' }, { name: 'Combobox' }, { name: 'Multi-select' }]" />
+        <doc-related [items]="[{ name: 'Input', path: '/pt/componentes/input' }, { name: 'Combobox' }, { name: 'Multi-select' }]" />
       </section>
     </article>
   `,

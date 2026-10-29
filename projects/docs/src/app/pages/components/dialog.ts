@@ -59,7 +59,7 @@ export class RenameDialog {
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Dialog' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Dialog' }]"
         title="Dialog"
         lead="Confirmações e pequenos fluxos que exigem a atenção do utilizador. O foco fica preso no diálogo e volta ao botão que o abriu."
       />
@@ -159,7 +159,7 @@ export class RenameDialog {
 
       <section>
         <h2>Componentes relacionados</h2>
-        <doc-related [items]="[{ name: 'Button', path: '/componentes/button' }, { name: 'Drawer' }, { name: 'Popover' }]" />
+        <doc-related [items]="[{ name: 'Button', path: '/pt/componentes/button' }, { name: 'Drawer' }, { name: 'Popover' }]" />
       </section>
     </article>
   `,

@@ -198,10 +198,10 @@ export class MenuMovel {
   protected readonly ref = inject(MxDialogRef);
   protected readonly links = [
     { label: 'Início', path: '/', icon: 'grid' },
-    { label: 'Componentes', path: '/componentes', icon: 'box' },
-    { label: 'Drawer', path: '/componentes/drawer', icon: 'drawer' },
-    { label: 'Templates', path: '/templates', icon: 'layers' },
-    { label: 'Preços', path: '/precos', icon: 'tag' },
+    { label: 'Componentes', path: '/pt/componentes', icon: 'box' },
+    { label: 'Drawer', path: '/pt/componentes/drawer', icon: 'drawer' },
+    { label: 'Templates', path: '/pt/templates', icon: 'layers' },
+    { label: 'Preços', path: '/pt/precos', icon: 'tag' },
   ];
 }
 

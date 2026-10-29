@@ -12,7 +12,7 @@ import { DOC_UI } from '../ui/doc-ui';
     @if (block(); as b) {
       <article class="doc-page">
         <doc-page-header
-          [crumbs]="[{ label: 'Blocos', path: '/blocos' }, { label: b.name }]"
+          [crumbs]="[{ label: 'Blocos', path: '/pt/blocos' }, { label: b.name }]"
           [title]="b.name"
           [lead]="b.description + ' Cada variante é um componente standalone: copia o .ts, o .html e o .css.'"
         />
@@ -27,15 +27,15 @@ import { DOC_UI } from '../ui/doc-ui';
           <h2>Outros blocos</h2>
           <ul class="block-others">
             @for (o of others(); track o.slug) {
-              <li><a class="text-link" [routerLink]="'/blocos/' + o.slug">{{ o.name }}</a></li>
+              <li><a class="text-link" [routerLink]="'/pt/blocos/' + o.slug">{{ o.name }}</a></li>
             }
           </ul>
         </section>
       </article>
     } @else {
       <article class="doc-page">
-        <doc-page-header [crumbs]="[{ label: 'Blocos', path: '/blocos' }]" title="Bloco não encontrado" />
-        <p><a class="text-link" routerLink="/blocos">Ver todos os blocos</a></p>
+        <doc-page-header [crumbs]="[{ label: 'Blocos', path: '/pt/blocos' }]" title="Bloco não encontrado" />
+        <p><a class="text-link" routerLink="/pt/blocos">Ver todos os blocos</a></p>
       </article>
     }
   `,

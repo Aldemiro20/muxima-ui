@@ -66,7 +66,7 @@ function exemplo(): MxNotification[] {
     <article class="doc-page">
       <doc-page-header
         [crumbs]="[
-          { label: 'Componentes', path: '/componentes' },
+          { label: 'Componentes', path: '/pt/componentes' },
           { label: 'Notification center' },
         ]"
         title="Notification center"

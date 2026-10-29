@@ -28,7 +28,7 @@ import { Icon } from '../ui/icon';
             <li><doc-icon name="check" /> Utilização comercial</li>
             <li><doc-icon name="check" /> Comunidade aberta</li>
           </ul>
-          <a mxButton routerLink="/componentes" class="plan-cta">Explorar componentes <doc-icon name="arrowRight" /></a>
+          <a mxButton routerLink="/pt/componentes" class="plan-cta">Explorar componentes <doc-icon name="arrowRight" /></a>
         </section>
 
         <section class="card plan featured" aria-labelledby="p-pro">
@@ -42,7 +42,7 @@ import { Icon } from '../ui/icon';
             <li><doc-icon name="check" /> Código-fonte dos templates</li>
             <li><doc-icon name="check" /> Actualizações durante um ano</li>
           </ul>
-          <a mxButton routerLink="/templates" class="plan-cta accent-button">Explorar templates <doc-icon name="arrowRight" /></a>
+          <a mxButton routerLink="/pt/templates" class="plan-cta accent-button">Explorar templates <doc-icon name="arrowRight" /></a>
         </section>
 
         <section class="card plan" aria-labelledby="p-ent">
@@ -65,7 +65,7 @@ import { Icon } from '../ui/icon';
           <h2 class="card-title">Precisas de um plano personalizado?</h2>
           <p class="muted small">Fala com a equipa sobre integração, consultoria ou licenciamento.</p>
         </div>
-        <a mxButton variant="outline" routerLink="/consultoria">Contactar a equipa <doc-icon name="arrowRight" /></a>
+        <a mxButton variant="outline" routerLink="/pt/consultoria">Contactar a equipa <doc-icon name="arrowRight" /></a>
       </section>
 
       <p class="fineprint">Valores ilustrativos para validação comercial. As condições definitivas serão publicadas antes das vendas.</p>

@@ -37,7 +37,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Time picker' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Time picker' }]"
         title="Time picker"
         lead="Campo de hora em que se escreve como se fala (9, 930, 9h30) ou se escolhe numa lista com o intervalo que definires. O valor é sempre HH:mm, em 24 horas."
       />

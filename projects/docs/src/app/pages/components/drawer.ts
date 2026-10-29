@@ -42,7 +42,7 @@ class DetalheFactura {
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Drawer' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Drawer' }]"
         title="Drawer"
         lead="Painel modal que entra por um lado do ecrã, para detalhes e edição sem sair da página. É um Dialog: foco preso, Escape e foco devolvido."
       />

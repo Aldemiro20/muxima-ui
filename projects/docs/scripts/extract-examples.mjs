@@ -191,7 +191,7 @@ function libraryImports(html, ts) {
       .flatMap((s) => [...s])
       .filter(
         (n) =>
-          !/^(MxDialog|MxDrawer|MxToast|MxCommandPalette|MxSortState|MxBadgeVariant|MxCardVariant|MxToastPosition|MxDrawerSide|MxStepState|MxCommandItem|MX_DIALOG_DATA|MxDialogRef|MxTour|MxTourRef|MxTourStep|MxTourStepContext|MxTourOptions|MxTourResult|MxTourLabels|MX_TOUR_LABELS|mx[A-Z]\w*)$/.test(
+          !/^(MxDialog|MxDrawer|MxToast|MxCommandPalette|MxSortState|MxBadgeVariant|MxCardVariant|MxToastPosition|MxDrawerSide|MxStepState|MxCommandItem|MX_DIALOG_DATA|MxDialogRef|MxTour|MxTourRef|MxTourStep|MxTourStepContext|MxTourOptions|MxTourResult|MxTourLabels|MX_TOUR_LABELS|MX_MESSAGES_EN|MX_MESSAGES_PT|MxI18n|MxMessages|mx[A-Z]\w*)$/.test(
             n,
           ) || n === 'MX_DIALOG',
       )
@@ -317,16 +317,22 @@ function statementEnd(src, start) {
 
 // ---------- rotas -> ficheiros ----------
 
-const routes = readFileSync(join(appDir, 'app.routes.ts'), 'utf8');
+// inglês na raiz, português em /pt
 const pages = [
-  ...routes.matchAll(
-    /path: '([^']+)'[^}]*?import\('\.\/(pages\/[^']+)'\)\.then\(\(m\) => m\.(\w+)\)/g,
-  ),
-].map((m) => ({
-  route: m[1],
-  file: join(appDir, m[2] + '.ts'),
-  cls: m[3],
-}));
+  { file: 'routes-en.ts', prefix: '', lang: 'en' },
+  { file: 'routes-pt.ts', prefix: 'pt/', lang: 'pt' },
+].flatMap(({ file, prefix, lang }) =>
+  [
+    ...readFileSync(join(appDir, file), 'utf8').matchAll(
+      /path: '([^']+)'[^}]*?import\('\.\/((?:en\/)?pages\/[^']+)'\)\.then\(\(m\) => m\.(\w+)\)/g,
+    ),
+  ].map((m) => ({
+    route: prefix + m[1],
+    file: join(appDir, m[2] + '.ts'),
+    cls: m[3],
+    lang,
+  })),
+);
 
 const result = {};
 for (const page of pages) {
@@ -357,7 +363,7 @@ for (const page of pages) {
     if (title) blocks.push({ title: title.replace(/&quot;/g, '"'), html: m[2] });
   }
   const states = src.match(/<doc-states>([\s\S]*?)<\/doc-states>/);
-  if (states) blocks.push({ title: 'Estados', html: states[1] });
+  if (states) blocks.push({ title: page.lang === 'pt' ? 'Estados' : 'States', html: states[1] });
 
   for (const block of blocks) {
     let html = dedent(block.html)

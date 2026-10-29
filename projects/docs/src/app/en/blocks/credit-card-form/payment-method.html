@@ -1,0 +1,67 @@
+<section class="method" aria-labelledby="payment-method-title">
+  <div class="method-head">
+    <h2 id="payment-method-title">How do you want to pay?</h2>
+    <p>Total due: <strong>{{ amount }}</strong></p>
+  </div>
+
+  <fieldset mxFieldset class="opcoes">
+    <legend class="mx-visually-hidden">Payment method</legend>
+    @for (m of metodos; track m.id) {
+      <label mxChoice card>
+        <input type="radio" mxRadio name="payment-method" [value]="m.id" [checked]="method() === m.id" (change)="choose(m.id)" />
+        <span>
+          {{ m.name }}
+          <span mxChoiceDescription>{{ m.descricao }}</span>
+        </span>
+      </label>
+    }
+  </fieldset>
+
+  <div class="detail">
+    @switch (method()) {
+      @case ('phone') {
+        <form class="detail-form" (submit)="payByPhone($event)" novalidate>
+          <mx-form-field class="detail-field">
+            <label mxLabel>Mobile number</label>
+            <input mxInput type="tel" inputmode="tel" autocomplete="tel-national" placeholder="923 456 789" [formControl]="phone" />
+            <mx-hint>The number linked to your bank account.</mx-hint>
+            <mx-error>Enter a 9-digit number starting with 9.</mx-error>
+          </mx-form-field>
+          <button mxButton type="submit" [loading]="sending()">Request payment</button>
+        </form>
+      }
+      @case ('reference') {
+        @if (reference(); as r) {
+          <dl class="reference">
+            <div>
+              <dt>Entity</dt>
+              <dd>
+                <span class="mono">{{ r.entity }}</span>
+                <button mxCopyButton size="sm" [value]="r.entity" label="Copy entity"></button>
+              </dd>
+            </div>
+            <div>
+              <dt>Reference</dt>
+              <dd>
+                <span class="mono">{{ r.number }}</span>
+                <button mxCopyButton size="sm" [value]="r.number.replaceAll(' ', '')" label="Copy reference"></button>
+              </dd>
+            </div>
+            <div>
+              <dt>Amount</dt>
+              <dd><span class="mono">{{ amount }}</span></dd>
+            </div>
+          </dl>
+        } @else {
+          <p class="detail-text">We generate a reference just for this purchase.</p>
+          <button mxButton type="button" (click)="generateReference()">Generate reference</button>
+        }
+      }
+      @case ('card') {
+        <p class="detail-text">You go to the bank's secure page to enter the card details.</p>
+        <a mxButton href="#card">Continue to payment</a>
+      }
+    }
+    <p class="status" role="status">{{ status() }}</p>
+  </div>
+</section>

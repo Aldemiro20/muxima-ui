@@ -10,7 +10,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Separator' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Separator' }]"
         title="Separator"
         lead="Linha de 1 px para separar grupos de conteúdo, na horizontal ou na vertical. Em hr usa a semântica nativa."
       />

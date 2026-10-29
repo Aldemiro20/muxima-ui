@@ -1,0 +1,81 @@
+<form class="definicoes" aria-labelledby="notif-title" (submit)="save($event)">
+  <header class="head">
+    <h2 id="notif-title">Notifications</h2>
+    <p>Choose what you want to hear about and how.</p>
+  </header>
+
+  <div class="table-scroll" role="region" aria-label="Notifications by channel" tabindex="0">
+    <table class="table">
+      <caption class="mx-visually-hidden">
+        Notifications by event and channel
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Event</th>
+          @for (c of channels; track c.id) {
+            <th scope="col" class="channel">
+              <label class="channel-label">
+                <input
+                  type="checkbox"
+                  mxCheckbox
+                  size="sm"
+                  [checked]="column(c.id) === 'all'"
+                  [indeterminate]="column(c.id) === 'some'"
+                  [attr.aria-label]="'All by ' + c.name"
+                  (change)="toggleColumn(c.id)"
+                />
+                <span aria-hidden="true">{{ c.name }}</span>
+              </label>
+            </th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (e of events; track e.id) {
+          <tr>
+            <th scope="row" class="event">
+              <span class="event-name">{{ e.name }}</span>
+              <span class="event-desc">{{ e.description }}</span>
+            </th>
+            @for (c of channels; track c.id) {
+              <td class="channel">
+                <input
+                  type="checkbox"
+                  mxCheckbox
+                  [checked]="on(e.id, c.id)"
+                  [attr.aria-label]="e.name + ' by ' + c.name"
+                  (change)="toggle(e.id, c.id, $any($event.target).checked)"
+                />
+              </td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="quiet">
+    <div>
+      <label class="quiet-title" for="notif-quiet">Do not disturb at night</label>
+      <p class="quiet-desc" id="notif-quiet-desc">
+        Between 22:00 and 7:00 only overdue payment notices come through.
+      </p>
+    </div>
+    <input
+      type="checkbox"
+      mxSwitch
+      id="notif-quiet"
+      aria-describedby="notif-quiet-desc"
+      [checked]="quiet()"
+      (change)="quiet.set($any($event.target).checked); notice.set('')"
+    />
+  </div>
+
+  <footer class="rodape">
+    <p class="status" role="status">{{ notice() }}</p>
+    <button mxButton variant="ghost" type="button" [disabled]="!changed()" (click)="reset()">
+      Undo
+    </button>
+    <button mxButton type="submit" [disabled]="!changed()">Save</button>
+  </footer>
+</form>

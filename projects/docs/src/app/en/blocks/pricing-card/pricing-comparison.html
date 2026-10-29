@@ -1,0 +1,64 @@
+<section class="comparacao" aria-labelledby="pricing-comparison-title">
+  <h2 id="pricing-comparison-title" class="comparacao-title">Compare the plans</h2>
+
+  <div class="comparacao-scroll" role="region" aria-label="Plan comparison table" tabindex="0">
+    <table mxTable class="comparacao-table">
+      <thead>
+        <tr>
+          <th scope="col"><span class="mx-visually-hidden">Feature</span></th>
+          @for (p of plans; track p.name) {
+            <th scope="col" class="plan-col">
+              <span class="plan-name">{{ p.name }}</span>
+              <span class="plan-price">{{ p.price }}<span class="plan-month">/mês</span></span>
+            </th>
+          }
+        </tr>
+      </thead>
+
+      @for (g of groups; track g.name) {
+        <tbody>
+          <tr class="group">
+            <th scope="colgroup" colspan="4">{{ g.name }}</th>
+          </tr>
+          @for (l of g.rows; track l.name) {
+            <tr>
+              <th scope="row">{{ l.name }}</th>
+              @for (v of l.values; track $index) {
+                <td class="value">
+                  @switch (type(v)) {
+                    @case ('yes') {
+                      <svg class="yes" viewBox="0 0 16 16" aria-hidden="true">
+                        <path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                      <span class="mx-visually-hidden">Included</span>
+                    }
+                    @case ('no') {
+                      <span class="no" aria-hidden="true">—</span>
+                      <span class="mx-visually-hidden">Not included</span>
+                    }
+                    @default {
+                      {{ v }}
+                    }
+                  }
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      }
+
+      <tfoot>
+        <tr>
+          <td></td>
+          @for (p of plans; track p.name) {
+            <td class="value">
+              <a mxButton size="sm" [variant]="p.name === 'Professional' ? 'default' : 'outline'" href="#signup">
+                Choose<span class="mx-visually-hidden"> {{ p.name }}</span>
+              </a>
+            </td>
+          }
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</section>

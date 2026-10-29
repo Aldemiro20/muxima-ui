@@ -14,7 +14,7 @@ import { Icon } from '../../ui/icon';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Dropdown menu' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Dropdown menu' }]"
         title="Dropdown menu"
         lead="Lista de acções aberta por um botão, segundo o padrão WAI-ARIA Menu Button. Construído sobre o @angular/cdk/menu: setas, pesquisa por letra e Escape vêm incluídos."
       />

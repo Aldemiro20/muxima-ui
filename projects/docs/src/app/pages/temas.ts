@@ -75,7 +75,7 @@ const HEX = /^#[0-9a-fA-F]{6}$/;
             <div class="row-wrap">
               <button mxButton type="button">Botão principal</button>
               <button mxButton type="button" variant="outline">Secundário</button>
-              <a mxButton variant="link" routerLink="/componentes/button">Ver detalhes <doc-icon name="arrowRight" [size]="14" /></a>
+              <a mxButton variant="link" routerLink="/pt/componentes/button">Ver detalhes <doc-icon name="arrowRight" [size]="14" /></a>
             </div>
             <mx-form-field>
               <label mxLabel>Email</label>

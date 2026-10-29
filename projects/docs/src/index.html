@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="pt-AO">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Muxima UI — Componentes Angular com coração angolano</title>
+    <title>Muxima UI — Angular components with an Angolan heart</title>
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Biblioteca de componentes Angular acessíveis e sóbrios para aplicações empresariais. Gratuita, MIT, feita em Angola."
+      content="Accessible, understated Angular components for business applications. Free, MIT licensed, made in Angola."
     />
     <meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#141413" media="(prefers-color-scheme: dark)" />
@@ -23,9 +23,9 @@
   <body>
     <script>
       // Estilos do site, depois dos da biblioteca (que o Angular põe no fim do <head>).
-      // As páginas de pré-visualização de blocos (/blocos/ver/...) ficam só com o
-      // muxima.css, como numa aplicação real.
-      if (location.pathname.indexOf('/blocos/ver/') !== 0) {
+      // As páginas de pré-visualização de blocos (/blocks/view/..., /pt/blocos/ver/...)
+      // ficam só com o muxima.css, como numa aplicação real.
+      if (!/^\/(pt\/blocos\/ver|blocks\/view)\//.test(location.pathname)) {
         document.write('<link rel="stylesheet" href="docs.css" />');
       }
     </script>

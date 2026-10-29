@@ -1,0 +1,134 @@
+:host {
+  display: block;
+  container-type: inline-size;
+  font-family: var(--mx-font-sans);
+  color: var(--mx-ink);
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.single {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 56px 20px;
+}
+
+.single-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  overflow: hidden;
+  border: 1px solid var(--mx-stone);
+  border-radius: 16px;
+  background: var(--mx-surface);
+}
+@container (min-width: 760px) {
+  .single-card {
+    grid-template-columns: 1fr 300px;
+  }
+}
+
+.single-main {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 32px;
+}
+.single-title {
+  margin: 0;
+  font-size: clamp(1.5rem, 3.5cqi, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.single-lead {
+  margin: 0;
+  color: var(--mx-muted);
+  line-height: 1.6;
+}
+
+.single-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  color: var(--mx-accent);
+  font-size: var(--mx-text-sm);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.single-divider hr {
+  flex: 1;
+}
+
+.single-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--mx-text-md);
+}
+@container (min-width: 520px) {
+  .single-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.single-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.single-list svg {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  color: var(--mx-accent);
+}
+
+.single-price {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 32px;
+  background: var(--mx-subtle);
+  text-align: center;
+}
+.single-price-label {
+  margin: 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-md);
+  font-weight: 500;
+}
+.single-value {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.single-currency {
+  color: var(--mx-muted);
+  font-size: var(--mx-text-md);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.single-cta {
+  width: 100%;
+  margin-top: 8px;
+}
+.single-guarantee {
+  margin: 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-xs);
+  line-height: 1.5;
+}

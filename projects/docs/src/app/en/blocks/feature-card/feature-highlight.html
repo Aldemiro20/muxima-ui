@@ -1,0 +1,36 @@
+<section class="highlight" aria-labelledby="feature-highlight-title">
+  <div class="highlight-text">
+    <span mxBadge variant="secondary">Collections</span>
+    <h2 id="feature-highlight-title" class="highlight-title">Get paid on time, without calling anyone</h2>
+    <p class="highlight-lead">
+      Overdue invoices are a problem for almost every business. Kianda Management reminds your
+      customers for you and tells you when the money comes in.
+    </p>
+
+    <dl class="highlight-list">
+      @for (v of benefits; track v.title) {
+        <div>
+          <dt>{{ v.title }}</dt>
+          <dd>{{ v.text }}</dd>
+        </div>
+      }
+    </dl>
+
+    <div>
+      <a mxButton variant="outline" href="#collections">Learn more about collections</a>
+    </div>
+  </div>
+
+  <figure class="highlight-media" role="img" aria-label="Invoice list: two paid and one with a reminder sent">
+    <div class="invoice" aria-hidden="true">
+      <p class="invoice-title">October invoices</p>
+      @for (l of rows; track l.customer) {
+        <div class="invoice-row">
+          <span class="invoice-client">{{ l.customer }}</span>
+          <span class="invoice-value">{{ l.amount }}</span>
+          <span class="invoice-state" [attr.data-paid]="l.status === 'Paid' ? '' : null">{{ l.status }}</span>
+        </div>
+      }
+    </div>
+  </figure>
+</section>

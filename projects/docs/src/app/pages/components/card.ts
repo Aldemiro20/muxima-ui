@@ -20,7 +20,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Card' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Card' }]"
         title="Card"
         lead="Superfície para agrupar conteúdo relacionado. São directivas sobre os teus elementos, por isso escolhes article, section ou a, e o nível de título certo."
       />
@@ -224,7 +224,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
             </doc-example>
 
             <doc-example title="Cartão clicável" note="O cartão inteiro é uma ligação, sem botões dentro.">
-              <a mxCard routerLink="/componentes/table" class="w-full">
+              <a mxCard routerLink="/pt/componentes/table" class="w-full">
                 <div mxCardHeader>
                   <h3 mxCardTitle>Table</h3>
                   <p mxCardDescription>Dados tabulares com ordenação acessível.</p>

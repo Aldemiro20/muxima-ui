@@ -11,7 +11,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Stepper' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Stepper' }]"
         title="Stepper"
         lead="Mostra em que passo de um fluxo a pessoa está. É uma lista ordenada; a etapa actual tem aria-current=step e as concluídas são anunciadas."
       />

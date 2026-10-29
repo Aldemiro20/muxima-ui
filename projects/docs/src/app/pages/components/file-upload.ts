@@ -29,7 +29,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'File upload' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'File upload' }]"
         title="File upload"
         lead="Juntar ficheiros a arrastar ou com o seletor do sistema. Valida tipo, tamanho e número, e mostra a lista com tamanho, progresso de envio e botão de remover."
       />

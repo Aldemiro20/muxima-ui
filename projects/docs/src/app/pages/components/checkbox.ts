@@ -12,7 +12,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Checkbox' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Checkbox' }]"
         title="Checkbox"
         lead="Caixa de verificação sobre o input nativo, para escolhas independentes. Suporta o estado intermédio e funciona com ngModel e Reactive Forms sem configuração."
       />

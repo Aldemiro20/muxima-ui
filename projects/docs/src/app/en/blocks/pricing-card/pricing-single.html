@@ -1,0 +1,36 @@
+<section class="single" aria-labelledby="pricing-single-title">
+  <div class="single-card">
+    <div class="single-main">
+      <h2 id="pricing-single-title" class="single-title">One plan, everything included</h2>
+      <p class="single-lead">
+        No separate modules or user limits. Pay once a year and use everything.
+      </p>
+
+      <div class="single-divider">
+        <span>What's included</span>
+        <hr mxSeparator />
+      </div>
+
+      <ul class="single-list">
+        @for (i of includes; track i) {
+          <li>
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            {{ i }}
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="single-price">
+      <p class="single-price-label">Yearly billing</p>
+      <p class="single-value">
+        <span>249 000</span>
+        <span class="single-currency">Kz/year</span>
+      </p>
+      <a mxButton size="lg" class="single-cta" href="#buy">Buy now</a>
+      <p class="single-guarantee">30 days to try it. If you don't like it, we'll refund you.</p>
+    </div>
+  </div>
+</section>

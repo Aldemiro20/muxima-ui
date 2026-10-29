@@ -1,0 +1,66 @@
+<section class="hero" aria-labelledby="hero-search-title">
+  <p class="eyebrow">Help center</p>
+  <h1 id="hero-search-title" class="title">How can we help?</h1>
+  <p class="lead">Answers about invoices, VAT and your account, with no waiting.</p>
+
+  <form class="search" role="search" (submit)="runSearch($event)">
+    <label for="hero-search-field" class="mx-visually-hidden">Search help</label>
+    <svg class="search-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5" />
+      <path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+    </svg>
+    <input
+      mxInput
+      id="hero-search-field"
+      type="search"
+      class="search-field"
+      placeholder="E.g. credit note"
+      autocomplete="off"
+      [value]="text()"
+      (input)="text.set($any($event.target).value)"
+    />
+    <button mxButton type="submit">Search</button>
+  </form>
+
+  <div class="topics">
+    <span class="topics-label" id="hero-search-topics">Popular:</span>
+    <ul class="topics-list" aria-labelledby="hero-search-topics">
+      @for (t of topics; track t) {
+        <li>
+          <button
+            type="button"
+            class="mx-chip mx-chip-toggle"
+            data-size="sm"
+            [attr.aria-pressed]="searched() === t"
+            (click)="chooseTopic(t)"
+          >
+            {{ t }}
+          </button>
+        </li>
+      }
+    </ul>
+  </div>
+
+  <div class="results" aria-live="polite">
+    @if (searched()) {
+      @if (results().length) {
+        <h2 class="results-title">
+          {{ results().length }} {{ results().length === 1 ? 'article' : 'articles' }} about
+          "{{ searched() }}"
+        </h2>
+        <ul class="results-list">
+          @for (a of results(); track a.title) {
+            <li>
+              <a href="#" (click)="$event.preventDefault()">{{ a.title }}</a>
+              <span class="results-topic">{{ a.topic }}</span>
+            </li>
+          }
+        </ul>
+      } @else {
+        <p class="results-empty">
+          Nothing about "{{ searched() }}". Try another word or write to us.
+        </p>
+      }
+    }
+  </div>
+</section>

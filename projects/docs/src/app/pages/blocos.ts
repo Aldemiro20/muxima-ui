@@ -11,7 +11,7 @@ import { Icon } from '../ui/icon';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Documentação', path: '/docs/introducao' }, { label: 'Blocos' }]"
+        [crumbs]="[{ label: 'Documentação', path: '/pt/docs/introducao' }, { label: 'Blocos' }]"
         title="Blocos"
         lead="Secções de página feitas com os componentes da Muxima UI: hero, preços, cartões de produto, carrinho, definições, comentários, pagamento e onboarding. Vês cada um em ecrã inteiro, tablet e telemóvel, e copias o código para o teu projecto."
       />
@@ -19,7 +19,7 @@ import { Icon } from '../ui/icon';
       <h2 class="mx-visually-hidden">Lista de blocos</h2>
       <div class="grid-3">
         @for (b of blocks; track b.slug) {
-          <a class="card card-link catalog-card" [routerLink]="'/blocos/' + b.slug">
+          <a class="card card-link catalog-card" [routerLink]="'/pt/blocos/' + b.slug">
             <span class="icon-tile"><doc-icon [name]="b.icon" /></span>
             <h3>{{ b.name }}</h3>
             <p>{{ b.description }}</p>
@@ -34,7 +34,7 @@ import { Icon } from '../ui/icon';
       <section class="stack">
         <h2>Como usar</h2>
         <ol class="steps-list">
-          <li>Instala a biblioteca e importa o <code>muxima.css</code>, como na <a class="text-link" routerLink="/docs/instalacao">Instalação</a>.</li>
+          <li>Instala a biblioteca e importa o <code>muxima.css</code>, como na <a class="text-link" routerLink="/pt/docs/instalacao">Instalação</a>.</li>
           <li>Em cada bloco, abre <strong>Código</strong> e copia os três ficheiros (.ts, .html e .css) para uma pasta do teu projecto.</li>
           <li>Usa o componente onde quiseres (<code>&lt;app-hero-centrado /&gt;</code>) e troca os textos, os preços e os dados pelos teus.</li>
         </ol>

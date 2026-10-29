@@ -1,0 +1,104 @@
+:host {
+  display: block;
+  font-family: var(--mx-font-sans);
+  color: var(--mx-ink);
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.comparacao {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 56px 20px;
+}
+.comparacao-title {
+  margin: 0 0 24px;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.comparacao-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--mx-stone);
+  border-radius: var(--mx-radius-surface);
+  background: var(--mx-surface);
+}
+.comparacao-scroll:focus-visible {
+  outline: var(--mx-focus-width) solid var(--mx-accent);
+  outline-offset: var(--mx-focus-offset);
+}
+
+.comparacao-table {
+  min-width: 640px;
+}
+.comparacao-table th[scope='row'] {
+  font-weight: 400;
+  text-align: start;
+}
+.comparacao-table th[scope='row'],
+.comparacao-table thead th:first-child {
+  width: 34%;
+}
+
+.plan-col {
+  vertical-align: bottom;
+  text-align: center;
+}
+.plan-name {
+  display: block;
+  color: var(--mx-ink);
+  font-size: var(--mx-text-md);
+  font-weight: 600;
+}
+.plan-price {
+  display: block;
+  color: var(--mx-ink);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.plan-month {
+  color: var(--mx-muted);
+  font-weight: 400;
+}
+
+.group th {
+  padding-top: 20px;
+  background: var(--mx-subtle);
+  color: var(--mx-accent);
+  font-size: var(--mx-text-sm);
+  font-weight: 600;
+  text-align: start;
+}
+
+.value {
+  text-align: center;
+}
+.yes {
+  width: 18px;
+  height: 18px;
+  color: var(--mx-accent);
+  vertical-align: middle;
+}
+.no {
+  color: var(--mx-muted);
+}
+
+/* on narrow screens the table scrolls; the names column stays fixed */
+.comparacao-table th[scope='row'],
+.comparacao-table thead th:first-child,
+.comparacao-table tfoot td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--mx-surface);
+}
+.comparacao-table thead th:first-child,
+.comparacao-table tfoot td:first-child {
+  background: var(--mx-subtle);
+}

@@ -1,0 +1,95 @@
+<section class="thread" aria-labelledby="comments-thread-title">
+  <h2 id="comments-thread-title" class="thread-title">Comments <span>({{ comments().length }})</span></h2>
+
+  <ng-template #item let-c>
+    <article class="comment" [attr.aria-labelledby]="'comment-' + c.id">
+      <mx-avatar class="comment-avatar" [name]="c.author" size="sm" decorative />
+      <div class="comment-body">
+        <p class="comment-meta" [id]="'comment-' + c.id">
+          <strong>{{ c.author }}</strong>
+          <time [attr.datetime]="c.data">{{ c.when }}</time>
+        </p>
+        <p class="comment-text">{{ c.text }}</p>
+        <div class="comment-actions">
+          <button
+            type="button"
+            class="accao"
+            [attr.aria-pressed]="c.liked"
+            (click)="toggleLike(c)"
+          >
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M8 13.5S2 10 2 5.8A3 3 0 018 4.4a3 3 0 016 1.4C14 10 8 13.5 8 13.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" />
+            </svg>
+            Like<span class="mx-visually-hidden"> on the comment by {{ c.author }}</span>
+            @if (c.likes) {
+              <span class="accao-n">{{ c.likes }}</span>
+            }
+          </button>
+          <button
+            type="button"
+            class="accao"
+            [attr.aria-expanded]="replyingTo() === c.id"
+            (click)="replyingTo.set(replyingTo() === c.id ? null : c.id); replyText.set('')"
+          >
+            Reply<span class="mx-visually-hidden"> to {{ c.author }}</span>
+          </button>
+        </div>
+
+        @if (replyingTo() === c.id) {
+          <form class="replyText" (submit)="reply($event, c)">
+            <label class="mx-visually-hidden" [for]="'reply-' + c.id">Reply to {{ c.author }}</label>
+            <textarea
+              mxInput
+              rows="2"
+              autosize
+              [id]="'reply-' + c.id"
+              [attr.maxlength]="limit"
+              [value]="replyText()"
+              (input)="replyText.set($any($event.target).value)"
+              (keydown.escape)="replyingTo.set(null)"
+            ></textarea>
+            <div class="reply-buttons">
+              <button mxButton size="sm" variant="ghost" type="button" (click)="replyingTo.set(null)">Cancel</button>
+              <button mxButton size="sm" type="submit" [disabled]="!replyText().trim()">Reply</button>
+            </div>
+          </form>
+        }
+
+        @if (c.replies.length) {
+          <ul class="replies" [attr.aria-label]="'Replies to ' + c.author">
+            @for (r of c.replies; track r.id) {
+              <li><ng-container *ngTemplateOutlet="item; context: { $implicit: r }" /></li>
+            }
+          </ul>
+        }
+      </div>
+    </article>
+  </ng-template>
+
+  <ul class="list">
+    @for (c of comments(); track c.id) {
+      <li><ng-container *ngTemplateOutlet="item; context: { $implicit: c }" /></li>
+    }
+  </ul>
+
+  <form class="draft" (submit)="comment($event)">
+    <mx-avatar class="comment-avatar" [name]="eu" size="sm" decorative />
+    <mx-form-field class="draft-field">
+      <label mxLabel>Write a comment</label>
+      <textarea
+        mxInput
+        rows="3"
+        autosize
+        [attr.maxlength]="limit"
+        [value]="draft()"
+        (input)="draft.set($any($event.target).value)"
+      ></textarea>
+      <mx-hint>{{ draft().length }} of {{ limit }} chars.</mx-hint>
+      <div class="draft-buttons">
+        <button mxButton type="submit" [disabled]="!draft().trim()">Post</button>
+      </div>
+    </mx-form-field>
+  </form>
+
+  <p class="mx-visually-hidden" aria-live="polite">{{ notice() }}</p>
+</section>

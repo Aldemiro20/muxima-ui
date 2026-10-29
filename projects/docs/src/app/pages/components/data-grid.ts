@@ -63,7 +63,7 @@ const corEstado = (e: string) =>
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Data grid' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Data grid' }]"
         title="Data grid"
         lead="Tabela de dados para trabalho a sério: ordenação, filtros por coluna, pesquisa, selecção, colunas redimensionáveis, fixas e escondíveis, e scroll virtual para milhares de linhas. Navega-se célula a célula com as setas, como numa folha de cálculo."
       />
@@ -92,7 +92,7 @@ const corEstado = (e: string) =>
         <h2>Instalação</h2>
         <doc-code code="import { MX_DATA_GRID, MxGridColumn } from '@muxima-ui/core/data-grid';" />
         <doc-callout
-          >Se o utilizador só lê os dados, a <a routerLink="/componentes/table">Table</a> chega e é
+          >Se o utilizador só lê os dados, a <a routerLink="/pt/componentes/table">Table</a> chega e é
           mais leve: é HTML simples com estilo. Usa a Data grid quando ele trabalha com os dados:
           filtra, selecciona, ajusta colunas ou percorre milhares de linhas.</doc-callout
         >

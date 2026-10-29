@@ -11,7 +11,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Tabs' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Tabs' }]"
         title="Tabs"
         lead="Dividem conteúdo relacionado em secções ao mesmo nível. O separador activo é marcado pela linha Kwanza."
       />
@@ -139,7 +139,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
       <section>
         <h2>Componentes relacionados</h2>
-        <doc-related [items]="[{ name: 'Stepper' }, { name: 'Accordion' }, { name: 'Dialog', path: '/componentes/dialog' }]" />
+        <doc-related [items]="[{ name: 'Stepper' }, { name: 'Accordion' }, { name: 'Dialog', path: '/pt/componentes/dialog' }]" />
       </section>
     </article>
   `,

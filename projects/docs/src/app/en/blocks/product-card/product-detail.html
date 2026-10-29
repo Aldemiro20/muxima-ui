@@ -1,0 +1,84 @@
+<section class="detail" aria-labelledby="product-detail-title">
+  <div class="gallery">
+    <!-- replace the div with <img [src]="..." [alt]="images[image()].alt" /> -->
+    <div class="gallery-main" role="img" [attr.aria-label]="images[image()].alt" [style.--color]="images[image()].color"></div>
+    <div class="gallery-thumbs" role="group" aria-label="Product images">
+      @for (img of images; track img.alt; let i = $index) {
+        <button
+          type="button"
+          class="thumb"
+          [style.--color]="img.color"
+          [attr.aria-pressed]="image() === i"
+          [attr.aria-label]="img.alt"
+          (click)="image.set(i)"
+        ></button>
+      }
+    </div>
+  </div>
+
+  <div class="info">
+    <p class="info-brand">Atelier Kianda</p>
+    <h2 id="product-detail-title" class="info-name">Cotton shirt, straight cut</h2>
+
+    <div class="info-rating">
+      <mx-rating [value]="4.5" readonly size="sm" />
+      <a href="#avaliacoes" class="info-link">38 reviews</a>
+    </div>
+
+    <p class="info-price">{{ price }}</p>
+    <p class="info-desc">
+      Cotton with a hand-printed pattern, wooden buttons and reinforced seams. Hand or
+      machine wash at 30 °C.
+    </p>
+
+    <fieldset class="sizes" [attr.aria-describedby]="error() ? 'product-detail-error' : null">
+      <legend>Size</legend>
+      <div class="sizes-options">
+        @for (t of sizes; track t.value) {
+          <label class="size" [attr.data-soldout]="t.available ? null : ''">
+            <input
+              type="radio"
+              name="product-detail-size"
+              [value]="t.value"
+              [disabled]="!t.available"
+              [checked]="size() === t.value"
+              (change)="size.set(t.value); error.set('')"
+            />
+            {{ t.value }}
+            @if (!t.available) {
+              <span class="mx-visually-hidden">(soldout)</span>
+            }
+          </label>
+        }
+      </div>
+      @if (error()) {
+        <p class="sizes-error" id="product-detail-error" role="alert">{{ error() }}</p>
+      }
+    </fieldset>
+
+    <div class="buy">
+      <div class="quantity" role="group" aria-label="Quantity">
+        <button type="button" aria-label="One less" [disabled]="quantity() <= 1" (click)="changeQuantity(-1)">−</button>
+        <input
+          type="number"
+          inputmode="numeric"
+          min="1"
+          max="10"
+          aria-label="Quantity"
+          [value]="quantity()"
+          (change)="typeQuantity($any($event.target).value)"
+        />
+        <button type="button" aria-label="One more" [disabled]="quantity() >= 10" (click)="changeQuantity(1)">+</button>
+      </div>
+      <button mxButton size="lg" class="buy-cta" type="button" (click)="add()">
+        Add to cart · {{ total() }}
+      </button>
+    </div>
+    <p class="buy-notice" role="status">{{ notice() }}</p>
+
+    <ul class="info-extra">
+      <li>Delivery in Luanda within 24 hours</li>
+      <li>Free returns within 14 days</li>
+    </ul>
+  </div>
+</section>

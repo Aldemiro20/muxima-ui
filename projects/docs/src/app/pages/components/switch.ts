@@ -11,7 +11,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Switch' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Switch' }]"
         title="Switch"
         lead="Liga e desliga uma preferência com efeito imediato. É um checkbox nativo com role switch, por isso funciona com formulários e é anunciado como interruptor."
       />

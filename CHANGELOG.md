@@ -2,6 +2,14 @@
 
 Todas as alterações relevantes do pacote `@muxima-ui/core`. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-PT/1.1.0/) e as versões seguem o [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [Por publicar]
+
+### Documentação
+
+- O site da documentação fica em inglês e português. O inglês está na raiz (`/components/button`, `/docs/introduction`, `/blocks`); o português passa para `/pt` (`/pt/componentes/button`). Os endereços antigos em português redireccionam para `/pt`.
+- Botão de idioma no topo: abre a mesma página no outro idioma, incluindo os blocos.
+- Os exemplos e os 32 blocos têm versão inglesa, com o código também em inglês (nomes de variáveis, classes e textos), e os componentes mostram os textos do idioma da página.
+
 ## [1.5.0] - por publicar
 
 Idiomas: português e inglês.

@@ -18,7 +18,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Rich text editor' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Rich text editor' }]"
         title="Rich text editor"
         lead="Texto com negrito, títulos, listas, citações e ligações, sobre o Tiptap (ProseMirror). A barra é um toolbar acessível, o campo liga-se a formulários e o valor é HTML."
       />

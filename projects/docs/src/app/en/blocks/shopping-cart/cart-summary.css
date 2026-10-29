@@ -1,0 +1,151 @@
+:host {
+  display: block;
+  font-family: var(--mx-font-sans);
+  color: var(--mx-ink);
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 420px;
+  margin: 32px auto;
+  padding: 24px;
+  border: 1px solid var(--mx-stone);
+  border-radius: var(--mx-radius-surface);
+  background: var(--mx-surface);
+}
+@media (max-width: 460px) {
+  .summary {
+    margin: 0;
+    border-width: 0 0 1px;
+    border-radius: 0;
+  }
+}
+
+.summary-title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.items {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0 0 16px;
+  border-bottom: 1px solid var(--mx-stone);
+  list-style: none;
+  font-size: var(--mx-text-md);
+}
+.items li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.items-qtd {
+  color: var(--mx-muted);
+}
+
+.deliveries {
+  margin: 0;
+}
+.delivery {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.code {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+.code-field {
+  flex: 1;
+}
+.code-error {
+  margin: -10px 0 0;
+  color: var(--mx-danger);
+  font-size: var(--mx-text-sm);
+}
+.code-ok {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: var(--mx-radius);
+  background: var(--mx-accent-soft);
+  font-size: var(--mx-text-md);
+}
+.code-remove {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--mx-ink);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.code-remove:focus-visible {
+  outline: var(--mx-focus-width) solid var(--mx-accent);
+  outline-offset: var(--mx-focus-offset);
+  border-radius: 2px;
+}
+
+.totals {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--mx-stone);
+  font-size: var(--mx-text-md);
+}
+.totals div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.totals dt {
+  color: var(--mx-muted);
+}
+.totals dd {
+  margin: 0;
+}
+.totals .totals-discount dd {
+  color: var(--mx-success);
+}
+.totals .totals-total {
+  margin-top: 4px;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+.totals .totals-total dt {
+  color: var(--mx-ink);
+}
+
+.pay {
+  width: 100%;
+}
+.note {
+  margin: -8px 0 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-xs);
+  text-align: center;
+}

@@ -13,7 +13,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Tour guide' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Tour guide' }]"
         title="Tour guide"
         lead="Visita guiada para apresentar um ecrã: destaca um elemento de cada vez e explica-o num cartão com Anterior, Seguinte e Saltar. Funciona com teclado e leitor de ecrã, e no fim o foco volta para onde estava."
       />

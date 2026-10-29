@@ -14,7 +14,7 @@ const norm = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCa
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Documentação', path: '/docs/introducao' }, { label: 'Componentes' }]"
+        [crumbs]="[{ label: 'Documentação', path: '/pt/docs/introducao' }, { label: 'Componentes' }]"
         title="Componentes"
         lead="Primitivos simples e ferramentas avançadas para produtos Angular. Cada componente segue o mesmo padrão visual e de documentação."
       />

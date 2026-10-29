@@ -23,7 +23,7 @@ import { MxButton } from '@muxima-ui/core/button';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Chips' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Chips' }]"
         title="Chips"
         lead="Etiquetas curtas para mostrar escolhas, filtrar listas ou escrever várias entradas num campo. Três peças: mx-chip, o botão mxChipToggle para filtros e o campo mx-tag-input."
       />

@@ -10,7 +10,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Progress' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Progress' }]"
         title="Progress"
         lead="Barra sobre o progress nativo, determinada ou indeterminada, e um spinner para esperas curtas."
       />

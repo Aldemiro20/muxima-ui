@@ -13,7 +13,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Breadcrumb' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Breadcrumb' }]"
         title="Breadcrumb"
         lead="Mostra onde a página está na hierarquia e permite subir de nível. É uma nav com uma lista ordenada; os separadores são desenhados em CSS."
       />
@@ -23,8 +23,8 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
         <doc-preview [code]="previewCode" label="Exemplo de breadcrumb">
           <nav mxBreadcrumb aria-label="Exemplo de localização">
             <ol>
-              <li><a routerLink="/componentes">Clientes</a></li>
-              <li><a routerLink="/componentes">Kianda Logística</a></li>
+              <li><a routerLink="/pt/componentes">Clientes</a></li>
+              <li><a routerLink="/pt/componentes">Kianda Logística</a></li>
               <li><span aria-current="page">Facturas</span></li>
             </ol>
           </nav>
@@ -53,7 +53,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
             <nav mxBreadcrumb aria-label="Localização com ícone">
               <ol>
                 <li><a routerLink="/"><doc-icon name="grid" [size]="14" /><span class="mx-visually-hidden">Início</span></a></li>
-                <li><a routerLink="/componentes">Clientes</a></li>
+                <li><a routerLink="/pt/componentes">Clientes</a></li>
                 <li><span aria-current="page">Kianda Logística</span></li>
               </ol>
             </nav>
@@ -66,13 +66,13 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
                   <button type="button" class="crumb-more" aria-label="Mostrar níveis escondidos" [mxMenuTriggerFor]="niveis">…</button>
                   <ng-template #niveis>
                     <div mxMenu>
-                      <a mxMenuItem routerLink="/componentes">Clientes</a>
-                      <a mxMenuItem routerLink="/componentes">Empresas</a>
-                      <a mxMenuItem routerLink="/componentes">Kianda Logística</a>
+                      <a mxMenuItem routerLink="/pt/componentes">Clientes</a>
+                      <a mxMenuItem routerLink="/pt/componentes">Empresas</a>
+                      <a mxMenuItem routerLink="/pt/componentes">Kianda Logística</a>
                     </div>
                   </ng-template>
                 </li>
-                <li><a routerLink="/componentes">Facturas</a></li>
+                <li><a routerLink="/pt/componentes">Facturas</a></li>
                 <li><span aria-current="page">FT 2026/0142</span></li>
               </ol>
             </nav>
@@ -82,7 +82,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
               <nav mxBreadcrumb aria-label="Localização da página">
                 <ol>
                   <li><a routerLink="/">Início</a></li>
-                  <li><a routerLink="/componentes">Facturas</a></li>
+                  <li><a routerLink="/pt/componentes">Facturas</a></li>
                   <li><span aria-current="page">Nova factura</span></li>
                 </ol>
               </nav>
@@ -92,7 +92,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
           <doc-example title="Só voltar, em telemóvel" note="Em ecrãs estreitos mostra só o nível acima.">
             <nav mxBreadcrumb aria-label="Voltar">
               <ol>
-                <li><a routerLink="/componentes" class="crumb-back"><doc-icon name="chevronRight" [size]="14" class="flip" /> Facturas</a></li>
+                <li><a routerLink="/pt/componentes" class="crumb-back"><doc-icon name="chevronRight" [size]="14" class="flip" /> Facturas</a></li>
               </ol>
             </nav>
           </doc-example>

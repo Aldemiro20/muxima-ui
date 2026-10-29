@@ -1,0 +1,126 @@
+:host {
+  display: block;
+  container-type: inline-size;
+  font-family: var(--mx-font-sans);
+  color: var(--mx-ink);
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.profile {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+.profile-head {
+  margin-bottom: 20px;
+}
+.profile-head h2 {
+  margin: 0;
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.profile-head p {
+  margin: 4px 0 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-md);
+}
+
+.profile-form {
+  border: 1px solid var(--mx-stone);
+  border-radius: var(--mx-radius-surface);
+  background: var(--mx-surface);
+}
+
+.photo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border-bottom: 1px solid var(--mx-stone);
+}
+.photo-avatar {
+  --mx-avatar-size: 64px;
+  width: 64px;
+  height: 64px;
+  font-size: 1.25rem;
+}
+.photo-title {
+  margin: 0;
+  font-size: var(--mx-text-md);
+  font-weight: 500;
+}
+.photo-hint {
+  margin: 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+}
+.photo-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+/* the label looks like a button and opens the file picker */
+.photo-choose {
+  display: inline-flex;
+  align-items: center;
+  height: var(--mx-control-height-sm);
+  padding: 0 12px;
+  border: 1px solid var(--mx-control-border);
+  border-radius: var(--mx-radius);
+  background: var(--mx-surface);
+  font-size: var(--mx-text-sm);
+  font-weight: 500;
+  cursor: pointer;
+}
+.photo-choose:hover {
+  background: var(--mx-subtle);
+}
+.photo-choose:has(input:focus-visible) {
+  outline: var(--mx-focus-width) solid var(--mx-accent);
+  outline-offset: var(--mx-focus-offset);
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 20px;
+}
+@container (min-width: 600px) {
+  .fields {
+    grid-template-columns: 1fr 1fr;
+  }
+  .field-wide {
+    grid-column: 1 / -1;
+  }
+}
+
+.profile-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 20px;
+  border-top: 1px solid var(--mx-stone);
+  background: var(--mx-subtle);
+  border-radius: 0 0 var(--mx-radius-surface) var(--mx-radius-surface);
+}
+.profile-status {
+  margin: 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+}
+.profile-buttons {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}

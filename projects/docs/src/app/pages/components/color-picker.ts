@@ -31,7 +31,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Color picker' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Color picker' }]"
         title="Color picker"
         lead="Escolher uma cor escrevendo o hex (ou rgb()) ou num painel com área de saturação e brilho, matiz, opacidade, amostras e conta-gotas. Tudo com teclado, e cada cor tem um nome para o leitor de ecrã."
       />

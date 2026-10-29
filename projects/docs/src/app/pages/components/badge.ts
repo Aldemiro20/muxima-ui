@@ -12,7 +12,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Badge' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Badge' }]"
         title="Badge"
         lead="Etiqueta curta para estados e categorias: paga, pendente, em atraso. Aplica-se a qualquer elemento de texto e tem seis variantes."
       />

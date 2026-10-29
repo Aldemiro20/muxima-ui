@@ -15,16 +15,14 @@ import { RouterLink } from '@angular/router';
 import { MxTab, MxTabs } from '@muxima-ui/core/tabs';
 import { BlockCategory, BlockVariant } from '../blocks/registry';
 import { BLOCK_CODE } from '../data/blocks.generated';
-import { CATALOG } from '../data/site';
+import { siteData } from '../data/site-data';
+import { LangService } from '../shell/lang';
+import { injectUiText } from '../shell/ui-text';
 import { ThemeService } from '../shell/theme.service';
 import { CodeBlock } from './doc-ui';
 import { Icon } from './icon';
 
-const WIDTHS = [
-  { label: 'Ecrã inteiro', value: '100%' },
-  { label: 'Tablet', value: '768px' },
-  { label: 'Telemóvel', value: '375px' },
-];
+const WIDTHS = ['100%', '768px', '375px'];
 
 /**
  * Um bloco: pré-visualização num iframe (para as larguras e o modo escuro serem reais)
@@ -42,22 +40,22 @@ const WIDTHS = [
           <p>{{ variant().description }}</p>
         </div>
         <div class="block-tools">
-          <div class="chips" role="group" [attr.aria-label]="'Largura da pré-visualização: ' + variant().title">
-            @for (w of widths; track w.value) {
-              <button type="button" class="chip" [attr.aria-pressed]="width() === w.value" (click)="width.set(w.value)">
-                {{ w.label }}
+          <div class="chips" role="group" [attr.aria-label]="t().previewWidth(variant().title)">
+            @for (w of widths; track w; let i = $index) {
+              <button type="button" class="chip" [attr.aria-pressed]="width() === w" (click)="width.set(w)">
+                {{ t().widths[i] }}
               </button>
             }
           </div>
-          <a class="text-link small block-open" [href]="'/blocos/ver/' + variant().id" target="_blank" rel="noopener">
-            Abrir numa página<span class="mx-visually-hidden">: {{ variant().title }} (abre num separador novo)</span>
+          <a class="text-link small block-open" [href]="viewPath()" target="_blank" rel="noopener">
+            {{ t().openPage }}<span class="mx-visually-hidden">{{ t().opensNewTab(variant().title) }}</span>
             <doc-icon name="external" [size]="12" />
           </a>
         </div>
       </div>
 
-      <mx-tabs [aria-label]="'Bloco ' + variant().title">
-        <mx-tab label="Pré-visualização">
+      <mx-tabs [aria-label]="t().block(variant().title)">
+        <mx-tab [label]="t().preview">
           <div class="block-stage">
             <iframe
               #frame
@@ -65,14 +63,14 @@ const WIDTHS = [
               [style.width]="width()"
               [style.height.px]="height()"
               [src]="src()"
-              [title]="'Pré-visualização do bloco ' + category().name + ': ' + variant().title"
+              [title]="t().blockPreview(category().name, variant().title)"
               (load)="syncTheme()"
             ></iframe>
           </div>
         </mx-tab>
-        <mx-tab label="Código">
+        <mx-tab [label]="t().code">
           <div class="example-code">
-            <mx-tabs [aria-label]="'Ficheiros do bloco ' + variant().title">
+            <mx-tabs [aria-label]="t().blockFiles(variant().title)">
               <mx-tab [label]="variant().id + '.ts'"><doc-code [code]="code().ts" [flush]="true" /></mx-tab>
               <mx-tab [label]="variant().id + '.html'"><doc-code [code]="code().html" [flush]="true" /></mx-tab>
               <mx-tab [label]="variant().id + '.css'"><doc-code [code]="code().css" [flush]="true" /></mx-tab>
@@ -82,7 +80,7 @@ const WIDTHS = [
       </mx-tabs>
 
       <p class="block-uses">
-        <span class="muted">Usa:</span>
+        <span class="muted">{{ t().uses }}</span>
         @for (u of uses(); track u.name; let last = $last) {
           @if (u.path) {
             <a class="text-link" [routerLink]="u.path">{{ u.name }}</a>
@@ -107,13 +105,18 @@ export class BlockViewer {
   private readonly frame = viewChild.required<ElementRef<HTMLIFrameElement>>('frame');
   private readonly theme = inject(ThemeService);
   private readonly sanitizer = inject(DomSanitizer);
+  private readonly lang = inject(LangService);
+  protected readonly t = injectUiText();
 
   protected readonly src = computed(() =>
-    this.sanitizer.bypassSecurityTrustResourceUrl(`/blocos/ver/${this.variant().id}`),
+    this.sanitizer.bypassSecurityTrustResourceUrl(this.viewPath()),
   );
-  protected readonly code = computed(() => BLOCK_CODE[this.variant().id] ?? { ts: '', html: '', css: '' });
+  protected readonly viewPath = computed(() =>
+    this.lang.lang() === 'pt' ? `/pt/blocos/ver/${this.variant().id}` : `/blocks/view/${this.variant().id}`,
+  );
+  protected readonly code = computed(() => BLOCK_CODE[`${this.lang.lang()}/${this.variant().id}`] ?? { ts: '', html: '', css: '' });
   protected readonly uses = computed(() =>
-    this.variant().uses.map((name) => ({ name, path: CATALOG.find((c) => c.name === name)?.path })),
+    this.variant().uses.map((name) => ({ name, path: siteData(this.lang.lang()).CATALOG.find((c) => c.name === name)?.path })),
   );
 
   constructor() {

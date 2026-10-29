@@ -47,8 +47,8 @@ import { Logo } from '../ui/logo';
       <div class="card note-card">
         <doc-logo [size]="44" class="accent" />
         <div>
-          <strong>Documentação em português</strong>
-          <p class="muted">A edição em inglês entra no roadmap para levar a biblioteca ao mercado internacional.</p>
+          <strong>Documentação em português e inglês</strong>
+          <p class="muted">Todas as páginas têm versão em inglês. Usa o selector de idioma no topo.</p>
         </div>
       </div>
     </article>
@@ -56,11 +56,11 @@ import { Logo } from '../ui/logo';
 })
 export class IntroducaoPage {
   protected readonly cards = [
-    { title: 'Instalação', text: 'Instala a biblioteca e importa o primeiro componente.', icon: 'terminal', path: '/docs/instalacao' },
-    { title: 'Temas', text: 'Personaliza a cor de marca e o raio dos controlos.', icon: 'sliders', path: '/docs/temas' },
-    { title: 'Componentes', text: 'Pré-visualizações, exemplos e referência da API.', icon: 'grid', path: '/componentes' },
-    { title: 'Modo escuro', text: 'Inverte papel e tinta, mantendo os tokens.', icon: 'moon', path: '/docs/modo-escuro' },
-    { title: 'Acessibilidade', text: 'Teclado, foco e ARIA em todos os componentes.', icon: 'shield', path: '/componentes/button' },
-    { title: 'Blocos', text: 'Secções prontas a copiar: hero, preços, carrinho, pagamento.', icon: 'layers', path: '/blocos' },
+    { title: 'Instalação', text: 'Instala a biblioteca e importa o primeiro componente.', icon: 'terminal', path: '/pt/docs/instalacao' },
+    { title: 'Temas', text: 'Personaliza a cor de marca e o raio dos controlos.', icon: 'sliders', path: '/pt/docs/temas' },
+    { title: 'Componentes', text: 'Pré-visualizações, exemplos e referência da API.', icon: 'grid', path: '/pt/componentes' },
+    { title: 'Modo escuro', text: 'Inverte papel e tinta, mantendo os tokens.', icon: 'moon', path: '/pt/docs/modo-escuro' },
+    { title: 'Acessibilidade', text: 'Teclado, foco e ARIA em todos os componentes.', icon: 'shield', path: '/pt/componentes/button' },
+    { title: 'Blocos', text: 'Secções prontas a copiar: hero, preços, carrinho, pagamento.', icon: 'layers', path: '/pt/blocos' },
   ];
 }

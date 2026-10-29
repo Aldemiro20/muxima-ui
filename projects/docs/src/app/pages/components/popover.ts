@@ -15,7 +15,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Popover' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Popover' }]"
         title="Popover"
         lead="Painel flutuante não modal junto a um botão, para filtros, detalhes ou pequenos formulários. Pode ter campos e botões, ao contrário do Tooltip."
       />

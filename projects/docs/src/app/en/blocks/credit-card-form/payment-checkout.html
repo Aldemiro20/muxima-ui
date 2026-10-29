@@ -1,0 +1,99 @@
+<section class="checkout" aria-labelledby="checkout-title">
+  <h2 id="checkout-title" class="title">Checkout</h2>
+
+  <ol mxStepper aria-label="Checkout steps" class="steps">
+    @for (p of steps; track p; let i = $index) {
+      <li mxStep [state]="step() === 3 ? 'complete' : status(i)">{{ p }}</li>
+    }
+  </ol>
+
+  <div class="body">
+    <form class="formulario" novalidate (submit)="next($event)">
+      @switch (step()) {
+        @case (0) {
+          <h3 #stepTitle tabindex="-1" class="step-title">Your details</h3>
+          <div [formGroup]="details" class="fields">
+            <mx-form-field>
+              <label mxLabel>Name</label>
+              <input mxInput autocomplete="name" formControlName="name" />
+              <mx-error>Enter your name.</mx-error>
+            </mx-form-field>
+            <mx-form-field>
+              <label mxLabel>E-mail</label>
+              <input mxInput type="email" autocomplete="email" formControlName="email" />
+              <mx-hint>We send the invoice here.</mx-hint>
+              <mx-error>Enter a valid email, for example ana&#64;example.ao.</mx-error>
+            </mx-form-field>
+          </div>
+        }
+        @case (1) {
+          <h3 #stepTitle tabindex="-1" class="step-title">Delivery</h3>
+          <fieldset mxFieldset class="fields">
+            <legend class="mx-visually-hidden">How you want to receive it</legend>
+            <label mxChoice card>
+              <input type="radio" mxRadio name="checkout-delivery" value="home" [checked]="delivery() === 'home'" (change)="delivery.set('home')" />
+              <span class="option">
+                <span>Home delivery <span mxChoiceDescription>Luanda, within 24 hours</span></span>
+                <span class="num">{{ price(2500) }}</span>
+              </span>
+            </label>
+            <label mxChoice card>
+              <input type="radio" mxRadio name="checkout-delivery" value="store" [checked]="delivery() === 'store'" (change)="delivery.set('store')" />
+              <span class="option">
+                <span>Pick up in store <span mxChoiceDescription>Talatona, from tomorrow</span></span>
+                <span class="num">Free</span>
+              </span>
+            </label>
+          </fieldset>
+          @if (delivery() === 'home') {
+            <mx-form-field>
+              <label mxLabel>Address</label>
+              <input mxInput autocomplete="street-address" [formControl]="address" />
+              <mx-hint>Street, number, neighbourhood and a landmark.</mx-hint>
+              <mx-error>Enter the delivery address.</mx-error>
+            </mx-form-field>
+          }
+        }
+        @case (2) {
+          <h3 #stepTitle tabindex="-1" class="step-title">Mobile payment</h3>
+          <mx-form-field>
+            <label mxLabel>Mobile number</label>
+            <input mxInput type="tel" inputmode="tel" autocomplete="tel-national" placeholder="923 456 789" [formControl]="phone" />
+            <mx-hint>You confirm the payment in your bank's app.</mx-hint>
+            <mx-error>Enter a 9-digit number starting with 9.</mx-error>
+          </mx-form-field>
+        }
+        @case (3) {
+          <div class="done">
+            <h3 #stepTitle tabindex="-1" class="step-title">Order confirmed</h3>
+            <p>
+              Thank you, {{ details.value.name }}. We sent the invoice to {{ details.value.email }}.
+              {{ delivery() === 'home' ? 'Delivery arrives within 24 hours.' : 'You can pick it up from tomorrow.' }}
+            </p>
+            <button mxButton variant="outline" type="button" (click)="recomecar()">New purchase</button>
+          </div>
+        }
+      }
+
+      @if (step() < 3) {
+        <div class="botoes">
+          @if (step() > 0) {
+            <button mxButton variant="ghost" type="button" (click)="back()">Back</button>
+          }
+          <button mxButton type="submit" [loading]="sending()">
+            {{ step() === 2 ? 'Pay ' + price(total()) : 'Continue' }}
+          </button>
+        </div>
+      }
+    </form>
+
+    <aside class="summary" aria-label="Summary">
+      <dl>
+        <div><dt>Items</dt><dd>{{ price(items) }}</dd></div>
+        <div><dt>Delivery</dt><dd>{{ deliveryCost() ? price(deliveryCost()) : 'Free' }}</dd></div>
+        <div class="total"><dt>Total</dt><dd>{{ price(total()) }}</dd></div>
+      </dl>
+      <p class="note">VAT included.</p>
+    </aside>
+  </div>
+</section>

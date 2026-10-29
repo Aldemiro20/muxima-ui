@@ -10,7 +10,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Toast' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Toast' }]"
         title="Toast"
         lead="Aviso temporário no canto do ecrã depois de uma acção. Cada tipo tem a sua cor no fundo, na borda e no ícone: erro em vermelho, aviso em âmbar, sucesso em verde e informação em Kwanza."
       />

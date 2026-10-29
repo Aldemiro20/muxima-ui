@@ -1,0 +1,80 @@
+<section class="qa" aria-labelledby="qa-title">
+  <header class="head">
+    <h2 id="qa-title" class="title">Questions about the product</h2>
+    <p class="sub">Uíge coffee, 500 g · {{ questions().length }} questions</p>
+  </header>
+
+  <div class="search">
+    <label for="qa-search" class="mx-visually-hidden">Search the questions</label>
+    <input
+      mxInput
+      id="qa-search"
+      type="search"
+      placeholder="Search the questions"
+      [value]="filter()"
+      (input)="filter.set($any($event.target).value)"
+    />
+  </div>
+
+  <p class="mx-visually-hidden" aria-live="polite">
+    @if (filter()) {
+      {{ visiveis().length }} {{ visiveis().length === 1 ? 'question found' : 'questions found' }}
+    }
+  </p>
+
+  <ul class="list">
+    @for (p of visiveis(); track p.id) {
+      <li class="question">
+        <p class="question-text"><span class="letter" aria-hidden="true">P</span>{{ p.text }}</p>
+        <p class="meta">{{ p.author }}, {{ p.when }}</p>
+        @if (p.answer) {
+          <div class="answer">
+            <p class="answer-text"><span class="letter" aria-hidden="true">R</span>{{ p.answer.text }}</p>
+            <p class="meta">
+              <span mxBadge size="sm" variant="secondary">Seller</span> {{ p.answer.when }}
+            </p>
+          </div>
+        } @else {
+          <p class="no-answer">No answer yet.</p>
+        }
+        <button
+          type="button"
+          class="isHelpful"
+          [attr.aria-pressed]="p.isHelpful"
+          (click)="toggleHelpful(p)"
+        >
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M5 7l2.5-5c1 0 1.5.8 1.5 1.8V6h3.6c.8 0 1.4.8 1.2 1.6l-1.1 5c-.1.6-.7 1-1.3 1H5zM5 7H2.5v6.5H5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" />
+          </svg>
+          Helpful ({{ p.helpful }})<span class="mx-visually-hidden">: {{ p.text }}</span>
+        </button>
+      </li>
+    } @empty {
+      <li class="empty">No question with "{{ filter() }}". Ask it yourself.</li>
+    }
+  </ul>
+
+  <form class="draft" (submit)="ask($event)" novalidate>
+    <mx-form-field>
+      <label mxLabel>Ask a question</label>
+      <textarea
+        mxInput
+        rows="2"
+        autosize
+        maxlength="300"
+        [invalid]="!!error()"
+        [value]="draft()"
+        (input)="draft.set($any($event.target).value); error.set('')"
+      ></textarea>
+      @if (error()) {
+        <mx-error>{{ error() }}</mx-error>
+      } @else {
+        <mx-hint>The seller usually replies within a day.</mx-hint>
+      }
+    </mx-form-field>
+    <div class="draft-buttons">
+      <button mxButton type="submit">Send question</button>
+    </div>
+  </form>
+  <p class="mx-visually-hidden" role="status">{{ notice() }}</p>
+</section>

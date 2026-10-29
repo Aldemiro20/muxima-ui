@@ -19,8 +19,8 @@ import { Logo } from '../ui/logo';
             para criar.
           </p>
           <div class="hero-actions">
-            <a mxButton size="lg" routerLink="/componentes">Explorar componentes <doc-icon name="arrowRight" /></a>
-            <a mxButton size="lg" variant="outline" routerLink="/docs/introducao">Ler documentação <doc-icon name="book" /></a>
+            <a mxButton size="lg" routerLink="/pt/componentes">Explorar componentes <doc-icon name="arrowRight" /></a>
+            <a mxButton size="lg" variant="outline" routerLink="/pt/docs/introducao">Ler documentação <doc-icon name="book" /></a>
           </div>
           <dl class="hero-facts">
             <div><dt>Angular 21+</dt><dd>Signals e standalone</dd></div>
@@ -74,22 +74,22 @@ import { Logo } from '../ui/logo';
       <section class="section">
         <div class="section-head">
           <h2>Constrói com os componentes certos</h2>
-          <a routerLink="/componentes" class="text-link">Ver catálogo completo <doc-icon name="arrowRight" [size]="14" /></a>
+          <a routerLink="/pt/componentes" class="text-link">Ver catálogo completo <doc-icon name="arrowRight" [size]="14" /></a>
         </div>
         <div class="grid-3">
-          <a class="card card-link" routerLink="/componentes/input">
+          <a class="card card-link" routerLink="/pt/componentes/input">
             <span class="icon-tile"><doc-icon name="file" /></span>
             <h3>Input</h3>
             <p>Label, ajuda e erro ligados automaticamente.</p>
             <span class="text-link">Explorar componente →</span>
           </a>
-          <a class="card card-link" routerLink="/componentes/dialog">
+          <a class="card card-link" routerLink="/pt/componentes/dialog">
             <span class="icon-tile"><doc-icon name="grid" /></span>
             <h3>Dialog</h3>
             <p>Foco preso, Escape e foco devolvido a quem abriu.</p>
             <span class="text-link">Explorar componente →</span>
           </a>
-          <a class="card card-link" routerLink="/componentes/table">
+          <a class="card card-link" routerLink="/pt/componentes/table">
             <span class="icon-tile"><doc-icon name="table" /></span>
             <h3>Table</h3>
             <p>Ordenação acessível e números alinhados.</p>

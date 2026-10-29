@@ -78,7 +78,7 @@ function quadroInicial(): MxKanbanColumn<Tarefa>[] {
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Kanban' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Kanban' }]"
         title="Kanban"
         lead="Cartões em colunas para acompanhar trabalho: arrasta-se com o rato ou o dedo e move-se com o teclado. Cada passo é anunciado ao leitor de ecrã, e as colunas podem ter limite de cartões."
       />

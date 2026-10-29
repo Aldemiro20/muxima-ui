@@ -1,6 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LINKS } from '../data/site';
+import { LangService } from './lang';
+import { injectUiText } from './ui-text';
 import { Logo } from '../ui/logo';
 
 @Component({
@@ -13,12 +15,13 @@ import { Logo } from '../ui/logo';
         <div class="footer-brand">
           <doc-logo [size]="22" />
           <strong>Muxima UI</strong>
-          <span>· Componentes Angular com coração angolano.</span>
+          <span>{{ t().footerTagline }}</span>
         </div>
-        <nav class="footer-links" aria-label="Rodapé">
-          <a routerLink="/changelog">Changelog</a>
+        <nav class="footer-links" [attr.aria-label]="t().footerNav">
+          <a [routerLink]="lang.prefix() + '/changelog'">Changelog</a>
           <a [href]="links.repo" target="_blank" rel="noopener">GitHub</a>
-          <span>Documentação em português · Inglês em preparação</span>
+          <a routerLink="/" hreflang="en" lang="en">English</a>
+          <a routerLink="/pt" hreflang="pt" lang="pt">Português</a>
         </nav>
       </div>
     </footer>
@@ -26,4 +29,6 @@ import { Logo } from '../ui/logo';
 })
 export class Footer {
   protected readonly links = LINKS;
+  protected readonly lang = inject(LangService);
+  protected readonly t = injectUiText();
 }

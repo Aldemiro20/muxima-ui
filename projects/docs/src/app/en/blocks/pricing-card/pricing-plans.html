@@ -1,0 +1,60 @@
+<section class="precos" aria-labelledby="pricing-plans-title">
+  <div class="precos-head">
+    <h2 id="pricing-plans-title" class="precos-title">Simple plans, no surprises</h2>
+    <p class="precos-lead">Change plans or cancel whenever you like. Prices include VAT.</p>
+
+    <fieldset class="period">
+      <legend class="mx-visually-hidden">Billing</legend>
+      <label>
+        <input type="radio" name="pricing-plans-period" value="monthly" [checked]="period() === 'monthly'" (change)="period.set('monthly')" />
+        Monthly
+      </label>
+      <label>
+        <input type="radio" name="pricing-plans-period" value="yearly" [checked]="period() === 'yearly'" (change)="period.set('yearly')" />
+        Yearly <span class="period-extra">2 months free</span>
+      </label>
+    </fieldset>
+    <p class="mx-visually-hidden" aria-live="polite">{{ notice() }}</p>
+  </div>
+
+  <ul class="plans">
+    @for (p of plans; track p.name) {
+      <li class="plan" [attr.data-recommended]="p.recommended ? '' : null">
+        <div class="plan-head">
+          <h3 class="plan-name">{{ p.name }}</h3>
+          @if (p.recommended) {
+            <span mxBadge size="sm">Most popular</span>
+          }
+        </div>
+        <p class="plan-desc">{{ p.descricao }}</p>
+
+        <p class="plan-price">
+          <span class="plan-value">{{ monthPrice(p) }}</span>
+          <span class="plan-unit">per month</span>
+        </p>
+        <p class="plan-note">
+          @if (period() === 'yearly') {
+            {{ yearPrice(p) }} per year
+          } @else {
+            Billed month to month
+          }
+        </p>
+
+        <a mxButton class="plan-cta" [variant]="p.recommended ? 'default' : 'outline'" href="#signup">
+          Choose {{ p.name }}
+        </a>
+
+        <ul class="plan-includes" [attr.aria-label]="'The ' + p.name + ' plan includes'">
+          @for (i of p.includes; track i) {
+            <li>
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              {{ i }}
+            </li>
+          }
+        </ul>
+      </li>
+    }
+  </ul>
+</section>

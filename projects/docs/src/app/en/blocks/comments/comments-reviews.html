@@ -1,0 +1,73 @@
+<section class="reviews" aria-labelledby="comments-reviews-title">
+  <h2 id="comments-reviews-title" class="avaliacoes-title">Reviews</h2>
+  <p class="notice-fictional">Fictional examples. Only show real reviews from your customers.</p>
+
+  <div class="avaliacoes-grid">
+    <div class="summary">
+      <p class="summary-average">
+        <span class="summary-value">{{ averageText() }}</span>
+        <span class="mx-visually-hidden">of 5</span>
+      </p>
+      <mx-rating [value]="average()" readonly />
+      <p class="summary-total">{{ reviews().length }} reviews</p>
+
+      <ul class="bars" aria-label="Star distribution">
+        @for (d of distribution(); track d.n) {
+          <li class="bar">
+            <span class="bar-n">{{ d.n }} <span aria-hidden="true">★</span></span>
+            <progress
+              mxProgress
+              size="sm"
+              [value]="d.total"
+              [max]="reviews().length"
+              [attr.aria-label]="d.n + (d.n === 1 ? ' star' : ' stars') + ': ' + d.total + ' reviews'"
+            ></progress>
+            <span class="bar-total" aria-hidden="true">{{ d.total }}</span>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="list-wrap">
+      <div class="filters" role="group" aria-label="Filter by stars">
+        @for (d of distribution(); track d.n) {
+          <button
+            mxChipToggle
+            size="sm"
+            [selected]="filter() === d.n"
+            (selectedChange)="filter.set($event ? d.n : 0)"
+          >
+            {{ d.n }} {{ d.n === 1 ? 'star' : 'stars' }}
+          </button>
+        }
+      </div>
+      <p class="mx-visually-hidden" aria-live="polite">
+        {{ filter() ? visiveis().length + ' reviews with ' + filter() + ' stars' : '' }}
+      </p>
+
+      <ul class="list">
+        @for (a of visiveis(); track a.id) {
+          <li>
+            <article class="review" [attr.aria-labelledby]="'review-' + a.id">
+              <div class="review-head">
+                <mx-avatar [name]="a.author" size="sm" decorative />
+                <div>
+                  <p class="review-author" [id]="'review-' + a.id">{{ a.author }}</p>
+                  <time class="review-data" [attr.datetime]="a.data">{{ a.when }}</time>
+                </div>
+              </div>
+              <mx-rating [value]="a.stars" readonly size="sm" />
+              <p class="review-text">{{ a.text }}</p>
+              <button type="button" class="isHelpful" [attr.aria-pressed]="a.isHelpful" (click)="markHelpful(a)">
+                Helpful<span class="mx-visually-hidden"> (review by {{ a.author }})</span>
+                <span class="helpful-n">{{ a.helpful }}</span>
+              </button>
+            </article>
+          </li>
+        } @empty {
+          <li class="empty">No reviews yet with {{ filter() }} {{ filter() === 1 ? 'star' : 'stars' }}.</li>
+        }
+      </ul>
+    </div>
+  </div>
+</section>

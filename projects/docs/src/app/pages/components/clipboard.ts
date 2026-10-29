@@ -22,7 +22,7 @@ import { MxToast } from '@muxima-ui/core/toast';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Copy to clipboard' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Copy to clipboard' }]"
         title="Copy to clipboard"
         lead="Copiar um valor com um clique: IBAN, referência de pagamento, chave da API. A directiva mxCopy serve em qualquer botão; mxCopyButton é o botão de ícone pronto."
       />

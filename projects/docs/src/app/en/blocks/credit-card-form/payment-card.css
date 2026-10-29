@@ -1,0 +1,130 @@
+:host {
+  display: block;
+  container-type: inline-size;
+  font-family: var(--mx-font-sans);
+  color: var(--mx-ink);
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.payment {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+.payment-head {
+  margin-bottom: 24px;
+}
+.payment-head h2 {
+  margin: 0;
+  font-size: 1.375rem;
+  font-weight: 600;
+}
+.payment-head p {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 4px 0 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+}
+.payment-head svg {
+  width: 14px;
+  height: 14px;
+}
+
+.payment-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 28px;
+}
+@container (min-width: 720px) {
+  .payment-grid {
+    grid-template-columns: 320px 1fr;
+    gap: 40px;
+  }
+}
+
+/* ---- drawn card ---- */
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 1.586;
+  padding: 20px;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 85% 15%, rgb(255 255 255 / 0.18), transparent 45%),
+    linear-gradient(135deg, #1c1b1a, #3a3734);
+  color: #fafaf9;
+  font-family: var(--mx-font-mono);
+  box-shadow: var(--mx-shadow-overlay);
+}
+.card[data-network='Visa'] {
+  background:
+    radial-gradient(circle at 85% 15%, rgb(255 255 255 / 0.18), transparent 45%),
+    linear-gradient(135deg, #0f3d5c, #1a6a8a);
+}
+.card[data-network='Mastercard'] {
+  background:
+    radial-gradient(circle at 85% 15%, rgb(255 255 255 / 0.18), transparent 45%),
+    linear-gradient(135deg, #5b2a3c, #a3442f);
+}
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-chip {
+  width: 38px;
+  height: 28px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #e8c97a, #b8933f);
+}
+.card-network {
+  font-family: var(--mx-font-sans);
+  font-weight: 600;
+  font-style: italic;
+}
+.card-number {
+  margin: 0;
+  font-size: 1.125rem;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+.card-base {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: var(--mx-text-xs);
+  letter-spacing: 0.06em;
+}
+.card-base span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---- fields ---- */
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.field-wide {
+  grid-column: 1 / -1;
+}
+.status {
+  min-height: 1.5em;
+  margin: -6px 0 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+}

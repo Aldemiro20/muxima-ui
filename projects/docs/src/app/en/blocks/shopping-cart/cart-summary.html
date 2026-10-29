@@ -1,0 +1,68 @@
+<section class="summary" aria-labelledby="cart-summary-title">
+  <h2 id="cart-summary-title" class="summary-title">Order summary</h2>
+
+  <ul class="items">
+    @for (a of items; track a.name) {
+      <li>
+        <span>{{ a.name }} <span class="items-qtd">× {{ a.quantity }}</span></span>
+        <span class="num">{{ kz(a.price * a.quantity) }}</span>
+      </li>
+    }
+  </ul>
+
+  <fieldset mxFieldset class="deliveries">
+    <legend>Delivery</legend>
+    @for (e of deliveries; track e.id) {
+      <label mxChoice card>
+        <input type="radio" mxRadio name="cart-summary-delivery" [value]="e.id" [checked]="delivery() === e.id" (change)="delivery.set(e.id)" />
+        <span class="delivery">
+          <span>
+            {{ e.name }}
+            <span mxChoiceDescription>{{ e.descricao }}</span>
+          </span>
+          <span class="num">{{ e.price ? kz(e.price) : 'Free' }}</span>
+        </span>
+      </label>
+    }
+  </fieldset>
+
+  @if (appliedCode()) {
+    <p class="code-ok">
+      <span>Code <strong>{{ appliedCode() }}</strong>: −{{ discount() * 100 }}%</span>
+      <button type="button" class="code-remove" (click)="removeCode()">
+        Remove<span class="mx-visually-hidden"> the code {{ appliedCode() }}</span>
+      </button>
+    </p>
+  } @else {
+    <form class="code" (submit)="apply($event)" novalidate>
+      <mx-form-field class="code-field">
+        <label mxLabel>Discount code</label>
+        <input
+          mxInput
+          autocomplete="off"
+          placeholder="Ex.: KIANDA10"
+          [value]="code()"
+          [invalid]="!!codeError()"
+          [aria-describedby]="codeError() ? 'cart-summary-error' : undefined"
+          (input)="code.set($any($event.target).value); codeError.set('')"
+        />
+      </mx-form-field>
+      <button mxButton variant="outline" type="submit">Apply</button>
+    </form>
+    @if (codeError()) {
+      <p class="code-error" id="cart-summary-error" role="alert">{{ codeError() }}</p>
+    }
+  }
+
+  <dl class="totals">
+    <div><dt>Subtotal</dt><dd class="num">{{ kz(subtotal) }}</dd></div>
+    @if (discountAmount()) {
+      <div class="totals-discount"><dt>Discount</dt><dd class="num">−{{ kz(discountAmount()) }}</dd></div>
+    }
+    <div><dt>Delivery</dt><dd class="num">{{ deliveryAmount() ? kz(deliveryAmount()) : 'Free' }}</dd></div>
+    <div class="totals-total"><dt>Total</dt><dd class="num" aria-live="polite">{{ kz(total()) }}</dd></div>
+  </dl>
+
+  <a mxButton size="lg" class="pay" href="#payment">Pay {{ kz(total()) }}</a>
+  <p class="note">VAT included. You'll get the invoice by email.</p>
+</section>

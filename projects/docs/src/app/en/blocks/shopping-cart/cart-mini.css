@@ -1,0 +1,174 @@
+:host {
+  display: block;
+  font-family: var(--mx-font-sans);
+  color: var(--mx-ink);
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.shop {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px;
+}
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: var(--mx-border);
+}
+.brand {
+  font-size: var(--mx-text-lg);
+}
+.button-cart svg {
+  width: 16px;
+  height: 16px;
+}
+
+.products {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.product {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: var(--mx-border);
+}
+.product-img {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--mx-radius);
+  background: var(--color);
+  color: rgb(255 255 255 / 0.85);
+  font-weight: 600;
+}
+.product-img.small {
+  width: 44px;
+  height: 44px;
+}
+.product-name {
+  margin: 0;
+  font-size: var(--mx-text-md);
+  font-weight: 500;
+}
+.product-price {
+  margin: 0;
+  font-size: var(--mx-text-md);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- panel (opens in the Drawer; the component styles apply to the template) ---------- */
+.panel-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.panel-content {
+  flex: 1;
+}
+.lines {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.line {
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  align-items: start;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: var(--mx-border);
+}
+.line-text {
+  display: grid;
+  gap: 6px;
+}
+.line-end {
+  display: grid;
+  justify-items: end;
+  gap: 4px;
+}
+.quantity {
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  border: var(--mx-border);
+  border-radius: var(--mx-radius);
+}
+.qtd-button {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: transparent;
+  color: var(--mx-ink);
+  font: inherit;
+  cursor: pointer;
+}
+.qtd-button:hover {
+  background: var(--mx-subtle);
+}
+.qtd-button:focus-visible,
+.remove:focus-visible {
+  outline: var(--mx-focus-width) solid var(--mx-accent);
+  outline-offset: 1px;
+}
+.qtd-value {
+  min-width: 24px;
+  font-size: var(--mx-text-sm);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.remove {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--mx-danger);
+  font: inherit;
+  font-size: var(--mx-text-sm);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+.empty {
+  margin: 24px 0;
+  color: var(--mx-muted);
+  text-align: center;
+}
+.panel-end {
+  display: grid;
+  gap: 8px;
+}
+.subtotal {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  font-size: var(--mx-text-lg);
+}
+.subtotal strong {
+  font-variant-numeric: tabular-nums;
+}
+.note {
+  margin: 0 0 4px;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+}
+.wide {
+  width: 100%;
+}

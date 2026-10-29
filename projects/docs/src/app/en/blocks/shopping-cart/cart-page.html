@@ -1,0 +1,58 @@
+<section class="cart" aria-labelledby="cart-page-title">
+  <h2 id="cart-page-title" class="cart-title" tabindex="-1" #title>
+    Cart <span class="cart-n">({{ items() }} {{ items() === 1 ? 'item' : 'items' }})</span>
+  </h2>
+
+  @if (lines().length) {
+    <div class="cart-grid">
+      <ul class="lines">
+        @for (l of lines(); track l.id) {
+          <li class="line">
+            <div class="line-img" [style.--color]="l.color" aria-hidden="true"></div>
+            <div class="line-info">
+              <h3 class="line-name">{{ l.name }}</h3>
+              <p class="line-detail">{{ l.detail }} · {{ kz(l.price) }} each</p>
+              <button type="button" class="line-remove" (click)="remove(l)">
+                Remove<span class="mx-visually-hidden"> {{ l.name }}</span>
+              </button>
+            </div>
+            <div class="line-qtd" role="group" [attr.aria-label]="'Quantity of ' + l.name">
+              <button type="button" aria-label="One less" [disabled]="l.quantity <= 1" (click)="change(l, -1)">−</button>
+              <span class="line-qtd-n">{{ l.quantity }}</span>
+              <button type="button" aria-label="One more" [disabled]="l.quantity >= 20" (click)="change(l, 1)">+</button>
+            </div>
+            <p class="line-total">{{ kz(l.price * l.quantity) }}</p>
+          </li>
+        }
+      </ul>
+
+      <section class="summary" aria-labelledby="cart-page-summary">
+        <h3 id="cart-page-summary" class="summary-title">Summary</h3>
+        <dl class="summary-lines">
+          <div><dt>Items</dt><dd>{{ kz(total()) }}</dd></div>
+          <div>
+            <dt>Delivery</dt>
+            <dd>{{ delivery() ? kz(delivery()) : 'Free' }}</dd>
+          </div>
+          <div class="summary-iva"><dt>Includes VAT (14%)</dt><dd>{{ kz(vat()) }}</dd></div>
+        </dl>
+        <hr mxSeparator />
+        <dl class="summary-lines">
+          <div class="summary-total"><dt>Total</dt><dd>{{ kz(toPay()) }}</dd></div>
+        </dl>
+        @if (delivery()) {
+          <p class="summary-note">Free delivery from 50,000 Kz.</p>
+        }
+        <a mxButton size="lg" class="summary-cta" href="#payment">Checkout</a>
+        <a class="summary-link" href="#shop">Continue shopping</a>
+      </section>
+    </div>
+  } @else {
+    <div class="empty">
+      <p>Your cart is empty.</p>
+      <a mxButton variant="outline" href="#shop">See products</a>
+    </div>
+  }
+
+  <p class="mx-visually-hidden" aria-live="polite">{{ notice() }}</p>
+</section>

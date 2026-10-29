@@ -1,0 +1,36 @@
+<section class="hero" aria-labelledby="hero-signup-title">
+  <p class="hero-eyebrow">Coming soon to Luanda and Benguela</p>
+  <h1 id="hero-signup-title" class="hero-title">Counter payments, with no queues and no change</h1>
+  <p class="hero-lead">
+    Leave your email and be among the first to try it. We'll send just one message, on
+    launch day.
+  </p>
+
+  <form class="hero-form" (ngSubmit)="signUp()" novalidate>
+    <mx-form-field class="hero-field">
+      <label mxLabel>E-mail</label>
+      <input
+        mxInput
+        size="lg"
+        type="email"
+        autocomplete="email"
+        placeholder="name@company.ao"
+        [formControl]="email"
+      />
+      <mx-error>
+        @if (email.hasError('required')) {
+          Enter your email.
+        } @else {
+          This email doesn't look right: check the @ and the domain.
+        }
+      </mx-error>
+    </mx-form-field>
+    <button mxButton size="lg" type="submit" [loading]="sending()">Notify me</button>
+  </form>
+
+  <p class="hero-status" role="status">
+    @if (signedUp()) {
+      Thank you! We'll notify {{ signedUp() }} on launch day.
+    }
+  </p>
+</section>

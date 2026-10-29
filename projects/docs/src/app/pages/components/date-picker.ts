@@ -12,7 +12,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Date picker' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Date picker' }]"
         title="Date picker"
         lead="Campo de data em que se pode escrever dd/mm/aaaa ou escolher num calendário. O calendário é uma grelha acessível, com semanas a começar à segunda-feira."
       />

@@ -1,0 +1,70 @@
+<header class="app-bar">
+  <a class="app-logo" href="#panel">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="2" y="2" width="20" height="20" rx="6" fill="currentColor" />
+      <path d="M8 16V8l4 4 4-4v8" fill="none" stroke="var(--mx-on-ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    <span class="app-logo-text">Kianda</span>
+  </a>
+
+  <form class="app-search" role="search" (submit)="runSearch($event)">
+    <svg viewBox="0 0 16 16" aria-hidden="true">
+      <circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.3" />
+      <path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" />
+    </svg>
+    <input
+      mxInput
+      type="search"
+      placeholder="Search customers, invoices..."
+      aria-label="Search"
+      [value]="search()"
+      (input)="search.set($any($event.target).value)"
+    />
+  </form>
+
+  <div class="app-actions">
+    <button
+      type="button"
+      class="app-icon-button"
+      [attr.aria-label]="unread() ? 'Notifications, ' + unread() + ' unread' : 'Notifications'"
+      (click)="unread.set(0); lastAction.set('Notifications opened')"
+    >
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M4 11V7a4 4 0 018 0v4l1.5 1.5h-11zM6.5 13.5a1.5 1.5 0 003 0" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" />
+      </svg>
+      @if (unread()) {
+        <span class="app-dot" aria-hidden="true">{{ unread() }}</span>
+      }
+    </button>
+
+    <button type="button" class="app-account" [mxMenuTriggerFor]="account" aria-label="Ana Kiala's account">
+      <mx-avatar [name]="user.name" size="sm" decorative />
+      <svg class="app-chevron" viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M4.5 6.5L8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+    <ng-template #account>
+      <div mxMenu>
+        <div class="app-menu-head" aria-hidden="true">
+          <strong>{{ user.name }}</strong>
+          <span>{{ user.email }}</span>
+        </div>
+        <hr mxSeparator />
+        <button mxMenuItem (mxMenuItemTriggered)="lastAction.set('Profile')">Profile</button>
+        <button mxMenuItem (mxMenuItemTriggered)="lastAction.set('Settings')">Settings</button>
+        <button mxMenuItem (mxMenuItemTriggered)="lastAction.set('Help')">Help</button>
+        <hr mxSeparator />
+        <button mxMenuItem variant="destructive" (mxMenuItemTriggered)="lastAction.set('Sign out')">
+          Sign out
+        </button>
+      </div>
+    </ng-template>
+  </div>
+</header>
+
+<!-- sample content, just to give the bar context -->
+<div class="app-content">
+  <h2 class="app-content-title">Good morning, Ana</h2>
+  <p class="app-content-text" role="status">{{ lastAction() || 'You have 3 invoices due this week.' }}</p>
+  <div class="app-content-cards" aria-hidden="true"><span></span><span></span><span></span></div>
+</div>

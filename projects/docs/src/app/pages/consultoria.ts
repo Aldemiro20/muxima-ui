@@ -18,7 +18,7 @@ import { Logo } from '../ui/logo';
           <p class="hero-lead">Ajudamos equipas a desenhar interfaces, adoptar a Muxima UI e desenvolver aplicações Angular modernas e acessíveis.</p>
           <div class="hero-actions">
             <a mxButton size="lg" [href]="links.contact" target="_blank" rel="noopener">Solicitar proposta <doc-icon name="arrowRight" /></a>
-            <a mxButton size="lg" variant="outline" routerLink="/componentes">Explorar componentes</a>
+            <a mxButton size="lg" variant="outline" routerLink="/pt/componentes">Explorar componentes</a>
           </div>
         </div>
         <div class="card consult-art">

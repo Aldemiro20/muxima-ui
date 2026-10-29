@@ -1,0 +1,23 @@
+<section class="features" aria-labelledby="feature-grid-title">
+  <div class="features-head">
+    <p class="features-eyebrow">Features</p>
+    <h2 id="feature-grid-title" class="features-title">Everything your business uses every day</h2>
+    <p class="features-lead">Start with invoicing and add the rest when you need it.</p>
+  </div>
+
+  <ul class="features-grid">
+    @for (f of features; track f.title) {
+      <li mxCard class="feature">
+        <div mxCardHeader>
+          <span class="feature-icon">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path [attr.d]="f.icon" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+          <h3 mxCardTitle>{{ f.title }}</h3>
+          <p mxCardDescription>{{ f.text }}</p>
+        </div>
+      </li>
+    }
+  </ul>
+</section>

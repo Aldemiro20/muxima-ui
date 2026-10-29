@@ -18,7 +18,7 @@ function imagem(cor: string, texto: string): string {
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Carousel' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Carousel' }]"
         title="Carousel"
         lead="Conteúdo que passa em diapositivos: destaques, galerias, produtos. Segue o padrão WAI-ARIA Carousel, desliza com o dedo e só roda sozinho com botão de pausa."
       />

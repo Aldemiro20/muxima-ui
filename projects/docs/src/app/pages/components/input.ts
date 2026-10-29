@@ -12,7 +12,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Input' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Input' }]"
         title="Input"
         lead="Texto, email, números e áreas de texto, com label, ajuda e mensagem de erro ligados automaticamente. Funcionam com ngModel e Reactive Forms."
       />
@@ -186,7 +186,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
       <section>
         <h2>Componentes relacionados</h2>
-        <doc-related [items]="[{ name: 'Select', path: '/componentes/select' }, { name: 'Button', path: '/componentes/button' }, { name: 'Checkbox' }]" />
+        <doc-related [items]="[{ name: 'Select', path: '/pt/componentes/select' }, { name: 'Button', path: '/pt/componentes/button' }, { name: 'Checkbox' }]" />
       </section>
     </article>
   `,

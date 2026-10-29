@@ -14,7 +14,7 @@ import { Icon } from '../../ui/icon';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Button' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Button' }]"
         title="Button"
         lead="Permitem executar acções, confirmar decisões e navegar. Estão disponíveis em três tamanhos e seis variantes, sempre com o mesmo anel de foco."
       />
@@ -100,8 +100,8 @@ import { Icon } from '../../ui/icon';
             </form>
           </doc-example>
           <doc-example title="Como ligação" note="Usa a mesma directiva num a com routerLink.">
-            <a mxButton variant="outline" routerLink="/componentes">Ver catálogo</a>
-            <a mxButton variant="link" routerLink="/precos">Ver preços</a>
+            <a mxButton variant="outline" routerLink="/pt/componentes">Ver catálogo</a>
+            <a mxButton variant="link" routerLink="/pt/precos">Ver preços</a>
           </doc-example>
           <doc-example title="Grupo de botões" note="Acções relacionadas lado a lado, num role=group com nome.">
             <div class="button-group" role="group" aria-label="Formatação">
@@ -155,7 +155,7 @@ import { Icon } from '../../ui/icon';
 
       <section>
         <h2>Componentes relacionados</h2>
-        <doc-related [items]="[{ name: 'Dialog', path: '/componentes/dialog' }, { name: 'Input', path: '/componentes/input' }, { name: 'Dropdown menu' }]" />
+        <doc-related [items]="[{ name: 'Dialog', path: '/pt/componentes/dialog' }, { name: 'Input', path: '/pt/componentes/input' }, { name: 'Dropdown menu' }]" />
       </section>
     </article>
   `,

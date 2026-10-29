@@ -54,7 +54,7 @@ class SidebarMovel {
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Sidebar' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Sidebar' }]"
         title="Sidebar"
         lead="Navegação lateral da aplicação, com grupos, secções que abrem e contagens. Recolhe para só ícones: os nomes continuam lá para o leitor de ecrã e aparecem numa dica com o rato ou o foco."
       />

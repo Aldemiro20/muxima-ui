@@ -45,7 +45,7 @@ function maxDias(max: number) {
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Date range picker' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Date range picker' }]"
         title="Date range picker"
         lead="Um período com data de início e de fim, num só campo. Escreve-se dd/mm/aaaa em cada parte ou escolhe-se no calendário com dois cliques, com atalhos opcionais como Últimos 7 dias."
       />

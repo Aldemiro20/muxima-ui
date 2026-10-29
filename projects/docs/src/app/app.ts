@@ -6,6 +6,8 @@ import { MxDialog } from '@muxima-ui/core/dialog';
 import { CommandPalette } from './shell/command-palette';
 import { Footer } from './shell/footer';
 import { Header } from './shell/header';
+import { LangService } from './shell/lang';
+import { injectUiText } from './shell/ui-text';
 
 @Component({
   selector: 'doc-root',
@@ -17,7 +19,7 @@ import { Header } from './shell/header';
       <!-- pré-visualização de um bloco: só o bloco -->
       <router-outlet />
     } @else {
-      <a class="skip-link" href="#conteudo">Saltar para o conteúdo</a>
+      <a class="skip-link" href="#conteudo">{{ t().skip }}</a>
       <doc-header (search)="openSearch()" />
       <div class="site-body">
         <router-outlet />
@@ -28,6 +30,9 @@ import { Header } from './shell/header';
 })
 export class App {
   private readonly dialog = inject(MxDialog);
+  // cria o serviço logo no arranque: lang do documento e idioma dos componentes
+  private readonly lang = inject(LangService);
+  protected readonly t = injectUiText();
   private searchOpen = false;
   /** Páginas de pré-visualização de blocos (/blocos/ver/...) não têm cabeçalho nem rodapé. */
   protected readonly bare = toSignal(
@@ -51,12 +56,12 @@ export class App {
   protected openSearch(): void {
     if (this.searchOpen) return;
     this.searchOpen = true;
-    const ref = this.dialog.open(CommandPalette, { size: 'md', ariaLabel: 'Pesquisa' });
+    const ref = this.dialog.open(CommandPalette, { size: 'md', ariaLabel: this.t().searchTitle });
     ref.addPanelClass('mx-command-panel');
     ref.closed.subscribe(() => (this.searchOpen = false));
   }
 }
 
 function isBare(url: string): boolean {
-  return url.startsWith('/blocos/ver/');
+  return /^\/(pt\/blocos\/ver|blocks\/view)\//.test(url);
 }

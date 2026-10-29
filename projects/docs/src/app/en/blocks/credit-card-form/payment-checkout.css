@@ -1,0 +1,130 @@
+:host {
+  display: block;
+  container-type: inline-size;
+  font-family: var(--mx-font-sans);
+  color: var(--mx-ink);
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.checkout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+.title {
+  margin: 0;
+  font-size: 1.375rem;
+  font-weight: 600;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  align-items: start;
+  gap: 24px;
+}
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  border: var(--mx-border);
+  border-radius: var(--mx-radius-surface);
+  background: var(--mx-surface);
+}
+.step-title {
+  margin: 0;
+  font-size: var(--mx-text-lg);
+  font-weight: 600;
+  outline: none;
+}
+.fields {
+  display: grid;
+  gap: 12px;
+}
+.option {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+.option [mxChoiceDescription],
+.option .mx-choice-description {
+  display: block;
+}
+.num {
+  font-variant-numeric: tabular-nums;
+}
+.botoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-top: 4px;
+}
+.done {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.done p {
+  margin: 0;
+  color: var(--mx-muted);
+}
+
+.summary {
+  padding: 18px;
+  border: var(--mx-border);
+  border-radius: var(--mx-radius-surface);
+  background: var(--mx-surface);
+}
+.summary dl {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+.summary dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: var(--mx-text-md);
+}
+.summary dt {
+  color: var(--mx-muted);
+}
+.summary dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+.summary .total {
+  padding-top: 10px;
+  border-top: var(--mx-border);
+  font-size: var(--mx-text-lg);
+  font-weight: 600;
+}
+.summary .total dt {
+  color: var(--mx-ink);
+}
+.note {
+  margin: 10px 0 0;
+  color: var(--mx-muted);
+  font-size: var(--mx-text-sm);
+}
+
+@container (max-width: 680px) {
+  .body {
+    grid-template-columns: 1fr;
+  }
+  .summary {
+    order: -1;
+  }
+}

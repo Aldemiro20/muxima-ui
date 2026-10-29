@@ -13,7 +13,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Multi-select' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Multi-select' }]"
         title="Multi-select"
         lead="Várias escolhas numa lista. É o mesmo Select com o atributo multiple: o valor passa a ser uma lista e o painel fica aberto enquanto se escolhe."
       />
@@ -133,7 +133,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
 
       <section>
         <h2>Referência da API</h2>
-        <p>As mesmas entradas do <a class="text-link" routerLink="/componentes/select">Select</a>, mais:</p>
+        <p>As mesmas entradas do <a class="text-link" routerLink="/pt/componentes/select">Select</a>, mais:</p>
         <doc-api-table [rows]="api" />
       </section>
 

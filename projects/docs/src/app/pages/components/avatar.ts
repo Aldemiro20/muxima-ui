@@ -10,7 +10,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Avatar' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Avatar' }]"
         title="Avatar"
         lead="Fotografia de uma pessoa ou organização. Sem imagem, ou se a imagem falhar, mostra as iniciais do primeiro e do último nome."
       />

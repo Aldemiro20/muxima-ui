@@ -23,17 +23,17 @@ export interface NavGroup {
 }
 
 export const TOP_NAV = [
-  { label: 'Início', path: '/', exact: true },
-  { label: 'Componentes', path: '/componentes', exact: false },
-  { label: 'Blocos', path: '/blocos', exact: false },
-  { label: 'Documentação', path: '/docs', exact: false },
-  { label: 'Templates', path: '/templates', exact: false },
-  { label: 'Preços', path: '/precos', exact: false },
-  { label: 'Consultoria', path: '/consultoria', exact: false },
-  { label: 'Changelog', path: '/changelog', exact: false },
+  { label: 'Início', path: '/pt', exact: true },
+  { label: 'Componentes', path: '/pt/componentes', exact: false },
+  { label: 'Blocos', path: '/pt/blocos', exact: false },
+  { label: 'Documentação', path: '/pt/docs', exact: false },
+  { label: 'Templates', path: '/pt/templates', exact: false },
+  { label: 'Preços', path: '/pt/precos', exact: false },
+  { label: 'Consultoria', path: '/pt/consultoria', exact: false },
+  { label: 'Changelog', path: '/pt/changelog', exact: false },
 ];
 
-export type CatalogCategory = 'Formulários' | 'Dados' | 'Navegação' | 'Sobreposição' | 'Feedback';
+export type CatalogCategory = string;
 
 export const CATEGORIES: CatalogCategory[] = ['Formulários', 'Dados', 'Navegação', 'Sobreposição', 'Feedback'];
 
@@ -64,7 +64,7 @@ const c = (name: string, description: string, icon: string, category: CatalogCat
   icon,
   category,
   tier: 'Core',
-  path: slug ? `/componentes/${slug}` : undefined,
+  path: slug ? `/pt/componentes/${slug}` : undefined,
 });
 
 export const CATALOG: CatalogItem[] = [
@@ -128,12 +128,12 @@ export const SIDEBAR: NavGroup[] = [
   {
     title: 'Começar',
     items: [
-      { label: 'Introdução', path: '/docs/introducao', icon: 'message' },
-      { label: 'Instalação', path: '/docs/instalacao', icon: 'terminal' },
-      { label: 'Temas', path: '/docs/temas', icon: 'sliders' },
-      { label: 'Modo escuro', path: '/docs/modo-escuro', icon: 'moon' },
-      { label: 'Idiomas', path: '/docs/idiomas', icon: 'globe' },
-      { label: 'Padrão de qualidade', path: '/docs/padrao-de-qualidade', icon: 'quality' },
+      { label: 'Introdução', path: '/pt/docs/introducao', icon: 'message' },
+      { label: 'Instalação', path: '/pt/docs/instalacao', icon: 'terminal' },
+      { label: 'Temas', path: '/pt/docs/temas', icon: 'sliders' },
+      { label: 'Modo escuro', path: '/pt/docs/modo-escuro', icon: 'moon' },
+      { label: 'Idiomas', path: '/pt/docs/idiomas', icon: 'globe' },
+      { label: 'Padrão de qualidade', path: '/pt/docs/padrao-de-qualidade', icon: 'quality' },
     ],
   },
   ...CATEGORIES.map((category) => ({
@@ -147,16 +147,16 @@ export const SIDEBAR: NavGroup[] = [
   {
     title: 'Blocos',
     items: [
-      { label: 'Todos os blocos', path: '/blocos', icon: 'layers' },
-      ...BLOCKS.map((b) => ({ label: b.name, path: `/blocos/${b.slug}`, icon: b.icon })),
+      { label: 'Todos os blocos', path: '/pt/blocos', icon: 'layers' },
+      ...BLOCKS.map((b) => ({ label: b.name, path: `/pt/blocos/${b.slug}`, icon: b.icon })),
     ],
   },
   {
     title: 'Templates',
     items: [
-      { label: 'Dashboards', path: '/templates', icon: 'grid', pro: true, query: { categoria: 'Dashboards' } },
-      { label: 'Autenticação', path: '/templates', icon: 'shield', pro: true, query: { categoria: 'Autenticação' } },
-      { label: 'Gestão de clientes', path: '/templates', icon: 'users', pro: true, query: { categoria: 'Gestão' } },
+      { label: 'Dashboards', path: '/pt/templates', icon: 'grid', pro: true, query: { categoria: 'Dashboards' } },
+      { label: 'Autenticação', path: '/pt/templates', icon: 'shield', pro: true, query: { categoria: 'Autenticação' } },
+      { label: 'Gestão de clientes', path: '/pt/templates', icon: 'users', pro: true, query: { categoria: 'Gestão' } },
     ],
   },
 ];

@@ -12,7 +12,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Radio' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Radio' }]"
         title="Radio"
         lead="Uma escolha entre poucas opções, todas visíveis. Assenta no input radio nativo, por isso as setas mudam a opção como em qualquer formulário do navegador."
       />

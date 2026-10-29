@@ -12,7 +12,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'OTP input' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'OTP input' }]"
         title="OTP input"
         lead="Código de uso único em caixas separadas. Por baixo há um só input nativo: colar o código e o preenchimento automático do SMS funcionam, e o leitor de ecrã ouve um campo normal."
       />

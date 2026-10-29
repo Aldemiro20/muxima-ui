@@ -11,7 +11,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Timeline' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Timeline' }]"
         title="Timeline"
         lead="Acontecimentos por ordem: histórico de uma factura, passos de uma encomenda, registo de actividade. É uma lista ordenada nativa com marcadores, por isso o leitor de ecrã anuncia quantos são e a posição de cada um."
       />

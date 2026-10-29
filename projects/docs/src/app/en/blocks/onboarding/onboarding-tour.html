@@ -1,0 +1,79 @@
+<div class="app">
+  <nav class="side" aria-label="Main" mxTourAnchor="ob-menu">
+    <p class="brand">Kianda</p>
+    <ul>
+      @for (m of menu; track m) {
+        <li>
+          <button
+            type="button"
+            class="side-item"
+            [attr.aria-current]="active() === m ? 'page' : null"
+            (click)="active.set(m)"
+          >
+            {{ m }}
+          </button>
+        </li>
+      }
+    </ul>
+  </nav>
+
+  <div class="principal">
+    <header class="top">
+      <h1 class="top-title">{{ active() }}</h1>
+      <form class="search" role="search" (submit)="$event.preventDefault()">
+        <input
+          mxInput
+          size="sm"
+          type="search"
+          placeholder="Search"
+          aria-label="Search customers and invoices"
+          mxTourAnchor="ob-search"
+        />
+      </form>
+      <button mxButton size="sm" type="button" mxTourAnchor="ob-new">New invoice</button>
+      <button
+        mxButton
+        size="sm"
+        variant="outline"
+        type="button"
+        mxTourAnchor="ob-help"
+        (click)="start()"
+      >
+        Help
+      </button>
+    </header>
+
+    @if (invite()) {
+      <section class="invite" aria-labelledby="ob-tour-invite">
+        <div>
+          <h2 id="ob-tour-invite" class="invite-title">
+            New here? <span mxBadge variant="secondary">1 minute</span>
+          </h2>
+          <p class="invite-text">Take the guided tour and learn where everything is.</p>
+        </div>
+        <div class="invite-actions">
+          <button mxButton variant="ghost" size="sm" type="button" (click)="dismiss()">
+            Not now
+          </button>
+          <button mxButton size="sm" type="button" (click)="start()">Start the tour</button>
+        </div>
+      </section>
+    }
+    <p class="status" role="status">{{ status() }}</p>
+
+    <section class="summary" aria-label="Month summary" mxTourAnchor="ob-summary">
+      <div class="card">
+        <p class="card-label">Receivable</p>
+        <p class="card-value">4 820 000 Kz</p>
+      </div>
+      <div class="card">
+        <p class="card-label">Overdue</p>
+        <p class="card-value">3 invoices</p>
+      </div>
+      <div class="card">
+        <p class="card-label">Received in October</p>
+        <p class="card-value">12 350 000 Kz</p>
+      </div>
+    </section>
+  </div>
+</div>

@@ -13,7 +13,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Accordion' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Accordion' }]"
         title="Accordion"
         lead="Secções que abrem e fecham, sobre details e summary nativos. O teclado, o estado anunciado e a pesquisa do navegador funcionam sem JavaScript."
       />

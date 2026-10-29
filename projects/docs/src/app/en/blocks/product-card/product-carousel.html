@@ -1,0 +1,33 @@
+<section class="row" aria-labelledby="product-carousel-title">
+  <header class="head">
+    <h2 id="product-carousel-title" class="title">Best sellers this week</h2>
+    <a class="see-all" href="#" (click)="$event.preventDefault()">See all</a>
+  </header>
+
+  <mx-carousel aria-label="Best sellers" [perView]="perView()" [gap]="16">
+    @for (p of products; track p.id) {
+      <mx-carousel-slide [label]="p.name">
+        <article class="product">
+          <!-- replace with: <img [src]="p.image" [alt]="p.name" /> -->
+          <div class="product-img" [style.--color]="p.color" aria-hidden="true">
+            <span>{{ p.name.charAt(0) }}</span>
+          </div>
+          <div class="product-body">
+            <h3 class="product-name">{{ p.name }}</h3>
+            <p class="product-price">{{ price(p.price) }}</p>
+            @if (added().has(p.id)) {
+              <button mxButton variant="outline" size="sm" type="button" disabled>
+                In cart<span class="mx-visually-hidden">: {{ p.name }}</span>
+              </button>
+            } @else {
+              <button mxButton size="sm" type="button" (click)="add(p)">
+                Add<span class="mx-visually-hidden"> {{ p.name }} to cart</span>
+              </button>
+            }
+          </div>
+        </article>
+      </mx-carousel-slide>
+    }
+  </mx-carousel>
+  <p class="mx-visually-hidden" role="status">{{ notice() }}</p>
+</section>

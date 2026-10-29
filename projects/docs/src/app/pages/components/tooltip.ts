@@ -11,7 +11,7 @@ import { Icon } from '../../ui/icon';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Tooltip' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Tooltip' }]"
         title="Tooltip"
         lead="Texto curto que aparece ao passar o rato ou ao focar com o teclado. Fica ligado ao elemento por aria-describedby e fecha com Escape."
       />

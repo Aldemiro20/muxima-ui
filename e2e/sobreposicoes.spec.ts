@@ -75,7 +75,7 @@ test.describe('Sobreposições com teclado', () => {
   });
 
   test('Command Palette: Ctrl+K, pesquisa e Enter navegam', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/pt');
     await page.keyboard.press('Control+k');
     const input = page.getByRole('combobox', { name: 'Pesquisar na documentação' });
     await expect(input).toBeFocused();

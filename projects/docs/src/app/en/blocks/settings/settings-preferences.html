@@ -1,0 +1,58 @@
+<section class="definicoes" aria-labelledby="settings-preferences-title">
+  <header class="definicoes-head">
+    <h2 id="settings-preferences-title">Preferences</h2>
+    <p>Changes are saved as soon as you make them.</p>
+  </header>
+
+  <div class="group">
+    <h3 class="group-title">Notifications</h3>
+    <ul class="rows">
+      @for (i of toggles(); track i.id) {
+        <li class="row">
+          <div class="row-text">
+            <label class="row-title" [for]="'pref-' + i.id">{{ i.title }}</label>
+            <p class="row-desc" [id]="'pref-' + i.id + '-desc'">{{ i.description }}</p>
+          </div>
+          <input
+            type="checkbox"
+            mxSwitch
+            [id]="'pref-' + i.id"
+            [checked]="i.on"
+            [attr.aria-describedby]="'pref-' + i.id + '-desc'"
+            (change)="toggle(i, $any($event.target).checked)"
+          />
+        </li>
+      }
+    </ul>
+  </div>
+
+  <div class="group">
+    <h3 class="group-title">Region</h3>
+    <ul class="rows">
+      <li class="row">
+        <div class="row-text">
+          <p class="row-title">Language</p>
+          <p class="row-desc">For the app and the emails.</p>
+        </div>
+        <mx-select class="row-select" aria-label="Language" [(ngModel)]="language" (ngModelChange)="saved('Language')">
+          <mx-option value="pt-AO">Portuguese (Angola)</mx-option>
+          <mx-option value="pt-PT">Portuguese (Portugal)</mx-option>
+          <mx-option value="en">English</mx-option>
+        </mx-select>
+      </li>
+      <li class="row">
+        <div class="row-text">
+          <p class="row-title">Currency</p>
+          <p class="row-desc">Used on new invoices.</p>
+        </div>
+        <mx-select class="row-select" aria-label="Currency" [(ngModel)]="currency" (ngModelChange)="saved('Currency')">
+          <mx-option value="AOA">Kwanza (Kz)</mx-option>
+          <mx-option value="USD">Dollar (USD)</mx-option>
+          <mx-option value="EUR">Euro (EUR)</mx-option>
+        </mx-select>
+      </li>
+    </ul>
+  </div>
+
+  <p class="mx-visually-hidden" aria-live="polite">{{ notice() }}</p>
+</section>

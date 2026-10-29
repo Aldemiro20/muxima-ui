@@ -11,7 +11,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Skeleton' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Skeleton' }]"
         title="Skeleton"
         lead="Ocupa o lugar do conteúdo enquanto carrega, com a mesma forma, para a página não saltar quando os dados chegam."
       />

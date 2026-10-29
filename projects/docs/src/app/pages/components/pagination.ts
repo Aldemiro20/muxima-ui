@@ -12,7 +12,7 @@ const CLIENTES = Array.from({ length: 47 }, (_, i) => ({ id: i + 1, nome: `Clien
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Pagination' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Pagination' }]"
         title="Pagination"
         lead="Navegação entre páginas de resultados, com a página actual marcada e reticências quando há muitas páginas."
       />

@@ -1,0 +1,80 @@
+<div class="shop">
+  <header class="top">
+    <strong class="brand">Kianda Market</strong>
+    <button mxButton variant="outline" type="button" class="button-cart" (click)="open()">
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M1.5 2h2l1.6 8h7.4l1.5-5.5H4.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="6" cy="13" r="1" fill="currentColor" />
+        <circle cx="12" cy="13" r="1" fill="currentColor" />
+      </svg>
+      Cart
+      <span mxBadge size="sm" [variant]="items() ? 'default' : 'secondary'">
+        {{ items() }}<span class="mx-visually-hidden"> {{ items() === 1 ? 'item' : 'items' }}</span>
+      </span>
+    </button>
+  </header>
+
+  <ul class="products">
+    @for (p of products; track p.id) {
+      <li class="product">
+        <div class="product-img" [style.--color]="p.color" aria-hidden="true">{{ p.name.charAt(0) }}</div>
+        <div class="product-text">
+          <p class="product-name">{{ p.name }}</p>
+          <p class="product-price">{{ price(p.price) }}</p>
+        </div>
+        <button mxButton size="sm" type="button" (click)="add(p)">
+          Add<span class="mx-visually-hidden"> {{ p.name }}</span>
+        </button>
+      </li>
+    }
+  </ul>
+  <p class="mx-visually-hidden" role="status">{{ notice() }}</p>
+</div>
+
+<ng-template #cartPanel let-ref="dialogRef">
+  <div mxDialogHeader class="panel-top">
+    <h2 mxDialogTitle>Cart ({{ items() }})</h2>
+    <button mxButton variant="ghost" size="sm" mxDialogClose aria-label="Close the cart">
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" width="16" height="16">
+        <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      </svg>
+    </button>
+  </div>
+  <div mxDialogContent class="panel-content">
+    @if (lines().length) {
+      <ul class="lines">
+        @for (l of lines(); track l.product.id) {
+          <li class="line">
+            <div class="product-img small" [style.--color]="l.product.color" aria-hidden="true">{{ l.product.name.charAt(0) }}</div>
+            <div class="line-text">
+              <p class="product-name">{{ l.product.name }}</p>
+              <div class="quantity" role="group" [attr.aria-label]="'Quantity of ' + l.product.name">
+                <button type="button" class="qtd-button" [attr.aria-label]="'One less ' + l.product.name" (click)="change(l.product.id, -1)">−</button>
+                <span class="qtd-value" aria-live="polite">{{ l.qtd }}</span>
+                <button type="button" class="qtd-button" [attr.aria-label]="'One more ' + l.product.name" (click)="change(l.product.id, 1)">+</button>
+              </div>
+            </div>
+            <div class="line-end">
+              <p class="product-price">{{ price(l.qtd * l.product.price) }}</p>
+              <button type="button" class="remove" (click)="remove(l.product)">
+                Remove<span class="mx-visually-hidden"> {{ l.product.name }}</span>
+              </button>
+            </div>
+          </li>
+        }
+      </ul>
+    } @else {
+      <p class="empty">Your cart is empty.</p>
+    }
+  </div>
+  <div mxDialogFooter class="panel-end">
+    <p class="subtotal"><span>Subtotal</span><strong>{{ price(subtotal()) }}</strong></p>
+    <p class="note">VAT included. Delivery calculated at the next step.</p>
+    <button mxButton type="button" class="wide" [disabled]="!lines().length" (click)="ref.close()">
+      Checkout
+    </button>
+    <button mxButton variant="ghost" type="button" class="wide" (click)="ref.close()">
+      Continue shopping
+    </button>
+  </div>
+</ng-template>

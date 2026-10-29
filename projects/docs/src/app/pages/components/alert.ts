@@ -10,7 +10,7 @@ import { ApiRow, DOC_UI } from '../../ui/doc-ui';
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Alert' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Alert' }]"
         title="Alert"
         lead="Mensagem destacada dentro da página: informação, sucesso, aviso ou erro. Por omissão não interrompe o leitor de ecrã; só anuncia quando lhe pedes."
       />

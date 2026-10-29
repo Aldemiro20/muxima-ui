@@ -1,0 +1,44 @@
+<section class="hero" aria-labelledby="hero-image-title">
+  <div class="hero-text">
+    <p class="hero-eyebrow">For small and medium businesses</p>
+    <h1 id="hero-image-title" class="hero-title">Sell more, worry less about paperwork</h1>
+    <p class="hero-lead">
+      Kianda Management takes care of invoicing, stock and taxes, so you have time for your
+      customers.
+    </p>
+
+    <ul class="hero-list">
+      @for (v of benefits; track v) {
+        <li>
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          {{ v }}
+        </li>
+      }
+    </ul>
+
+    <div class="hero-actions">
+      <a mxButton size="lg" href="#signup">Create a free account</a>
+      <a mxButton size="lg" variant="ghost" href="#pricing">See pricing →</a>
+    </div>
+  </div>
+
+  <figure class="hero-media" role="img" aria-label="App dashboard with the week's sales going up">
+    <div class="mock" aria-hidden="true">
+      <div class="mock-bar"><i></i><i></i><i></i></div>
+      <div class="mock-body">
+        <div class="mock-kpis">
+          <div><span>Sales</span><b>4,2 M Kz</b></div>
+          <div><span>Invoices</span><b>128</b></div>
+          <div><span>To collect</span><b>6</b></div>
+        </div>
+        <div class="mock-chart">
+          @for (b of bars; track $index) {
+            <span [style.height.%]="b"></span>
+          }
+        </div>
+      </div>
+    </div>
+  </figure>
+</section>

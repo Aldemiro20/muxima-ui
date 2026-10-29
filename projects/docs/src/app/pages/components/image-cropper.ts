@@ -45,7 +45,7 @@ function fotografia(largura = 960, altura = 640): string {
   template: `
     <article class="doc-page">
       <doc-page-header
-        [crumbs]="[{ label: 'Componentes', path: '/componentes' }, { label: 'Image cropper' }]"
+        [crumbs]="[{ label: 'Componentes', path: '/pt/componentes' }, { label: 'Image cropper' }]"
         title="Image cropper"
         lead="Recortar uma imagem antes de a enviar: fotografia de perfil, logótipo, capa. Arrasta-se a área, redimensiona-se pelos cantos, faz-se zoom e roda-se. Tudo também com teclado, e o resultado sai na resolução original."
       />
