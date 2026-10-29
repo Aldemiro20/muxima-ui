@@ -13,6 +13,7 @@ interface Template {
 const TEMPLATES: Template[] = [
   { name: 'Dashboard Empresarial', description: 'Facturação, cobranças e relatórios, em português e inglês.', tag: 'Dashboard', category: 'Dashboards' },
   { name: 'Loja online', description: 'Loja com catálogo, carrinho e compra, e gestão de encomendas, produtos, cupões e envios, em português e inglês.', tag: 'Loja', category: 'Comércio' },
+  { name: 'Gestão escolar', description: 'Alunos e encarregados, presenças, notas e pautas, horários e propinas, em português e inglês.', tag: 'Escola', category: 'Gestão' },
   { name: 'Gestão de Clientes', description: 'CRM para equipas comerciais.', tag: 'CRM', category: 'Gestão' },
   { name: 'Recursos Humanos', description: 'Colaboradores, equipas e processos.', tag: 'RH', category: 'Gestão' },
   { name: 'Gestão Financeira', description: 'Facturas, pagamentos e orçamentos.', tag: 'Finanças', category: 'Dashboards' },
