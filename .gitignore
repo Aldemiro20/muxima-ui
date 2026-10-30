@@ -50,3 +50,6 @@ Thumbs.db
 /test-results
 /playwright-report
 /.check-examples
+
+# Cloudflare (wrangler)
+/.wrangler
