@@ -5,10 +5,11 @@ export const LINKS = {
   repo: 'https://github.com/Aldemiro20/muxima-ui',
   issues: 'https://github.com/Aldemiro20/muxima-ui/issues',
   npm: 'https://www.npmjs.com/package/@muxima-ui/core',
-  /** Contacto comercial (consultoria, Enterprise). Substituir por um e-mail ou formulário próprio. */
-  contact: 'https://github.com/Aldemiro20',
+  /** Contacto comercial (consultoria, Enterprise). Trocar por contacto@dominio quando houver domínio próprio. */
+  email: 'muximaui@gmail.com',
+  contact: 'mailto:muximaui@gmail.com',
   /** Autor da biblioteca e dos templates. */
-  author: 'https://github.com/Aldemiro20',
+  author: 'https://www.linkedin.com/in/aldemiro-valentim/',
   /** Demonstrações dos templates (Cloudflare Pages); trocar pelo domínio próprio quando existir. */
   demos: 'https://muxima-ui-demos.pages.dev',
 };

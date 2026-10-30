@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation / Documentação
+    url: https://muxima-ui.pages.dev
+    about: Guides, components and examples / Guias, componentes e exemplos
+  - name: Consulting, Enterprise or security / Consultoria, Enterprise ou segurança
+    url: mailto:muximaui@gmail.com
+    about: muximaui@gmail.com

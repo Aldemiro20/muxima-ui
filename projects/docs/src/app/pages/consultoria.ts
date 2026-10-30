@@ -17,7 +17,7 @@ import { Logo } from '../ui/logo';
           <h1 class="display">Da ideia à aplicação.<br /><span class="accent">Com confiança.</span></h1>
           <p class="hero-lead">Ajudamos equipas a desenhar interfaces, adoptar a Muxima UI e desenvolver aplicações Angular modernas e acessíveis.</p>
           <div class="hero-actions">
-            <a mxButton size="lg" [href]="links.contact" target="_blank" rel="noopener">Solicitar proposta <doc-icon name="arrowRight" /></a>
+            <a mxButton size="lg" [href]="links.contact + '?subject=Muxima%20UI%3A%20consultoria'">Solicitar proposta <doc-icon name="arrowRight" /></a>
             <a mxButton size="lg" variant="outline" routerLink="/pt/componentes">Explorar componentes</a>
           </div>
         </div>
@@ -42,7 +42,7 @@ import { Logo } from '../ui/logo';
           <h2 class="display-sm">Conta-nos sobre o teu projecto.</h2>
           <p class="muted small">Uma conversa prática para avaliar objectivos, requisitos e próximos passos.</p>
         </div>
-        <a mxButton size="lg" [href]="links.contact" target="_blank" rel="noopener">Marcar conversa <doc-icon name="arrowRight" /></a>
+        <a mxButton size="lg" [href]="links.contact + '?subject=Muxima%20UI%3A%20consultoria'">Marcar conversa <doc-icon name="arrowRight" /></a>
       </section>
     </main>
   `,

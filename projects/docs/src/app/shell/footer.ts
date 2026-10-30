@@ -17,6 +17,7 @@ import { Logo } from '../ui/logo';
           <strong>Muxima UI</strong>
           <span>{{ t().footerTagline }}</span>
           <span class="footer-author">{{ t().footerAuthor }} <a [href]="links.author" target="_blank" rel="noopener author">Aldemiro Valentim</a></span>
+          <a class="footer-email" [href]="links.contact">{{ links.email }}</a>
         </div>
         <nav class="footer-links" [attr.aria-label]="t().footerNav">
           <a [routerLink]="lang.prefix() + '/changelog'">Changelog</a>

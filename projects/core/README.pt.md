@@ -5,6 +5,8 @@
 Componentes Angular acessíveis, com temas por variáveis CSS e modo escuro.
 Requer Angular 21 ou superior e `@angular/cdk`.
 
+**Documentação e exemplos:** [muxima-ui.pages.dev/pt](https://muxima-ui.pages.dev/pt)
+
 ```bash
 npm install @muxima-ui/core @angular/cdk
 ```
@@ -88,4 +90,4 @@ O editor de texto usa o Tiptap, que é opcional: só é preciso se importares `@
 npm install @tiptap/core @tiptap/pm @tiptap/starter-kit @tiptap/extensions
 ```
 
-Licença MIT.
+Licença MIT. Criado por [Aldemiro Valentim](https://www.linkedin.com/in/aldemiro-valentim/). Contacto: [muximaui@gmail.com](mailto:muximaui@gmail.com).

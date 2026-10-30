@@ -56,7 +56,7 @@ import { Icon } from '../ui/icon';
             <li><doc-icon name="check" /> Formação e capacitação</li>
             <li><doc-icon name="check" /> Suporte contratado</li>
           </ul>
-          <a mxButton variant="outline" [href]="links.contact" target="_blank" rel="noopener" class="plan-cta">Pedir proposta <doc-icon name="arrowRight" /></a>
+          <a mxButton variant="outline" [href]="links.contact + '?subject=Muxima%20UI%3A%20Enterprise'" class="plan-cta">Pedir proposta <doc-icon name="arrowRight" /></a>
         </section>
       </div>
 

@@ -284,6 +284,14 @@ kbd {
   content: '·';
   margin-right: 8px;
 }
+.footer-email::before {
+  content: '·';
+  margin-right: 8px;
+  color: var(--mx-muted);
+}
+.footer-email {
+  color: var(--mx-muted);
+}
 .footer-author a {
   color: var(--mx-ink);
   text-decoration: underline;

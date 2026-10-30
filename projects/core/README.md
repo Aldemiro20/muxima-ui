@@ -5,6 +5,8 @@
 Accessible Angular components, themed with CSS variables, with dark mode included.
 Requires Angular 21 or later and `@angular/cdk`.
 
+**Documentation and examples:** [muxima-ui.pages.dev](https://muxima-ui.pages.dev)
+
 ```bash
 npm install @muxima-ui/core @angular/cdk
 ```
@@ -112,7 +114,8 @@ npm install @tiptap/core @tiptap/pm @tiptap/starter-kit @tiptap/extensions
 
 ## Links
 
+- [Documentation](https://muxima-ui.pages.dev)
 - [Changelog](https://github.com/Aldemiro20/muxima-ui/blob/HEAD/CHANGELOG.md)
 - [Issues](https://github.com/Aldemiro20/muxima-ui/issues)
 
-MIT license. Created by [Aldemiro Valentim](https://github.com/Aldemiro20).
+MIT license. Created by [Aldemiro Valentim](https://www.linkedin.com/in/aldemiro-valentim/). Contact: [muximaui@gmail.com](mailto:muximaui@gmail.com).

@@ -5,6 +5,8 @@
 Biblioteca de componentes para Angular 21 ou superior, com documentação em inglês e português.
 Componentes acessíveis, temas por variáveis CSS e modo escuro incluído.
 
+**Documentação:** [muxima-ui.pages.dev/pt](https://muxima-ui.pages.dev/pt) · **npm:** [@muxima-ui/core](https://www.npmjs.com/package/@muxima-ui/core) · **Contacto:** [muximaui@gmail.com](mailto:muximaui@gmail.com)
+
 ## Estrutura
 
 | Pasta | Conteúdo |
@@ -81,6 +83,10 @@ Angular 21 e 22 (`peerDependencies: >=21.0.0 <23.0.0`). Versões anteriores não
 - `docs/publicar.md`: como publicar no npm e descontinuar os pacotes antigos.
 - `CHANGELOG.md`: alterações por versão.
 
+## Contribuir
+
+Issues e pull requests são bem-vindos. Lê primeiro o [CONTRIBUTING.pt.md](CONTRIBUTING.pt.md): abre uma issue antes de componentes novos ou mudanças na API, uma mudança por pull request, testes com teclado e axe, documentação em inglês e português.
+
 ## Licença
 
-MIT. Autor: Aldemiro Valentim.
+MIT. Autor: [Aldemiro Valentim](https://www.linkedin.com/in/aldemiro-valentim/).
