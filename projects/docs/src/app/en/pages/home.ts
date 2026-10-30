@@ -12,8 +12,8 @@ import { Logo } from '../../ui/logo';
     <main id="conteudo" class="page-wide">
       <section class="hero">
         <div class="hero-copy">
-          <p class="pill"><doc-icon name="code" [size]="14" /> Angular · Open Source · Made in Angola</p>
-          <h1 class="hero-title">Angular components with <span class="accent">an Angolan heart.</span></h1>
+          <p class="pill"><doc-icon name="code" [size]="14" /> Angular · Open Source · MIT</p>
+          <h1 class="hero-title">Angular components, <span class="accent">accessible by default.</span></h1>
           <p class="hero-lead">
             A modern, accessible and understated library for building business applications. Simple to integrate. Free
             to create.
@@ -100,9 +100,9 @@ import { Logo } from '../../ui/logo';
 
       <section class="card identity">
         <div>
-          <p class="eyebrow">Design with meaning</p>
-          <h2>Technology with an Angolan heart.</h2>
-          <p class="muted">Muxima means heart in Kimbundu. The motif inspired by sona drawings lives in the brand and the docs, not in the controls.</p>
+          <p class="eyebrow">Quality standard</p>
+          <h2>Simple on the outside, careful on the inside.</h2>
+          <p class="muted">Every component follows the same rules: native HTML first, keyboard and WAI-ARIA, tokens only, and axe checks in light and dark themes.</p>
         </div>
         <doc-logo [size]="112" class="accent" />
       </section>

@@ -9,7 +9,7 @@ export const PT_BARE: Routes = [
 
 /** Páginas sem barra lateral. */
 export const PT_PLAIN: Routes = [
-  { path: '', pathMatch: 'full', title: 'Muxima UI — Componentes Angular com coração angolano', loadComponent: () => import('./pages/home').then((m) => m.HomePage) },
+  { path: '', pathMatch: 'full', title: 'Muxima UI — Componentes Angular acessíveis', loadComponent: () => import('./pages/home').then((m) => m.HomePage) },
   { path: 'precos', title: 'Preços · Muxima UI', loadComponent: () => import('./pages/precos').then((m) => m.PrecosPage) },
   { path: 'consultoria', title: 'Consultoria · Muxima UI', loadComponent: () => import('./pages/consultoria').then((m) => m.ConsultoriaPage) },
   { path: 'changelog', title: 'Changelog · Muxima UI', loadComponent: () => import('./pages/changelog').then((m) => m.ChangelogPage) },
